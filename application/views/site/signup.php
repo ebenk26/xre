@@ -26,13 +26,12 @@
 
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/login-5.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL STYLES -->
-
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 </head>
 
 <body class="login">
-
     <div class="user-login-5">
         <div class="row bs-reset ">
             <!-- col-form -->
@@ -127,6 +126,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="fullname" type="text" class="form-control " placeholder="FullName">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Email -->
@@ -134,6 +134,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="email" type="email" class="form-control " placeholder="Email Address">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('email'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Password -->
@@ -141,6 +142,7 @@
                                             <div class="col-md-8 col-md-offset-2  ">
                                                 <input name="password" type="password" class="form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Confirm Password -->
@@ -148,6 +150,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Checkbox : I Agree -->
@@ -182,6 +185,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input type="text" name="company_name" class="form-control " placeholder="Company Name">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('company_name'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Fullname -->
@@ -189,6 +193,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="fullname" type="text" class="form-control " placeholder="FullName">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Email -->
@@ -196,6 +201,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="email" type="email" class="form-control " placeholder="Email Address">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('email'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Password -->
@@ -203,6 +209,7 @@
                                             <div class="col-md-8 col-md-offset-2  ">
                                                 <input name="password" type="password" class="form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Confirm Password -->
@@ -210,6 +217,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input name="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
+                                                <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Checkbox : I Agree -->
@@ -237,7 +245,6 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-
                     </div>
                 </div>
                 <div class="login-footer">
@@ -253,7 +260,6 @@
             <!-- col-bg-color-indigo  -->
             <div class="col-md-6 bs-reset">
                 <div class="tab-content">
-
                     <div class="m-grid m-grid-full-height md-indigo login-bg" id="studentContent">
                         <div class="m-grid-col m-grid-col-middle  font-white">
                             <div class="portlet portlet-body px-7">
@@ -322,7 +328,6 @@
         </div>
     </div>
 
-
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
@@ -342,6 +347,7 @@
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
     <!-- END THEME LAYOUT SCRIPTS -->
@@ -394,6 +400,17 @@
                     $('#employerContent').hide();
                 }
             });
+        });
+    </script>
+    <script>
+        // assumes you're using jQuery
+        $(document).ready(function() {
+            <?php if($this->session->flashdata('msg_success')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_succes'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
         });
     </script>
 

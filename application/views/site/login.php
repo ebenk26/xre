@@ -197,6 +197,17 @@
             });
         })
     </script>
+    <script>
+        // assumes you're using jQuery
+        $(document).ready(function() {
+            <?php if($this->session->flashdata('msg_succes')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_succes'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
+        });
+    </script>
 
 
 </body></html>

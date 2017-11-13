@@ -97,6 +97,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
 
     <!-- General Components and Settings -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
@@ -108,6 +109,6 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <!--========== END JAVASCRIPTS ==========-->
-
+    
 
 </body></html>

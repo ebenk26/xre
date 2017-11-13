@@ -37,6 +37,11 @@ define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('SALT', 'dRk_612!');
+define('ASSETS', 'http://localhost/xremo/assets/');
+define('CSS', ASSETS.'css');
+define('JS', ASSETS.'js');
+define('CSS_STUDENTS', ASSETS.'students/css/');
+define('JS_STUDENTS', ASSETS.'students/js/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

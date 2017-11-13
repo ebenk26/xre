@@ -38,7 +38,7 @@ class User extends CI_Controller {
 
             if ($login_result['verified'] == 0) {
                 
-                $this->session->set_flashdata('login_msg', '<div class="alert alert-success text-center">Please chack your email to verify before you can login</div>');
+                $this->session->set_flashdata('msg_alert', 'Please chack your email to verify before you can login');
                 $header['page_title'] = 'Login';
                 $this->load->view('site/login', $header);
                 
@@ -54,7 +54,7 @@ class User extends CI_Controller {
     public function student_signup_post(){
         
         $this->form_validation->set_rules('fullname','Student fullname', 'required');
-        $this->form_validation->set_rules('email','Student email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email','Student email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
@@ -70,37 +70,49 @@ class User extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password')))
             );
+            
+            $this->session->set_flashdata('name', $this->input->post('fullname'));
+            $this->session->set_flashdata('email', $this->input->post('email'));
 
             $role = 5;
+            $email = explode('@', $this->input->post('email'));
+            $university_email = end($email);
+            $univ_email_check = $this->user_model->check_university_email($university_email);
 
-            try{
-                $save = $this->user_model->signup_post($data, $role);
-                if ($save == false) {
-                    throw new Exception('Save failed');
+            if ($univ_email_check == true) {
+                try{
+                    $save = $this->user_model->signup_post($data, $role);
+                    if ($save == false) {
+                        throw new Exception('Email Send Failed');
+                    }
+                    $this->user_model->sendEmail($data);    
+                }catch (Exception $e){
+                    $this->session->set_flashdata('msg_failed', 'Failed!! Please try again later.');
+                    redirect(base_url().'site/user/signup');
                 }
-                $this->user_model->sendEmail($data);    
-            }catch (Exception $e){
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Failed!! Please try again.</div>');
-                $header['page_title'] = 'Sign Up';
-                $this->load->view('site/signup', $header);
-                
+            }else{
+                    $this->session->set_flashdata('msg_failed', 'Your university not registered in our system');
+                    redirect(base_url().'site/user/signup');
             }
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Successfully registered. Please confirm the mail that has been sent to your email. </div>');
+            $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
             $header['page_title'] = 'Sign Up';
-            $this->load->view('site/signup', $header);            
+            redirect(base_url().'site/user/signup');          
         }
     }
 
     public function jobseeker_signup_post(){
 
         $this->form_validation->set_rules('fullname','Jobseeker fullname', 'required');
-        $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
         
+        $this->session->set_flashdata('name', $this->input->post('fullname'));
+        $this->session->set_flashdata('email', $this->input->post('email'));
+
         if($this->form_validation->run() == false){
             $header['page_title'] = 'Sign Up';
             $this->load->view('site/signup', $header);
@@ -121,14 +133,14 @@ class User extends CI_Controller {
                     throw new Exception('Save failed');
                 }
             }catch (Exception $e){
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Failed!! Please try again.</div>');
+                $this->session->set_flashdata('msg_failed', 'Failed!! Please try again.');
                 $header['page_title'] = 'Sign Up';
                 $this->load->view('site/signup', $header);
                 
             }
 
             $this->user_model->sendEmail($data);
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Successfully registered. Please confirm the mail that has been sent to your email. </div>');
+            $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
             $header['page_title'] = 'Sign Up';
             $this->load->view('site/signup', $header);   
@@ -138,7 +150,7 @@ class User extends CI_Controller {
     public function employer_signup_post($user){
 
         $this->form_validation->set_rules('fullname','Jobseeker fullname', 'required');
-        $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
@@ -164,14 +176,14 @@ class User extends CI_Controller {
                     throw new Exception('Save failed');
                 }
             }catch (Exception $e){
-                $this->session->set_flashdata('msg', '<div class="alert alert-danger text-center">Failed!! Please try again.</div>');
+                $this->session->set_flashdata('msg_failed', 'Failed!! Please try again.');
                 $header['page_title'] = 'Sign Up';
                 $this->load->view('site/signup', $header);
                 
             }
 
             $this->user_model->sendEmail($data);
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center">Successfully registered. Please confirm the mail that has been sent to your email. </div>');
+            $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
             $header['page_title'] = 'Sign Up';
             $this->load->view('site/signup', $header);   

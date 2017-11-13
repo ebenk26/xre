@@ -60,7 +60,6 @@ class User_Model extends CI_Model{
         if($this->email->send()){
             return true;
         }else{
-            echo "email send failed";
             return false;
         }
         
@@ -90,6 +89,12 @@ class User_Model extends CI_Model{
         $this->db->join('academic', 'academic.id = user_academic.academic_id');
         $query = $this->db->get();
         return $query->result_array();
+    }
+
+    function check_university_email($email){
+        $query = $this->db->get_where('university', array('email_format'=>$email));
+        $result = $query->num_rows() > 0 ? true : false;
+        return $result;
     }
 }
 

@@ -16,6 +16,7 @@
     <link href="<?php echo base_url(); ?>assets/css/themify.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/scrollbar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/swiper.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- Metronic -->
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
