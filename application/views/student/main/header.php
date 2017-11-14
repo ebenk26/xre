@@ -16,7 +16,6 @@
     <link href="<?php echo CSS_STUDENTS; ?>daterangepicker.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>morris.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_STUDENTS; ?>jqvmap.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="<?php echo CSS_STUDENTS; ?>components.css" rel="stylesheet" id="style_components" type="text/css">
@@ -40,7 +39,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/index.html">
-                    <img src="./Student _ Dashboard_files/xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs my-4">
+                    <img src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs my-4">
                 </a>
             </div>
             <!-- END LOGO -->
@@ -190,7 +189,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">Just Now </span>
@@ -201,7 +200,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">16 mins </span>
@@ -212,7 +211,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar1.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
                                                     <span class="time">2 hrs </span>
@@ -223,7 +222,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">40 mins </span>
@@ -234,7 +233,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">46 mins </span>
@@ -365,7 +364,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> Nick </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" class="img-circle" src="./Student _ Dashboard_files/avatar9.jpg"> </a>
+                                <img alt="" class="img-circle" src="<?php echo IMG_STUDENTS; ?>avatar9.jpg"> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">
@@ -430,10 +429,10 @@
                     <li class="nav-item mt-element-card-v2">
                         <div class="mt-card-item ">
                             <div class="mt-card-avatar text-center">
-                                <img src="./Student _ Dashboard_files/team5.jpg" class="avatar-circle avatar-small">
+                                <img src="<?php echo IMG_STUDENTS; ?>team5.jpg" class="avatar-circle avatar-small">
                             </div>
                             <div class="mt-card-content ">
-                                <h3 class="mt-card-name font-24-xs mt-3">Jennifer Lawrence</h3>
+                                <h3 class="mt-card-name font-24-xs mt-3"><?php echo ucfirst($this->session->userdata('name'));?></h3>
                                 <p class="mt-card-desc md-grey-text text-darken-1">Student</p>
                                 <div class="mt-progress mb-5">
                                     <div class="progress">
@@ -453,7 +452,7 @@
 
                     <!-- Sidebar Menu : Dashboard -->
                     <li class="nav-item active ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="nav-link">
+                        <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                             <span class="selected"></span>
@@ -461,31 +460,11 @@
                     </li>
                     <!-- Sidebar Menu : Profile-->
                     <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-toggle">
+                        <a href="<?php echo base_url(); ?>student/profile/" class="nav-link nav-toggle">
                             <i class="icon-user"></i>
                             <span class="title">Profile</span>
                             <!-- <span class="selected"></span> -->
                         </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 1</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v2.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 2</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 3</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <!-- Sidebar Menu Job Apllication History -->
                     <li class="nav-item">

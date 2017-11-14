@@ -45,13 +45,6 @@
     <script src="<?php echo JS_STUDENTS; ?>jquery.flot.categories.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.easypiechart.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.russia.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.world.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.europe.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.germany.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.usa.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.vmap.sampledata.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>app.min.js" type="text/javascript"></script>
@@ -70,6 +63,22 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
+          $("button#save_profile").click(function(){
+            var postData = $("#profile").serialize();
+            $.ajax({
+               type: "POST",
+               url: "<?php echo base_url(); ?>student/profile/post",
+               data: postData,
+                success: function(){
+                    console.log(postData);
+
+                    alert('successfully submitted')
+                },
+                error: function(){
+                  alert("failure");
+                }
+            });
+          });
         })
     </script>
 
