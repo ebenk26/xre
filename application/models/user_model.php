@@ -65,6 +65,44 @@ class User_Model extends CI_Model{
         
        
     }
+
+    function forgotPassword($email){
+        $this->db->where('email', $email);
+        $mail = $this->db->get();
+        $mail->last_row('array');
+        if (!empty($mail->last_row('array'))) {
+            $from = "Xremo team";    //senders email address
+            $subject = 'Retrieve new password';  //email subject
+            
+            //sending confirmEmail($receiver) function calling link to the user, inside message body
+
+            $message = 'Hello '.$receiver['fullname'].',<br><br>Please change your password by clicking on the link below:<br><br>
+            <a href='. base_url() .'site/user/confirmForgotPassword/'.md5($receiver['email']).'>'. base_url() .'site/user/confirmForgotPassword/'.md5($mail).'</a><br><br>Thanks';
+
+            
+            //config email settings
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'ssl://smtp.gmail.com';
+            $config['smtp_port'] = '465';
+            $config['smtp_user'] = $from;
+            $config['smtp_pass'] = 'Rico061289!';  //sender's password
+            $config['mailtype'] = 'html';
+            $config['charset'] = 'iso-8859-1';
+            $config['wordwrap'] = 'TRUE';
+            $config['newline'] = "\r\n"; 
+            
+            $this->load->library('email', $config);
+            $this->email->initialize($config);
+            //send email
+            $this->email->from($from);
+            $this->email->to($receiver['email']);
+            $this->email->subject($subject);
+            $this->email->message($message);
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     //activate account
     function verifyEmail($key){
@@ -96,6 +134,7 @@ class User_Model extends CI_Model{
         $result = $query->num_rows() > 0 ? true : false;
         return $result;
     }
+
 }
 
 ?>

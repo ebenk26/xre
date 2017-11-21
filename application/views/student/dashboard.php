@@ -235,7 +235,7 @@
                                 <div class="tab-content">
                                     <!-- TAB BEGIN : Review , Rate , Endorse  -->
                                     <div class="tab-pane active" id="portlet_tab1">
-                                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                                        <div class="slimScrollDiv"><div class="smooth-scroll" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
                                             <div class="mt-comments-v2">
                                                 <div class="mt-comment">
                                                     <div class="mt-comment-img">
@@ -332,7 +332,7 @@
 
                                     <!-- TAB BEGIN : Interview Session -->
                                     <div class="tab-pane " id="portlet_tab2">
-                                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                                        <div class="slimScrollDiv"><div class="smooth-scroll" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
                                             <div class="general-item-list">
                                                 <!-- Example : Ongoing Interview Session -->
                                                 <div class="item">
@@ -396,7 +396,7 @@
 
                                     <!-- TAB BEGIN : System -->
                                     <div class="tab-pane " id="portlet_tab3">
-                                        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                                        <div class="slimScrollDiv" ><div class="smooth-scroll" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
                                             <ul class="feeds">
                                                 <li>
                                                     <div class="col1">
@@ -732,7 +732,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="scroller" style="height: 350px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                                <div class="slimScrollDiv"><div class="smooth-scroll"  data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
                                     <div class="widget-media">
                                         <div class="widget-media-elements text-center">
                                             <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">

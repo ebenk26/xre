@@ -51,34 +51,69 @@
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>dashboard.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>jquery.repeater.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>form-image-crop.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>bootstrap-tagsinput.js" type="text/javascript"></script>
+
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>layout.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>demo.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>quick-sidebar.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>quick-nav.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
+            $('#DOB').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                "locale":{
+                    format: 'DD/MM/YYYY',                  
+                }
+            });
+            $('.date-picker').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                "locale":{
+                    format: 'DD/MM/YYYY',                  
+                }
+            });
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
-          $("button#save_profile").click(function(){
-            var postData = $("#profile").serialize();
-            $.ajax({
-               type: "POST",
-               url: "<?php echo base_url(); ?>student/profile/post",
-               data: postData,
-                success: function(){
-                    console.log(postData);
 
-                    alert('successfully submitted')
-                },
-                error: function(){
-                  alert("failure");
-                }
+            $(function(){
+                $('.slimScrollDiv').slimScroll({
+                    height: '250px',
+                    wheelStep: 10
+                });
             });
-          });
+            
+            <?php if($this->session->flashdata('msg_success')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
+            
+            $(".btn-delete").click( function () {
+                var data = $(this).attr('data-value');
+                var table = $(this).attr('tb-val');
+                alertify.confirm('Delete From List', 'Are you sure you want to delete?', function(){ 
+                    $.post("<?php echo base_url(); ?>student/profile/delete/", {id : data, table: table}, function(data) {
+                        if(data == "false") {
+                            alertify.error('Failed to delete record');
+                        } else {
+                            alertify.success('Record is deleted.');
+                            location.reload();
+                        }
+                    });
+                }, function(data){
+                     alertify.error('Cancel');
+                });
+            });
         })
     </script>
 

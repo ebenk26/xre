@@ -149,7 +149,8 @@ class User extends CI_Controller {
 
     public function employer_signup_post($user){
 
-        $this->form_validation->set_rules('fullname','Jobseeker fullname', 'required');
+        $this->form_validation->set_rules('company_name','Company name', 'required');
+        $this->form_validation->set_rules('fullname','Company Admin Name', 'required');
         $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
@@ -194,6 +195,22 @@ class User extends CI_Controller {
         $data = array('verified' => 1);
         $this->db->where('md5(email)',$key);
         return $this->db->update('users', $data);    //update status as 1 to make active user
+    }
+
+    function logout(){
+        $loginCheck = $this->session->userdata('id');
+        if(!empty($loginCheck)){
+            $this->session->sess_destroy();
+            redirect(base_url());
+        } else {
+            show_404();
+        }
+    }
+
+    function forgot_password(){
+        $this->form_validation->set_rules('email','User email', 'trim|required|valid_email|matches[users.email]');
+        $email = $this->input->post('email');
+        $this->user_model->forgotPassword($email);
     }
 
 }
