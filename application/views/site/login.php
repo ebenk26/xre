@@ -137,7 +137,7 @@
                         </form>
 
                         <!-- BEGIN FORGOT PASSWORD FORM -->
-                        <form class="forget-form px-7 text-center" action="javascript:;" method="post" style="display: none;">
+                        <form class="forget-form px-7 text-center" action="<?php echo base_url(); ?>site/user/forgot_password" method="post" style="display: none;">
 
                             <h3 class="md-indigo-text">Forgot Password ?</h3>
                             <p> Enter your e-mail address below to reset your password. </p>

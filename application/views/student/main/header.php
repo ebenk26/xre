@@ -16,7 +16,7 @@
     <link href="<?php echo CSS_STUDENTS; ?>daterangepicker.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>morris.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_STUDENTS; ?>jqvmap.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS_STUDENTS; ?>bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="<?php echo CSS_STUDENTS; ?>components.css" rel="stylesheet" id="style_components" type="text/css">
@@ -27,6 +27,7 @@
     <link href="<?php echo CSS_STUDENTS; ?>layout.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>default.min.css" rel="stylesheet" type="text/css" id="style_color">
     <link href="<?php echo CSS_STUDENTS; ?>custom.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style></head>
@@ -39,8 +40,8 @@
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/index.html">
-                    <img src="./Student _ Dashboard_files/xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs my-4">
+                <a href="<?php echo base_url();?>site/home/">
+                    <img src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs my-4">
                 </a>
             </div>
             <!-- END LOGO -->
@@ -166,7 +167,7 @@
                                                     </span> Storage server failed. </span>
                                             </a>
                                         </li>
-                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                    </ul><div class="slimScrollBar"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
                         </li>
@@ -190,7 +191,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">Just Now </span>
@@ -201,7 +202,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">16 mins </span>
@@ -212,7 +213,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar1.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
                                                     <span class="time">2 hrs </span>
@@ -223,7 +224,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar2.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
                                                     <span class="time">40 mins </span>
@@ -234,7 +235,7 @@
                                         <li>
                                             <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
                                                 <span class="photo">
-                                                    <img src="./Student _ Dashboard_files/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Richard Doe </span>
                                                     <span class="time">46 mins </span>
@@ -242,7 +243,7 @@
                                                 <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
                                             </a>
                                         </li>
-                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                    </ul><div class="slimScrollBar"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
                         </li>
@@ -363,9 +364,9 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user dropdown-dark">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <span class="username username-hide-on-mobile"> Nick </span>
+                                <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('name'); ?> </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" class="img-circle" src="./Student _ Dashboard_files/avatar9.jpg"> </a>
+                                <img alt="" class="img-circle" src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>"> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">
@@ -401,8 +402,10 @@
                         <!-- END USER LOGIN DROPDOWN -->
                         <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                         <li class="dropdown dropdown-extended quick-sidebar-toggler">
-                            <span class="sr-only">Toggle Quick Sidebar</span>
-                            <i class="icon-logout"></i>
+                            <a href="<?php echo base_url(); ?>site/user/logout" style="padding: 0px 15px;">
+                                <span class="sr-only">Toggle Quick Sidebar</span>
+                                <i class="icon-logout"></i>                                
+                            </a>
                         </li>
                         <!-- END QUICK SIDEBAR TOGGLER -->
                     </ul>
@@ -430,20 +433,21 @@
                     <li class="nav-item mt-element-card-v2">
                         <div class="mt-card-item ">
                             <div class="mt-card-avatar text-center">
-                                <img src="./Student _ Dashboard_files/team5.jpg" class="avatar-circle avatar-small">
+                                <img src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>" class="avatar-circle avatar-small">
                             </div>
                             <div class="mt-card-content ">
-                                <h3 class="mt-card-name font-24-xs mt-3">Jennifer Lawrence</h3>
+                                <h3 class="mt-card-name font-24-xs mt-3"><?php echo ucfirst($this->session->userdata('name'));?></h3>
                                 <p class="mt-card-desc md-grey-text text-darken-1">Student</p>
                                 <div class="mt-progress mb-5">
+                                
                                     <div class="progress">
-                                        <span style="width: 76%;" class="progress-bar progress-bar bar-md-orange darken-1">
-                                                <span class="sr-only">76% progress</span>
+                                        <span style="width: <?php echo $percent; ?>%;" class="progress-bar progress-bar bar-md-orange darken-1">
+                                                <span class="sr-only"><?php echo $percent; ?> progress</span>
                                         </span>
                                     </div>
                                     <div class="status">
                                         <div class="status-title">Profile Completion</div>
-                                        <div class="status-number ">76%</div>
+                                        <div class="status-number "><?php echo $percent; ?>%</div>
                                     </div>
                                 </div>
                             </div>
@@ -452,58 +456,38 @@
                     </li>
 
                     <!-- Sidebar Menu : Dashboard -->
-                    <li class="nav-item active ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
                             <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Profile-->
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-toggle">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>student/profile/" class="nav-link nav-toggle">
                             <i class="icon-user"></i>
                             <span class="title">Profile</span>
                             <!-- <span class="selected"></span> -->
                         </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 1</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v2.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 2</span>
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html" class="nav-link ">
-                                    <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Version 3</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <!-- Sidebar Menu Job Apllication History -->
-                    <li class="nav-item">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'application_history'): echo 'active'; endif?>">
                         <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-application-history.html" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title">Application History</span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Inbox -->
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Calendar  -->
-                    <li class="nav-item">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-calendar.html" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
                             <span class="badge  badge-md-orange">3</span>
@@ -518,7 +502,7 @@
                     </li> -->
 
                     <!-- Sidebar Menu : Settings -->
-                    <li class="nav-item ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
