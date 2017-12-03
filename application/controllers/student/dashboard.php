@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
+        $this->load->model('job_model');
         if(empty($countryCheck)){
             show_404();
         }
@@ -18,9 +19,27 @@ class Dashboard extends CI_Controller {
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
+        $job['job_positions'] = $this->student_model->get_all_job($id);
         $this->load->view('student/main/header', $profile);
-        $this->load->view('student/dashboard');
+        $this->load->view('student/dashboard', $job);
         $this->load->view('student/main/footer');
 	}
+
+    public function applied(){
+        $id = $this->session->userdata('id');
+        $job_id = $this->input->post('job_id');
+        $jobs = array(  'user_id'=> $id,
+                        'job_position_id' => $job_id,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                        'status' => 'new');
+        $apply_job = $this->job_model->apply($jobs);
+        if ($apply_job == true) {
+            $this->session->set_flashdata('msg_success', 'Success apply dream job');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed apply your dream job');
+        }
+        redirect(base_url().'student/dashboard/');
+    }
 
 }

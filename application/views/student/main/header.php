@@ -53,7 +53,7 @@
             <div class="page-top">
 
                 <!-- BEGIN HEADER SEARCH BOX -->
-                <form class="search-form" action="https://xremo.github.io/XremoFrontEnd/custom_pages/page_general_search_2.html" method="GET">
+                <form class="search-form" action="<?php echo base_url(); ?>student/search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control input-sm" placeholder="Search..." name="query">
                         <span class="input-group-btn">
@@ -473,7 +473,7 @@
                     </li>
                     <!-- Sidebar Menu Job Apllication History -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'application_history'): echo 'active'; endif?>">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-application-history.html" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title">Application History</span>
                         </a>

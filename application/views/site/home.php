@@ -180,7 +180,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/all/researchplatform.png&quot;);">
+        <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/researchplatform.png);">
             <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/researchplatform.png" alt="Image" style="display: none;">
         </div>
     </div>
@@ -197,7 +197,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/all/whytrustus.jpg&quot;);">
+        <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/whytrustus.jpg);">
             <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/whytrustus.jpg" alt="Image" style="display: none;">
         </div>
     </div>
