@@ -37,6 +37,7 @@
     <script src="<?php echo JS_STUDENTS; ?>chalk.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>ammap.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>worldLow.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>bootstrap-datepicker.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>amstock.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>fullcalendar.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>horizontal-timeline.js" type="text/javascript"></script>
@@ -52,6 +53,7 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>dashboard.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.repeater.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>form-repeater.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>form-image-crop.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>bootstrap-tagsinput.js" type="text/javascript"></script>
