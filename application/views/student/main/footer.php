@@ -63,6 +63,8 @@
     <script src="<?php echo JS_STUDENTS; ?>quick-sidebar.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>quick-nav.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
+    <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
@@ -84,12 +86,7 @@
                 $('#radio1003').attr('checked', 'checked');
             });
 
-            $(function(){
-                $('.slimScrollDiv').slimScroll({
-                    height: '250px',
-                    wheelStep: 10
-                });
-            });
+            
             
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
@@ -113,6 +110,72 @@
                 }, function(data){
                      alertify.error('Cancel');
                 });
+            });
+            $('.apply').click(function () {
+                var apply = $(this).attr('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will apply this as your dream job",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Apply",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>student/dashboard/applied",
+                                    method:"POST",
+                                    data: {
+                                      job_id: parseInt(apply),
+                                    },
+                                    success:function(response) {
+                                       swal("Sucess", "Success apply your dream job.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "This job is not fit for you", "error");
+                            }
+                        }
+                    );
+            });
+            $('.dlt-history').click(function () {
+                var apply = $(this).attr('data-id');
+                    swal({
+                        title: "Are you sure you want to withdraw?",
+                        text: "You withdraw from this job",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "withdraw",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                console.log(apply);
+                                console.log('<?php echo base_url();?>student/applications_history/withdraw');
+                                $.ajax({
+                                    url:"<?php echo base_url();?>student/applications_history/withdraw",
+                                    method:"POST",
+                                    data: {
+                                      job_id: parseInt(apply),
+                                    },
+                                    success:function(response) {
+                                       swal("Sucess", "Success withdraw this job.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "This job still fit for you", "error");
+                            }
+                        }
+                    );
             });
         })
     </script>

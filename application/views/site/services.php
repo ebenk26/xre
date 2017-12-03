@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/service/resume-search.png&quot;);">
+                <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/resume-search.png);">
                         <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/resume-search.png" alt="Resume Search" style="display: none;">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/service/sponsored-job-ad.png&quot;);">
+                <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/sponsored-job-ad.png);">
                     <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/sponsored-job-ad.png" alt="Image" style="display: none;">
                 </div>
             </div>
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/service/employers-banner.png&quot;);">
+                <div class="col-sm-6 g-promo-section-img-right-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/employers-banner.png);">
                     <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/employers-banner.png" alt="Image" style="display: none;">
                 </div>
             </div>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(&quot;../HTML/img/Xremo/service/sponsored-employers.png&quot;);">
+                <div class="col-sm-6 col-sm-pull-6 g-promo-section-img-right-md g-promo-section-img-left-md g-bg-position-center g-height-400-xs g-height-100-percent-md js-fullwidth-img" style="background-image: url(<?php echo base_url()?>assets/img/site/sponsored-employers.png);">
                     <img class="img-responsive" src="<?php echo base_url()?>assets/img/site/sponsored-employers.png" alt="Image" style="display: none;">
                 </div>
             </div>

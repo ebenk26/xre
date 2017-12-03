@@ -46,6 +46,10 @@ define('CSS_STUDENTS', ASSETS.'students/css/');
 define('JS_STUDENTS', ASSETS.'students/js/');
 define('IMG_STUDENTS', ASSETS.'img/student/');
 define('CV_STUDENTS', ASSETS.'students/cv/');
+define('ASSETS_EMPLOYER', ASSETS.'employer/');
+define('CSS_EMPLOYER', ASSETS.'employer/css/');
+define('JS_EMPLOYER', ASSETS.'employer/js/');
+define('IMG_EMPLOYER', ASSETS.'employer/img/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

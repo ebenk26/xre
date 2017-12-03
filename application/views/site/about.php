@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-sm-4 g-margin-b-30-xs g-margin-b-0-md">
                 <div class="g-bg-color-white g-box-shadow-dark-lightest-v4 g-text-center-xs g-padding-x-40-xs g-padding-y-40-xs">
-                    <img class="img-responsive g-height-150-xs center-block" src="./About_files/howwestarted.svg" alt="Image">
+                    <img class="img-responsive g-height-150-xs center-block" src="<?php echo base_url()?>assets/img/site/howwestarted.svg" alt="Image">
                     <h4 class="text-uppercase g-margin-t-20-xs g-font-weight-700 g-color-md-indigo-text g-letter-spacing-2">How We Started</h4>
                     <p>Xremo is started from a simple idea: to assist and support ICT professionals to express their talents
                         confidently with their own personal styles. We also want to provide a platform with technologies
@@ -36,7 +36,7 @@
             </div>
             <div class="col-sm-4 g-margin-b-30-xs g-margin-b-0-md">
                 <div class="g-bg-color-white g-box-shadow-dark-lightest-v4 g-text-center-xs g-padding-x-40-xs g-padding-y-40-xs">
-                    <img class="img-responsive g-height-150-xs center-block" src="./About_files/ourmission.svg" alt="Image">
+                    <img class="img-responsive g-height-150-xs center-block" src="<?php echo base_url()?>assets/img/site/ourmission.svg" alt="Image">
                     <h4 class="text-uppercase g-margin-t-20-xs g-font-weight-700 g-color-md-indigo-text g-letter-spacing-2">Our Mission</h4>
                     <p>Providing innovative HR solutions to bring out cooperation, satisfaction and mutual growth opportunities
                         for both jobseekers and employers.</p>
@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="g-bg-color-white g-box-shadow-dark-lightest-v4 g-text-center-xs g-padding-x-40-xs g-padding-y-40-xs">
-                    <img class="img-responsive g-height-150-xs center-block" src="./About_files/whatwedo.svg" alt="Image">
+                    <img class="img-responsive g-height-150-xs center-block" src="<?php echo base_url()?>assets/img/site/whatwedo.svg" alt="Image">
                     <h4 class="text-uppercase g-margin-t-20-xs g-font-weight-700 g-color-md-indigo-text g-letter-spacing-2">What we do</h4>
                     <p>Xremo empowers jobseekers and employers in pitching and exploring themselves with convenient video CVs
                         to enhance the candidate-job matching process. It boosts the relevancy and generates sensational
