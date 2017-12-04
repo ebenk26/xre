@@ -7,7 +7,7 @@ class Job_Search_Result extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     

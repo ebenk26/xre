@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     

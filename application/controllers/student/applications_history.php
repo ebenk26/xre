@@ -9,7 +9,7 @@ class Applications_history extends CI_Controller {
         $this->load->model('student_model');
         $this->load->model('job_model');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     

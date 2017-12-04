@@ -70,12 +70,6 @@
                         <form class="form-horizontal login-form px-7" action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
                             <h4 class="fw-semibold md-grey-text text-darken-2">Login to your account</h4>
                             <div class="clearfix"></div>
-                            <!-- Button Group (User) : Student / Jobseeker / Employer -->
-                            <div class="btn-group my-3" data-toggle="buttons">
-                                <label class="btn btn-outline-md-indigo active px-5"><input type="radio" class="toggle"> Student</label>
-                                <label class="btn btn-outline-md-indigo px-5"><input type="radio" class="toggle"> Jobseeker</label>
-                                <label class="btn btn-outline-md-indigo px-5"><input type="radio" class="toggle"> Employer</label>
-                            </div>
                             <div class="clearfix"></div>
                             <!--  Alert Display -->
                             <div class="alert alert-danger display-hide">

@@ -8,7 +8,7 @@ class User extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     
@@ -75,7 +75,19 @@ class User extends CI_Controller {
             $this->session->set_flashdata('email', $this->input->post('email'));
 
             $role = 5;
-            $email = explode('@', $this->input->post('email'));
+            
+            try{
+                $save = $this->user_model->signup_post($data, $role);
+                if ($save == false) {
+                    throw new Exception('Email Send Failed');
+                }
+                $this->user_model->sendEmail($data);    
+            }catch (Exception $e){
+                $this->session->set_flashdata('msg_failed', 'Failed!! Please try again later.');
+                redirect(base_url().'site/user/signup');
+            }
+
+/*          $email = explode('@', $this->input->post('email'));
             $university_email = end($email);
             $univ_email_check = $this->user_model->check_university_email($university_email);
 
@@ -93,7 +105,7 @@ class User extends CI_Controller {
             }else{
                     $this->session->set_flashdata('msg_failed', 'Your university not registered in our system');
                     redirect(base_url().'site/user/signup');
-            }
+            }*/
 
             $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 

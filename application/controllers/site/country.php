@@ -15,6 +15,10 @@ class Country extends CI_Controller {
                 'forex' => 'IDR'                
             );
 
+        $cookie_name = "country";
+        $cookie_value = "id";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
         $this->session->set_userdata($country);
         redirect(base_url().'site/home');
 	}
@@ -25,6 +29,11 @@ class Country extends CI_Controller {
                 'country' => 'Malaysia',
                 'forex' => 'MYR'
             );
+
+        $cookie_name = "country";
+        $cookie_value = "my";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
         $this->session->set_userdata($country);
         redirect(base_url().'site/home');
     }
@@ -32,9 +41,13 @@ class Country extends CI_Controller {
     public function ph(){
         $country = array(
                 'country_code' => 'PHL',
-                'country' => 'phillipines',
+                'country' => 'Phillipines',
                 'forex' => 'PHP'                
             );
+
+        $cookie_name = "country";
+        $cookie_value = "ph";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
         redirect(base_url().'site/home');
@@ -43,9 +56,13 @@ class Country extends CI_Controller {
     public function sg(){
         $country = array(
                 'country_code' => 'SIN',
-                'country' => 'singapore',
-                'forex' => 'SGD'                
+                'country' => 'Singapore',
+                'forex' => 'sg'                
             );
+
+        $cookie_name = "country";
+        $cookie_value = "sg";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
         redirect(base_url().'site/home');
@@ -54,9 +71,13 @@ class Country extends CI_Controller {
     public function th(){
         $country = array(
                 'country_code' => 'THD',
-                'country' => 'thailand',
-                'forex' => 'THB'                
+                'country' => 'Thailand',
+                'forex' => 'th'                
             );
+
+        $cookie_name = "country";
+        $cookie_value = "th";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
         redirect(base_url().'site/home');
