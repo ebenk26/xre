@@ -23,7 +23,12 @@ class User_Model extends CI_Model{
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
         $query = $this->db->get();
-        return $query->last_row('array');
+        $result = $query->last_row('array');
+        
+        $user = array('user_id' => $result['id'] );
+        $this->db->insert('user_history', $user);
+
+        return $result;
     }
 
     

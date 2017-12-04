@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $job['job_positions'] = $this->student_model->get_all_job($id);
+        $job['last_logged_in'] = $this->student_model->get_user_history($id);
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
         $this->load->view('student/main/footer');

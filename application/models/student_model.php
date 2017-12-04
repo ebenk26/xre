@@ -351,6 +351,17 @@ class Student_Model extends CI_Model{
         $allJob = $this->db->get();
         return $allJob->result_array();
     }
+
+    function get_user_history($id){
+        //login history
+        $this->db->select('users.*, user_history.created_at as user_history');
+        $this->db->from('users');
+        $this->db->join('user_history', 'user_history.user_id = users.id','left');
+        $this->db->where(array('user_history.user_id' => $id));
+        $history = $this->db->get();
+        $result = $history->result_array();
+        return $result;
+    }
 }
 
 ?>

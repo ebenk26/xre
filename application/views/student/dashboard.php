@@ -5,7 +5,7 @@
                 <!-- BEGIN PAGE HEADER-->
 
                 <h1 class="page-title"> Welcome back , <?php echo ucfirst($this->session->userdata('name'));?>!
-                    <small>last login on 23/07/2017 , 20:08 </small>
+                    <small>last login on <?php echo $last_logged_in[count($last_logged_in)-2]['user_history']; ?> </small>
                 </h1>
                 <!-- END PAGE HEADER-->
                 <!-- Widget-Dashboard -->
