@@ -8,7 +8,7 @@ class Inbox extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     

@@ -19,7 +19,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		if (isset($_COOKIE['country'])) {
+			redirect(base_url().'site/country/'.$_COOKIE['country']);
+		}else{
+			$this->load->view('welcome_message');			
+		}
 	}
 }
 
