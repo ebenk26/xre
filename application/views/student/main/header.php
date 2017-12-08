@@ -81,84 +81,11 @@
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>
-                                        <span class="bold">12 pending</span> notifications</h3>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">view all</a>
+                                    <a href="#">view all</a>
                                 </li>
                                 <li>
                                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">just now</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-success">
-                                                        <i class="fa fa-plus"></i>
-                                                    </span> New user registered. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Server #12 overloaded. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">10 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Server #2 not responding. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">14 hrs</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> Application error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">2 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Database overloaded 68%. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> A user IP blocked. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">4 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Storage Server #4 not responding dfdfdfd. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">5 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> System Error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="javascript:;">
                                                 <span class="time">9 days</span>
                                                 <span class="details">
@@ -166,7 +93,7 @@
                                                         <i class="fa fa-bolt"></i>
                                                     </span> Storage server failed. </span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul><div class="slimScrollBar"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
@@ -183,64 +110,20 @@
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>You have
-                                        <span class="bold">7 New</span> Messages</h3>
+                                        <span class="bold">1 New</span> Messages</h3>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/app_inbox.html">view all</a>
                                 </li>
                                 <li>
                                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 275px;"><ul class="dropdown-menu-list scroller" style="height: 275px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
                                         <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
+                                            <a href="#">
                                                 <span class="photo">
-                                                    <img src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="img-circle" alt=""> </span>
                                                 <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
+                                                    <span class="from"> Xremo Team </span>
                                                     <span class="time">Just Now </span>
                                                 </span>
-                                                <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
-                                                <span class="photo">
-                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">16 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
-                                                <span class="photo">
-                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar1.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Bob Nilson </span>
-                                                    <span class="time">2 hrs </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
-                                                <span class="photo">
-                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar2.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Lisa Wong </span>
-                                                    <span class="time">40 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
-                                                <span class="photo">
-                                                    <img src="<?php echo IMG_STUDENTS; ?>avatar3.jpg" class="img-circle" alt=""> </span>
-                                                <span class="subject">
-                                                    <span class="from"> Richard Doe </span>
-                                                    <span class="time">46 mins </span>
-                                                </span>
-                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+                                                <span class="message"> Welcome to xremo </span>
                                             </a>
                                         </li>
                                     </ul><div class="slimScrollBar"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
@@ -366,7 +249,7 @@
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('name'); ?> </span>
                                 <!-- DOC: Do not remove below empty space(&nbsp;) as its purposely used -->
-                                <img alt="" class="img-circle" src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>"> </a>
+                                <img alt="" class="img-circle" src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>"> </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">
@@ -433,7 +316,7 @@
                     <li class="nav-item mt-element-card-v2">
                         <div class="mt-card-item ">
                             <div class="mt-card-avatar text-center">
-                                <img src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>" class="avatar-circle avatar-small">
+                                <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar-circle avatar-small">
                             </div>
                             <div class="mt-card-content ">
                                 <h3 class="mt-card-name font-24-xs mt-3"><?php echo ucfirst($this->session->userdata('name'));?></h3>

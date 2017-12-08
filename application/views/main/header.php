@@ -82,6 +82,7 @@
                                         <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-nav-link">Welcome, <?php echo $this->session->userdata('name') ;?></a>
                                     <?php }else{ ?>
                                     <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
                                     <?php } ?>
                                 </li>
                             </ul>

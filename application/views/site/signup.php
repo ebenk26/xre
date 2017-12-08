@@ -64,7 +64,7 @@
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="text" name="fullname" class="form-control " placeholder="FullName">
+                                                <input type="text" name="fullname" class="form-control " placeholder="FullName" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
@@ -72,7 +72,7 @@
                                         <!-- Input : Email -->
                                         <div class="form-group form-md-line-input mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="email" name="email" class="form-control " placeholder="Email Address">
+                                                <input type="email" name="email" class="form-control " placeholder="Email Address" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('email'); ?></span>
                                             </div>
@@ -80,7 +80,7 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input type="password" name="password" class="form-control " placeholder="Password">
+                                                <input type="password" name="password" class="form-control " placeholder="Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
@@ -88,7 +88,7 @@
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="password" name="confirm_password" class="form-control " placeholder="Confirm Password">
+                                                <input type="password" name="confirm_password" class="form-control " placeholder="Confirm Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
@@ -98,7 +98,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
 
                                                 <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" name="terms" id="checkbox16" class="md-check">
+                                                    <input type="checkbox" name="terms" id="checkbox16" class="md-check" required>
                                                     <label for="checkbox16" class="pl-1">
                                                     <span></span>
                                                     <span class="check"></span>

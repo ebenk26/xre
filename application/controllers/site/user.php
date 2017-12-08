@@ -30,7 +30,7 @@ class User extends CI_Controller {
             $header['page_title'] = 'Login';
             $this->load->view('site/login', $header);
         }else{
-            
+            $token = 
             $user_email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
@@ -45,6 +45,16 @@ class User extends CI_Controller {
             }else{
                 
                 $this->session->set_userdata($login_result);
+                if ($this->input->post('remember') == 'on') {
+                    $token = md5(SALT.sha1(rand(0,15)));
+                    $cookie = $this->user_model->set_token($token);
+                    if ($cookie) {
+                        $cookie_name = "xremo_cookie";
+                        $cookie_value = $token;
+                        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+                    }
+                }
+
                 redirect(base_url().$page.'/dashboard');
 
             }
@@ -107,7 +117,7 @@ class User extends CI_Controller {
                     redirect(base_url().'site/user/signup');
             }*/
 
-            $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
+            $this->session->set_flashdata('msg_success', 'Register Complete, Please confirm the email.');
 
             $header['page_title'] = 'Sign Up';
             redirect(base_url().'site/user/signup');          
@@ -206,7 +216,8 @@ class User extends CI_Controller {
     function confirmEmail($key){
         $data = array('verified' => 1);
         $this->db->where('md5(email)',$key);
-        return $this->db->update('users', $data);    //update status as 1 to make active user
+        $this->db->update('users', $data);    //update status as 1 to make active user
+        redirect(base_url().'site/user/login');
     }
 
     function logout(){

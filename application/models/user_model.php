@@ -140,6 +140,21 @@ class User_Model extends CI_Model{
         return $result;
     }
 
+    function set_token($token){
+        try {            
+            $this->db->where('id', $this->session->userdata('id'));
+            $this->db->update( 'users', array('verification_token' => $token ));
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    function get_token($token){
+        $existing_token = $this->db->get_where('users', array('verification_token'=>$token));
+        return $existing_token;
+    }
+
 }
 
 ?>

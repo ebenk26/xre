@@ -17,8 +17,17 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	function __construct(){
+        parent::__construct();
+        $this->load->model('user_model');
+    }
+
 	public function index()
 	{
+		isset($_COOKIE['xremo_token']) ? $token_cookie = $this->user_model->get_token($_COOKIE['xremo_cookie']) : $token_cookie = false;
+		// $token_cookie = $this->user_model->get_token($_COOKIE['xremo_cookie']);
+		var_dump($token_cookie);
 		if (isset($_COOKIE['country'])) {
 			redirect(base_url().'site/country/'.$_COOKIE['country']);
 		}else{

@@ -103,7 +103,7 @@
                             <div class="m-grid my-4 px-5">
                                 <div class="m-grid-col m-grid-col-middle m-grid-col-left">
                                     <div class="md-checkbox md-indigo-box">
-                                        <input type="checkbox" id="checkbox16" class="md-check">
+                                        <input type="checkbox" id="checkbox16" name="remember" class="md-check">
                                         <label for="checkbox16">
                                                 <span></span>
                                                 <span class="check"></span>

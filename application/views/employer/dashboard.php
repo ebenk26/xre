@@ -161,7 +161,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-indigo  " href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
+                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-indigo  " href="#">
                             <div class="visual">
                                 <i class="fa fa-eye"></i>
                             </div>
@@ -173,7 +173,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-orange " href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
+                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-orange " href="#">
                             <div class="visual">
                                 <i class="fa fa-star"></i>
                             </div>
@@ -185,7 +185,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-purple  " href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
+                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-purple  " href="#">
                             <div class="visual">
                                 <i class="fa fa-calendar"></i>
                             </div>
@@ -197,7 +197,7 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-red  " href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">
+                        <a class="dashboard-stat dashboard-stat-v2 dashboard-md-red  " href="#">
                             <div class="visual">
                                 <i class="fa fa-briefcase"></i>
                             </div>
@@ -221,13 +221,13 @@
                                 </div>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#portlet_tab1" data-toggle="tab"> Profile </a>
+                                        <a href="#portlet_tab1" data-toggle="tab"> Profile </a>
                                     </li>
                                     <li>
-                                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#portlet_tab2" data-toggle="tab"> Interview </a>
+                                        <a href="#portlet_tab2" data-toggle="tab"> Interview </a>
                                     </li>
                                     <li>
-                                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#portlet_tab3" data-toggle="tab"> Systems </a>
+                                        <a href="#portlet_tab3" data-toggle="tab"> Systems </a>
                                     </li>
                                 </ul>
                             </div>
@@ -244,7 +244,7 @@
                                                         <div class="mt-comment-info">
                                                             <a><span class="mt-comment-author">Michael Baker</span></a>
                                                             <!-- <span class="mt-comment-action"> -->
-                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Follow</a>
+                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">Follow</a>
                                                             <!-- <a class="btn btn-xs btn-outline-md-indigo btn-circle" href="#">View</a> -->
                                                             <!-- </span> -->
                                                             <span class="mt-comment-date">26 Feb, 10:30AM</span>
@@ -261,7 +261,7 @@
                                                         <div class="mt-comment-info">
                                                             <a><span class="mt-comment-author">Larisa Maskalyova</span></a>
 
-                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Followed</a>
+                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="#">Followed</a>
                                                             <span class="mt-comment-date">12 Feb, 08:30AM</span>
                                                         </div>
                                                         <div class="mt-comment-text"> It is a long established fact that a reader will be distracted. </div>
@@ -272,8 +272,8 @@
                                                         <img src="<?php echo IMG_STUDENTS; ?>avatar8.jpg"> </div>
                                                     <div class="mt-comment-body">
                                                         <div class="mt-comment-info">
-                                                            <a class="" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#"><span class="mt-comment-author">Natasha Kim</span></a>
-                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Follow</a>
+                                                            <a class="" href="#"><span class="mt-comment-author">Natasha Kim</span></a>
+                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="#">Follow</a>
                                                             <span class="mt-comment-date">19 Dec,09:50 AM</span>
                                                         </div>
                                                         <div class="mt-comment-text"> The generated Lorem or non-characteristic Ipsum is therefore or non-characteristic.
@@ -288,7 +288,7 @@
                                                         <div class="mt-comment-info">
                                                             <a><span class="mt-comment-author">Michael Baker</span></a>
                                                             <!-- <span class="mt-comment-action"> -->
-                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Follow</a>
+                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">Follow</a>
                                                             <!-- <a class="btn btn-xs btn-outline-md-indigo btn-circle" href="#">View</a> -->
                                                             <!-- </span> -->
                                                             <span class="mt-comment-date">26 Feb, 10:30AM</span>
@@ -305,7 +305,7 @@
                                                         <div class="mt-comment-info">
                                                             <a><span class="mt-comment-author">Larisa Maskalyova</span></a>
 
-                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Followed</a>
+                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="#">Followed</a>
                                                             <span class="mt-comment-date">12 Feb, 08:30AM</span>
                                                         </div>
                                                         <div class="mt-comment-text"> It is a long established fact that a reader will be distracted. </div>
@@ -316,8 +316,8 @@
                                                         <img src="<?php echo IMG_STUDENTS; ?>avatar8.jpg"> </div>
                                                     <div class="mt-comment-body">
                                                         <div class="mt-comment-info">
-                                                            <a class="" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#"><span class="mt-comment-author">Natasha Kim</span></a>
-                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Follow</a>
+                                                            <a class="" href="#"><span class="mt-comment-author">Natasha Kim</span></a>
+                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="#">Follow</a>
                                                             <span class="mt-comment-date">19 Dec,09:50 AM</span>
                                                         </div>
                                                         <div class="mt-comment-text"> The generated Lorem or non-characteristic Ipsum is therefore or non-characteristic.
@@ -339,7 +339,7 @@
                                                     <div class="item-head">
                                                         <div class="item-details">
                                                             <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar4.jpg">
-                                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="item-name primary-link">Xremo Sdn Bhd</a>
+                                                            <a href="" class="item-name primary-link">Xremo Sdn Bhd</a>
                                                             <span class="item-label">16/10/2017</span>
                                                         </div>
                                                         <span class="item-status">
@@ -354,7 +354,7 @@
                                                     <div class="item-head">
                                                         <div class="item-details">
                                                             <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar3(1).jpg">
-                                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="item-name primary-link">Time dot com</a>
+                                                            <a href="" class="item-name primary-link">Time dot com</a>
                                                             <span class="item-label">5 hrs ago</span>
                                                         </div>
                                                         <span class="item-status">
@@ -367,7 +367,7 @@
                                                     <div class="item-head">
                                                         <div class="item-details">
                                                             <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar6.jpg">
-                                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="item-name primary-link">IBM</a>
+                                                            <a href="" class="item-name primary-link">IBM</a>
                                                             <span class="item-label">22 days ago</span>
                                                         </div>
                                                         <span class="item-status">
@@ -380,7 +380,7 @@
                                                     <div class="item-head">
                                                         <div class="item-details">
                                                             <img class="item-pic" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png">
-                                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="item-name primary-link">Intel Sdn Bhd</a>
+                                                            <a href="" class="item-name primary-link">Intel Sdn Bhd</a>
                                                             <span class="item-label">2 days ago</span>
                                                         </div>
                                                         <span class="item-status">
@@ -733,136 +733,38 @@
                             </div>
                             <div class="portlet-body">
                                 <div class="slimScrollDiv"><div class="smooth-scroll"  data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
-                                    <div class="widget-media">
-                                        <div class="widget-media-elements text-center">
-                                            <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
-                                            <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
-                                        </div>
-                                        <div class="pull-right">
-                                            <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
-                                            <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                            <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View Job</a>
-                                            <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Apply</a>
-                                            <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
-                                        </div>
-                                        <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
-                                        <div class="widget-media-body">
-                                            <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> Marketing Executive <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
-                                            </h4>
-                                            <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
-                                                    </a></p>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-primary badge-roundless"> Selangor</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
-                                        </div>
-                                    </div>
-                                    <div class="widget-media">
-                                        <div class="widget-media-elements text-center">
-                                            <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
-                                            <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
-                                        </div>
-                                        <div class="pull-right">
-                                            <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
-                                            <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                            <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View Job</a>
-                                            <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Apply</a>
-                                            <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
-                                        </div>
-                                        <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
-                                        <div class="widget-media-body">
-                                            <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> Marketing Executive <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
-                                            </h4>
-                                            <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
+                                    
+                                <?php foreach ($job_post as $key => $value) { ?>
+                                        <div class="widget-media">
+                                            <div class="widget-media-elements text-center">
+                                                <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
+                                                <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
+                                            </div>
+                                            <div class="pull-right">
+                                                <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
+                                                <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
+                                                <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="#">View Job</a>
+                                                <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
+                                            </div>
+                                            <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
+                                            <div class="widget-media-body">
+                                                <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> <?php echo $value['name'] ?> <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
+                                                </h4>
+                                                <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
                                                         </a></p>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-primary badge-roundless"> Selangor</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
+                                                <a href="" class="badge badge-primary badge-roundless"> Selangor</a>
+                                                <a href="" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
+                                                <a href="" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
+                                                <a href="" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
+                                                <a href="" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="widget-media">
-                                        <div class="widget-media-elements text-center">
-                                            <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
-                                            <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
-                                        </div>
-                                        <div class="pull-right">
-                                            <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
-                                            <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                            <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View Job</a>
-                                            <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Apply</a>
-                                            <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
-                                        </div>
-                                        <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
-                                        <div class="widget-media-body">
-                                            <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> Marketing Executive <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
-                                            </h4>
-                                            <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
-                                                            </a></p>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-primary badge-roundless"> Selangor</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
-                                        </div>
-                                    </div>
-                                    <div class="widget-media">
-                                        <div class="widget-media-elements text-center">
-                                            <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
-                                            <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
-                                        </div>
-                                        <div class="pull-right">
-                                            <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
-                                            <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                            <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View Job</a>
-                                            <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Apply</a>
-                                            <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
-                                        </div>
-                                        <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
-                                        <div class="widget-media-body">
-                                            <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> Marketing Executive <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
-                                            </h4>
-                                            <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
-                                                                </a></p>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-primary badge-roundless"> Selangor</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
-                                        </div>
-                                    </div>
-                                    <div class="widget-media">
-                                        <div class="widget-media-elements text-center">
-                                            <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="">
-                                            <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
-                                        </div>
-                                        <div class="pull-right">
-                                            <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
-                                            <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                            <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View Job</a>
-                                            <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs" href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">Apply</a>
-                                            <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
-                                        </div>
-                                        <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->
-                                        <div class="widget-media-body">
-                                            <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> Marketing Executive <small class="md-grey-text font-weight-600 ml-2"> 2 days ago</small>
-                                            </h4>
-                                            <p class="widget-media-body-subtitle my-2"><a> Xremo Sdn Bhd
-                                                                    </a></p>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-primary badge-roundless"> Selangor</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-blue-ebonyclay badge-roundless"> Junior</a>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html" class="badge badge-md-purple badge-roundless"> Accounting/Audit/Tax Service</a>
-                                        </div>
-                                    </div>
+                                <?php } ?>
                                     <!-- more -->
                                     <div class="widget-media mb-0">
                                         <div class="widget-media-body text-center">
                                             <!-- <img class="widget-media-avatar img-responsive" src="../HTML/img/Xremo/all/xremo-logo-blue.png" alt=""> -->
-                                            <a class="md-grey-text text-darken-1 " href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-dashboard.html#">View All </a>
+                                            <a class="md-grey-text text-darken-1 " href="#">View All </a>
                                         </div>
 
                                     </div>

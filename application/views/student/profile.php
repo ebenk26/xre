@@ -17,7 +17,7 @@
                             <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab"> <i class="icon-graduation font-26-xs"></i>Education </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url(); ?>student/profile#tab_achievements" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Achievement</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
@@ -49,26 +49,26 @@
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo IMG_STUDENTS.$user_profile['image']['name']; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
+                                            <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
                                             <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
                                             <h3 class="mt-card-name mt-3 md-indigo-text"><?php echo ucfirst($this->session->userdata('name'));?> <span class="label label-primary vertical-middle hidden"> Public</span> </h3>
                                             <p class="mt-card-desc md-grey-text text-lighten-1">
                                                 </p><ul class="list-inline list-unstyled">
-                                                    <li class="font-26-xs"><i class="icon-briefcase mr-2"></i><?php echo ucfirst($user_profile['overview']['student_bios_occupation']);?></li>
+                                                    <li class="font-26-xs"><i class="icon-briefcase mr-2"></i><?php echo  !empty($user_profile['overview']['student_bios_occupation']) ?  ucfirst($user_profile['overview']['student_bios_occupation']) : 'Student';?></li>
                                                     <!-- <li class="vertical-top md-grey-text text-darken-1"><i class="fa fa-circle font-10-xs "></i></li> -->
                                                     <!-- <li class="font-26-xs"><i class="icon-lock"></i>Public</li> -->
-                                                    <li class="font-26-xs"><i class="icon-pointer"></i> <?php echo ucfirst($user_profile['address']['city']);?> , <?php echo ucfirst($user_profile['address']['country']);?></li>
-                                                    <li class="font-26-xs"><i class="icon-calendar"></i> <?php echo date('d F Y', strtotime($user_profile['overview']['student_bios_DOB']));?></li>
+                                                    <li class="font-26-xs"><i class="icon-pointer"></i> <?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : $this->session->userdata['country'];?> , <?php echo ucfirst($user_profile['address']['country']);?></li>
+                                                    <li class="font-26-xs"><i class="icon-calendar"></i> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></li>
                                                     <!-- <li class="font-26-xs"><i class="fa fa-phone font-26-xs"></i> 0123456789</li> -->
                                                     <!-- <li class="font-26-xs"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
                                                 </ul>
                                             <p></p>
-                                            <p class="mt-card-desc"> <i class="fa fa-quote-left font-14-xs vertical-top"></i> <?php echo $user_profile['overview']['quote'];?>.
+                                            <p class="mt-card-desc"> <i class="fa fa-quote-left font-14-xs vertical-top"></i> <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
                                                 <i class="fa fa-quote-right vertical-top font-14-xs"></i> </p>
                                             <p class="mt-card-desc text-justify hidden">
-                                                <?php echo $user_profile['overview']['quote'];?>
+                                                <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
                                             </p>
                                         </div>
 
@@ -92,7 +92,7 @@
                                             <li>
                                                 <h5 class="font-weight-700 text-uppercase mb-2">About Myself</h5>
                                             </li>
-                                            <li><?php echo $user_profile['overview']['summary'];?>
+                                            <li><?php echo !empty($user_profile['overview']['summary']) ? $user_profile['overview']['summary'] : 'I am a good candidate';?>
                                             </li>
                                         </ul>
                                     </div>
@@ -119,7 +119,7 @@
                                                         <h5 class="mb-2 font-weight-600 ">Preferences Name</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo ucfirst($user_profile['overview']['preference_name']);?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -132,7 +132,7 @@
                                                         <h5 class="mb-2 font-weight-600">Full Name</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo ucfirst($user_profile['overview']['name']);?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -145,7 +145,7 @@
                                                         <h5 class="mb-2 font-weight-600">Gender</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo $user_profile['overview']['student_bios_gender'];?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_gender']) ? $user_profile['overview']['student_bios_gender'] : 'I prefer not to say';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -158,7 +158,7 @@
                                                         <h5 class="mb-2 font-weight-600">Date Of Birth</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo date('d F Y', strtotime($user_profile['overview']['student_bios_DOB']));?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_DOB']) ?  date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -171,7 +171,7 @@
                                                         <h5 class="mb-2 font-weight-600">CV Video</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo $user_profile['overview']['youtubelink'];?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -198,7 +198,7 @@
                                                         <h5 class="mb-2 font-weight-600">Contact Number</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class=" roboto-font"><?php echo $user_profile['overview']['student_bios_contact_number'];?></h5>
+                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? $user_profile['overview']['student_bios_contact_number'] : 'None';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -211,7 +211,7 @@
                                                         <h5 class="mb-2 font-weight-600">Address</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class="roboto-font"><?php echo $user_profile['address']['address'];?></h5>
+                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -224,7 +224,7 @@
                                                         <h5 class="mb-2 font-weight-600">Postcode</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class="roboto-font"><?php echo $user_profile['address']['postcode'];?></h5>
+                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -234,7 +234,7 @@
                                                         <h5 class="mb-2 font-weight-600"> City</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class="roboto-font"><?php echo $user_profile['address']['city'];?></h5>
+                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -246,7 +246,7 @@
                                                         <h5 class="mb-2 font-weight-600">State</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class="roboto-font"><?php echo $user_profile['address']['states'];?></h5>
+                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None' ;?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -256,7 +256,7 @@
                                                         <h5 class="mb-2 font-weight-600"> Country</h5>
                                                     </li>
                                                     <li>
-                                                        <h5 class="roboto-font"><?php echo $user_profile['address']['country'];?></h5>
+                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></h5>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -398,7 +398,7 @@
                     </div>
                 </div>
                 <!-- Tab Content : Achievements -->
-                <div class="tab-pane " id="tab_achievements">
+                <div class="tab-pane " id="tab_non_education">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -624,9 +624,6 @@
                                 <li class="active">
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#tab_profile" data-toggle="tab">Profile</a>
                                 </li>
-                                <li>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#tab_privacy_settings" data-toggle="tab">Privacy Settings </a>
-                                </li>
                             </ul>
 
                         </div>
@@ -642,14 +639,14 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Preferences Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control input-medium" placeholder="Jenny" name="student_name" value="<?php echo ucfirst($user_profile['overview']['preference_name']);?>">
+                                                    <input type="text" class="form-control input-medium" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>">
                                                 </div>
                                             </div>
                                             <!-- Full name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Full Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo ucfirst($user_profile['overview']['name']);?>">
+                                                    <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>">
                                                 </div>
                                             </div>
 
@@ -660,9 +657,15 @@
                                                         <label class="control-label col-md-4">Gender</label>
                                                         <div class="col-md-8">
                                                             <select class="bs-select form-control" name="gender">
-                                                                        <option <?php if($user_profile['overview']['student_bios_gender'] == 'Male'){echo "selected";}?>>Male</option>
-                                                                        <option <?php if($user_profile['overview']['student_bios_gender'] == 'Female'){echo "selected";}?>>Female</option>
-                                                                        <option <?php if($user_profile['overview']['student_bios_gender'] == 'Prefer Not To Say'){echo "selected";}?>>Prefer Not To Say</option>
+                                                                        <?php if (!empty($user_profile['overview']['student_bios_gender'])){ ?>
+                                                                            <option <?php if($user_profile['overview']['student_bios_gender'] == 'Male'){echo "selected";}?>>Male</option>
+                                                                            <option <?php if($user_profile['overview']['student_bios_gender'] == 'Female'){echo "selected";}?>>Female</option>
+                                                                            <option <?php if($user_profile['overview']['student_bios_gender'] == 'Prefer Not To Say'){echo "selected";}?>>Prefer Not To Say</option>                               
+                                                                        <?php }else{ ?>
+                                                                            <option>Male</option>
+                                                                            <option>Female</option>
+                                                                            <option>Prefer Not To Say</option>
+                                                                        <?php } ?>
                                                                     </select>
                                                         </div>
                                                     </div>
@@ -671,7 +674,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Date of Birth</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" name="DOB" id="DOB" value="<?php echo date('d/m/Y', strtotime($user_profile['overview']['student_bios_DOB']));?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d/m/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -683,7 +686,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Current Career</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="current" placeholder="Student" value="<?php echo ucfirst($user_profile['overview']['student_bios_occupation']);?>">
+                                                            <input type="text" class="form-control" name="current" placeholder="Student" value="<?php echo !empty($user_profile['overview']['student_bios_occupation']) ? ucfirst($user_profile['overview']['student_bios_occupation']) : $this->session->userdata('roles');?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -691,7 +694,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Phone Number</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo ucfirst($user_profile['overview']['student_bios_contact_number']);?>">
+                                                            <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -703,7 +706,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Address</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo $user_profile['address']['address'];?>">
+                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>">
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -713,7 +716,7 @@
                                                         <label class="control-label col-md-4">City</label>
 
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="city" value="<?php echo ucfirst($user_profile['address']['city']);?>"> 
+                                                            <input type="text" class="form-control" name="city" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -722,7 +725,7 @@
 
                                                         <label class="control-label col-md-4">State</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="state" value="<?php echo ucfirst($user_profile['address']['states']);?>">
+                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -732,7 +735,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Post Code</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="post_code" value="<?php echo ucfirst($user_profile['address']['postcode']);?>">
+                                                            <input type="text" class="form-control" name="post_code" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -741,7 +744,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Country</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="country" value="<?php echo ucfirst($user_profile['address']['country']);?>">
+                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -755,7 +758,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2"> Quotes / Headlines</label>
                                                 <div class="col-md-10">
-                                                    <textarea name="quotes" class="form-control" id="" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi consectetur possimus pariatur nihil praesentium veniam asperiores, debitis consequatur commodi esse, id sit? Perferendis maxime ea odit asperiores animi earum pariatur!"><?php echo ucfirst($user_profile['overview']['quote']);?></textarea>
+                                                    <textarea name="quotes" class="form-control" id="" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi consectetur possimus pariatur nihil praesentium veniam asperiores, debitis consequatur commodi esse, id sit? Perferendis maxime ea odit asperiores animi earum pariatur!"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
                                                 </div>
                                             </div>
 
@@ -766,7 +769,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2"> Summary</label>
                                                 <div class="col-md-10">
-                                                    <textarea name="summary" class="form-control" id="" rows="3" placeholder="Summarize about yourself"><?php echo ucfirst($user_profile['overview']['summary']);?></textarea>
+                                                    <textarea name="summary" class="form-control" id="" rows="3" placeholder="Summarize about yourself"><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
                                                 </div>
                                             </div>
 
@@ -775,7 +778,7 @@
                                                 <div class="col-md-10">
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                            <img src="#" alt=""> </div>
+                                                            <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt=""> </div>
                                                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                         <div>
                                                             <span class="btn default btn-file">
@@ -791,7 +794,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Video Link</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo $user_profile['overview']['youtubelink'];?>">
+                                                    <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -800,28 +803,6 @@
                                         <button type="submit" id="save_profile" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs pull-right">Save</button>
                                     </div>
                                 </form>
-                            </div>
-
-                            <!-- Tab : Privacy  -->
-                            <div class="tab-pane " id="tab_privacy_settings">
-                                <form action="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#" class="form">
-                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
-                                        <div class="modal-body portlet-body form-horizontal">
-                                            <h3 class="form-sections">Privacy</h3>
-                                            <hr>
-                                            <div class="form-group">
-                                                <label for="" class="col-md-3">Set my profile to </label>
-                                                <div class="col-md-9">
-                                                    <div class="bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-off bootstrap-switch-small"><div class="bootstrap-switch-container"><span class="bootstrap-switch-handle-on bootstrap-switch-primary">&nbsp;Private&nbsp;</span><span class="bootstrap-switch-label">&nbsp;</span><span class="bootstrap-switch-handle-off bootstrap-switch-default">&nbsp;Public&nbsp;</span><input type="checkbox" class="make-switch" data-on-text=" Private " data-off-text=" Public " data-size="small"></div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-actions modal-footer ">
-                                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs pull-right">Save</button>
-                                        </div>
-                                
-                                </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div></form>
-
                             </div>
                         </div>
                     </div>
