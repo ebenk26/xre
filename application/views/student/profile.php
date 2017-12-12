@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                             <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-5">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
+                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
                             </div>
                         </div>
 
@@ -403,11 +403,11 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <!-- <i class="icon-graduation font-green-sharp"></i> -->
-                                <span class="caption-subject font-weight-500  roboto-font "> Achievements</span>
-                                <span class="caption-helper"> list out all your previous achievements(join any colleage event ... or whatsoever)</span>
+                                <span class="caption-subject font-weight-500  roboto-font "> Non-Education</span>
+                                <span class="caption-helper"> list out all your previous non-educational activity (join any colleage event ... or whatsoever)</span>
                             </div>
                             <div class="actions">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -415,7 +415,7 @@
                             <?php foreach($user_profile['achievement'] as $value){ ?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
-                                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only" data-toggle="modal"><i class="icon-pencil"></i></a>
                                         <a href="<?php echo base_url();?>student/profile#modal_delete_education" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
@@ -424,15 +424,91 @@
                                         <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['achievement_description']);?>
                                         </p>
                                         <h4 class="">
-                                            <span class="label label-primary mx-1"> Badge 1  </span>
-                                            <span class="label label-md-indigo mx-1"> Badge 2 </span>
-                                            <span class="label label-md-blue-grey mx-1"> Badge 3 </span>
-                                            <span class="label label-md-orange mx-1"> Badge 4 </span>
-                                            <span class="label label-md-green mx-1"> Badge 5 </span>
+                                            <?php $tag = explode(',', $value['achievement_tag']);
+                                            $label = array("label-primary","label-md-indigo","label-md-blue-grey","label-md-orange","label-md-green");
+                                            shuffle($label);
+                                            foreach ($tag as $tag_key => $tag_value) { 
+
+                                                ?>
+                                                <span class="label <?php echo $label[$tag_key]; ?> mx-1"><?php echo $tag_value; ?></span>
+
+                                             <?php } ?>
                                         </h4>
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Modal : Add / Edit Achievements  -->
+                                    <div class="modal fade in" id="modal_edit_achievements_<?php echo $value['achievement_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content portlet light">
+                                                <div class="modal-header portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject text-capitalize font-weight-500">Edit Non-Educational</span>
+                                                        <!-- <span class="caption-helper">add about your education info</span> -->
+                                                    </div>
+                                                    <div class="actions py-4">
+                                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                                    </div>
+
+                                                </div>
+                                                <form action="<?php echo base_url();?>student/profile/edit_achievement" class="form form-horizontal" method="POST">
+                                                    <input type="hidden" name="achievement_id" value="<?php echo $value['achievement_id'];?>"></input>
+                                                    <div class="modal-body portlet-body ">
+                                                        <div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- Institution Name -->
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3">Name</label>
+                                                                <div class="col-md-9">
+                                                                    <input type="text" class="form-control " name="achievement_name" placeholder="Brain Challenge 2016" value="<?php echo !empty($value['achievement_title']) ? $value['achievement_title'] : ''; ?>">
+                                                                    <span class="help-block small">Event / Competition / Contest / Tournament you just joined </span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <!-- Description -->
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3">Description</label>
+                                                                <div class="col-md-9">
+                                                                    <textarea class="form-control autosizeme" name="achievement_description" rows="4" placeholder="Brief about your studying place and what subject you had study."><?php echo !empty($value['achievement_description']) ? $value['achievement_description'] : ''; ?></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!-- TIme Period  -->
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3">Time Period</label>
+                                                                <div class="col-md-9  ">
+                                                                    <div class="m-grid ">
+                                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                                            <input class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="<?php echo !empty($value['start_date']) ? date('d-m-Y', strtotime($value['start_date'])) : date('d-m-Y') ;?>" name="start_date" placeholder="From year">
+                                                                            <!-- <span class="help-block"> Select date </span> -->
+                                                                        </div>
+                                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                                            <input class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="<?php echo !empty($value['end_date']) ? date('d-m-Y', strtotime($value['end_date'])) : date('d-m-Y') ;?>" name="end_date" placeholder="From year">
+                                                                            <!-- <span class="help-block"> Select date </span> -->
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <!-- Tag -->
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-3">Tag</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" name="tag" class="form-control input-large" value="<?php echo !empty($value['achievement_tag']) ? $value['achievement_tag'] : '';?>" data-role="tagsinput">
+                                                                    <span class="help-block small"> Press "Tab" to add tag </span>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer form-actions ">
+                                                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                        </div>
+                                                </form>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                    </div>
                             <?php } ?>
                         </div>
 
@@ -914,14 +990,14 @@
                             </div>
 
                         </div>
-                        <form method="POST" id="achievement" class="form form-horizontal">
+                        <form method="POST" id="achievement" class="form form-horizontal" action="<?php echo base_url()?>student/profile/add_achievement">
                             <div class="modal-body portlet-body ">
                                 <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
                                     <!-- Institution Name -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control " id="achievement_name" placeholder="Brain Challenge 2016">
+                                            <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016">
                                             <span class="help-block small">Event / Competition / Contest / Tournament you just joined </span>
                                         </div>
 
@@ -931,7 +1007,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Description</label>
                                         <div class="col-md-9">
-                                            <textarea id="achievement_description" class="form-control autosizeme" rows="4" placeholder="Brief about your studying place and what subject you had study." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+                                            <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme" rows="4" placeholder="Brief about your studying place and what subject you had study." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
                                         </div>
                                     </div>
                                     <!-- TIme Period  -->
@@ -940,7 +1016,11 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time" class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="" placeholder="From year">
+                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="" placeholder="From year" name="from">
+                                                    <!-- <span class="help-block"> Select date </span> -->
+                                                </div>
+                                                <div class="m-grid-col m-grid-col-xs-6">
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="" placeholder="Until year" name="until">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -951,7 +1031,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Tag</label>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control input-large" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" style="display: none;">
+                                            <input type="text" class="form-control input-large" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" style="display: none;" name="tag">
                                             <span class="help-block small"> Press "Tab" to add tag </span>
                                         </div>
                                     </div>

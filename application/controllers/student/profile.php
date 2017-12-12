@@ -8,7 +8,7 @@ class Profile extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
         if(empty($countryCheck)){
-            show_404();
+            redirect(base_url());
         }
     }
     
@@ -25,7 +25,8 @@ class Profile extends CI_Controller {
 
     public function post(){
 
-        if(isset($_FILES['newImage']['tmp_name'])){
+
+        if(!empty($_FILES['newImage']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
@@ -37,21 +38,25 @@ class Profile extends CI_Controller {
             $title = $this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY');
             $src2 = $this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
             $targetFile =  $targetPath.$src2;
-            if (isset($checkImage)) {
+            if (!empty($checkImage)) {
 
                 unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
-
                 move_uploaded_file($tempFile,$targetFile);
             }
+        }else{
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'profile_photo');
+            $userImage = $this->student_model->checkImageExist($userImageID);
+            $src2 = $userImage['name'];
         }
 
         $profile = array(
             'student_name' => $this->input->post('fullname'),
             'preferences_name' => $this->input->post('student_name'),
             'gender' => $this->input->post('gender'),
-            'date_of_birth' => date('Y-m-d', strtotime($this->input->post('DOB'))),
+            'date_of_birth' => date('Y-d-m', strtotime($this->input->post('DOB'))),
             'occupation' => $this->input->post('current'),
             'contact_number' => $this->input->post('phone'),
             'user_id'=> $this->session->userdata('id'),
@@ -72,47 +77,59 @@ class Profile extends CI_Controller {
     }
 
     public function add_education(){
-        $education = array( 'university_name'=> $this->input->post('university_name'),
-                            'qualification_level'=> $this->input->post('qualification_level'),
-                            'degree_name'=> $this->input->post('field_of_study'),
-                            'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
-                            'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
-                            'degree_description'=>$this->input->post('academics_description'),
-                            'user_id' => $this->session->userdata('id')
-                            );
-        $result = $this->student_model->education_add($education);
-        ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+        if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
+            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
+        }else{            
+            $education = array( 'university_name'=> $this->input->post('university_name'),
+                                'qualification_level'=> $this->input->post('qualification_level'),
+                                'degree_name'=> $this->input->post('field_of_study'),
+                                'start_date'=> date('Y-d-m', strtotime($this->input->post('from'))),
+                                'end_date' => date('Y-d-m', strtotime($this->input->post('until'))),
+                                'degree_description'=>$this->input->post('academics_description'),
+                                'user_id' => $this->session->userdata('id')
+                                );
+            $result = $this->student_model->education_add($education);
+            ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+        }
         redirect(base_url().'student/profile/');
     }
 
     public function edit_education(){
 
+        if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
+            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
+        }else{            
+            $education = array( 'university_name'=> $this->input->post('university_name'),
+                                'qualification_level'=> $this->input->post('qualification_level'),
+                                'degree_name'=> $this->input->post('field_of_study'),
+                                'start_date'=> date('Y-d-m', strtotime($this->input->post('from'))),
+                                'end_date' => date('Y-d-m', strtotime($this->input->post('until'))),
+                                'degree_description'=>$this->input->post('academics_description'),
+                                'id' => $this->input->post('academic_id'),
+                                'user_id' => $this->session->userdata('id')
+                                );
 
-        $education = array( 'university_name'=> $this->input->post('university_name'),
-                            'qualification_level'=> $this->input->post('qualification_level'),
-                            'degree_name'=> $this->input->post('field_of_study'),
-                            'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
-                            'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
-                            'degree_description'=>$this->input->post('academics_description'),
-                            'id' => $this->input->post('academic_id'),
-                            'user_id' => $this->session->userdata('id')
-                            );
-
-        $result = $this->student_model->education_edit($education);
-        ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+            $result = $this->student_model->education_edit($education);
+            ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+        }
         redirect(base_url().'student/profile/');
         
     }
 
     public function add_experience(){
-        $experience = array('title'=> $this->input->post('title'),
-                            'description'=> $this->input->post('description'),
-                            'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
-                            'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
-                            'user_id' => $this->session->userdata('id')
-                            );
-        $result = $this->student_model->experience_add($experience);
-        ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data added') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
+        if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
+            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
+        }else{         
+
+            $experience = array('title'=> $this->input->post('title'),
+                                'description'=> $this->input->post('description'),
+                                'start_date'=> date('Y-d-m',strtotime($this->input->post('start_date'))),
+                                'end_date'=> date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                'user_id' => $this->session->userdata('id')
+                                );
+            $result = $this->student_model->experience_add($experience);
+            ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data added') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
+        }
         redirect(base_url().'student/profile/');
     }
 
@@ -121,8 +138,8 @@ class Profile extends CI_Controller {
                             'user_id' => $this->session->userdata('id'),
                             'title'=> $this->input->post('title'),
                             'description'=> $this->input->post('description'),
-                            'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
-                            'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date')))
+                            'start_date'=> date('Y-d-m',strtotime($this->input->post('start_date'))),
+                            'end_date'=> date('Y-d-m',strtotime($this->input->post('end_date')))
                             );
         $result = $this->student_model->experience_edit($experience);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data updated') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
@@ -178,5 +195,38 @@ class Profile extends CI_Controller {
                             'table' => $this->input->post('table'));
         $result['data'] = $this->student_model->delete($deleteData);
         return $result;
+    }
+
+    public function add_achievement(){
+        if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
+            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
+        }else{  
+            $achievement = array('achievement_name' => $this->input->post('achievement_name'),
+                                 'achievement_description' => $this->input->post('achievement_description'),
+                                 'start_date' => date('Y-d-m',strtotime($this->input->post('start_date'))),
+                                 'end_date' => date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                 'user_id' => $this->session->userdata('id'),
+                                 'tag' => $this->input->post('tag'));
+            $result = $this->student_model->achievement_add($achievement);
+            ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
+        }
+        redirect(base_url().'student/profile/');
+    }
+
+    public function edit_achievement(){
+        if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
+            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
+        }else{  
+            $achievement = array('achievement_name' => $this->input->post('achievement_name'),
+                                 'achievement_description' => $this->input->post('achievement_description'),
+                                 'start_date' => date('Y-d-m',strtotime($this->input->post('start_date'))),
+                                 'end_date' => date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                 'user_id' => $this->session->userdata('id'),
+                                 'id' => $this->input->post('achievement_id'),
+                                 'tag' => $this->input->post('tag'));
+            $result = $this->student_model->achievement_edit($achievement);
+            ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data edited') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
+        }
+        redirect(base_url().'student/profile/');
     }
 }

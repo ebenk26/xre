@@ -76,7 +76,7 @@
                         <li class="dropdown dropdown-extended dropdown-notification dropdown-hoverable" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-success"> 7 </span>
+                                <!-- <span class="badge badge-success"> 7 </span> -->
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
@@ -105,20 +105,20 @@
                         <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark dropdown-hoverable" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
-                                <span class="badge badge-danger"> 4 </span>
+                                <span class="badge badge-danger"> 1 </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>You have
                                         <span class="bold">1 New</span> Messages</h3>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/app_inbox.html">view all</a>
+                                    <a href="<?php echo base_url().'student/inbox/'; ?>">view all</a>
                                 </li>
                                 <li>
                                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 275px;"><ul class="dropdown-menu-list scroller" style="height: 275px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
                                         <li>
                                             <a href="#">
                                                 <span class="photo">
-                                                    <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="img-circle" alt=""> </span>
+                                                    <img src="<?php echo IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="img-circle" alt=""> </span>
                                                 <span class="subject">
                                                     <span class="from"> Xremo Team </span>
                                                     <span class="time">Just Now </span>
@@ -137,7 +137,7 @@
                         <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-calendar"></i>
-                                <span class="badge badge-primary"> 3 </span>
+                                <!-- <span class="badge badge-primary"> 3 </span> -->
                             </a>
                             <ul class="dropdown-menu extended tasks">
                                 <li class="external">
@@ -385,7 +385,7 @@
                     </li> -->
 
                     <!-- Sidebar Menu : Settings -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
+                    <!-- <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
@@ -395,11 +395,11 @@
                             <li class="nav-item ">
                                 <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/index.html" class="nav-link ">
                                     <!-- <i class="icon-bar-chart"></i> -->
-                                    <span class="title">Account</span>
+                                    <!-- <span class="title">Account</span>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
+                        </ul> -->
+                    <!-- </li> -->
 
                 </ul>
                 <!-- END SIDEBAR MENU -->

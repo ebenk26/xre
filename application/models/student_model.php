@@ -11,53 +11,56 @@ class Student_Model extends CI_Model{
         $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
         $checkUserImageExist = $this->checkImageExist($userImageID);
+        $dataUploads = array(
+            'user_id' => $this->session->userdata('id'),
+            'name' => $profile['image'],
+            'type' => $profile['type'],
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        $dataBios = array(
+           'user_id' => $this->session->userdata('id'),
+           'youtubelink' => $profile['youtubelink'],
+           'quote' => $profile['quote'],
+           'summary' => $profile['summary'],
+           'gender' => $profile['gender'],
+           'date_of_birth' => $profile['date_of_birth'],
+           'occupation' => $profile['occupation'],
+           'contact_number' => $profile['contact_number'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        $dataAddress = array(
+           'user_id' => $this->session->userdata('id'),
+           'address' => $profile['address'],
+           'postcode' => $profile['postcode'],
+           'city' => $profile['city'],
+           'state' => $profile['state'],
+           'country' => $profile['country'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
+        
+        $dataUsers = array(
+           'id' => $this->session->userdata('id'),
+           'fullname' => $profile['student_name'],
+           'preference_name' => $profile['preferences_name'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
 
         try{
 
-            $dataUploads = array(
-                'name' => $profile['image'],
-                'type' => $profile['type'],
-                'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            $dataBios = array(
-               'youtubelink' => $profile['youtubelink'],
-               'quote' => $profile['quote'],
-               'summary' => $profile['summary'],
-               'gender' => $profile['gender'],
-               'date_of_birth' => $profile['date_of_birth'],
-               'occupation' => $profile['occupation'],
-               'contact_number' => $profile['contact_number'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            $dataAddress = array(
-               'address' => $profile['address'],
-               'postcode' => $profile['postcode'],
-               'city' => $profile['city'],
-               'state' => $profile['state'],
-               'country' => $profile['country'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-            
-            $dataUsers = array(
-               'fullname' => $profile['student_name'],
-               'preference_name' => $profile['preferences_name'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            if (isset($checkUserImageExist)) {
+            if (!empty($checkUserImageExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('profile_uploads', $dataUploads); 
             }else{
-                $this->db->post('profile_uploads', $dataUploads); 
+                $this->db->insert('profile_uploads', $dataUploads); 
             }
 
-            if (isset($checkUserBioExist)) {
+            if (!empty($checkUserBioExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('student_bios', $dataBios); 
             }else{
-                $this->db->post('student_bios', $dataBios); 
+                $this->db->insert('student_bios', $dataBios); 
             }
 
             if ($this->session->userdata('id')) {
@@ -65,13 +68,11 @@ class Student_Model extends CI_Model{
                 $this->db->update('users', $dataUsers); 
             }
 
-            if (isset($checkUserAddressExist)) {
-
+            if (!empty($checkUserAddressExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('user_address', $dataAddress); 
             }else{
-                
-                $this->db->post('user_address', $dataAddress); 
+                $this->db->insert('user_address', $dataAddress); 
             }
             $this->session->set_flashdata('msg_success', 'Success update your data');
         }catch(Exception $e){
@@ -97,7 +98,7 @@ class Student_Model extends CI_Model{
         }
         
         //achievement
-        $this->db->select('achievement.user_id as achievement_user_id, achievement.id as achievement_id, achievement.achievement_name as achievement_title, achievement.achievement_description as achievement_description, achievement.start_date as achievement_start_date, achievement.end_date as achievement_end_date');
+        $this->db->select('achievement.user_id as achievement_user_id, achievement.id as achievement_id, achievement.achievement_name as achievement_title, achievement.achievement_description as achievement_description, achievement.tag as achievement_tag, achievement.start_date as achievement_start_date, achievement.end_date as achievement_end_date');
         $this->db->from('users');
         $this->db->join('achievement', 'achievement.user_id = users.id','left');
         $this->db->where(array('achievement.user_id' => $id));
@@ -117,7 +118,7 @@ class Student_Model extends CI_Model{
         $overview = $this->db->get();
         $result['overview'] = $overview->last_row('array');
         if (!empty($overview->last_row('array'))) {
-            $result['overview_percent'] =  0.3;
+            $result['overview_percent'] =  0.1;
         }else{
             $result['overview_percent'] =  0;
         }
@@ -130,7 +131,7 @@ class Student_Model extends CI_Model{
         $academics = $this->db->get();
         $result['academics'] = $academics->result_array();
         if (!empty($academics->result_array())) {
-            $result['academic_percent'] =  0.1;
+            $result['academic_percent'] =  0.15;
         }else{
             $result['academic_percent'] =  0;
         }
@@ -361,6 +362,29 @@ class Student_Model extends CI_Model{
         $history = $this->db->get();
         $result = $history->result_array();
         return $result;
+    }
+
+    function achievement_add($achievement){
+        try{
+            if (isset($achievement)) {
+                $this->db->insert('achievement', $achievement); 
+            }
+        }catch(Exception $e){
+            return false;
+        }
+        return true;
+    }
+
+    function achievement_edit($achievement){
+        try{
+            if (isset($achievement)) {
+                $this->db->where(array('user_id' => $achievement['user_id'], 'id'=> $achievement['id']));
+                $this->db->update('achievement', $achievement); 
+            }
+        }catch(Exception $e){
+            return false;
+        }
+        return true;
     }
 }
 
