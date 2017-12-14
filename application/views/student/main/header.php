@@ -20,7 +20,7 @@
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="<?php echo CSS_STUDENTS; ?>components.css" rel="stylesheet" id="style_components" type="text/css">
-    <!-- <link href="../HTML/css/style.css" rel="stylesheet" id="style_components" type="text/css"> -->
+    <link href="<?php echo CSS_STUDENTS; ?>components-md.css" rel="stylesheet" id="style_components" type="text/css">
     <link href="<?php echo CSS_STUDENTS; ?>plugins.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->

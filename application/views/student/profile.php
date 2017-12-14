@@ -289,8 +289,8 @@
                             <?php foreach($user_profile['academics'] as $value){ ?>
                             <div class="media p-0">
                                 <div class="pull-right my-4 ">
-                                    <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="academic-btn"><i class="icon-pencil"></i></a>
-                                    <a href="<?php echo base_url();?>student/profile#modal_delete_education" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash"></i></a>
+                                    <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="academic-btn"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
+                                    <a href="<?php echo base_url();?>student/profile#modal_delete_education" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"><?php echo ucfirst($value['university_name']); ?> </h4>
@@ -361,8 +361,8 @@
                                                                 <div class="m-grid-col m-grid-col-xs-6">
                                                                     <input class="form-control form-control-inline date-picker" size="16" type="text" value="<?php echo date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="until">
                                                                     <span class="help-block md-checkbox has-warning"> 
-                                                                    <input type="checkbox" id="checkbox11" class="md-check">
-                                                                    <label for="checkbox11">
+                                                                    <input type="checkbox" id="edit_education" class="md-check">
+                                                                    <label for="edit_education">
                                                                         <span></span>
                                                                     <span class="check"></span>
                                                                     <span class="box"></span> Currently still studying?
@@ -416,7 +416,7 @@
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only" data-toggle="modal"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_education" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_delete_achievement" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['achievement_title']);?> </h4>
@@ -540,7 +540,7 @@
                                                 <h4 class="font-weight-700 mb-1 "> <?php echo ucfirst($value['experiences_title']);?> </h4>
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-4 m-grid-col-right m-grid-col-middle">
-                                                <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['experiences_start_date']));?> - <?php echo date('d F Y', strtotime($value['experiences_end_date']));?></h6>
+                                                <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['experiences_end_date']));?></h6>
                                             </div>
 
                                         </div>
@@ -600,8 +600,8 @@
                                                                     <div class="m-grid-col m-grid-col-xs-6">
                                                                         <input class="form-control form-control-inline date-picker" size="16" type="text" name="end_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_end_date']));?>" placeholder="End Year">
                                                                         <span class="help-block md-checkbox has-warning"> 
-                                                                            <input type="checkbox" id="checkbox11" class="md-check" value="">
-                                                                            <label for="checkbox11">
+                                                                            <input type="checkbox" id="edit_exp" class="md-check" value="">
+                                                                            <label for="edit_exp">
                                                                                 <span></span>
                                                                         <span class="check"></span>
                                                                         <span class="box"></span> Currently still working?
@@ -659,28 +659,153 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php foreach($user_profile['skills'] as $value){?>
+                            <?php foreach($user_profile['projects'] as $value){?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_education" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="student_skills"> <i class="icon-trash"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_delete_education" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_projects"> <i class="icon-trash"></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['name']);?> </h4>
+                                        <!-- <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> 1 September 2013 - 22 February 2017</h6> -->
+                                        <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['description']);?>
+                                        </p>
+                                        <h5 class="font-weight-500 font-20-xs font-22-md mt-3 mb-0 roboto-font">Skills Earned :</h5>
+                                        <h5 class="">
+                                            <?php $tag = explode(',', $value['skills_acquired']);
+                                            $label = array("label-primary","label-md-indigo","label-md-blue-grey","label-md-orange","label-md-green");
+                                            shuffle($label);
+                                            foreach ($tag as $tag_key => $tag_value) { 
+
+                                                ?>
+                                                <span class="label <?php echo $label[$tag_key]; ?> mx-1"><?php echo $tag_value; ?></span>
+
+                                             <?php } ?>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <hr>
+                            <?php } ?>
+                            <?php foreach($user_profile['skills'] as $value){?>
+                                <div class="media">
+                                    <div class="pull-right my-4 ">
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_skills_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="skills-btn"><i class="icon-pencil"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_delete_skills" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_skill_set"> <i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?> </h4>
                                         <!-- <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> 1 September 2013 - 22 February 2017</h6> -->
                                         <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['description']);?>
                                         </p>
-                                        <h5 class="font-weight-500 font-20-xs font-22-md mt-3 mb-0 roboto-font">Skills Earned :</h5>
-                                        <h5 class="">
-                                            <span class="label label-primary "> Label 1  </span>
-                                            <span class="label label-md-indigo mx-1"> Label 2 </span>
-                                            <span class="label label-md-blue-grey mx-1"> Label 3 </span>
-                                            <span class="label label-md-orange mx-1"> Label 4 </span>
-                                            <span class="label label-md-green mx-1"> Label 5 </span>
-                                        </h5>
                                     </div>
                                 </div>
                                 <hr>
+                                <div class="modal fade in" id="modal_edit_skills_<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content portlet light">
+                                            <div class="modal-header portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject text-capitalize font-weight-500">Add Skill</span>
+                                                    <!-- <span class="caption-helper">add about your education info</span> -->
+                                                </div>
+                                                <div class="actions py-4">
+                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                                </div>
+
+                                            </div>
+                                            <form action="<?php echo base_url();?>student/profile/edit_skills" class="form form-horizontal" method="POST">
+                                            <input type="hidden" name="skills_id" value="<?php echo $value['id'];?>">
+                                                <div class="modal-body portlet-body ">
+                                                    <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Skill name</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name" value="<?php echo $value['title'] ?>"> </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Skill Description</label>
+                                                        <div class="col-md-9">
+                                                            <textarea class="form-control" rows="3" placeholder="It&#39;s delicious!!" name="skill_description"><?php echo $value['description'] ?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Level</label>
+                                                        <div class="col-md-9">
+                                                            <select class="bs-select form-control" name="skill_level">
+                                                                <option>Select level</option>
+                                                                <option <?php echo ($value['level'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
+                                                                <option <?php echo ($value['level'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
+                                                                <option <?php echo ($value['level'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- </div> -->
+                                                </div>
+
+                                                <div class="modal-footer form-actions ">
+                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php foreach($user_profile['language'] as $value){?>
+                                <div class="media">
+                                    <div class="pull-right my-4 ">
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_language_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="language-btn"><i class="icon-pencil"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_delete_language" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_language_set"> <i class="icon-trash"></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?> </h4>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="modal fade in" id="modal_edit_language_<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content portlet light">
+                                            <div class="modal-header portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject text-capitalize font-weight-500">Add Skill</span>
+                                                    <!-- <span class="caption-helper">add about your education info</span> -->
+                                                </div>
+                                                <div class="actions py-4">
+                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                                </div>
+
+                                            </div>
+                                            <form action="<?php echo base_url();?>student/profile/edit_language" class="form form-horizontal" method="POST">
+                                            <input type="hidden" name="language_id" value="<?php echo $value['id'];?>">
+                                                <div class="modal-body portlet-body ">
+                                                    <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Language</label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" placeholder="English" class="form-control" name="language" value="<?php echo $value['title'] ?>"> </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Profieciency</label>
+                                                        <div class="col-md-9">
+                                                            <select class="bs-select form-control" name="profieciency">
+                                                                <option>Select level</option>
+                                                                <option <?php echo ($value['profieciency'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
+                                                                <option <?php echo ($value['profieciency'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
+                                                                <option <?php echo ($value['profieciency'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- </div> -->
+                                                </div>
+
+                                                <div class="modal-footer form-actions ">
+                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -945,8 +1070,8 @@
                                                 <div class="m-grid-col m-grid-col-xs-6">
                                                     <input class="form-control form-control-inline date-picker" size="16" type="text" placeholder="End Year" name="until">
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                    <input type="checkbox" id="checkbox11" class="md-check">
-                                                    <label for="checkbox11">
+                                                    <input type="checkbox" id="add_education" class="md-check">
+                                                    <label for="add_education">
                                                         <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> Currently still studying?
@@ -1096,8 +1221,8 @@
                                                 <div class="m-grid-col m-grid-col-xs-6">
                                                     <input class="form-control form-control-inline date-picker" name="end_date" size="16" type="text" value="" placeholder="End Year">
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                        <input type="checkbox" id="checkbox11" class="md-check">
-                                                        <label for="checkbox11">
+                                                        <input type="checkbox" id="add_experience" class="md-check" name="current_date">
+                                                        <label for="add_experience">
                                                             <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> Currently still working?
@@ -1134,18 +1259,18 @@
                                     </div>
 
                                 </div>
-                                <form action="#" class="form form-horizontal">
+                                <form action="<?php echo base_url();?>student/profile/add_project" method="POST" class="form form-horizontal">
                                     <div class="modal-body portlet-body ">
                                         <div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1">
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Project name</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" placeholder="A Can of Tuna" class="form-control" /> </div>
+                                                    <input type="text" placeholder="A Can of Tuna" name="project_name" class="form-control" /> </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-md-3 control-label">Project Description</label>
                                                 <div class="col-md-9">
-                                                    <textarea class="form-control" rows="3" placeholder="It's delicious!!"></textarea>
+                                                    <textarea class="form-control" rows="3" name="project_description" placeholder="It's delicious!!"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1154,17 +1279,17 @@
                                                     <div class="mt-repeater">
                                                         <div data-repeater-list="group-b">
                                                             <div data-repeater-item class="row mb-4">
-                                                                <div class="col-md-5">
-                                                                    <input type="text" placeholder="CSS" class="form-control" />
+                                                                <div class="col-md-10">
+                                                                    <input type="text" placeholder="CSS" class="form-control" name="skills" />
                                                                 </div>
-                                                                <div class="col-md-5">
+                                                                <!-- <div class="col-md-5">
                                                                     <select class="bs-select form-control">
                                                                                 <option>Select level </option>
                                                                                 <option>Beginner</option>
                                                                                 <option>Intermediate</option>
                                                                                 <option>Expert</option>
                                                                             </select>
-                                                                </div>
+                                                                </div> -->
                                                                 <div class="col-md-2">
                                                                     <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm my-0">
                                                                         <i class="fa fa-close"></i>
@@ -1206,24 +1331,24 @@
                             </div>
 
                         </div>
-                        <form action="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#" class="form form-horizontal">
+                        <form action="<?php echo base_url();?>student/profile/add_skills" class="form form-horizontal" method="POST">
                             <div class="modal-body portlet-body ">
                                 <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Skill name</label>
                                     <div class="col-md-9">
-                                        <input type="text" placeholder="A Can of Tuna" class="form-control"> </div>
+                                        <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Skill Description</label>
                                     <div class="col-md-9">
-                                        <textarea class="form-control" rows="3" placeholder="It&#39;s delicious!!"></textarea>
+                                        <textarea class="form-control" rows="3" placeholder="It&#39;s delicious!!" name="skill_description"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Level</label>
                                     <div class="col-md-9">
-                                        <select class="bs-select form-control">
+                                        <select class="bs-select form-control" name="skill_level">
                                             <option>Select level</option>
                                             <option>Beginner</option>
                                             <option>Intermediate</option>
@@ -1256,19 +1381,19 @@
                             </div>
 
                         </div>
-                        <form method="POST" class="form form-horizontal">
+                        <form method="POST" action="<?php echo base_url();?>student/profile/add_language" class="form form-horizontal">
                             <div class="modal-body portlet-body ">
                                 <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Language</label>
                                     <div class="col-md-9">
-                                        <input type="text" placeholder="English" class="form-control"> </div>
+                                        <input type="text" placeholder="English" class="form-control" name="language_name"> </div>
                                     </div>
 
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Profieciency </label>
                                     <div class="col-md-9">
-                                        <select class="bs-select form-control input-medium">
+                                        <select class="bs-select form-control input-medium" name="profieciency">
                                             <option>Select level</option>
                                             <option>Beginner</option>
                                             <option>Intermediate</option>

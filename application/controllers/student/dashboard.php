@@ -33,7 +33,10 @@ class Dashboard extends CI_Controller {
                         'job_position_id' => $job_id,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s'),
-                        'status' => 'new');
+                        'status' => 'APPLIED',
+                        'employer_message_status' => 'NEW',
+                        'job_seeker_message_status' => 'NEW',
+                        );
         $apply_job = $this->job_model->apply($jobs);
         if ($apply_job == true) {
             $this->session->set_flashdata('msg_success', 'Success apply dream job');            
