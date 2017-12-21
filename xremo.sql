@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 03 Des 2017 pada 06.13
+-- Waktu pembuatan: 04 Des 2017 pada 05.11
 -- Versi Server: 5.6.14
 -- Versi PHP: 5.5.6
 
@@ -1952,6 +1952,27 @@ CREATE TABLE IF NOT EXISTS `user_employer_address` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_history`
+--
+
+CREATE TABLE IF NOT EXISTS `user_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data untuk tabel `user_history`
+--
+
+INSERT INTO `user_history` (`id`, `user_id`, `created_at`) VALUES
+(1, 54, '2017-12-04 03:22:58'),
+(2, 54, '2017-12-04 03:51:36');
 
 -- --------------------------------------------------------
 

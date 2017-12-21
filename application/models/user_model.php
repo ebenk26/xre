@@ -23,7 +23,16 @@ class User_Model extends CI_Model{
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
         $query = $this->db->get();
-        return $query->last_row('array');
+        $result = $query->last_row('array');
+        if (!empty($result)) {
+            $user = array('user_id' => $result['id'] );
+            $this->db->insert('user_history', $user);
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Wrong username or password please check again');
+            return false;
+        }
+
+        return $result;
     }
 
     
@@ -133,6 +142,21 @@ class User_Model extends CI_Model{
         $query = $this->db->get_where('university', array('email_format'=>$email));
         $result = $query->num_rows() > 0 ? true : false;
         return $result;
+    }
+
+    function set_token($token){
+        try {            
+            $this->db->where('id', $this->session->userdata('id'));
+            $this->db->update( 'users', array('verification_token' => $token ));
+        } catch (Exception $e) {
+            return false;
+        }
+        return true;
+    }
+
+    function get_token($token){
+        $existing_token = $this->db->get_where('users', array('verification_token'=>$token));
+        return $existing_token;
     }
 
 }
