@@ -27,6 +27,7 @@
 
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/login-5.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL STYLES -->
 
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
@@ -81,7 +82,7 @@
                             <div class="form-group form-md-line-input px-5">
                                 <div class="col-md-12">
                                     <div class="input-icon">
-                                        <input name="email" type="email" class="form-control " placeholder="Email">
+                                        <input name="email" type="email" class="form-control " placeholder="Email" required>
                                         <div class="form-control-focus"> </div>
                                         <i class="fa fa-envelope-o"></i>
                                     </div>
@@ -92,7 +93,7 @@
                             <div class="form-group form-md-line-input px-5">
                                 <div class="col-md-12">
                                     <div class="input-icon ">
-                                        <input name="password" type="password" class="form-control " placeholder="Password">
+                                        <input name="password" type="password" class="form-control " placeholder="Password" required>
                                         <div class="form-control-focus"> </div>
                                         <i class="fa fa-key"></i>
                                     </div>
@@ -175,6 +176,7 @@
     <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/select2.full.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>

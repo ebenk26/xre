@@ -24,9 +24,13 @@ class User_Model extends CI_Model{
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
         $query = $this->db->get();
         $result = $query->last_row('array');
-        
-        $user = array('user_id' => $result['id'] );
-        $this->db->insert('user_history', $user);
+        if (!empty($result)) {
+            $user = array('user_id' => $result['id'] );
+            $this->db->insert('user_history', $user);
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Wrong username or password please check again');
+            return false;
+        }
 
         return $result;
     }

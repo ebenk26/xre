@@ -70,20 +70,38 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
-            $('#DOB').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                "locale":{
-                    format: 'DD/MM/YYYY',                  
-                }
+            
+            $('#DOB').datepicker({
+                format:'dd-mm-yyyy',
+                autoclose: true,
             });
+
             $('.date-picker').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
                 "locale":{
-                    format: 'DD/MM/YYYY',                  
+                    format: 'DD-MM-YYYY',                  
                 }
             });
+
+
+
+            $(".date-picker-start").datepicker({
+                format:'dd-mm-yyyy',
+                todayBtn:  1,
+                autoclose: true,
+            }).on('changeDate', function (selected) {
+                var minDate = new Date(selected.date.valueOf());
+                $('.date-picker-end').datepicker('setStartDate', minDate);
+            });
+            
+            $(".date-picker-end").datepicker({
+                format:'dd-mm-yyyy',
+            }).on('changeDate', function (selected) {
+                    var minDate = new Date(selected.date.valueOf());
+                    $('.date-picker-start').datepicker('setEndDate', minDate);
+                });
+
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });

@@ -8,16 +8,26 @@
                         <h1>Welcome back , <?php echo ucfirst($this->session->userdata('name'));?> !
                             <small>Here your latest activities</small>
                         </h1>
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <i class="icon-home"></i>
+                                    <a href="<?php echo base_url().'employer/dashboard'; ?>">Home</a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span>Dashboard</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <!-- END PAGE TITLE -->
+
 
                     <!-- BEGIN PAGE TOOLBAR -->
                     <div class="page-toolbar">
                         <!-- BEGIN THEME PANEL -->
                         <div class="btn-group btn-theme-panel">
-                            <a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-settings"></i>
-                            </a>
                             <div class="dropdown-menu theme-panel pull-right dropdown-custom hold-on-click">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-xs-12">

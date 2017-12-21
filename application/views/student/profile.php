@@ -38,7 +38,18 @@
                 <!-- Tab Content : Overview -->
                 <div class="tab-pane active " id="tab_overview">
                     <div class="m-grid">
-                        <div class="md-blue-grey mt-height-250-xs"></div>
+                        <div class=" view mt-height-250-xs hm-black-slight" style="background:url(' <?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
+                            <!-- <img src="../assets/global/img/portfolio/1200x900/03.jpg" class="img-fluid" alt=""> -->
+                            <div class="mask ">
+                                <!-- <a href="" class="btn btn-sm btn-opacity-white  pull-right m-4 ">
+                                    <i class="icon-pencil"></i>
+                                    Edit
+                                </a> -->
+                                <a href="student-view-profile.html" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
+                                    View My Resume </a>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="md-white">
                         <!--  Brief you whole profile -->
@@ -290,12 +301,12 @@
                             <div class="media p-0">
                                 <div class="pull-right my-4 ">
                                     <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="academic-btn"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
-                                    <a href="<?php echo base_url();?>student/profile#modal_delete_education" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
+                                    <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                 </div>
                                 <div class="media-body">
                                     <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"><?php echo ucfirst($value['university_name']); ?> </h4>
                                     <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"><?php echo ucfirst($value['degree_name']);?></h5>
-                                    <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo date('d F Y', strtotime($value['end_date']));?></h6>
+                                    <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
                                     <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['degree_description']);?>
                                     </p>
                                 </div>
@@ -307,7 +318,7 @@
                                     <div class="modal-content portlet light">
                                         <div class="modal-header portlet-title">
                                             <div class="caption">
-                                                <span class="caption-subject text-capitalize font-weight-500">Add Education</span>
+                                                <span class="caption-subject text-capitalize font-weight-500">Edit Education</span>
                                                 <!-- <span class="caption-helper">add about your education info</span> -->
                                             </div>
                                             <div class="actions py-4">
@@ -323,7 +334,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Institution Name</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" value="<?php echo ucfirst($value['university_name']); ?>">
+                                                            <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" value="<?php echo ucfirst($value['university_name']); ?>" required>
                                                             <!-- <span class="help-block"> A block of help text.</span> -->
                                                         </div>
 
@@ -333,7 +344,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Qualifications Level </label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" value="<?php echo ucfirst($value['qualification_level']); ?>">
+                                                            <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" value="<?php echo ucfirst($value['qualification_level']); ?>" required>
                                                             <!-- <span class="help-block"> A block of help text.</span> -->
                                                         </div>
                                                     </div>
@@ -342,7 +353,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Field Of Study</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" value="<?php echo ucfirst($value['degree_name']); ?>">
+                                                            <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" value="<?php echo ucfirst($value['degree_name']); ?>" required>
                                                         </div>
                                                     </div>
 
@@ -352,16 +363,16 @@
                                                         <div class="col-md-9  ">
                                                             <div class="m-grid ">
                                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                                    <input class="form-control form-control-inline date-picker " size="16" type="text" value="<?php echo date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="from">
+                                                                    <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" id="StartDate1" name="from" required>
                                                                     <!-- <span class="help-block"> Select date </span> -->
                                                                 </div>
                                                                 <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                                     <span class="help-block"> to </span>
                                                                 </div>
                                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                                    <input class="form-control form-control-inline date-picker" size="16" type="text" value="<?php echo date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="until">
+                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
                                                                     <span class="help-block md-checkbox has-warning"> 
-                                                                    <input type="checkbox" id="edit_education" class="md-check">
+                                                                    <input type="checkbox" id="edit_education" class="md-check" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                     <label for="edit_education">
                                                                         <span></span>
                                                                     <span class="check"></span>
@@ -416,7 +427,7 @@
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only" data-toggle="modal"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_achievement" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
+                                        <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['achievement_title']);?> </h4>
@@ -459,7 +470,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-3">Name</label>
                                                                 <div class="col-md-9">
-                                                                    <input type="text" class="form-control " name="achievement_name" placeholder="Brain Challenge 2016" value="<?php echo !empty($value['achievement_title']) ? $value['achievement_title'] : ''; ?>">
+                                                                    <input type="text" class="form-control " name="achievement_name" placeholder="Brain Challenge 2016" value="<?php echo !empty($value['achievement_title']) ? $value['achievement_title'] : ''; ?>" required>
                                                                     <span class="help-block small">Event / Competition / Contest / Tournament you just joined </span>
                                                                 </div>
 
@@ -478,11 +489,11 @@
                                                                 <div class="col-md-9  ">
                                                                     <div class="m-grid ">
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="<?php echo !empty($value['start_date']) ? date('d-m-Y', strtotime($value['start_date'])) : date('d-m-Y') ;?>" name="start_date" placeholder="From year">
+                                                                            <input class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="<?php echo !empty($value['start_date']) ? date('d-m-Y', strtotime($value['start_date'])) : date('d-m-Y') ;?>" name="start_date" id="StartDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="<?php echo !empty($value['end_date']) ? date('d-m-Y', strtotime($value['end_date'])) : date('d-m-Y') ;?>" name="end_date" placeholder="From year">
+                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['end_date']) ? date('d-m-Y', strtotime($value['end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -532,7 +543,7 @@
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_education" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences"><i class="icon-trash"></i></a>
+                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <div class="m-grid">
@@ -574,7 +585,7 @@
                                                             <label class="control-label col-md-3">Job Post</label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept" value="<?php echo ucfirst($value['experiences_title']);?>">
-                                                                <span class="help-block small"> Add your current status career info </span>
+                                                                <span class="help-block small" required> Add your current status career info </span>
                                                             </div>
                                                         </div>
 
@@ -591,16 +602,16 @@
                                                             <div class="col-md-9  ">
                                                                 <div class="m-grid ">
                                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker " size="16" type="text" name="start_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_start_date']));?>" placeholder="From year">
+                                                                        <input class="form-control form-control-inline date-picker-start " size="16" type="text" name="start_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_start_date']));?>" placeholder="From year" id="StartDate3">
                                                                         <!-- <span class="help-block"> Select date </span> -->
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                                         <span class="help-block"> to </span>
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker" size="16" type="text" name="end_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_end_date']));?>" placeholder="End Year">
+                                                                        <input class="form-control form-control-inline date-picker-end " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
                                                                         <span class="help-block md-checkbox has-warning"> 
-                                                                            <input type="checkbox" id="edit_exp" class="md-check" value="">
+                                                                            <input type="checkbox" id="edit_exp" class="md-check" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                             <label for="edit_exp">
                                                                                 <span></span>
                                                                         <span class="check"></span>
@@ -645,13 +656,13 @@
                                                                                     </a>
                                     <ul class="dropdown-menu pull-right">
                                         <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_add_project" data-toggle="modal">Project </a>
+                                            <a href="#modal_add_project" data-toggle="modal">Project </a>
                                         </li>
                                         <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_add_skill" data-toggle="modal">Skill </a>
+                                            <a href="#modal_add_skill" data-toggle="modal">Skill </a>
                                         </li>
                                         <li>
-                                            <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_add_language" data-toggle="modal">Language</a>
+                                            <a href="#modal_add_language" data-toggle="modal">Language</a>
                                         </li>
 
                                     </ul>
@@ -662,8 +673,8 @@
                             <?php foreach($user_profile['projects'] as $value){?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
-                                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_education" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_projects"> <i class="icon-trash"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
+                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_projects"> <i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['name']);?> </h4>
@@ -685,12 +696,87 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Modal : Edit Project -->
+                                <div class="modal fade in" id="modal_edit_project_<?php echo $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content portlet light">
+                                            <div class="modal-header portlet-title">
+                                                <div class="caption">
+                                                    <span class="caption-subject text-capitalize font-weight-500">Edit Project</span>
+                                                    <!-- <span class="caption-helper">add about your education info</span> -->
+                                                </div>
+                                                <div class="actions py-4">
+                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                                </div>
+
+                                            </div>
+                                            <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
+                                                <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
+                                                <div class="modal-body portlet-body ">
+                                                    <div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Project name</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" placeholder="A Can of Tuna" name="project_name" class="form-control" value="<?php echo ucfirst($value['name']); ?>" /> </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Project Description</label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" rows="3" name="project_description" placeholder="It's delicious!!"><?php echo ucfirst($value['description']); ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-3 control-label">Skill Acquired</label>
+                                                            <div class="col-md-9">
+                                                                <div class="mt-repeater">
+                                                                    <div data-repeater-list="group-b">
+                                                                        <?php $tag = explode(',', $value['skills_acquired']);
+                                                                            foreach ($tag as $tag_key => $tag_value) { ?>
+                                                                        <div data-repeater-item class="row mb-4">
+                                                                                <div class="col-md-10">
+                                                                                    <input type="text" placeholder="CSS" class="form-control" name="skills" value="<?php echo $tag_value ?>" />
+                                                                                </div>
+                                                                            <!-- <div class="col-md-5">
+                                                                                <select class="bs-select form-control">
+                                                                                            <option>Select level </option>
+                                                                                            <option>Beginner</option>
+                                                                                            <option>Intermediate</option>
+                                                                                            <option>Expert</option>
+                                                                                        </select>
+                                                                            </div> -->
+                                                                            <div class="col-md-2">
+                                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm my-0">
+                                                                                    <i class="fa fa-close"></i>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <?php } ?>
+                                                                    </div>
+
+                                                                    <hr>
+                                                                    <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-3">
+                                                                        <i class="fa fa-plus"></i> Add 
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer form-actions ">
+                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             <?php } ?>
                             <?php foreach($user_profile['skills'] as $value){?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_skills_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="skills-btn"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_skills" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_skill_set"> <i class="icon-trash"></i></a>
+                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_skill_set"> <i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?> </h4>
@@ -705,7 +791,7 @@
                                         <div class="modal-content portlet light">
                                             <div class="modal-header portlet-title">
                                                 <div class="caption">
-                                                    <span class="caption-subject text-capitalize font-weight-500">Add Skill</span>
+                                                    <span class="caption-subject text-capitalize font-weight-500">Edit Skill</span>
                                                     <!-- <span class="caption-helper">add about your education info</span> -->
                                                 </div>
                                                 <div class="actions py-4">
@@ -720,7 +806,7 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Skill name</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name" value="<?php echo $value['title'] ?>"> </div>
+                                                            <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name" value="<?php echo $value['title'] ?>" required> </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Skill Description</label>
@@ -732,7 +818,7 @@
                                                         <label class="col-md-3 control-label">Level</label>
                                                         <div class="col-md-9">
                                                             <select class="bs-select form-control" name="skill_level">
-                                                                <option>Select level</option>
+                                                                <option disabled>Select level</option>
                                                                 <option <?php echo ($value['level'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
                                                                 <option <?php echo ($value['level'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
                                                                 <option <?php echo ($value['level'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
@@ -755,10 +841,11 @@
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_language_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="language-btn"><i class="icon-pencil"></i></a>
-                                        <a href="<?php echo base_url();?>student/profile#modal_delete_language" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_language_set"> <i class="icon-trash"></i></a>
+                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_language_set"> <i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?> </h4>
+                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?></h4>
+                                        <p class="roboto-font mb-0 multiline-truncate"><?php echo ucfirst($value['profieciency']);?></p>
                                     </div>
                                 </div>
                                 <hr>
@@ -782,13 +869,13 @@
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Language</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" placeholder="English" class="form-control" name="language" value="<?php echo $value['title'] ?>"> </div>
+                                                            <input type="text" placeholder="English" class="form-control" name="language" value="<?php echo $value['title'] ?>" required> </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="col-md-3 control-label">Profieciency</label>
                                                         <div class="col-md-9">
                                                             <select class="bs-select form-control" name="profieciency">
-                                                                <option>Select level</option>
+                                                                <option disabled>Select level</option>
                                                                 <option <?php echo ($value['profieciency'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
                                                                 <option <?php echo ($value['profieciency'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
                                                                 <option <?php echo ($value['profieciency'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
@@ -840,14 +927,14 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Preferences Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control input-medium" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>">
+                                                    <input type="text" class="form-control input-medium" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
                                                 </div>
                                             </div>
                                             <!-- Full name -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Full Name</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>">
+                                                    <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
                                                 </div>
                                             </div>
 
@@ -887,7 +974,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Current Career</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="current" placeholder="Student" value="<?php echo !empty($user_profile['overview']['student_bios_occupation']) ? ucfirst($user_profile['overview']['student_bios_occupation']) : $this->session->userdata('roles');?>">
+                                                            <input type="text" class="form-control" name="current" placeholder="Student" value="<?php echo !empty($user_profile['overview']['student_bios_occupation']) ? ucfirst($user_profile['overview']['student_bios_occupation']) : $this->session->userdata('roles');?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -895,7 +982,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Phone Number</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>">
+                                                            <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -907,7 +994,7 @@
                                             <div class="form-group">
                                                 <label class="control-label col-md-2">Address</label>
                                                 <div class="col-md-10">
-                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>">
+                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>" required>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -926,7 +1013,7 @@
 
                                                         <label class="control-label col-md-4">State</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>">
+                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -945,7 +1032,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">Country</label>
                                                         <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>">
+                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1032,7 +1119,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Institution Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control " placeholder="University of Malaya" name="university_name">
+                                            <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" required>
                                             <!-- <span class="help-block"> A block of help text.</span> -->
                                         </div>
 
@@ -1042,7 +1129,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Qualifications Level </label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level">
+                                            <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" required>
                                             <!-- <span class="help-block"> A block of help text.</span> -->
                                         </div>
                                     </div>
@@ -1051,7 +1138,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Field Of Study</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study">
+                                            <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" required>
                                         </div>
                                     </div>
 
@@ -1061,16 +1148,16 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker " size="16" type="text" placeholder="From year" name="from">
+                                                    <input class="form-control form-control-inline date-picker-start " size="16" type="text" placeholder="From year" name="from">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                     <span class="help-block"> to </span>
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker" size="16" type="text" placeholder="End Year" name="until">
+                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" placeholder="End Year" name="until">
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                    <input type="checkbox" id="add_education" class="md-check">
+                                                    <input type="checkbox" id="add_education" class="md-check" name="current_date">
                                                     <label for="add_education">
                                                         <span></span>
                                                     <span class="check"></span>
@@ -1122,7 +1209,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016">
+                                            <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016" required>
                                             <span class="help-block small">Event / Competition / Contest / Tournament you just joined </span>
                                         </div>
 
@@ -1141,11 +1228,11 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="" placeholder="From year" name="from">
+                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="" placeholder="From year" name="start_date">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker input-medium" size="16" type="text" value="" placeholder="Until year" name="until">
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -1212,14 +1299,14 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker " name="start_date" size="16" type="text" value="" placeholder="From year">
+                                                    <input class="form-control form-control-inline date-picker-start " name="start_date" size="16" type="text" value="" placeholder="From year">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                     <span class="help-block"> to </span>
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                    <input class="form-control form-control-inline date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
                                                     <span class="help-block md-checkbox has-warning"> 
                                                         <input type="checkbox" id="add_experience" class="md-check" name="current_date">
                                                         <label for="add_experience">
@@ -1349,7 +1436,7 @@
                                     <label class="col-md-3 control-label">Level</label>
                                     <div class="col-md-9">
                                         <select class="bs-select form-control" name="skill_level">
-                                            <option>Select level</option>
+                                            <option disabled>Select level</option>
                                             <option>Beginner</option>
                                             <option>Intermediate</option>
                                             <option>Expert</option>
@@ -1394,7 +1481,7 @@
                                     <label class="col-md-3 control-label">Profieciency </label>
                                     <div class="col-md-9">
                                         <select class="bs-select form-control input-medium" name="profieciency">
-                                            <option>Select level</option>
+                                            <option disabled>Select level</option>
                                             <option>Beginner</option>
                                             <option>Intermediate</option>
                                             <option>Expert</option>

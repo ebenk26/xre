@@ -40,7 +40,7 @@ class Profile extends CI_Controller {
             $targetFile =  $targetPath.$src2;
             if (!empty($checkImage)) {
 
-                unlink("./assets/img/student/".$checkImage['name']);
+                // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -49,14 +49,14 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $src2 = $userImage['name'];
+            $src2 = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
 
         $profile = array(
             'student_name' => $this->input->post('fullname'),
             'preferences_name' => $this->input->post('student_name'),
             'gender' => $this->input->post('gender'),
-            'date_of_birth' => date('Y-d-m', strtotime($this->input->post('DOB'))),
+            'date_of_birth' => date('Y-m-d', strtotime($this->input->post('DOB'))),
             'occupation' => $this->input->post('current'),
             'contact_number' => $this->input->post('phone'),
             'user_id'=> $this->session->userdata('id'),
@@ -79,15 +79,26 @@ class Profile extends CI_Controller {
     public function add_education(){
         if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
             $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
-        }else{            
-            $education = array( 'university_name'=> $this->input->post('university_name'),
+        }else{
+            if ($this->input->post('current_date') == 'on') {
+                $education = array( 'university_name'=> $this->input->post('university_name'),
                                 'qualification_level'=> $this->input->post('qualification_level'),
                                 'degree_name'=> $this->input->post('field_of_study'),
-                                'start_date'=> date('Y-d-m', strtotime($this->input->post('from'))),
-                                'end_date' => date('Y-d-m', strtotime($this->input->post('until'))),
+                                'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                                'end_date'=> '0000-00-00',
                                 'degree_description'=>$this->input->post('academics_description'),
                                 'user_id' => $this->session->userdata('id')
                                 );
+            }else{                
+                $education = array( 'university_name'=> $this->input->post('university_name'),
+                                    'qualification_level'=> $this->input->post('qualification_level'),
+                                    'degree_name'=> $this->input->post('field_of_study'),
+                                    'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                                    'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
+                                    'degree_description'=>$this->input->post('academics_description'),
+                                    'user_id' => $this->session->userdata('id')
+                                    );
+            }
             $table = 'academics';
             $result = $this->student_model->add($education, $table);
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
@@ -99,16 +110,29 @@ class Profile extends CI_Controller {
 
         if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
             $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
-        }else{            
-            $education = array( 'university_name'=> $this->input->post('university_name'),
+        }else{         
+            if ($this->input->post('current_date') == 'on') {
+                $education = array( 'university_name'=> $this->input->post('university_name'),
                                 'qualification_level'=> $this->input->post('qualification_level'),
                                 'degree_name'=> $this->input->post('field_of_study'),
-                                'start_date'=> date('Y-d-m', strtotime($this->input->post('from'))),
-                                'end_date' => date('Y-d-m', strtotime($this->input->post('until'))),
+                                'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                                'end_date'=> '0000-00-00',
                                 'degree_description'=>$this->input->post('academics_description'),
                                 'id' => $this->input->post('academic_id'),
                                 'user_id' => $this->session->userdata('id')
                                 );
+            }else{
+                $education = array( 'university_name'=> $this->input->post('university_name'),
+                                'qualification_level'=> $this->input->post('qualification_level'),
+                                'degree_name'=> $this->input->post('field_of_study'),
+                                'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                                'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
+                                'degree_description'=>$this->input->post('academics_description'),
+                                'id' => $this->input->post('academic_id'),
+                                'user_id' => $this->session->userdata('id')
+                                );
+            }
+            
             $table = 'academics';
             $result = $this->student_model->update($education, $table);
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
@@ -122,15 +146,15 @@ class Profile extends CI_Controller {
         if ($this->input->post('current_date') == 'on') {
             $experience = array('title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
-                                'start_date'=> date('Y-d-m',strtotime($this->input->post('start_date'))),
+                                'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
                                 'user_id' => $this->session->userdata('id')
                                 );
         }else{
             $experience = array('title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
-                                'start_date'=> date('Y-d-m',strtotime($this->input->post('start_date'))),
-                                'end_date'=> date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
                                 'user_id' => $this->session->userdata('id')
                                 );
         }
@@ -142,13 +166,23 @@ class Profile extends CI_Controller {
     }
 
     public function edit_experience(){
-        $experience = array('id' => $this->input->post('experience_id'),
-                            'user_id' => $this->session->userdata('id'),
-                            'title'=> $this->input->post('title'),
-                            'description'=> $this->input->post('description'),
-                            'start_date'=> date('Y-d-m',strtotime($this->input->post('start_date'))),
-                            'end_date'=> date('Y-d-m',strtotime($this->input->post('end_date')))
-                            );
+        if ($this->input->post('current_date') == 'on') {
+            $experience = array('id' => $this->input->post('experience_id'),
+                                'user_id' => $this->session->userdata('id'),
+                                'title'=> $this->input->post('title'),
+                                'description'=> $this->input->post('description'),
+                                'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                'end_date'=> '0000-00-00'
+                                );
+        }else{
+            $experience = array('id' => $this->input->post('experience_id'),
+                                'user_id' => $this->session->userdata('id'),
+                                'title'=> $this->input->post('title'),
+                                'description'=> $this->input->post('description'),
+                                'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date')))
+                                );
+        }
         $table = 'experiences';
         $result = $this->student_model->update($experience, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data updated') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
@@ -216,8 +250,8 @@ class Profile extends CI_Controller {
         }else{  
             $achievement = array('achievement_name' => $this->input->post('achievement_name'),
                                  'achievement_description' => $this->input->post('achievement_description'),
-                                 'start_date' => date('Y-d-m',strtotime($this->input->post('start_date'))),
-                                 'end_date' => date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                 'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                 'end_date' => date('Y-m-d',strtotime($this->input->post('end_date'))),
                                  'user_id' => $this->session->userdata('id'),
                                  'tag' => $this->input->post('tag'));
             $table = 'achievement';
@@ -233,8 +267,8 @@ class Profile extends CI_Controller {
         }else{  
             $achievement = array('achievement_name' => $this->input->post('achievement_name'),
                                  'achievement_description' => $this->input->post('achievement_description'),
-                                 'start_date' => date('Y-d-m',strtotime($this->input->post('start_date'))),
-                                 'end_date' => date('Y-d-m',strtotime($this->input->post('end_date'))),
+                                 'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                 'end_date' => date('Y-m-d',strtotime($this->input->post('end_date'))),
                                  'user_id' => $this->session->userdata('id'),
                                  'id' => $this->input->post('achievement_id'),
                                  'tag' => $this->input->post('tag'));
@@ -273,13 +307,14 @@ class Profile extends CI_Controller {
             $i++;
         }
         $skills_acquired =implode(',', $skills);
-        $project_name = array('name' => $this->input->post('name'),
-                                'description' => $this->input->post('description'),
+        $project_name = array('name' => $this->input->post('project_name'),
+                                'description' => $this->input->post('project_description'),
                                 'skills_acquired' => $skills_acquired,
-                                'created_at' => date('Y-m-d H:i:s'),
-                                'user_id' => $this->session->userdata('id'));
+                                'edited_at' => date('Y-m-d H:i:s'),
+                                'user_id' => $this->session->userdata('id'),
+                                'id' => $this->input->post('project_id'));
         $table = 'user_projects';
-        $result = $this->student_model->add_project($project_name, $table);
+        $result = $this->student_model->update($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
         redirect(base_url().'student/profile/');
 
