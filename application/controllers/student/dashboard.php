@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $job['job_positions'] = $this->student_model->get_all_job($id);
+        $job['last_logged_in'] = $this->student_model->get_user_history($id);
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
         $this->load->view('student/main/footer');
@@ -32,7 +33,10 @@ class Dashboard extends CI_Controller {
                         'job_position_id' => $job_id,
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s'),
-                        'status' => 'new');
+                        'status' => 'APPLIED',
+                        'employer_message_status' => 'NEW',
+                        'job_seeker_message_status' => 'NEW',
+                        );
         $apply_job = $this->job_model->apply($jobs);
         if ($apply_job == true) {
             $this->session->set_flashdata('msg_success', 'Success apply dream job');            

@@ -17,7 +17,11 @@ class Profile extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
-        $profile_form['industries'] = $this->employer_model->get_industries();
+        $profile_form['industries'] = $this->employer_model->get('industries', 'name', 'asc');
+        $profile_form['countries'] = $this->employer_model->get('countries', 'name', 'asc');
+        $profile_form['detail'] = $get_user_profile;
+        $profile_form['language'] = $this->employer_model->get('language', 'name', 'asc');
+        $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $this->session->userdata('id') ));
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/profile', $profile_form);
         $this->load->view('employer/main/footer');
@@ -27,25 +31,104 @@ class Profile extends CI_Controller {
         $social = $this->input->post('group-b');
         $id = $this->session->userdata('id');
         $check_number_of_social_link = $this->employer_model->check_social_link($id);
-        if (count($social) < $check_number_of_social_link) {
+        if (!empty($check_number_of_social_link)) {
+            foreach ($check_number_of_social_link as $key => $value) {
+                $this->employer_model->delete_social($value['id']);
+            }
             foreach ($social as $key => $value) {
-                $this->employer_model->post_social($social);
+                $socmed = array('link' => $value['link'],
+                                'name' => $value['name'],
+                                'user_id' => $id );
+                $this->employer_model->post_social($socmed);
+            }
+        }else{
+            foreach ($social as $key => $value) {
+                $socmed = array('link' => $value['link'],
+                                'name' => $value['name'],
+                                'user_id' => $id );
+                $this->employer_model->post_social($socmed);
             }
         }
-        
-        $id = $this->session->userdata('id');
         $profile = array('company_name' => $this->input->post('company_name'),
                          'company_registration_number' => $this->input->post('company_registration_number'),
                          'company_industry_id' => $this->input->post('industry'),
                          'company_description' => $this->input->post('about_company'),
                          'spoken_language' => $this->input->post('language'),
+                         'user_id' => $id,
                          'url' => $this->input->post('corporate_website'));
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
-        if ($checkAvailabilityProfile) {
-            $this->employer_model->edit_profile($profile);
-        }else{
-            $this->employer_model->add_profile($profile);
+            
+            if ($checkAvailabilityProfile) {
+                $this->employer_model->edit_profile($profile);
+            }else{
+                $this->employer_model->add_profile($profile);
+            }
+
+        $this->session->set_flashdata('msg_success', 'Success Update Profile');            
+        
+        redirect(base_url().'employer/profile/');
+
+    }
+
+    function edit_additional_info(){
+        $id = $this->session->userdata('id');
+        $dress = $this->input->post('dress');
+        $dresscode = '';
+        $language = '';
+        foreach ($dress as $key => $value) {
+            $dresscode .= $value == end($dress) ? $value : $value.',';            
         }
+
+        $languages = $this->input->post('language');
+
+        foreach ($languages as $key => $value) {
+            $language .= $value == end($languages) ? $value : $value.',';
+        }
+
+        $hour_start = $this->input->post('work_hour_start');
+        $hour_end = $this->input->post('work_hour_end');
+        $day_start = $this->input->post('day_start');
+        $day_end = $this->input->post('day_end');
+
+        $info = array(  'total_staff' => $this->input->post('company_size'),
+                        'dress_code' => $dresscode,
+                        'working_days' => $day_start.' - '.$day_end,
+                        'working_hours' => $hour_start.' - '.$hour_end,
+                        'spoken_language' => $language,
+                        'benefits' => $this->input->post('benefits'),
+                        'total_staff' => $this->input->post('company_size'),
+                        );
+        $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
+            
+            if ($checkAvailabilityProfile) {
+                $this->employer_model->edit_profile($info);
+            }else{
+                $this->employer_model->add_profile($info);
+            }
+
+        $this->session->set_flashdata('msg_success', 'Success Update additional info');            
+        
+        redirect(base_url().'employer/profile/');
+    }
+
+    function edit_contact_info(){
+        $id = $this->session->userdata('id');
+        $address = $this->input->post('contact_info');
+
+        $contact = array('email' => $this->input->post('email'),
+                         'address' => json_encode($address) );
+
+        $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
+            
+            if ($checkAvailabilityProfile) {
+                $this->employer_model->edit_profile($contact);
+            }else{
+                $this->employer_model->add_profile($contact);
+            }
+
+        $this->session->set_flashdata('msg_success', 'Success update contact info');
+        
+        redirect(base_url().'employer/profile/');
     }
 
 }

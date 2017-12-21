@@ -11,53 +11,56 @@ class Student_Model extends CI_Model{
         $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
         $checkUserImageExist = $this->checkImageExist($userImageID);
+        $dataUploads = array(
+            'user_id' => $this->session->userdata('id'),
+            'name' => $profile['image'],
+            'type' => $profile['type'],
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        $dataBios = array(
+           'user_id' => $this->session->userdata('id'),
+           'youtubelink' => $profile['youtubelink'],
+           'quote' => $profile['quote'],
+           'summary' => $profile['summary'],
+           'gender' => $profile['gender'],
+           'date_of_birth' => $profile['date_of_birth'],
+           'occupation' => $profile['occupation'],
+           'contact_number' => $profile['contact_number'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        $dataAddress = array(
+           'user_id' => $this->session->userdata('id'),
+           'address' => $profile['address'],
+           'postcode' => $profile['postcode'],
+           'city' => $profile['city'],
+           'state' => $profile['state'],
+           'country' => $profile['country'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
+        
+        $dataUsers = array(
+           'id' => $this->session->userdata('id'),
+           'fullname' => $profile['student_name'],
+           'preference_name' => $profile['preferences_name'],
+           'updated_at' => date('Y-m-d H:i:s')
+        );
 
         try{
 
-            $dataUploads = array(
-                'name' => $profile['image'],
-                'type' => $profile['type'],
-                'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            $dataBios = array(
-               'youtubelink' => $profile['youtubelink'],
-               'quote' => $profile['quote'],
-               'summary' => $profile['summary'],
-               'gender' => $profile['gender'],
-               'date_of_birth' => $profile['date_of_birth'],
-               'occupation' => $profile['occupation'],
-               'contact_number' => $profile['contact_number'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            $dataAddress = array(
-               'address' => $profile['address'],
-               'postcode' => $profile['postcode'],
-               'city' => $profile['city'],
-               'state' => $profile['state'],
-               'country' => $profile['country'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-            
-            $dataUsers = array(
-               'fullname' => $profile['student_name'],
-               'preference_name' => $profile['preferences_name'],
-               'updated_at' => date('Y-m-d H:i:s')
-            );
-
-            if (isset($checkUserImageExist)) {
+            if (!empty($checkUserImageExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('profile_uploads', $dataUploads); 
             }else{
-                $this->db->post('profile_uploads', $dataUploads); 
+                $this->db->insert('profile_uploads', $dataUploads); 
             }
 
-            if (isset($checkUserBioExist)) {
+            if (!empty($checkUserBioExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('student_bios', $dataBios); 
             }else{
-                $this->db->post('student_bios', $dataBios); 
+                $this->db->insert('student_bios', $dataBios); 
             }
 
             if ($this->session->userdata('id')) {
@@ -65,13 +68,11 @@ class Student_Model extends CI_Model{
                 $this->db->update('users', $dataUsers); 
             }
 
-            if (isset($checkUserAddressExist)) {
-
+            if (!empty($checkUserAddressExist)) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('user_address', $dataAddress); 
             }else{
-                
-                $this->db->post('user_address', $dataAddress); 
+                $this->db->insert('user_address', $dataAddress); 
             }
             $this->session->set_flashdata('msg_success', 'Success update your data');
         }catch(Exception $e){
@@ -97,7 +98,7 @@ class Student_Model extends CI_Model{
         }
         
         //achievement
-        $this->db->select('achievement.user_id as achievement_user_id, achievement.id as achievement_id, achievement.achievement_name as achievement_title, achievement.achievement_description as achievement_description, achievement.start_date as achievement_start_date, achievement.end_date as achievement_end_date');
+        $this->db->select('achievement.user_id as achievement_user_id, achievement.id as achievement_id, achievement.achievement_name as achievement_title, achievement.achievement_description as achievement_description, achievement.tag as achievement_tag, achievement.start_date as achievement_start_date, achievement.end_date as achievement_end_date');
         $this->db->from('users');
         $this->db->join('achievement', 'achievement.user_id = users.id','left');
         $this->db->where(array('achievement.user_id' => $id));
@@ -117,7 +118,7 @@ class Student_Model extends CI_Model{
         $overview = $this->db->get();
         $result['overview'] = $overview->last_row('array');
         if (!empty($overview->last_row('array'))) {
-            $result['overview_percent'] =  0.3;
+            $result['overview_percent'] =  0.1;
         }else{
             $result['overview_percent'] =  0;
         }
@@ -130,16 +131,16 @@ class Student_Model extends CI_Model{
         $academics = $this->db->get();
         $result['academics'] = $academics->result_array();
         if (!empty($academics->result_array())) {
-            $result['academic_percent'] =  0.1;
+            $result['academic_percent'] =  0.15;
         }else{
             $result['academic_percent'] =  0;
         }
 
         //skills
-        $this->db->select('student_skills.id, student_skills.title, student_skills.description, student_skills.skills');
+        $this->db->select('user_skill_set.id, user_skill_set.name as title, user_skill_set.description, user_skill_set.level');
         $this->db->from('users');
-        $this->db->join('student_skills', 'student_skills.user_id = users.id','left');
-        $this->db->where(array('student_skills.user_id' => $id));
+        $this->db->join('user_skill_set', 'user_skill_set.user_id = users.id','left');
+        $this->db->where(array('user_skill_set.user_id' => $id));
         $student_skill = $this->db->get();
         $result['skills'] = $student_skill->result_array();
         if (!empty($student_skill->result_array())) {
@@ -187,7 +188,27 @@ class Student_Model extends CI_Model{
             $result['skill_percent'] = 0;
         }
 
-        $result['percent'] = ( $result['exp_percent'] + $result['achievement_percent'] + $result['overview_percent'] + $result['academic_percent'] + $result['student_skill_percent'] + $result['address_percent'] + $result['image_percent'] + $result['skill_percent'] ) *100;
+        //language
+        $this->db->select('user_language_set.id as id, user_language_set.id as skill_id ,user_language_set.language as title, user_language_set.profieciency');
+        $this->db->from('users');
+        $this->db->join('user_language_set', 'user_language_set.user_id = users.id','left');
+        $this->db->where(array('user_language_set.user_id' => $id));
+        $skills = $this->db->get();
+        $result['language'] = $skills->result_array();
+
+        //project
+        $this->db->select('*');
+        $this->db->from('user_projects');
+        $this->db->where(array('user_id' => $id));
+        $project = $this->db->get();
+        $result['projects'] = $project->result_array();
+        if (!empty($project->result_array())) {
+            $result['project_percent'] =  0.05;
+        }else{
+            $result['project_percent'] = 0;
+        }
+
+        $result['percent'] = ( $result['exp_percent'] + $result['achievement_percent'] + $result['overview_percent'] + $result['academic_percent'] + $result['student_skill_percent'] + $result['address_percent'] + $result['image_percent'] + $result['skill_percent'] + $result['project_percent'] ) *100;
 
         return $result;
     }
@@ -210,132 +231,6 @@ class Student_Model extends CI_Model{
         return $overview->last_row('array');
     }
 
-    function education_edit($education){
-        try{
-            if (isset($education)) {
-                $this->db->where(array('user_id' => $education['user_id'], 'id'=> $education['id']));
-                $this->db->update('academics', $education); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function education_add($education){
-        try{
-            if (isset($education)) {
-                $this->db->insert('academics', $education); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function experience_add($experience){
-        try{
-            if (isset($experience)) {
-                $this->db->insert('experiences', $experience); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function experience_edit($experience){
-        try{
-            if (isset($experience)) {
-                $this->db->where(array('user_id' => $experience['user_id'], 'id'=> $experience['id']));
-                $this->db->update('experiences', $experience); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-    
-    function skill_edit($skill){
-        try{
-            if (isset($skill)) {
-                $this->db->where(array('user_id' => $skill['user_id'], 'id'=> $skill['id']));
-                $this->db->update('user_skill_set', $skill); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function skill_add($skill){
-        try{
-            if (isset($skill)) {
-                $this->db->insert('user_skill_set', $skill); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function user_language_edit($language){
-        try{
-            if (isset($language)) {
-                $this->db->where(array('user_id' => $language['user_id'], 'id'=> $language['id']));
-                $this->db->update('user_language_set', $language); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function user_language_add($language){
-        try{
-            if (isset($language)) {
-                $this->db->insert('user_language_set', $language); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function user_project_edit($projects){
-        try{
-            if (isset($projects)) {
-                $this->db->where(array('user_id' => $projects['user_id'], 'id'=> $projects['id']));
-                $this->db->update('user_projects', $projects); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function user_project_add($projects){
-        try{
-            if (isset($projects)) {
-                $this->db->insert('user_projects', $projects); 
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;
-    }
-
-    function delete($deleteData){
-        try{
-            if (isset($deleteData)) {
-                $this->db->where('id', $deleteData['id']);
-                $this->db->delete($deleteData['table']);
-            }
-        }catch(Exception $e){
-            return false;
-        }
-        return true;   
-    }
 
     function get_all_job($id){
         $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id');
@@ -350,6 +245,52 @@ class Student_Model extends CI_Model{
         $this->db->where('job_positions.status =', 'post'); 
         $allJob = $this->db->get();
         return $allJob->result_array();
+    }
+
+    function get_user_history($id){
+        //login history
+        $this->db->select('users.*, user_history.created_at as user_history');
+        $this->db->from('users');
+        $this->db->join('user_history', 'user_history.user_id = users.id','left');
+        $this->db->where(array('user_history.user_id' => $id));
+        $history = $this->db->get();
+        $result = $history->result_array();
+        return $result;
+    }
+
+    function add($value, $table){
+        try{
+            if (isset($value)) {
+                $this->db->insert($table, $value); 
+            }
+        }catch(Exception $e){
+            return false;
+        }
+        return true;   
+    }
+
+    function update($value, $table){
+        try{
+            if (isset($value)) {
+                $this->db->where(array('user_id' => $value['user_id'], 'id'=> $value['id']));
+                $this->db->update($table, $value); 
+            }
+        }catch(Exception $e){
+            return false;
+        }
+        return true;
+    }
+
+    function delete($value, $table){
+        try{
+            if (isset($value)) {
+                $this->db->where('id', $value['id']);
+                $this->db->delete($table);
+            }
+        }catch(Exception $e){
+            return false;
+        }
+        return true;   
     }
 }
 

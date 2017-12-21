@@ -54,6 +54,7 @@
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>morris.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>raphael-min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
     <script src="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>portfolio-3.js" type="text/javascript"></script>
@@ -126,6 +127,13 @@
                             }
                         }
                     );
+
+                    <?php if($this->session->flashdata('msg_success')){ ?>
+                        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+                    <?php } ?>
+                    <?php if($this->session->flashdata('msg_failed')){ ?>
+                        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+                    <?php } ?>
             });
         })
     </script>

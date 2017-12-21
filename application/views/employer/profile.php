@@ -34,31 +34,44 @@
 
                                             </div>
                                             <div class="mt-card-content  ">
-                                                <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs ">Xremo Sdn Bhd</h3>
-                                                <h5 class="md-grey-text text-darken-1 font-24-xs my-4">Advertising / Marketing / Promotion / PR</h5>
+                                                <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs "><?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Xremo Sdn Bhd'; ?></h3>
+                                                <h5 class="md-grey-text text-darken-1 font-24-xs my-4"><?php echo !empty($detail['industry']) ? $detail['industry']: 'Job Portal'; ?></h5>
                                                 <hr class="mt-width-400-xs center-block">
                                                 <div class="mt-card-social">
                                                     <ul>
-                                                        <!-- Facebook -->
-                                                        <li class="socicons">
-                                                            <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-fb-bg socicon-facebook tooltips" data-original-title="Facebook"></a>
-                                                        </li>
-                                                        <!-- Twitter -->
-                                                        <li class="socicons">
-                                                            <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-tw-bg socicon-twitter tooltips" data-original-title="Twitter"></a>
-                                                        </li>
-                                                        <!-- Linked In -->
-                                                        <li class="socicons">
-                                                            <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-li-bg socicon-linkedin tooltips" data-original-title="Linked In"></a>
-                                                        </li>
-                                                        <!-- Google Plus -->
-                                                        <li class="socicons">
-                                                            <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-gplus-bg socicon-google tooltips" data-original-title="Google"></a>
-                                                        </li>
-                                                        <!-- Youtube -->
-                                                        <li class="socicons">
-                                                            <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-yt-bg socicon-youtube tooltips" data-original-title="Youtube"></a>
-                                                        </li>
+                                                        <?php foreach ($social as $key => $value) { 
+                                                            switch ($value['name']) {
+                                                                case 'facebook':
+                                                                    ?>
+                                                                <li class="socicons">
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-fb-bg socicon-facebook tooltips" data-original-title="Facebook"></a>
+                                                                </li>
+                                                            <?php break;
+                                                                case 'twitter': ?>
+                                                                <li class="socicons">
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-tw-bg socicon-twitter tooltips" data-original-title="Twitter"></a>
+                                                                </li>        
+                                                            <?php break;
+                                                                case 'linkedin': ?>
+                                                                <li class="socicons">
+                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-li-bg socicon-linkedin tooltips" data-original-title="Linked In"></a>
+                                                                </li>
+                                                            <?php break;
+                                                                case 'gplus': ?>
+                                                                <li class="socicons">
+                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-gplus-bg socicon-google tooltips" data-original-title="Google"></a>
+                                                                </li>
+                                                            <?php case 'youtube':?>
+                                                                <li class="socicons">
+                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-yt-bg socicon-youtube tooltips" data-original-title="Youtube"></a>
+                                                                </li>
+                                                            <?php break; default:?>
+                                                                <li class="socicons">
+                                                                    
+                                                                </li>
+                                                            <?php break; } ?>
+                                                            
+                                                        <?php } ?>
                                                     </ul>
                                                 </div>
                                                 <!-- <h5 class="md-grey-text text-darken-1 font-22-xs">Employer</h5> -->
@@ -95,14 +108,8 @@
                                     <div class="tab-pane active" id="tab_about_info">
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="md-indigo-text  font-weight-700 text-uppercase">About Company</h5>
-                                                <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae ipsam
-                                                    incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus
-                                                    distinctio dolorem, omnis praesentium eius explicabo ut natus beatae ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum? Lorem
-                                                    ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae ipsam
-                                                    incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus
-                                                    distinctio dolorem, omnis praesentium eius explicabo ut natus beatae ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum? </p>
-
+                                                <h5 class="md-indigo-text  font-weight-700 text-uppercase">About Company</h5>       
+                                                <p class="text-justify"> <?php echo ucfirst($detail['company_description']); ?></p>
                                             </div>
                                         </div>
 
@@ -117,33 +124,31 @@
                                                     <dt class="font-20-xs md-grey-text font-weight-600 ">Spoken Language</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-inline unstyled-list mb-0">
-                                                            <li>English ,</li>
-                                                            <li>Malay , </li>
-                                                            <li>Chinese</li>
+                                                            <li><?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : 'English'; ?></li>
                                                         </ul>
                                                     </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Size</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">1 to 50 People</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : 'Unknown'; ?> People</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">DressCode</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 ">Business Casual </dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code']) : 'Unknown' ?> </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Benefit</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 ">Allowances , Medical , Annual Leave , Dental , Annual Trip</dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : 'Unknown'?></dd>
                                                 </dl>
                                             </div>
                                             <div class="m-grid-col">
                                                 <dl>
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Industry</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">Advertising / Marketing / Promotion / PR</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['industry']) ? $detail['industry'] : 'Unknown'; ?></dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Working Hour</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">Monday to Friday ( 9 AM to 5 PM)</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['working_days']) ? ucwords($detail['working_days']) : 'Unknown'?> ( <?php echo !empty($detail['working_hours']) ? $detail['working_hours'] : 'Unknown' ?>)</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Website</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <a href="https://www.Xremo.com/">https://www.Xremo.com/</a>
+                                                        <a href="<?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?>"><?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?></a>
                                                     </dd>
                                                 </dl>
                                             </div>
@@ -160,24 +165,22 @@
                                                 <dl>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Email</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">cs@xremo.com</dd>
 
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['registered_email']) ? $detail['registered_email'] : 'cs@xremo.com' ?></dd>
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Address</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-orange mr-2"> Headquarter </span> No. 14 Jln 12/10 Taman Koperasi Polis , Batu Caves , 68100 ,Selangor Darul Ehsan , Malaysia.</li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch </span> No. 14 Jln 12/10 Taman Koperasi Polis , Batu Caves , 68100 ,Selangor Darul Ehsan , Malaysia.
-                                                            </li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch </span> No. 14 Jln 12/10 Taman Koperasi Polis , Batu Caves , 68100 ,Selangor Darul Ehsan , Malaysia.
-                                                            </li>
-
+                                                            <?php 
+                                                            if (!empty($detail['address'])) {?>
+                                                                <?php $addr = json_decode($detail['address']); 
+                                                                foreach ($addr as $key => $value) {?>
+                                                                    <li>
+                                                                    <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?>  mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> </span> <?php echo $value->building_address; ?> , <?php echo $value->building_city ?> , <?php echo $value->building_postcode ?> ,<?php echo $value->building_state ?> , <?php echo $value->building_country ?>.
+                                                                    </li>
+                                                                <?php } ?>
+                                                            <?php }else{ echo '<li><span>Unknown</span></li>'; } ?>
                                                         </ul>
                                                     </dd>
-
-
                                                 </dl>
                                             </div>
                                         </div>
@@ -188,14 +191,15 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Phone</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-orange mr-2"> Headquarter </span> 03 - 59082904 </li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch ( Perak ) </span> 04 -6905 39402
-                                                            </li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch ( Subang Jaya) </span> 03 - 6904 2223
-                                                            </li>
+                                                            <?php 
+                                                            if (!empty($detail['address'])) {?>
+                                                                <?php foreach ($addr as $key => $value) {?>
+                                                                    <li>
+                                                                        <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
+                                                                        </span> <?php echo $value->building_phone; ?> 
+                                                                    </li>
+                                                                <?php } ?> 
+                                                            <?php }else{ echo '<li><span>Unknown</span></li>'; } ?>
                                                         </ul>
                                                     </dd>
                                                 </dl>
@@ -205,18 +209,14 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Fax</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-orange mr-2"> Headquarter </span> 03 - 59082904 </li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch ( Perak ) </span> 04 -6905 39402
-                                                            </li>
-                                                            <li>
-                                                                <span class="badge badge-roundless badge-md-indigo mr-2"> Branch ( Subang Jaya) </span> 03 - 6904 2223
-                                                            </li>
-
+                                                            <?php foreach ($addr as $key => $value) {?>
+                                                                <li>
+                                                                    <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
+                                                                    </span> <?php echo $value->building_fax; ?> 
+                                                                </li>
+                                                            <?php } ?> 
                                                         </ul>
                                                     </dd>
-
                                                 </dl>
                                             </div>
                                         </div>
@@ -263,7 +263,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-3">Company Name</label>
                                             <div class="col-sm-9 ">
-                                                <input type="text" class="form-control " name="company_name" placeholder="Xremo Sdn Bhd">
+                                                <input type="text" class="form-control " name="company_name" placeholder="Xremo Sdn Bhd" required>
                                                 <span class="help-block small">Company Full Name </span>
                                             </div>
                                         </div>
@@ -354,7 +354,7 @@
 
                         <!-- Tab Edit Add Info -->
                         <div class="tab-pane form" id="tab_edit_add_info">
-                            <form action="#" class="form-horizontal form-row-seperated">
+                            <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_additional_info" class="form-horizontal form-row-seperated">
                                 <div class="modal-body form-body ">
                                     <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
                                         <!-- Company Size -->
@@ -363,9 +363,9 @@
                                             <div class="col-md-9">
                                                 <select class="bs-select form-control input-xlarge  " name="company_size">
                                                     <option value="" selected disabled>Select one </option>
-                                                    <option value="50">1 to 50 employee</option>
-                                                    <option value="100">50 to 100 employee</option>
-                                                    <option value="101">100 to above employee</option>
+                                                    <option value="1-50">1 to 50 employee</option>
+                                                    <option value="51-100">50 to 100 employee</option>
+                                                    <option value="100<">100 to above employee</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -376,21 +376,21 @@
                                             <div class="col-md-9">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox6" class="md-check" value="casual">
+                                                        <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]">
                                                         <label for="checkbox6">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Casual Dress Code</label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox7" class="md-check" checked="" value="formal">
+                                                        <input type="checkbox" id="checkbox7" class="md-check" checked="" value="formal" name="dress[]">
                                                         <label for="checkbox7">
                                                             <span></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Formal Dress Code </label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox8" class="md-check" value="business">
+                                                        <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]">
                                                         <label for="checkbox8">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
@@ -472,192 +472,10 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Spoken Language</label>
                                             <div class="col-md-9">
-                                                <select class="bs-select form-control " multiple name="language">
-                                                    <option>Afar</option>
-                                                    <option>Abkhazian</option>
-                                                    <option>Afrikaans</option>
-                                                    <option>Akan</option>
-                                                    <option>Albanian</option>
-                                                    <option>Amharic</option>
-                                                    <option>Arabic</option>
-                                                    <option>Aragonese</option>
-                                                    <option>Armenian</option>
-                                                    <option>Assamese</option>
-                                                    <option>Avaric</option>
-                                                    <option>Avestan</option>
-                                                    <option>Aymara</option>
-                                                    <option>Azerbaijani</option>
-                                                    <option>Bashkir</option>
-                                                    <option>Bambara</option>
-                                                    <option>Belarusian</option>
-                                                    <option>Basque</option>
-                                                    <option>Bengali</option>
-                                                    <option>Bihari languages</option>
-                                                    <option>Bislama</option>
-                                                    <option>Bosnian</option>
-                                                    <option>Breton</option>
-                                                    <option>Bulgarian</option>
-                                                    <option>Burmese</option>
-                                                    <option>Catalan; Valencian</option>
-                                                    <option>Chamorro</option>
-                                                    <option>Chechen</option>
-                                                    <option>Chinese</option>
-                                                    <option>Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic
-                                                    </option>
-                                                    <option>Chuvash</option>
-                                                    <option>Cornish</option>
-                                                    <option>Corsican</option>
-                                                    <option>Cree</option>
-                                                    <option>Czech</option>
-                                                    <option>Danish</option>
-                                                    <option>Divehi; Dhivehi; Maldivian</option>
-                                                    <option>Dutch; Flemish</option>
-                                                    <option>Dzongkha</option>
-                                                    <option>English</option>
-                                                    <option>Esperanto</option>
-                                                    <option>Estonian</option>
-                                                    <option>Ewe</option>
-                                                    <option>Faroese</option>
-                                                    <option>Fijian</option>
-                                                    <option>Finnish</option>
-                                                    <option>French</option>
-                                                    <option>Western Frisian</option>
-                                                    <option>Fulah</option>
-                                                    <option>Georgian</option>
-                                                    <option>German</option>
-                                                    <option>Gaelic; Scottish Gaelic</option>
-                                                    <option>Irish</option>
-                                                    <option>Galician</option>
-                                                    <option>Manx</option>
-                                                    <option>Greek, Modern (-)</option>
-                                                    <option>Guarani</option>
-                                                    <option>Gujarati</option>
-                                                    <option>Haitian; Haitian Creole</option>
-                                                    <option>Hausa</option>
-                                                    <option>Hebrew</option>
-                                                    <option>Herero</option>
-                                                    <option>Hindi</option>
-                                                    <option>Hiri Motu</option>
-                                                    <option>Croatian</option>
-                                                    <option>Hungarian</option>
-                                                    <option>Igbo</option>
-                                                    <option>Icelandic</option>
-                                                    <option>Ido</option>
-                                                    <option>Sichuan Yi; Nuosu</option>
-                                                    <option>Inuktitut</option>
-                                                    <option>Interlingue; Occidental</option>
-                                                    <option>Interlingua (International Auxiliary Language Association)</option>
-                                                    <option>Indonesian</option>
-                                                    <option>Inupiaq</option>
-                                                    <option>Italian</option>
-                                                    <option>Javanese</option>
-                                                    <option>Japanese</option>
-                                                    <option>Kalaallisut; Greenlandic</option>
-                                                    <option>Kannada</option>
-                                                    <option>Kashmiri</option>
-                                                    <option>Kanuri</option>
-                                                    <option>Kazakh</option>
-                                                    <option>Central Khmer</option>
-                                                    <option>Kikuyu; Gikuyu</option>
-                                                    <option>Kinyarwanda</option>
-                                                    <option>Kirghiz; Kyrgyz</option>
-                                                    <option>Komi</option>
-                                                    <option>Kongo</option>
-                                                    <option>Korean</option>
-                                                    <option>Kuanyama; Kwanyama</option>
-                                                    <option>Kurdish</option>
-                                                    <option>Lao</option>
-                                                    <option>Latin</option>
-                                                    <option>Latvian</option>
-                                                    <option>Limburgan; Limburger; Limburgish</option>
-                                                    <option>Lingala</option>
-                                                    <option>Lithuanian</option>
-                                                    <option>Luxembourgish; Letzeburgesch</option>
-                                                    <option>Luba-Katanga</option>
-                                                    <option>Ganda</option>
-                                                    <option>Macedonian</option>
-                                                    <option>Marshallese</option>
-                                                    <option>Malayalam</option>
-                                                    <option>Maori</option>
-                                                    <option>Marathi</option>
-                                                    <option>Malay</option>
-                                                    <option>Malagasy</option>
-                                                    <option>Maltese</option>
-                                                    <option>Mongolian</option>
-                                                    <option>Nauru</option>
-                                                    <option>Navajo; Navaho</option>
-                                                    <option>Ndebele, South; South Ndebele</option>
-                                                    <option>Ndebele, North; North Ndebele</option>
-                                                    <option>Ndonga</option>
-                                                    <option>Nepali</option>
-                                                    <option>Norwegian Nynorsk; Nynorsk, Norwegian</option>
-                                                    <option>Bokmål, Norwegian; Norwegian Bokmål</option>
-                                                    <option>Norwegian</option>
-                                                    <option>Chichewa; Chewa; Nyanja</option>
-                                                    <option>Occitan (post ); Provençal</option>
-                                                    <option>Ojibwa</option>
-                                                    <option>Oriya</option>
-                                                    <option>Oromo</option>
-                                                    <option>Ossetian; Ossetic</option>
-                                                    <option>Panjabi; Punjabi</option>
-                                                    <option>Persian</option>
-                                                    <option>Pali</option>
-                                                    <option>Polish</option>
-                                                    <option>Portuguese</option>
-                                                    <option>Pushto; Pashto</option>
-                                                    <option>Quechua</option>
-                                                    <option>Romansh</option>
-                                                    <option>Romanian; Moldavian; Moldovan</option>
-                                                    <option>Rundi</option>
-                                                    <option>Russian</option>
-                                                    <option>Sango</option>
-                                                    <option>Sanskrit</option>
-                                                    <option>Sinhala; Sinhalese</option>
-                                                    <option>Slovak</option>
-                                                    <option>Slovenian</option>
-                                                    <option>Northern Sami</option>
-                                                    <option>Samoan</option>
-                                                    <option>Shona</option>
-                                                    <option>Sindhi</option>
-                                                    <option>Somali</option>
-                                                    <option>Sotho, Southern</option>
-                                                    <option>Spanish; Castilian</option>
-                                                    <option>Sardinian</option>
-                                                    <option>Serbian</option>
-                                                    <option>Swati</option>
-                                                    <option>Sundanese</option>
-                                                    <option>Swahili</option>
-                                                    <option>Swedish</option>
-                                                    <option>Tahitian</option>
-                                                    <option>Tamil</option>
-                                                    <option>Tatar</option>
-                                                    <option>Telugu</option>
-                                                    <option>Tajik</option>
-                                                    <option>Tagalog</option>
-                                                    <option>Thai</option>
-                                                    <option>Tibetan</option>
-                                                    <option>Tigrinya</option>
-                                                    <option>Tonga (Tonga Islands)</option>
-                                                    <option>Tswana</option>
-                                                    <option>Tsonga</option>
-                                                    <option>Turkmen</option>
-                                                    <option>Turkish</option>
-                                                    <option>Twi</option>
-                                                    <option>Uighur; Uyghur</option>
-                                                    <option>Ukrainian</option>
-                                                    <option>Urdu</option>
-                                                    <option>Uzbek</option>
-                                                    <option>Venda</option>
-                                                    <option>Vietnamese</option>
-                                                    <option>Volapük</option>
-                                                    <option>Welsh</option>
-                                                    <option>Walloon</option>
-                                                    <option>Wolof</option>
-                                                    <option>Xhosa</option>
-                                                    <option>Yiddish</option>
-                                                    <option>Yoruba</option>
-                                                    <option>Zhuang; Chuang</option>
-                                                    <option>Zulu</option>
+                                                <select class="bs-select form-control " multiple name="language[]" id="spoken_language">
+                                                <?php foreach ($language as $key => $value) {?>
+                                                    <option><?php echo $value['name']; ?></option>
+                                                <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -681,7 +499,7 @@
 
                         <!-- Tab Edit Contact Info -->
                         <div class="tab-pane form " id="tab_edit_contact_info">
-                            <form action="#" class="form-horizontal">
+                            <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_contact_info"  class="form-horizontal">
                                 <div class="modal-body form-body ">
                                     <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
 
@@ -693,7 +511,7 @@
                                         </div>
                                         <h4 class="form-section"> Office</h4>
                                         <div class="mt-repeater">
-                                            <div data-repeater-list="group-b">
+                                            <div data-repeater-list="contact_info">
                                                 <div data-repeater-item class="mt-repeater-item">
 
                                                     <!-- Address -->
@@ -746,8 +564,10 @@
                                                                 <label class="control-label col-md-4">Country</label>
                                                                 <div class="col-md-8">
                                                                     <select class="form-control " name="building_country">
-                                                                        <option>Country 1</option>
-                                                                        <option>Country 2</option>
+                                                                        <option value="" selected disabled>Select one </option>
+                                                                        <?php foreach ($countries as $key => $value) { ?>
+                                                                            <option><?php echo $value['name']; ?></option>
+                                                                        <?php } ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -812,7 +632,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs" id="save_profile">Save</button>
                                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                                 </div>
                             </form>

@@ -5,8 +5,20 @@
                 <!-- BEGIN PAGE HEADER-->
 
                 <h1 class="page-title"> Welcome back , <?php echo ucfirst($this->session->userdata('name'));?>!
-                    <small>last login on 23/07/2017 , 20:08 </small>
+                    <small>last login on <?php echo !empty($last_logged_in[count($last_logged_in)-2]['user_history']) ? $last_logged_in[count($last_logged_in)-2]['user_history'] : date('d F Y H:i:m'); ?> </small>
                 </h1>
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="icon-home"></i>
+                            <a href="<?php echo base_url().'student/dashboard'; ?>">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <span>Dashboard</span>
+                        </li>
+                    </ul>
+                </div>
                 <!-- END PAGE HEADER-->
                 <!-- Widget-Dashboard -->
                 <div class="row">

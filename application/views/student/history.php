@@ -29,6 +29,7 @@
                                                     <th class="col-md-1 text-center"> # </th>
                                                     <th class="col-md-6"> Job Post </th>
                                                     <th class="col-md-2 text-center"> Date Apply </th>
+                                                    <th class="col-md-2 text-center"> Status </th>
                                                     <th class="col-md-1 text-center"> </th>
                                                 </tr>
                                             </thead>
@@ -37,7 +38,6 @@
                                                     <tr>
                                                         <td class="text-center"> <?php echo $i; ?> </td>
                                                         <td class="media">
-
                                                             <div class="pull-left">
                                                                 <img src="<?php echo IMG_EMPLOYER?>xremo/xremo.png" class="avatar avatar-mini" alt="">
                                                             </div>
@@ -47,10 +47,9 @@
                                                                     <li><a><?php echo $value['company_name'] ?></a></li>
                                                                 </ul>
                                                             </div>
-
-
                                                         </td>
                                                         <td class="text-center"> <?php echo time_elapsed_string($value['created_at']); ?> </td>
+                                                        <td class="text-center"> <span class="label label-sm label-md-green"> Applied </span> </td>
                                                         <td class="text-center">
                                                             <a href="#" class="btn btn-icon-only btn-danger dlt-history" data-id="<?php echo $value['job_id']; ?>"><i class="icon-trash"></i></a>
                                                         </td>
