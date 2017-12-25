@@ -77,66 +77,61 @@ class Profile extends CI_Controller {
     }
 
     public function add_education(){
-        if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
-            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
-        }else{
-            if ($this->input->post('current_date') == 'on') {
-                $education = array( 'university_name'=> $this->input->post('university_name'),
-                                'qualification_level'=> $this->input->post('qualification_level'),
-                                'degree_name'=> $this->input->post('field_of_study'),
-                                'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
-                                'end_date'=> '0000-00-00',
-                                'degree_description'=>$this->input->post('academics_description'),
-                                'user_id' => $this->session->userdata('id')
-                                );
-            }else{                
-                $education = array( 'university_name'=> $this->input->post('university_name'),
-                                    'qualification_level'=> $this->input->post('qualification_level'),
-                                    'degree_name'=> $this->input->post('field_of_study'),
-                                    'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
-                                    'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
-                                    'degree_description'=>$this->input->post('academics_description'),
-                                    'user_id' => $this->session->userdata('id')
-                                    );
-            }
-            $table = 'academics';
-            $result = $this->student_model->add($education, $table);
-            ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
-        }
-        redirect(base_url().'student/profile/');
-    }
-
-    public function edit_education(){
-
-        if (strtotime($this->input->post('until')) < strtotime($this->input->post('from'))) {
-            $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
-        }else{         
-            if ($this->input->post('current_date') == 'on') {
-                $education = array( 'university_name'=> $this->input->post('university_name'),
-                                'qualification_level'=> $this->input->post('qualification_level'),
-                                'degree_name'=> $this->input->post('field_of_study'),
-                                'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
-                                'end_date'=> '0000-00-00',
-                                'degree_description'=>$this->input->post('academics_description'),
-                                'id' => $this->input->post('academic_id'),
-                                'user_id' => $this->session->userdata('id')
-                                );
-            }else{
-                $education = array( 'university_name'=> $this->input->post('university_name'),
+        
+        if ($this->input->post('current_date') == 'on') {
+            $education = array( 'university_name'=> $this->input->post('university_name'),
+                            'qualification_level'=> $this->input->post('qualification_level'),
+                            'degree_name'=> $this->input->post('field_of_study'),
+                            'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                            'end_date'=> '0000-00-00',
+                            'degree_description'=>$this->input->post('academics_description'),
+                            'user_id' => $this->session->userdata('id')
+                            );
+        }else{                
+            $education = array( 'university_name'=> $this->input->post('university_name'),
                                 'qualification_level'=> $this->input->post('qualification_level'),
                                 'degree_name'=> $this->input->post('field_of_study'),
                                 'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
                                 'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
                                 'degree_description'=>$this->input->post('academics_description'),
-                                'id' => $this->input->post('academic_id'),
                                 'user_id' => $this->session->userdata('id')
                                 );
-            }
-            
-            $table = 'academics';
-            $result = $this->student_model->update($education, $table);
-            ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
         }
+        $table = 'academics';
+        $result = $this->student_model->add($education, $table);
+        ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+
+        redirect(base_url().'student/profile/');
+    }
+
+    public function edit_education(){
+        
+        if ($this->input->post('current_date') == 'on') {
+            $education = array( 'university_name'=> $this->input->post('university_name'),
+                            'qualification_level'=> $this->input->post('qualification_level'),
+                            'degree_name'=> $this->input->post('field_of_study'),
+                            'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                            'end_date'=> '0000-00-00',
+                            'degree_description'=>$this->input->post('academics_description'),
+                            'id' => $this->input->post('academic_id'),
+                            'user_id' => $this->session->userdata('id')
+                            );
+        }else{
+            $education = array( 'university_name'=> $this->input->post('university_name'),
+                            'qualification_level'=> $this->input->post('qualification_level'),
+                            'degree_name'=> $this->input->post('field_of_study'),
+                            'start_date'=> date('Y-m-d', strtotime($this->input->post('from'))),
+                            'end_date' => date('Y-m-d', strtotime($this->input->post('until'))),
+                            'degree_description'=>$this->input->post('academics_description'),
+                            'id' => $this->input->post('academic_id'),
+                            'user_id' => $this->session->userdata('id')
+                            );
+        }
+        
+        $table = 'academics';
+        $result = $this->student_model->update($education, $table);
+        ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
+
         redirect(base_url().'student/profile/');
         
     }

@@ -293,14 +293,14 @@
                             </div>
                             <!-- Modal Add education -->
                             <div class="actions">
-                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus  "></i> Add </a>
+                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-edu"><i class="fa fa-plus  "></i> Add </a>
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php foreach($user_profile['academics'] as $value){ ?>
+                            <?php $i=1; foreach($user_profile['academics'] as $value){ ?>
                             <div class="media p-0">
                                 <div class="pull-right my-4 ">
-                                    <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="academic-btn"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
+                                    <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
                                     <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                 </div>
                                 <div class="media-body">
@@ -372,7 +372,7 @@
                                                                 <div class="m-grid-col m-grid-col-xs-6">
                                                                     <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
                                                                     <span class="help-block md-checkbox has-warning"> 
-                                                                    <input type="checkbox" id="edit_education" class="md-check" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                    <input type="checkbox" class="md-check" id="md-check-edu-end_<?php echo $i;?>" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                     <label for="edit_education">
                                                                         <span></span>
                                                                     <span class="check"></span>
@@ -402,7 +402,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php } ?>
+                            <?php } $i++; ?>
                             <!-- End Example 1 -->
                         </div>
 
@@ -535,14 +535,14 @@
                                 <span class="caption-helper"> list out all your previous working experience</span>
                             </div>
                             <div class="actions">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-exp"><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
                             <?php foreach($user_profile['experiences'] as $value){ ?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
-                                        <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-exp"><i class="icon-pencil"></i></a>
                                         <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
@@ -609,9 +609,9 @@
                                                                         <span class="help-block"> to </span>
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker-end " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
+                                                                        <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
                                                                         <span class="help-block md-checkbox has-warning"> 
-                                                                            <input type="checkbox" id="edit_exp" class="md-check" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                            <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                             <label for="edit_exp">
                                                                                 <span></span>
                                                                         <span class="check"></span>
@@ -1155,9 +1155,9 @@
                                                     <span class="help-block"> to </span>
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" placeholder="End Year" name="until">
+                                                    <input class="form-control form-control-inline date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until">
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                    <input type="checkbox" id="add_education" class="md-check" name="current_date">
+                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date">
                                                     <label for="add_education">
                                                         <span></span>
                                                     <span class="check"></span>
@@ -1306,9 +1306,9 @@
                                                     <span class="help-block"> to </span>
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                    <input class="form-control form-control-inline exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                        <input type="checkbox" id="add_experience" class="md-check" name="current_date">
+                                                        <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
                                                         <label for="add_experience">
                                                             <span></span>
                                                     <span class="check"></span>
