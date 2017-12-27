@@ -7,14 +7,24 @@ class Student_Model extends CI_Model{
         $query = $this->db->get_where('user_address', array('user_id' => $this->session->userdata('id')));
         $checkUserAddressExist = $query->last_row('array');
         $queryBio = $this->db->get_where('student_bios', array('user_id' => $this->session->userdata('id')));
-        $checkUserBioExist = $queryBio->last_row('array');
-        $userImageID = array('user_id' => $this->session->userdata('id'),
+        $checkUserBioExist = $queryBio->last_row('array');        
+        $userProfilePhotoID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
-        $checkUserImageExist = $this->checkImageExist($userImageID);
-        $dataUploads = array(
+        $userHeaderPhotoID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+        $checkUserProfilePhotoExist = $this->checkImageExist($userProfilePhotoID);
+        $checkUserHeaderPhotoExist = $this->checkImageExist($userHeaderPhotoID);
+        $dataUploadsProfilePhoto = array(
             'user_id' => $this->session->userdata('id'),
-            'name' => $profile['image'],
-            'type' => $profile['type'],
+            'name' => $profile['profile_photo'],
+            'type' => 'profile_photo',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        $dataUploadsHeaderPhoto = array(
+            'user_id' => $this->session->userdata('id'),
+            'name' => $profile['header_photo'],
+            'type' => 'header_photo',
             'updated_at' => date('Y-m-d H:i:s')
         );
 
@@ -25,6 +35,7 @@ class Student_Model extends CI_Model{
            'summary' => $profile['summary'],
            'gender' => $profile['gender'],
            'date_of_birth' => $profile['date_of_birth'],
+           'expected_salary' => $profile['expected_salary'],
            'occupation' => $profile['occupation'],
            'contact_number' => $profile['contact_number'],
            'updated_at' => date('Y-m-d H:i:s')
@@ -49,11 +60,18 @@ class Student_Model extends CI_Model{
 
         try{
 
-            if (!empty($checkUserImageExist)) {
-                $this->db->where('user_id', $this->session->userdata('id'));
-                $this->db->update('profile_uploads', $dataUploads); 
+            if (!empty($checkUserProfilePhotoExist)) {
+                $this->db->where($userProfilePhotoID);
+                $this->db->update('profile_uploads', $dataUploadsProfilePhoto); 
             }else{
-                $this->db->insert('profile_uploads', $dataUploads); 
+                $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
+            }
+
+            if (!empty($checkUserProfileHeaderExist)) {
+                $this->db->where($userHeaderPhotoID);
+                $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
+            }else{
+                $this->db->insert('profile_uploads', $dataUploadsHeaderPhoto); 
             }
 
             if (!empty($checkUserBioExist)) {
@@ -111,7 +129,7 @@ class Student_Model extends CI_Model{
         }
 
         //overview
-        $this->db->select('users.fullname as name, users.preference_name as preference_name, users.verified as verified, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number');
+        $this->db->select('users.fullname as name, users.preference_name as preference_name, users.verified as verified, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary');
         $this->db->from('users');
         $this->db->join('student_bios', 'student_bios.user_id = users.id');
         $this->db->where(array('student_bios.user_id' => $id));
@@ -168,7 +186,10 @@ class Student_Model extends CI_Model{
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id','left');
         $this->db->where(array('profile_uploads.user_id' => $id));
         $image = $this->db->get();
-        $result['image'] = current($image->result_array());
+        $result['image'] = $image->result_array();
+        foreach ($result['image'] as $key => $value) {
+            $result[$value['type']] = $value['name'];
+        }
         if (!empty($image->result_array())) {
             $result['image_percent'] =  0.1;
         }else{

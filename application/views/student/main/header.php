@@ -216,7 +216,7 @@
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle" src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" />
+                                <img alt="" class="img-circle" src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" />
                                 <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('name'); ?> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>

@@ -38,7 +38,7 @@
                 <!-- Tab Content : Overview -->
                 <div class="tab-pane active " id="tab_overview">
                     <div class="m-grid">
-                        <div class=" view mt-height-250-xs hm-black-slight" style="background:url(' <?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
+                        <div class=" view mt-height-250-xs hm-black-slight" style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                             <!-- <img src="../assets/global/img/portfolio/1200x900/03.jpg" class="img-fluid" alt=""> -->
                             <div class="mask ">
                                 <!-- <a href="" class="btn btn-sm btn-opacity-white  pull-right m-4 ">
@@ -60,7 +60,7 @@
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
                                             <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
@@ -116,170 +116,217 @@
                         <!-- Profile Information -->
                         <div class="clearfix my-3"></div>
                         <div class="m-grid m-grid-col m-grid-col-center pb-5">
-                            <div class="m-grid-col m-grid-col-sm-1"></div>
-                            <div class="m-grid-col  m-grid-col-sm-10">
-                                <h4 class="font-weight-400 text-uppercase ">Personal Information</h4>
-                                <hr class="my-2">
-                                <div class="m-grid">
-                                    <div class="m-grid-col m-grid-col-md-6  p-2">
-                                        <!-- preferences-name -->
+                                    <div class="m-grid-col m-grid-col-sm-1"></div>
+                                    <div class="m-grid-col  m-grid-col-sm-10">
+                                        <h4 class="font-weight-700 text-uppercase ">Personal Information</h4>
+                                        <hr class="mb-1">
                                         <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600 ">Preferences Name</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
-                                                    </li>
-                                                </ul>
+                                            <div class="m-grid-col m-grid-col-md-6  p-2">
+                                                <!-- preferences-name -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Preferences Name</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Full Name -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Full Name</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Gender -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Gender</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_gender']) ? $user_profile['overview']['student_bios_gender'] : 'I prefer not to say';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- DOB -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Date Of Birth</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_DOB']) ?  date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Video Link -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Video Resume</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Language Profieciency -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Proficiency</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font">
+                                                                    <b>Malay </b>
+                                                                    <small class="font-20-xs">[
+                                                                        <b>Spoken </b> : Advanced level ,
+                                                                        <b>Written </b>: intermediate level ] </small>
+                                                                </h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font">
+                                                                    <b>English </b>
+                                                                    <small class="font-20-xs">[
+                                                                        <b>Spoken </b> : Advanced level ,
+                                                                        <b>Written </b>: intermediate level ] </small>
+                                                                </h5>
+                                                            </li>
+                                                            <h5 class=" roboto-font">
+                                                                <b>Chinese </b>
+                                                                <small class="font-20-xs">[
+                                                                    <b>Spoken </b> : Advanced level ,
+                                                                    <b>Written </b>: intermediate level ] </small>
+                                                            </h5>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!-- Full Name -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Full Name</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- Gender -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Gender</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_gender']) ? $user_profile['overview']['student_bios_gender'] : 'I prefer not to say';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- DOB -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Date Of Birth</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_DOB']) ?  date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- Video Link -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">CV Video</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?></h5>
-                                                    </li>
-                                                </ul>
+                                            <div class="m-grid-col m-grid-col-md-6 p-2">
+                                                <!-- Salary Expectation -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Salary Expectation</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo $this->session->userdata('forex'); ?> <?php echo !empty($user_profile['overview']['expected_salary']) ? $user_profile['overview']['expected_salary'] : '000';?>.00</h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Email -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Email</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo $this->session->userdata('email');?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Contact Number -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Contact Number</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? $user_profile['overview']['student_bios_contact_number'] : 'None';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Address -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Address</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class="roboto-font"><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Postcode</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class="roboto-font"><?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text"> City</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class="roboto-font"><?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">State</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class="roboto-font"><?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None' ;?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text"> Country</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class="roboto-font"><?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="m-grid-col m-grid-col-md-6 p-2">
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Email</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo $this->session->userdata('email');?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Contact Number</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? $user_profile['overview']['student_bios_contact_number'] : 'None';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Address</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">Postcode</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600"> City</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600">State</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None' ;?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="m-grid-col">
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        <h5 class="mb-2 font-weight-600"> Country</h5>
-                                                    </li>
-                                                    <li>
-                                                        <h5 class="roboto-font"><?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></h5>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                    <div class="m-grid-col m-grid-col-sm-1 ">
+                                        <!-- <a href="" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a> -->
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="m-grid-col m-grid-col-sm-1 ">
-                                <!-- <a href="" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a> -->
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- Tab Content :Education -->
@@ -901,49 +948,126 @@
 
             <!-- ********************** MODAL ********************* -->
             <!-- Modal : Edit Profile -->
-            <div class="modal fade in" id="modal_edit_profile" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content portlet light ">
-                        <div class="portlet-title tabbable-line ">
-                            <div class="caption">
-                                <span class="caption-subject text-capitalize font-weight-500">Edit Profile</span>
+            <div class="modal fade in modal-open-noscroll" id="modal_edit_profile" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content portlet box ">
+                            <div class="portlet-title tabbable-line md-indigo tab-tw-md-orange  ">
+                                <div class="caption">
+                                    <span class="caption-subject">
+                                        Update Profile information
+                                    </span>
+                                </div>
+                                <ul class="nav nav-tabs navProfile " id="navProfile" role="navigation">
+                                    <li class="active">
+                                        <a href="#basicinfoSection"> Basic info </a>
+                                    </li>
+                                    <li>
+                                        <a href="#languageSection"> Language </a>
+                                    </li>
+                                    <li>
+                                        <a href="#summarySection"> Summary </a>
+                                    </li>
+                                    <li>
+                                        <a href="#videoSection"> Video Resume </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pictureSection"> Profile Picture </a>
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="nav nav-tabs ">
-                                <li class="active">
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/student-profile-v3.html#tab_profile" data-toggle="tab">Profile</a>
-                                </li>
-                            </ul>
 
-                        </div>
-                        <div class="tab-content">
-                            <!-- Tab : Profile  -->
-                            <div class="tab-pane active " id="tab_profile">
-                                <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
-                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
-                                        <div class="modal-body portlet-body form-horizontal" style="overflow-y: auto;height: 350px;">
-                                            <!-- <h4 class="form-section mb-0"> Person Info</h4> -->
-                                            <!-- <hr class="mt-3"> -->
-                                            <!-- Nick Name -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2">Preferences Name</label>
-                                                <div class="col-md-10">
-                                                    <input type="text" class="form-control input-medium" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
-                                                </div>
-                                            </div>
-                                            <!-- Full name -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2">Full Name</label>
-                                                <div class="col-md-10">
+                            <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
+
+                                <div class="modal-body portlet-body form-horizontal">
+                                    <div class="scroller mt-height-600-xs " data-always-visible="1" data-rail-visible="1" id="scrollerProfile" data-spy="scroll" data-target="#navProfile">
+                                        <!-- SECTION : Basic Info -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="basicinfoSection"> Basic Info </h4>
+                                        <hr class="mt-2">
+                                        <div class="row mx-0 ">
+                                            <!-- Full Name / Address -->
+                                            <div class="col-md-6 ">
+                                                <!-- Full name -->
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Full Name</label>
                                                     <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
                                                 </div>
-                                            </div>
+                                                <!-- Address -->
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Address</label>
+                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>" required>
+                                                </div>
+                                                <!-- City & state -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <!-- <label class="control-label">City</label> -->
+                                                            <input type="text" class="form-control" name="city" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <!-- <label class="control-label ">State</label> -->
+                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                            <!-- Gender -->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Gender</label>
-                                                        <div class="col-md-8">
+                                                <!-- Post code & Country -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <!-- <label class="control-label ">Post Code</label> -->
+                                                            <input type="text" class="form-control" name="post_code" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <!-- <label class="control-label ">Country</label> -->
+                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
+                                                        </div>
+                                                    </div>
+                                                    <!--/span-->
+                                                </div>
+                                            </div>
+                                            <!-- Nickname /  Gender / DOB / Current Career, Phone -->
+                                            <div class="col-md-6">
+                                                <!-- Nick Name -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label">Preferences Name</label>
+                                                            <input type="text" class="form-control" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label  ">Current Career</label>
+                                                            <div class="input-group">
+                                                                <p class="form-control-static  md-indigo-text font-weight-600">Student</p>
+                                                                <div class="input-group-btn">
+                                                                    <a href="#" class="btn btn-md-orange btn-xs ">
+                                                                        <i class="fa fa-arrow-up"></i>Upgrade</a>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <!-- DOB -->
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label ">Date of Birth</label>
+                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d/m/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <!-- Gender -->
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label ">Gender</label>
                                                             <select class="bs-select form-control" name="gender">
                                                                         <?php if (!empty($user_profile['overview']['student_bios_gender'])){ ?>
                                                                             <option <?php if($user_profile['overview']['student_bios_gender'] == 'Male'){echo "selected";}?>>Male</option>
@@ -958,144 +1082,353 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Date of Birth</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d/m/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Current Career -->
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Current Career</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="current" placeholder="Student" value="<?php echo !empty($user_profile['overview']['student_bios_occupation']) ? ucfirst($user_profile['overview']['student_bios_occupation']) : $this->session->userdata('roles');?>" required>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Phone Number</label>
-                                                        <div class="col-md-8">
+                                                <!-- Phone Number & Current Career -->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label ">Phone Number</label>
                                                             <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Adresss -->
-                                            <h4 class="form-section mb-0"> Address</h4>
-                                            <hr class="mt-3">
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2">Address</label>
-                                                <div class="col-md-10">
-                                                    <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road , Postcode , City , State , Country" value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>" required>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-
-                                                        <label class="control-label col-md-4">City</label>
-
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="city" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-
-                                                        <label class="control-label col-md-4">State</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group mx-0">
+                                                            <label class="control-label ">Salary Expectation</label>
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><?php echo $this->session->userdata('forex'); ?></span>
+                                                                <input type="text" class="form-control" placeholder="2500" name="expected_salary" value="<?php echo !empty($user_profile['overview']['expected_salary']) ? ucfirst($user_profile['overview']['expected_salary']) : '000';?>" required>
+                                                                <span class="input-group-addon">.00</span>
+                                                            </div>
+                                                            <span class="helper-block">Your salary expectation </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Post Code</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="post_code" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                        </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label col-md-4">Country</label>
-                                                        <div class="col-md-8">
-                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
+                                        <!-- SECTION : Language Profieciency -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="languageSection"> Language Profieciency </h4>
+                                        <hr class="mt-2">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group mx-0">
+                                                    <div class="mt-repeater">
+                                                        <div data-repeater-list="group-b">
+                                                            <div data-repeater-item class=" row mt-2">
+
+                                                                <div class="col-md-4">
+                                                                    <label for="" class="control-label"> Language</label>
+                                                                    <select class="bs-select form-control ">
+                                                                        <option>Afar</option>
+                                                                        <option>Abkhazian</option>
+                                                                        <option>Afrikaans</option>
+                                                                        <option>Akan</option>
+                                                                        <option>Albanian</option>
+                                                                        <option>Amharic</option>
+                                                                        <option>Arabic</option>
+                                                                        <option>Aragonese</option>
+                                                                        <option>Armenian</option>
+                                                                        <option>Assamese</option>
+                                                                        <option>Avaric</option>
+                                                                        <option>Avestan</option>
+                                                                        <option>Aymara</option>
+                                                                        <option>Azerbaijani</option>
+                                                                        <option>Bashkir</option>
+                                                                        <option>Bambara</option>
+                                                                        <option>Belarusian</option>
+                                                                        <option>Basque</option>
+                                                                        <option>Bengali</option>
+                                                                        <option>Bihari languages</option>
+                                                                        <option>Bislama</option>
+                                                                        <option>Bosnian</option>
+                                                                        <option>Breton</option>
+                                                                        <option>Bulgarian</option>
+                                                                        <option>Burmese</option>
+                                                                        <option>Catalan; Valencian</option>
+                                                                        <option>Chamorro</option>
+                                                                        <option>Chechen</option>
+                                                                        <option>Chinese</option>
+                                                                        <option>Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic
+                                                                        </option>
+                                                                        <option>Chuvash</option>
+                                                                        <option>Cornish</option>
+                                                                        <option>Corsican</option>
+                                                                        <option>Cree</option>
+                                                                        <option>Czech</option>
+                                                                        <option>Danish</option>
+                                                                        <option>Divehi; Dhivehi; Maldivian</option>
+                                                                        <option>Dutch; Flemish</option>
+                                                                        <option>Dzongkha</option>
+                                                                        <option>English</option>
+                                                                        <option>Esperanto</option>
+                                                                        <option>Estonian</option>
+                                                                        <option>Ewe</option>
+                                                                        <option>Faroese</option>
+                                                                        <option>Fijian</option>
+                                                                        <option>Finnish</option>
+                                                                        <option>French</option>
+                                                                        <option>Western Frisian</option>
+                                                                        <option>Fulah</option>
+                                                                        <option>Georgian</option>
+                                                                        <option>German</option>
+                                                                        <option>Gaelic; Scottish Gaelic</option>
+                                                                        <option>Irish</option>
+                                                                        <option>Galician</option>
+                                                                        <option>Manx</option>
+                                                                        <option>Greek, Modern (-)</option>
+                                                                        <option>Guarani</option>
+                                                                        <option>Gujarati</option>
+                                                                        <option>Haitian; Haitian Creole</option>
+                                                                        <option>Hausa</option>
+                                                                        <option>Hebrew</option>
+                                                                        <option>Herero</option>
+                                                                        <option>Hindi</option>
+                                                                        <option>Hiri Motu</option>
+                                                                        <option>Croatian</option>
+                                                                        <option>Hungarian</option>
+                                                                        <option>Igbo</option>
+                                                                        <option>Icelandic</option>
+                                                                        <option>Ido</option>
+                                                                        <option>Sichuan Yi; Nuosu</option>
+                                                                        <option>Inuktitut</option>
+                                                                        <option>Interlingue; Occidental</option>
+                                                                        <option>Interlingua (International Auxiliary Language Association)</option>
+                                                                        <option>Indonesian</option>
+                                                                        <option>Inupiaq</option>
+                                                                        <option>Italian</option>
+                                                                        <option>Javanese</option>
+                                                                        <option>Japanese</option>
+                                                                        <option>Kalaallisut; Greenlandic</option>
+                                                                        <option>Kannada</option>
+                                                                        <option>Kashmiri</option>
+                                                                        <option>Kanuri</option>
+                                                                        <option>Kazakh</option>
+                                                                        <option>Central Khmer</option>
+                                                                        <option>Kikuyu; Gikuyu</option>
+                                                                        <option>Kinyarwanda</option>
+                                                                        <option>Kirghiz; Kyrgyz</option>
+                                                                        <option>Komi</option>
+                                                                        <option>Kongo</option>
+                                                                        <option>Korean</option>
+                                                                        <option>Kuanyama; Kwanyama</option>
+                                                                        <option>Kurdish</option>
+                                                                        <option>Lao</option>
+                                                                        <option>Latin</option>
+                                                                        <option>Latvian</option>
+                                                                        <option>Limburgan; Limburger; Limburgish</option>
+                                                                        <option>Lingala</option>
+                                                                        <option>Lithuanian</option>
+                                                                        <option>Luxembourgish; Letzeburgesch</option>
+                                                                        <option>Luba-Katanga</option>
+                                                                        <option>Ganda</option>
+                                                                        <option>Macedonian</option>
+                                                                        <option>Marshallese</option>
+                                                                        <option>Malayalam</option>
+                                                                        <option>Maori</option>
+                                                                        <option>Marathi</option>
+                                                                        <option>Malay</option>
+                                                                        <option>Malagasy</option>
+                                                                        <option>Maltese</option>
+                                                                        <option>Mongolian</option>
+                                                                        <option>Nauru</option>
+                                                                        <option>Navajo; Navaho</option>
+                                                                        <option>Ndebele, South; South Ndebele</option>
+                                                                        <option>Ndebele, North; North Ndebele</option>
+                                                                        <option>Ndonga</option>
+                                                                        <option>Nepali</option>
+                                                                        <option>Norwegian Nynorsk; Nynorsk, Norwegian</option>
+                                                                        <option>Bokmål, Norwegian; Norwegian Bokmål</option>
+                                                                        <option>Norwegian</option>
+                                                                        <option>Chichewa; Chewa; Nyanja</option>
+                                                                        <option>Occitan (post ); Provençal</option>
+                                                                        <option>Ojibwa</option>
+                                                                        <option>Oriya</option>
+                                                                        <option>Oromo</option>
+                                                                        <option>Ossetian; Ossetic</option>
+                                                                        <option>Panjabi; Punjabi</option>
+                                                                        <option>Persian</option>
+                                                                        <option>Pali</option>
+                                                                        <option>Polish</option>
+                                                                        <option>Portuguese</option>
+                                                                        <option>Pushto; Pashto</option>
+                                                                        <option>Quechua</option>
+                                                                        <option>Romansh</option>
+                                                                        <option>Romanian; Moldavian; Moldovan</option>
+                                                                        <option>Rundi</option>
+                                                                        <option>Russian</option>
+                                                                        <option>Sango</option>
+                                                                        <option>Sanskrit</option>
+                                                                        <option>Sinhala; Sinhalese</option>
+                                                                        <option>Slovak</option>
+                                                                        <option>Slovenian</option>
+                                                                        <option>Northern Sami</option>
+                                                                        <option>Samoan</option>
+                                                                        <option>Shona</option>
+                                                                        <option>Sindhi</option>
+                                                                        <option>Somali</option>
+                                                                        <option>Sotho, Southern</option>
+                                                                        <option>Spanish; Castilian</option>
+                                                                        <option>Sardinian</option>
+                                                                        <option>Serbian</option>
+                                                                        <option>Swati</option>
+                                                                        <option>Sundanese</option>
+                                                                        <option>Swahili</option>
+                                                                        <option>Swedish</option>
+                                                                        <option>Tahitian</option>
+                                                                        <option>Tamil</option>
+                                                                        <option>Tatar</option>
+                                                                        <option>Telugu</option>
+                                                                        <option>Tajik</option>
+                                                                        <option>Tagalog</option>
+                                                                        <option>Thai</option>
+                                                                        <option>Tibetan</option>
+                                                                        <option>Tigrinya</option>
+                                                                        <option>Tonga (Tonga Islands)</option>
+                                                                        <option>Tswana</option>
+                                                                        <option>Tsonga</option>
+                                                                        <option>Turkmen</option>
+                                                                        <option>Turkish</option>
+                                                                        <option>Twi</option>
+                                                                        <option>Uighur; Uyghur</option>
+                                                                        <option>Ukrainian</option>
+                                                                        <option>Urdu</option>
+                                                                        <option>Uzbek</option>
+                                                                        <option>Venda</option>
+                                                                        <option>Vietnamese</option>
+                                                                        <option>Volapük</option>
+                                                                        <option>Welsh</option>
+                                                                        <option>Walloon</option>
+                                                                        <option>Wolof</option>
+                                                                        <option>Xhosa</option>
+                                                                        <option>Yiddish</option>
+                                                                        <option>Yoruba</option>
+                                                                        <option>Zhuang; Chuang</option>
+                                                                        <option>Zulu</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label for="" class="control-label"> Written</label>
+                                                                    <select class="bs-select form-control">
+                                                                        <option>Select level </option>
+                                                                        <option>Beginner</option>
+                                                                        <option>Intermediate</option>
+                                                                        <option>Advanced</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <label for="" class="control-label"> Spoken</label>
+                                                                    <select class="bs-select form-control">
+                                                                        <option>Select level </option>
+                                                                        <option>Beginner</option>
+                                                                        <option>Intermediate</option>
+                                                                        <option>Advanced</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-2 vertical-middle py-3">
+                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
+                                                                        <i class="fa fa-close"></i> remove
+                                                                    </a>
+                                                                </div>
+                                                            </div>
                                                         </div>
+                                                        <hr>
+                                                        <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-2 pull-right ">
+                                                            <i class="fa fa-plus"></i> Add
+                                                        </a>
+
                                                     </div>
                                                 </div>
-                                                <!--/span-->
                                             </div>
+                                        </div>
 
-
-                                            <h4 class="form-section mb-0"> Quotes</h4>
-                                            <hr class="mt-3">
-                                            <!-- Quotes/ Headline  -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2"> Quotes / Headlines</label>
-                                                <div class="col-md-10">
+                                        <!-- SECTION : Summary -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="summarySection"> Summary about yourself</h4>
+                                        <hr class="mt-2">
+                                        <!-- Headlines -->
+                                        <div class="row mx-0">
+                                            <div class="col-md-12">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label"> Headlines</label>
                                                     <textarea name="quotes" class="form-control" id="" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi consectetur possimus pariatur nihil praesentium veniam asperiores, debitis consequatur commodi esse, id sit? Perferendis maxime ea odit asperiores animi earum pariatur!"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
                                                 </div>
                                             </div>
-
-                                            <h4 class="form-section mb-0"> Summary</h4>
-                                            <hr class="mt-3">
-
-                                            <!-- Summary  -->
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2"> Summary</label>
-                                                <div class="col-md-10">
+                                        </div>
+                                        <!-- Summary -->
+                                        <div class="row mx-0">
+                                            <div class="col-md-12">
+                                                <div class="form-group mx-0 ">
+                                                    <label class="control-label"> Summary</label>
                                                     <textarea name="summary" class="form-control" id="" rows="3" placeholder="Summarize about yourself"><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2"> Profile Picture</label>
-                                                <div class="col-md-10">
+                                        <!-- SECTION : Video Resume -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="videoSection"> Video Resume </h4>
+                                        <hr class="mt-2">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-2">Upload video link</label>
+                                            <div class="col-md-10">
+                                                <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
+                                            </div>
+                                        </div>
+
+                                        <!-- SECTION : Profile Picture -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="pictureSection"> Profile Picture </h4>
+                                        <hr class="mt-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label "> Profile Picture</label>
+                                                    <br>
+                                                    <br>
                                                     <div class="fileinput fileinput-new" data-provides="fileinput">
                                                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                            <img src="<?php echo !empty($user_profile['image']['name']) ?  IMG_STUDENTS.$user_profile['image']['name'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt=""> </div>
+                                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
                                                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                         <div>
                                                             <span class="btn default btn-file">
-                                                                                <span class="fileinput-new"> Select image </span>
-                                                            <span class="fileinput-exists"> Change </span>
-                                                            <input type="file" name="newImage"> </span>
+                                                                <span class="fileinput-new"> Select image </span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="profile_photo"> </span>
+                                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label "> Header Picture</label>
+                                                    <br>
+                                                    <br>
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                            <img src="<?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
+                                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                                                        <div>
+                                                            <span class="btn default btn-file">
+                                                                <span class="fileinput-new"> Select image </span>
+                                                                <span class="fileinput-exists"> Change </span>
+                                                                <input type="file" name="header_photo"> </span>
                                                             <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-2">Video Link</label>
-                                                <div class="col-md-10">
-                                                    <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
-                                                </div>
-                                            </div>
                                         </div>
-                                    </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-                                    <div class="form-actions modal-footer ">
-                                        <button type="submit" id="save_profile" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs pull-right">Save</button>
+
+
                                     </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="form-actions modal-footer ">
+                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs pull-right">Save</button>
+                                </div>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
-            </div>
 
             <!-- Modal : Add / Edit Education -->
             <div class="modal fade in" id="modal_add_education" tabindex="-1" role="dialog" aria-hidden="true">

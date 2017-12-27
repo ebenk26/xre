@@ -26,18 +26,17 @@ class Profile extends CI_Controller {
     public function post(){
 
 
-        if(!empty($_FILES['newImage']['tmp_name'])){
+        if(!empty($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
-            $tempFile = $_FILES['newImage']['tmp_name'];        
+            $tempFile = $_FILES['profile_photo']['tmp_name'];        
             $targetPath = "./assets/img/student/";
 
-            $path = pathinfo($_FILES['newImage']['name']);
+            $path = pathinfo($_FILES['profile_photo']['name']);
             $ext = $path['extension'];
-            $title = $this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY');
-            $src2 = $this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
-            $targetFile =  $targetPath.$src2;
+            $profile_photo = 'profile_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
+            $targetFile =  $targetPath.$profile_photo;
             if (!empty($checkImage)) {
 
                 // unlink("./assets/img/student/".$checkImage['name']);
@@ -49,7 +48,32 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $src2 = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+            $profile_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+        }
+
+        if(!empty($_FILES['header_photo']['tmp_name'])){
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+            $checkImage = $this->student_model->checkImageExist($userImageID);
+            $tempFile = $_FILES['header_photo']['tmp_name'];        
+            $targetPath = "./assets/img/student/";
+
+            $path = pathinfo($_FILES['header_photo']['name']);
+            $ext = $path['extension'];
+            $header_photo = 'header_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
+            $targetFile =  $targetPath.$header_photo;
+            if (!empty($checkImage)) {
+
+                // unlink("./assets/img/student/".$checkImage['name']);
+                move_uploaded_file($tempFile,$targetFile);                
+            }else{
+                move_uploaded_file($tempFile,$targetFile);
+            }
+        }else{
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+            $userImage = $this->student_model->checkImageExist($userImageID);
+            $header_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
 
         $profile = array(
@@ -57,7 +81,6 @@ class Profile extends CI_Controller {
             'preferences_name' => $this->input->post('student_name'),
             'gender' => $this->input->post('gender'),
             'date_of_birth' => date('Y-m-d', strtotime($this->input->post('DOB'))),
-            'occupation' => $this->input->post('current'),
             'contact_number' => $this->input->post('phone'),
             'user_id'=> $this->session->userdata('id'),
             'country'=> $this->input->post('country'),
@@ -67,9 +90,11 @@ class Profile extends CI_Controller {
             'address' => $this->input->post('address'),
             'state' => $this->input->post('state'),
             'city' => $this->input->post('city'),
+            'occupation' => !empty($this->input->post('occupation')) ? $this->input->post('occupation') : 'Student',
             'postcode' => $this->input->post('post_code'),
-            'type'=> 'profile_photo',
-            'image' =>  $src2
+            'expected_salary' => $this->input->post('expected_salary'),
+            'profile_photo' =>  $profile_photo,
+            'header_photo' =>  $header_photo,
         );
         
         $this->student_model->profile_post($profile);
