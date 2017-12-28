@@ -700,13 +700,16 @@
                                                                         <label class="control-label ">Description</label>
                                                                         <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"><?php echo ucfirst($description);?></textarea>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <!-- Skill Earned -->
-                                                                    <div class="form-group mx-0 mb-0">
-                                                                        <label class="control-label">Skill Earned</label>
-                                                                        <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
-                                                                        <span class="help-block small"> Press "Enter" to add tag </span>
+                                                                    <div class="m-grid-col m-grid-col-xs-6">
+                                                                        <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
+                                                                        <span class="help-block md-checkbox has-warning"> 
+                                                                            <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                            <label for="edit_exp">
+                                                                                <span></span>
+                                                                        <span class="check"></span>
+                                                                        <span class="box"></span> Currently still working?
+                                                                        </label>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
