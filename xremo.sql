@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Inang: 127.0.0.1
--- Waktu pembuatan: 04 Des 2017 pada 05.11
+-- Waktu pembuatan: 28 Des 2017 pada 09.46
 -- Versi Server: 5.6.14
 -- Versi PHP: 5.5.6
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `academics` (
   `end_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `academics_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data untuk tabel `academics`
@@ -50,7 +50,13 @@ INSERT INTO `academics` (`id`, `user_id`, `university_name`, `degree_name`, `deg
 (9, 28, 'University of Alabama', 'Degree in Hot Cakes', 'Cool', '', NULL, '2017-06-19 23:46:49', '2017-06-19 23:46:49', NULL, NULL),
 (11, 28, 'Testinginging', 'testing', 'testinging', '', NULL, '2017-06-20 20:23:14', '2017-07-04 20:48:41', '2013-12-01', '2017-12-01'),
 (14, 28, 'TEST', ' Bbubba', 'Dada\r\n', '', NULL, '2017-07-04 20:05:14', '2017-07-04 21:01:21', '2009-09-01', '2012-11-01'),
-(17, 54, 'Bina Nusantara', 'Computer science', 'Study in the field of my passion', 'Bachelor degree', NULL, NULL, NULL, '2007-01-01', '2013-01-01');
+(17, 54, 'Bina Nusantara', 'Computer science', 'Study in the field of my passion', 'Bachelor degree', NULL, NULL, NULL, '2007-09-03', '0000-00-00'),
+(19, 61, 'Bina Nusantara', 'Software Enginner', 'Using Bachelor degree', 'Bachelor degree', NULL, NULL, NULL, '2007-01-09', '2013-01-05'),
+(23, 61, 'test', 'test', 'test', 'test', NULL, NULL, NULL, '2007-09-03', '2013-05-06'),
+(24, 61, 'SMAN 4 Jakarta', 'Science', 'My Highschool level before College', 'High School', NULL, NULL, NULL, '2004-07-05', '2007-06-11'),
+(26, 59, 'malaya', 'software engineering 123', 'asd', 'Bachelor degree', NULL, NULL, NULL, '1970-01-01', '2017-12-01'),
+(27, 54, 'University of amsterdam', 'Software Engineering', 'Test', 'Magister Degree', NULL, NULL, NULL, '2014-09-08', '2017-12-31'),
+(28, 54, 'University of manchester', 'Management Degree', 'test', 'Bachelor degree', NULL, NULL, NULL, '2017-09-04', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -65,15 +71,20 @@ CREATE TABLE IF NOT EXISTS `achievement` (
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
   `achievement_description` text NOT NULL,
+  `tag` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data untuk tabel `achievement`
 --
 
-INSERT INTO `achievement` (`id`, `user_id`, `achievement_name`, `start_date`, `end_date`, `achievement_description`) VALUES
-(1, 54, 'Test Achievement', '2017-11-14', '2017-11-14', 'additional achievement');
+INSERT INTO `achievement` (`id`, `user_id`, `achievement_name`, `start_date`, `end_date`, `achievement_description`, `tag`) VALUES
+(1, 54, 'Test Achievement', '2017-04-03', '2017-12-18', 'additional achievement', ''),
+(2, 61, 'Language Course', '2007-01-08', '2008-01-07', 'Language Course', 'English,France,German,Mandarin'),
+(3, 59, 'asd', '1970-01-01', '1970-01-01', 'asd', 'Washington,Sydney'),
+(4, 59, 'Language Course', '1970-01-01', '1970-01-01', 'Test', 'Amsterdam,Washington,Sydney,Beijing,Cairo'),
+(5, 54, 'Language Course', '2017-01-02', '2017-12-29', 'test', 'Amsterdam,Washington,Sydney,Beijing,Cairo');
 
 -- --------------------------------------------------------
 
@@ -89,26 +100,29 @@ CREATE TABLE IF NOT EXISTS `applieds` (
   `coverletter` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
+  `status` enum('APPLIED','INTERVIEW','ACCEPTED','REJECTED') COLLATE utf8_unicode_ci NOT NULL,
+  `employer_message_status` enum('NEW','READ','DELETED') COLLATE utf8_unicode_ci NOT NULL,
+  `job_seeker_message_status` enum('NEW','READ','DELETED') COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data untuk tabel `applieds`
 --
 
-INSERT INTO `applieds` (`id`, `user_id`, `job_position_id`, `jobseeker_cv_id`, `coverletter`, `created_at`, `updated_at`, `status`) VALUES
-(1, 3, 1, 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'new'),
-(2, 9, 6, 0, 'hi i would like to try out!', '2016-01-13 09:44:11', '2016-01-28 07:18:25', 'new'),
-(7, 2, 6, 7, 'this is my cover letter', '2016-01-13 09:58:33', '2016-01-13 09:58:33', 'new'),
-(8, 32, 115, 4, 'theres a lot of things we want to know and do. so we do.', '2016-03-28 06:19:44', '2017-04-18 20:29:11', 'withdraw'),
-(9, 9, 116, 2, 'teste', '2016-05-05 08:46:13', '2016-05-05 08:46:13', 'new'),
-(10, 28, 116, 0, 'aslkjfaslkjf', '2017-04-02 20:27:51', '2017-04-02 20:27:51', 'new'),
-(11, 32, 11, 0, '', '2017-04-18 20:26:52', '2017-04-18 20:26:52', 'new'),
-(12, 28, 121, 0, '', '2017-06-14 21:48:38', '2017-06-14 21:48:38', 'new'),
-(13, 28, 115, 0, '', '2017-06-28 00:02:00', '2017-06-28 00:02:00', 'new'),
-(56, 54, 1, 0, '', '2017-12-01 16:25:46', '2017-12-01 16:25:46', 'new'),
-(58, 54, 127, 0, '', '2017-12-01 16:30:21', '2017-12-01 16:30:21', 'withdraw');
+INSERT INTO `applieds` (`id`, `user_id`, `job_position_id`, `jobseeker_cv_id`, `coverletter`, `created_at`, `updated_at`, `status`, `employer_message_status`, `job_seeker_message_status`) VALUES
+(1, 3, 1, 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', ''),
+(2, 9, 6, 0, 'hi i would like to try out!', '2016-01-13 09:44:11', '2016-01-28 07:18:25', '', '', ''),
+(7, 2, 6, 7, 'this is my cover letter', '2016-01-13 09:58:33', '2016-01-13 09:58:33', '', '', ''),
+(8, 32, 115, 4, 'theres a lot of things we want to know and do. so we do.', '2016-03-28 06:19:44', '2017-04-18 20:29:11', '', '', ''),
+(9, 9, 116, 2, 'teste', '2016-05-05 08:46:13', '2016-05-05 08:46:13', '', '', ''),
+(10, 28, 116, 0, 'aslkjfaslkjf', '2017-04-02 20:27:51', '2017-04-02 20:27:51', '', '', ''),
+(11, 32, 11, 0, '', '2017-04-18 20:26:52', '2017-04-18 20:26:52', '', '', ''),
+(12, 28, 121, 0, '', '2017-06-14 21:48:38', '2017-06-14 21:48:38', '', '', ''),
+(13, 28, 115, 0, '', '2017-06-28 00:02:00', '2017-06-28 00:02:00', '', '', ''),
+(56, 54, 1, 0, '', '2017-12-01 16:25:46', '2017-12-01 16:25:46', '', '', ''),
+(58, 54, 127, 0, '', '2017-12-01 16:30:21', '2017-12-01 16:30:21', '', '', ''),
+(59, 54, 127, 0, '', '2017-12-04 02:57:52', '2017-12-04 02:57:52', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -189,7 +203,7 @@ INSERT INTO `countries` (`id`, `name`, `country_code`, `created_at`, `updated_at
 (5, 'Indonesia', 'IDN', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (6, 'Thailand', 'THD', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (7, 'Singapore', 'SIN', '2017-11-07 17:00:00', '2017-11-07 17:00:00'),
-(8, 'Vietname', 'VNM', '2017-11-07 17:00:00', '2017-11-07 17:00:00');
+(8, 'Vietnam', 'VNM', '2017-11-07 17:00:00', '2017-11-07 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -285,25 +299,30 @@ CREATE TABLE IF NOT EXISTS `experiences` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `company_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `employment_type_id` int(11) DEFAULT NULL,
+  `industries_id` int(11) DEFAULT NULL,
+  `skills` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `experiences_user_id_foreign` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data untuk tabel `experiences`
 --
 
-INSERT INTO `experiences` (`id`, `user_id`, `title`, `description`, `start_date`, `end_date`, `created_at`, `updated_at`, `company_name`) VALUES
-(1, 28, 'Job Position', 'Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description tes\n \nDescription testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description tes\n \n', '2017-12-01', '2017-12-01', '2017-06-22 05:35:56', '2017-07-04 21:10:28', 'company 4'),
-(2, 28, 'Something', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '2017-11-01', '2017-11-01', '2017-06-22 22:29:07', '2017-07-04 21:10:50', 'Company Name 3'),
-(3, 28, 'Test', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '0000-00-00', '0000-00-00', '2017-06-28 23:20:15', '2017-07-04 22:57:07', 'Company Name 3444'),
-(6, 0, 'Responsive', 'Description', '2017-12-01', '2017-12-01', '2017-07-04 22:53:00', '2017-07-04 22:53:00', 'Test'),
-(7, 0, 'a', 'a', '2017-04-01', '2017-12-01', '2017-07-04 22:54:10', '2017-07-04 22:54:10', 'a'),
-(8, 54, 'Elabram Web Developer', 'Elabram as web developer', '2013-01-01', '2015-01-01', '2017-11-13 17:00:00', '2017-11-13 17:00:00', 'Elabram'),
-(9, 0, '0', '0', '0000-00-00', '0000-00-00', NULL, NULL, NULL),
-(10, 0, '0', '0', '0000-00-00', '0000-00-00', NULL, NULL, NULL),
-(11, 0, 'XREMO Test', 'Test', '0000-00-00', '0000-00-00', NULL, NULL, NULL),
-(12, 54, 'Xremo - profile page with php', 'test', '2017-02-01', '1970-01-01', NULL, NULL, NULL);
+INSERT INTO `experiences` (`id`, `user_id`, `title`, `description`, `start_date`, `end_date`, `created_at`, `updated_at`, `company_name`, `employment_type_id`, `industries_id`, `skills`) VALUES
+(1, 28, 'Job Position', 'Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description tes\n \nDescription testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description testing Description tes\n \n', '2017-12-01', '2017-12-01', '2017-06-22 05:35:56', '2017-07-04 21:10:28', 'company 4', 0, 0, ''),
+(2, 28, 'Something', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '2017-11-01', '2017-11-01', '2017-06-22 22:29:07', '2017-07-04 21:10:50', 'Company Name 3', 0, 0, ''),
+(3, 28, 'Test', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '0000-00-00', '0000-00-00', '2017-06-28 23:20:15', '2017-07-04 22:57:07', 'Company Name 3444', 0, 0, ''),
+(6, 0, 'Responsive', 'Description', '2017-12-01', '2017-12-01', '2017-07-04 22:53:00', '2017-07-04 22:53:00', 'Test', 0, 0, ''),
+(7, 0, 'a', 'a', '2017-04-01', '2017-12-01', '2017-07-04 22:54:10', '2017-07-04 22:54:10', 'a', 0, 0, ''),
+(8, 54, 'Elabram Web Developer', 'Elabram as web developer', '2013-01-01', '0000-00-00', '2017-11-13 17:00:00', '2017-11-13 17:00:00', 'Elabram', 0, 0, ''),
+(9, 0, '0', '0', '0000-00-00', '0000-00-00', NULL, NULL, NULL, 0, 0, ''),
+(10, 0, '0', '0', '0000-00-00', '0000-00-00', NULL, NULL, NULL, 0, 0, ''),
+(11, 0, 'XREMO Test', 'Test', '0000-00-00', '0000-00-00', NULL, NULL, NULL, 0, 0, ''),
+(13, 61, 'Elabram Web Developer', 'test', '2017-11-01', '0000-00-00', NULL, NULL, NULL, 0, 0, ''),
+(14, 59, 'asd', 'asd', '1970-01-01', '1970-01-01', NULL, NULL, NULL, 0, 0, ''),
+(15, 54, 'test', 'test', '2017-12-06', '2017-12-09', NULL, NULL, NULL, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -351,6 +370,25 @@ CREATE TABLE IF NOT EXISTS `full_monthly_reports` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `inbox`
+--
+
+CREATE TABLE IF NOT EXISTS `inbox` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `status_sender` enum('NEW','READ','REMOVED') NOT NULL,
+  `status_receiver` enum('NEW','READ','REMOVED') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -668,6 +706,210 @@ INSERT INTO `job_positions` (`id`, `name`, `user_id`, `position_level_id`, `empl
 (121, 'Intern for Data Management', 26, 0, 5, '0', 14, '<p>Godlike and kewl</p>\r\n', 0, '', '<ol>\r\n	<li>Smart</li>\r\n	<li>Talented</li>\r\n	<li>Pretty</li>\r\n</ol>\r\n', '', '', '', '<p>Nice to be nice</p>\r\n', '', '', 0, '0.00', '2200.00', 0, '2017-05-30 21:31:16', '2017-05-30 21:31:16', '0000-00-00', 'post', 0, 0, NULL),
 (123, 'rico test post job', 55, 2, 5, '2', 0, 'job requirement', 0, '', 'job description', '', '', '', 'nice to have', 'additional info', '', 0, '0.00', '0.00', 0, '2017-11-26 17:00:00', '2017-11-26 17:00:00', '2017-11-28', 'draft', 0, 0, NULL),
 (127, 'IT Staff', 55, 1, 5, '1', 0, 'can fix stuff', 0, '', 'It staff, fix all the stuff', '', '', '', 'ability to fix any kind of stuff', 'fix stuff', '', 0, '0.00', '0.00', 0, '2017-11-30 01:42:50', '2017-11-30 01:42:50', '2017-12-30', 'post', 0, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `language`
+--
+
+CREATE TABLE IF NOT EXISTS `language` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `edited_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=185 ;
+
+--
+-- Dumping data untuk tabel `language`
+--
+
+INSERT INTO `language` (`id`, `name`, `created_at`, `edited_at`) VALUES
+(1, 'Afar', '2017-12-19 09:06:57', '2017-12-19 09:06:57'),
+(2, 'Abkhazian', '2017-12-19 09:06:57', '2017-12-19 09:06:57'),
+(3, 'Afrikaans', '2017-12-19 09:07:21', '2017-12-19 09:07:21'),
+(4, 'Akan', '2017-12-19 09:07:21', '2017-12-19 09:07:21'),
+(5, 'Albanian', '2017-12-19 09:07:53', '2017-12-19 09:07:53'),
+(6, 'Amharic', '2017-12-19 09:07:53', '2017-12-19 09:07:53'),
+(7, 'Arabic', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(8, 'Aragonese', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(9, 'Armenian', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(10, 'Assamese', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(11, 'Avaric', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(12, 'Avestan', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(13, 'Aymara', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(14, 'Azerbaijani', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(15, 'Bashkir', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(16, 'Bambara', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(17, 'Belarusian', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(18, 'Basque', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(19, 'Bengali', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(20, 'Bihari languages', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(21, 'Bislama', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(22, 'Bosnian', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(23, 'Breton', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(24, 'Bulgarian', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(25, 'Burmese', '2017-12-19 09:12:10', '2017-12-19 09:12:10'),
+(26, 'Catalan; Valencian', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(27, 'Chamorro', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(28, 'Chechen', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(29, 'Chinese', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(30, 'Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(31, 'Chuvash', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(32, 'Cornish', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(33, 'Corsican', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(34, 'Cree', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(35, 'Czech', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(36, 'Danish', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(37, 'Divehi; Dhivehi; Maldivian', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(38, 'Dutch; Flemish', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(39, 'Dzongkha', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(40, 'English', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(41, 'Esperanto', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(42, 'Estonian', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(43, 'Ewe', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(44, 'Faroese', '2017-12-19 09:14:38', '2017-12-19 09:14:38'),
+(45, 'Fijian', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(46, 'Finnish', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(47, 'French', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(48, 'Western Frisian', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(49, 'Fulah', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(50, 'Georgian', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(51, 'German', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(52, 'Gaelic; Scottish Gaelic', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(53, 'Irish', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(54, 'Galician', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(55, 'Manx', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(56, 'Greek, Modern (-)', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(57, 'Guarani', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(58, 'Gujarati', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(59, 'Haitian; Haitian Creole', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(60, 'Hausa', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(61, 'Hebrew', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(62, 'Herero', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(63, 'Hindi', '2017-12-19 09:17:09', '2017-12-19 09:17:09'),
+(64, 'Hiri Motu', '2017-12-19 09:18:19', '2017-12-19 09:18:19'),
+(65, 'Croatian', '2017-12-19 09:18:19', '2017-12-19 09:18:19'),
+(66, 'Hungarian', '2017-12-19 09:18:37', '2017-12-19 09:19:22'),
+(67, 'Igbo', '2017-12-19 09:18:37', '2017-12-19 09:19:35'),
+(68, 'Icelandic', '2017-12-19 09:18:37', '2017-12-19 09:19:48'),
+(69, 'Ido', '2017-12-19 09:18:37', '2017-12-19 09:19:55'),
+(70, 'Sichuan Yi; Nuosu', '2017-12-19 09:18:37', '2017-12-19 09:20:06'),
+(71, 'Inuktitut', '2017-12-19 09:18:37', '2017-12-19 09:20:14'),
+(72, 'Interlingue; Occidental', '2017-12-19 09:18:38', '2017-12-19 09:20:28'),
+(73, 'Interlingua (International Auxiliary Language Association)', '2017-12-19 09:18:38', '2017-12-19 09:20:38'),
+(74, 'Indonesian', '2017-12-19 09:18:38', '2017-12-19 09:20:46'),
+(75, 'Inupiaq', '2017-12-19 09:18:38', '2017-12-19 09:20:51'),
+(76, 'Italian', '2017-12-19 09:18:38', '2017-12-19 09:21:02'),
+(77, 'Javanese', '2017-12-19 09:18:38', '2017-12-19 09:21:09'),
+(78, 'Japanese', '2017-12-19 09:18:38', '2017-12-19 09:21:15'),
+(79, 'Kalaallisut; Greenlandic', '2017-12-19 09:21:47', '2017-12-19 09:21:47'),
+(80, 'Kannada', '2017-12-19 09:21:47', '2017-12-19 09:21:47'),
+(81, 'Kashmiri', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(82, 'Kanuri', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(83, 'Kazakh', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(84, 'Central Khmer', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(85, 'Kikuyu; Gikuyu', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(86, 'Kinyarwanda', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(87, 'Kirghiz; Kyrgyz', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(88, 'Komi', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(89, 'Kongo', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(90, 'Korean', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(91, 'Kuanyama; Kwanyama', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(92, 'Kurdish', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(93, 'Lao', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(94, 'Latin', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(95, 'Latvian', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(96, 'Limburgan; Limburger; Limburgish', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(97, 'Lingala', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(98, 'Lithuanian', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(99, 'Luxembourgish; Letzeburgesch', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(100, 'Luba-Katanga', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(101, 'Ganda', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(102, 'Macedonian', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(103, 'Marshallese', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(104, 'Malayalam', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(105, 'Maori', '2017-12-19 09:26:49', '2017-12-19 09:26:49'),
+(106, 'Marathi', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(107, 'Malay', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(108, 'Malagasy', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(109, 'Maltese', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(110, 'Mongolian', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(111, 'Nauru', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(112, 'Navajo; Navaho', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(113, 'Ndebele, South; South Ndebele', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(114, 'Ndebele, North; North Ndebele', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(115, 'Ndonga', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(116, 'Nepali', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(117, 'Norwegian Nynorsk; Nynorsk, Norwegian', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(118, 'Bokmål, Norwegian; Norwegian Bokmål', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(119, 'Norwegian', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(120, 'Chichewa; Chewa; Nyanja', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(121, 'Occitan (post ); Provençal', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(122, 'Ojibwa', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(123, 'Oriya', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(124, 'Oromo', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(125, 'Ossetian; Ossetic', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(126, 'Panjabi; Punjabi', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(127, 'Persian', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(128, 'Pali', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(129, 'Polish', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(130, 'Portuguese', '2017-12-19 09:31:28', '2017-12-19 09:31:28'),
+(131, 'Pushto; Pashto', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(132, 'Quechua', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(133, 'Romansh', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(134, 'Romanian; Moldavian; Moldovan', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(135, 'Rundi', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(136, 'Russian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(137, 'Sango', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(138, 'Sanskrit', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(139, 'Sinhala; Sinhalese', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(140, 'Slovak', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(141, 'Slovenian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(142, 'Northern Sami', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(143, 'Samoan', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(144, 'Shona', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(145, 'Sindhi', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(146, 'Somali', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(147, 'Sotho, Southern', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(148, 'Spanish; Castilian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(149, 'Sardinian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(150, 'Serbian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(151, 'Swati', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(152, 'Sundanese', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(153, 'Swahili', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(154, 'Swedish', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(155, 'Tahitian', '2017-12-19 09:35:17', '2017-12-19 09:35:17'),
+(156, 'Tamil', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(157, 'Tatar', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(158, 'Telugu', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(159, 'Tajik', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(160, 'Tagalog', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(161, 'Thai', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(162, 'Tibetan', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(163, 'Tigrinya', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(164, 'Tonga (Tonga Islands)', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(165, 'Tswana', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(166, 'Tsonga', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(167, 'Turkmen', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(168, 'Turkish', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(169, 'Twi', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(170, 'Uighur; Uyghur', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(171, 'Ukrainian', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(172, 'Urdu', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(173, 'Uzbek', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(174, 'Venda', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(175, 'Vietnamese', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(176, 'Volapük', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(177, 'Welsh', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(178, 'Walloon', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(179, 'Wolof', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(180, 'Xhosa', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(181, 'Yiddish', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(182, 'Yoruba', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(183, 'Zhuang; Chuang', '2017-12-19 09:39:21', '2017-12-19 09:39:21'),
+(184, 'Zulu', '2017-12-19 09:39:21', '2017-12-19 09:39:21');
 
 -- --------------------------------------------------------
 
@@ -1340,7 +1582,7 @@ CREATE TABLE IF NOT EXISTS `profile_uploads` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=142 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=151 ;
 
 --
 -- Dumping data untuk tabel `profile_uploads`
@@ -1397,7 +1639,14 @@ INSERT INTO `profile_uploads` (`id`, `user_id`, `name`, `type`, `created_at`, `u
 (138, 26, '26_2fcdc7a3f4d1a8db43a0383287ae8061f3c1810e.jpeg', 'avatar', '2017-05-23 20:45:33', '2017-05-23 20:45:33'),
 (139, 28, '28_d0e7c08416f7110e98e4dd48d11c08f604423fb0.jpg', 'avatar', '2017-06-19 19:32:29', '2017-06-19 19:32:29'),
 (140, 28, '28_98e97eef21b482b67b34a1159f89552391bc7ee8.jpg', 'avatar', '2017-06-19 19:35:06', '2017-06-19 19:35:06'),
-(141, 54, '54_ec8761509e47638ec23f59c3073bce08_17112017.jpg', 'profile_photo', '2017-11-14 17:00:00', '2017-11-16 22:07:11');
+(141, 54, 'profile_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'profile_photo', '2017-11-14 17:00:00', '2017-12-27 22:10:18'),
+(143, 61, '61_5106f882bf7b8f8cafc179fb844b36ab_08122017.jpg', 'profile_photo', NULL, '2017-12-10 21:59:13'),
+(144, 59, '59_f40f1b0923c35568f417aef1e01ca6b9_18122017.png', 'profile_photo', NULL, '2017-12-17 20:44:38'),
+(146, 54, 'header_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'header_photo', NULL, '2017-12-26 21:52:34'),
+(147, 54, 'header_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'header_photo', NULL, '2017-12-27 03:36:15'),
+(148, 54, 'header_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'header_photo', NULL, '2017-12-27 21:16:59'),
+(149, 54, 'header_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'header_photo', NULL, '2017-12-27 22:09:58'),
+(150, 54, 'header_photo_54_ec8761509e47638ec23f59c3073bce08_27122017.jpg', 'header_photo', NULL, '2017-12-27 22:10:18');
 
 -- --------------------------------------------------------
 
@@ -1505,6 +1754,7 @@ INSERT INTO `reviews` (`id`, `bio_meta_id`, `endorser_id`, `user_id`, `skill_id`
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -1515,13 +1765,13 @@ CREATE TABLE IF NOT EXISTS `roles` (
 -- Dumping data untuk tabel `roles`
 --
 
-INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Administrator', '2016-02-05 19:40:19', '2016-02-05 19:40:19', NULL),
-(2, 'Member', '2016-02-05 19:40:19', '2016-02-05 19:40:19', NULL),
-(3, 'Employer', '2015-10-18 09:13:55', '2015-10-18 09:13:55', NULL),
-(4, 'Job Seeker', '2015-10-18 09:17:30', '2015-10-18 09:17:30', NULL),
-(5, 'Student', '2015-10-18 09:17:30', '2015-10-18 09:17:30', NULL),
-(6, 'Blogger', NULL, NULL, NULL);
+INSERT INTO `roles` (`id`, `name`, `slug`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Administrator', 'administrator', '2016-02-05 19:40:19', '2016-02-05 19:40:19', NULL),
+(2, 'Member', 'member', '2016-02-05 19:40:19', '2016-02-05 19:40:19', NULL),
+(3, 'Employer', 'employer', '2015-10-18 09:13:55', '2015-10-18 09:13:55', NULL),
+(4, 'Job Seeker', 'jobseeker', '2015-10-18 09:17:30', '2015-10-18 09:17:30', NULL),
+(5, 'Student', 'student', '2015-10-18 09:17:30', '2015-10-18 09:17:30', NULL),
+(6, 'Blogger', 'blogger', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1746,26 +1996,45 @@ CREATE TABLE IF NOT EXISTS `student_bios` (
   `gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `date_of_birth` date DEFAULT NULL,
   `occupation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expected_salary` int(22) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `contact_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `language` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `student_bios_user_id_foreign` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=43 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data untuk tabel `student_bios`
 --
 
-INSERT INTO `student_bios` (`id`, `user_id`, `youtubelink`, `quote`, `summary`, `gender`, `date_of_birth`, `occupation`, `created_at`, `updated_at`, `contact_number`) VALUES
-(35, 28, 'txbTB3dno4s', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\nLorem ipsum dolor sit ', 'Male', '1991-04-12', 'Student', '2017-02-27 00:30:05', '2017-06-19 19:51:22', '012345678'),
-(36, 0, NULL, NULL, NULL, '0', '0000-00-00', '0', NULL, NULL, '0'),
-(37, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', NULL, NULL, '083894896368'),
-(38, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', NULL, NULL, '083894896368'),
-(39, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', NULL, NULL, '083894896368'),
-(40, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', NULL, NULL, '083894896368'),
-(41, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', NULL, NULL, '083894896368'),
-(42, 54, 'yoaisudoajsdk', 'Own your work, no matter how small it is, always build, create and do exceptional things', 'Own your work, no matter how small it is, always build and create', 'Female', '1989-12-06', 'Web Developer', '2017-11-13 17:00:00', '2017-11-16 22:07:11', '+6283894896368');
+INSERT INTO `student_bios` (`id`, `user_id`, `youtubelink`, `quote`, `summary`, `gender`, `date_of_birth`, `occupation`, `expected_salary`, `created_at`, `updated_at`, `contact_number`, `language`) VALUES
+(35, 28, 'txbTB3dno4s', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\r\nLorem ipsum dolor sit ', 'Male', '1991-04-12', 'Student', 0, '2017-02-27 00:30:05', '2017-06-19 19:51:22', '012345678', ''),
+(36, 0, NULL, NULL, NULL, '0', '0000-00-00', '0', 0, NULL, NULL, '0', ''),
+(37, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', 0, NULL, NULL, '083894896368', ''),
+(38, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', 0, NULL, NULL, '083894896368', ''),
+(39, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', 0, NULL, NULL, '083894896368', ''),
+(40, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', 0, NULL, NULL, '083894896368', ''),
+(41, 0, NULL, NULL, NULL, 'Female', '0000-00-00', 'student', 0, NULL, NULL, '083894896368', ''),
+(42, 54, 'yoaisudoajsdk', 'Own your work, no matter how small it is, always build, create and do exceptional things', 'Own your work, no matter how small it is, always build and create', 'Male', '1989-12-06', 'Student', 9000000, '2017-11-13 17:00:00', '2017-12-27 22:10:18', '+6283894896368', ''),
+(43, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'lorem ipsum dolor', 'lorem ipsum dolor', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-08 03:20:46', '83894896368', ''),
+(44, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:22:26', '', ''),
+(45, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:25:21', '', ''),
+(46, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:27:19', '', ''),
+(47, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'lorem ipsum dolor', 'summary', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:29:08', '83894896368', ''),
+(48, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:30:34', '83894896368', ''),
+(49, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:43:42', '83894896368', ''),
+(50, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:43:57', '83894896368', ''),
+(51, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'Lorem Ipsum', 'Summary', 'Male', '2017-08-12', 'Student', 0, NULL, '2017-12-08 03:44:49', '83894896368', ''),
+(52, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', '', '', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-08 03:45:26', '83894896368', ''),
+(53, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'quotes', 'summary', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-10 20:36:21', '83894896368', ''),
+(54, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'quotes', 'summary', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-10 20:36:33', '83894896368', ''),
+(55, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'quotes', 'summary', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-10 20:36:50', '83894896368', ''),
+(56, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'quotes', 'summary', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-10 20:37:11', '83894896368', ''),
+(57, 0, 'https://www.youtube.com/embed/xbmAA6eslqU', 'quotes', 'summary', 'Male', '1989-06-12', 'Student', 0, NULL, '2017-12-10 20:37:45', '83894896368', ''),
+(58, 61, 'https://www.youtube.com/embed/xbmAA6eslqU', 'Quotes', 'Summary', 'Male', '1989-12-06', 'Web Developer', 0, NULL, '2017-12-10 21:59:13', '83894896368', ''),
+(59, 59, 'https://www.youtube.com/embed/xbmAA6eslqU', 'This is quotes', 'This is summary', 'Male', '1970-01-01', 'System Admin', 0, NULL, '2017-12-17 20:44:38', '089679023292', '');
 
 -- --------------------------------------------------------
 
@@ -1863,7 +2132,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `first_time` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=62 ;
 
 --
 -- Dumping data untuk tabel `users`
@@ -1900,11 +2169,13 @@ INSERT INTO `users` (`id`, `email`, `password`, `fullname`, `preference_name`, `
 (49, '84wnla+b8osjw1t3058w@sharklasers.com', '$2y$10$F1Wl9vNdWaozrTI1shhO..jZmEEwUqXrNZrGJ7xfH7lMjzvD2MF4W', 'Stuu', '', NULL, 'LovK52fdffNR0ei9JCZGg4SbFVUYY2Mt6AuID76DIZoueRmEcni8gZ8lBpJB', '2017-06-27 23:22:59', '2017-06-27 23:24:23', NULL, '', 1, NULL, 0),
 (50, '84wo4w+euuibxnmgzh0@sharklasers.com', '$2y$10$wMYY5PpwLlLQrD8OF3mlBuxfpnAXnCC9FavT39u0f9lkplJ0gsRRG', 'test333', '', NULL, NULL, '2017-06-27 23:24:55', '2017-06-27 23:24:55', NULL, '', 1, 'i5L4VK7leRlsOkJ9bAIDBiF4zAaWl1', 1),
 (51, '84wod6+a5potmrddyuuk@sharklasers.com', '$2y$10$K0NvXSvImV49puRtF27VPOj/vY2tr3AjUPSXu8kzKD1MbQnmPK1j6', 'test3331', '', 1, 'XhZDqkxQKOcmNT3DY3bMkr0WEVl0Py2pHummkzoOcXG8jFdTnD4POfVlengM', '2017-06-27 23:25:36', '2017-06-27 23:55:35', NULL, '', 1, NULL, 0),
-(54, 'dearico612@gmail.com', 'c6680e860a74a557f12daff1b995fa64', 'Dea Rico Khasandra', 'Rico', NULL, NULL, NULL, '2017-11-16 22:07:11', NULL, '', 1, NULL, 0),
-(55, 'dearicokhasandra@yahoo.co.id', 'c6680e860a74a557f12daff1b995fa64', 'rico', '', NULL, NULL, NULL, NULL, NULL, '', 1, NULL, 0),
+(54, 'dearico612@gmail.com', 'c6680e860a74a557f12daff1b995fa64', 'Dea Rico Khasandra', 'Rico', NULL, NULL, NULL, '2017-12-27 22:10:18', NULL, '', 1, 'cd9980220e48af58ab035a645305e3d7', 0),
+(55, 'dearicokhasandra@yahoo.co.id', 'c6680e860a74a557f12daff1b995fa64', 'rico', '', NULL, NULL, NULL, NULL, NULL, '', 1, 'ca988e868cb45baa1d498cefed545d25', 0),
 (56, 'dearicokhasandra@binus.ac.id', 'c6680e860a74a557f12daff1b995fa64', 'dearico', '', NULL, NULL, NULL, NULL, NULL, '', 0, NULL, 1),
 (57, 'asdjalksdj@binus.ac.id', 'c6680e860a74a557f12daff1b995fa64', 'dearico', '', NULL, NULL, NULL, NULL, NULL, '', 0, NULL, 1),
-(58, 'dearico@binus.ac.id', 'c6680e860a74a557f12daff1b995fa64', 'Dea Rico Khasandra', NULL, NULL, NULL, NULL, NULL, NULL, '', 0, NULL, 1);
+(58, 'dearico@binus.ac.id', 'c6680e860a74a557f12daff1b995fa64', 'Dea Rico Khasandra', NULL, NULL, NULL, NULL, NULL, NULL, '', 0, NULL, 1),
+(59, 'martinalexius@yahoo.com', '7bb607a8e7053fdd2432705c378168ec', 'Alexius martin', 'Ale', NULL, NULL, NULL, '2017-12-17 20:44:38', NULL, '', 1, NULL, 1),
+(61, 'dearicokhasandra@gmail.com', 'c6680e860a74a557f12daff1b995fa64', 'Dea Rico Khasandra', 'Dea Rico', NULL, NULL, NULL, '2017-12-10 21:59:13', NULL, '', 1, 'cd9980220e48af58ab035a645305e3d7', 1);
 
 -- --------------------------------------------------------
 
@@ -1923,14 +2194,25 @@ CREATE TABLE IF NOT EXISTS `user_address` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data untuk tabel `user_address`
 --
 
 INSERT INTO `user_address` (`id`, `user_id`, `address`, `postcode`, `city`, `state`, `country`, `created_at`, `updated_at`) VALUES
-(1, 54, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-11-15 02:05:10', '2017-11-16 22:07:11');
+(1, 54, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-11-15 02:05:10', '2017-12-27 22:10:18'),
+(2, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '', '', '', '', '2017-12-08 09:20:46', '2017-12-08 03:20:46'),
+(3, 0, '', '', '', '', '', '2017-12-08 09:22:26', '2017-12-08 03:22:26'),
+(4, 0, '', '', '', '', '', '2017-12-08 09:25:22', '2017-12-08 03:25:21'),
+(5, 0, '', '', '', '', '', '2017-12-08 09:27:19', '2017-12-08 03:27:19'),
+(6, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-08 09:29:08', '2017-12-08 03:29:08'),
+(7, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-08 09:43:58', '2017-12-08 03:43:57'),
+(8, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-08 09:44:49', '2017-12-08 03:44:49'),
+(9, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-08 09:45:26', '2017-12-08 03:45:26'),
+(10, 0, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-11 02:37:45', '2017-12-10 20:37:45'),
+(11, 61, 'Jl.M No.55 RT 004/RW 003 Cipinang, Jatinegara, Jakarta Timur', '13420', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-11 02:41:11', '2017-12-10 21:59:13'),
+(12, 59, 'tes address', '12345', 'Jakarta', 'DKI Jakarta', 'Indonesia', '2017-12-18 02:41:23', '2017-12-17 20:44:38');
 
 -- --------------------------------------------------------
 
@@ -1964,7 +2246,7 @@ CREATE TABLE IF NOT EXISTS `user_history` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
 
 --
 -- Dumping data untuk tabel `user_history`
@@ -1972,7 +2254,78 @@ CREATE TABLE IF NOT EXISTS `user_history` (
 
 INSERT INTO `user_history` (`id`, `user_id`, `created_at`) VALUES
 (1, 54, '2017-12-04 03:22:58'),
-(2, 54, '2017-12-04 03:51:36');
+(2, 54, '2017-12-04 03:51:36'),
+(3, 55, '2017-12-04 04:41:05'),
+(4, 54, '2017-12-04 06:36:55'),
+(5, 55, '2017-12-04 06:55:33'),
+(6, 54, '2017-12-04 08:56:25'),
+(7, 55, '2017-12-04 09:06:21'),
+(8, 55, '2017-12-05 01:55:29'),
+(9, 59, '2017-12-05 03:04:19'),
+(10, 59, '2017-12-05 03:06:22'),
+(11, 54, '2017-12-05 04:30:38'),
+(12, 54, '2017-12-05 04:31:40'),
+(13, 54, '2017-12-05 07:08:42'),
+(14, 54, '2017-12-05 07:14:41'),
+(15, 54, '2017-12-05 07:23:44'),
+(16, 60, '2017-12-05 07:50:50'),
+(17, 60, '2017-12-05 07:51:14'),
+(18, 54, '2017-12-05 07:58:28'),
+(19, 55, '2017-12-05 08:27:39'),
+(20, 60, '2017-12-08 01:35:51'),
+(21, 55, '2017-12-08 03:13:26'),
+(22, 54, '2017-12-08 03:59:10'),
+(23, 60, '2017-12-08 03:59:33'),
+(24, 60, '2017-12-08 07:20:05'),
+(25, 61, '2017-12-08 07:58:53'),
+(26, 54, '2017-12-08 09:55:22'),
+(27, 54, '2017-12-11 01:50:36'),
+(28, 54, '2017-12-11 01:51:06'),
+(29, 61, '2017-12-11 02:15:38'),
+(30, 55, '2017-12-12 01:55:00'),
+(31, 61, '2017-12-12 02:10:12'),
+(32, 61, '2017-12-12 09:35:14'),
+(33, 55, '2017-12-12 11:48:38'),
+(34, 61, '2017-12-13 01:13:34'),
+(35, 61, '2017-12-13 04:06:57'),
+(36, 55, '2017-12-14 01:50:10'),
+(37, 61, '2017-12-14 01:50:37'),
+(38, 55, '2017-12-14 02:30:59'),
+(39, 55, '2017-12-14 06:49:03'),
+(40, 55, '2017-12-14 10:15:28'),
+(41, 61, '2017-12-15 01:59:39'),
+(42, 55, '2017-12-15 02:28:50'),
+(43, 55, '2017-12-15 06:54:57'),
+(44, 61, '2017-12-15 08:52:25'),
+(45, 55, '2017-12-15 09:07:41'),
+(46, 59, '2017-12-18 02:13:32'),
+(47, 54, '2017-12-18 02:49:42'),
+(48, 54, '2017-12-18 03:05:04'),
+(49, 54, '2017-12-18 14:29:29'),
+(50, 54, '2017-12-19 02:25:45'),
+(51, 55, '2017-12-19 06:46:42'),
+(52, 54, '2017-12-20 02:16:50'),
+(53, 55, '2017-12-20 04:15:09'),
+(54, 55, '2017-12-20 07:00:41'),
+(55, 55, '2017-12-21 01:48:40'),
+(56, 54, '2017-12-21 04:49:33'),
+(57, 54, '2017-12-21 07:35:52'),
+(58, 54, '2017-12-21 08:01:37'),
+(59, 54, '2017-12-21 13:14:55'),
+(60, 54, '2017-12-22 01:10:18'),
+(61, 54, '2017-12-22 07:35:25'),
+(62, 61, '2017-12-22 07:38:38'),
+(63, 54, '2017-12-22 07:43:54'),
+(64, 55, '2017-12-25 13:32:50'),
+(65, 54, '2017-12-25 13:43:41'),
+(66, 54, '2017-12-26 05:30:46'),
+(67, 54, '2017-12-27 01:12:29'),
+(68, 54, '2017-12-27 06:36:20'),
+(69, 54, '2017-12-27 09:35:04'),
+(70, 54, '2017-12-28 01:51:19'),
+(71, 55, '2017-12-28 02:24:47'),
+(72, 54, '2017-12-28 02:49:25'),
+(73, 54, '2017-12-28 07:11:54');
 
 -- --------------------------------------------------------
 
@@ -1984,11 +2337,23 @@ CREATE TABLE IF NOT EXISTS `user_language_set` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `language` varchar(255) NOT NULL,
-  `profieciency` varchar(255) NOT NULL,
+  `spoken` varchar(255) NOT NULL,
+  `written` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `edited_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data untuk tabel `user_language_set`
+--
+
+INSERT INTO `user_language_set` (`id`, `user_id`, `language`, `spoken`, `written`, `created_at`, `edited_at`) VALUES
+(1, 61, 'English', 'Intermediate', '', '2017-12-13 07:33:34', '2017-12-13 07:33:34'),
+(2, 59, 'asd', 'Beginner', '', '2017-12-18 02:22:15', '2017-12-18 02:22:15'),
+(4, 54, 'English', 'Intermediate', 'Intermediate', '2017-12-28 03:16:59', '2017-12-28 03:16:59'),
+(5, 54, 'Indonesian', 'Advanced', 'Advanced', '2017-12-28 03:17:00', '2017-12-28 03:17:00'),
+(6, 54, 'Javanese', 'Beginner', 'Intermediate', '2017-12-28 04:09:58', '2017-12-28 04:09:58');
 
 -- --------------------------------------------------------
 
@@ -2021,7 +2386,7 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
   `company_industry_id` int(11) NOT NULL,
   `gst_account_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `billing_name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
   `postcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `city` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `state_id` int(10) unsigned NOT NULL,
@@ -2043,34 +2408,41 @@ CREATE TABLE IF NOT EXISTS `user_profiles` (
   `subdescription` text COLLATE utf8_unicode_ci NOT NULL,
   `url` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `company_office_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `working_days` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `working_hours` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `dress_code` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `benefits` text COLLATE utf8_unicode_ci NOT NULL,
   `spoken_language` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `total_staff` int(10) unsigned NOT NULL,
+  `total_staff` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `age_group_20` int(10) unsigned NOT NULL,
   `age_group_30` int(10) unsigned NOT NULL,
   `age_group_40` int(10) unsigned NOT NULL,
   `age_group_50` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data untuk tabel `user_profiles`
 --
 
-INSERT INTO `user_profiles` (`id`, `user_id`, `company_registration_number`, `company_industry_id`, `gst_account_number`, `billing_name`, `address`, `postcode`, `city`, `state_id`, `country_id`, `contact_person`, `phone`, `fax`, `email`, `created_at`, `updated_at`, `shipping_name`, `shipping_address`, `shipping_postcode`, `shipping_city`, `shipping_state_id`, `shipping_country_id`, `company_name`, `company_description`, `subdescription`, `url`, `company_office_number`, `working_hours`, `dress_code`, `benefits`, `spoken_language`, `total_staff`, `age_group_20`, `age_group_30`, `age_group_40`, `age_group_50`) VALUES
-(4, 3, 'Day and Allen Co', 3, '110045554545', 'bill to', 'bill ship', '6000', 'bill city', 20, 3, 'Sunt aut anim quidem ut sunt molestiae et elit quia do', '+322-74-2523871', '+274-24-1834228', 'qibi@yahoo.com', '2015-11-03 06:43:21', '2016-01-25 07:59:23', 'ship to', 'address ship', '34344', 'ship city', 16, 3, 'IDonGoto University That344', 'there are things we do,\r\n\r\nthere are things that we dont\r\n444\r\nwhat are the difference\r\n\r\n                            and that is what we do\r\n\r\nand thats what we do\r\n                        \r\n                        ', '<p>i was standing here</p>\r\n\r\n<p>and then there</p>\r\n\r\n<p>and she was everywhere</p>\r\n\r\n<p>I is everywhere</p>\r\n', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(5, 2, 'adfeff-0', 2, '9237236643', 'Bill n Co', '1-3a-13a', '63001', 'cyberjaya', 20, 4, 'Bill bin Ted', '2424324', '4234234234', 'Billted@gmail.com', '2016-01-14 08:48:15', '2016-05-25 08:01:32', '', '1-3a-13a, The Domain Neocyber,', '6300', 'cyberjaya', 21, 3, '', '', '                                \r\n                            ', 'http://yahoo.com', '921312', '3-6', 'casual', 'lots n lots of it', 'arabica coffeew', 3, 37, 41, 27, 29),
-(6, 16, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-26 23:50:07', '2016-01-26 23:50:07', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(7, 19, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-26 23:58:01', '2016-01-26 23:58:01', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(9, 1, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-27 07:08:09', '2016-01-27 07:08:09', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(10, 22, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-27 07:17:47', '2016-01-27 07:17:47', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(11, 27, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-02-14 00:16:29', '2017-02-14 00:16:29', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(12, 26, 'IBC12345678', 2, '', '', 'Persiaran Lagoon, Bandar Sunway, 47500 Petaling Jaya, Selangor, Malaysia', '', '', 0, 0, '', '1234567890', '1234567890', 'HR@xremo.com', '2017-05-16 01:17:48', '2017-06-18 21:39:40', '', '', '', '', 0, 0, 'Xremo Testing Sdn. Bhd.', '', '', 'http:\\\\www.xremo.com', '', '', '', '', '', 100, 0, 0, 0, 0),
-(13, 37, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-05-19 00:36:59', '2017-05-19 00:36:59', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(14, 44, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-06-12 21:13:35', '2017-06-12 21:13:35', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0),
-(15, 48, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-06-27 23:15:55', '2017-06-27 23:15:55', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0);
+INSERT INTO `user_profiles` (`id`, `user_id`, `company_registration_number`, `company_industry_id`, `gst_account_number`, `billing_name`, `address`, `postcode`, `city`, `state_id`, `country_id`, `contact_person`, `phone`, `fax`, `email`, `created_at`, `updated_at`, `shipping_name`, `shipping_address`, `shipping_postcode`, `shipping_city`, `shipping_state_id`, `shipping_country_id`, `company_name`, `company_description`, `subdescription`, `url`, `company_office_number`, `working_days`, `working_hours`, `dress_code`, `benefits`, `spoken_language`, `total_staff`, `age_group_20`, `age_group_30`, `age_group_40`, `age_group_50`) VALUES
+(4, 3, 'Day and Allen Co', 3, '110045554545', 'bill to', 'bill ship', '6000', 'bill city', 20, 3, 'Sunt aut anim quidem ut sunt molestiae et elit quia do', '+322-74-2523871', '+274-24-1834228', 'qibi@yahoo.com', '2015-11-03 06:43:21', '2016-01-25 07:59:23', 'ship to', 'address ship', '34344', 'ship city', 16, 3, 'IDonGoto University That344', 'there are things we do,\r\n\r\nthere are things that we dont\r\n444\r\nwhat are the difference\r\n\r\n                            and that is what we do\r\n\r\nand thats what we do\r\n                        \r\n                        ', '<p>i was standing here</p>\r\n\r\n<p>and then there</p>\r\n\r\n<p>and she was everywhere</p>\r\n\r\n<p>I is everywhere</p>\r\n', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(5, 2, 'adfeff-0', 2, '9237236643', 'Bill n Co', '1-3a-13a', '63001', 'cyberjaya', 20, 4, 'Bill bin Ted', '2424324', '4234234234', 'Billted@gmail.com', '2016-01-14 08:48:15', '2016-05-25 08:01:32', '', '1-3a-13a, The Domain Neocyber,', '6300', 'cyberjaya', 21, 3, '', '', '                                \r\n                            ', 'http://yahoo.com', '921312', '', '3-6', 'casual', 'lots n lots of it', 'arabica coffeew', '3', 37, 41, 27, 29),
+(6, 16, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-26 23:50:07', '2016-01-26 23:50:07', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(7, 19, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-26 23:58:01', '2016-01-26 23:58:01', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(9, 1, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-27 07:08:09', '2016-01-27 07:08:09', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(10, 22, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2016-01-27 07:17:47', '2016-01-27 07:17:47', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(11, 27, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-02-14 00:16:29', '2017-02-14 00:16:29', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(12, 26, 'IBC12345678', 2, '', '', 'Persiaran Lagoon, Bandar Sunway, 47500 Petaling Jaya, Selangor, Malaysia', '', '', 0, 0, '', '1234567890', '1234567890', 'HR@xremo.com', '2017-05-16 01:17:48', '2017-06-18 21:39:40', '', '', '', '', 0, 0, 'Xremo Testing Sdn. Bhd.', '', '', 'http:\\\\www.xremo.com', '', '', '', '', '', '', '100', 0, 0, 0, 0),
+(13, 37, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-05-19 00:36:59', '2017-05-19 00:36:59', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(14, 44, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-06-12 21:13:35', '2017-06-12 21:13:35', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(15, 48, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', '2017-06-27 23:15:55', '2017-06-27 23:15:55', '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '0', 0, 0, 0, 0),
+(16, 0, '012ABC-HIJK', 14, '', '', '', '', '', 0, 0, '', '', '', '', NULL, NULL, '', '', '', '', 0, 0, 'Xremo', 'Web development', '', 'http://xremo.com', '', '', '', '', '', '0', '0', 0, 0, 0, 0),
+(17, 0, '012ABC-HIJK', 14, '', '', '', '', '', 0, 0, '', '', '', '', NULL, NULL, '', '', '', '', 0, 0, 'Xremo', 'Web development', '', 'http://xremo.com', '', '', '', '', '', '0', '0', 0, 0, 0, 0),
+(18, 55, 'ABC123?456', 17, '', '', '[{"building_address":"addr 1","building_city":"Jakarta","building_state":"DKI Jakarta","building_postcode":"13420","building_country":"Country 1","building_phone":"083894896368","building_fax":"083894896368","optionsRadios":"HQ"},{"building_address":"addr 2","building_city":"Jakarta","building_state":"DKI Jakarta","building_postcode":"13420","building_country":"Country 2","building_phone":"083894896368","building_fax":"083894896368","optionsRadios":"branch"}]', '', '', 0, 0, '', '', '', 'dearico612@gmail.com', NULL, NULL, '', '', '', '', 0, 0, 'xremo', 'Job portal consultant', '', 'http://xremo.com', '', 'monday - friday', '8:00 AM - 5:00 PM', 'casual,formal,business', 'Annual Leaves, Annual Bonus, Annual Trip, Medical fee, Dental fee', 'Arabic,Indonesian,Javanese,Sundanese', '1-50', 0, 0, 0, 0),
+(19, 0, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', NULL, NULL, '', '', '', '', 0, 0, '', '', '', '', '', 'monday - friday', ' - ', 'casual,formal', 'Annual leaves, annual allowance', 'Indonesian', '1', 0, 0, 0, 0),
+(20, 0, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', NULL, NULL, '', '', '', '', 0, 0, '', '', '', '', '', 'monday - saturday', ' - ', 'casual,formal', 'Allowance ', 'Indonesian', '1', 0, 0, 0, 0),
+(21, 0, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', NULL, NULL, '', '', '', '', 0, 0, '', '', '', '', '', 'monday - friday', '8:00 AM - 5:00 PM', 'casual,formal', 'annual leaves, allowances, annual allowances', 'Indonesian', '1-50', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -2087,14 +2459,18 @@ CREATE TABLE IF NOT EXISTS `user_projects` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `edited_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data untuk tabel `user_projects`
 --
 
 INSERT INTO `user_projects` (`id`, `user_id`, `name`, `description`, `skills_acquired`, `created_at`, `edited_at`) VALUES
-(1, 54, 'xremo website project', 'working on xremo website', 'php, mysql', '2017-11-21 08:01:12', '2017-11-21 08:01:12');
+(3, 61, 'Aksara E-commerce Bookstore', 'Aksara E-commerce Bookstore until finish transaction with payment gateway', 'PHP,HTML,CSS,JQUERY', '2017-12-11 22:20:00', '2017-12-12 04:20:00'),
+(7, 59, 'asd', 'asd', 'asd', '2017-12-17 20:21:46', '2017-12-18 02:21:46'),
+(9, 54, 'xaharaactive.com', 'E-commerce for women sport underwear', 'JQUERY,HTML,CSS,PHP', '2017-12-17 22:46:52', '2017-12-17 22:48:04'),
+(10, 54, 'Test', 'test', 'test 1', '2017-12-17 22:28:52', '2017-12-18 04:28:52'),
+(11, 54, 'Alfaonline', 'Create E-commerce for aksara bookstore', 'JQUERY,HTML', '2017-12-17 22:42:04', '2017-12-18 04:42:04');
 
 -- --------------------------------------------------------
 
@@ -2110,7 +2486,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_role_user_id_role_id_index` (`user_id`,`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=57 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data untuk tabel `user_role`
@@ -2166,7 +2542,10 @@ INSERT INTO `user_role` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
 (53, 55, 3, NULL, NULL),
 (54, 56, 5, NULL, NULL),
 (55, 57, 5, NULL, NULL),
-(56, 58, 5, NULL, NULL);
+(56, 58, 5, NULL, NULL),
+(57, 59, 5, NULL, NULL),
+(58, 60, 5, NULL, NULL),
+(59, 61, 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -2183,14 +2562,15 @@ CREATE TABLE IF NOT EXISTS `user_skill_set` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `edited_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data untuk tabel `user_skill_set`
 --
 
 INSERT INTO `user_skill_set` (`id`, `user_id`, `name`, `description`, `level`, `created_at`, `edited_at`) VALUES
-(1, 54, 'HTML', 'Hypertext Markup Language', 'Expert', '2017-11-17 07:37:19', '2017-11-17 07:37:19');
+(2, 61, 'PHP', 'using Pre Hypertext Processor to handle the logic of an app', 'Expert', '2017-12-13 06:40:42', '2017-12-13 06:40:42'),
+(4, 59, 'asd', 'asd', 'Beginner', '2017-12-18 02:21:52', '2017-12-18 02:21:52');
 
 -- --------------------------------------------------------
 
@@ -2206,7 +2586,15 @@ CREATE TABLE IF NOT EXISTS `user_social` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data untuk tabel `user_social`
+--
+
+INSERT INTO `user_social` (`id`, `user_id`, `name`, `link`, `created_at`, `updated_at`) VALUES
+(1, 55, 'facebook', 'https://facebook.com', '2017-12-14 07:10:51', '2017-12-14 07:10:51'),
+(2, 55, 'twitter', 'http://twitter.com', '2017-12-14 07:10:51', '2017-12-14 07:10:51');
 
 -- --------------------------------------------------------
 

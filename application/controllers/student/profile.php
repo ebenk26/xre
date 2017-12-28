@@ -17,6 +17,9 @@ class Profile extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['language'] = $this->student_model->get_array('language', 'id', 'asc');
+        $profile['employment_types'] = $this->student_model->get_array('employment_types', 'id', 'asc');
+        $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/profile', $profile);
@@ -24,8 +27,7 @@ class Profile extends CI_Controller {
 	}
 
     public function post(){
-
-
+        
         if(!empty($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
@@ -95,8 +97,8 @@ class Profile extends CI_Controller {
             'expected_salary' => $this->input->post('expected_salary'),
             'profile_photo' =>  $profile_photo,
             'header_photo' =>  $header_photo,
-        );
-        
+            'language' => $this->input->post('group-b')
+        );        
         $this->student_model->profile_post($profile);
         redirect(base_url().'student/profile/');
     }

@@ -31,7 +31,7 @@ class Profile extends CI_Controller {
         $social = $this->input->post('group-b');
         $id = $this->session->userdata('id');
         $check_number_of_social_link = $this->employer_model->check_social_link($id);
-        if (!empty($check_number_of_social_link)) {
+        if ($check_number_of_social_link) {
             foreach ($check_number_of_social_link as $key => $value) {
                 $this->employer_model->delete_social($value['id']);
             }

@@ -60,21 +60,34 @@ class Student_Model extends CI_Model{
 
         try{
 
-            if (!empty($checkUserProfilePhotoExist)) {
+            foreach ($profile['language'] as $key => $value) {
+                $userLanguage = array(  'user_id' => $this->session->userdata('id'),
+                                        'language' => $value['name'],
+                                        'written' => $value['written'],
+                                        'spoken' => $value['spoken'] );
+                if ($value['language_id']) {
+                    $this->db->where('id', $value['language_id']);
+                    $this->db->update('user_language_set', $userLanguage); 
+                }else{                    
+                    $this->db->insert('user_language_set', $userLanguage);
+                }
+            }
+
+            if ($checkUserProfilePhotoExist) {
                 $this->db->where($userProfilePhotoID);
                 $this->db->update('profile_uploads', $dataUploadsProfilePhoto); 
             }else{
                 $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
             }
 
-            if (!empty($checkUserProfileHeaderExist)) {
+            if ($checkUserProfileHeaderExist) {
                 $this->db->where($userHeaderPhotoID);
                 $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
             }else{
                 $this->db->insert('profile_uploads', $dataUploadsHeaderPhoto); 
             }
 
-            if (!empty($checkUserBioExist)) {
+            if ($checkUserBioExist) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('student_bios', $dataBios); 
             }else{
@@ -86,7 +99,7 @@ class Student_Model extends CI_Model{
                 $this->db->update('users', $dataUsers); 
             }
 
-            if (!empty($checkUserAddressExist)) {
+            if ($checkUserAddressExist) {
                 $this->db->where('user_id', $this->session->userdata('id'));
                 $this->db->update('user_address', $dataAddress); 
             }else{
@@ -109,7 +122,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('experiences.user_id' => $id));
         $experiences = $this->db->get();
         $result['experiences'] = $experiences->result_array();
-        if (!empty($experiences->result_array())) {
+        if ($experiences->result_array()) {
             $result['exp_percent'] =  0.1;
         }else{
             $result['exp_percent'] =  0;
@@ -122,7 +135,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('achievement.user_id' => $id));
         $achievement = $this->db->get();
         $result['achievement'] = $achievement->result_array();
-        if (!empty($experiences->result_array())) {
+        if ($experiences->result_array()) {
             $result['achievement_percent'] =  0.1;
         }else{
             $result['achievement_percent'] =  0;
@@ -135,7 +148,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('student_bios.user_id' => $id));
         $overview = $this->db->get();
         $result['overview'] = $overview->last_row('array');
-        if (!empty($overview->last_row('array'))) {
+        if ($overview->last_row('array')) {
             $result['overview_percent'] =  0.1;
         }else{
             $result['overview_percent'] =  0;
@@ -148,7 +161,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('academics.user_id' => $id));
         $academics = $this->db->get();
         $result['academics'] = $academics->result_array();
-        if (!empty($academics->result_array())) {
+        if ($academics->result_array()) {
             $result['academic_percent'] =  0.15;
         }else{
             $result['academic_percent'] =  0;
@@ -161,7 +174,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('user_skill_set.user_id' => $id));
         $student_skill = $this->db->get();
         $result['skills'] = $student_skill->result_array();
-        if (!empty($student_skill->result_array())) {
+        if ($student_skill->result_array()) {
             $result['student_skill_percent'] =  0.1;
         }else{
             $result['student_skill_percent'] =  0;
@@ -174,7 +187,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('user_address.user_id' => $id));
         $address = $this->db->get();
         $result['address'] = current($address->result_array());  
-        if (!empty($address->result_array())) {
+        if ($address->result_array()) {
             $result['address_percent'] =  0.1;
         }else{
             $result['address_percent'] =  0;
@@ -190,7 +203,7 @@ class Student_Model extends CI_Model{
         foreach ($result['image'] as $key => $value) {
             $result[$value['type']] = $value['name'];
         }
-        if (!empty($image->result_array())) {
+        if ($image->result_array()) {
             $result['image_percent'] =  0.1;
         }else{
             $result['image_percent'] =  0;
@@ -203,14 +216,14 @@ class Student_Model extends CI_Model{
         $this->db->where(array('user_skill_set.user_id' => $id));
         $skills = $this->db->get();
         $result['skill'] = $skills->result_array();
-        if (!empty($skills->result_array())) {
+        if ($skills->result_array()) {
             $result['skill_percent'] =  0.1;
         }else{
             $result['skill_percent'] = 0;
         }
 
         //language
-        $this->db->select('user_language_set.id as id, user_language_set.id as skill_id ,user_language_set.language as title, user_language_set.profieciency');
+        $this->db->select('user_language_set.id as id, user_language_set.id as skill_id ,user_language_set.language as title, user_language_set.written, user_language_set.spoken');
         $this->db->from('users');
         $this->db->join('user_language_set', 'user_language_set.user_id = users.id','left');
         $this->db->where(array('user_language_set.user_id' => $id));
@@ -223,7 +236,7 @@ class Student_Model extends CI_Model{
         $this->db->where(array('user_id' => $id));
         $project = $this->db->get();
         $result['projects'] = $project->result_array();
-        if (!empty($project->result_array())) {
+        if ($project->result_array()) {
             $result['project_percent'] =  0.05;
         }else{
             $result['project_percent'] = 0;
@@ -312,6 +325,17 @@ class Student_Model extends CI_Model{
             return false;
         }
         return true;   
+    }
+
+    function get_array($table, $order_by='created_at', $order='asc'){
+        $this->db->order_by($order_by, $order); 
+        $query = $this->db->get($table);
+        return $query->result_array();
+    }
+
+    function get_last_row_array($table){
+        $query = $this->db->get($table);
+        return $query->last_row('array');
     }
 }
 

@@ -17,10 +17,10 @@
                             <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab"> <i class="icon-graduation font-26-xs"></i>Education </a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url(); ?>student/profile#tab_skills" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Skills</a>
@@ -194,28 +194,16 @@
                                                             <li>
                                                                 <h5 class="mb-2 font-weight-600 md-indigo-text">Language Proficiency</h5>
                                                             </li>
-                                                            <li>
-                                                                <h5 class=" roboto-font">
-                                                                    <b>Malay </b>
-                                                                    <small class="font-20-xs">[
-                                                                        <b>Spoken </b> : Advanced level ,
-                                                                        <b>Written </b>: intermediate level ] </small>
-                                                                </h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5 class=" roboto-font">
-                                                                    <b>English </b>
-                                                                    <small class="font-20-xs">[
-                                                                        <b>Spoken </b> : Advanced level ,
-                                                                        <b>Written </b>: intermediate level ] </small>
-                                                                </h5>
-                                                            </li>
-                                                            <h5 class=" roboto-font">
-                                                                <b>Chinese </b>
-                                                                <small class="font-20-xs">[
-                                                                    <b>Spoken </b> : Advanced level ,
-                                                                    <b>Written </b>: intermediate level ] </small>
-                                                            </h5>
+                                                            <?php foreach ($user_profile['language'] as $key => $value) { ?>
+                                                                <li>
+                                                                    <h5 class=" roboto-font">
+                                                                        <b><?php echo !empty($value['title']) ? $value['title'] : ''; ?> </b>
+                                                                        <small class="font-20-xs">[
+                                                                            <b>Spoken </b> : <?php echo !empty($value['spoken']) ? $value['spoken'] : ''; ?> level ,
+                                                                            <b>Written </b>: <?php echo !empty($value['written']) ? $value['written'] : ''; ?> level ] </small>
+                                                                    </h5>
+                                                                </li>
+                                                            <?php } ?>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -351,9 +339,9 @@
                                     <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"><?php echo ucfirst($value['university_name']); ?> </h4>
-                                    <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"><?php echo ucfirst($value['degree_name']);?></h5>
-                                    <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
+                                    <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['degree_name']);?></h4>
+                                    <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
+                                    <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
                                     <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['degree_description']);?>
                                     </p>
                                 </div>
@@ -586,7 +574,9 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php foreach($user_profile['experiences'] as $value){ ?>
+                            <?php foreach($user_profile['experiences'] as $value){  
+                                $description = $value['experiences_description'];
+                                $company_name = $value['experiences_company_name'];?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-exp"><i class="icon-pencil"></i></a>
@@ -610,77 +600,127 @@
                                 </div>
                                 <hr>
                                 <!-- Modal : Add / Edit Experience  -->
-                                <div class="modal fade in" id="modal_edit_experience_<?php echo $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content portlet light">
-                                            <div class="modal-header portlet-title">
-                                                <div class="caption">
-                                                    <span class="caption-subject text-capitalize font-weight-500">Edit Experience</span>
-                                                    <!-- <span class="caption-helper">add about your education info</span> -->
-                                                </div>
-                                                <div class="actions py-4">
-                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                                                </div>
+                                    <div class="modal fade in" id="modal_edit_experience_<?php echo $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content portlet light">
+                                                <div class="modal-header portlet-title">
+                                                    <div class="caption">
+                                                        <span class="caption-subject text-capitalize font-weight-500">Edit Experience</span>
+                                                        <!-- <span class="caption-helper">add about your education info</span> -->
+                                                    </div>
+                                                    <div class="actions py-4">
+                                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                                    </div>
 
-                                            </div>
-                                            <form action="<?php echo base_url();?>student/profile/edit_experience" method="POST" class="form form-horizontal">
+                                                </div>
+                                                <form action="<?php echo base_url();?>student/profile/edit_experience" method="POST" class="form form-horizontal">
                                                 <input type="hidden" name="experience_id" value="<?php echo $value['experience_id']?>"></input>
-                                                <div class="modal-body portlet-body ">
-                                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 281.25px;"><div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 281.25px;">
-                                                        <!-- Job Post Name -->
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Job Post</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept" value="<?php echo ucfirst($value['experiences_title']);?>">
-                                                                <span class="help-block small" required> Add your current status career info </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <!-- Description -->
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Description</label>
-                                                            <div class="col-md-9">
-                                                                <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"><?php echo ucfirst($value['experiences_description']);?></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <!-- TIme Period  -->
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Time Period</label>
-                                                            <div class="col-md-9  ">
-                                                                <div class="m-grid ">
-                                                                    <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker-start " size="16" type="text" name="start_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_start_date']));?>" placeholder="From year" id="StartDate3">
-                                                                        <!-- <span class="help-block"> Select date </span> -->
-                                                                    </div>
-                                                                    <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                                        <span class="help-block"> to </span>
-                                                                    </div>
-                                                                    <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
-                                                                        <span class="help-block md-checkbox has-warning"> 
-                                                                            <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
-                                                                            <label for="edit_exp">
-                                                                                <span></span>
-                                                                        <span class="check"></span>
-                                                                        <span class="box"></span> Currently still working?
-                                                                        </label>
-                                                                        </span>
+                                                    <div class="modal-body portlet-body ">
+                                                        <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- Job Post & Time Period -->
+                                                            <div class="row ">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label">Job Post</label>
+                                                                        <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept" value="<?php echo ucfirst($value['experiences_title']);?>">
+                                                                        <span class="help-block small"> Add your current status career info </span>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col-md-6">
+                                                                    <!-- TIme Period  -->
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label ">Time Period</label>
 
+                                                                        <div class="m-grid ">
+                                                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                                                <input class="form-control form-control-inline date-picker-start " size="16" type="text" name="start_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_start_date']));?>" placeholder="From year" id="StartDate3">
+                                                                            </div>
+                                                                            <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                                                <span class="help-block"> to </span>
+                                                                            </div>
+                                                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                                                <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
+                                                                                <span class="help-block md-checkbox has-warning mb-0">
+                                                                                    <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                                    <label for="checkbox21">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span>
+                                                                                        <small> Currently still working?</small>
+                                                                                    </label>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                            <!-- Job Post & Time Period -->
+                                                            <div class="row ">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label">Company Name</label>
+                                                                        <input type="text" class="form-control " placeholder="Company #1 Sdn Bhd" value="<?php echo !empty($value['experiences_company_name']) ? $value['experiences_company_name'] : ''?>">
+                                                                        <!-- <span class="help-block small"> Add your current status career info </span> -->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <!-- Job Employement Type  / Industry -->
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group mx-0 mb-0">
+                                                                                <label class="control-label ">Employement Type</label>
+                                                                                <select class="bs-select form-control">
+                                                                                    <?php foreach ($employment_types as $key => $value) {?>
+                                                                                        <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                                                    <?php } ?>
+                                                                                </select>
+                                                                                <span class="help-block small"> Previous employement type </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            <div class="form-group mx-0 mb-0">
+                                                                                <label class="control-label ">Industry</label>
+                                                                                <select class="bs-select form-control   ">
+                                                                                    <option value="" selected disabled>Company Industry </option>
+                                                                                    <?php foreach ($industries as $key => $value) {?>
+                                                                                        <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                                                    <?php } ?>
+                                                                                </select>
+                                                                                <span class="help-block small"> Add your company industries </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row ">
+                                                                <div class="col-md-6">
+                                                                    <!-- Description -->
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label ">Description</label>
+                                                                        <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"><?php echo ucfirst($description);?></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <!-- Skill Earned -->
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label">Skill Earned</label>
+                                                                        <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+                                                                        <span class="help-block small"> Press "Enter" to add tag </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
-
-
-                                                    </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                                    </div>
                                                     <div class="modal-footer form-actions ">
                                                         <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
                                                     </div>
-                                            
-                                            </div></form>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -1113,222 +1153,43 @@
                                                 <div class="form-group mx-0">
                                                     <div class="mt-repeater">
                                                         <div data-repeater-list="group-b">
-                                                            <div data-repeater-item class=" row mt-2">
+                                                            <?php foreach ($user_profile['language'] as $user_language_key => $user_language_value) {?>
+                                                                <div data-repeater-item class=" row mt-2">
+                                                                    <input type="hidden" name="language_id" value="<?php echo $user_language_value['id'] ?>"></input>
+                                                                    <div class="col-md-4">
+                                                                        <label for="" class="control-label"> Language</label>
+                                                                        <select class="bs-select form-control " name="name">
+                                                                        <?php foreach ($language as $key => $value) { ?>
+                                                                            <option <?php echo $user_language_value['title'] == $value['name'] ? 'selected' : '' ?>><?php echo $value['name']; ?></option>
+                                                                        <?php } ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label for="" class="control-label"> Written</label>
+                                                                        <select class="bs-select form-control" name="written">
+                                                                            <option>Select level </option>
+                                                                            <option <?php echo $user_language_value['written'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                                            <option <?php echo $user_language_value['written'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                                            <option <?php echo $user_language_value['written'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label for="" class="control-label"> Spoken</label>
+                                                                        <select class="bs-select form-control" name="spoken">
+                                                                            <option>Select level </option>
+                                                                            <option <?php echo $user_language_value['spoken'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                                            <option <?php echo $user_language_value['spoken'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                                            <option <?php echo $user_language_value['spoken'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-2 vertical-middle py-3">
+                                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
+                                                                            <i class="fa fa-close"></i> remove
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            <?php } ?>
 
-                                                                <div class="col-md-4">
-                                                                    <label for="" class="control-label"> Language</label>
-                                                                    <select class="bs-select form-control ">
-                                                                        <option>Afar</option>
-                                                                        <option>Abkhazian</option>
-                                                                        <option>Afrikaans</option>
-                                                                        <option>Akan</option>
-                                                                        <option>Albanian</option>
-                                                                        <option>Amharic</option>
-                                                                        <option>Arabic</option>
-                                                                        <option>Aragonese</option>
-                                                                        <option>Armenian</option>
-                                                                        <option>Assamese</option>
-                                                                        <option>Avaric</option>
-                                                                        <option>Avestan</option>
-                                                                        <option>Aymara</option>
-                                                                        <option>Azerbaijani</option>
-                                                                        <option>Bashkir</option>
-                                                                        <option>Bambara</option>
-                                                                        <option>Belarusian</option>
-                                                                        <option>Basque</option>
-                                                                        <option>Bengali</option>
-                                                                        <option>Bihari languages</option>
-                                                                        <option>Bislama</option>
-                                                                        <option>Bosnian</option>
-                                                                        <option>Breton</option>
-                                                                        <option>Bulgarian</option>
-                                                                        <option>Burmese</option>
-                                                                        <option>Catalan; Valencian</option>
-                                                                        <option>Chamorro</option>
-                                                                        <option>Chechen</option>
-                                                                        <option>Chinese</option>
-                                                                        <option>Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic
-                                                                        </option>
-                                                                        <option>Chuvash</option>
-                                                                        <option>Cornish</option>
-                                                                        <option>Corsican</option>
-                                                                        <option>Cree</option>
-                                                                        <option>Czech</option>
-                                                                        <option>Danish</option>
-                                                                        <option>Divehi; Dhivehi; Maldivian</option>
-                                                                        <option>Dutch; Flemish</option>
-                                                                        <option>Dzongkha</option>
-                                                                        <option>English</option>
-                                                                        <option>Esperanto</option>
-                                                                        <option>Estonian</option>
-                                                                        <option>Ewe</option>
-                                                                        <option>Faroese</option>
-                                                                        <option>Fijian</option>
-                                                                        <option>Finnish</option>
-                                                                        <option>French</option>
-                                                                        <option>Western Frisian</option>
-                                                                        <option>Fulah</option>
-                                                                        <option>Georgian</option>
-                                                                        <option>German</option>
-                                                                        <option>Gaelic; Scottish Gaelic</option>
-                                                                        <option>Irish</option>
-                                                                        <option>Galician</option>
-                                                                        <option>Manx</option>
-                                                                        <option>Greek, Modern (-)</option>
-                                                                        <option>Guarani</option>
-                                                                        <option>Gujarati</option>
-                                                                        <option>Haitian; Haitian Creole</option>
-                                                                        <option>Hausa</option>
-                                                                        <option>Hebrew</option>
-                                                                        <option>Herero</option>
-                                                                        <option>Hindi</option>
-                                                                        <option>Hiri Motu</option>
-                                                                        <option>Croatian</option>
-                                                                        <option>Hungarian</option>
-                                                                        <option>Igbo</option>
-                                                                        <option>Icelandic</option>
-                                                                        <option>Ido</option>
-                                                                        <option>Sichuan Yi; Nuosu</option>
-                                                                        <option>Inuktitut</option>
-                                                                        <option>Interlingue; Occidental</option>
-                                                                        <option>Interlingua (International Auxiliary Language Association)</option>
-                                                                        <option>Indonesian</option>
-                                                                        <option>Inupiaq</option>
-                                                                        <option>Italian</option>
-                                                                        <option>Javanese</option>
-                                                                        <option>Japanese</option>
-                                                                        <option>Kalaallisut; Greenlandic</option>
-                                                                        <option>Kannada</option>
-                                                                        <option>Kashmiri</option>
-                                                                        <option>Kanuri</option>
-                                                                        <option>Kazakh</option>
-                                                                        <option>Central Khmer</option>
-                                                                        <option>Kikuyu; Gikuyu</option>
-                                                                        <option>Kinyarwanda</option>
-                                                                        <option>Kirghiz; Kyrgyz</option>
-                                                                        <option>Komi</option>
-                                                                        <option>Kongo</option>
-                                                                        <option>Korean</option>
-                                                                        <option>Kuanyama; Kwanyama</option>
-                                                                        <option>Kurdish</option>
-                                                                        <option>Lao</option>
-                                                                        <option>Latin</option>
-                                                                        <option>Latvian</option>
-                                                                        <option>Limburgan; Limburger; Limburgish</option>
-                                                                        <option>Lingala</option>
-                                                                        <option>Lithuanian</option>
-                                                                        <option>Luxembourgish; Letzeburgesch</option>
-                                                                        <option>Luba-Katanga</option>
-                                                                        <option>Ganda</option>
-                                                                        <option>Macedonian</option>
-                                                                        <option>Marshallese</option>
-                                                                        <option>Malayalam</option>
-                                                                        <option>Maori</option>
-                                                                        <option>Marathi</option>
-                                                                        <option>Malay</option>
-                                                                        <option>Malagasy</option>
-                                                                        <option>Maltese</option>
-                                                                        <option>Mongolian</option>
-                                                                        <option>Nauru</option>
-                                                                        <option>Navajo; Navaho</option>
-                                                                        <option>Ndebele, South; South Ndebele</option>
-                                                                        <option>Ndebele, North; North Ndebele</option>
-                                                                        <option>Ndonga</option>
-                                                                        <option>Nepali</option>
-                                                                        <option>Norwegian Nynorsk; Nynorsk, Norwegian</option>
-                                                                        <option>Bokmål, Norwegian; Norwegian Bokmål</option>
-                                                                        <option>Norwegian</option>
-                                                                        <option>Chichewa; Chewa; Nyanja</option>
-                                                                        <option>Occitan (post ); Provençal</option>
-                                                                        <option>Ojibwa</option>
-                                                                        <option>Oriya</option>
-                                                                        <option>Oromo</option>
-                                                                        <option>Ossetian; Ossetic</option>
-                                                                        <option>Panjabi; Punjabi</option>
-                                                                        <option>Persian</option>
-                                                                        <option>Pali</option>
-                                                                        <option>Polish</option>
-                                                                        <option>Portuguese</option>
-                                                                        <option>Pushto; Pashto</option>
-                                                                        <option>Quechua</option>
-                                                                        <option>Romansh</option>
-                                                                        <option>Romanian; Moldavian; Moldovan</option>
-                                                                        <option>Rundi</option>
-                                                                        <option>Russian</option>
-                                                                        <option>Sango</option>
-                                                                        <option>Sanskrit</option>
-                                                                        <option>Sinhala; Sinhalese</option>
-                                                                        <option>Slovak</option>
-                                                                        <option>Slovenian</option>
-                                                                        <option>Northern Sami</option>
-                                                                        <option>Samoan</option>
-                                                                        <option>Shona</option>
-                                                                        <option>Sindhi</option>
-                                                                        <option>Somali</option>
-                                                                        <option>Sotho, Southern</option>
-                                                                        <option>Spanish; Castilian</option>
-                                                                        <option>Sardinian</option>
-                                                                        <option>Serbian</option>
-                                                                        <option>Swati</option>
-                                                                        <option>Sundanese</option>
-                                                                        <option>Swahili</option>
-                                                                        <option>Swedish</option>
-                                                                        <option>Tahitian</option>
-                                                                        <option>Tamil</option>
-                                                                        <option>Tatar</option>
-                                                                        <option>Telugu</option>
-                                                                        <option>Tajik</option>
-                                                                        <option>Tagalog</option>
-                                                                        <option>Thai</option>
-                                                                        <option>Tibetan</option>
-                                                                        <option>Tigrinya</option>
-                                                                        <option>Tonga (Tonga Islands)</option>
-                                                                        <option>Tswana</option>
-                                                                        <option>Tsonga</option>
-                                                                        <option>Turkmen</option>
-                                                                        <option>Turkish</option>
-                                                                        <option>Twi</option>
-                                                                        <option>Uighur; Uyghur</option>
-                                                                        <option>Ukrainian</option>
-                                                                        <option>Urdu</option>
-                                                                        <option>Uzbek</option>
-                                                                        <option>Venda</option>
-                                                                        <option>Vietnamese</option>
-                                                                        <option>Volapük</option>
-                                                                        <option>Welsh</option>
-                                                                        <option>Walloon</option>
-                                                                        <option>Wolof</option>
-                                                                        <option>Xhosa</option>
-                                                                        <option>Yiddish</option>
-                                                                        <option>Yoruba</option>
-                                                                        <option>Zhuang; Chuang</option>
-                                                                        <option>Zulu</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <label for="" class="control-label"> Written</label>
-                                                                    <select class="bs-select form-control">
-                                                                        <option>Select level </option>
-                                                                        <option>Beginner</option>
-                                                                        <option>Intermediate</option>
-                                                                        <option>Advanced</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <label for="" class="control-label"> Spoken</label>
-                                                                    <select class="bs-select form-control">
-                                                                        <option>Select level </option>
-                                                                        <option>Beginner</option>
-                                                                        <option>Intermediate</option>
-                                                                        <option>Advanced</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-md-2 vertical-middle py-3">
-                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
-                                                                        <i class="fa fa-close"></i> remove
-                                                                    </a>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                         <hr>
                                                         <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-2 pull-right ">
