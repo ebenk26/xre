@@ -187,26 +187,7 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <!-- Language Profieciency -->
-                                                <div class="m-grid">
-                                                    <div class="m-grid-col">
-                                                        <ul class="list-unstyled">
-                                                            <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Proficiency</h5>
-                                                            </li>
-                                                            <?php foreach ($user_profile['language'] as $key => $value) { ?>
-                                                                <li>
-                                                                    <h5 class=" roboto-font">
-                                                                        <b><?php echo !empty($value['title']) ? $value['title'] : ''; ?> </b>
-                                                                        <small class="font-20-xs">[
-                                                                            <b>Spoken </b> : <?php echo !empty($value['spoken']) ? $value['spoken'] : ''; ?> level ,
-                                                                            <b>Written </b>: <?php echo !empty($value['written']) ? $value['written'] : ''; ?> level ] </small>
-                                                                    </h5>
-                                                                </li>
-                                                            <?php } ?>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                             <div class="m-grid-col m-grid-col-md-6 p-2">
                                                 <!-- Salary Expectation -->
@@ -700,16 +681,13 @@
                                                                         <label class="control-label ">Description</label>
                                                                         <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"><?php echo ucfirst($description);?></textarea>
                                                                     </div>
-                                                                    <div class="m-grid-col m-grid-col-xs-6">
-                                                                        <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
-                                                                        <span class="help-block md-checkbox has-warning"> 
-                                                                            <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
-                                                                            <label for="edit_exp">
-                                                                                <span></span>
-                                                                        <span class="check"></span>
-                                                                        <span class="box"></span> Currently still working?
-                                                                        </label>
-                                                                        </span>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <!-- Skill Earned -->
+                                                                    <div class="form-group mx-0 mb-0">
+                                                                        <label class="control-label">Skill Earned</label>
+                                                                        <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+                                                                        <span class="help-block small"> Press "Enter" to add tag </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -852,128 +830,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="modal-footer form-actions ">
-                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            <?php foreach($user_profile['skills'] as $value){?>
-                                <div class="media">
-                                    <div class="pull-right my-4 ">
-                                        <a href="<?php echo base_url();?>student/profile#modal_edit_skills_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="skills-btn"><i class="icon-pencil"></i></a>
-                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_skill_set"> <i class="icon-trash"></i></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?> </h4>
-                                        <!-- <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> 1 September 2013 - 22 February 2017</h6> -->
-                                        <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['description']);?>
-                                        </p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="modal fade in" id="modal_edit_skills_<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content portlet light">
-                                            <div class="modal-header portlet-title">
-                                                <div class="caption">
-                                                    <span class="caption-subject text-capitalize font-weight-500">Edit Skill</span>
-                                                    <!-- <span class="caption-helper">add about your education info</span> -->
-                                                </div>
-                                                <div class="actions py-4">
-                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                                                </div>
-
-                                            </div>
-                                            <form action="<?php echo base_url();?>student/profile/edit_skills" class="form form-horizontal" method="POST">
-                                            <input type="hidden" name="skills_id" value="<?php echo $value['id'];?>">
-                                                <div class="modal-body portlet-body ">
-                                                    <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">Skill name</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name" value="<?php echo $value['title'] ?>" required> </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">Skill Description</label>
-                                                        <div class="col-md-9">
-                                                            <textarea class="form-control" rows="3" placeholder="It&#39;s delicious!!" name="skill_description"><?php echo $value['description'] ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">Level</label>
-                                                        <div class="col-md-9">
-                                                            <select class="bs-select form-control" name="skill_level">
-                                                                <option disabled>Select level</option>
-                                                                <option <?php echo ($value['level'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
-                                                                <option <?php echo ($value['level'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
-                                                                <option <?php echo ($value['level'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- </div> -->
-                                                </div>
-
-                                                <div class="modal-footer form-actions ">
-                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            <?php foreach($user_profile['language'] as $value){?>
-                                <div class="media">
-                                    <div class="pull-right my-4 ">
-                                        <a href="<?php echo base_url();?>student/profile#modal_edit_language_<?php echo $value['id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only" id="language-btn"><i class="icon-pencil"></i></a>
-                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_language_set"> <i class="icon-trash"></i></a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['title']);?></h4>
-                                        <p class="roboto-font mb-0 multiline-truncate"><?php echo ucfirst($value['profieciency']);?></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="modal fade in" id="modal_edit_language_<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content portlet light">
-                                            <div class="modal-header portlet-title">
-                                                <div class="caption">
-                                                    <span class="caption-subject text-capitalize font-weight-500">Add Skill</span>
-                                                    <!-- <span class="caption-helper">add about your education info</span> -->
-                                                </div>
-                                                <div class="actions py-4">
-                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                                                </div>
-
-                                            </div>
-                                            <form action="<?php echo base_url();?>student/profile/edit_language" class="form form-horizontal" method="POST">
-                                            <input type="hidden" name="language_id" value="<?php echo $value['id'];?>">
-                                                <div class="modal-body portlet-body ">
-                                                    <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">Language</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" placeholder="English" class="form-control" name="language" value="<?php echo $value['title'] ?>" required> </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="col-md-3 control-label">Profieciency</label>
-                                                        <div class="col-md-9">
-                                                            <select class="bs-select form-control" name="profieciency">
-                                                                <option disabled>Select level</option>
-                                                                <option <?php echo ($value['profieciency'] == 'Beginner') ? 'selected' : '' ?> >Beginner</option>
-                                                                <option <?php echo ($value['profieciency'] == 'Intermediate') ? 'selected' : '' ?>>Intermediate</option>
-                                                                <option <?php echo ($value['profieciency'] == 'Expert') ? 'selected' : '' ?>>Expert</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- </div> -->
                                                 </div>
 
                                                 <div class="modal-footer form-actions ">
