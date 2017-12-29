@@ -170,14 +170,23 @@ class Profile extends CI_Controller {
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
-                                'user_id' => $this->session->userdata('id')
+                                'user_id' => $this->session->userdata('id'),
+                                'company_name' => $this->input->post('company_name'),
+                                'employment_type_id' => $this->input->post('employment_type'),
+                                'industries_id' => $this->input->post('industry'),
+                                'created_at' => date('Y-m-d H:i:s')
                                 );
         }else{
             $experience = array('title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
-                                'user_id' => $this->session->userdata('id')
+                                'user_id' => $this->session->userdata('id'),
+                                'company_name' => $this->input->post('company_name'),
+                                'employment_type_id' => $this->input->post('employment_type'),
+                                'skills' => $this->input->post('skills'),
+                                'industries_id' => $this->input->post('industry'),
+                                'created_at' => date('Y-m-d H:i:s')
                                 );
         }
             $table = 'experiences';
@@ -190,19 +199,27 @@ class Profile extends CI_Controller {
     public function edit_experience(){
         if ($this->input->post('current_date') == 'on') {
             $experience = array('id' => $this->input->post('experience_id'),
-                                'user_id' => $this->session->userdata('id'),
                                 'title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
-                                'end_date'=> '0000-00-00'
+                                'end_date'=> '0000-00-00',
+                                'user_id' => $this->session->userdata('id'),
+                                'company_name' => $this->input->post('company_name'),
+                                'employment_type_id' => $this->input->post('employment_type'),
+                                'industries_id' => $this->input->post('industry'),
+                                'updated_at' => date('Y-m-d H:i:s')
                                 );
         }else{
             $experience = array('id' => $this->input->post('experience_id'),
-                                'user_id' => $this->session->userdata('id'),
-                                'title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
-                                'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date')))
+                                'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                'user_id' => $this->session->userdata('id'),
+                                'company_name' => $this->input->post('company_name'),
+                                'employment_type_id' => $this->input->post('employment_type'),
+                                'skills' => $this->input->post('skills'),
+                                'industries_id' => $this->input->post('industry'),
+                                'updated_at' => date('Y-m-d H:i:s')
                                 );
         }
         $table = 'experiences';
@@ -302,19 +319,26 @@ class Profile extends CI_Controller {
     }
 
     public function add_project(){
-            
-        $i = 0;
-        foreach ($this->input->post('group-b') as $key => $value) {
-            $skills[$i] = $value['skills'];
-            $i++;
-        }
-        $skills_acquired = implode(',', $skills);
-        $project_name = array('name' => $this->input->post('project_name'),
-                                'description' => $this->input->post('project_description'),
-                                'skills_acquired' => $skills_acquired,
-                                'created_at' => date('Y-m-d H:i:s'),
-                                'user_id' => $this->session->userdata('id')
+        
+        if ($this->input->post('current_date') == 'on') {
+            $project_name = array('name' => $this->input->post('project_name'),
+                                    'description' => $this->input->post('project_description'),
+                                    'skills_acquired' => $this->input->post('skills'),
+                                    'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                    'end_date' => '0000-00-00',
+                                    'created_at' => date('Y-m-d H:i:s'),
+                                    'user_id' => $this->session->userdata('id')
                                 );
+        }else{
+            $project_name = array('name' => $this->input->post('project_name'),
+                                    'description' => $this->input->post('project_description'),
+                                    'skills_acquired' => $this->input->post('skills'),
+                                    'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                    'end_date' => date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                    'created_at' => date('Y-m-d H:i:s'),
+                                    'user_id' => $this->session->userdata('id')
+                                );
+        }
         $table = 'user_projects';
         $result = $this->student_model->add($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
@@ -322,19 +346,25 @@ class Profile extends CI_Controller {
     }
 
     public function edit_project(){
-
-        $i = 0;
-        foreach ($this->input->post('group-b') as $key => $value) {
-            $skills[$i] = $value['skills'];
-            $i++;
+        if ($this->input->post('current_date') == 'on') {
+            $project_name = array('name' => $this->input->post('project_name'),
+                                    'description' => $this->input->post('project_description'),
+                                    'skills_acquired' => $this->input->post('skills'),
+                                    'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                    'end_date' => '0000-00-00',
+                                    'edited_at' => date('Y-m-d H:i:s'),
+                                    'user_id' => $this->session->userdata('id'),
+                                    'id' => $this->input->post('project_id'));
+        }else{
+            $project_name = array('name' => $this->input->post('project_name'),
+                                    'description' => $this->input->post('project_description'),
+                                    'skills_acquired' => $this->input->post('skills'),
+                                    'start_date' => date('Y-m-d',strtotime($this->input->post('start_date'))),
+                                    'end_date' => date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                    'edited_at' => date('Y-m-d H:i:s'),
+                                    'user_id' => $this->session->userdata('id'),
+                                    'id' => $this->input->post('project_id'));
         }
-        $skills_acquired =implode(',', $skills);
-        $project_name = array('name' => $this->input->post('project_name'),
-                                'description' => $this->input->post('project_description'),
-                                'skills_acquired' => $skills_acquired,
-                                'edited_at' => date('Y-m-d H:i:s'),
-                                'user_id' => $this->session->userdata('id'),
-                                'id' => $this->input->post('project_id'));
         $table = 'user_projects';
         $result = $this->student_model->update($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');

@@ -97,6 +97,7 @@
             
             $(".date-picker-end").datepicker({
                 format:'dd-mm-yyyy',
+                autoclose: true,
             }).on('changeDate', function (selected) {
                     var minDate = new Date(selected.date.valueOf());
                     $('.date-picker-start').datepicker('setEndDate', minDate);
@@ -106,62 +107,62 @@
                 $('#radio1003').attr('checked', 'checked');
             });
         
-            $('.btn-add-edu').click(function(){
-                $('.input-date-picker-end').removeAttr( "disabled" );
-                $('.md-check-edu-add').change(function(){
-                    if(this.checked) {
-                        $('.input-date-picker-end').prop( "disabled", true );
-                    }else{
-                        $('.input-date-picker-end').removeAttr( "disabled" );
-                    }
-                });
-            });
+            // $('.btn-add-edu').click(function(){
+            //     $('.input-date-picker-end').removeAttr( "disabled" );
+            //     $('.md-check-edu-add').change(function(){
+            //         if(this.checked) {
+            //             $('.input-date-picker-end').prop( "disabled", true );
+            //         }else{
+            //             $('.input-date-picker-end').removeAttr( "disabled" );
+            //         }
+            //     });
+            // });
 
-            $('.btn-edit-edu').click(function(){
-                var id = $(this).attr('edu-val');
-                console.log($('.md-check-edu-end').prop('checked'));
-                if ($('.md-check-edu-end').prop('checked')) {
-                    $('.date-picker-end').prop( "disabled", true );
-                }else{
-                    $('.date-picker-end').removeAttr( "disabled" );
-                }
+            // $('.btn-edit-edu').click(function(){
+            //     var id = $(this).attr('edu-val');
+            //     console.log($('.md-check-edu-end').prop('checked'));
+            //     if ($('.md-check-edu-end').prop('checked')) {
+            //         $('.date-picker-end').prop( "disabled", true );
+            //     }else{
+            //         $('.date-picker-end').removeAttr( "disabled" );
+            //     }
 
-                $('.md-check-edu-end').change(function(){
-                    if(this.checked) {
-                        $('.date-picker-end').prop( "disabled", true );
-                    }else{
-                        $('.date-picker-end').removeAttr( "disabled" );
-                    }
-                });
-            });
+            //     $('.md-check-edu-end').change(function(){
+            //         if(this.checked) {
+            //             $('.date-picker-end').prop( "disabled", true );
+            //         }else{
+            //             $('.date-picker-end').removeAttr( "disabled" );
+            //         }
+            //     });
+            // });
 
-            $('.btn-add-exp').click(function(){
-                $('.exp-add-date-picker-end').removeAttr( "disabled" );
-                $('.md-check-add-experience').change(function(){
-                    if(this.checked) {
-                        $('.exp-add-date-picker-end').prop( "disabled", true );
-                    }else{
-                        $('.exp-add-date-picker-end').removeAttr( "disabled" );
-                    }
-                });
-            });
+            // $('.btn-add-exp').click(function(){
+            //     $('.exp-add-date-picker-end').removeAttr( "disabled" );
+            //     $('.md-check-add-experience').change(function(){
+            //         if(this.checked) {
+            //             $('.exp-add-date-picker-end').prop( "disabled", true );
+            //         }else{
+            //             $('.exp-add-date-picker-end').removeAttr( "disabled" );
+            //         }
+            //     });
+            // });
 
-            $('.btn-edit-exp').click(function(){
-                var id = $(this).attr('edu-val');
-                if ($('.md-check-exp-end').prop('checked')) {
-                    $('.date-picker-end-exp').prop( "disabled", true );
-                }else{
-                    $('.date-picker-end-exp').removeAttr( "disabled" );
-                }
+            // $('.btn-edit-exp').click(function(){
+            //     var id = $(this).attr('edu-val');
+            //     if ($('.md-check-exp-end').prop('checked')) {
+            //         $('.date-picker-end-exp').prop( "disabled", true );
+            //     }else{
+            //         $('.date-picker-end-exp').removeAttr( "disabled" );
+            //     }
 
-                $('.md-check-exp-end').change(function(){
-                    if(this.checked) {
-                        $('.date-picker-end-exp').prop( "disabled", true );
-                    }else{
-                        $('.date-picker-end-exp').removeAttr( "disabled" );
-                    }
-                });
-            });
+            //     $('.md-check-exp-end').change(function(){
+            //         if(this.checked) {
+            //             $('.date-picker-end-exp').prop( "disabled", true );
+            //         }else{
+            //             $('.date-picker-end-exp').removeAttr( "disabled" );
+            //         }
+            //     });
+            // });
             
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);

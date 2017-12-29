@@ -23,7 +23,7 @@
                             <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url(); ?>student/profile#tab_skills" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Skills</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Project</a>
                         </li>
                         <!-- <li>
                                             <a href="#tab_privacy" data-toggle="tab"><i class="icon-lock font-26-xs"></i> Privacy</a>
@@ -555,32 +555,46 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php foreach($user_profile['experiences'] as $value){  
+                            <?php $i=1; foreach($user_profile['experiences'] as $value){  
                                 $description = $value['experiences_description'];
                                 $company_name = $value['experiences_company_name'];?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
-                                        <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-exp"><i class="icon-pencil"></i></a>
-                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences"><i class="icon-trash"></i></a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only ">
+                                            <i class="icon-pencil"></i>
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
+                                            <i class="icon-trash"></i>
+                                        </a>
                                     </div>
                                     <div class="media-body">
-                                        <div class="m-grid">
-                                            <div class="m-grid-col m-grid-col-xs-8">
-                                                <h4 class="font-weight-700 mb-1 "> <?php echo ucfirst($value['experiences_title']);?> </h4>
-                                            </div>
-                                            <div class="m-grid-col m-grid-col-xs-4 m-grid-col-right m-grid-col-middle">
-                                                <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['experiences_end_date']));?></h6>
-                                            </div>
-
-                                        </div>
-                                        <h5 class="font-weight-500 font-22-xs font-24-md my-2 roboto-font"><?php echo ucfirst($value['experiences_company_name']);?></h5>
-                                        <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['experiences_description']);?>
+                                        <h4 class="font-weight-600 letter-space-xs mb-1 "> <?php echo ucfirst($value['experiences_title']);?>
+                                            <!-- <small>[ September 2016 - Feb 2017]</small> -->
+                                        </h4>
+                                        <h5 class="font-weight-400 font-26-xs  mb-1 roboto-font">
+                                            <i class="fa fa-building-o mr-2 "></i><?php echo ucfirst($value['experiences_company_name']);?></h5>
+                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs mb-1">
+                                            <i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['experiences_end_date']));?></h6>
+                                        <h6>
+                                            <span class="badge badge-roundless badge-md-teal letter-space-sm font-weight-500"> <?php echo !empty($value['employment_type']) ? $value['employment_type'] : 'Please Choose from the form'; ?></span>
+                                            <span class="badge badge-roundless badge-important letter-space-sm font-weight-500"> <?php echo !empty($value['industry_name']) ? $value['industry_name'] : 'Please Choose from the form'; ?></span>
+                                        </h6>
+                                        <p class="roboto-font mb-1 multiline-truncate"> <?php echo ucfirst($value['experiences_description']);?>
                                         </p>
+                                        <p class="font-weight-600 text-uppercase mb-1">Skill Earned</p>
+                                        <ul class="list-unstyled list-inline ml-0">
+                                            <?php 
+                                            if ($value['skills']) {
+                                                $skill = explode(',', $value['skills']);
+                                                foreach ($skill as $key => $skill_value) {?>
+                                                <li class="label label-md-shades darkblue font-18-xs"> <?php echo $skill_value; ?> </li>
+                                            <?php }}else{echo '';} ?>
+                                        </ul>
 
                                     </div>
                                 </div>
                                 <hr>
-                                <!-- Modal : Add / Edit Experience  -->
+                                <!-- Modal : Edit Experience  -->
                                     <div class="modal fade in" id="modal_edit_experience_<?php echo $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content portlet light">
@@ -622,8 +636,8 @@
                                                                             <div class="m-grid-col m-grid-col-xs-6">
                                                                                 <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
                                                                                 <span class="help-block md-checkbox has-warning mb-0">
-                                                                                    <input type="checkbox" id="edit_exp" class="md-check md-check-exp-end" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
-                                                                                    <label for="checkbox21">
+                                                                                    <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                                    <label for="checkbox<?php echo $i; ?>">
                                                                                         <span></span>
                                                                                         <span class="check"></span>
                                                                                         <span class="box"></span>
@@ -641,7 +655,7 @@
                                                                 <div class="col-md-6">
                                                                     <div class="form-group mx-0 mb-0">
                                                                         <label class="control-label">Company Name</label>
-                                                                        <input type="text" class="form-control " placeholder="Company #1 Sdn Bhd" value="<?php echo !empty($value['experiences_company_name']) ? $value['experiences_company_name'] : ''?>">
+                                                                        <input type="text" class="form-control " placeholder="Company #1 Sdn Bhd" name="company_name" value="<?php echo !empty($value['experiences_company_name']) ? $value['experiences_company_name'] : ''?>">
                                                                         <!-- <span class="help-block small"> Add your current status career info </span> -->
                                                                     </div>
                                                                 </div>
@@ -651,9 +665,9 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group mx-0 mb-0">
                                                                                 <label class="control-label ">Employement Type</label>
-                                                                                <select class="bs-select form-control">
-                                                                                    <?php foreach ($employment_types as $key => $value) {?>
-                                                                                        <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                                                <select class="bs-select form-control" name="employment_type">
+                                                                                    <?php foreach ($employment_types as $key => $employment_types_value) {?>
+                                                                                        <option value="<?php echo !empty($employment_types_value['id']) ? $employment_types_value['id'] : ''?>" <?php echo $value['employment_type_id'] == $employment_types_value['id'] ? 'selected' : '' ?>><?php echo !empty($employment_types_value['name']) ? $employment_types_value['name'] : ''?></option>
                                                                                     <?php } ?>
                                                                                 </select>
                                                                                 <span class="help-block small"> Previous employement type </span>
@@ -662,10 +676,10 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group mx-0 mb-0">
                                                                                 <label class="control-label ">Industry</label>
-                                                                                <select class="bs-select form-control   ">
+                                                                                <select class="bs-select form-control   " name="industry">
                                                                                     <option value="" selected disabled>Company Industry </option>
-                                                                                    <?php foreach ($industries as $key => $value) {?>
-                                                                                        <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                                                    <?php foreach ($industries as $key => $industry_value) {?>
+                                                                                        <option value="<?php echo !empty($industry_value['id']) ? $industry_value['id'] : ''?>" <?php echo $value['industries_id'] == $industry_value['id'] ? 'selected' : '' ?>><?php echo !empty($industry_value['name']) ? $industry_value['name'] : ''?></option>
                                                                                     <?php } ?>
                                                                                 </select>
                                                                                 <span class="help-block small"> Add your company industries </span>
@@ -686,8 +700,8 @@
                                                                     <!-- Skill Earned -->
                                                                     <div class="form-group mx-0 mb-0">
                                                                         <label class="control-label">Skill Earned</label>
-                                                                        <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
-                                                                        <span class="help-block small"> Press "Enter" to add tag </span>
+                                                                        <input type="text" class="form-control input-xlarge" value="<?php echo !empty($value['skills']) ? $value['skills'] : '' ?>" data-role="tagsinput" name="skills">
+                                                                        <span class="help-block small"> Press "Tab" to add tag </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -702,43 +716,25 @@
                                             </div>
                                         </div>
                                     </div>
-                            <?php } ?>
+                            <?php $i++; } ?>
                         </div>
                     </div>
                 </div>
-                <!-- Tab Content : Skills -->
-                <div class="tab-pane" id="tab_skills">
+                <!-- Tab Content : Project -->
+                <div class="tab-pane" id="tab_project">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
                                 <!-- <i class="icon-graduation font-green-sharp"></i> -->
-                                <span class="caption-subject font-weight-500  roboto-font ">Skills</span>
+                                <span class="caption-subject font-weight-500  roboto-font ">Project</span>
                                 <span class="caption-helper"> list out all your previous working experience(part time, intern or whatsoever you do by earning money)</span>
                             </div>
                             <div class="actions">
-                                <!-- <a href="#modal_add_skills" data-toggle="modal" class="btn btn-md-indigo "><i class="fa fa-plus"></i> Add</a> -->
-                                <div class="btn-group">
-                                    <a class="btn btn-md-indigo btn-circle" href="javascript:;" data-toggle="dropdown">
-                                                                                        <i class="fa fa-plus"></i> Add
-                                                                                        <i class="fa fa-angle-down"></i>
-                                                                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li>
-                                            <a href="#modal_add_project" data-toggle="modal">Project </a>
-                                        </li>
-                                        <li>
-                                            <a href="#modal_add_skill" data-toggle="modal">Skill </a>
-                                        </li>
-                                        <li>
-                                            <a href="#modal_add_language" data-toggle="modal">Language</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                                <a href="#modal_add_project" data-toggle="modal" class="btn btn-md-indigo "><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php foreach($user_profile['projects'] as $value){?>
+                            <?php $i=1; foreach($user_profile['projects'] as $value){?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
@@ -765,81 +761,91 @@
                                 </div>
                                 <hr>
                                 <!-- Modal : Edit Project -->
-                                <div class="modal fade in" id="modal_edit_project_<?php echo $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content portlet light">
-                                            <div class="modal-header portlet-title">
-                                                <div class="caption">
-                                                    <span class="caption-subject text-capitalize font-weight-500">Edit Project</span>
-                                                    <!-- <span class="caption-helper">add about your education info</span> -->
-                                                </div>
-                                                <div class="actions py-4">
-                                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                                                </div>
+                <div class="modal fade in" id="modal_edit_project_<?php echo $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content portlet light">
+                            <div class="modal-header portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject text-capitalize font-weight-500">Edit Project </span>
+                                    <span class="caption-helper">add about your skill info based by project you involved</span>
+                                </div>
+                                <div class="actions py-4">
+                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                                </div>
 
+                            </div>
+                            <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
+                                <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
+                                <div class="modal-body portlet-body ">
+                                    <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                        <!-- Job Post & Time Period -->
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label">Project Title</label>
+                                                    <input type="text" placeholder="A Can of Tuna" name="project_name" class="form-control" value="<?php echo ucfirst($value['name']); ?>" />
+                                                    <!-- <span class="help-block small"> Add your current status career info </span> -->
+                                                </div>
                                             </div>
-                                            <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
-                                                <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
-                                                <div class="modal-body portlet-body ">
-                                                    <div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Project name</label>
-                                                            <div class="col-md-9">
-                                                                <input type="text" placeholder="A Can of Tuna" name="project_name" class="form-control" value="<?php echo ucfirst($value['name']); ?>" /> </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Project Description</label>
-                                                            <div class="col-md-9">
-                                                                <textarea class="form-control" rows="3" name="project_description" placeholder="It's delicious!!"><?php echo ucfirst($value['description']); ?></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="col-md-3 control-label">Skill Acquired</label>
-                                                            <div class="col-md-9">
-                                                                <div class="mt-repeater">
-                                                                    <div data-repeater-list="group-b">
-                                                                        <?php $tag = explode(',', $value['skills_acquired']);
-                                                                            foreach ($tag as $tag_key => $tag_value) { ?>
-                                                                        <div data-repeater-item class="row mb-4">
-                                                                                <div class="col-md-10">
-                                                                                    <input type="text" placeholder="CSS" class="form-control" name="skills" value="<?php echo $tag_value ?>" />
-                                                                                </div>
-                                                                            <!-- <div class="col-md-5">
-                                                                                <select class="bs-select form-control">
-                                                                                            <option>Select level </option>
-                                                                                            <option>Beginner</option>
-                                                                                            <option>Intermediate</option>
-                                                                                            <option>Expert</option>
-                                                                                        </select>
-                                                                            </div> -->
-                                                                            <div class="col-md-2">
-                                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm my-0">
-                                                                                    <i class="fa fa-close"></i>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <?php } ?>
-                                                                    </div>
+                                            <div class="col-md-6">
+                                                <!-- TIme Period  -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label ">Time Period</label>
 
-                                                                    <hr>
-                                                                    <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-3">
-                                                                        <i class="fa fa-plus"></i> Add 
-                                                                    </a>
-
-                                                                </div>
-                                                            </div>
+                                                    <div class="m-grid ">
+                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date">
+                                                            <!-- <span class="help-block"> Select date </span> -->
+                                                        </div>
+                                                        <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                            <span class="help-block"> to </span>
+                                                        </div>
+                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date">
+                                                            <span class="help-block md-checkbox has-warning mb-0">
+                                                            <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
+                                                                <label for="checkbox<?php echo $i;?>">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    <small> Currently still working?</small>
+                                                                </label>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="modal-footer form-actions ">
-                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <!-- Description -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label ">Description</label>
+                                                    <textarea class="form-control autosizeme" name="project_description" rows="4" placeholder="Brief about yourproject progress ...."><?php echo ucfirst($value['description']); ?></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Skill Earned -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label">Skill Earned</label>
+                                                    <input type="text" class="form-control input-xlarge" value="<?php echo $value['skills_acquired']; ?>" data-role="tagsinput" name="skills">
+                                                    <span class="help-block small"> Press "Tab" to add tag </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
-                            <?php } ?>
+                                <div class="modal-footer form-actions ">
+                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                            <?php $i++;} ?>
                         </div>
                     </div>
                 </div>
@@ -1329,177 +1335,104 @@
                         </div>
                         <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
                             <div class="modal-body portlet-body ">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 281.25px;"><div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 281.25px;">
-                                    <!-- Job Post Name -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Job Post</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept">
-                                            <span class="help-block small"> Add your current status career info </span>
+                                <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <!-- Job Post & Time Period -->
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="form-group mx-0 mb-0">
+                                                <label class="control-label">Job Post</label>
+                                                <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title">
+                                                <span class="help-block small"> Add your current status career info </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- TIme Period  -->
+                                            <div class="form-group mx-0 mb-0">
+                                                <label class="control-label ">Time Period</label>
+
+                                                <div class="m-grid ">
+                                                    <div class="m-grid-col m-grid-col-xs-6">
+                                                        <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date">
+                                                        <!-- <span class="help-block"> Select date </span> -->
+                                                    </div>
+                                                    <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                        <span class="help-block"> to </span>
+                                                    </div>
+                                                    <div class="m-grid-col m-grid-col-xs-6">
+                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                        <span class="help-block md-checkbox has-warning"> 
+                                                            <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
+                                                            <label for="add_experience">
+                                                                <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> Currently still working?
+                                                        </label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <!-- Description -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Description</label>
-                                        <div class="col-md-9">
-                                            <textarea class="form-control autosizeme" name="description" rows="4" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;"></textarea>
+                                    <!-- Job Post & Time Period -->
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="form-group mx-0 mb-0">
+                                                <label class="control-label">Company Name</label>
+                                                <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd">
+                                                <!-- <span class="help-block small"> Add your current status career info </span> -->
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- TIme Period  -->
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Time Period</label>
-                                        <div class="col-md-9  ">
-                                            <div class="m-grid ">
-                                                <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker-start " name="start_date" size="16" type="text" value="" placeholder="From year">
-                                                    <!-- <span class="help-block"> Select date </span> -->
+                                        <div class="col-md-6">
+                                            <!-- Job Employement Type  / Industry -->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mx-0 mb-0">
+                                                        <label class="control-label ">Employement Type</label>
+                                                        <select class="bs-select form-control" name="employment_type">
+                                                            <?php foreach ($employment_types as $key => $value) {?>
+                                                                <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span class="help-block small"> Previous employement type </span>
+                                                    </div>
                                                 </div>
-                                                <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                    <span class="help-block"> to </span>
-                                                </div>
-                                                <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
-                                                    <span class="help-block md-checkbox has-warning"> 
-                                                        <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
-                                                        <label for="add_experience">
-                                                            <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> Currently still working?
-                                                    </label>
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-
-                                </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-                                <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                                </div>
-                        
-                        </div></form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal : Add / Edit Project -->
-                    <div class="modal fade in" id="modal_add_project" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content portlet light">
-                                <div class="modal-header portlet-title">
-                                    <div class="caption">
-                                        <span class="caption-subject text-capitalize font-weight-500">Add Project</span>
-                                        <!-- <span class="caption-helper">add about your education info</span> -->
-                                    </div>
-                                    <div class="actions py-4">
-                                        <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                                    </div>
-
-                                </div>
-                                <form action="<?php echo base_url();?>student/profile/add_project" method="POST" class="form form-horizontal">
-                                    <div class="modal-body portlet-body ">
-                                        <div class="scroller mt-height-450-xs" data-always-visible="1" data-rail-visible1="1">
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label">Project name</label>
-                                                <div class="col-md-9">
-                                                    <input type="text" placeholder="A Can of Tuna" name="project_name" class="form-control" /> </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label">Project Description</label>
-                                                <div class="col-md-9">
-                                                    <textarea class="form-control" rows="3" name="project_description" placeholder="It's delicious!!"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label">Skill Acquired</label>
-                                                <div class="col-md-9">
-                                                    <div class="mt-repeater">
-                                                        <div data-repeater-list="group-b">
-                                                            <div data-repeater-item class="row mb-4">
-                                                                <div class="col-md-10">
-                                                                    <input type="text" placeholder="CSS" class="form-control" name="skills" />
-                                                                </div>
-                                                                <!-- <div class="col-md-5">
-                                                                    <select class="bs-select form-control">
-                                                                                <option>Select level </option>
-                                                                                <option>Beginner</option>
-                                                                                <option>Intermediate</option>
-                                                                                <option>Expert</option>
-                                                                            </select>
-                                                                </div> -->
-                                                                <div class="col-md-2">
-                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm my-0">
-                                                                        <i class="fa fa-close"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <hr>
-                                                        <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-3">
-                                                            <i class="fa fa-plus"></i> Add 
-                                                        </a>
-
+                                                <div class="col-md-6">
+                                                    <div class="form-group mx-0 mb-0">
+                                                        <label class="control-label ">Industry</label>
+                                                        <select class="bs-select form-control   " name="industry">
+                                                            <option value="" selected disabled>Company Industry </option>
+                                                            <?php foreach ($industries as $key => $value) {?>
+                                                                <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <span class="help-block small"> Add your company industries </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="modal-footer form-actions ">
-                                        <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <!-- Description -->
+                                            <div class="form-group mx-0 mb-0">
+                                                <label class="control-label ">Description</label>
+                                                <textarea class="form-control autosizeme" rows="4" placeholder="Brief about your working place ...." name="description"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- Skill Earned -->
+                                            <div class="form-group mx-0 mb-0">
+                                                <label class="control-label">Skill Earned</label>
+                                                <input type="text" class="form-control input-xlarge" value="Microsoft Office, Internet Browsing, Research" data-role="tagsinput" name="skills">
+                                                <span class="help-block small"> Press "Tab" to add tag </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-            <!--Modal : Add / Edit skill -->
-            <div class="modal fade in" id="modal_add_skill" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content portlet light">
-                        <div class="modal-header portlet-title">
-                            <div class="caption">
-                                <span class="caption-subject text-capitalize font-weight-500">Add Skill</span>
-                                <!-- <span class="caption-helper">add about your education info</span> -->
-                            </div>
-                            <div class="actions py-4">
-                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                            </div>
 
-                        </div>
-                        <form action="<?php echo base_url();?>student/profile/add_skills" class="form form-horizontal" method="POST">
-                            <div class="modal-body portlet-body ">
-                                <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Skill name</label>
-                                    <div class="col-md-9">
-                                        <input type="text" placeholder="A Can of Tuna" class="form-control" name="skill_name"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Skill Description</label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" rows="3" placeholder="It&#39;s delicious!!" name="skill_description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Level</label>
-                                    <div class="col-md-9">
-                                        <select class="bs-select form-control" name="skill_level">
-                                            <option disabled>Select level</option>
-                                            <option>Beginner</option>
-                                            <option>Intermediate</option>
-                                            <option>Expert</option>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <!-- </div> -->
+                                </div>
                             </div>
-
                             <div class="modal-footer form-actions ">
                                 <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
                             </div>
@@ -1507,51 +1440,92 @@
                     </div>
                 </div>
             </div>
-            <!--Modal : Add / Edit language -->
-            <div class="modal fade in" id="modal_add_language" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content portlet light">
-                        <div class="modal-header portlet-title">
-                            <div class="caption">
-                                <span class="caption-subject text-capitalize font-weight-500">Add Language</span>
-                                <!-- <span class="caption-helper">add about your education info</span> -->
-                            </div>
-                            <div class="actions py-4">
-                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                            </div>
 
-                        </div>
-                        <form method="POST" action="<?php echo base_url();?>student/profile/add_language" class="form form-horizontal">
-                            <div class="modal-body portlet-body ">
-                                <!-- <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1"> -->
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Language</label>
-                                    <div class="col-md-9">
-                                        <input type="text" placeholder="English" class="form-control" name="language_name"> </div>
-                                    </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">Profieciency </label>
-                                    <div class="col-md-9">
-                                        <select class="bs-select form-control input-medium" name="profieciency">
-                                            <option disabled>Select level</option>
-                                            <option>Beginner</option>
-                                            <option>Intermediate</option>
-                                            <option>Expert</option>
-                                        </select>
-                                    </div>
+            <!-- Modal : Add / Edit Project -->
+                <div class="modal fade in" id="modal_add_project" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content portlet light">
+                            <div class="modal-header portlet-title">
+                                <div class="caption">
+                                    <span class="caption-subject text-capitalize font-weight-500">New Project </span>
+                                    <span class="caption-helper">add about your skill info based by project you involved</span>
+                                </div>
+                                <div class="actions py-4">
+                                    <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                 </div>
 
-                                <!-- </div> -->
                             </div>
+                            <form class="form form-horizontal" action="<?php echo base_url();?>student/profile/add_project" method="POST">
+                                <div class="modal-body portlet-body ">
+                                    <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                        <!-- Job Post & Time Period -->
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label">Project Title</label>
+                                                    <input type="text" class="form-control " placeholder="Internship in IT Dept" name="project_name" >
+                                                    <!-- <span class="help-block small"> Add your current status career info </span> -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- TIme Period  -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label ">Time Period</label>
 
-                            <div class="modal-footer form-actions ">
-                                <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                            </div>
-                        </form>
+                                                    <div class="m-grid ">
+                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="" placeholder="From year" name="start_date" >
+                                                            <!-- <span class="help-block"> Select date </span> -->
+                                                        </div>
+                                                        <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                            <span class="help-block"> to </span>
+                                                        </div>
+                                                        <div class="m-grid-col m-grid-col-xs-6">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
+                                                            <span class="help-block md-checkbox has-warning mb-0">
+                                                                <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
+                                                                <label for="checkbox_add_project">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span>
+                                                                    <small> Currently still working?</small>
+                                                                </label>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <!-- Description -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label ">Description</label>
+                                                    <textarea class="form-control autosizeme" rows="4" placeholder="Brief about yourproject progress ...." name="project_description"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!-- Skill Earned -->
+                                                <div class="form-group mx-0 mb-0">
+                                                    <label class="control-label">Skill Earned</label>
+                                                    <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" name="skills">
+                                                    <span class="help-block small"> Press "Enter" to add tag </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer form-actions ">
+                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
             <!-- ********************** End MODAL ********************* -->
 
         </div>

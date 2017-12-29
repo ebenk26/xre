@@ -116,9 +116,11 @@ class Student_Model extends CI_Model{
 
     function get_user_profile($id){
         //experiences
-        $this->db->select('experiences.user_id as experiences_user_id, experiences.id as experience_id, experiences.title as experiences_title, experiences.description as experiences_description, experiences.start_date as experiences_start_date, experiences.end_date as experiences_end_date, experiences.company_name as experiences_company_name');
+        $this->db->select('experiences.user_id as experiences_user_id, experiences.id as experience_id, experiences.title as experiences_title, experiences.description as experiences_description, experiences.start_date as experiences_start_date, experiences.end_date as experiences_end_date, experiences.company_name as experiences_company_name, experiences.skills, experiences.industries_id, experiences.employment_type_id, employment_types.name as employment_type, industries.name as industry_name');
         $this->db->from('users');
         $this->db->join('experiences', 'experiences.user_id = users.id','left');
+        $this->db->join('employment_types', 'employment_types.id = experiences.employment_type_id','left');
+        $this->db->join('industries', 'industries.id = experiences.industries_id','left');
         $this->db->where(array('experiences.user_id' => $id));
         $experiences = $this->db->get();
         $result['experiences'] = $experiences->result_array();
