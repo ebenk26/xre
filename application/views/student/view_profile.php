@@ -61,7 +61,7 @@
                     <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
                         <!-- Logo -->
                         <div class="s-header-v2-logo ">
-                            <a href="index.html" class="s-header-v2-logo-link ">
+                            <a href="<?php echo base_url(); ?>" class="s-header-v2-logo-link ">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" alt="Dublin Logo" style="height:47px">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
                             </a>
@@ -74,24 +74,24 @@
                         <!-- guest -->
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse" hidden>
                             <ul class="s-header-v2-nav" hidden>
-                                <li class="s-header-v2-nav-item">
+                                <!-- <li class="s-header-v2-nav-item">
                                     <a href="job-search.html" class="s-header-v2-nav-link  g-color-md-orange-text ">Search Job</a>
+                                </li> -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="<?php echo base_url(); ?>site/about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>site/services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>site/contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="#" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                    <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -133,12 +133,12 @@
                                                 <i class="icon-book-open mr-3"></i>My Resume</a>
                                         </li>
                                         <li>
-                                            <a href="student-calendar.html" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="welcome.html" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-key mr-3"></i>Log Out</a>
                                         </li>
                                     </ul>
