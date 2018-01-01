@@ -165,7 +165,6 @@
 
     <!--========== PROMO : VIEW ==========-->
 
-
     <div class="view  hm-black-strong mt-height-300-xs  visible-md visible-lg" style="background: url('<?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>'); ">
         <div class="mask ">
             <div class="container g-padding-y-110-xs ">
