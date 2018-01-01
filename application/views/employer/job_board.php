@@ -1,9 +1,29 @@
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <!-- <h1 class="page-title"> User Profile
-                    <small>user profile 2</small>
-                </h1> -->
+                <!-- BEGIN PAGE HEAD-->
+                <div class="page-head">
+                    <!-- BEGIN PAGE TITLE -->
+
+                    <h1 class="page-title">Job Board
+                        <small>Here your job post should be</small>
+                    </h1>
+                    <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <i class="icon-home"></i>
+                                <a href="index.html">Home</a>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <span>Job Board</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- END PAGE TITLE -->
+                </div>
+                <!-- END PAGE HEAD-->
                 <div class="row widget-row">
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB -->
