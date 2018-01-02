@@ -35,6 +35,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS_EMPLOYER; ?>pricing.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
 
@@ -400,11 +401,11 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">
+                                    <a href="<?php echo base_url(); ?>employer/profile/">
                                         <i class="icon-user"></i> My Profile </a>
                                 </li>
                                 <li>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/app_calendar.html">
+                                    <a href="<?php echo base_url(); ?>employer/calendar/">
                                         <i class="icon-calendar"></i> My Calendar </a>
                                 </li>
                                 <li>
@@ -425,7 +426,7 @@
                                         <i class="icon-lock"></i> Lock Screen </a>
                                 </li>
                                 <li>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_login_1.html">
+                                    <a href="<?php echo base_url(); ?>site/user/logout/">
                                         <i class="icon-key"></i> Log Out </a>
                                 </li>
                             </ul>
@@ -514,14 +515,14 @@
                             <span class="arrow open"></span>
                         </a>
                         <ul class="sub-menu">
-                            <li class="nav-item <?php if ($this->uri->segment(3) == 'overview'): echo 'active'; endif?> start ">
-                                <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link ">
+                            <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?> start ">
+                                <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link <?php if ($this->uri->segment(3) == 'profile'): echo 'active'; endif?>">
                                     <!-- <i class="icon-search"></i> -->
                                     <span class="title">Overview</span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
-                            <li class="nav-item start <?php if ($this->uri->segment(3) == 'gallery'): echo 'active'; endif?> ">
+                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?> ">
                                 <a href="<?php echo base_url(); ?>employer/gallery/" class="nav-link ">
                                     <!-- <i class="icon-user-following"></i> -->
                                     <span class="title">Gallery</span>
@@ -537,53 +538,32 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-shorlistedcandidate.html" class="nav-link ">
-                            <i class="icon-users"></i>
-                            <span class="title">Shortlist Candidate</span>
-                        </a>
-                    </li>
-                    <li class="nav-item hidden  ">
-                        <a href="javascript:;" class="nav-link nav-toggle">
-                            <i class="icon-book-open"></i>
-                            <span class="title">Talent Search</span>
-                            <span class="arrow"></span>
-                        </a>
-
-                        <ul class="sub-menu">
-                            <li class="nav-item start ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-searchcandidate.html" class="nav-link ">
-                                    <i class="icon-search"></i>
-                                    <span class="title">Search Candidate</span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-shorlistedcandidate.html" class="nav-link ">
-                                    <i class="icon-user-following"></i>
-                                    <span class="title">Shortlisted Candidate</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-item  ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-calendar.html" class="nav-link ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>employer/calendar/" class="nav-link ">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-inbox.html" class="nav-link ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
                             <!-- <span class="arrow"></span> -->
                         </a>
                     </li>
-                    <li class="nav-item  ">
-                        <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-purchasepackage.html" class="nav-link ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>
                             <span class="title">Purchase Package</span>
                             <!-- <span class="arrow"></span> -->
+                        </a>
+                    </li>
+                    <!-- My Package -->
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'my_package'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>employer/my_package/" class="nav-link ">
+                            <i class="icon-present"></i>
+                            <span class="title">My Package</span>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <li class="nav-item  ">

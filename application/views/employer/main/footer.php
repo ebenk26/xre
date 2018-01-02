@@ -70,6 +70,8 @@
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <!-- <script src="../assets/pages/scripts/portfolio-1.min.js" type="text/javascript"></script> -->
     <script src="<?php echo JS_EMPLOYER; ?>table-datatables-managed.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>calendar.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
     <!-- <script src="../assets/pages/scripts/table-datatables-colreorder.min.js" type="text/javascript"></script> -->
 
     <script src="<?php echo JS_EMPLOYER; ?>dashboard.min.js" type="text/javascript"></script>
