@@ -1,3 +1,5 @@
+<?php   $profile_picture = current($profile_photo); 
+        $header_picture = current($header_photo); ?>
 <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -12,7 +14,7 @@
                             <div class="portlet light  m-grid-col m-grid-col-md-4 m-grid-col-sm-12 portlet-fit mb-0 ">
                                 <div class="m-grid">
                                     <div class=" mt-height-300-xs view">
-                                        <img src="<?php echo IMG_EMPLOYER?>portfolio/1200x900/1.jpg" class="img-fluid" alt="">
+                                        <img src="<?php echo isset($profile_picture) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYERS.'portfolio/1200x900/1.jpg'?>" class="img-fluid" alt="">
                                         <div class="mask">
                                             <a href="#modal_edit_header_picture" data-toggle="modal" class="btn btn-icon-only btn-circle btn-opacity-white pull-right mt-3 mx-3">
                                                 <i class="icon-pencil"></i>
@@ -26,7 +28,7 @@
                                             <div class="mt-card-avatar text-center  ">
                                                 <!-- <img src="https://static.pexels.com/photos/172332/pexels-photo-172332.jpeg" class=" avatar avatar-medium avatar-border-md avatar-circle mt-margin-t-o-100-xs md-shadow-none "> -->
                                                 <!-- <img src="../assets/global/img/xremo/profile-pic.png" class=" avatar avatar-medium avatar-border-md avatar-circle mt-margin-t-o-100-xs md-shadow-none "> -->
-                                                <img src="<?php echo IMG_EMPLOYER?>xremo/xremo-logo-blue.png" class=" avatar avatar-medium avatar-border-md avatar-circle mt-margin-t-o-100-xs md-shadow-none  ">
+                                                <img src="<?php echo isset($profile_picture) ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG_EMPLOYERS.'xremo/xremo-logo-blue.png'?>" class=" avatar avatar-medium avatar-border-md avatar-circle mt-margin-t-o-100-xs md-shadow-none  ">
                                                 <!-- <img src="https://d27ktgqvbv3y3r.cloudfront.net/cms/images/meta/3bd5eafa-7674-4bf9-9903-e488ab64d3e7.jpg" class=" avatar avatar-medium avatar-border-md avatar-circle mt-margin-t-o-100-xs md-shadow-none  "> -->
                                                 <a href="#modal_edit_default_picture" data-toggle="modal" class="btn btn-icon-only btn-circle   white  border-md-grey-light mt-margin-l-o-50-xs  ">
                                                     <i class="icon-pencil"></i>
@@ -653,7 +655,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Default Picture</h4>
                     </div>
-                    <form action="#" class=" form form-horizontal  form-bordered form-row-stripped ">
+                    <form action="<?php echo base_url(); ?>employer/profile/upload_company_logo" method="POST" class=" form form-horizontal  form-bordered form-row-stripped " enctype="multipart/form-data">
                         <div class="modal-body form-body">
                             <div class="form-group ">
                                 <label class="control-label col-md-3">Image Upload #1</label>
@@ -694,7 +696,7 @@
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Header Picture</h4>
                     </div>
-                    <form action="#" class=" form form-horizontal  form-bordered form-row-stripped ">
+                    <form action="<?php echo base_url(); ?>employer/profile/upload_company_header" method="POST" class=" form form-horizontal  form-bordered form-row-stripped " enctype="multipart/form-data">
                         <div class="modal-body form-body">
 
                             <div class="form-group ">
@@ -706,7 +708,7 @@
                                             <span class="btn red btn-outline btn-file">
                                                 <span class="fileinput-new"> Select image </span>
                                                 <span class="fileinput-exists"> Change </span>
-                                                <input type="file" name="..."> </span>
+                                                <input type="file" name="company_header"> </span>
                                             <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
                                         </div>
                                     </div>

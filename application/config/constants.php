@@ -50,6 +50,7 @@ define('ASSETS_EMPLOYER', ASSETS.'employer/');
 define('CSS_EMPLOYER', ASSETS.'employer/css/');
 define('JS_EMPLOYER', ASSETS.'employer/js/');
 define('IMG_EMPLOYER', ASSETS.'employer/img/');
+define('IMG_EMPLOYERS', ASSETS.'img/employer/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

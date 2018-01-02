@@ -22,6 +22,8 @@ class Profile extends CI_Controller {
         $profile_form['detail'] = $get_user_profile;
         $profile_form['language'] = $this->employer_model->get('language', 'name', 'asc');
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $this->session->userdata('id') ));
+        $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'profile_photo'));
+        $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'header_photo'));
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/profile', $profile_form);
         $this->load->view('employer/main/footer');
@@ -129,6 +131,72 @@ class Profile extends CI_Controller {
         $this->session->set_flashdata('msg_success', 'Success update contact info');
         
         redirect(base_url().'employer/profile/');
+    }
+
+    function upload_company_logo(){
+        if(!empty($_FILES['company_logo']['tmp_name'])){
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'profile_photo');
+            $checkImage = $this->employer_model->checkImageExist($userImageID);
+            $tempFile = $_FILES['company_logo']['tmp_name'];        
+            $targetPath = "./assets/img/employer/";
+
+            $path = pathinfo($_FILES['company_logo']['name']);
+            $ext = $path['extension'];
+            $profile_photo = 'profile_photo_'.$this->session->userdata('id').'_'.md5($this->session->userdata('name')).'_'.date('dmY').".$ext";
+            $targetFile =  $targetPath.$profile_photo;
+            if (!empty($checkImage)) {
+
+                // unlink("./assets/img/student/".$checkImage['name']);
+                move_uploaded_file($tempFile,$targetFile);                
+            }else{
+                move_uploaded_file($tempFile,$targetFile);
+            }
+        }else{
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'profile_photo');
+            $userImage = $this->employer_model->checkImageExist($userImageID);
+            $profile_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+        }
+
+        $image = array('profile_photo' =>  $profile_photo);
+
+        $this->employer_model->upload_image_logo($image);
+        redirect(base_url().'employer/profile/');
+        
+    }
+
+    function upload_company_header(){
+        if(!empty($_FILES['company_header']['tmp_name'])){
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+            $checkImage = $this->employer_model->checkImageExist($userImageID);
+            $tempFile = $_FILES['company_header']['tmp_name'];        
+            $targetPath = "./assets/img/employer/";
+
+            $path = pathinfo($_FILES['company_header']['name']);
+            $ext = $path['extension'];
+            $header_photo = 'header_photo_'.$this->session->userdata('id').'_'.md5($this->session->userdata('name')).'_'.date('dmY').".$ext";
+            $targetFile =  $targetPath.$header_photo;
+            if (!empty($checkImage)) {
+
+                // unlink("./assets/img/student/".$checkImage['name']);
+                move_uploaded_file($tempFile,$targetFile);                
+            }else{
+                move_uploaded_file($tempFile,$targetFile);
+            }
+        }else{
+            $userImageID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+            $userImage = $this->employer_model->checkImageExist($userImageID);
+            $header_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+        }
+
+        $image = array('header_photo' =>  $header_photo);
+
+        $this->employer_model->upload_image_header($image);
+        redirect(base_url().'employer/profile/');
+
     }
 
 }

@@ -143,8 +143,66 @@ class Employer_Model extends CI_Model{
         return true;
     }
 
-    function edit_additional_info(){
+    function checkImageExist($userImageID){
+        $this->db->select('*');
+        $this->db->from('profile_uploads');
+        $this->db->where($userImageID);
+        $query = $this->db->get();
+        return $query->last_row('array');
+    }
 
+    function upload_image_logo($image){
+        $userProfilePhotoID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'profile_photo');
+        $checkUserProfilePhotoExist = $this->checkImageExist($userProfilePhotoID);
+        
+        $dataUploadsProfilePhoto = array(
+            'user_id' => $this->session->userdata('id'),
+            'name' => $image['profile_photo'],
+            'type' => 'profile_photo',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        try {
+            if ($checkUserProfilePhotoExist) {
+                $this->db->where($userProfilePhotoID);
+                $this->db->update('profile_uploads', $dataUploadsProfilePhoto); 
+            }else{
+                $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
+            }
+
+        } catch (Exception $e) {
+            $this->session->set_flashdata('msg_failed', 'Failed update your data, please try again');
+            return false;
+        }
+        return true;
+    }
+
+    function upload_image_header($image){
+        $userHeaderPhotoID = array('user_id' => $this->session->userdata('id'),
+                            'type' => 'header_photo');
+        $checkUserHeaderPhotoExist = $this->checkImageExist($userHeaderPhotoID);
+        
+        $dataUploadsHeaderPhoto = array(
+            'user_id' => $this->session->userdata('id'),
+            'name' => $image['header_photo'],
+            'type' => 'header_photo',
+            'updated_at' => date('Y-m-d H:i:s')
+        );
+
+        try {
+            
+            if ($checkUserProfileHeaderExist) {
+                $this->db->where($userHeaderPhotoID);
+                $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
+            }else{
+                $this->db->insert('profile_uploads', $dataUploadsHeaderPhoto); 
+            }
+        } catch (Exception $e) {
+            $this->session->set_flashdata('msg_failed', 'Failed update your data, please try again');
+            return false;
+        }
+        return true;
     }
 }
 
