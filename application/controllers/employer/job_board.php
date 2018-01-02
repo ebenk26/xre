@@ -36,18 +36,26 @@ class Job_Board extends CI_Controller {
                          'qualifications' => $this->input->post('jobRequirement'),
                          'other_requirements' => $this->input->post('niceToHave'),
                          'additional_info'=> $this->input->post('additionalInfo'),
-                         'status'=> 'post',
+                         'status'=> $this->input->post('status'),
+                         'budget_min' => $this->input->post('budget_min'),
+                         'budget_max' => $this->input->post('budget_max'),
                          'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
                          'created_at'=> date('Y-m-d H:i:s'),
                          'updated_at' => date('Y-m-d H:i:s')
                          );
         $postJob = $this->employer_model->job_post($jobPost);
+
         if ($postJob == true) {
             $this->session->set_flashdata('msg_success', 'Success post job');            
         }else{
             $this->session->set_flashdata('msg_error', 'Failed post data');
         }
-        redirect(base_url().'employer/job_board/');
+
+        if ($this->input->post('status') == 'draft') {
+            redirect(base_url().'employer/job_board/preview/'.rtrim(base64_encode($postJob),'=') );
+        }else{
+            redirect(base_url().'employer/job_board/');
+        }
     }
 
     public function update(){
@@ -61,7 +69,9 @@ class Job_Board extends CI_Controller {
                          'qualifications' => $this->input->post('job_Requirement'),
                          'other_requirements' => $this->input->post('nice_To_Have'),
                          'additional_info'=> $this->input->post('additional_Info'),
-                         'status'=> 'post',
+                         'status'=> $this->input->post('status'),
+                         'budget_min' => $this->input->post('budget_min'),
+                         'budget_max' => $this->input->post('budget_max'),
                          'updated_at' => date('Y-m-d H:i:s')
                          );
         $editJob = $this->employer_model->job_edit($jobPost);
@@ -82,6 +92,15 @@ class Job_Board extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed delete job');
         }
         redirect(base_url().'employer/job_board/');
+    }
+
+    public function preview(){
+        $id= base64_decode($this->uri->segment(4));
+        $job_post['job'] = $this->employer_model->get_job_detail($id);
+        $user_id = $job_post['job']->user_id;
+        $get_user_profile = $this->employer_model->get_user_profile($user_id);
+        $job_post['user_profile'] = $get_user_profile;
+        $this->load->view('employer/preview',$job_post);
     }
 
 }

@@ -62,8 +62,8 @@
                         <!-- Logo -->
                         <div class="s-header-v2-logo ">
                             <a href="<?php echo base_url(); ?>" class="s-header-v2-logo-link ">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" alt="Dublin Logo" style="height:47px">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" alt="Xremo Logo" style="height:47px">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" style="height:47px" alt="Xremo Logo">
                             </a>
                         </div>
                         <!-- End Logo -->

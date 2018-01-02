@@ -264,31 +264,49 @@
                 <!-- END MODAL : Edit Job Post Info -->
         <?php } ?>
         <!-- BEGIN MODAL : Add Job Post Info -->
-        <div class="modal fade modal-open-noscroll " id="modal_add_jobpost" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade modal-open-noscroll  " id="modal_add_jobpost" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content ">
                     <div class="modal-header ">
                         <h4 class="modal-title">New Job Post Info</h4>
                     </div>
-
                     <form action="<?php echo base_url(); ?>employer/job_board/post" method="POST" class="form-horizontal form-row-seperated ">
-                        <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                        <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                             <div class="modal-body form-body pr-0">
 
-                                <div class="row m-0">
-                                    <div class="col-md-12">
-                                        <div class="form-group col-md-12">
+                                <!-- Job Position Title & Salary Range-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <!-- Job Position Title -->
+                                        <div class="form-group mx-0">
                                             <label class="control-label ">Job Position Title</label>
-                                            <input type="text" class="form-control" placeholder="Internship in IT department" name="job_position_name">
+                                            <div class="input-icon">
+                                                <i class="icon-briefcase"></i>
+                                                <input type="text" class="form-control input-xlarge " placeholder="Internship in IT department" name="job_position_name">
+                                                <!-- <span class="help-block small">Internship in IT department</span> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group mx-0 ">
+                                            <label class="control-label ">Salary Range</label>
+                                            <div class="form-inline">
+
+                                                <input type="text" class="form-control " placeholder="0.00" name="budget_min">
+                                                <span class="mx-2">to</span>
+                                                <input type="text" class="form-control  " placeholder="0.00" name="budget_max">
+                                            </div>
+
                                             <!-- <span class="help-block small">Internship in IT department</span> -->
                                         </div>
                                     </div>
-
                                 </div>
 
-                                <div class="row m-0">
+                                <!-- Employement Type / Position Level / Years of Experience -->
+                                <div class="row ">
                                     <div class="col-md-4">
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group mx-0">
                                             <label class="control-label ">Employment Type</label>
                                             <select class="bs-select form-control" name="employmentType">
                                                 <option value="" selected disabled>Employment Type</option>
@@ -299,7 +317,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group mx-0">
                                             <label class="control-label ">Position Level</label>
                                             <select class="bs-select form-control" name="employmentLevel">
                                                 <?php foreach ($position_levels as $key => $position_level_value) {?>
@@ -309,7 +327,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group mx-0">
                                             <label class="control-label ">Years Of Experience</label>
                                             <select class="bs-select form-control" name="yearOfExperience">
                                                 <?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
@@ -320,51 +338,38 @@
                                     </div>
                                 </div>
 
-                                <!-- Job Description -->
-                                <div class="row m-0">
-                                    <div class="col-md-12">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label ">Job Description</label>
-                                            <textarea name="jobDescription" data-provide="markdown" rows="10"></textarea>
+                                <!-- Job Description / Nice To Have / Job Requirement / Additional Info -->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label mb-2 ">Job Description</label>
+                                            <textarea name="jobDescription" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                        </div>
+                                        <div class="form-group mx-0">
+                                            <label class="control-label mb-2 ">Nice To Have</label>
+                                            <textarea name="niceToHave" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                     </div>
-                                </div>
-
-                                <!-- Job Requirement -->
-                                <div class="row m-0">
-                                    <div class="col-md-12">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label ">Job Requirement</label>
-                                            <textarea name="jobRequirement" data-provide="markdown" rows="10"></textarea>
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label mb-2 ">Job Requirement</label>
+                                            <textarea name="jobRequirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!-- Nice To Have -->
-                                <div class="row m-0">
-                                    <div class="col-md-12">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label ">Nice To Have</label>
-                                            <textarea name="niceToHave" data-provide="markdown" rows="10"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Additional Info -->
-                                <div class="row m-0">
-                                    <div class="col-md-12">
-                                        <div class="form-group col-md-12">
-                                            <label class="control-label ">Additional Info</label>
-                                            <textarea name="additionalInfo" data-provide="markdown" rows="10"></textarea>
+                                        <div class="form-group mx-0">
+                                            <label class="control-label mb-2">Additional Info</label>
+                                            <textarea name="additionalInfo" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+                        <input type="hidden" id="job_status" name="status" value="post"></input>
                         <div class="modal-footer form-action ">
-                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                            <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+                            <!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
+                            <button type="submit" id="preview_button" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</button>
+                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Post</button>
+                            <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                         </div>
                     </form>
 

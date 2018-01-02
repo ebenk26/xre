@@ -79,11 +79,12 @@ class Employer_Model extends CI_Model{
     function job_post($jobPost){
         try {
             $this->db->insert('job_positions', $jobPost);
+            $insert_id = $this->db->insert_id();
         } catch (Exception $e) {
             $this->session->set_flashdata('msg_failed', 'Failed post your job, please try again');
             return false;
         }
-        return true;
+        return $insert_id;
     }
 
     function job_edit($jobPost){
@@ -101,6 +102,16 @@ class Employer_Model extends CI_Model{
         $this->db->where('user_id', $id);
         $query = $this->db->get('job_positions');
         return $query->result_array();
+    }
+
+    function get_job_detail($id){
+        $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name');
+        $this->db->from('job_positions');
+        $this->db->join('position_levels', 'job_positions.position_level_id = position_levels.id', 'left');
+        $this->db->join('employment_types', 'job_positions.employment_type_id = employment_types.id', 'left');
+        $this->db->where('job_positions.id', $id);
+        $query = $this->db->get();
+        return $query->last_row();
     }
 
     function job_delete($id){

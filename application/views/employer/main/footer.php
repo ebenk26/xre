@@ -98,6 +98,12 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
+            $('#preview_button').click(function(){
+                $('#job_status').val('draft');
+            });
+            $('#submit_button').click(function(){
+                $('#job_status').val('post');
+            });
             $('.dlt-btn').click(function () {
                 var del = $(this).attr('id');
                     swal({
