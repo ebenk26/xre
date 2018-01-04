@@ -16,7 +16,6 @@ class Candidate extends CI_Controller {
     	$profile['page_title'] = 'Candidate';
         $id = $this->session->userdata('id');
         $job_id = $this->uri->segment(3);
-        var_dump($job_id);exit;
         $get_user_profile = $this->employer_model->get_candidate($id);
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);

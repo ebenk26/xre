@@ -127,7 +127,7 @@
                                                             <i class="icon-user"></i> View Candidates </a>
                                                     </li>
                                                     <li>
-                                                        <a href="employer-previewjob.html">
+                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                             <i class="icon-eye"></i> Preview Job </a>
                                                     </li>
                                                     <li class="divider"> </li>
@@ -311,7 +311,7 @@
                                             <select class="bs-select form-control" name="employmentType">
                                                 <option value="" selected disabled>Employment Type</option>
                                                 <?php foreach ($employment_type as $key => $employment_value) {?>
-                                                    <option <?php echo $value['employment_type_id'] == $employment_value['id'] ? 'selected':''; ?> value="<?php echo $employment_value['id']; ?>" ><?php echo $employment_value['name']; ?></option>
+                                                    <option value="<?php echo $employment_value['id']; ?>" ><?php echo $employment_value['name']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -321,7 +321,7 @@
                                             <label class="control-label ">Position Level</label>
                                             <select class="bs-select form-control" name="employmentLevel">
                                                 <?php foreach ($position_levels as $key => $position_level_value) {?>
-                                                    <option <?php echo $value['position_level_id'] == $position_level_value['id'] ? 'selected':''; ?> value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
+                                                    <option value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -331,7 +331,7 @@
                                             <label class="control-label ">Years Of Experience</label>
                                             <select class="bs-select form-control" name="yearOfExperience">
                                                 <?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
-                                                    <option <?php echo $value['years_of_experience'] == $year_of_experience_value['id'] ? 'selected':''; ?> value="<?php echo $year_of_experience_value['id']; ?>" ><?php echo $year_of_experience_value['name']; ?></option>
+                                                    <option value="<?php echo $year_of_experience_value['id']; ?>" ><?php echo $year_of_experience_value['name']; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>

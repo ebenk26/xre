@@ -157,16 +157,16 @@
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <section class="s-promo-block-v4 g-bg-gradient-md-blue-grey mt-height-300-xs">
         <div class="container g-ver-center-xs text-center my-5 ">
-            <h1 class="md-white-text font-weight-500 display-4"><?php echo !empty($job->name) ? $job->name: 'Job title';?> </h1>
+            <h1 class="md-white-text font-weight-500 display-4"><?php echo isset($job->name) ? $job->name: 'Job title';?> </h1>
             <p class=" roboto-font mt-4 ">
                 <span class="label label-md-green font-weight-500 md-shadow-z-1">
-                    <i class="fa fa-money mr-2"></i><?php echo !empty($this->session->userdata('forex')) ? $this->session->userdata('forex') : 'RM'?> <?php echo !empty($job->budget_min) ? $job->budget_min : '0'; ?> - <?php echo !empty($this->session->userdata('forex')) ? $this->session->userdata('forex') : 'RM'?> <?php echo !empty($job->budget_max) ? $job->budget_max : '0'; ?></span>
+                    <i class="fa fa-money mr-2"></i><?php echo $this->session->userdata('forex')?> <?php echo $job->budget_min; ?> - <?php echo $this->session->userdata('forex');?> <?php echo $job->budget_max; ?></span>
                 <span class="label label-md-red font-weight-500 md-shadow-z-1">
-                    <i class="icon-pointer mr-2"></i><?php echo !empty($this->session->userdata('country')) ? $this->session->userdata('country') : $user_profile->country_name?></span>
+                    <i class="icon-pointer mr-2"><?php echo $this->session->userdata('country')?></i></span>
                 <!-- <span class="label label-md-blue-grey font-weight-500 md-shadow-z-1">
                         <i class="fa fa-building-o mr-2"></i>Company Industry</span> -->
-                <span class="label label-md-orange font-weight-500 md-shadow-z-1"><?php echo !empty($job->employment_name) ? $job->employment_name :'Unknown';?></span>
-                <span class="label label-md-purple font-weight-500 md-shadow-z-1"><?php echo !empty($job->position_name) ? $job->position_name :'Unknown';?></span>
+                <span class="label label-md-orange font-weight-500 md-shadow-z-1"><?php echo $job->employment_name ;?></span>
+                <span class="label label-md-purple font-weight-500 md-shadow-z-1"><?php echo $job->position_name ;?></span>
             </p>
         </div>
     </section>
@@ -186,14 +186,14 @@
                         <div class="media-body">
                             <h5 class="roboto-font mt-2  font-16-xs ">
                                 <i class="fa fa-building-o mr-2"></i>
-                                <a href="company-description.html" class="font-weight-500"><?php echo !empty($user_profile['company_name'])?$user_profile['company_name']:'Unknown';?> </a>
+                                <a href="company-description.html" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <i class="icon-pointer"></i> Subang , Selangor
                             </h6>
                             <h6>
                                 <span class="label label-md-blue-grey font-weight-500 mb-2">
-                                    <?php echo !empty($user_profile['industry'])?$user_profile['industry']:'Unknown';?></span>
+                                    <?php echo $user_profile['industry'];?></span>
                             </h6>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text primary-font text-uppercase font-17-xs">JOB DESCRIPTION </h5>
                     <hr class="my-2 mt-width-100-xs border-md-indigo">
-                    <p class="roboto-font font-grey-gallery  "><?php echo !empty($job->job_description) ? $job->job_description :'Unknown';?>
+                    <p class="roboto-font font-grey-gallery  "><?php echo $job->job_description;?>
                     </p>
 
                     <!-- <ul class=" roboto-font font-grey-gallery ">
@@ -232,7 +232,7 @@
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Requirement</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo !empty($job->qualifications) ? $job->qualifications :'Unknown';?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->qualifications;?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -251,7 +251,7 @@
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Nice To Have</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo !empty($job->other_requirements) ? $job->other_requirements :'Unknown';?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->other_requirements;?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -269,7 +269,7 @@
                 <!-- Benefits -->
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Benefits</h5>
-                    <p class="roboto-font font-grey-gallery "><?php echo !empty($user_profile['benefits']) ? $user_profile['benefits'] :'Unknown';?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $user_profile['benefits'];?>
                     </p>
 
                 </div>
@@ -277,7 +277,7 @@
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Additional Info</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo !empty($job->additional_info) ? $job->additional_info :'Unknown';?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->additional_info;?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -311,7 +311,7 @@
 
                 <!-- Button -->
                 <div class="row mb-5 mx-0">
-                    <button type="submit" class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                         data-confirm-button-class="btn-info">
                         <i class="icon-note mr-2 "></i>Post</button>
                     <a href="employer-jobboard.html?#modal_add_jobpost" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
@@ -444,7 +444,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <a href="index.html">
-                        <img class="g-height-35-xs" src="../HTML/img/Xremo/all/xremo-logo-white.png" alt=" Xremo Logo">
+                        <img class="g-height-35-xs" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.png" alt=" Xremo Logo">
                     </a>
                 </div>
                 <div class="col-xs-6 g-text-right-xs">
@@ -495,6 +495,40 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>portfolio-3-col.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
+    <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
+
+    <script>
+        $(document).ready(function () {
+            $('#post_job').click(function(){
+                var del = $(this).attr('data-id');
+                    swal({
+                        title: "Do you agree to post this job?",
+                        type: "info",
+                        confirmButtonText: "Yes, I agree",
+                        closeOnConfirm: false
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/post_job",
+                                    method:"POST",
+                                    data: {
+                                      post_id: parseInt(del),
+                                    },
+                                    success:function(response) {
+                                       swal("Success", "Job Has been posted.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "Post a job has been cancelled", "error");
+                            }
+                        }
+                    );
+            });
+        });
+    </script>
 </body>
 
 </html>

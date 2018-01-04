@@ -40,7 +40,6 @@ class Job_Model extends CI_Model{
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
 		$this->db->where('applieds.user_id', $this->session->userdata('id'));
-		$this->db->where('applieds.status', 'new');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -50,6 +49,17 @@ class Job_Model extends CI_Model{
 			$data = array('status' => 'withdraw');
 			$this->db->where('id', $job_id);
 			$this->db->update('applieds', $data);
+		}catch(Exception $e){
+			return false;
+		}
+		return true;
+	}
+
+	function post_job($job_id, $data){
+		try{
+			$data = array('status' => 'post');
+			$this->db->where('id', $job_id);
+			$this->db->update('job_positions', $data);
 		}catch(Exception $e){
 			return false;
 		}

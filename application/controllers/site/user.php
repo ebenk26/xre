@@ -34,7 +34,7 @@ class User extends CI_Controller {
             $user_email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
-            if (!empty($login_result)) {
+            if (isset($login_result)) {
                 $page = strtolower($login_result['roles']);
 
                 if ($login_result['verified'] == 0) {
@@ -227,7 +227,7 @@ class User extends CI_Controller {
 
     function logout(){
         $loginCheck = $this->session->userdata('id');
-        if(!empty($loginCheck)){
+        if(isset($loginCheck)){
             $this->session->sess_destroy();
             redirect(base_url());
         } else {

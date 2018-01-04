@@ -269,7 +269,7 @@ class Student_Model extends CI_Model{
 
 
     function get_all_job($id){
-        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id');
+        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget');
         $this->db->from('users');
         $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
         $this->db->join('states', 'states.id = user_profiles.state_id', 'left');

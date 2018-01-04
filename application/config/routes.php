@@ -41,7 +41,8 @@
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['country/(:any)'] = 'site/country/(:any)';
-// $route['site/country/(:any)'] = 'country/(:any)';
-
+$route['job/details/(:any)'] = 'employer/job_board/details/(:any)';
+$route['job/preview/(:any)'] = 'employer/job_board/preview/(:any)';
+/*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

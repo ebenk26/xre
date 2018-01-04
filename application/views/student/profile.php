@@ -389,7 +389,7 @@
                                                                     <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
                                                                     <span class="help-block md-checkbox has-warning"> 
                                                                     <input type="checkbox" class="md-check" id="md-check-edu-end_<?php echo $i;?>" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
-                                                                    <label for="edit_education">
+                                                                    <label for="md-check-edu-end_<?php echo $i;?>">
                                                                         <span></span>
                                                                     <span class="check"></span>
                                                                     <span class="box"></span> Currently still studying?
@@ -418,7 +418,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php } $i++; ?>
+                            <?php $i++; }  ?>
                             <!-- End Example 1 -->
                         </div>
 
@@ -505,11 +505,11 @@
                                                                 <div class="col-md-9  ">
                                                                     <div class="m-grid ">
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="<?php echo !empty($value['start_date']) ? date('d-m-Y', strtotime($value['start_date'])) : date('d-m-Y') ;?>" name="start_date" id="StartDate2" placeholder="From year" required>
+                                                                            <input class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_start_date']) ? date('d-m-Y', strtotime($value['achievement_start_date'])) : date('d-m-Y') ;?>" name="start_date" id="StartDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['end_date']) ? date('d-m-Y', strtotime($value['end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
+                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -1509,7 +1509,7 @@
                                                 <!-- Skill Earned -->
                                                 <div class="form-group mx-0 mb-0">
                                                     <label class="control-label">Skill Earned</label>
-                                                    <input type="text" class="form-control input-xlarge" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" name="skills">
+                                                    <input type="text" class="form-control input-xlarge" id="tagsinput" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" name="skills">
                                                     <span class="help-block small"> Press "Enter" to add tag </span>
                                                 </div>
                                             </div>

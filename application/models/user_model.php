@@ -24,7 +24,7 @@ class User_Model extends CI_Model{
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
         $query = $this->db->get();
         $result = $query->last_row('array');
-        if (!empty($result)) {
+        if (isset($result)) {
             $user = array('user_id' => $result['id'] );
             $this->db->insert('user_history', $user);
         }else{
@@ -79,7 +79,7 @@ class User_Model extends CI_Model{
         $this->db->where('email', $email);
         $mail = $this->db->get();
         $mail->last_row('array');
-        if (!empty($mail->last_row('array'))) {
+        if ($mail->last_row('array')) {
             $from = "Xremo team";    //senders email address
             $subject = 'Retrieve new password';  //email subject
             

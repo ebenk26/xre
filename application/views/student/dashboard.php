@@ -617,7 +617,7 @@
                                             <div class="pull-right">
                                                 <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
                                                 <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                                <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="#">View Job</a>
+                                                <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>">View Job</a>
                                                 <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs apply" id="<?php echo $value['job_id'] ?>" href="#">Apply</a>
                                                 <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
                                             </div>
@@ -630,7 +630,7 @@
                                                 <?php if (!empty($value['state_name'])) {?>
                                                 <a href="" class="badge badge-primary badge-roundless"> <?php echo $value['state_name'] ?></a>
                                                 <?php } ?>
-                                                <a href="" class="badge badge-md-green badge-roundless"> RM 2001 - RM 2600</a>
+                                                <a href="" class="badge badge-md-green badge-roundless"> <?php echo $this->session->userdata('forex') ?> <?php echo $value['min_budget']; ?> - <?php echo $this->session->userdata('forex') ?> <?php echo $value['max_budget']; ?></a>
                                                 <a href="" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
                                                 <?php if (!empty($value['position_name'])) {?>
                                                     <a href="" class="badge badge-blue-ebonyclay badge-roundless"> <?php echo $value['position_name'] ?></a>

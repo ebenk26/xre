@@ -327,12 +327,12 @@
                     </li> -->
 
                     <!-- Sidebar Menu : Settings -->
-                    <li class="nav-item ">
+                    <li class="nav-item "><!-- 
                         <a href="student-settings.html" class="nav-link">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
                         </a>
-                    </li>
+                    </li> -->
 
                 </ul>
                 <!-- END SIDEBAR MENU -->

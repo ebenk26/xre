@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
 
     public function post(){
         
-        if(!empty($_FILES['profile_photo']['tmp_name'])){
+        if(isset($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
@@ -39,7 +39,7 @@ class Profile extends CI_Controller {
             $ext = $path['extension'];
             $profile_photo = 'profile_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
             $targetFile =  $targetPath.$profile_photo;
-            if (!empty($checkImage)) {
+            if (isset($checkImage)) {
 
                 // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
@@ -50,10 +50,10 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $profile_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+            $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
 
-        if(!empty($_FILES['header_photo']['tmp_name'])){
+        if(isset($_FILES['header_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
@@ -64,7 +64,7 @@ class Profile extends CI_Controller {
             $ext = $path['extension'];
             $header_photo = 'header_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
             $targetFile =  $targetPath.$header_photo;
-            if (!empty($checkImage)) {
+            if (isset($checkImage)) {
 
                 // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
@@ -75,7 +75,7 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $header_photo = !empty($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+            $header_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
 
         $profile = array(
@@ -92,7 +92,7 @@ class Profile extends CI_Controller {
             'address' => $this->input->post('address'),
             'state' => $this->input->post('state'),
             'city' => $this->input->post('city'),
-            'occupation' => !empty($this->input->post('occupation')) ? $this->input->post('occupation') : 'Student',
+            'occupation' => $this->input->post('occupation'),
             'postcode' => $this->input->post('post_code'),
             'expected_salary' => $this->input->post('expected_salary'),
             'profile_photo' =>  $profile_photo,
@@ -174,6 +174,7 @@ class Profile extends CI_Controller {
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
                                 'industries_id' => $this->input->post('industry'),
+                                'skills' => $this->input->post('skills'),
                                 'created_at' => date('Y-m-d H:i:s')
                                 );
         }else{
@@ -207,6 +208,7 @@ class Profile extends CI_Controller {
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
                                 'industries_id' => $this->input->post('industry'),
+                                'skills' => $this->input->post('skills'),
                                 'updated_at' => date('Y-m-d H:i:s')
                                 );
         }else{

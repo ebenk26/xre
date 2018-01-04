@@ -7,6 +7,7 @@ class Job_Board extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
+        $this->load->model('job_model');
         if(empty($countryCheck)){
             redirect(base_url());
         }
@@ -52,7 +53,7 @@ class Job_Board extends CI_Controller {
         }
 
         if ($this->input->post('status') == 'draft') {
-            redirect(base_url().'employer/job_board/preview/'.rtrim(base64_encode($postJob),'=') );
+            redirect(base_url().'job/details/'.rtrim(base64_encode($postJob),'=') );
         }else{
             redirect(base_url().'employer/job_board/');
         }
@@ -94,13 +95,18 @@ class Job_Board extends CI_Controller {
         redirect(base_url().'employer/job_board/');
     }
 
-    public function preview(){
-        $id= base64_decode($this->uri->segment(4));
+    public function details(){
+        $id= base64_decode($this->uri->segment(3));
         $job_post['job'] = $this->employer_model->get_job_detail($id);
         $user_id = $job_post['job']->user_id;
         $get_user_profile = $this->employer_model->get_user_profile($user_id);
         $job_post['user_profile'] = $get_user_profile;
         $this->load->view('employer/preview',$job_post);
+    }
+
+    public function post_job(){
+        $id = $this->input->post('post_id');
+        $this->job_model->post_job($id, array('status'=>'post'));
     }
 
 }
