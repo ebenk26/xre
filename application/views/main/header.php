@@ -66,13 +66,13 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/about" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/services" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="#" class="s-header-v2-nav-link">Article</a>
@@ -81,8 +81,8 @@
                                     <?php if ($this->session->userdata('name')){ ?>
                                         <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-nav-link">Welcome, <?php echo $this->session->userdata('name') ;?></a>
                                     <?php }else{ ?>
-                                    <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
-                                    <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
                                     <?php } ?>
                                 </li>
                             </ul>

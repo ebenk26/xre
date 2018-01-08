@@ -20,7 +20,7 @@ class Country extends CI_Controller {
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
-        redirect(base_url().'site/home');
+        redirect(base_url().'home');
 	}
 
     public function my(){
@@ -35,7 +35,7 @@ class Country extends CI_Controller {
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
-        redirect(base_url().'site/home');
+        redirect(base_url().'home');
     }
 
     public function ph(){
@@ -50,7 +50,7 @@ class Country extends CI_Controller {
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
-        redirect(base_url().'site/home');
+        redirect(base_url().'home');
     }
 
     public function sg(){
@@ -65,7 +65,7 @@ class Country extends CI_Controller {
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
-        redirect(base_url().'site/home');
+        redirect(base_url().'home');
     }
 
     public function th(){
@@ -80,6 +80,6 @@ class Country extends CI_Controller {
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
         $this->session->set_userdata($country);
-        redirect(base_url().'site/home');
+        redirect(base_url().'home');
     }
 }

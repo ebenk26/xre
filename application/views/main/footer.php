@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-xs-6 g-text-right-xs">
                     <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light">
-                        <i class="fa fa-copyright fa-fw"></i>2017 Copyright  Xremo.com
+                        <i class="fa fa-copyright fa-fw"></i><?php echo date('Y') ?> Copyright  Xremo.com
                     </p>
                 </div>
             </div>

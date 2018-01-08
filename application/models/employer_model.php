@@ -33,7 +33,7 @@ class Employer_Model extends CI_Model{
         return $query->result_array();   
     }
 
-    function get_where($table, $order_by='created_at', $order='asc', $where=''){
+    function get_where($table, $order_by='created_at', $order='asc', $where){
         $this->db->order_by($order_by, $order); 
         $this->db->where($where);
         $query = $this->db->get($table);
@@ -105,10 +105,11 @@ class Employer_Model extends CI_Model{
     }
 
     function get_job_detail($id){
-        $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name');
+        $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name, profile_uploads.name as img');
         $this->db->from('job_positions');
         $this->db->join('position_levels', 'job_positions.position_level_id = position_levels.id', 'left');
         $this->db->join('employment_types', 'job_positions.employment_type_id = employment_types.id', 'left');
+        $this->db->join('profile_uploads', 'job_positions.user_id = profile_uploads.user_id', 'left');
         $this->db->where('job_positions.id', $id);
         $query = $this->db->get();
         return $query->last_row();
@@ -215,6 +216,12 @@ class Employer_Model extends CI_Model{
         }
         return true;
     }
+
+
+
+    // function get_candidate($id){
+    //     $this->db->select('student_bios.*, users.id as user_id, users.email as user_email, users.fullname as candidate_name, applieds.id as application_id, applieds.user_id as app_user_id, applieds.job_position_id as app_job_position_id, applieds.status as application_status, academics.');
+    // }
 }
 
 ?>

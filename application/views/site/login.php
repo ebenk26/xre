@@ -126,7 +126,7 @@
                             <div class="clearfix"></div>
                             <div class="m-grid my-4">
                                 <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                                    Don't have an account ?<a href="<?php echo base_url(); ?>site/user/signup"> Sign Up </a>
+                                    Don't have an account ?<a href="<?php echo base_url(); ?>signup"> Sign Up </a>
                                 </div>
                             </div>
                         </form>

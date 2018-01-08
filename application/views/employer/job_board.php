@@ -123,7 +123,7 @@
                                                             <i class="icon-pencil"></i> Edit </a>
                                                     </li>
                                                     <li>
-                                                        <a href="employer-candidate.html">
+                                                        <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                             <i class="icon-user"></i> View Candidates </a>
                                                     </li>
                                                     <li>
@@ -150,33 +150,51 @@
             </div>
         </div>
         <?php foreach ($job_post as $key => $value) { ?>
-            <!-- BEGIN MODAL : Edit Job Post Info -->
-                <div class="modal fade modal-open-noscroll " id="modal_edit_jobpost_<?php echo $value['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+
+                <div class="modal fade modal-open-noscroll  " id="modal_edit_jobpost_<?php echo $value['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content ">
                             <div class="modal-header ">
-                                <h4 class="modal-title">New Job Post Info</h4>
+                                <h4 class="modal-title">Edit Post </h4>
                             </div>
 
-                            <form action="<?php echo base_url(); ?>employer/job_board/update/" class="form-horizontal form-row-seperated " method="POST" >
-                                <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                            <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal form-row-seperated ">
+                                <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                                     <div class="modal-body form-body pr-0">
                                         <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
-                                        <div class="row m-0">
-                                            <div class="col-md-12">
-                                                <div class="form-group col-md-12">
+                                        <!-- Job Position Title & Salary Range-->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!-- Job Position Title -->
+                                                <div class="form-group mx-0">
                                                     <label class="control-label ">Job Position Title</label>
-                                                    <input type="text" class="form-control" placeholder="Internship in IT department"  value="<?php echo $value['name'] ?>" name="title">
+                                                    <div class="input-icon">
+                                                        <i class="icon-briefcase"></i>
+                                                        <input type="text" class="form-control" placeholder="Internship in IT department"  value="<?php echo $value['name'] ?>" name="title">
+                                                        <!-- <span class="help-block small">Internship in IT department</span> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                                <div class="form-group mx-0 ">
+                                                    <label class="control-label ">Salary Range</label>
+                                                    <div class="form-inline">
+
+                                                        <input type="text" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min">
+                                                        <span class="mx-2">to</span>
+                                                        <input type="text" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max">
+                                                    </div>
+
                                                     <!-- <span class="help-block small">Internship in IT department</span> -->
                                                 </div>
                                             </div>
-
                                         </div>
 
-
-                                        <div class="row m-0">
+                                        <!-- Employement Type / Position Level / Years of Experience -->
+                                        <div class="row ">
                                             <div class="col-md-4">
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group mx-0">
                                                     <label class="control-label ">Employment Type</label>
                                                     <select class="bs-select form-control  " name="employment_Type">
                                                         <option value="" selected disabled>Employment Type</option>
@@ -187,9 +205,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group mx-0">
                                                     <label class="control-label ">Position Level</label>
-                                                    <select class="bs-select form-control " name="employment_Level" >
+                                                    <select class="bs-select form-control   " name="employment_level">
                                                         <?php foreach ($position_levels as $key => $position_level_value) {?>
                                                             <option <?php echo $value['position_level_id'] == $position_level_value['id'] ? 'selected':''; ?> value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
                                                         <?php } ?>
@@ -197,7 +215,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group col-md-12">
+                                                <div class="form-group mx-0">
                                                     <label class="control-label ">Years Of Experience</label>
                                                     <select class="bs-select form-control" name="year_Of_Experience">
                                                         <?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
@@ -208,42 +226,26 @@
                                             </div>
                                         </div>
 
-                                        <!-- Job Description -->
-                                        <div class="row m-0">
-                                            <div class="col-md-12">
-                                                <div class="form-group col-md-12">
-                                                    <label class="control-label ">Job Description</label>
-                                                    <textarea data-provide="markdown" rows="10" name="job_Desc"><?php echo $value['job_description']?></textarea>
+                                        <!-- Job Description / Nice To Have / Job Requirement / Additional Info -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label mb-2 ">Job Description</label>
+                                                    <textarea name="content" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc"><?php echo $value['job_description']?></textarea>
+                                                </div>
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label mb-2 ">Nice To Have</label>
+                                                    <textarea name="content" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['other_requirements']?></textarea>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <!-- Job Requirement -->
-                                        <div class="row m-0">
-                                            <div class="col-md-12">
-                                                <div class="form-group col-md-12">
-                                                    <label class="control-label ">Job Requirement</label>
-                                                    <textarea name="job_Requirement" data-provide="markdown" rows="10"><?php echo $value['qualifications']?></textarea>
+                                            <div class="col-md-6">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label mb-2 ">Job Requirement</label>
+                                                    <textarea name="job_Requirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['qualifications']?></textarea>
                                                 </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Nice To Have -->
-                                        <div class="row m-0">
-                                            <div class="col-md-12">
-                                                <div class="form-group col-md-12">
-                                                    <label class="control-label ">Nice To Have</label>
-                                                    <textarea name="nice_To_Have" data-provide="markdown" rows="10"><?php echo $value['other_requirements']?></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Additional Info -->
-                                        <div class="row m-0">
-                                            <div class="col-md-12">
-                                                <div class="form-group col-md-12">
-                                                    <label class="control-label ">Additional Info</label>
-                                                    <textarea name="additional_Info" data-provide="markdown" rows="10"><?php echo $value['additional_info']?></textarea>
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label mb-2">Additional Info</label>
+                                                    <textarea name="additional_Info" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['additional_info']?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +263,6 @@
                         <!-- /.modal-dialog -->
                     </div>
                 </div>
-                <!-- END MODAL : Edit Job Post Info -->
         <?php } ?>
         <!-- BEGIN MODAL : Add Job Post Info -->
         <div class="modal fade modal-open-noscroll  " id="modal_add_jobpost" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">

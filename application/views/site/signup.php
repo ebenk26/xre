@@ -251,7 +251,7 @@
                     <div class="row bs-reset">
                         <div class="m-grid">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                                Already have an account ?<a href="<?php echo base_url(); ?>site/user/login"> Sign In </a>
+                                Already have an account ?<a href="<?php echo base_url(); ?>login"> Sign In </a>
                             </div>
                         </div>
                     </div>

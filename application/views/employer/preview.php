@@ -1,3 +1,7 @@
+<?php $roles = $this->session->userdata('roles'); 
+$image = end($company_image);
+$login = $this->session->userdata('id');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +42,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:url"           content="<?php echo current_url();?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="XREMO Job Posting | <?php echo $job->name; ?>" />
+    <meta property="og:description"   content="<?php echo $job->job_description; ?>" />
+    <meta property="og:image"         content="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" />
+
     <title>Employer - Job Preview</title>
 </head>
 
@@ -59,7 +69,7 @@
                     <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
                         <!-- Logo -->
                         <div class="s-header-v2-logo ">
-                            <a href="index.html" class="s-header-v2-logo-link ">
+                            <a href="<?php echo base_url(); ?>home" class="s-header-v2-logo-link ">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" style="height:47px" alt="Xremo Logo">
                             </a>
@@ -76,16 +86,16 @@
                                     <a href="job-search.html" class="s-header-v2-nav-link  g-color-md-orange-text ">Search Job</a>
                                 </li> -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
@@ -114,7 +124,7 @@
 
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
                                     <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
@@ -181,7 +191,7 @@
                 <div class="row mb-5 mx-0">
                     <div class="media">
                         <div class="pull-left">
-                            <img src="../assets/global/img/portfolio/600x600/011.jpg" alt="" class="avatar avatar-small">
+                            <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="avatar avatar-small">
                         </div>
                         <div class="media-body">
                             <h5 class="roboto-font mt-2  font-16-xs ">
@@ -310,13 +320,89 @@
             <div class="col-md-3">
 
                 <!-- Button -->
-                <div class="row mb-5 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
-                        data-confirm-button-class="btn-info">
-                        <i class="icon-note mr-2 "></i>Post</button>
-                    <a href="employer-jobboard.html?#modal_add_jobpost" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
-                        <i class="fa fa-building-o mr-2 "></i>Edit</a>
-                </div>
+                <?php if ($roles == 'employer' && $job->status =='draft'): ?>
+                    <div class="row mb-5 mx-0">
+                        <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
+                            data-confirm-button-class="btn-info">
+                            <i class="icon-note mr-2 "></i>Post</button>
+                        <a href="employer-jobboard.html?#modal_add_jobpost" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                            <i class="fa fa-building-o mr-2 "></i>Edit</a>
+                    </div>
+                <?php endif ?>
+
+                <?php if (($roles == 'student' || $roles =='jobseeker') && $job->status == 'post') :?>
+                    <!-- Button -->
+                    <div class="row mb-5 mx-0">
+                        <a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange roboto-font">
+                            <i class="icon-note mr-2 "></i>Apply This Job</a>
+                        <a href="company-description.html" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                            <i class="fa fa-building-o mr-2 "></i>View Company</a>
+                    </div>
+
+                    <!-- Share To -->
+                    <div class="row mb-5 mx-0">
+                        <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Share Job</h5>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5459809e0d587c73"></script>
+
+                        <div class="addthis_inline_share_toolbox_xng3"></div>
+                    </div>
+
+                    <!-- URL  -->
+                    <div class="row mb-5 mx-0">
+                        <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Job Url</h5>
+                        <div class="mt-clipboard-container px-0 py-1">
+
+                            <div class="input-group">
+                                <input type="text" id="clipboard" class="form-control" value="<?php echo current_url(); ?>" />
+                                <span class="input-group-btn-vertical">
+                                    <a href="javascript:;" class="btn green mt-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboard">
+                                        <i class="icon-note"></i> Copy Url</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- More From -->
+                    <div class="row mb-5 mx-0">
+                        <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">More From
+                            <a href="" class="md-orange-text">Company #1</a>
+                        </h5>
+
+                        <ul class="list-group list-borderless">
+                            <li class="list-group-item px-0 py-1">
+                                <p class="roboto-font my-0 font-14-xs font-weight-500 ">Job Position Title #2
+                                    <small class="font-weight-400">[ Part Time ]</small>
+                                </p>
+                                <small class="roboto-font my-1 font-13-xs">
+                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
+                            </li>
+                            <li class="list-group-item px-0 py-1">
+                                <p class="roboto-font my-0 font-14-xs font-weight-500 md- ">Job Position Title #2
+                                    <small class="font-weight-400">[ Part Time ]</small>
+                                </p>
+                                <small class="roboto-font my-1 font-13-xs">
+                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
+                            </li>
+                            <li class="list-group-item px-0 py-1">
+                                <p class="roboto-font my-0 font-14-xs font-weight-500 ">Job Position Title #2
+                                    <small class="font-weight-400">[ Part Time ]</small>
+                                </p>
+                                <small class="roboto-font my-1 font-13-xs">
+                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
+                            </li>
+                        </ul>
+
+                    </div>
+                <?php endif; ?>
+
+                <?php if (empty($login)) : ?>
+                    <div class="row mb-5 mx-0">
+                        <a href="<?php echo base_url() ?>login" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                            Login</a>
+                    </div>
+                <?php endif; ?>
 
                 
             </div>
@@ -338,25 +424,25 @@
                             </div>
                         </div> -->
                     </div>
-                    <form action="" class="form form-horizontal">
+                    <form action="<?php echo base_url(); ?>student/dashboard/applied" method="POST" class="form form-horizontal">
                         <div class="modal-body  ">
                             <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
                                 <div class="media ">
                                     <div class="pull-left">
-                                        <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-mini avatar-circle">
+                                        <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="avatar avatar-mini avatar-circle">
                                     </div>
                                     <div class="media-body">
-                                        <h6 class="mt-1 mb-1 md-indigo-text font-weight-500 roboto-font">Nick Jonas
+                                        <h6 class="mt-1 mb-1 md-indigo-text font-weight-500 roboto-font"><?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
                                             <small class="">
-                                                <i class="icon-pointer"></i> Kuala Lumpur</small>
+                                                <i class="icon-pointer"></i> <?php $country = $this->session->userdata('country'); echo !empty($country) ? $country : ''; ?></small>
                                         </h6>
                                         <p class="roboto-font text-none">Applied for job
-                                            <strong class="text-capitallize">Web Developer</strong>
+                                            <strong class="text-capitallize"><?php echo $job->name; ?></strong>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="form-group text-left mx-0 mb-2">
-                                    <textarea name="" id="" class="form-control " rows="7" placeholder="Describe about yourself and why we should we hire you? Not more than 300 words"></textarea>
+                                    <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe about yourself and why we should we hire you? Not more than 300 words"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -495,6 +581,8 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>portfolio-3-col.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>clipboard.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>components-clipboard.min.js"></script>
     <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
     <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
 
@@ -529,6 +617,12 @@
             });
         });
     </script>
+
+    <style type="text/css">
+    #at4-share{
+        display: none !important;
+    }
+    </style>
 </body>
 
 </html>

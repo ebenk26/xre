@@ -254,7 +254,7 @@
                                                 <div class="item">
                                                     <div class="item-head">
                                                         <div class="item-details">
-                                                            <img class="item-pic" src="../HTML/img/Xremo/all/xremo-logo-blue.png">
+                                                            <img class="item-pic" src=".<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png">
                                                             <a href="" class="item-name primary-link">Intel Sdn Bhd</a>
                                                             <span class="item-label">2 days ago</span>
                                                         </div>

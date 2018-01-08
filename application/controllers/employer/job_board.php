@@ -97,9 +97,14 @@ class Job_Board extends CI_Controller {
 
     public function details(){
         $id= base64_decode($this->uri->segment(3));
+        if (!$id) {
+            redirect(show_404());
+        }
         $job_post['job'] = $this->employer_model->get_job_detail($id);
         $user_id = $job_post['job']->user_id;
         $get_user_profile = $this->employer_model->get_user_profile($user_id);
+        $job_post['company_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'profile_photo'));
+        $job_post['header_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'header_photo'));
         $job_post['user_profile'] = $get_user_profile;
         $this->load->view('employer/preview',$job_post);
     }

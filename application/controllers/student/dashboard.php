@@ -36,6 +36,7 @@ class Dashboard extends CI_Controller {
                         'status' => 'APPLIED',
                         'employer_message_status' => 'NEW',
                         'job_seeker_message_status' => 'NEW',
+                        'coverletter' => $this->input->post('coverletter'),
                         );
         $apply_job = $this->job_model->apply($jobs);
         if ($apply_job == true) {
