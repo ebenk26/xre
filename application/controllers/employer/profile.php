@@ -199,4 +199,16 @@ class Profile extends CI_Controller {
 
     }
 
+    public function company(){
+        $id= base64_decode($this->uri->segment(3));
+        if (!$id) {
+            redirect(show_404());
+        }
+        $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile_form['detail'] = $get_user_profile;
+        $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));
+        $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'profile_photo'));
+        $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
+        $this->load->view('employer/company_profile', $profile_form);
+    }
 }

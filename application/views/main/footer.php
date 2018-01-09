@@ -7,16 +7,16 @@
                     <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>">Home</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>home">Home</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>site/about">About</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>about">About</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>site/services">Service</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>services">Service</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>site/contact">Contacts</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>contact">Contacts</a>
                             </li>
                             <li>
                                 <a class="g-font-size-15-xs g-color-white-opacity" href="#">Article</a>

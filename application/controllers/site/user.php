@@ -174,7 +174,7 @@ class User extends CI_Controller {
         }
     }
 
-    public function employer_signup_post($user){
+    public function employer_signup_post(){
 
         $this->form_validation->set_rules('company_name','Company name', 'required');
         $this->form_validation->set_rules('fullname','Company Admin Name', 'required');

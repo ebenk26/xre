@@ -98,8 +98,8 @@ $login = $this->session->userdata('id');
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -196,7 +196,7 @@ $login = $this->session->userdata('id');
                         <div class="media-body">
                             <h5 class="roboto-font mt-2  font-16-xs ">
                                 <i class="fa fa-building-o mr-2"></i>
-                                <a href="company-description.html" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
+                                <a href="<?php echo base_url(); ?>profile/company/<?php echo base64_encode($user_profile['id_users']); ?>" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <i class="icon-pointer"></i> Subang , Selangor
@@ -335,7 +335,7 @@ $login = $this->session->userdata('id');
                     <div class="row mb-5 mx-0">
                         <a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange roboto-font">
                             <i class="icon-note mr-2 "></i>Apply This Job</a>
-                        <a href="company-description.html" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                        <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
                             <i class="fa fa-building-o mr-2 "></i>View Company</a>
                     </div>
 
