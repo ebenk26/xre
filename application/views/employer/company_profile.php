@@ -1,6 +1,7 @@
 <?php $header_image = end($header_photo); 
 	$profile_image = end($profile_photo);
 	$company_location = json_decode($detail['address']);
+    $login = $this->session->userdata('id');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,13 +96,42 @@
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>signup" class="s-header-v2-nav-link  g-color-md-orange-text ">SIGN UP</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
-                                </li>
+                                <?php if (!empty($login)): ?>
+                                    <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
+                                        <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-home mr-3"></i>Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-note mr-3"></i>Edit Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-key mr-3"></i>Log Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <?php else: ?>
+                                    <li class="s-header-v2-nav-item">
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    </li>
+                                <?php endif ?>
                             </ul>
                         </div>
                         <!--logged user -->
@@ -125,36 +155,42 @@
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
-                                <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                    <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
-                                        <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
-                                    </a>
-                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-home mr-3"></i>Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-note mr-3"></i>Edit Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-book-open mr-3"></i>My Resume</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-calendar mr-3"></i>My Calendar</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-key mr-3"></i>Log Out</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
+                                <?php if (!empty($login)): ?>
+                                    <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
+                                        <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-home mr-3"></i>Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-note mr-3"></i>Edit Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-key mr-3"></i>Log Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <?php else: ?>
+                                    <li class="s-header-v2-nav-item">
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    </li>
+                                <?php endif ?>
                             </ul>
                         </div>
                         <!-- End Nav Menu -->
@@ -669,12 +705,11 @@
     <!-- General Components and Settings -->
 
     <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false" ></script> -->
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script> -->
     <!-- <script type="text/javascript" src="https://www.google.com/maps/embed/v1/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U" type="text/javascript"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U"></script> -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/gmaps/gmaps.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/gmaps/gmaps.min.js"></script> -->
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/clipboardjs/clipboard.min.js"></script>
-    <script src="<?php echo JS_STUDENTS; ?>contact.js" type="text/javascript"></script>
 
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>global.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>app.min.js"></script>
@@ -689,6 +724,18 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
+    <script>
+      function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('gmapbg'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap"
+    async defer></script>
 </body>
 
 </html>

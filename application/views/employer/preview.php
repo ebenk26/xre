@@ -1,4 +1,5 @@
-<?php $roles = $this->session->userdata('roles'); 
+<?php 
+$roles = $this->session->userdata('roles'); 
 $image = end($company_image);
 $login = $this->session->userdata('id');
 ?>
@@ -97,10 +98,42 @@ $login = $this->session->userdata('id');
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
-                                </li>
+                                <?php if (!empty($login)): ?>
+                                    <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
+                                        <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                        </a>
+                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-home mr-3"></i>Dashboard</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-note mr-3"></i>Edit Profile</a>
+                                            </li>
+                                            <li>
+                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-key mr-3"></i>Log Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                <?php else: ?>                                    
+                                    <li class="s-header-v2-nav-item">
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    </li>
+                                <?php endif ?>
                             </ul>
                         </div>
                         <!--logged user -->
@@ -110,13 +143,13 @@ $login = $this->session->userdata('id');
                                     <a href="job-search.html" class="s-header-v2-nav-link md-orange-text">Search Job</a>
                                 </li> -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>site/about/" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url();?>about/" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>site/services/" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url();?>services/" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>site/contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url();?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="#" class="s-header-v2-nav-link">Article</a>
@@ -129,11 +162,11 @@ $login = $this->session->userdata('id');
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
                                         <li>
-                                            <a href="<?php echo base_url();?>employer/dashboard/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/dashboard/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url();?>employer/profile/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/profile/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
                                         <!-- <li>
@@ -141,7 +174,7 @@ $login = $this->session->userdata('id');
                                                 <i class="icon-book-open mr-3"></i>My Resume</a>
                                         </li> -->
                                         <li>
-                                            <a href="<?php echo base_url();?>employer/calendar/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/calendar/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
                                         <li class="divider"></li>
@@ -617,6 +650,19 @@ $login = $this->session->userdata('id');
             });
         });
     </script>
+
+    <script>
+      function initMap() {
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('gmapbg'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap"
+    async defer></script>
 
     <style type="text/css">
     #at4-share{
