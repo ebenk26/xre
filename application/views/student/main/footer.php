@@ -74,15 +74,6 @@
                 autoclose: true,
             });
 
-            $('.date-picker').daterangepicker({
-                singleDatePicker: true,
-                showDropdowns: true,
-                "locale":{
-                    format: 'DD-MM-YYYY',                  
-                }
-            });
-
-
 
             $(".date-picker-start").datepicker({
                 format:'dd-mm-yyyy',

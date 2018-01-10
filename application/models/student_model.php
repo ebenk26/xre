@@ -58,19 +58,22 @@ class Student_Model extends CI_Model{
            'updated_at' => date('Y-m-d H:i:s')
         );
 
+        $language_set =$this->get_where_array('user_language_set', array('user_id'=>$this->session->userdata('id')), 'id', 'asc');
+
         try{
+
+            foreach ($language_set as $key => $value) {
+                    $this->db->where('id', $value['id']);
+                    $this->db->delete('user_language_set'); 
+            }
 
             foreach ($profile['language'] as $key => $value) {
                 $userLanguage = array(  'user_id' => $this->session->userdata('id'),
                                         'language' => $value['name'],
                                         'written' => $value['written'],
                                         'spoken' => $value['spoken'] );
-                if ($value['language_id']) {
-                    $this->db->where('id', $value['language_id']);
-                    $this->db->update('user_language_set', $userLanguage); 
-                }else{                    
-                    $this->db->insert('user_language_set', $userLanguage);
-                }
+
+                $this->db->insert('user_language_set', $userLanguage);                
             }
 
             if ($checkUserProfilePhotoExist) {
@@ -80,7 +83,7 @@ class Student_Model extends CI_Model{
                 $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
             }
 
-            if ($checkUserProfileHeaderExist) {
+            if ($checkUserHeaderPhotoExist) {
                 $this->db->where($userHeaderPhotoID);
                 $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
             }else{
@@ -333,6 +336,13 @@ class Student_Model extends CI_Model{
         $this->db->order_by($order_by, $order); 
         $query = $this->db->get($table);
         return $query->result_array();
+    }
+
+    function get_where_array($table, $where, $order_by='created_at', $order='asc'){
+        $this->db->order_by($order_by, $order); 
+        $this->db->where($where);
+        $query = $this->db->get($table);
+        return $query->result_array();   
     }
 
     function get_last_row_array($table){

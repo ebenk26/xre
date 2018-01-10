@@ -1,3 +1,4 @@
+<?php $id = $this->session->userdata('id'); ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -113,7 +114,7 @@
                                 <li class="s-header-v2-nav-item">
                                     <a href="#" class="s-header-v2-nav-link">Article</a>
                                 </li>
-                                <?php if(!empty($this->session->userdata('id'))){?>
+                                <?php if(!empty($id)){?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
                                     <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
@@ -129,7 +130,7 @@
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/view_my_profile/<?php echo base64_encode($this->session->userdata('id'));?>" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?>student/view_my_profile/<?php echo base64_encode($id);?>" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-book-open mr-3"></i>My Resume</a>
                                         </li>
                                         <li>

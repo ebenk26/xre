@@ -45,7 +45,10 @@
                                     <i class="icon-pencil"></i>
                                     Edit
                                 </a> -->
-                                <a href="<?php echo base_url() ?>student/profile/view_my_profile/<?php echo rtrim(base64_encode($this->session->userdata('id')), '='); ?>" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
+                                <a href="<?php
+                                    $id = $this->session->userdata('id');
+                                    $id_encoded = rtrim(base64_encode($id), '=');
+                                 echo base_url() ?>student/profile/view_my_profile/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
                                     View My Resume </a>
 
                             </div>

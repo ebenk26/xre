@@ -96,7 +96,7 @@ class Job_Board extends CI_Controller {
     }
 
     public function details(){
-        $id= base64_decode($this->uri->segment(3));
+        $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
         if (!$id) {
             redirect(show_404());
         }

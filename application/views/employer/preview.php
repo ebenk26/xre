@@ -101,7 +101,7 @@ $login = $this->session->userdata('id');
                                 <?php if (!empty($login)): ?>
                                     <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
                                         <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
                                             <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                         </a>
                                         <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
@@ -568,7 +568,7 @@ $login = $this->session->userdata('id');
                 </div>
                 <div class="col-xs-6 g-text-right-xs">
                     <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light mt-2">
-                        <i class="fa fa-copyright fa-fw"></i>2017 Copyright Xremo.com
+                        <i class="fa fa-copyright fa-fw"></i><?php echo date('Y') ?> Copyright Xremo.com
                     </p>
                 </div>
             </div>
@@ -653,10 +653,17 @@ $login = $this->session->userdata('id');
 
     <script>
       function initMap() {
+        var latLang = {lat: -34.397, lng: 150.644};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
-          center: {lat: -34.397, lng: 150.644},
+          center: latLang,
           zoom: 8
+        });
+
+         var marker = new google.maps.Marker({
+          map: map,
+          position: latLang,
+          title: 'Hello World!'
         });
       }
 

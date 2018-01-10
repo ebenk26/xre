@@ -27,8 +27,7 @@ class Profile extends CI_Controller {
 	}
 
     public function post(){
-        
-        if(isset($_FILES['profile_photo']['tmp_name'])){
+        if(!empty($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
@@ -36,6 +35,7 @@ class Profile extends CI_Controller {
             $targetPath = "./assets/img/student/";
 
             $path = pathinfo($_FILES['profile_photo']['name']);
+            var_dump($_FILES['profile_photo']);exit;
             $ext = $path['extension'];
             $profile_photo = 'profile_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
             $targetFile =  $targetPath.$profile_photo;
@@ -53,7 +53,7 @@ class Profile extends CI_Controller {
             $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
 
-        if(isset($_FILES['header_photo']['tmp_name'])){
+        if(!empty($_FILES['header_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
@@ -98,7 +98,7 @@ class Profile extends CI_Controller {
             'profile_photo' =>  $profile_photo,
             'header_photo' =>  $header_photo,
             'language' => $this->input->post('group-b')
-        );        
+        );
         $this->student_model->profile_post($profile);
         redirect(base_url().'student/profile/');
     }
@@ -375,7 +375,7 @@ class Profile extends CI_Controller {
     }
 
     public function view_my_profile(){
-        $id= base64_decode($this->uri->segment(4));
+        $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
         $profile['user_profile'] = $this->student_model->get_user_profile($id);
         $this->load->view('student/view_profile',$profile);
     }

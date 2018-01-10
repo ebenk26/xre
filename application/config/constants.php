@@ -51,6 +51,8 @@ define('CSS_EMPLOYER', ASSETS.'employer/css/');
 define('JS_EMPLOYER', ASSETS.'employer/js/');
 define('IMG_EMPLOYER', ASSETS.'employer/img/');
 define('IMG_EMPLOYERS', ASSETS.'img/employer/');
+define('URI_SEGMENT_PAGE', '2');
+define('URI_SEGMENT_DETAIL', '3');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

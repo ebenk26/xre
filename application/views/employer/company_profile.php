@@ -1,4 +1,5 @@
-<?php $header_image = end($header_photo); 
+<?php 
+    $header_image = end($header_photo); 
 	$profile_image = end($profile_photo);
 	$company_location = json_decode($detail['address']);
     $login = $this->session->userdata('id');
@@ -137,11 +138,9 @@
                         <!--logged user -->
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav hidden">
-                                <!-- NOTE : Student got "Search Job " link meanwhile employer do not have -->
                                 <li class="s-header-v2-nav-item">
                                     <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
                                 </li>
-                                <!-- ########################################################## -->
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
@@ -217,23 +216,6 @@
                         <h1 class="roboto-font mt-2 font-weight-500 md-white-text "><?php echo $detail['company_name']; ?></h1>
                         <h6 class="mb-1 roboto-font mdo-white-strong-text font-weight-300">
                             <i class="fa fa-building-o mr-2 hidden"></i> <?php echo $detail['industry'] ?></h6>
-                        <!-- <ul class="social-icons social-icons-color mb-0">                        
-                            <li>
-                                <a href="javascript:;" data-original-title="facebook" class="facebook"> </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-original-title="Google Plus" class="googleplus"> </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-original-title="linkedin" class="linkedin"> </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-original-title="twitter" class="twitter"> </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;" data-original-title="instagram" class="instagram"> </a>
-                            </li>
-                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -296,80 +278,34 @@
 	                                        </li>
                                     	<?php } ?>
                                     </ul>
-
-
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab_job_info">
 
                                 <ul class="list-group list-border pt-0">
                                     <!-- Content -->
-                                    <li class="list-group-item ">
-                                        <div class="media">
-                                            <div class="pull-right ">
-                                                <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                    <?php foreach ($job as $key => $value) {?>
+                                        <li class="list-group-item ">
+                                            <div class="media">
+                                                <div class="pull-right ">
+                                                    <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                </div>
+                                                <div class="media-body ">
+                                                    <h6 class="my-1 font-weight-700 roboto-font">
+                                                        <a><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
+                                                    </h6>
+                                                </div>
                                             </div>
-                                            <div class="media-body ">
-                                                <h6 class="my-1 font-weight-700 roboto-font">
-                                                    <a>Job Position Title </a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <p class="my-1 roboto-font">
-                                            <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                            <span class="label label-md-red label-sm">Location</span>
-                                            <span class="label label-md-blue label-sm">Job Type</span>
-                                            <span class="label label-md-purple label-sm">Position Level</span>
-                                        </p>
-                                        <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                            magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus
-                                            consectetur.
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item  ">
-                                        <div class="media">
-                                            <div class="pull-right ">
-                                                <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                            </div>
-                                            <div class="media-body ">
-                                                <h6 class="my-1 font-weight-700 roboto-font">
-                                                    <a>Job Position Title </a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <p class="my-1 roboto-font">
-                                            <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                            <span class="label label-md-red label-sm">Location</span>
-                                            <span class="label label-md-blue label-sm">Job Type</span>
-                                            <span class="label label-md-purple label-sm">Position Level</span>
-                                        </p>
-                                        <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                            magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus
-                                            consectetur.
-                                        </p>
-                                    </li>
-                                    <li class="list-group-item  ">
-                                        <div class="media">
-                                            <div class="pull-right ">
-                                                <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                            </div>
-                                            <div class="media-body ">
-                                                <h6 class="my-1 font-weight-700 roboto-font">
-                                                    <a>Job Position Title </a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                        <p class="my-1 roboto-font">
-                                            <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                            <span class="label label-md-red label-sm">Location</span>
-                                            <span class="label label-md-blue label-sm">Job Type</span>
-                                            <span class="label label-md-purple label-sm">Position Level</span>
-                                        </p>
-                                        <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                            magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus
-                                            consectetur.
-                                        </p>
-                                    </li>
+                                            <p class="my-1 roboto-font">
+                                                <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                                <span class="label label-md-red label-sm">Location</span>
+                                                <span class="label label-md-blue label-sm">Job Type</span>
+                                                <span class="label label-md-purple label-sm">Position Level</span>
+                                            </p>
+                                            <p class="multiline-truncate roboto-font font-weight-300 mb-3"><?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
+                                            </p>
+                                        </li>
+                                    <?php } ?>
                                     <!-- Pagination -->
                                     <li class="list-group-item px-0 ">
                                         <ul class="pagination pagination-lg">
@@ -667,7 +603,7 @@
                 </div>
                 <div class="col-xs-6 g-text-right-xs">
                     <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light my-3">
-                        <i class="fa fa-copyright fa-fw"></i>2018 Copyright Xremo.com
+                        <i class="fa fa-copyright fa-fw"></i><?php echo date('Y') ?> Copyright Xremo.com
                     </p>
                 </div>
             </div>
@@ -726,10 +662,17 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
     <script>
       function initMap() {
+        var latLang = {lat: -34.397, lng: 150.644};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
-          center: {lat: -34.397, lng: 150.644},
+          center: latLang,
           zoom: 8
+        });
+
+         var marker = new google.maps.Marker({
+          map: map,
+          position: latLang,
+          title: 'Hello World!'
         });
       }
 

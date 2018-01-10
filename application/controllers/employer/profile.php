@@ -200,10 +200,11 @@ class Profile extends CI_Controller {
     }
 
     public function company(){
-        $id= base64_decode($this->uri->segment(3));
+        $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
         if (!$id) {
             redirect(show_404());
         }
+        $profile_form['job'] = $this->employer_model->get_job_post($id);
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile_form['detail'] = $get_user_profile;
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));
