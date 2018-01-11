@@ -1,4 +1,9 @@
-<?php   $profile_picture = current($profile_photo); 
+<?php   $working_days = explode(' - ', $user_profile['working_days']);
+        $working_hours = explode(' - ', $user_profile['working_hours']);
+        $dress_code = explode(',', $user_profile['dress_code']);
+        $spoken_language = explode(',', $user_profile['spoken_language']);
+        $company_address = json_decode($user_profile['address']);
+        $profile_picture = current($profile_photo); 
         $header_picture = current($header_photo); ?>
 <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
@@ -265,7 +270,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-3">Company Name</label>
                                             <div class="col-sm-9 ">
-                                                <input type="text" class="form-control " name="company_name" placeholder="Xremo Sdn Bhd" required>
+                                                <input type="text" class="form-control " name="company_name" placeholder="Xremo Sdn Bhd" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : 'Xremo Sdn Bhd'; ?>" required>
                                                 <span class="help-block small">Company Full Name </span>
                                             </div>
                                         </div>
@@ -274,7 +279,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Company Registration Number</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-medium" name="company_registration_number" placeholder="012ABC-DEFGH34">
+                                                <input type="text" class="form-control input-medium" name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : 'Xremo Sdn Bhd'; ?>">
                                                 <!-- <span class="help-block small"></span> -->
                                             </div>
                                         </div>
@@ -286,7 +291,7 @@
                                                 <select class="bs-select form-control" name="industry">
                                                     <option value="" selected disabled>Select one </option>
                                                     <?php foreach($industries as $value){?>
-                                                        <option value="<?php echo $value['id'];?>"><?php echo $value['name'];?></option>    
+                                                        <option value="<?php echo $value['id'];?>" <?php echo ($value['id']== $detail['company_industry_id']) ? 'selected' : '' ?>><?php echo $value['name'];?></option>    
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -296,7 +301,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">About Company</label>
                                             <div class="col-md-9">
-                                                <textarea class="form-control autosizeme" name="about_company" rows="4" placeholder="Summarize about your company."></textarea>
+                                                <textarea class="form-control autosizeme" name="about_company" rows="4" placeholder="Summarize about your company."><?php echo !empty($detail['company_description']) ? $detail['company_description'] : ''; ?></textarea>
                                                 <!-- <input type="text" class="form-control " placeholder="Summarize about your company"> -->
                                                 <!-- <span class="help-block small">Company Full Name </span> -->
                                             </div>
@@ -306,7 +311,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Corporate Websites</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-xlarge" name="corporate_website" placeholder="Add link here">
+                                                <input type="text" class="form-control input-xlarge" name="corporate_website" placeholder="Add link here" value="<?php echo !empty($detail['url']) ? $detail['url'] : ''; ?>">
                                             </div>
                                         </div>
 
@@ -316,28 +321,30 @@
                                             <div class="col-md-9">
                                                 <div class="mt-repeater">
                                                     <div data-repeater-list="group-b">
-                                                        <div data-repeater-item class="row mt-2">
-                                                            <div class="col-md-6">
-                                                                <input type="text" placeholder="Add link to here" class="form-control" name="link" /> </div>
-                                                            <div class="col-md-4">
-                                                                <select class="form-control" name="name">
-                                                                    <option value="" selected disabled>Select account type </option>
-                                                                    <option value="facebook">Facebook</option>
-                                                                    <option value="twitter">Twitter</option>
-                                                                    <option value="gplus">Google Plus</option>
-                                                                    <option value="linkedin">Linked In</option>
-                                                                    <option value="instagram">Instagram</option>
-                                                                    <option value="youtube">Youtube</option>
-                                                                    <option value="snapchat">SnapChat</option>
-                                                                </select>
+                                                        <?php foreach ($social as $key => $value) {?>
+                                                            <div data-repeater-item class="row mt-2">
+                                                                <div class="col-md-6">
+                                                                    <input type="text" placeholder="Add link to here" class="form-control" name="link" value="<?php echo $value['link']; ?>" /> </div>
+                                                                <div class="col-md-4">
+                                                                    <select class="form-control" name="name">
+                                                                        <option value="" selected disabled>Select account type </option>
+                                                                        <option value="facebook" <?php echo ($value['name']=='facebook') ? 'selected' : '' ?>>Facebook</option>
+                                                                        <option value="twitter" <?php echo ($value['name']=='twitter') ? 'selected' : '' ?>>Twitter</option>
+                                                                        <option value="gplus" <?php echo ($value['name']=='gplus') ? 'selected' : '' ?>>Google Plus</option>
+                                                                        <option value="linkedin" <?php echo ($value['name']=='linkedin') ? 'selected' : '' ?>>Linked In</option>
+                                                                        <option value="instagram" <?php echo ($value['name']=='instagram') ? 'selected' : '' ?>>Instagram</option>
+                                                                        <option value="youtube" <?php echo ($value['name']=='youtube') ? 'selected' : '' ?>>Youtube</option>
+                                                                        <option value="snapchat" <?php echo ($value['name']=='snapchat') ? 'selected' : '' ?>>SnapChat</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="control-label">&nbsp;</label>
+                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-md-2">
-                                                                <label class="control-label">&nbsp;</label>
-                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top">
-                                                                    <i class="fa fa-close"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
+                                                        <?php } ?>
                                                     </div>
                                                     <hr>
                                                     <a href="javascript:;" data-repeater-create class="btn btn-info btn-sm mt-repeater-add">
@@ -364,10 +371,10 @@
                                             <label class="control-label col-md-3">Company Size</label>
                                             <div class="col-md-9">
                                                 <select class="bs-select form-control input-xlarge  " name="company_size">
-                                                    <option value="" selected disabled>Select one </option>
-                                                    <option value="1-50">1 to 50 employee</option>
-                                                    <option value="51-100">50 to 100 employee</option>
-                                                    <option value="100<">100 to above employee</option>
+                                                    <option value="" disabled>Select one </option>
+                                                    <option value="1-50" <?php echo ($user_profile['total_staff'] == '1-50') ? 'selected' : ''; ?>>1 to 50 employee</option>
+                                                    <option value="51-100" <?php echo ($user_profile['total_staff'] == '51-100') ? 'selected' : ''; ?>>50 to 100 employee</option>
+                                                    <option value="100<" <?php echo ($user_profile['total_staff'] == '100<') ? 'selected' : ''; ?>>100 to above employee</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -378,21 +385,39 @@
                                             <div class="col-md-9">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]">
+                                                        <?php foreach ($dress_code as $key => $value) { 
+                                                            if ($value == 'casual') {
+                                                            ?>
+                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" checked>
+                                                        <?php }else{?>
+                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]">
+                                                        <?php }} ?>
                                                         <label for="checkbox6">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Casual Dress Code</label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox7" class="md-check" checked="" value="formal" name="dress[]">
+                                                        <?php foreach ($dress_code as $key => $value) { 
+                                                            if ($value == 'formal') {
+                                                            ?>
+                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]" checked>
+                                                        <?php }else{?>
+                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]">
+                                                        <?php }} ?>
                                                         <label for="checkbox7">
                                                             <span></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Formal Dress Code </label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]">
+                                                        <?php foreach ($dress_code as $key => $value) { 
+                                                            if ($value == 'business') {
+                                                            ?>
+                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]" checked>
+                                                        <?php }else{?>
+                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]">
+                                                        <?php }} ?>
                                                         <label for="checkbox8">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
@@ -411,14 +436,14 @@
                                                 <div class="m-grid">
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_start">
-                                                            <option value="" selected disabled>Select Day Start </option>
-                                                            <option value="monday">Monday</option>
-                                                            <option value="tuesday">Tuesday</option>
-                                                            <option value="wednesday">Wednesday</option>
-                                                            <option value="thursday">Thursday</option>
-                                                            <option value="friday">Friday</option>
-                                                            <option value="saturday">Saturday</option>
-                                                            <option value="sunday">Sunday</option>
+                                                            <option value="" disabled>Select Day Start </option>
+                                                            <option value="monday" <?php echo ($working_days[0] == 'monday') ? 'selected' : '' ?>>Monday</option>
+                                                            <option value="tuesday" <?php echo ($working_days[0] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
+                                                            <option value="wednesday" <?php echo ($working_days[0] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
+                                                            <option value="thursday" <?php echo ($working_days[0] == 'thursday') ? 'selected' : '' ?>>Thursday</option>
+                                                            <option value="friday" <?php echo ($working_days[0] == 'friday') ? 'selected' : '' ?>>Friday</option>
+                                                            <option value="saturday" <?php echo ($working_days[0] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
+                                                            <option value="sunday" <?php echo ($working_days[0] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
                                                         </select>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-md-2 m-grid-col-center">
@@ -426,14 +451,14 @@
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_end">
-                                                            <option value="" selected disabled>Select Day End </option>
-                                                            <option value="monday">Monday</option>
-                                                            <option value="tuesday">Tuesday</option>
-                                                            <option value="wednesday">Wednesday</option>
-                                                            <option value="thursday">Thursday</option>
-                                                            <option value="friday">Friday</option>
-                                                            <option value="saturday">Saturday</option>
-                                                            <option value="sunday">Sunday</option>
+                                                            <option value="" disabled>Select Day End </option>
+                                                            <option value="monday" <?php echo ($working_days[1] == 'monday') ? 'selected' : '' ?>>Monday</option>
+                                                            <option value="tuesday" <?php echo ($working_days[1] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
+                                                            <option value="wednesday" <?php echo ($working_days[1] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
+                                                            <option value="thursday" <?php echo ($working_days[1] == 'thursday') ? 'selected' : '' ?>>Thursday</option>
+                                                            <option value="friday" <?php echo ($working_days[1] == 'friday') ? 'selected' : '' ?>>Friday</option>
+                                                            <option value="saturday" <?php echo ($working_days[1] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
+                                                            <option value="sunday" <?php echo ($working_days[0] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -443,7 +468,7 @@
                                                     <!-- Start Time -->
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="Start At" name="work_hour_start">
+                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="Start At" name="work_hour_start" value="<?php echo !empty($working_hours[0]) ? $working_hours[0] : '' ?>">
                                                             <span class="input-group-btn">
                                                                 <button class="btn default" type="button">
                                                                     <i class="fa fa-clock-o"></i>
@@ -457,7 +482,7 @@
                                                     <!-- End Time -->
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="End At" name="work_hour_end">
+                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="End At" name="work_hour_end" value="<?php echo !empty($working_hours[1]) ? $working_hours[1] : '' ?>">
                                                             <span class="input-group-btn">
                                                                 <button class="btn default" type="button">
                                                                     <i class="fa fa-clock-o"></i>
@@ -476,7 +501,9 @@
                                             <div class="col-md-9">
                                                 <select class="bs-select form-control " multiple name="language[]" id="spoken_language">
                                                 <?php foreach ($language as $key => $value) {?>
-                                                    <option><?php echo $value['name']; ?></option>
+                                                    <?php foreach ($spoken_language as $spoken_key => $spoken_value) {?>
+                                                        <option <?php echo ($spoken_value == $value['name']) ? 'selected' : '' ?>><?php echo $value['name']; ?></option>
+                                                    <?php } ?>
                                                 <?php } ?>
                                                 </select>
                                             </div>
@@ -486,7 +513,7 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3"> Benefits</label>
                                             <div class="col-md-9">
-                                                <textarea class="autosizeme form-control" rows="3" placeholder="Annual Leaves , Allowances , Medicalfee , Dental Fee ,Annual Trip" name="benefits"></textarea>
+                                                <textarea class="autosizeme form-control" rows="3" placeholder="Annual Leaves , Allowances , Medicalfee , Dental Fee ,Annual Trip" name="benefits"><?php echo !empty($user_profile['benefits']) ? $user_profile['benefits'] : ''; ?></textarea>
                                             </div>
                                         </div>
 
@@ -508,12 +535,127 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-2">Email Address</label>
                                             <div class="col-md-10 ">
-                                                <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="email">
+                                                <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="email" value="<?php echo !empty($user_profile['email']) ? $user_profile['email'] : ''; ?>">
                                             </div>
                                         </div>
                                         <h4 class="form-section"> Office</h4>
                                         <div class="mt-repeater">
                                             <div data-repeater-list="contact_info">
+                                            <?php if (!empty($company_address)) {
+                                             foreach ($company_address as $key => $value) { ?>
+                                                <div data-repeater-item class="mt-repeater-item">
+
+                                                    <!-- Address -->
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-2">Address</label>
+                                                                <div class="col-md-10 ">
+                                                                    <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="building_address" value="<?php echo $value->building_address; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- City & State-->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+
+                                                                <label class="control-label col-md-4">City</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control " name="building_city" value="<?php echo $value->building_city; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+
+                                                                <label class="control-label col-md-4">State</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" name="building_state" value="<?php echo $value->building_state; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Postcode & Country -->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Postcode</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" placeholder="Postcode" name="building_postcode" value="<?php echo $value->building_postcode; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <!-- <label class="control-label ">Country</label> -->
+                                                                <label class="control-label col-md-4">Country</label>
+                                                                <div class="col-md-8">
+                                                                    <select class="form-control " name="building_country">
+                                                                        <option value="" selected disabled>Select one </option>
+                                                                        <?php foreach ($countries as $key => $country_value) { ?>
+                                                                            <option <?php ($value->building_country == $country_value['name']) ? 'selected' : ''; ?>><?php echo $country_value['name']; ?></option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--/span-->
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Phone Number</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_phone; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Fax Number</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" value="<?php echo $value->building_fax; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Office Type and Remove Button -->
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Office Type</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="mt-radio-inline ">
+                                                                        <label class="mt-radio">
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" <?php echo ($value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
+                                                                            <span></span>
+                                                                        </label>
+                                                                        <label class="mt-radio">
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios5" value="branch" name="branch" <?php echo ($value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
+                                                                            <span></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="pull-right mt-width-300-xs  ">
+                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block ">
+                                                                    <i class="fa fa-close"></i> Remove
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            <?php }
+                                            }else{?>
                                                 <div data-repeater-item class="mt-repeater-item">
 
                                                     <!-- Address -->
@@ -625,6 +767,8 @@
                                                     </div>
 
                                                 </div>
+
+                                            <?php }?>
                                             </div>
                                             <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add ">
                                                 <i class="fa fa-plus"></i> Add new office</a>
