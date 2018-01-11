@@ -59,7 +59,7 @@ class User_Model extends CI_Model{
         $config['newline'] = "\r\n"; 
         
         $this->load->library('email', $config);
-		$this->email->initialize($config);
+        $this->email->initialize($config);
         //send email
         $this->email->from($from);
         $this->email->to($receiver['email']);
@@ -90,7 +90,7 @@ class User_Model extends CI_Model{
 
             
             //config email settings
-            $config['protocol'] = 'smtp';
+            /*$config['protocol'] = 'smtp';
             $config['smtp_host'] = 'ssl://smtp.gmail.com';
             $config['smtp_port'] = '465';
             $config['smtp_user'] = $from;
@@ -98,7 +98,11 @@ class User_Model extends CI_Model{
             $config['mailtype'] = 'html';
             $config['charset'] = 'iso-8859-1';
             $config['wordwrap'] = 'TRUE';
-            $config['newline'] = "\r\n"; 
+            $config['newline'] = "\r\n"; */
+
+            $config['mailtype'] = 'html';
+            $config['priority'] = 2;
+            $config['wordwrap'] = TRUE;
             
             $this->load->library('email', $config);
             $this->email->initialize($config);

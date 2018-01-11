@@ -995,7 +995,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
                                                             <label class="control-label ">Phone Number</label>
-                                                            <input type="text" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
+                                                            <input type="number" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -1021,7 +1021,9 @@
                                                 <div class="form-group mx-0">
                                                     <div class="mt-repeater">
                                                         <div data-repeater-list="group-b">
-                                                            <?php foreach ($user_profile['language'] as $user_language_key => $user_language_value) {?>
+                                                            <?php
+                                                                if (!empty($user_profile['language'])) {
+                                                                foreach ($user_profile['language'] as $user_language_key => $user_language_value) {?>
                                                                 <div data-repeater-item class=" row mt-2">
                                                                     <input type="hidden" name="language_id" value="<?php echo $user_language_value['id'] ?>"></input>
                                                                     <div class="col-md-4">
@@ -1048,6 +1050,41 @@
                                                                             <option <?php echo $user_language_value['spoken'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
                                                                             <option <?php echo $user_language_value['spoken'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
                                                                             <option <?php echo $user_language_value['spoken'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-2 vertical-middle py-3">
+                                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
+                                                                            <i class="fa fa-close"></i> remove
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            <?php }
+                                                            }else{ ?>
+                                                                <div data-repeater-item class=" row mt-2">
+                                                                    <div class="col-md-4">
+                                                                        <label for="" class="control-label"> Language</label>
+                                                                        <select class="bs-select form-control " name="name">
+                                                                        <?php foreach ($language as $key => $value) { ?>
+                                                                            <option><?php echo $value['name']; ?></option>
+                                                                        <?php } ?>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label for="" class="control-label"> Written</label>
+                                                                        <select class="bs-select form-control" name="written">
+                                                                            <option>Select level </option>
+                                                                            <option>Beginner</option>
+                                                                            <option>Intermediate</option>
+                                                                            <option>Advanced</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label for="" class="control-label"> Spoken</label>
+                                                                        <select class="bs-select form-control" name="spoken">
+                                                                            <option>Select level </option>
+                                                                            <option>Beginner</option>
+                                                                            <option>Intermediate</option>
+                                                                            <option>Advanced</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-2 vertical-middle py-3">
@@ -1210,16 +1247,16 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker-start " size="16" type="text" placeholder="From year" name="from">
+                                                    <input class="form-control form-control-inline date-picker-start " size="16" type="text" placeholder="From year" name="from" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                     <span class="help-block"> to </span>
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input class="form-control form-control-inline date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until">
+                                                    <input class="form-control form-control-inline date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until" required>
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date">
+                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date" required>
                                                     <label for="add_education">
                                                         <span></span>
                                                     <span class="check"></span>
@@ -1290,11 +1327,11 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="" placeholder="From year" name="start_date">
+                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="" placeholder="From year" name="start_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date">
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -1344,7 +1381,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
                                                 <label class="control-label">Job Post</label>
-                                                <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title">
+                                                <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title" required>
                                                 <span class="help-block small"> Add your current status career info </span>
                                             </div>
                                         </div>
@@ -1355,14 +1392,14 @@
 
                                                 <div class="m-grid ">
                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                        <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date">
+                                                        <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
                                                         <!-- <span class="help-block"> Select date </span> -->
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                         <span class="help-block"> to </span>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year" required>
                                                         <span class="help-block md-checkbox has-warning"> 
                                                             <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
                                                             <label for="add_experience">
@@ -1382,7 +1419,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
                                                 <label class="control-label">Company Name</label>
-                                                <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd">
+                                                <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>
                                                 <!-- <span class="help-block small"> Add your current status career info </span> -->
                                             </div>
                                         </div>
@@ -1466,7 +1503,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0 mb-0">
                                                     <label class="control-label">Project Title</label>
-                                                    <input type="text" class="form-control " placeholder="Internship in IT Dept" name="project_name" >
+                                                    <input type="text" class="form-control " placeholder="Internship in IT Dept" name="project_name" required>
                                                     <!-- <span class="help-block small"> Add your current status career info </span> -->
                                                 </div>
                                             </div>
@@ -1477,16 +1514,16 @@
 
                                                     <div class="m-grid ">
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="" placeholder="From year" name="start_date" >
+                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="" placeholder="From year" name="start_date" required>
                                                             <!-- <span class="help-block"> Select date </span> -->
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date" required>
                                                             <span class="help-block md-checkbox has-warning mb-0">
-                                                                <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
+                                                                <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date" required>
                                                                 <label for="checkbox_add_project">
                                                                     <span></span>
                                                                     <span class="check"></span>

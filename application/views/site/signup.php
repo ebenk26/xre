@@ -98,8 +98,8 @@
                                             <div class="col-md-8 col-md-offset-2 ">
 
                                                 <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" name="terms" id="checkbox16" class="md-check" required>
-                                                    <label for="checkbox16" class="pl-1">
+                                                    <input type="checkbox" name="terms" id="checkboxregisterstudent" class="md-check" required>
+                                                    <label for="checkboxregisterstudent" class="pl-1">
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> 
@@ -158,8 +158,8 @@
                                             <div class="col-md-8 col-md-offset-2 ">
 
                                                 <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" id="checkboxregister" name="terms" class="md-check">
-                                                    <label for="checkboxregister" class="pl-1">
+                                                    <input type="checkbox" id="checkboxregisterjobseeker" name="terms" class="md-check">
+                                                    <label for="checkboxregisterjobseeker" class="pl-1">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box "></span> I agreee with all the <a href="<?php echo base_url(); ?>site/user/signup#">terms and conditions</a>
@@ -225,8 +225,8 @@
                                             <div class="col-md-8 col-md-offset-2 ">
 
                                                 <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" id="checkbox16" name="terms" class="md-check">
-                                                    <label for="checkbox16" class="pl-1">
+                                                    <input type="checkbox" id="checkboxemployer" name="terms" class="md-check">
+                                                    <label for="checkboxemployer" class="pl-1">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box "></span> I agreee with all the <a href="<?php echo base_url(); ?>site/user/signup#">terms and conditions</a>

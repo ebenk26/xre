@@ -66,7 +66,8 @@ class Profile extends CI_Controller {
                 $this->employer_model->add_profile($profile);
             }
 
-        $this->session->set_flashdata('msg_success', 'Success Update Profile');            
+        $this->session->set_flashdata('msg_success', 'Success Update Profile');     
+        $this->session->set_flashdata('tab_profile', '#tab_edit_about');
         
         redirect(base_url().'employer/profile/');
 
@@ -108,7 +109,8 @@ class Profile extends CI_Controller {
                 $this->employer_model->add_profile($info);
             }
 
-        $this->session->set_flashdata('msg_success', 'Success Update additional info');            
+        $this->session->set_flashdata('msg_success', 'Success Update additional info');   
+        $this->session->set_flashdata('tab_profile', '#tab_edit_add_info');
         
         redirect(base_url().'employer/profile/');
     }
@@ -129,6 +131,7 @@ class Profile extends CI_Controller {
             }
 
         $this->session->set_flashdata('msg_success', 'Success update contact info');
+        $this->session->set_flashdata('tab_profile', '#tab_edit_contact_info');
         
         redirect(base_url().'employer/profile/');
     }
