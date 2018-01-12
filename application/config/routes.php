@@ -45,6 +45,7 @@ $route['job/details/(:any)'] = 'employer/job_board/details/(:any)';
 $route['job/preview/(:any)'] = 'employer/job_board/preview/(:any)';
 $route['job/candidate/(:any)'] = 'employer/candidate/index/(:any)';
 $route['profile/company/(:any)'] = 'employer/profile/company/(:any)';
+$route['profile/user/(:any)'] = 'student/profile/view_my_profile/(:any)';
 $route['home'] = 'site/home';
 $route['about'] = 'site/about';
 $route['services'] = 'site/services';

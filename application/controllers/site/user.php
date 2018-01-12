@@ -34,7 +34,7 @@ class User extends CI_Controller {
             $user_email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
-            if (isset($login_result)) {
+            if (!empty($login_result)) {
                 $page = strtolower($login_result['roles']);
 
                 if ($login_result['verified'] == 0) {
@@ -73,6 +73,7 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
+        $this->form_validation->set_message('is_unique', 'Email already registered');
         
         if($this->form_validation->run() == false){
             $header['page_title'] = 'Sign Up';

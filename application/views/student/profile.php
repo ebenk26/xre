@@ -48,7 +48,7 @@
                                 <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
-                                 echo base_url() ?>student/profile/view_my_profile/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
+                                 echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
                                     View My Resume </a>
 
                             </div>
