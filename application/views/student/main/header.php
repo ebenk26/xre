@@ -91,7 +91,7 @@
 
                 <!-- BEGIN HEADER SEARCH BOX -->
 
-                <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>student/search" method="POST">
+                <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
                         <span class="input-group-btn">

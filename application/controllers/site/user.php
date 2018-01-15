@@ -240,6 +240,16 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('email','User email', 'trim|required|valid_email|matches[users.email]');
         $email = $this->input->post('email');
         $this->user_model->forgotPassword($email);
+
+    }
+
+    function confirmForgotPassword(){
+        $email = $this->uri->segment(URI_SEGMENT_FORGOT_PASSWORD);
+        $user_email = base64_decode($email);
+        $user = $this->user_model->get_user($user_email);
+        $this->session->set_userdata($user);
+        redirect(base_url().$user['roles'].'profile/');
+
     }
 
 }

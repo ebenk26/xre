@@ -46,6 +46,7 @@ $route['job/preview/(:any)'] = 'employer/job_board/preview/(:any)';
 $route['job/candidate/(:any)'] = 'employer/candidate/index/(:any)';
 $route['profile/company/(:any)'] = 'employer/profile/company/(:any)';
 $route['profile/user/(:any)'] = 'student/profile/view_my_profile/(:any)';
+// $route['user/confirm_forgot_password/(:any)'] = 'user/site/confirmForgotPassword/(:any)';
 $route['home'] = 'site/home';
 $route['about'] = 'site/about';
 $route['services'] = 'site/services';
@@ -53,6 +54,8 @@ $route['contact'] = 'site/contact';
 $route['article'] = 'site/article';
 $route['login'] = 'site/user/login';
 $route['signup'] = 'site/user/signup';
+$route['job/search'] = 'site/job_search_result';
+$route['filter'] = 'site/job_search_result/filter_get';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

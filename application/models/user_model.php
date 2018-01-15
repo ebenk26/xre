@@ -24,7 +24,7 @@ class User_Model extends CI_Model{
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
         $query = $this->db->get();
         $result = $query->last_row('array');
-        if (isset($result)) {
+        if (!empty($result)) {
             $user = array('user_id' => !empty($result['id']) ? $result['id'] : $this->session->userdata('id') );
             $this->db->insert('user_history', $user);
         }else{
@@ -48,7 +48,7 @@ class User_Model extends CI_Model{
 
         
         //config email settings
-        $config['protocol'] = 'smtp';
+        /*$config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.gmail.com';
         $config['smtp_port'] = '465';
         $config['smtp_user'] = $from;
@@ -56,7 +56,11 @@ class User_Model extends CI_Model{
         $config['mailtype'] = 'html';
         $config['charset'] = 'iso-8859-1';
         $config['wordwrap'] = 'TRUE';
-        $config['newline'] = "\r\n"; 
+        $config['newline'] = "\r\n"; */
+
+        $config['mailtype'] = 'html';
+        $config['priority'] = 2;
+        $config['wordwrap'] = TRUE;
         
         $this->load->library('email', $config);
         $this->email->initialize($config);
@@ -79,6 +83,7 @@ class User_Model extends CI_Model{
         $this->db->where('email', $email);
         $mail = $this->db->get();
         $mail->last_row('array');
+
         if ($mail->last_row('array')) {
             $from = "Xremo team";    //senders email address
             $subject = 'Retrieve new password';  //email subject
@@ -86,19 +91,7 @@ class User_Model extends CI_Model{
             //sending confirmEmail($receiver) function calling link to the user, inside message body
 
             $message = 'Hello '.$receiver['fullname'].',<br><br>Please change your password by clicking on the link below:<br><br>
-            <a href='. base_url() .'site/user/confirmForgotPassword/'.md5($receiver['email']).'>'. base_url() .'site/user/confirmForgotPassword/'.md5($mail).'</a><br><br>Thanks';
-
-            
-            //config email settings
-            /*$config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'ssl://smtp.gmail.com';
-            $config['smtp_port'] = '465';
-            $config['smtp_user'] = $from;
-            $config['smtp_pass'] = 'Rico061289!';  //sender's password
-            $config['mailtype'] = 'html';
-            $config['charset'] = 'iso-8859-1';
-            $config['wordwrap'] = 'TRUE';
-            $config['newline'] = "\r\n"; */
+            <a href='. base_url() .'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=').'>'. base_url() .'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=').'</a><br><br>Thanks';
 
             $config['mailtype'] = 'html';
             $config['priority'] = 2;
@@ -161,6 +154,17 @@ class User_Model extends CI_Model{
     function get_token($token){
         $existing_token = $this->db->get_where('users', array('verification_token'=>$token));
         return $existing_token;
+    }
+
+    function get_user($email){
+        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.slug as roles');
+        $this->db->from('users');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
+        $this->db->where(array('users.email' => $email));
+        $query = $this->db->get();
+        $result = $query->last_row('array');
+        return $result;
     }
 
 }

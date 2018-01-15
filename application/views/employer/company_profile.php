@@ -42,7 +42,7 @@
 
     <link href="<?php echo ASSETS; ?>css/style.css" rel="stylesheet" type="text/css" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" type="image/x-icon">
     <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +83,7 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link ">Search Job</a>
+                                    <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
@@ -139,7 +139,7 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav hidden">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                    <a href="<?php echo base_url(); ?>job_search" class="s-header-v2-nav-link">Search Job</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>

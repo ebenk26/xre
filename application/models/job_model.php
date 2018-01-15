@@ -65,5 +65,11 @@ class Job_Model extends CI_Model{
 		}
 		return true;
 	}
+
+	function get_array($table, $order_by='created_at', $order='asc'){
+        $this->db->order_by($order_by, $order); 
+        $query = $this->db->get($table);
+        return $query->result_array();
+    }
 }
 ?>

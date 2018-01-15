@@ -7,7 +7,9 @@ class Calendar extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
-        if(empty($countryCheck)){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(empty($countryCheck) || ($roles !== $segment)){
             redirect(base_url());
         }
     }

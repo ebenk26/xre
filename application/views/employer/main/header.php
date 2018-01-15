@@ -83,7 +83,7 @@
 
                 <!-- BEGIN HEADER SEARCH BOX -->
                 <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-                <form class="search-form search-form-expanded" action="https://xremo.github.io/XremoFrontEnd/custom_pages/page_general_search_3.html" method="GET">
+                <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
                         <span class="input-group-btn">

@@ -6,10 +6,10 @@
                     <h1 class="g-font-size-32-xs g-font-size-40-sm g-font-size-45-lg g-color-white g-font-weight-600">Discover Your Xciting Career</h1>
                     <p class="g-font-size-15-xs g-font-size-18-md g-color-white g-margin-b-50-xs g-font-weight-300 g-padding-x-50-md">Traditional job portals are boring and outdated. Stop using the old way.
                         offers you an online career building experience, as Xciting as online dating.</p>
-                    <form>
+                    <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                         <div class="row g-margin-t-40-xs g-margin-b-40-xs g-row-col-0 g-padding-0">
                             <div class="g-margin-b-20-xs col-xs-12 col-sm-11  g-row-col-0  ">
-                                <input type="text" class="form-control s-form-v2-input " placeholder=" Search your dream job">
+                                <input type="text" class="form-control s-form-v2-input " name="query" placeholder=" Search your dream job">
                             </div>
                             <div class="col-sm-1 g-padding-0 col-xs-4 ">
                                 <button class="s-btn s-btn-md s-btn-md-orange-bg  g-font-size-14-sm  g-pull-left-xs" type="submit">
@@ -38,10 +38,10 @@
                 </div>
                 <div class="row ">
                     <div class="g-padding-0 col-sm-8  g-margin-b-50-xs g-margin-b-0-md">
-                        <form>
+                        <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                             <div class="row g-margin-b-40-xs g-row-col-2">
                                 <div class="g-margin-b-20-xs col-sm-10  ">
-                                    <input type="text" class="form-control s-form-v2-input " placeholder=" Search Job">
+                                    <input type="text" class="form-control s-form-v2-input " placeholder=" Search Job" name="query">
                                 </div>
                                 <div class="col-sm-2 ">
                                     <button class="s-btn s-btn-md s-btn-md-orange-bg  g-font-size-14-sm" type="submit">
