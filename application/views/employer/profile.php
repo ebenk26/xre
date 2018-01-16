@@ -46,7 +46,8 @@
                                                 <hr class="mt-width-400-xs center-block">
                                                 <div class="mt-card-social">
                                                     <ul>
-                                                        <?php foreach ($social as $key => $value) { 
+                                                        <?php if (!empty($social)) {
+                                                         foreach ($social as $key => $value) { 
                                                             switch ($value['name']) {
                                                                 case 'facebook':
                                                                     ?>
@@ -78,7 +79,7 @@
                                                                 </li>
                                                             <?php break; } ?>
                                                             
-                                                        <?php } ?>
+                                                        <?php }} ?>
                                                     </ul>
                                                 </div>
                                                 <!-- <h5 class="md-grey-text text-darken-1 font-22-xs">Employer</h5> -->
@@ -325,7 +326,8 @@
                                             <div class="col-md-9">
                                                 <div class="mt-repeater">
                                                     <div data-repeater-list="group-b">
-                                                        <?php foreach ($social as $key => $value) {?>
+                                                        <?php if (!empty($social)) {
+                                                          foreach ($social as $key => $value) {?>
                                                             <div data-repeater-item class="row mt-2">
                                                                 <div class="col-md-6">
                                                                     <input type="text" placeholder="Add link to here" class="form-control" name="link" value="<?php echo $value['link']; ?>" /> </div>
@@ -339,6 +341,29 @@
                                                                         <option value="instagram" <?php echo ($value['name']=='instagram') ? 'selected' : '' ?>>Instagram</option>
                                                                         <option value="youtube" <?php echo ($value['name']=='youtube') ? 'selected' : '' ?>>Youtube</option>
                                                                         <option value="snapchat" <?php echo ($value['name']=='snapchat') ? 'selected' : '' ?>>SnapChat</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <label class="control-label">&nbsp;</label>
+                                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        <?php } }else{ ?>
+                                                            <div data-repeater-item class="row mt-2">
+                                                                <div class="col-md-6">
+                                                                    <input type="text" placeholder="Add link to here" class="form-control" name="link"/> </div>
+                                                                <div class="col-md-4">
+                                                                    <select class="form-control" name="name">
+                                                                        <option value="" selected disabled>Select account type </option>
+                                                                        <option value="facebook" >Facebook</option>
+                                                                        <option value="twitter"  >Twitter</option>
+                                                                        <option value="gplus"    >Google Plus</option>
+                                                                        <option value="linkedin" >Linked In</option>
+                                                                        <option value="instagram">Instagram</option>
+                                                                        <option value="youtube"  >Youtube</option>
+                                                                        <option value="snapchat" >SnapChat</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-2">

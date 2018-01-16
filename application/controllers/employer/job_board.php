@@ -10,7 +10,7 @@ class Job_Board extends CI_Controller {
         $this->load->model('job_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if(empty($countryCheck) ){
             redirect(base_url());
         }
     }

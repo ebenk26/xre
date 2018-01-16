@@ -35,10 +35,10 @@ class Profile extends CI_Controller {
         $social = $this->input->post('group-b');
         $id = $this->session->userdata('id');
         $check_number_of_social_link = $this->employer_model->check_social_link($id);
-        if ($check_number_of_social_link) {
-            foreach ($check_number_of_social_link as $key => $value) {
-                $this->employer_model->delete_social($value['id']);
-            }
+        if (!empty($social)) {
+            
+            $this->employer_model->delete_social($id);
+
             foreach ($social as $key => $value) {
                 $socmed = array('link' => $value['link'],
                                 'name' => $value['name'],
@@ -46,13 +46,9 @@ class Profile extends CI_Controller {
                 $this->employer_model->post_social($socmed);
             }
         }else{
-            foreach ($social as $key => $value) {
-                $socmed = array('link' => $value['link'],
-                                'name' => $value['name'],
-                                'user_id' => $id );
-                $this->employer_model->post_social($socmed);
-            }
+            $this->employer_model->delete_social($id);
         }
+
         $profile = array('company_name' => $this->input->post('company_name'),
                          'company_registration_number' => $this->input->post('company_registration_number'),
                          'company_industry_id' => $this->input->post('industry'),

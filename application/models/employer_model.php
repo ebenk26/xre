@@ -133,15 +133,7 @@ class Employer_Model extends CI_Model{
     }
 
     function delete_social($id){
-        try {
-            $this->db->delete('user_social', array('user_id' => $id));
-            
-        } catch (Exception $e) {
-            $this->session->set_flashdata('msg_failed', 'Failed update your social media, please try again');
-            return false;   
-        }
-
-        return true;
+        $this->db->delete('user_social', array('user_id' => $id));
     }
 
     function post_social($social){
@@ -219,9 +211,9 @@ class Employer_Model extends CI_Model{
 
 
 
-    // function get_candidate($id){
-    //     $this->db->select('student_bios.*, users.id as user_id, users.email as user_email, users.fullname as candidate_name, applieds.id as application_id, applieds.user_id as app_user_id, applieds.job_position_id as app_job_position_id, applieds.status as application_status, academics.');
-    // }
+    function get_candidate($id){
+        $this->db->select('student_bios.*, users.id as user_id, users.email as user_email, users.fullname as candidate_name, applieds.id as application_id, applieds.user_id as app_user_id, applieds.job_position_id as app_job_position_id, applieds.status as application_status, academics.');
+    }
 }
 
 ?>

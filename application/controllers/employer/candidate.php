@@ -9,7 +9,7 @@ class Candidate extends CI_Controller {
         $this->load->model('employer_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if(empty($countryCheck)){
             redirect(base_url());
         }
     }
@@ -22,9 +22,9 @@ class Candidate extends CI_Controller {
         $get_user_profile = $this->employer_model->get_candidate($job_id);
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
-        $this->load->view('employer/main/header', $profile);
+        // $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/candidate',$complement);
-        $this->load->view('employer/main/footer');
+        // $this->load->view('employer/main/footer');
     }
 }
 
