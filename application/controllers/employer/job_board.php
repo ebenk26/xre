@@ -102,6 +102,7 @@ class Job_Board extends CI_Controller {
         if (!$id) {
             redirect(show_404());
         }
+
         $job_post['job'] = $this->employer_model->get_job_detail($id);
         $user_id = $job_post['job']->user_id;
         $get_user_profile = $this->employer_model->get_user_profile($user_id);
@@ -114,6 +115,17 @@ class Job_Board extends CI_Controller {
     public function post_job(){
         $id = $this->input->post('post_id');
         $this->job_model->post_job($id, array('status'=>'post'));
+    }
+
+    public function shortlist(){
+        $id = base64_decode($this->input->post('post_id'));
+        $shorlist_job = $this->job_model->shortlist($id);
+        
+        if ($shorlist_job == true) {
+            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
+        }
     }
 
 }

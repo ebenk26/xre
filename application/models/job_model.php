@@ -71,5 +71,16 @@ class Job_Model extends CI_Model{
         $query = $this->db->get($table);
         return $query->result_array();
     }
+
+    function shortlist($job_id){
+    	try{
+    		$data = array('status' => 'SHORTLISTED');
+			$this->db->where('id', $job_id);
+			$this->db->update('applieds', $data);
+		}catch(Exception $e){
+			return false;
+		}
+		return true;
+    }
 }
 ?>

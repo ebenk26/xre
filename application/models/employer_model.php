@@ -219,9 +219,56 @@ class Employer_Model extends CI_Model{
 
 
 
-    // function get_candidate($id){
-    //     $this->db->select('student_bios.*, users.id as user_id, users.email as user_email, users.fullname as candidate_name, applieds.id as application_id, applieds.user_id as app_user_id, applieds.job_position_id as app_job_position_id, applieds.status as application_status, academics.');
+    function get_all_candidate($id){
+
+        $this->db->select('applieds.id as application_id,
+                            applieds.user_id,
+                            applieds.job_position_id,
+                            applieds.jobseeker_cv_id,
+                            applieds.coverletter,
+                            applieds.status as application_status,
+                            applieds.employer_message_status,
+                            applieds.job_seeker_message_status,
+                            applieds.created_at as sent_at,
+                            users.id as id_user, 
+                            users.fullname as user_name, 
+                            profile_uploads.name as user_image');
+        $this->db->from('users');
+        $this->db->join('applieds','users.id = applieds.user_id', 'left');
+        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->where(array('applieds.job_position_id' => $id)); //job position id
+        $applicants = $this->db->get();
+        return $applicants->result_array();
+    }
+
+    function get_shortlisted_candidate($id){
+        $this->db->select('applieds.id as application_id,
+                            applieds.user_id,
+                            applieds.job_position_id,
+                            applieds.jobseeker_cv_id,
+                            applieds.coverletter,
+                            applieds.status as application_status,
+                            applieds.employer_message_status,
+                            applieds.job_seeker_message_status,
+                            applieds.created_at as sent_at,
+                            users.id as id_user, 
+                            users.fullname as user_name, 
+                            profile_uploads.name as user_image');
+        $this->db->from('users');
+        $this->db->join('applieds','users.id = applieds.user_id', 'left');
+        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->where(array('applieds.status !=' => 'APPLIED'));
+        $this->db->where(array('applieds.job_position_id' => $id)); //job position id
+        $applicants = $this->db->get();
+        return $applicants->result_array();
+    }
+    // function get_detail_candidate($id){
+    //     $this->db-
     // }
+
+
 }
 
 ?>

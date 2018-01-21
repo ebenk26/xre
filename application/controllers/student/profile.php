@@ -37,7 +37,6 @@ class Profile extends CI_Controller {
             $targetPath = "./assets/img/student/";
 
             $path = pathinfo($_FILES['profile_photo']['name']);
-            var_dump($_FILES['profile_photo']);exit;
             $ext = $path['extension'];
             $profile_photo = 'profile_photo_'.$this->session->userdata('id').'_'.md5($this->input->post('student_name')).'_'.date('dmY').".$ext";
             $targetFile =  $targetPath.$profile_photo;

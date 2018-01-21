@@ -7,6 +7,7 @@ class Profile extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
+        $this->load->model('student_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) || ($roles !== $segment)){
@@ -212,5 +213,11 @@ class Profile extends CI_Controller {
         $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'profile_photo'));
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
         $this->load->view('employer/company_profile', $profile_form);
+    }
+
+    public function detail_profile(){
+        $id = base64_decode($this->input->post('user_id'));
+        $profile['user_profile'] = $this->student_model->get_user_profile($id);
+        print json_encode($profile);
     }
 }

@@ -19,12 +19,17 @@ class Candidate extends CI_Controller {
         $id = $this->session->userdata('id');
         $segment = $this->uri->segment(URI_SEGMENT_DETAIL);
         $job_id = base64_decode($segment);
-        $get_user_profile = $this->employer_model->get_candidate($job_id);
-        $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
-        // $this->load->view('employer/main/header', $profile);
+        $complement['candidates'] = $this->employer_model->get_all_candidate($job_id);
+        $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id);
+        $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/candidate',$complement);
-        // $this->load->view('employer/main/footer');
+        $this->load->view('employer/main/footer');
+    }
+
+    function get_shortlisted_candidate($job_id){
+        $candidates = $this->employer_model->get_shortlisted_candidate($job_id);
+        return $candidates;
     }
 }
 

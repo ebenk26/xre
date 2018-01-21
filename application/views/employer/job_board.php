@@ -170,7 +170,7 @@
                                                     <label class="control-label ">Job Position Title</label>
                                                     <div class="input-icon">
                                                         <i class="icon-briefcase"></i>
-                                                        <input type="text" class="form-control" placeholder="Internship in IT department"  value="<?php echo $value['name'] ?>" name="title">
+                                                        <input type="text" class="form-control" placeholder="Internship in IT department"  value="<?php echo $value['name'] ?>" name="title" required>
                                                         <!-- <span class="help-block small">Internship in IT department</span> -->
                                                     </div>
                                                 </div>
@@ -181,9 +181,9 @@
                                                     <label class="control-label ">Salary Range</label>
                                                     <div class="form-inline">
 
-                                                        <input type="text" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min">
+                                                        <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min">
                                                         <span class="mx-2">to</span>
-                                                        <input type="text" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max">
+                                                        <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max">
                                                     </div>
 
                                                     <!-- <span class="help-block small">Internship in IT department</span> -->
@@ -231,11 +231,11 @@
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2 ">Job Description</label>
-                                                    <textarea name="content" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc"><?php echo $value['job_description']?></textarea>
+                                                    <textarea name="job_Desc" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc"><?php echo $value['job_description']?></textarea>
                                                 </div>
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2 ">Nice To Have</label>
-                                                    <textarea name="content" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['other_requirements']?></textarea>
+                                                    <textarea name="nice_To_Have" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['other_requirements']?></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -294,9 +294,9 @@
                                             <label class="control-label ">Salary Range</label>
                                             <div class="form-inline">
 
-                                                <input type="text" class="form-control " placeholder="0.00" name="budget_min">
+                                                <input type="number" class="form-control " placeholder="0.00" name="budget_min">
                                                 <span class="mx-2">to</span>
-                                                <input type="text" class="form-control  " placeholder="0.00" name="budget_max">
+                                                <input type="number" class="form-control  " placeholder="0.00" name="budget_max">
                                             </div>
 
                                             <!-- <span class="help-block small">Internship in IT department</span> -->

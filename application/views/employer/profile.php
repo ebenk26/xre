@@ -178,9 +178,8 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Address</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                            <?php 
-                                                            if (!empty($detail['address'])) {?>
-                                                                <?php $addr = json_decode($detail['address']); 
+                                                            <?php $addr = json_decode($detail['address']); 
+                                                                if (!empty($addr)) {
                                                                 foreach ($addr as $key => $value) {?>
                                                                     <li>
                                                                     <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?>  mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> </span> <?php echo $value->building_address; ?> , <?php echo $value->building_city ?> , <?php echo $value->building_postcode ?> ,<?php echo $value->building_state ?> , <?php echo $value->building_country ?>.
@@ -199,9 +198,8 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Phone</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                            <?php 
-                                                            if (!empty($detail['address'])) {?>
-                                                                <?php $addr = json_decode($detail['address']); 
+                                                            <?php $addr = json_decode($detail['address']); 
+                                                                if (!empty($addr)) {
                                                                 foreach ($addr as $key => $value) {?>
                                                                     <li>
                                                                         <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
@@ -218,9 +216,9 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Fax</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-unstyled">
-                                                        <?php 
-                                                            if (!empty($detail['address'])) {?>
-                                                            <?php foreach ($addr as $key => $value) {?>
+                                                            <?php 
+                                                                if (!empty($addr)) { 
+                                                            foreach ($addr as $key => $value) {?>
                                                                 <li>
                                                                     <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
                                                                     </span> <?php echo $value->building_fax; ?> 

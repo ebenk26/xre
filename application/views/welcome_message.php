@@ -1,4 +1,4 @@
-<?php !empty($this->session->userdata('country')) ? redirect(base_url().'site/home') : true;?>
+<?php $country =$this->session->userdata('country');  !empty($country) ? redirect(base_url().'site/home') : true;?>
 <!DOCTYPE html>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Basic -->
