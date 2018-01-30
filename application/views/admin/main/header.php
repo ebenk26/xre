@@ -32,6 +32,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>morris.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
@@ -483,8 +484,8 @@
                             <span class="title">Job Seeker</span>
                         </a>
 					</li>
-					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_list'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/job_list" class="nav-link ">
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>admin/job_board" class="nav-link ">
                             <i class="icon-briefcase"></i>
                             <span class="title">Job List</span>
                         </a>
@@ -525,10 +526,10 @@
                             <span class="title">Blog</span>
                         </a>
 					</li>
-					<li class="nav-item <?php if ($this->uri->segment(2) == 'privacy'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/privacy" class="nav-link ">
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'pages'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>admin/pages" class="nav-link ">
                             <i class="icon-note"></i>
-                            <span class="title">Privacy/Terms</span>
+                            <span class="title">Pages</span>
                         </a>
 					</li>
 					
