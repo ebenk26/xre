@@ -76,7 +76,7 @@
                 <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
                 <!-- X<small>REMO</small>  -->
                 <!-- </a> -->
-                <a href="<?php echo base_url();?>site/home/">
+                <a href="<?php echo base_url();?>home/">
                     <img src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4" />
                 </a>
             </div>
@@ -327,12 +327,12 @@
                     </li> -->
 
                     <!-- Sidebar Menu : Settings -->
-                    <li class="nav-item "><!-- 
-                        <a href="student-settings.html" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
                         </a>
-                    </li> -->
+                    </li>
 
                 </ul>
                 <!-- END SIDEBAR MENU -->

@@ -68,7 +68,7 @@
                 <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
                 <!-- X<small>REMO</small>  -->
                 <!-- </a> -->
-                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/index.html">
+                <a href="<?php echo base_url(); ?>home/">
                     <img src="<?php echo IMG_EMPLOYER; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4">
                 </a>
             </div>
@@ -481,55 +481,13 @@
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
-                            <!-- <span class="selected"></span> -->
-                            <!-- <span class="arrow open"></span> -->
                         </a>
-                        <!-- <ul class="sub-menu">
-                            <li class="nav-item start ">
-                                <a href="index.html" class="nav-link ">
-                                        <i class="icon-bar-chart"></i>
-                                        <span class="title">Dashboard 1</span>
-                                    </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="dashboard_2.html" class="nav-link ">
-                                        <i class="icon-bulb"></i>
-                                        <span class="title">Dashboard 2</span>
-                                        <span class="badge badge-success">1</span>
-                                    </a>
-                            </li>
-                            <li class="nav-item start active open">
-                                <a href="dashboard_3.html" class="nav-link ">
-                                        <i class="icon-graph"></i>
-                                        <span class="title">Dashboard 3</span>
-                                        <span class="selected"></span>
-                                        <span class="badge badge-danger">5</span>
-                                    </a>
-                            </li>
-                        </ul> -->
                     </li>
                     <li class="nav-item  ">
-                        <a href="javascript:;" class="nav-link  nav-toggle">
+                        <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?> ">
                             <i class="icon-diamond"></i>
                             <span class="title">Company Profile</span>
-                            <span class="arrow open"></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?> start ">
-                                <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link <?php if ($this->uri->segment(3) == 'profile'): echo 'active'; endif?>">
-                                    <!-- <i class="icon-search"></i> -->
-                                    <span class="title">Overview</span>
-                                    <span class="selected"></span>
-                                </a>
-                            </li>
-                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?> ">
-                                <a href="<?php echo base_url(); ?>employer/gallery/" class="nav-link ">
-                                    <!-- <i class="icon-user-following"></i> -->
-                                    <span class="title">Gallery</span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/job_board/" class="nav-link ">
@@ -566,21 +524,21 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
                             <span class="arrow"></span>
                         </a>
                         <ul class="sub-menu">
-                            <li class="nav-item start ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-settings-account.html" class="nav-link ">
+                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
+                                <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">
                                     <i class="icon-list"></i>
                                     <span class="title">Account</span>
                                 </a>
                             </li>
                             <li class="nav-item start ">
-                                <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/employer-settings-payment.html" class="nav-link ">
+                                <a href="#" class="nav-link ">
                                     <i class="icon-user-following"></i>
                                     <span class="title">Payment</span>
                                 </a>

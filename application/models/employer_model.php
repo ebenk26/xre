@@ -231,15 +231,18 @@ class Employer_Model extends CI_Model{
                             applieds.job_seeker_message_status,
                             applieds.created_at as sent_at,
                             users.id as id_user, 
-                            users.fullname as user_name, 
-                            profile_uploads.name as user_image');
+                            users.fullname as user_name');
         $this->db->from('users');
         $this->db->join('applieds','users.id = applieds.user_id', 'left');
-        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
-        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        // $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
+        // $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $this->db->where(array('applieds.job_position_id' => $id)); //job position id
-        $applicants = $this->db->get();
-        return $applicants->result_array();
+        $applicant = $this->db->get();
+        $applicants = $applicant->result_array();
+
+        
+
+        return $applicants;
     }
 
     function get_shortlisted_candidate($id){

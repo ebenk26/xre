@@ -70,7 +70,7 @@
                                                 <td class="col-xs-8">
                                                     <div class="media verticle-middle hidden-xs ">
                                                         <div class="pull-left">
-                                                            <img src="<?php echo IMG_STUDENTS.$value['user_image']; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                            <img src="<?php echo IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
@@ -93,13 +93,13 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="javascript:;" class="btn btn-md-orange btn-icon-only tooltips my-2 " data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
+                                                                <a href="javascript:;" class="btn btn-md-orange btn-icon-only tooltips my-2 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
                                                                     <i class="icon-star"></i>
                                                                 </a>
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
-                                                                <button type="button" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?"
+                                                                <button type="button" data-id='<?php echo rtrim(base64_encode($value['application_id']),'=');?>' class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate?"
                                                                     data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger"
                                                                     data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
                                                                     <i class="icon-trash"></i>
@@ -109,7 +109,7 @@
                                                     </div>
                                                     <ul class="list-unstyled list-inline my-0 hidden-xs vertical-middle">
                                                         <li>
-                                                            <a href="#" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" data-container="body" data-placement="top" data-original-title="View Summary">
+                                                            <a href="javascript:;" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" data-container="body" data-placement="top" data-original-title="View Summary">
                                                                 <i class="icon-eye"></i>
                                                             </a>
                                                         </li>
@@ -119,7 +119,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <button type="button" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?"
+                                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?"
                                                                 data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger"
                                                                 data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
                                                                 <i class="icon-trash"></i>
@@ -134,12 +134,6 @@
                                         <?php $i++; } ?>
                                     </tbody>
                                 </table>
-
-                                <!-- BEGIN MODAL : View Candidate Summary -->
-                                <div class="modal fade modal-open-noscroll " id="modal_view_summary" tabindex="-1" role="dialog" aria-hidden="false">
-                                    
-                                </div>
-                                <!-- END MODAL : View Candidate Summary -->
                             </div>
                         </div>
                     </div>
@@ -245,178 +239,15 @@
                                                 </td>
                                             </tr>
                                         <?php } ?>
+                                        <!-- BEGIN MODAL : View Candidate Summary -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_tab_shortlist_candidate" tabindex="-1" role="dialog" aria-hidden="false">
+                                            
+                                        </div>
+                                        <!-- END MODAL : View Candidate Summary -->
                                     </tbody>
                                 </table>
 
-                                <!-- BEGIN MODAL : View Candidate Summary (Shortlist)-->
-                                <div class="modal fade modal-open-noscroll " id="modal_view_summary_shortlist" tabindex="-1" role="dialog" aria-hidden="false">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content ">
-                                            <div class="modal-header md-indigo">
-                                                <div class="media">
-                                                    <div class="pull-left">
-                                                        <img src="../assets/global/img/portfolio/600x600/012.jpg" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">
-                                                            <i class="fa fa-close"></i>
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">Jennifer Lawrence</h3>
-                                                        <ul class="list-inline list-unstyled md-white-text ">
-                                                            <!-- <li> <i class="fa fa-phone"></i> 0123456789</li> -->
-                                                            <li>
-                                                                <i class="icon-pointer"></i> Ipoh ,Perak</li>
-                                                            <li>
-                                                                <i class="icon-envelope"></i> jennifer_lawrence@gmail.com</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
-                                                    <div class="row">
-                                                        <div class="col-md-12 pr-0">
-                                                            <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>
-                                                            <p class="mt-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada nulla ac ligula hendrerit vehicula eu in nulla. Nunc malesuada in
-                                                                lacus eu scelerisque. Nulla vehicula volutpat purus, id maximus erat venenatis sit amet. Duis ac vehicula elit. Duis rutrum fermentum mi,
-                                                                ac vehicula felis. Ut consequat sem nec mi placerat, eget cursus quam consequat. Suspendisse sodales pulvinar dui at porta. Aliquam vehicula
-                                                                id tortor eu ultricies.
-                                                            </p>
-
-                                                        </div>
-                                                    </div>
-                                                    <hr class="hidden-sm">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <!-- Education -->
-                                                            <div class="portlet ">
-                                                                <div class="portlet-title ">
-                                                                    <div class="caption">
-                                                                        <i class="icon-graduation"></i>
-                                                                        <span class="caption-subject font-26-xs"> Education</span>
-                                                                        <span class="caption-helper">Summary</span>
-                                                                    </div>
-                                                                    <div class="tools">
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="portlet-body ">
-                                                                    <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <h5 class="font-weight-700">Bachelor Degree in Computer Science
-                                                                                <small>Sept 2013 - Now</small>
-                                                                            </h5>
-                                                                            <h6 class="font-weight-600 text-uppercase ">University Malaya</h6>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <!-- Achievement -->
-                                                            <div class="portlet  ">
-                                                                <div class="portlet-title ">
-                                                                    <div class="caption">
-                                                                        <i class="icon-trophy"></i>
-                                                                        <span class="caption-subject font-26-xs">Achievement</span>
-                                                                        <span class="caption-helper">Summary</span>
-                                                                    </div>
-                                                                    <div class="tools">
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="portlet-body">
-                                                                    <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <h5 class="font-weight-700">Colleage Charity Events
-                                                                                <small>Sept 2013</small>
-                                                                            </h5>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <!-- Skill -->
-                                                            <div class="portlet">
-                                                                <div class="portlet-title">
-                                                                    <div class="caption">
-                                                                        <i class="icon-badge"></i>
-                                                                        <span class="caption-subject font-26-xs">Skill</span>
-                                                                        <span class="caption-helper">Summary</span>
-                                                                    </div>
-                                                                    <div class="tools">
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="portlet-body  ">
-                                                                    <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <h5 class="font-weight-700"> English
-                                                                                <small>[ Intermediate Level]</small>
-                                                                            </h5>
-                                                                        </li>
-                                                                        <li>
-                                                                            <h5 class="font-weight-700"> Final Year Project </h5>
-                                                                            <h6>
-                                                                                <span class="label label-md-indigo">Skill A</span>
-                                                                                <span class="label label-md-orange">Skill B</span>
-                                                                                <span class="label label-md-blue">Skill C</span>
-                                                                                <span class="label label-md-purple">Skill D</span>
-                                                                                <span class="label label-md-red">Skill E</span>
-                                                                            </h6>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <!-- Experience -->
-                                                            <div class="portlet">
-                                                                <div class="portlet-title">
-                                                                    <div class="caption">
-                                                                        <i class="icon-briefcase"></i>
-                                                                        <span class="caption-subject font-26-xs"> Experience</span>
-                                                                        <span class="caption-helper">Summary</span>
-                                                                    </div>
-                                                                    <div class="tools">
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="portlet-body ">
-                                                                    <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <h5 class="font-weight-700">Internship IT
-                                                                                <small>Sept 2013 - Now</small>
-                                                                            </h5>
-                                                                            <h6 class="font-weight-600 text-uppercase ">Xremo Sdn Bhd</h6>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer ">
-                                                <a href="" class="btn btn-md-cyan">
-                                                    <i class="icon-users"></i> View CV
-                                                </a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END MODAL : View Candidate Summary -->
+                                
 
                                 <!-- BEGIN MODAL : Reject Form [IGNORE] -->
                                 <div class="modal fade hidden" id="modal_reject_form" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
@@ -425,13 +256,13 @@
                                             <div class="modal-header">
                                                 <h4>Why You want to reject this candidate? State your reason!</h4>
                                             </div>
-                                            <form action="" class="form form-fit">
+                                            <form action="<?php echo base_url(); ?>job_board/reject" class="form form-fit">
                                                 <div class="modal-body">
                                                     <div class="form-group ">
                                                         <!-- <label class="control-label col-md-2">Default Editor</label> -->
                                                         <!-- <div class="col-md-10"> -->
                                                         <!-- <div name="summernote" id="summernote_1" > </div> -->
-                                                        <textarea name="" class="form-control" rows="13" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non magna fringilla, semper quam nec, maximus magna. Quisque nec faucibus sem. Duis non magna ut nibh accumsan consectetur. Suspendisse interdum, felis quis sollicitudin vulputate, arcu urna pellentesque quam, vitae fringilla nunc metus eget sem. Curabitur eu felis dapibus, semper magna ac, pulvinar magna. Sed aliquam ipsum ullamcorper ultrices sodales. Donec eget interdum felis. Aenean lorem eros, scelerisque gravida vehicula eu, commodo et nisi. Aenean at massa eu erat placerat viverra. Phasellus placerat eros lorem, in mollis risus interdum id. Nullam posuere orci porta gravida facilisis. Suspendisse quis fermentum enim, ut semper elit. Please state More Your reason"></textarea>
+                                                        <textarea name="reason" class="form-control" rows="13" placeholder=""></textarea>
                                                         <span class="help-block md-red-text">Are you sure to reject this candidate ? Once you reject you can't get return back to view this candidates?</span>
                                                         <!-- </div> -->
                                                     </div>
@@ -793,6 +624,13 @@
                         </div>
 
                     </div>
+
+                    <!-- BEGIN MODAL : View Candidate Summary -->
+                    <div class="modal fade modal-open-noscroll " id="modal_view_summary" tabindex="-1" role="dialog" aria-hidden="false">
+                        
+                    </div>
+                    <!-- END MODAL : View Candidate Summary -->
+
 
                 </div>
 

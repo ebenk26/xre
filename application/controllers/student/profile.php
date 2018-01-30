@@ -8,8 +8,7 @@ class Profile extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
         $roles = $this->session->userdata('roles');
-        $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if(empty($countryCheck)){
             redirect(base_url());
         }
     }

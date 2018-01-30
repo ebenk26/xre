@@ -249,7 +249,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        <input type="hidden" id="job_status_edit" name="status" value="post"></input>
                                     </div>
                                 </div>
                                 <div class="modal-footer form-action ">
@@ -271,7 +271,7 @@
                     <div class="modal-header ">
                         <h4 class="modal-title">New Job Post Info</h4>
                     </div>
-                    <form action="<?php echo base_url(); ?>employer/job_board/post" method="POST" class="form-horizontal form-row-seperated ">
+                    <form action="<?php echo base_url(); ?>employer/job_board/post" id="post_job" method="POST" class="form-horizontal form-row-seperated ">
                         <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                             <div class="modal-body form-body pr-0">
 
@@ -283,7 +283,7 @@
                                             <label class="control-label ">Job Position Title</label>
                                             <div class="input-icon">
                                                 <i class="icon-briefcase"></i>
-                                                <input type="text" class="form-control input-xlarge " placeholder="Internship in IT department" name="job_position_name">
+                                                <input type="text" class="form-control input-xlarge " placeholder="Internship in IT department" name="job_position_name" required>
                                                 <!-- <span class="help-block small">Internship in IT department</span> -->
                                             </div>
                                         </div>
@@ -365,12 +365,12 @@
 
                             </div>
                         </div>
-                        <input type="hidden" id="job_status" name="status" value="post"></input>
+                        <input type="hidden" id="job_status_add" name="status"></input>
                         <div class="modal-footer form-action ">
                             <!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
-                            <button type="submit" id="preview_button" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</button>
+                            <button type="submit" id="preview_button_add" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</button>
                             <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Post</button>
-                            <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+                            <a data-dismiss="modal" id="submit_button_add" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                         </div>
                     </form>
 

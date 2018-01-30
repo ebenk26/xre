@@ -44,7 +44,7 @@ class Job_Board extends CI_Controller {
                          'budget_max' => $this->input->post('budget_max'),
                          'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
                          'created_at'=> date('Y-m-d H:i:s'),
-                         'updated_at' => date('Y-m-d H:i:s')
+                         'updated_at' => date('Y-m-d H:i:s'),
                          );
         $postJob = $this->employer_model->job_post($jobPost);
 
@@ -126,6 +126,18 @@ class Job_Board extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }
+    }
+
+    public function reject(){
+        $id = base64_decode($this->input->post('post_id'));
+        var_dump($id);exit();
+        $shorlist_job = $this->job_model->reject($id);
+        
+        if ($shorlist_job == true) {
+            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
+        }   
     }
 
 }

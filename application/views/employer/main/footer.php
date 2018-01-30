@@ -96,11 +96,11 @@
             $('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
-            $('#preview_button').click(function(){
-                $('#job_status').val('draft');
+            $('#preview_button_add').click(function(){
+                $('#job_status_add').val('draft');
             });
-            $('#submit_button').click(function(){
-                $('#job_status').val('post');
+            $('#submit_button_add').click(function(){
+                $('#job_status_add').val('post');
             });
 
             $('.user-btn').click(function(){
@@ -349,6 +349,56 @@
                     <?php } ?>
                     
                 location.reload();
+            });
+
+            $('.reject-btn').click(function () {
+                var id = $(this).attr('app-id');
+                    $.ajax({
+                        url:"<?php echo base_url();?>employer/job_board/reject",
+                        method:"POST",
+                        data: {
+                          post_id: id,
+                        }
+                    });
+                    
+5
+                    <?php if($this->session->flashdata('msg_success')){ ?>
+                        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+                    <?php } ?>
+                    <?php if($this->session->flashdata('msg_failed')){ ?>
+                        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+                    <?php } ?>
+                    
+                location.reload();
+            });
+
+            $('.reject-candidate').click(function(){
+                var del = $(this).attr('data-id');
+                console.log(del);
+                    swal({
+                        title: "Do you reject this candidate?",
+                        type: "info",
+                        confirmButtonText: "Yes, I agree",
+                        closeOnConfirm: false
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/reject",
+                                    method:"POST",
+                                    data: {
+                                      post_id: parseInt(del),
+                                    },
+                                    success:function(response) {
+                                       swal("Success", "Candidate has been rejected.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "Reject candidate has been cancelled", "error");
+                            }
+                        }
+                    );
             });
         })
     </script>

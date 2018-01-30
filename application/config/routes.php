@@ -56,6 +56,8 @@ $route['login'] = 'site/user/login';
 $route['signup'] = 'site/user/signup';
 $route['job/search'] = 'site/job_search_result';
 $route['filter'] = 'site/job_search_result/filter_get';
+$route['employer/change_password'] = 'site/user/changePassword';
+$route['student/change_password'] = 'site/user/changePassword';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

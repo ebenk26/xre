@@ -82,5 +82,16 @@ class Job_Model extends CI_Model{
 		}
 		return true;
     }
+
+    function rejected($job_id){
+    	try{
+    		$data = array('status' => 'REJECTED');
+			$this->db->where('id', $job_id);
+			$this->db->update('applieds', $data);
+		}catch(Exception $e){
+			return false;
+		}
+		return true;
+    }
 }
 ?>

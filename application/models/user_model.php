@@ -38,7 +38,7 @@ class User_Model extends CI_Model{
     
     //send confirm mail
     public function sendEmail($receiver){
-        $from = "dearico612@gmail.com";    //senders email address
+        $from = "support@xremo.com";    //senders email address
         $subject = 'Verify email address';  //email subject
         
         //sending confirmEmail($receiver) function calling link to the user, inside message body
@@ -81,10 +81,10 @@ class User_Model extends CI_Model{
 
     function forgotPassword($email){
         $this->db->where('email', $email);
-        $mail = $this->db->get();
-        $mail->last_row('array');
+        $mail = $this->db->get('users');
+        $receiver = $mail->last_row('array');
 
-        if ($mail->last_row('array')) {
+        if ($receiver) {
             $from = "Xremo team";    //senders email address
             $subject = 'Retrieve new password';  //email subject
             
@@ -100,11 +100,17 @@ class User_Model extends CI_Model{
             $this->load->library('email', $config);
             $this->email->initialize($config);
             //send email
-            $this->email->from($from);
-            $this->email->to($receiver['email']);
-            $this->email->subject($subject);
+            $this->email->from('support@xremo.com');
+            $this->email->to($email);
+            $this->email->subject('Forgot Password for your Xremo Account');
             $this->email->message($message);
-            return true;
+            
+            if($this->email->send()){
+                return true;
+            }else{
+                return false;
+            }
+
         }else{
             return false;
         }
@@ -165,6 +171,22 @@ class User_Model extends CI_Model{
         $query = $this->db->get();
         $result = $query->last_row('array');
         return $result;
+    }
+
+    function change_password($id, $password){
+        $data = array(
+               'password' => $password
+            );
+        try {
+
+            $this->db->where('id', $id);
+            $this->db->update('users', $data); 
+            
+            return true;
+
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
 }

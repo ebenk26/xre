@@ -10,7 +10,7 @@ class Profile extends CI_Controller {
         $this->load->model('student_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if(empty($countryCheck)){
             redirect(base_url());
         }
     }
@@ -41,10 +41,12 @@ class Profile extends CI_Controller {
             $this->employer_model->delete_social($id);
 
             foreach ($social as $key => $value) {
-                $socmed = array('link' => $value['link'],
-                                'name' => $value['name'],
-                                'user_id' => $id );
-                $this->employer_model->post_social($socmed);
+                if ($value['link'] && $value['name']) {
+                    $socmed = array('link' => $value['link'],
+                                    'name' => $value['name'],
+                                    'user_id' => $id );
+                    $this->employer_model->post_social($socmed);
+                }
             }
         }else{
             $this->employer_model->delete_social($id);

@@ -259,7 +259,9 @@
                                     <hr class="g-hor-border-1-solid-md-orange my-2 mt-width-60-xs">
                                     <div id="gmapbg" class="s-google-map mt-height-auto-xs mt-height-300-xs my-4"></div>
                                     <ul class="list-unstyled">
-                                    	<?php foreach ($company_location as $key => $value) {
+                                    	<?php 
+                                        if(!empty($company_location)){
+                                        foreach ($company_location as $key => $value) {
                                     		?>
                                     		<li>
 	                                            <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-15-xs text-uppercase letter-space-xs"><?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?></h5>
@@ -276,7 +278,7 @@
 	                                                </li>
 	                                            </ul>
 	                                        </li>
-                                    	<?php } ?>
+                                    	<?php }} ?>
                                     </ul>
                                 </div>
                             </div>
