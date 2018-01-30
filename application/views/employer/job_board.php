@@ -95,9 +95,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($job_post as $key => $value) { ?>
+                                <?php if (!empty($job_post)) {
+                                    $i =1;
+                                  foreach ($job_post as $key => $value) { ?>
                                     <tr class="odd gradeX">
-                                        <td class="text-center" ><?php echo $value['id']; ?></td>
+                                        <td class="text-center" ><?php echo $i; ?></td>
                                         <td> <?php echo $value['name']; ?></td>
                                         <td>
                                             <?php if ((date('Y-m-d') >= date('Y-m-d', strtotime($value['expiry_date']))) || $value['status'] == 'expired') {?>
@@ -118,10 +120,12 @@
                                                     <i class="fa fa-angle-down"></i>
                                                 </button>
                                                 <ul class="dropdown-menu pull-right" role="menu">
+                                                    <?php if ( (date('Y-m-d') <= date('Y-m-d', strtotime($value['expiry_date']))) && $value['status'] != 'expired') {?>
                                                     <li>
                                                         <a href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
                                                             <i class="icon-pencil"></i> Edit </a>
                                                     </li>
+                                                    <?php } ?>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                             <i class="icon-user"></i> View Candidates </a>
@@ -141,7 +145,7 @@
 
                                         </td>
                                     </tr>                                        
-                                <?php } ?>
+                                <?php $i++;}} ?>
                             </tbody>
                         </table>
                     </div>
