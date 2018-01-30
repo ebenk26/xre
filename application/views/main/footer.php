@@ -26,13 +26,13 @@
                     <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Subscribe to Our Newsletter</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="#">Subscribe to Our Newsletter</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Privacy Policy</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy-policy">Privacy Policy</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Terms &amp; Conditions</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>terms-and-conditions">Terms &amp; Conditions</a>
                             </li>
                         </ul>
                     </div>
