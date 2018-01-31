@@ -78,9 +78,12 @@
 										<td> <?=$building_phone; ?></td>
 										<td> <?=$building_fax; ?></td>
 										<td>
-                                            <a href="<?=base_url() ?>" class="btn btn-icon-only red" title="View" style="margin-right:0;">
+                                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($row->id), '='); ?>" target="_blank" class="btn btn-icon-only red" title="View" style="margin-right:0;">
 												<i class="fa fa-search"></i>
 											</a>
+											
+											<!--<a href="" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+											<i class="fa fa-building-o mr-2 "></i>View Company</a>-->
 											
 											<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 												<i class="fa fa-edit"></i> 
@@ -127,61 +130,61 @@
             </div>
         </div>
         <?php foreach ($result as $row) { ?>
-                <!-- BEGIN MODAL : Create Employer -->
-				<div id="modal_edit_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header ">
-								<h4 class="modal-title">Edit Employer</h4>
-							</div>
-							<div class="modal-body">
-								<form action="<?php echo base_url(); ?>admin/employer/post" method="POST">
-									<div class="form-body">
-										<div class="form-group">
-											<label>Company Name</label>
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="fa fa-user font-yellow-gold"></i>
-												</span>
-												<input type="text" name="fullname" class="form-control" placeholder="Company Name" value="<?=$row->company_name?>" readonly> 
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<label>Company Email Address</label>
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="fa fa-envelope font-yellow-gold"></i>
-												</span>
-												<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$row->company_email?>" readonly> 
-											</div>
-										</div>
-										
-										<div class="form-group">
-											<label>Password</label>
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="fa fa-lock font-yellow-gold"></i>
-												</span>
-												<input type="password" name="password" class="form-control" placeholder="Password" value="<?=$row->password?>">
-											</div>
-										</div>
-									</div>
-									<input type="hidden" name="submit_type" value="edit"></input>
-									<input type="hidden" name="id" value="<?=$row->id?>"></input>
-									<input type="hidden" name="password_old" value="<?=$row->password?>"></input>									
-									
-									<div class="modal-footer form-action ">
-										<!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
-										<button type="submit" class="btn btn-md-blue  mt-width-150-xs font-20-xs letter-space-xs">Update</button>
-										<a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
-									</div>
-								</form>
-							</div>
-							<!-- /.modal-content -->
+			<!-- BEGIN MODAL : Create Employer -->
+			<div id="modal_edit_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header ">
+							<h4 class="modal-title">Edit Employer</h4>
 						</div>
+						<div class="modal-body">
+							<form action="<?php echo base_url(); ?>admin/employer/post" method="POST">
+								<div class="form-body">
+									<div class="form-group">
+										<label>Company Name</label>
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user font-yellow-gold"></i>
+											</span>
+											<input type="text" name="fullname" class="form-control" placeholder="Company Name" value="<?=$row->company_name?>" readonly> 
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label>Company Email Address</label>
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-envelope font-yellow-gold"></i>
+											</span>
+											<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$row->company_email?>" readonly> 
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label>Password</label>
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-lock font-yellow-gold"></i>
+											</span>
+											<input type="password" name="password" class="form-control" placeholder="Password" value="<?=$row->password?>">
+										</div>
+									</div>
+								</div>
+								<input type="hidden" name="submit_type" value="edit"></input>
+								<input type="hidden" name="id" value="<?=$row->id?>"></input>
+								<input type="hidden" name="password_old" value="<?=$row->password?>"></input>									
+								
+								<div class="modal-footer form-action ">
+									<!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
+									<button type="submit" class="btn btn-md-blue  mt-width-150-xs font-20-xs letter-space-xs">Update</button>
+									<a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+								</div>
+							</form>
+						</div>
+						<!-- /.modal-content -->
 					</div>
 				</div>
+			</div>
         <?php } ?>
         <!-- BEGIN MODAL : Create Employer -->
         <div id="modal_add" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">

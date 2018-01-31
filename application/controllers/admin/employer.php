@@ -46,6 +46,7 @@ class Employer extends CI_Controller {
 		$this->db->join('user_role', 'users.id = user_role.user_id');
 		$this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
         $this->db->where('user_role.role_id = 3');
+		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}

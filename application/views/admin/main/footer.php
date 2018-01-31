@@ -55,6 +55,10 @@
 	<script src="<?php echo JS_EMPLOYER; ?>table-datatables-managed.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>calendar.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>components-editors.js" type="text/javascript"></script>
+
 	
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>dashboard.min.js" type="text/javascript"></script>
