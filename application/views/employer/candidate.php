@@ -5,7 +5,7 @@
                     <div class="portlet-title tabbable-line tab-md-indigo py-0  pl-0 mb-0 border-md-grey">
                         <div class="caption">
                             <span class="caption-subject font-weight-300 text-capitalize primary-font font-44-xs"> Candidate List</span>
-                            <span class="caption-helper ">Internship in IT</span>
+                            <span class="caption-helper "><?php echo !empty($job) ? $job->name : 'none'; ?></span>
                         </div>
                         <ul class="nav nav-tabs mb-0 pb-0">
                             <li class="active">
@@ -31,7 +31,7 @@
                             <i class="fa fa-angle-right"></i>
                         </li>
                         <li>
-                            <span>Candidate List [Internship in IT]</span>
+                            <span>Candidate List [<?php echo !empty($job) ? $job->name : 'none'; ?>]</span>
                             <!-- <i class="fa fa-angle-right"></i> -->
                         </li>
                     </ul>
@@ -491,9 +491,10 @@
                                                 <h4 class="modal-title font-weight-600 "> Edit [ <?php echo !empty($interview->title) ? $interview->title : 'Session Name'; ?> ]
                                                 </h4>
                                             </div>
-                                            <form action="<?php echo base_url(); ?>candidate/add_session" method="POST" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>candidate/edit_session" method="POST" class="form-horizontal">
                                                 <div class="modal-body form-body ">
                                                 <input type="hidden" name="id" value="<?php echo !empty($interview->id) ? $interview->id : 0; ?>"></input>
+                                                <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Title</label>
                                                         <div class="col-md-9">
@@ -519,7 +520,7 @@
                                                         <label class="control-label col-md-3">To</label>
                                                         <div class="col-md-6">
                                                             <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control" name="end_date">
+                                                                <input type="text" size="16" class="form-control" name="end_date" value="<?php echo !empty($interview->end_date) ? date('d F Y - H:i', strtotime($interview->end_date)) : '01 January 2018 - 00:00'; ?>">
                                                                 <span class="input-group-addon">
                                                                     <button class="btn default date-set" type="button">
                                                                         <i class="fa fa-calendar"></i>
@@ -532,7 +533,7 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Details</label>
                                                         <div class="col-md-9 ">
-                                                            <textarea class="form-control" rows="5"><?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?></textarea>
+                                                            <textarea class="form-control" rows="5" name="description"><?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -566,7 +567,7 @@
                                                                 Job Position
                                                             </div>
                                                             <div class="col-md-9 text-uppercase font-weight-600 ">
-                                                                Internship In IT
+                                                                <?php echo !empty($job) ? $job->name : 'none'; ?>
                                                             </div>
                                                         </li>
                                                         <li>
@@ -574,7 +575,7 @@
                                                                 Title
                                                             </div>
                                                             <div class="col-md-9">
-                                                                Session 1
+                                                                <?php echo !empty($interview) ? $interview->title : 'none'; ?>
                                                             </div>
                                                         </li>
                                                         <!-- From -->
@@ -583,7 +584,7 @@
                                                                 From
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <i class="icon-calendar mr-2"></i> 1 November 2017 - 10:30
+                                                                <i class="icon-calendar mr-2"></i> <?php echo !empty($interview->start_date) ? date('d F Y - H:i', strtotime($interview->start_date)) : '01 January 2018 - 00:00'; ?>
                                                             </div>
                                                         </li>
                                                         <!-- To -->
@@ -592,7 +593,7 @@
                                                                 To
                                                             </div>
                                                             <div class="col-md-9">
-                                                                <i class="icon-calendar mr-2"></i> 1 November 2017 - 13:30
+                                                                <i class="icon-calendar mr-2"></i> <?php echo !empty($interview->end_date) ? date('d F Y - H:i', strtotime($interview->end_date)) : '01 January 2018 - 00:00'; ?>
                                                             </div>
                                                         </li>
                                                         <!-- Details -->
@@ -601,11 +602,7 @@
                                                                 Details
                                                             </div>
                                                             <div class="col-md-9">
-                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non magna fringilla, semper quam nec, maximus magna. Quisque nec faucibus sem. Duis non magna ut nibh accumsan consectetur. Suspendisse interdum,
-                                                                felis quis sollicitudin vulputate, arcu urna pellentesque quam, vitae fringilla nunc metus eget sem. Curabitur eu felis dapibus, semper magna
-                                                                ac, pulvinar magna. Sed aliquam ipsum ullamcorper ultrices sodales. Donec eget interdum felis. Aenean lorem eros, scelerisque gravida vehicula
-                                                                eu, commodo et nisi. Aenean at massa eu erat placerat viverra. Phasellus placerat eros lorem, in mollis risus interdum id. Nullam posuere
-                                                                orci porta gravida facilisis. Suspendisse quis fermentum enim, ut semper elit.
+                                                                <?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?>
                                                             </div>
                                                         </li>
                                                     </ul>

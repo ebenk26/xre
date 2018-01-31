@@ -46,6 +46,7 @@ $route['job/preview/(:any)'] = 'employer/job_board/preview/(:any)';
 $route['job/candidate/(:any)'] = 'employer/candidate/index/(:any)';
 $route['profile/company/(:any)'] = 'employer/profile/company/(:any)';
 $route['candidate/add_session'] = 'employer/candidate/add_session';
+$route['candidate/edit_session'] = 'employer/candidate/edit_session';
 $route['profile/user/(:any)'] = 'student/profile/view_my_profile/(:any)';
 $route['home'] = 'site/main';
 $route['about'] = 'site/main';

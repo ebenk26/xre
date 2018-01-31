@@ -20,7 +20,7 @@ class Candidate extends CI_Controller {
         $id = $this->session->userdata('id');
         $segment = $this->uri->segment(URI_SEGMENT_DETAIL);
         $job_id = base64_decode($segment);
-        $complement['job_post'] = $this->employer_model->get_job_post($id);
+        $complement['job'] = $this->global_model->get_by_id('job_positions', array('id'=>$job_id));
         $complement['candidates'] = $this->employer_model->get_all_candidate($job_id);
         $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id);
         $complement['job_id'] = $segment;
