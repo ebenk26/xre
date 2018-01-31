@@ -19,20 +19,20 @@
                                 <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>contact">Contacts</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="#">Article</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>article">Article</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
+                            <!--<li>
                                 <a class="g-font-size-15-xs g-color-white-opacity" href="#">Subscribe to Our Newsletter</a>
+                            </li>-->
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy">Privacy</a>
                             </li>
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy-policy">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>terms-and-conditions">Terms &amp; Conditions</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>terms-of-use">Terms of Use</a>
                             </li>
                         </ul>
                     </div>
@@ -41,20 +41,20 @@
                         <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
                             <li>
-                                <a class="fa fa-youtube fa-2x social-yt" href="https://www.youtube.com/"></a>
+                                <a class="fa fa-youtube fa-2x social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw" target="_blank"></a>
                             </li>
                             <li>
-                                <a class=" social-tw fa-2x fa fa-twitter" href="https://www.twitter.com/"></a>
+                                <a class=" social-tw fa-2x fa fa-twitter" href="https://twitter.com/xremomy" target="_blank"></a>
                             </li>
                             <li>
-                                <a class=" fa fa-facebook social-fb fa-2x" href="https://www.facebook.com/"></a>
+                                <a class=" fa fa-facebook social-fb fa-2x" href="https://www.prod.facebook.com/xremomy/" target="_blank"></a>
                             </li>
                             <li>
-                                <a class=" fa fa-linkedin social-li fa-2x" href="https://www.linkedin.com/"></a>
+                                <a class=" fa fa-linkedin social-li fa-2x" href="https://www.linkedin.com/company/6382421/" target="_blank"></a>
                             </li>
-                            <li>
-                                    <a class=" fa fa-google-plus social-gplus fa-2x" href="https://www.linkedin.com/"></a>
-                            </li>
+                            <!--<li>
+                                <a class=" fa fa-google-plus social-gplus fa-2x" href="https://www.linkedin.com/" target="_blank"></a>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
         <div class="container g-padding-y-20-xs">
             <div class="row">
                 <div class="col-xs-6">
-                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/index.html">
+                    <a href="<?=base_url()?>">
                         <img class="g-height-40-xs" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-white.png" alt=" Xremo Logo">
                     </a>
                 </div>

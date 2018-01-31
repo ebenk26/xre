@@ -12,7 +12,7 @@
                         <ul class="page-breadcrumb">
                             <li>
                                 <i class="icon-home"></i>
-                                <a href="<?=base_url()?>admin/job_seeker">Home</a>
+                                <a href="<?=base_url()?>administrator/job_seeker">Home</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
                             <li>
@@ -41,9 +41,9 @@
                         <table class="table table-striped table-bordered table-hover  order-column" id="xremo_table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1 text-center">#</th>
-                                    <th class="col-md-6"> Pages </th>
-                                    <th class="col-md-1"> Actions </th>
+                                    <th class="text-center">#</th>
+                                    <th> Pages </th>
+                                    <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
 							<h4 class="modal-title">Edit Pages </h4>
 						</div>
 						<div class="modal-body">
-							<form action="<?php echo base_url(); ?>admin/pages/post/" method="POST">
+							<form action="<?php echo base_url(); ?>administrator/pages/post/" method="POST">
 								<div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
 								<div class="form-body">
 									<div class="form-group">

@@ -75,7 +75,7 @@
                                     <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="#" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?=base_url()?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <?php if ($this->session->userdata('name')){ ?>

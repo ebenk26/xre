@@ -23,9 +23,9 @@ class Service_item extends CI_Controller {
 		
         $complement['result'] 				= $this->get_data();
 		
-        $this->load->view('admin/main/header', $profile);
-        $this->load->view('admin/service_item', $complement);
-        $this->load->view('admin/main/footer');
+        $this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/service_item', $complement);
+        $this->load->view('administrator/main/footer');
 	}
 	
 	public function export(){
@@ -33,7 +33,7 @@ class Service_item extends CI_Controller {
 		$data['type'] 		= 'Service Item';
 		$data['hasil'] 		= $this->get_data();
 		
-        $this->load->view('admin/excel', $data);
+        $this->load->view('administrator/excel', $data);
 	}
 	
 	public function get_data(){
@@ -81,7 +81,7 @@ class Service_item extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed');
         }
 		
-		redirect(base_url().'admin/service_item');
+		redirect(base_url().'administrator/service_item');
     }
 
     public function delete(){

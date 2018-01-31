@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Job_Board extends CI_Controller {
+class Employer extends CI_Controller {
     
     function __construct(){
         parent::__construct();
@@ -16,62 +16,89 @@ class Job_Board extends CI_Controller {
     }
     
     public function index(){
-        $profile['page_title'] 		= 'Job List | Admin';
+        $profile['page_title'] 		= 'Employer | Admin';
         $id 						= $this->session->userdata('id');
         $get_user_profile 			= $this->employer_model->get_user_profile($id);
         $profile['user_profile'] 	= $get_user_profile;
-        
-		$complement['employment_type'] 		= $this->employer_model->get_employment();
+		
+        $complement['employment_type'] 		= $this->employer_model->get_employment();
         $complement['position_levels'] 		= $this->employer_model->get_position();
         $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
-        $complement['job_post'] 			= $this->get_data();
-        
-		$this->load->view('admin/main/header', $profile);
-        $this->load->view('admin/job_board', $complement);
-        $this->load->view('admin/main/footer');
+        $complement['job_post'] 			= $this->employer_model->get_job_post($id);
+		$complement['result'] 				= $this->get_data();
+		
+        $this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/employer', $complement);
+        $this->load->view('administrator/main/footer');
+	}
+	
+	public function export(){
+        $data['page_title'] = 'Employer';
+		$data['type'] 		= 'Employer';
+		$data['hasil'] 		= $this->get_data();
+		
+        $this->load->view('administrator/excel', $data);
 	}
 	
 	public function get_data(){
-        $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
-		$this->db->from('job_positions');
-		$this->db->join('users', 'users.id = job_positions.user_id');
-		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
-        $this->db->order_by('job_positions.id', 'DESC');
-		//$this->db->where('user_role.role_id = 3');
+        $this->db->select('users.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
+		$this->db->from('users');
+		$this->db->join('user_role', 'users.id = user_role.user_id');
+		$this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
+        $this->db->where('user_role.role_id = 3');
+		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
 
     public function post(){
-        $id 	= $this->input->post('job_id');
-		$data 	= array('name' 					=> $this->input->post('name'),
-                        'budget_min' 			=> $this->input->post('budget_min'),
-                        'budget_max' 			=> $this->input->post('budget_max'),
-                        'employment_type_id' 	=> $this->input->post('employment_type_id'),
-                        'position_level_id' 	=> $this->input->post('position_level_id'),
-                        'years_of_experience' 	=> $this->input->post('years_of_experience'),
-                        'job_description' 		=> $this->input->post('job_description'),
-                        'qualifications' 		=> $this->input->post('qualifications'),
-                        'other_requirements' 	=> $this->input->post('other_requirements'),
-                        'additional_info'		=> $this->input->post('additional_info'),
-                        //'status'=> $this->input->post('status'),
-                        //'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
-                        //'created_at'=> date('Y-m-d H:i:s'),
-                        'updated_at' 			=> date('Y-m-d H:i:s'),
-						//'user_id' => $this->session->userdata('id'),
-                        );
-        //$postJob = $this->employer_model->job_post($jobPost);
+        $id 		= $this->input->post('id');
+		$password 	= md5(SALT.sha1($this->input->post('password')));
 		
-		$this->db->where('id', $id);
-		$post_status = $this->db->update('job_positions', $data);
-
+		if($this->input->post('submit_type') == "insert"){
+			$data = array(
+					'email' 				=> $this->input->post('email'),
+					'password' 				=> $password,
+					'fullname' 				=> $this->input->post('fullname'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'verified' 				=> 1,
+					//'verification_token' 	=> 1,
+			);
+			$post_status = $this->db->insert('users', $data);
+			
+			$user_id = $this->db->insert_id();
+			
+			$data1 = array(
+					'email' 				=> $this->input->post('email'),
+					'company_name' 			=> $this->input->post('fullname'),
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'user_id' 				=> $user_id,
+			);
+			$post_status = $this->db->insert('user_profiles', $data1);
+			
+			$data2 = array(
+					'created_at' 			=> date('Y-m-d H:i:s'),
+					'user_id' 				=> $user_id,
+					'role_id' 				=> 3,
+			);
+			$post_status = $this->db->insert('user_role', $data2);
+		}else{
+			if($this->input->post('password') != $this->input->post('password_old')){				
+				$data = array(
+						'password' => $password,
+				);
+				$this->db->where('id', $id);
+				$post_status = $this->db->update('users', $data);
+			}
+		}
+		
         if ($post_status == true) {
             $this->session->set_flashdata('msg_success', 'Success');            
         }else{
             $this->session->set_flashdata('msg_error', 'Failed');
         }
 		
-		redirect(base_url().'admin/job_board');
+		redirect(base_url().'administrator/employer');
 
         /*if ($this->input->post('status') == 'draft') {
             redirect(base_url().'job/details/'.rtrim(base64_encode($postJob),'=') );

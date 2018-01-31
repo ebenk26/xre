@@ -27,9 +27,9 @@ class Job_Seeker extends CI_Controller {
         $complement['job_post'] 			= $this->employer_model->get_job_post($id);
 		$complement['job_seeker'] 			= $this->get_data();
 		
-        $this->load->view('admin/main/header', $profile);
-        $this->load->view('admin/job_seeker', $complement);
-        $this->load->view('admin/main/footer');
+        $this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/job_seeker', $complement);
+        $this->load->view('administrator/main/footer');
 	}
 	
 	public function export(){
@@ -37,7 +37,7 @@ class Job_Seeker extends CI_Controller {
 		$data['type'] 		= 'Job Seeker';
 		$data['hasil'] 		= $this->get_data();
 		
-        $this->load->view('admin/excel', $data);
+        $this->load->view('administrator/excel', $data);
 	}
 	
 	public function get_data(){

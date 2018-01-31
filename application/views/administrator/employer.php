@@ -12,7 +12,7 @@
                         <ul class="page-breadcrumb">
                             <li>
                                 <i class="icon-home"></i>
-                                <a href="<?=base_url()?>admin/job_seeker">Home</a>
+                                <a href="<?=base_url()?>administrator/job_seeker">Home</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
                             <li>
@@ -35,7 +35,7 @@
                             <a href="#modal_add" class="btn btn-circle btn-md-blue" data-toggle="modal">
                                 <i class="fa fa-plus"></i> Create Employer 
 							</a>
-							<a href="<?=base_url()?>admin/employer/export" class="btn btn-circle btn-md-green">
+							<a href="<?=base_url()?>administrator/employer/export" class="btn btn-circle btn-md-green">
                                 <i class="fa fa-download"></i> Download List 
 							</a>
                         </div>
@@ -44,15 +44,15 @@
                         <table class="table table-striped table-bordered table-hover order-column" id="xremo_table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1 text-center">#</th>
-                                    <th class="col-md-6"> Company </th>
-                                    <th class="col-md-1"> Company Email </th>
-                                    <th class="col-md-2"> Contact Person </th>
-									<th class="col-md-2"> Contact Person Email </th>
+                                    <th class="text-center">#</th>
+                                    <th> Company </th>
+                                    <th> Company Email </th>
+                                    <th> Contact Person </th>
+									<th> Contact Person Email </th>
                                     <!--<th class="col-md-1"> GST </th>-->
-									<th class="col-md-1"> Phone </th>
-                                    <th class="col-md-1"> Fax </th>
-                                    <th width="150"> Actions </th>
+									<th> Phone </th>
+                                    <th> Fax </th>
+                                    <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,7 +138,7 @@
 							<h4 class="modal-title">Edit Employer</h4>
 						</div>
 						<div class="modal-body">
-							<form action="<?php echo base_url(); ?>admin/employer/post" method="POST">
+							<form action="<?php echo base_url(); ?>administrator/employer/post" method="POST">
 								<div class="form-body">
 									<div class="form-group">
 										<label>Company Name</label>
@@ -194,7 +194,7 @@
                         <h4 class="modal-title">Create Employer</h4>
                     </div>
 					<div class="modal-body">
-						<form action="<?php echo base_url(); ?>admin/employer/post" method="POST">
+						<form action="<?php echo base_url(); ?>administrator/employer/post" method="POST">
 							<div class="form-body">
 								<div class="form-group">
 									<label>Company Name</label>

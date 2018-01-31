@@ -12,7 +12,7 @@
                         <ul class="page-breadcrumb">
                             <li>
                                 <i class="icon-home"></i>
-                                <a href="<?=base_url()?>admin/job_seeker">Home</a>
+                                <a href="<?=base_url()?>administrator/job_seeker">Home</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
                             <li>
@@ -24,7 +24,7 @@
                     <!-- END PAGE TITLE -->
                 </div>
                 <!-- END PAGE HEAD-->
-                <?php if($this->uri->segment(1) != "admin"){?>
+                <?php if($this->uri->segment(1) != "administrator"){?>
 					<div class="row widget-row">
 						<div class="col-md-3">
 							<div class="widget-thumb widget-bg-color-white text-uppercase mb-3 ">
@@ -73,7 +73,7 @@
                             <!-- <span class="caption-helper">more samples...</span> -->
                         </div>
                         <div class="actions">
-                            <a href="<?=base_url()?>admin/job_seeker/export" class="btn btn-circle btn-md-green">
+                            <a href="<?=base_url()?>administrator/job_seeker/export" class="btn btn-circle btn-md-green">
                                 <i class="fa fa-download"></i> Download List 
 							</a>
 							<!--
@@ -87,12 +87,12 @@
                         <table class="table table-striped table-bordered table-hover order-column" id="xremo_table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1 text-center">#</th>
-                                    <th class="col-md-6"> Name </th>
-                                    <th class="col-md-1"> Email </th>
+                                    <th class="text-center">#</th>
+                                    <th> Name </th>
+                                    <th> Email </th>
                                     <!--<th class="col-md-2"> CV </th>-->
-                                    <th class="col-md-1"> Video CV </th>
-                                    <th class="col-md-1"> Actions </th>
+                                    <th> Video CV </th>
+                                    <th> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>

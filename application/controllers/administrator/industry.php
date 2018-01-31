@@ -23,9 +23,9 @@ class Industry extends CI_Controller {
 		
         $complement['result'] 				= $this->get_data();
 		
-        $this->load->view('admin/main/header', $profile);
-        $this->load->view('admin/industry', $complement);
-        $this->load->view('admin/main/footer');
+        $this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/industry', $complement);
+        $this->load->view('administrator/main/footer');
 	}
 	
 	public function export(){
@@ -33,7 +33,7 @@ class Industry extends CI_Controller {
 		$data['type'] 		= 'Industry';
 		$data['hasil'] 		= $this->get_data();
 		
-        $this->load->view('admin/excel', $data);
+        $this->load->view('administrator/excel', $data);
 	}
 	
 	public function get_data(){
@@ -76,7 +76,7 @@ class Industry extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed');
         }
 		
-		redirect(base_url().'admin/industry');
+		redirect(base_url().'administrator/industry');
     }
 
     public function delete(){
@@ -87,6 +87,6 @@ class Industry extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed');
         }
-        redirect(base_url().'admin/industry');
+        redirect(base_url().'administrator/industry');
     }
 }

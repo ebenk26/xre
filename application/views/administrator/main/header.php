@@ -69,7 +69,7 @@
                 <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
                 <!-- X<small>REMO</small>  -->
                 <!-- </a> -->
-                <a href="<?=base_url()?>admin/job_seeker">
+                <a href="<?=base_url()?>administrator/job_seeker">
                     <img src="<?php echo IMG_EMPLOYER; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4">
                 </a>
             </div>
@@ -105,7 +105,8 @@
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
 
-                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+						<!-- === NOTIFICATION, UNCOMMENT THIS === -->
+                        <!--<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
                                 <span class="badge badge-default"> 7 </span>
@@ -202,11 +203,14 @@
                                     </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
+						
                         <!-- END NOTIFICATION DROPDOWN -->
                         <!-- BEGIN INBOX DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        
+						<!-- === NOTIFICATION, UNCOMMENT THIS === -->
+						<!--<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
                                 <span class="badge badge-default"> 4 </span>
@@ -279,11 +283,14 @@
                                     </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
+						
                         <!-- END INBOX DROPDOWN -->
                         <!-- BEGIN TODO DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+                        
+						<!-- === NOTIFICATION, UNCOMMENT THIS === -->
+						<!--<li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-calendar"></i>
                                 <span class="badge badge-default"> 3 </span>
@@ -390,17 +397,18 @@
                                     </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
+						
                         <!-- END TODO DROPDOWN -->
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle" src="<?php echo IMG_EMPLOYER; ?>avatar3_small.jpg">
-                                <span class="username username-hide-on-mobile"> Nick </span>
-                                <i class="fa fa-angle-down"></i>
+                                <span class="username username-hide-on-mobile"> <?=$this->session->userdata('name')?> </span>
+                                <!--<i class="fa fa-angle-down"></i>-->
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-default">
+                            <!--<ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/profile/">
                                         <i class="icon-user"></i> My Profile </a>
@@ -430,7 +438,7 @@
                                     <a href="<?php echo base_url(); ?>site/user/logout/">
                                         <i class="icon-key"></i> Log Out </a>
                                 </li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <!-- END USER LOGIN DROPDOWN -->
                         <!-- BEGIN QUICK SIDEBAR TOGGLER -->
@@ -479,55 +487,55 @@
                         </div>
                     </li>-->
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_seeker'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/job_seeker" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/job_seeker" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">Job Seeker</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/job_board" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/job_board" class="nav-link ">
                             <i class="icon-briefcase"></i>
                             <span class="title">Job List</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'employer'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/employer" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/employer" class="nav-link ">
                             <i class="icon-moustache"></i>
                             <span class="title">Employer</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'package'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/package" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/package" class="nav-link ">
                             <i class="icon-wallet"></i>
                             <span class="title">Package</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'service_item'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/service_item" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/service_item" class="nav-link ">
                             <i class="icon-layers"></i>
                             <span class="title">Service Item</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'industry'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/industry" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/industry" class="nav-link ">
                             <i class="icon-diamond"></i>
                             <span class="title">Industry</span>
                         </a>
 					</li>
 					<!--<li class="nav-item <?php if ($this->uri->segment(2) == 'speciaization'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/speciaization" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/speciaization" class="nav-link ">
                             <i class="icon-magic-wand"></i>
                             <span class="title">Specialization</span>
                         </a>
 					</li>-->
-					<li class="nav-item <?php if ($this->uri->segment(2) == 'blog'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/blog" class="nav-link ">
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'article'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>administrator/article" class="nav-link ">
                             <i class="icon-feed"></i>
-                            <span class="title">Blog</span>
+                            <span class="title">Article</span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'pages'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>admin/pages" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>administrator/pages" class="nav-link ">
                             <i class="icon-note"></i>
                             <span class="title">Pages</span>
                         </a>

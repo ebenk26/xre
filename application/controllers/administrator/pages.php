@@ -23,9 +23,9 @@ class Pages extends CI_Controller {
         
 		$complement['result'] 		= $this->get_data();
         
-		$this->load->view('admin/main/header', $profile);
-        $this->load->view('admin/pages', $complement);
-        $this->load->view('admin/main/footer');
+		$this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/pages', $complement);
+        $this->load->view('administrator/main/footer');
 	}
 	
 	public function get_data(){
@@ -54,7 +54,7 @@ class Pages extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed');
         }
 		
-		redirect(base_url().'admin/pages');
+		redirect(base_url().'administrator/pages');
     }
 
     public function update(){

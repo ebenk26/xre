@@ -51,14 +51,18 @@ $route['home'] = 'site/main';
 $route['about'] = 'site/main';
 $route['services'] = 'site/main';
 $route['contact'] = 'site/main';
-$route['privacy-policy'] = 'site/main';
-$route['terms-and-conditions'] = 'site/main';
+$route['privacy'] = 'site/main';
+$route['terms-of-use'] = 'site/main';
 $route['login'] = 'site/user/login';
 $route['signup'] = 'site/user/signup';
 $route['job/search'] = 'site/job_search_result';
 $route['filter'] = 'site/job_search_result/filter_get';
 $route['employer/change_password'] = 'site/user/changePassword';
 $route['student/change_password'] = 'site/user/changePassword';
+$route['administrator/dashboard'] = 'administrator/job_seeker';
+$route['article/page/(:any)'] = 'administrator/article/list_public_page/$1';
+$route['article/(:any)'] = 'administrator/article/view_public/$1';
+$route['article'] = 'administrator/article/list_public';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
