@@ -7,6 +7,7 @@ class Candidate extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck)){
@@ -22,6 +23,8 @@ class Candidate extends CI_Controller {
         $complement['job_post'] = $this->employer_model->get_job_post($id);
         $complement['candidates'] = $this->employer_model->get_all_candidate($job_id);
         $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id);
+        $complement['job_id'] = $segment;
+        $complement['interview'] = $this->global_model->get_by_id('interview_schedule', array('job_id' => $job_id));
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/candidate',$complement);
         $this->load->view('employer/main/footer');
@@ -31,6 +34,51 @@ class Candidate extends CI_Controller {
         $candidates = $this->employer_model->get_shortlisted_candidate($job_id);
         return $candidates;
     }
+
+    function add_session(){
+        $job_id = base64_decode($this->input->post('job_id'));
+
+        $start = explode(' - ', $this->input->post('start_date'));
+        $start_date = date('Y-m-d',strtotime(current($start)));
+        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date_hour = implode(' ', array($start_date, $start_hour));
+
+        $end = explode(' - ', $this->input->post('end_date'));
+        $end_date = date('Y-m-d',strtotime(current($end)));
+        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date_hour = implode(' ', array($end_date, $end_hour));
+
+        $session = array('job_id'=>$job_id,
+                        'title' => $this->input->post('title'), 
+                        'start_date'=> date('Y-m-d H:i:s', strtotime($start_date_hour)),
+                        'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
+                        'description'=> $this->input->post('description'));
+        $this->global_model->create('interview_schedule', $session);
+        redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+    }
+
+    function edit_session(){
+        $job_id = base64_decode($this->input->post('job_id'));
+
+        $start = explode(' - ', $this->input->post('start_date'));
+        $start_date = date('Y-m-d',strtotime(current($start)));
+        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date_hour = implode(' ', array($start_date, $start_hour));
+
+        $end = explode(' - ', $this->input->post('end_date'));
+        $end_date = date('Y-m-d',strtotime(current($end)));
+        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date_hour = implode(' ', array($end_date, $end_hour));
+        $id = $this->input->post('id');
+        $session = array('job_id'=>$job_id,
+                        'title' => $this->input->post('title'), 
+                        'start_date'=> date('Y-m-d H:i:s', strtotime($start_date_hour)),
+                        'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
+                        'description'=> $this->input->post('description'));
+        $this->global_model->update('interview_schedule', array('id' => $id ) ,$session);
+        redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+    }
+
 }
 
 ?>
