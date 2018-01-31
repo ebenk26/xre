@@ -257,10 +257,12 @@ class Employer_Model extends CI_Model{
                             applieds.created_at as sent_at,
                             users.id as id_user, 
                             users.fullname as user_name, 
-                            profile_uploads.name as user_image');
+                            profile_uploads.name as user_image,
+                            interview_schedule_user.status as interview_status');
         $this->db->from('users');
         $this->db->join('applieds','users.id = applieds.user_id', 'left');
         $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
+        $this->db->join('interview_schedule_user','interview_schedule_user.user_id = users.id', 'left');
         $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $this->db->where(array('applieds.status !=' => 'APPLIED'));
         $this->db->where(array('applieds.job_position_id' => $id)); //job position id
