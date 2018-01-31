@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Article Detail</title>
+
+    <!-- Web Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" type="text/css" href="../HTML/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../HTML/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../HTML/vendor/themify/themify.css">
+    <link rel="stylesheet" type="text/css" href="../HTML/vendor/scrollbar/scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="../HTML/vendor/swiper/swiper.min.css">
+    <!-- Metronic -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/csks" href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css">
+    <!-- Megakit Styles -->
+    <link rel="stylesheet" type="text/css" href="../HTML/css/style.css">
+    <!-- Metronic Styles -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/css/components.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
+    <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
+</head>
+
+<body>
+    <!--========== HEADER  ==========-->
+    <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
+        <!-- Navbar -->
+        <nav class="s-header-v2-navbar">
+            <div class="container g-display-table-lg">
+                <!-- Navbar Row -->
+                <div class="s-header-v2-navbar-row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="s-header-v2-navbar-col">
+                        <button type="button" class="collapsed s-header-v2-toggle" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                            <span class="s-header-v2-toggle-icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Logo -->
+                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
+                        <div class="s-header-v2-logo">
+                            <a href="index.html" class="s-header-v2-logo-link">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="../assets/global/img/xremo/xremo.png" alt="Dublin Logo" style="height:47px">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="../assets/global/img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Logo -->
+
+                    <!-- Content -->
+                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-right">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <!-- guest -->
+                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
+                            <ul class="s-header-v2-nav">
+                                <li class="s-header-v2-nav-item">
+                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="signup.html" class="s-header-v2-nav-link  g-color-md-orange-text">SIGN UP</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="login.html" class="g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
+                                    <a href="login.html" class="g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--logged user -->
+                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
+                            <ul class="s-header-v2-nav hidden">
+                                <!-- NOTE : Student got "Search Job " link meanwhile employer do not have -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                </li>
+                                <!-- ########################################################## -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                </li>
+
+                                <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
+                                    <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-menu avatar-circle" alt="">
+                                        <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                        <li>
+                                            <a href="student-dashboard-v2.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-home mr-3"></i>Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-profile-v3.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-note mr-3"></i>Edit Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-book-open mr-3"></i>My Resume</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-calendar.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="welcome.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-key mr-3"></i>Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- End Nav Menu -->
+                    </div>
+                </div>
+                <!-- End Navbar Row -->
+            </div>
+        </nav>
+        <!-- End Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+
+    <!--========== PROMO BLOCK ==========-->
+    <div class="s-promo-block-v2 g-bg-gradient-darkblue-light  g-height-300-xs" style="background: url('../HTML/img/1920x1080/01.jpg')  no-repeat fixed;">
+    </div>
+    <!--========== END PROMO BLOCK ==========-->
+
+    <!--========== CONTENT ==========-->
+
+    <div class="container g-padding-y-20-xs">
+        <div class="row">
+            <div class="col-md-9 mb-6">
+                <h2 class="font-weight-600 mb-4"> Breakfast Of Champions: How Serial Entrepreneurs Replicate Their Success</h2>
+                <small>
+                    <i class="fa fa-user mr-1"></i> Elaine Lee |
+                    <i class="fa fa-calendar mr-1"></i> 12 June 2017</small>
+                <p>Entrepreneurs are everywhere—you can probably count at least half a dozen of them in your personal and professional circles. But of all the people who start businesses in the U.S., only about a third of them become ‘serial’ entrepreneurs and continue to open new ventures throughout their careers.</p>
+
+                <p>Entrepreneurs are everywhere—you can probably count at least half a dozen of them in your personal and professional circles. But of all the people who start businesses in the U.S., only about a third of them become ‘serial’ entrepreneurs and continue to open new ventures throughout their careers.</p>
+
+                <p>While these market makers seem to possess a well-honed knack for identifying and capitalizing on opportunities, they also know how to be successful entrepreneurs: they build and scale their business in a particular way. They have a particular relationship with their capital that makes them able to finance their ventures. Here are some of the ‘best practices’ of habitual winners.
+                </p>
+
+                <ul>
+                    <li>
+                        <p>
+                            <strong>They build a solid ecosystem of finance, people and know-how.&nbsp;</strong>
+                            <a href="https://s3-ap-southeast-1.amazonaws.com/xremo.com.my/blog-article-breakfast-of-champions-how-serial-entrepreneurs-replicate-their-success.html?X-Amz-Date=20160214T141704Z&amp;X-Amz-Expires=300&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Signature=db09938c9330ae43e2502e14bcef5fe317e087adb7f2f58d20c7a694464b7488&amp;X-Amz-Credential=ASIAIZV2KXWN4LIRWHDQ/20160214/ap-southeast-1/s3/aws4_request&amp;X-Amz-SignedHeaders=Host&amp;x-amz-security-token=AQoDYXdzEFQakAPxCOWTa5/XPgGqdq4iKPRJ8tMrT9kEncvBJWjh2gf43lNGtI%2Bnjoif3tKYDZ9g0ofIB4vOg59iIYiHf3nbdvdu%2BdBbfE6yoXhWZVhCY%2BxeoAX07oTgGCQkSMVXfMxatzGSJtJ7/JVJdUobvjRXsrWv1Hl0kQwoQlII4DwvrynhzL2p17WUPWPaTl/JBtWkbcrBz6oS2w7pAu5XXXfhHX1r8b/joUyi4Cz7oOgI1CA/BxC%2BLVaYE%2B9vRqnIWhr84gKExsMvJF6viij2GZVsAXN01WMnqCYICgktwbM0Y4z2c%2Bxo8p1vwWIiAIAcOlKydrNGEMGcwffVSToQ0xktgyqaEO3KQ%2BOzB6KwOjE0uRPkBackTAyZUxTHRtN/bStjSRqvGzeIOIzOXtJheucv7iOEbSwAgVMdBCLKJ698ugtBri%2BELAd6C6fCHQ/n2HJO7ddRIeUGpJPMCljTSUg81Gbb7T0sMswMb%2BhM6CtmIR5K6rsIaDP1TgDZEOXa2Bg7j%2BuKl3qQ8CZRhm5Nx1pWAHimIO/j/7UF#">Ernst &amp; Young&nbsp;</a>points out that lack of access to funding, key talent and knowledge are the biggest barriers to a venture’s success. Being mindful of the people and skill sets represented in your ecosystem (there is a formulaic cast of characters) helps break through these obstacles. Investors will want to see evidence that you have the people and know-how before financing you. It really isn’t enough to be a team of a few brilliant software engineers if you
+                            don’t have a crackerjack finance person in your leadership, and someone with strong knowledge of the vertical market. When you have an established pool of proven people who can snap together a business plan and funding, it’s easier to react quickly to market opportunities before anyone else.</p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Failure isn’t necessarily a failing.&nbsp;</strong>In the United States, serial entrepreneurs don’t seem to be stigmatized by business implosions of the past. They wear the wisdom gained through their failure experiences as a badge of honor. Research shows that previously unsuccessful entrepreneurs wield just as much clout at the investor’s negotiating table as founders who have a track record of success. Serial entrepreneurs—even those who have failed—preserve more equity
+                            than first-time entrepreneurs among other advantages. Investors in the U.S. tend to see business failure as an opportunity for the entrepreneur to gain critical knowledge that informs their next venture. It is important that you can speak to these learnings if your use of capital or inability to generate profit were a big part of your previous failure. In the rest of the world, failure isn’t forgiven as easily, so American entrepreneurs have a distinct advantage here.</p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Successful entrepreneurs understand the distinctions between being ‘wealthy’ and being a ‘king.’&nbsp;</strong>The entrepreneur whose primary motivation is to generate ‘wealth and capital’ understand the importance of strategic decisions that make the business more valuable in the long run. They understand that success often means giving up leadership control and some equity. A founder with a ‘king’ mentality places a priority on retaining their control and equity. And
+                            they often do this at the expense of generating funding or gaining executive talent that would create higher business valuation. Serial entrepreneurs understand that, except in rare cases, their ability is may be limited to getting the business to a certain stage of scale. Which brings us to the next harsh reality…
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>You did amazing! Now, you’re fired.&nbsp;</strong>Paradoxically, a founder who builds a successful company often finds themselves kicked out of the CEO job at a particular stage because the company may need a CEO with a different skill set. From the&nbsp;
+                            <a href="https://s3-ap-southeast-1.amazonaws.com/xremo.com.my/blog-article-breakfast-of-champions-how-serial-entrepreneurs-replicate-their-success.html?X-Amz-Date=20160214T141704Z&amp;X-Amz-Expires=300&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Signature=db09938c9330ae43e2502e14bcef5fe317e087adb7f2f58d20c7a694464b7488&amp;X-Amz-Credential=ASIAIZV2KXWN4LIRWHDQ/20160214/ap-southeast-1/s3/aws4_request&amp;X-Amz-SignedHeaders=Host&amp;x-amz-security-token=AQoDYXdzEFQakAPxCOWTa5/XPgGqdq4iKPRJ8tMrT9kEncvBJWjh2gf43lNGtI%2Bnjoif3tKYDZ9g0ofIB4vOg59iIYiHf3nbdvdu%2BdBbfE6yoXhWZVhCY%2BxeoAX07oTgGCQkSMVXfMxatzGSJtJ7/JVJdUobvjRXsrWv1Hl0kQwoQlII4DwvrynhzL2p17WUPWPaTl/JBtWkbcrBz6oS2w7pAu5XXXfhHX1r8b/joUyi4Cz7oOgI1CA/BxC%2BLVaYE%2B9vRqnIWhr84gKExsMvJF6viij2GZVsAXN01WMnqCYICgktwbM0Y4z2c%2Bxo8p1vwWIiAIAcOlKydrNGEMGcwffVSToQ0xktgyqaEO3KQ%2BOzB6KwOjE0uRPkBackTAyZUxTHRtN/bStjSRqvGzeIOIzOXtJheucv7iOEbSwAgVMdBCLKJ698ugtBri%2BELAd6C6fCHQ/n2HJO7ddRIeUGpJPMCljTSUg81Gbb7T0sMswMb%2BhM6CtmIR5K6rsIaDP1TgDZEOXa2Bg7j%2BuKl3qQ8CZRhm5Nx1pWAHimIO/j/7UF#">Harvard Business Review&nbsp;</a>: Investors want to take control of the board most often when the CEO has a background in science or technology versus marketing or sales, or where the CEO has an average of 13 years of experience or less. It is important here to not confuse age with experience. A teenage entrepreneur and visionary that started a business at 15 could have that experience at age 30. What is important is the particular kind of experience the CEO has. If they’ve
+                            been a manager with a limited line function focus prior to starting a business, they may offer less to a rapidly scaling business than someone who has been a highly successful generalist in a variety of positions on their way up—particularly if they’ve had Profit and Loss experience.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Successful entrepreneurs know when to sell.&nbsp;</strong>There is always risk to running a business, even one that’s doing well. It’s smart to continuously look at your exit options because you will not always have the same windows of opportunity to exit with a high valuation. Also, market shocks, increased costs of labor or supply, even changes in your health or family circumstances may change how vested you are in your current venture. It might be prudent to take a
+                            good offer, get out sooner and have the capital to focus on something new that you’re passionate about. And don’t worry, exiting rarely means selling it all: According to Ernst &amp; Young, nearly 75% of entrepreneurs say that they have retained at least partial equity after selling a previous venture. </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong>Entrepreneurs are knee-deep in the next deal already.&nbsp;</strong>Almost always, serial entrepreneurs are already a year into talks on the next deal before their current company is sold. They know that the faster they move, the quicker they yield a profit. And the more likely they are to hit the window of opportunity they’ve identified for their next venture. This requires an entrepreneur to be thinking about the financial opportunity the new venture represents and to
+                            be working with the financial business case early. </p>
+                    </li>
+                </ul>
+
+                <p>A common thread in all of the above cases of serial success is the ability of the owner to separate themselves from the venture. There are the things that the company requires in terms of capital and skills, and there are the things that the entrepreneur himself (or herself) brings to the table. Constantly separating the two is critical to assessing the stage of the venture and the relationship the entrepreneur must have with it to lead to success.</p>
+
+                <p>By creating new ventures, an entrepreneur gets an opportunity to continually experiment with their role, their approaches to funding and their approaches to talent. If you’ve got an appetite not just for business, but also for entrepreneurship, than focusing on the strategies of serial leaders is critical. Remember, entrepreneurship is for those with big eyes, bigger stomachs…and it’s not just for breakfast anymore.</p>
+
+
+
+            </div>
+
+            <div class="col-md-3">
+                <!-- Share -->
+                <div class="row mt-4">
+                    <h4 class="font-weight-500">Share </h4>
+                    <hr class="g-hor-border-1-solid-md-orange mt-width-50-xs mt-2">
+                    <ul class="social-icons social-icons-color">
+                        <li>
+                            <a href="javascript:;" data-original-title="facebook" class="facebook"> </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-original-title="Google Plus" class="googleplus"> </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-original-title="linkedin" class="linkedin"> </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-original-title="twitter" class="twitter"> </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" data-original-title="instagram" class="instagram"> </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Popular Post [Top 3 ] -->
+                <div class="row mt-4 px-1">
+                    <h4 class="font-weight-500">Popular Post</h4>
+                    <hr class="g-hor-border-1-solid-md-orange mt-width-50-xs mt-2">
+                    <ul class="list-unstyled">
+                        <li class="my-2">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="article-detail.html">
+                                        <img src="../HTML/img/400x500/03.jpg" alt="" class="avatar avatar-tiny avatar-circle avatar-border-md">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="font-weight-600 pb-1 mb-0 mt-1">
+                                        <a href="article-detail.html">How To Find A Co-Founder For Your Startup</a>
+                                    </h5>
+                                    <p class="mt-0">
+                                        <small class="multiline-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus numquam maiores dolore ipsam odit, error officia accusamus magni laboriosam? Eaque optio ut incidunt quibusdam, illo architecto voluptate fugiat quidem enim.</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="article-detail.html">
+                                        <img src="../HTML/img/400x500/03.jpg" alt="" class="avatar avatar-tiny avatar-circle avatar-border-md">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="font-weight-600 pb-1 mb-0 mt-1">
+                                        <a href="article-detail.html">How To Find A Co-Founder For Your Startup</a>
+                                    </h5>
+                                    <p class="mt-0">
+                                        <small class="multiline-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus numquam maiores dolore ipsam odit, error officia accusamus magni laboriosam? Eaque optio ut incidunt quibusdam, illo architecto voluptate fugiat quidem enim.</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="my-2">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="article-detail.html">
+                                        <img src="../HTML/img/400x500/03.jpg" alt="" class="avatar avatar-tiny avatar-circle avatar-border-md">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h5 class="font-weight-600 pb-1 mb-0 mt-1">
+                                        <a href="article-detail.html">How To Find A Co-Founder For Your Startup</a>
+                                    </h5>
+                                    <p class="mt-0">
+                                        <small class="multiline-truncate">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus numquam maiores dolore ipsam odit, error officia accusamus magni laboriosam? Eaque optio ut incidunt quibusdam, illo architecto voluptate fugiat quidem enim.</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Recent Post [Latest 4 Post] -->
+                <div class="row mt-4">
+                    <h4 class="font-weight-500">Recent Post</h4>
+                    <hr class="g-hor-border-1-solid-md-orange mt-width-50-xs mt-2">
+                    <ul class="list-unstyled">
+                        <li>
+                            <p class="">
+                                <a href="article-detail.html" class="multiline-truncate">“THERE’S NO SUCH THING AS AN ORIGINAL IDEA” & 9 OTHER LESSONS M’SIAN STARTUPS TAUGHT ME</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p class="">
+                                <a href="article-detail.html" class="multiline-truncate">“THERE’S NO SUCH THING AS AN ORIGINAL IDEA” & 9 OTHER LESSONS M’SIAN STARTUPS TAUGHT ME</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p class="">
+                                <a href="article-detail.html" class="multiline-truncate">“THERE’S NO SUCH THING AS AN ORIGINAL IDEA” & 9 OTHER LESSONS M’SIAN STARTUPS TAUGHT ME</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p class="">
+                                <a href="article-detail.html" class="multiline-truncate">“THERE’S NO SUCH THING AS AN ORIGINAL IDEA” & 9 OTHER LESSONS M’SIAN STARTUPS TAUGHT ME</a>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- Archives -->
+                <div class="row mt-4">
+                    <h4 class="font-weight-500">Archieve </h4>
+                    <hr class="g-hor-border-1-solid-md-orange mt-width-50-xs mt-2">
+                    <ul class="list-unstyled">
+                        <li>
+                            <small class="mb-1">
+                                <a href="">May 2016 [3]</a>
+                            </small>
+                        </li>
+                        <li>
+                            <small class="mb-1">
+                                <a href="">June 2016 [2]</a>
+                            </small>
+                        </li>
+                        <li>
+                            <small class="mb-1">
+                                <a href="">July 2016 [1]</a>
+                            </small>
+                        </li>
+                        <li>
+                            <small class="mb-1">
+                                <a href="">August 2016 [4] </a>
+                            </small>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--========== END CONTENT ==========-->
+
+
+
+    <!--========== FOOTER ==========-->
+    <footer class="g-bg-color-dark">
+        <!-- Links -->
+        <div class="g-hor-divider-dashed-white-opacity-lightest">
+            <div class="container g-padding-y-40-xs">
+                <div class="row">
+                    <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
+                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/welcome.html">Home</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/about.html">About</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/services.html">Service</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/contacts.html">Contacts</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/article.html">Article</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
+                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Subscribe to Our Newsletter</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Terms &amp; Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
+                        <h3 class="g-font-size-18-xs g-color-white">Xremo </h3>
+                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
+                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
+                            <li>
+                                <a class="fa fa-youtube fa-2x social-yt" href="https://www.youtube.com"></a>
+                            </li>
+                            <li>
+                                <a class="social-tw fa-2x fa fa-twitter" href="https://www.twitter.com"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-facebook social-fb fa-2x" href="https://www.facebook.com"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin social-li fa-2x" href="https://www.linkedin.com"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus social-gplus fa-2x" href="https://www.linkedin.com"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Links -->
+
+        <!-- Copyright -->
+        <div class="container g-padding-y-20-xs">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="index.html">
+                        <img class="g-height-40-xs" src="../HTML/img/Xremo/all/xremo-logo-white.png" alt="Xremo Logo">
+                    </a>
+                </div>
+                <div class="col-xs-6 g-text-right-xs">
+                    <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light">
+                        <i class="fa fa-copyright fa-fw"></i>2017 Copyright Xremo.com
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright -->
+    </footer>
+    <!--========== END FOOTER ==========-->
+    <!-- Back To Top -->
+    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
+
+    <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
+    <!-- Vendor -->
+    <script type="text/javascript" src="../HTML/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.back-to-top.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/swiper/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/masonry/jquery.masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/masonry/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.equal-height.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.parallax.min.js"></script>
+    <script type="text/javascript" src="../HTML/vendor/jquery.wow.min.js"></script>
+
+    <!-- General Components and Settings -->
+    <script type="text/javascript" src="../HTML/js/global.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/header-sticky.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/scrollbar.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/swiper.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/masonry.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/equal-height.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/parallax.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/wow.min.js"></script>
+    <!--========== END JAVASCRIPTS ==========-->
+</body>
+
+</html>

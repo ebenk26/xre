@@ -1,3 +1,10 @@
+<?php $post=0; $expired=0; foreach ($job_post as $key => $value) {
+    if ((date('Y-m-d') >= date('Y-m-d', strtotime($value['expiry_date']))) || $value['status'] == 'expired') {
+        $expired++;
+    }else if ($value['status'] == 'post') {
+        $post++;
+    }
+} ?>       
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -33,7 +40,7 @@
                                 <i class="widget-thumb-icon bg-green icon-bulb"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Current</span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="4">0</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $post; ?>"><?php echo $post; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +54,7 @@
                                 <i class="widget-thumb-icon bg-red icon-layers"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Expired</span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="2">0</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $expired; ?>"><?php echo $expired; ?></span>
                                 </div>
                             </div>
                         </div>

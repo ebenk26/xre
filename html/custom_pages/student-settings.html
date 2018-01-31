@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8">
+    <title>Student | Settings </title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description">
+
+    <meta content="" name="author">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap-select/css/bootstrap-select.css">
+
+    <!-- END PAGE LEVEL PLUGINS -->
+
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/css/components-rounded.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="../assets/global/css/plugins.min.css">
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link rel="stylesheet" type="text/css" href="../assets/layouts/layout2/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../assets/layouts/layout2/css/themes/blue.min.css" id="style_color">
+    <link rel="stylesheet" type="text/css" href="../assets/layouts/layout2/css/custom.min.css">
+    <!-- END THEME LAYOUT STYLES -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+
+    <!-- BEGIN HEADER -->
+    <div class="page-header navbar navbar-fixed-top">
+        <div class="page-header-inner">
+            <!-- LOGO -->
+            <div class="page-logo">
+                <a href="index.html">
+                    <img src="../HTML/img/Xremo/svg/xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs my-3 mx-4"> </a>
+            </div>
+            <!-- RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+            <!-- BEGIN PAGE ACTIONS -->
+
+            <!-- BEGIN PAGE TOP -->
+            <div class="page-top">
+                <!-- BEGIN HEADER SEARCH BOX -->
+                <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+                <form class="search-form search-form-expanded" action="page_general_search_3.html" method="GET">
+                    <div class="input-group hidden">
+                        <input type="text" class="form-control" placeholder="Search by enter keyword ,job title or location" name="query">
+                        <span class="input-group-btn">
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
+                    </div>
+                </form>
+                <!-- END HEADER SEARCH BOX -->
+
+                <!-- BEGIN TOP NAVIGATION MENU -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li class="">
+                            <a href="" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left">Search Job</a>
+                        </li>
+                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-bell"></i>
+                                <span class="badge badge-default"> 7 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>
+                                        <span class="bold">12 pending</span> notifications</h3>
+                                    <a href="page_user_profile_1.html">view all</a>
+                                </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">just now</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-success">
+                                                        <i class="fa fa-plus"></i>
+                                                    </span> New user registered. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 mins</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Server #12 overloaded. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">10 mins</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-warning">
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </span> Server #2 not responding. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">14 hrs</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-info">
+                                                        <i class="fa fa-bullhorn"></i>
+                                                    </span> Application error. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">2 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Database overloaded 68%. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> A user IP blocked. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">4 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-warning">
+                                                        <i class="fa fa-bell-o"></i>
+                                                    </span> Storage Server #4 not responding dfdfdfd. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">5 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-info">
+                                                        <i class="fa fa-bullhorn"></i>
+                                                    </span> System Error. </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">9 days</span>
+                                                <span class="details">
+                                                    <span class="label label-sm label-icon label-danger">
+                                                        <i class="fa fa-bolt"></i>
+                                                    </span> Storage server failed. </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END NOTIFICATION DROPDOWN -->
+
+                        <!-- BEGIN INBOX DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <i class="icon-envelope-open"></i>
+                                <span class="badge badge-default"> 4 </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="external">
+                                    <h3>You have
+                                        <span class="bold">7 New</span> Messages</h3>
+                                    <a href="app_inbox.html">view all</a>
+                                </li>
+                                <li>
+                                    <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="avatar avatar-menu avatar-circle" alt=""> </span>
+                                                <span class="subject">
+                                                    <span class="from"> Lisa Wong </span>
+                                                    <span class="time">Just Now </span>
+                                                </span>
+                                                <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="avatar avatar-menu avatar-circle" alt=""> </span>
+                                                <span class="subject">
+                                                    <span class="from"> Richard Doe </span>
+                                                    <span class="time">16 mins </span>
+                                                </span>
+                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../assets/layouts/layout3/img/avatar1.jpg" class="avatar avatar-menu avatar-circle" alt=""> </span>
+                                                <span class="subject">
+                                                    <span class="from"> Bob Nilson </span>
+                                                    <span class="time">2 hrs </span>
+                                                </span>
+                                                <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg" class="avatar avatar-menu avatar-circle" alt=""> </span>
+                                                <span class="subject">
+                                                    <span class="from"> Lisa Wong </span>
+                                                    <span class="time">40 mins </span>
+                                                </span>
+                                                <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <span class="photo">
+                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg" class="avatar avatar-menu avatar-circle" alt=""> </span>
+                                                <span class="subject">
+                                                    <span class="from"> Richard Doe </span>
+                                                    <span class="time">46 mins </span>
+                                                </span>
+                                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh...
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END INBOX DROPDOWN -->
+
+                        <!-- BEGIN USER LOGIN DROPDOWN -->
+                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                        <li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="avatar avatar-menu avatar-circle" src="../assets/layouts/layout2/img/avatar3_small.jpg">
+                                <span class="username username-hide-on-mobile"> Nick </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default">
+                                <li>
+                                    <a href="student-dashboard-v2.html">
+                                        <i class="icon-home"></i> Dashboard </a>
+                                </li>
+                                <li>
+                                    <a href="student-profile-v3.html">
+                                        <i class="icon-note"></i> Edit Profile </a>
+                                </li>
+                                <li>
+                                    <a href="student-view-profile.html">
+                                        <i class="icon-book-open"></i> My Resume
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="student-calendar.html">
+                                        <i class="icon-calendar"></i> My Calendar
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="index.html">
+                                        <i class="icon-key"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- END USER LOGIN DROPDOWN -->
+                    </ul>
+                </div>
+                <!-- END TOP NAVIGATION MENU -->
+
+            </div>
+            <!-- END PAGE TOP -->
+        </div>
+        <!-- END HEADER INNER -->
+    </div>
+    <!-- END HEADER -->
+
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+
+        <!-- BEGIN SIDEBAR -->
+        <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+
+                <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-hover-submenu page-sidebar-menu-compact" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                    <!-- Profile Progress -->
+                    <li class="nav-item start px-2 py-4 hidden-md">
+                        <div class="m-grid mb-2 mt-4">
+                            <div class="m-grid-row md-white-text font-20-xs">
+                                <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
+                                <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right">76%</div>
+                            </div>
+                        </div>
+                        <div class="progress progress-lg">
+                            <div class="progress-bar progress-bar-warning " role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                <span class="sr-only"> 60% Complete (warning) </span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Sidebar Menu : Dashboard -->
+                    <li class="nav-item">
+                        <a href="student-dashboard-v2.html" class="nav-link">
+                            <i class="icon-home"></i>
+                            <span class="title">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- Sidebar Menu : Profile-->
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="icon-user"></i>
+                            <span class="title">Profile</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item">
+                                <a href="student-profile.html" class="nav-link">
+                                    <!-- <i class="icon-bar-chart"></i> -->
+                                    <span class="title">Version 1</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="student-profile-v2.html" class="nav-link">
+                                    <!-- <i class="icon-bar-chart"></i> -->
+                                    <span class="title">Version 2</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="student-profile-v3.html" class="nav-link">
+                                    <!-- <i class="icon-bar-chart"></i> -->
+                                    <span class="title">Version 3</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Sidebar Menu Job Application History -->
+                    <li class="nav-item">
+                        <a href="student-application-history.html" class="nav-link">
+                            <i class="icon-notebook"></i>
+                            <span class="title">Application History</span>
+                        </a>
+                    </li>
+                    <!-- Sidebar Menu : Inbox -->
+                    <li class="nav-item">
+                        <a href="student-inbox.html" class="nav-link">
+                            <i class="icon-envelope"></i>
+                            <span class="title">Inbox</span>
+                        </a>
+                    </li>
+                    <!-- Sidebar Menu : Calendar  -->
+                    <li class="nav-item">
+                        <a href="student-calendar.html" class="nav-link">
+                            <i class="icon-calendar"></i>
+                            <span class="title">Calendar</span>
+                        </a>
+                    </li>
+                    <!-- Sidebar Menu : Wishlist-->
+                    <!-- <li class="nav-item">
+                            <a href="javascript:;" class="nav-link">
+                                <i class="icon-heart"></i>
+                                <span class="title">Wish List</span>
+                            </a>
+                        </li> -->
+
+                    <!-- Sidebar Menu : Settings -->
+                    <li class="nav-item active">
+                        <a href="javascript:;" class="nav-link">
+                            <i class="icon-settings"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+
+                </ul>
+                <!-- END SIDEBAR MENU -->
+            </div>
+        </div>
+        <!-- END SIDEBAR -->
+
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <h1 class="page-title">Settings
+                    <small>Here a little bit about yourself</small>
+                </h1>
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <i class="icon-home"></i>
+                            <a href="index.html">Home</a>
+                            <i class="fa fa-angle-right"></i>
+                        </li>
+                        <li>
+                            <span>Settings</span>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <!-- Tab Content : Account & Privacy  -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="ver-inline-menu tabbable mb-2 menu-md-indigo">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab_account">
+                                    <i class="fa fa-user"></i> Account </a>
+                            </li>
+
+                            <li>
+                                <a data-toggle="tab" href="#tab_privacy">
+                                    <i class="fa fa-eye"></i> Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <!-- tab Account -->
+                            <div class="tab-pane active" id="tab_account">
+                                <div class="panel  panel-borderless panel-transparent">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title font-40-xs">
+                                            My Account
+                                        </h4>
+                                    </div>
+                                    <hr class="border-grey-silver my-2">
+                                    <div class="panel-body">
+                                        <!-- Full Name -->
+                                        <div class="media">
+                                            <div class="pull-right">
+                                                <a href="#modal_edit_fullname" data-toggle="modal" class="font-grey-gallery">Change</a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-600 roboto-font font-20-xs mt-0 md-indigo-text">Full Name</h5>
+                                                <h4 class="mt-1 font-weight-400 roboto-font">Jennifer Lawrence </h4>
+                                            </div>
+
+                                        </div>
+                                        <!-- Email Address -->
+                                        <div class="media">
+                                            <div class="pull-right hidden">
+                                                <a href="" class="font-grey-gallery">Change</a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Email Address</h5>
+                                                <h4 class="mt-1  roboto-font font-weight-400"> jennifer_lawrence@gmail.com</h4>
+                                            </div>
+                                        </div>
+
+                                        <!-- Phone Number -->
+                                        <div class="media">
+                                            <div class="pull-right">
+                                                <a href="#modal_edit_phonenumber" data-toggle="modal" class="font-grey-gallery">Change</a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Phone Number</h5>
+                                                <h4 class="mt-1  roboto-font font-weight-400"> (+60)12 3456789</h4>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Change Password -->
+                                        <div class="media">
+                                            <div class="pull-right">
+                                                <a href="#modal_edit_password" data-toggle="modal" class="font-grey-gallery">Change</a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Change Password</h5>
+                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Nick Aaron </h4> -->
+
+                                                <h4 hidden>
+                                                    <small>
+                                                        <i class="icon-briefcase mr-2"></i>Administrative Manager</small>
+                                                    <i class="fa fa-circle font-10-xs vertical-middle font-grey-gallery"></i>
+                                                    <small>
+                                                        <i class="icon-envelope mr-2"></i>nick_aaron@xremo.com</small>
+                                                </h4>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- tab privacy -->
+                            <div class="tab-pane" id="tab_privacy">
+                                <div class="panel  panel-borderless panel-transparent">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title font-40-xs">
+                                            Privacy
+                                        </h4>
+                                    </div>
+                                    <hr class="border-grey-silver my-2">
+                                    <div class="panel-body">
+                                        <form action="">
+                                            <div class="media">
+                                                <div class="pull-right">
+                                                    <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Searchable with Contact Details</h5>
+                                                    <h4>
+                                                        <small>
+                                                            Allow Employers to search for my profile, see my name and contact details.
+                                                        </small>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                            <div class="media">
+                                                <div class="pull-right">
+                                                    <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Not Searchable</h5>
+                                                    <h4>
+                                                        <small>
+                                                            Do not allow employers to search for my profile.
+                                                        </small>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== M O D A L ========== -->
+                <!-- Modal Edit Full Name -->
+                <div class="modal fade in" id="modal_edit_fullname" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Edit Full Name </h4>
+                            </div>
+                            <form action="" class=" form form-horizontal">
+                                <div class="modal-body form-horizontal">
+
+                                    <div class="form-group mx-0">
+                                        <label for="">Full Name</label>
+                                        <input type="text" class="form-control " value="Jennifer Lawrence">
+                                    </div>
+                                    <!-- <div class="form-actions"> -->
+                                </div>
+                                <div class=" modal-footer">
+                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"> Close</a>
+                                    <button type="submit" class="btn btn-md-indigo">Save</button>
+                                    <!-- </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Edit Phone Number -->
+                <div class="modal fade in" id="modal_edit_phonenumber" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Edit Phone Number </h4>
+                            </div>
+                            <form action="" class=" form form-horizontal">
+                                <div class="modal-body form-horizontal">
+
+                                    <div class="form-group mx-0">
+                                        <label for="">Phone Number</label>
+                                        <div class="form-inline">
+                                            <select class="bs-select form-control input-small" data-size="8">
+                                                <option value="AF">Afghanistan</option>
+                                                <option value="AL">Albania</option>
+                                                <option value="DZ">Algeria</option>
+                                                <option value="AS">American Samoa</option>
+                                                <option value="AD">Andorra</option>
+                                                <option value="AO">Angola</option>
+                                                <option value="AI">Anguilla</option>
+                                                <option value="AR">Argentina</option>
+                                                <option value="AM">Armenia</option>
+                                                <option value="AW">Aruba</option>
+                                                <option value="AU">Australia</option>
+                                                <option value="AT">Austria</option>
+                                                <option value="AZ">Azerbaijan</option>
+                                                <option value="BS">Bahamas</option>
+                                                <option value="BH">Bahrain</option>
+                                                <option value="BD">Bangladesh</option>
+                                                <option value="BB">Barbados</option>
+                                                <option value="BY">Belarus</option>
+                                                <option value="BE">Belgium</option>
+                                                <option value="BZ">Belize</option>
+                                                <option value="BJ">Benin</option>
+                                                <option value="BM">Bermuda</option>
+                                                <option value="BT">Bhutan</option>
+                                                <option value="BO">Bolivia</option>
+                                                <option value="BA">Bosnia and Herzegowina</option>
+                                                <option value="BW">Botswana</option>
+                                                <option value="BV">Bouvet Island</option>
+                                                <option value="BR">Brazil</option>
+                                                <option value="IO">British Indian Ocean Territory</option>
+                                                <option value="BN">Brunei Darussalam</option>
+                                                <option value="BG">Bulgaria</option>
+                                                <option value="BF">Burkina Faso</option>
+                                                <option value="BI">Burundi</option>
+                                                <option value="KH">Cambodia</option>
+                                                <option value="CM">Cameroon</option>
+                                                <option value="CA">Canada</option>
+                                                <option value="CV">Cape Verde</option>
+                                                <option value="KY">Cayman Islands</option>
+                                                <option value="CF">Central African Republic</option>
+                                                <option value="TD">Chad</option>
+                                                <option value="CL">Chile</option>
+                                                <option value="CN">China</option>
+                                                <option value="CX">Christmas Island</option>
+                                                <option value="CC">Cocos (Keeling) Islands</option>
+                                                <option value="CO">Colombia</option>
+                                                <option value="KM">Comoros</option>
+                                                <option value="CG">Congo</option>
+                                                <option value="CD">Congo, the Democratic Republic of the</option>
+                                                <option value="CK">Cook Islands</option>
+                                                <option value="CR">Costa Rica</option>
+                                                <option value="CI">Cote d'Ivoire</option>
+                                                <option value="HR">Croatia (Hrvatska)</option>
+                                                <option value="CU">Cuba</option>
+                                                <option value="CY">Cyprus</option>
+                                                <option value="CZ">Czech Republic</option>
+                                                <option value="DK">Denmark</option>
+                                                <option value="DJ">Djibouti</option>
+                                                <option value="DM">Dominica</option>
+                                                <option value="DO">Dominican Republic</option>
+                                                <option value="EC">Ecuador</option>
+                                                <option value="EG">Egypt</option>
+                                                <option value="SV">El Salvador</option>
+                                                <option value="GQ">Equatorial Guinea</option>
+                                                <option value="ER">Eritrea</option>
+                                                <option value="EE">Estonia</option>
+                                                <option value="ET">Ethiopia</option>
+                                                <option value="FK">Falkland Islands (Malvinas)</option>
+                                                <option value="FO">Faroe Islands</option>
+                                                <option value="FJ">Fiji</option>
+                                                <option value="FI">Finland</option>
+                                                <option value="FR">France</option>
+                                                <option value="GF">French Guiana</option>
+                                                <option value="PF">French Polynesia</option>
+                                                <option value="TF">French Southern Territories</option>
+                                                <option value="GA">Gabon</option>
+                                                <option value="GM">Gambia</option>
+                                                <option value="GE">Georgia</option>
+                                                <option value="DE">Germany</option>
+                                                <option value="GH">Ghana</option>
+                                                <option value="GI">Gibraltar</option>
+                                                <option value="GR">Greece</option>
+                                                <option value="GL">Greenland</option>
+                                                <option value="GD">Grenada</option>
+                                                <option value="GP">Guadeloupe</option>
+                                                <option value="GU">Guam</option>
+                                                <option value="GT">Guatemala</option>
+                                                <option value="GN">Guinea</option>
+                                                <option value="GW">Guinea-Bissau</option>
+                                                <option value="GY">Guyana</option>
+                                                <option value="HT">Haiti</option>
+                                                <option value="HM">Heard and Mc Donald Islands</option>
+                                                <option value="VA">Holy See (Vatican City State)</option>
+                                                <option value="HN">Honduras</option>
+                                                <option value="HK">Hong Kong</option>
+                                                <option value="HU">Hungary</option>
+                                                <option value="IS">Iceland</option>
+                                                <option value="IN">India</option>
+                                                <option value="ID">Indonesia</option>
+                                                <option value="IR">Iran (Islamic Republic of)</option>
+                                                <option value="IQ">Iraq</option>
+                                                <option value="IE">Ireland</option>
+                                                <option value="IL">Israel</option>
+                                                <option value="IT">Italy</option>
+                                                <option value="JM">Jamaica</option>
+                                                <option value="JP">Japan</option>
+                                                <option value="JO">Jordan</option>
+                                                <option value="KZ">Kazakhstan</option>
+                                                <option value="KE">Kenya</option>
+                                                <option value="KI">Kiribati</option>
+                                                <option value="KP">Korea, Democratic People's Republic of</option>
+                                                <option value="KR">Korea, Republic of</option>
+                                                <option value="KW">Kuwait</option>
+                                                <option value="KG">Kyrgyzstan</option>
+                                                <option value="LA">Lao People's Democratic Republic</option>
+                                                <option value="LV">Latvia</option>
+                                                <option value="LB">Lebanon</option>
+                                                <option value="LS">Lesotho</option>
+                                                <option value="LR">Liberia</option>
+                                                <option value="LY">Libyan Arab Jamahiriya</option>
+                                                <option value="LI">Liechtenstein</option>
+                                                <option value="LT">Lithuania</option>
+                                                <option value="LU">Luxembourg</option>
+                                                <option value="MO">Macau</option>
+                                                <option value="MK">Macedonia, The Former Yugoslav Republic of</option>
+                                                <option value="MG">Madagascar</option>
+                                                <option value="MW">Malawi</option>
+                                                <option value="MY" selected>Malaysia</option>
+                                                <option value="MV">Maldives</option>
+                                                <option value="ML">Mali</option>
+                                                <option value="MT">Malta</option>
+                                                <option value="MH">Marshall Islands</option>
+                                                <option value="MQ">Martinique</option>
+                                                <option value="MR">Mauritania</option>
+                                                <option value="MU">Mauritius</option>
+                                                <option value="YT">Mayotte</option>
+                                                <option value="MX">Mexico</option>
+                                                <option value="FM">Micronesia, Federated States of</option>
+                                                <option value="MD">Moldova, Republic of</option>
+                                                <option value="MC">Monaco</option>
+                                                <option value="MN">Mongolia</option>
+                                                <option value="MS">Montserrat</option>
+                                                <option value="MA">Morocco</option>
+                                                <option value="MZ">Mozambique</option>
+                                                <option value="MM">Myanmar</option>
+                                                <option value="NA">Namibia</option>
+                                                <option value="NR">Nauru</option>
+                                                <option value="NP">Nepal</option>
+                                                <option value="NL">Netherlands</option>
+                                                <option value="AN">Netherlands Antilles</option>
+                                                <option value="NC">New Caledonia</option>
+                                                <option value="NZ">New Zealand</option>
+                                                <option value="NI">Nicaragua</option>
+                                                <option value="NE">Niger</option>
+                                                <option value="NG">Nigeria</option>
+                                                <option value="NU">Niue</option>
+                                                <option value="NF">Norfolk Island</option>
+                                                <option value="MP">Northern Mariana Islands</option>
+                                                <option value="NO">Norway</option>
+                                                <option value="OM">Oman</option>
+                                                <option value="PK">Pakistan</option>
+                                                <option value="PW">Palau</option>
+                                                <option value="PA">Panama</option>
+                                                <option value="PG">Papua New Guinea</option>
+                                                <option value="PY">Paraguay</option>
+                                                <option value="PE">Peru</option>
+                                                <option value="PH">Philippines</option>
+                                                <option value="PN">Pitcairn</option>
+                                                <option value="PL">Poland</option>
+                                                <option value="PT">Portugal</option>
+                                                <option value="PR">Puerto Rico</option>
+                                                <option value="QA">Qatar</option>
+                                                <option value="RE">Reunion</option>
+                                                <option value="RO">Romania</option>
+                                                <option value="RU">Russian Federation</option>
+                                                <option value="RW">Rwanda</option>
+                                                <option value="KN">Saint Kitts and Nevis</option>
+                                                <option value="LC">Saint LUCIA</option>
+                                                <option value="VC">Saint Vincent and the Grenadines</option>
+                                                <option value="WS">Samoa</option>
+                                                <option value="SM">San Marino</option>
+                                                <option value="ST">Sao Tome and Principe</option>
+                                                <option value="SA">Saudi Arabia</option>
+                                                <option value="SN">Senegal</option>
+                                                <option value="SC">Seychelles</option>
+                                                <option value="SL">Sierra Leone</option>
+                                                <option value="SG">Singapore</option>
+                                                <option value="SK">Slovakia (Slovak Republic)</option>
+                                                <option value="SI">Slovenia</option>
+                                                <option value="SB">Solomon Islands</option>
+                                                <option value="SO">Somalia</option>
+                                                <option value="ZA">South Africa</option>
+                                                <option value="GS">South Georgia and the South Sandwich Islands</option>
+                                                <option value="ES">Spain</option>
+                                                <option value="LK">Sri Lanka</option>
+                                                <option value="SH">St. Helena</option>
+                                                <option value="PM">St. Pierre and Miquelon</option>
+                                                <option value="SD">Sudan</option>
+                                                <option value="SR">Suriname</option>
+                                                <option value="SJ">Svalbard and Jan Mayen Islands</option>
+                                                <option value="SZ">Swaziland</option>
+                                                <option value="SE">Sweden</option>
+                                                <option value="CH">Switzerland</option>
+                                                <option value="SY">Syrian Arab Republic</option>
+                                                <option value="TW">Taiwan, Province of China</option>
+                                                <option value="TJ">Tajikistan</option>
+                                                <option value="TZ">Tanzania, United Republic of</option>
+                                                <option value="TH">Thailand</option>
+                                                <option value="TG">Togo</option>
+                                                <option value="TK">Tokelau</option>
+                                                <option value="TO">Tonga</option>
+                                                <option value="TT">Trinidad and Tobago</option>
+                                                <option value="TN">Tunisia</option>
+                                                <option value="TR">Turkey</option>
+                                                <option value="TM">Turkmenistan</option>
+                                                <option value="TC">Turks and Caicos Islands</option>
+                                                <option value="TV">Tuvalu</option>
+                                                <option value="UG">Uganda</option>
+                                                <option value="UA">Ukraine</option>
+                                                <option value="AE">United Arab Emirates</option>
+                                                <option value="GB">United Kingdom</option>
+                                                <option value="US">United States</option>
+                                                <option value="UM">United States Minor Outlying Islands</option>
+                                                <option value="UY">Uruguay</option>
+                                                <option value="UZ">Uzbekistan</option>
+                                                <option value="VU">Vanuatu</option>
+                                                <option value="VE">Venezuela</option>
+                                                <option value="VN">Viet Nam</option>
+                                                <option value="VG">Virgin Islands (British)</option>
+                                                <option value="VI">Virgin Islands (U.S.)</option>
+                                                <option value="WF">Wallis and Futuna Islands</option>
+                                                <option value="EH">Western Sahara</option>
+                                                <option value="YE">Yemen</option>
+                                                <option value="ZM">Zambia</option>
+                                                <option value="ZW">Zimbabwe</option>
+                                            </select>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">(+60)</span>
+                                                <input type="text" class="form-control " value="123456789">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" modal-footer">
+                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"> Close</a>
+                                    <button type="submit" class="btn btn-md-indigo">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Edit Password -->
+                <div class="modal fade in" id="modal_edit_password" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>Change Password </h4>
+                            </div>
+                            <form action="" class=" form form-horizontal">
+                                <div class="modal-body form-horizontal">
+
+                                    <div class="form-group mx-0">
+                                        <label for="">New Password</label>
+                                        <input type="password" class="form-control " value="Jennifer Lawrence">
+                                    </div>
+
+                                    <div class="form-group mx-0">
+                                        <label for="">Confirm New Password</label>
+                                        <input type="password" class="form-control " value="Jennifer Lawrence">
+                                    </div>
+                                </div>
+                                <div class=" modal-footer">
+                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"> Close</a>
+                                    <button type="submit" class="btn btn-md-indigo">Save</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- END CONTAINER -->
+    </div>
+
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner pull-right"> 2016 &copy; Metronic Theme By
+            <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+            <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- END FOOTER -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src ="../assets/global/plugins/respond.min.js"></script>
+    <script type="text/javascript" src ="../assets/global/plugins/excanvas.min.js"></script> 
+    <script type="text/javascript" src ="../assets/global/plugins/ie8.fix.min.js"></script> 
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script type="text/javascript" src="../assets/global/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/js.cookie.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="../assets/global/plugins/moment.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+
+
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script type="text/javascript" src="../assets/global/scripts/app.min.js"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script type="text/javascript" src="../assets/pages/scripts/components-bootstrap-select.min.js"></script>
+    <!-- <script type="text/javascript" src ="../assets/pages/scripts/ui-modals.min.js" ></script> -->
+    <script type="text/javascript" src="../assets/pages/scripts/ui-sweetalert.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/components-bootstrap-switch.min.js"></script>
+
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script type="text/javascript" src="../assets/layouts/layout2/scripts/layout.min.js"></script>
+    <!-- <script type="text/javascript" src ="../assets/layouts/layout2/scripts/demo.min.js" ></script> -->
+    <script type="text/javascript" src="../assets/layouts/global/scripts/quick-sidebar.min.js"></script>
+    <script type="text/javascript" src="../assets/layouts/global/scripts/quick-nav.min.js"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            $('#clickmewow').click(function () {
+                $('#radio1003').attr('checked', 'checked');
+            });
+        })
+    </script>
+    <!-- Steps Jquery -->
+
+
+</body>
+
+</html>

@@ -203,37 +203,33 @@
                                                     <?php echo $value['user_name']; ?>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-green label-sm"><?php echo $value['application_status']; ?></span>
+                                                    <span class="label label-md-shades darkblue label-sm">Not Sent Invitation</span>
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
                                                         <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                             <i class="fa fa-angle-down"></i>
                                                         </button>
-                                                   
                                                         <ul class="dropdown-menu pull-right" role="menu">
                                                             <li>
-                                                                <a href="#" class="md-green-text">
-                                                                    <i class="icon-check md-green-text"></i>
-                                                                    Hired
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" class="md-red-text mt-sweetalert" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate?" data-type="warning" data-allow-outside-click="true"
-                                                                    data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes'
-                                                                    data-confirm-button-class="btn-info">
-                                                                    <i class="icon-close md-red-text"></i>
-                                                                    Not Suitable
-                                                                </a>
-                                                            </li>
-                                                            <li class="divider"> </li>
-                                                            <li>
-                                                                <a href="#" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
+                                                                <a href="#modal_view_summary_shortlist" data-toggle="modal">
                                                                     <i class="icon-eye"></i>
                                                                     View Summary
                                                                 </a>
                                                             </li>
-
+                                                            <li>
+                                                                <a href="#">
+                                                                    <i class="icon-paper-plane"></i>
+                                                                    Send Invitation Interview
+                                                                </a>
+                                                            </li>
+                                                            <li class="divider"> </li>
+                                                            <li>
+                                                                <a href="#" class="md-red-text mt-sweetalert" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate? " data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
+                                                                    <i class="icon-close md-red-text"></i>
+                                                                    Reject Candidate
+                                                                </a>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </td>
@@ -428,12 +424,13 @@
                                                 <h4 class="modal-title font-weight-600 ">Interview Schedule
                                                 </h4>
                                             </div>
-                                            <form action="#" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>candidate/add_session" method="POST" class="form-horizontal">
+                                                <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
                                                 <div class="modal-body form-body ">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Title</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" value="Session 1" class="form-control input-medium">
+                                                            <input type="text" name="title" value="Session 1" class="form-control input-medium">
                                                         </div>
                                                     </div>
 
@@ -441,7 +438,7 @@
                                                         <label class="control-label col-md-3">From</label>
                                                         <div class="col-md-6">
                                                             <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control">
+                                                                <input type="text" name="start_date" size="16" class="form-control">
                                                                 <span class="input-group-addon">
                                                                     <button class="btn default date-set" type="button">
                                                                         <i class="fa fa-calendar"></i>
@@ -455,7 +452,7 @@
                                                         <label class="control-label col-md-3">To</label>
                                                         <div class="col-md-6">
                                                             <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control">
+                                                                <input type="text" name="end_date" size="16" class="form-control">
                                                                 <span class="input-group-addon">
                                                                     <button class="btn default date-set" type="button">
                                                                         <i class="fa fa-calendar"></i>
@@ -468,7 +465,7 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Details</label>
                                                         <div class="col-md-9 ">
-                                                            <textarea class="form-control" rows="5"></textarea>
+                                                            <textarea class="form-control" rows="5" name="description"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -491,16 +488,16 @@
                                         <div class="modal-content ">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                <h4 class="modal-title font-weight-600 "> Edit [ Session Title ]
+                                                <h4 class="modal-title font-weight-600 "> Edit [ <?php echo !empty($interview->title) ? $interview->title : 'Session Name'; ?> ]
                                                 </h4>
                                             </div>
-                                            <form action="#" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>candidate/add_session" method="POST" class="form-horizontal">
                                                 <div class="modal-body form-body ">
-
+                                                <input type="hidden" name="id" value="<?php echo !empty($interview->id) ? $interview->id : 0; ?>"></input>
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Title</label>
                                                         <div class="col-md-9">
-                                                            <input type="text" value="Session 1" class="form-control input-medium" readonly>
+                                                            <input type="text" value="<?php echo !empty($interview->title) ? $interview->title : 'Session Name'; ?>" class="form-control input-medium" name="title" readonly>
                                                         </div>
                                                     </div>
 
@@ -508,7 +505,7 @@
                                                         <label class="control-label col-md-3">From</label>
                                                         <div class="col-md-6">
                                                             <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control">
+                                                                <input type="text" size="16" class="form-control" name="start_date" value="<?php echo !empty($interview->start_date) ? date('d F Y - H:i', strtotime($interview->start_date)) : '01 January 2018 - 00:00'; ?>">
                                                                 <span class="input-group-addon">
                                                                     <button class="btn default date-set" type="button">
                                                                         <i class="fa fa-calendar"></i>
@@ -522,7 +519,7 @@
                                                         <label class="control-label col-md-3">To</label>
                                                         <div class="col-md-6">
                                                             <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control">
+                                                                <input type="text" size="16" class="form-control" name="end_date">
                                                                 <span class="input-group-addon">
                                                                     <button class="btn default date-set" type="button">
                                                                         <i class="fa fa-calendar"></i>
@@ -535,7 +532,7 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Details</label>
                                                         <div class="col-md-9 ">
-                                                            <textarea class="form-control" rows="5"></textarea>
+                                                            <textarea class="form-control" rows="5"><?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?></textarea>
                                                         </div>
                                                     </div>
                                                 </div>

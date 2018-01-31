@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> Job | Search</title>
+
+    <!-- Web Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all">
+
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/cubeportfolio/css/cubeportfolio.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/themify/themify.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/scrollbar/scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/swiper/swiper.min.css">
+    <!-- Metronic -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/plugins/rateit/rateit.css">
+
+    <!-- Megakit Styles -->
+    <!-- Metronic Styles -->
+    <link rel="stylesheet" type="text/css" href="../assets/global/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../assets/global/css/plugins.min.css">
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="../assets/layouts/layout8/css/style.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!--========== HEADER  ==========-->
+    <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
+        <!-- Navbar -->
+        <nav class="s-header-v2-navbar">
+            <div class="container g-display-table-lg">
+                <!-- Navbar Row -->
+                <div class="s-header-v2-navbar-row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="s-header-v2-navbar-col">
+                        <button type="button" class="collapsed s-header-v2-toggle" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                            <span class="s-header-v2-toggle-icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <!-- Logo -->
+                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
+                        <div class="s-header-v2-logo">
+                            <a href="index.html" class="s-header-v2-logo-link">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="../assets/global/img/xremo/xremo.png" alt="Dublin Logo" style="height:47px">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="../assets/global/img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Logo -->
+
+                    <!-- Content -->
+                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-right">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <!-- guest -->
+                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
+                            <ul class="s-header-v2-nav">
+                                <li class="s-header-v2-nav-item">
+                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="signup.html" class="s-header-v2-nav-link  g-color-md-orange-text">SIGN UP</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="login.html" class="g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
+                                    <a href="login.html" class="g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--logged user -->
+                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
+                            <ul class="s-header-v2-nav hidden">
+                                <!-- NOTE : Student got "Search Job " link meanwhile employer do not have -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                </li>
+                                <!-- ########################################################## -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                </li>
+                                <li class="s-header-v2-nav-item">
+                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                </li>
+
+                                <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
+                                    <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-menu avatar-circle" alt="">
+                                        <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                        <li>
+                                            <a href="student-dashboard-v2.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-home mr-3"></i>Dashboard</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-profile-v3.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-note mr-3"></i>Edit Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-book-open mr-3"></i>My Resume</a>
+                                        </li>
+                                        <li>
+                                            <a href="student-calendar.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <a href="welcome.html" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-key mr-3"></i>Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!-- End Nav Menu -->
+                    </div>
+                </div>
+                <!-- End Navbar Row -->
+            </div>
+        </nav>
+        <!-- End Navbar -->
+    </header>
+    <!--========== END HEADER ==========-->
+
+    <!--========== PROMO : VIEW ==========-->
+    <div class="s-promo-block-v2 g-bg-gradient-black-strong mt-height-250-xs" style="background: url(../HTML/img/Xremo/all/mainpagebanner.jpg) no-repeat fixed;">
+        <div class="container">
+            <div class="row pt-18">
+                <div class="col-md-12">
+                    <div class="form-group mx-0">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control " placeholder="Search Job Now">
+                            <!-- <input type="text" class="form-control input-medium" placeholder="Location"> -->
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-md-orange btn-lg mb-0">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--========== END PROMO ==========-->
+
+    <!--========== CONTENT ==========-->
+    <div class="container-fluid g-bg-color-sky-light pt-5">
+        <div class="row">
+            <!--COL : Filter -->
+            <div class="col-md-3">
+                <div class="media">
+                    <div class="pull-right">
+                        <a href="" class="md-indigo-text mb-1">Clear all filter</a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="my-1 text-uppercase font-weight-600  font-16-xs roboto-font"> Filters</h5>
+                    </div>
+                </div>
+                <hr class="border-grey-mint my-2">
+                <ul class="list-group list-border md-transparent p-0">
+                    <!-- Location -->
+                    <li class="list-group-item md-transparent p-2">
+                        <div class="media">
+                            <div class="pull-right">
+                                <a href="" class="md-indigo-text">Clear </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location</h4>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control " placeholder="Enter state, country or province">
+                        </div>
+                    </li>
+                    <!-- Job Type -->
+                    <li class="list-group-item md-transparent p-2">
+                        <div class="media">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
+                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
+                            </div>
+                            <div class="media-body">
+                                <div class="media-body">
+                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Job Type
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md-checkbox-list">
+                            <!-- Checkbox Internship-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxInternship" class="md-check" checked>
+                                <label for="checkboxInternship">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Internship </label>
+                            </div>
+                            <!-- Checkbox Fulltime -->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxFullTime" class="md-check" disabled>
+                                <label for="checkboxFullTime">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Full Time </label>
+                            </div>
+                            <!-- Checkbox PartTime -->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxPartTime" class="md-check" disabled>
+                                <label for="checkboxPartTime">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Part Time </label>
+                            </div>
+                            <!-- Checkbox  Contract-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxContract" class="md-check" disabled>
+                                <label for="checkboxContract">
+                                    <span class="inc"></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Contract </label>
+                            </div>
+                            <!-- Checkbox Temporary -->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxTemporary" disabled="" class="md-check">
+                                <label for="checkboxTemporary">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Temporary </label>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Industry -->
+                    <li class="list-group-item md-transparent p-2">
+                        <div class="media">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
+                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
+                            </div>
+                            <div class="media-body">
+                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs"> Company Industry
+                                    <!-- <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i> -->
+                                </h4>
+                            </div>
+                        </div>
+                        <div class="form-group mt-1">
+                            <select class="bs-select form-control">
+                                <option value="" selected disabled>Company Industry </option>
+                                <option value="1">Accounting / Audit / Tax Services</option>
+                                <option value="2"> Advertising / Marketing / Promotion / PR</option>
+                                <option value="3">Aerospace / Aviation / Airline</option>
+                                <option value="4">Agricultural / Plantation / Poultry / Fisheries</option>
+                                <option value="5">Apparel</option>
+                                <option value="6">Architectural Services / Interior Designing</option>
+                                <option value="7">Arts / Design / Fashion</option>
+                                <option value="8">Automobile / Automotive Ancillary / Vehicle</option>
+                                <option value="9">Banking / Financial Services</option>
+                                <option value="10">BioTechnology / Pharmaceutical / Clinical research</option>
+                                <option value="11">Call Center / IT-Enabled Services / BPO</option>
+                                <option value="12">Chemical / Fertilizers / Pesticides</option>
+                                <option value="13">Computer / Information Technology (Hardware)</option>
+                                <option value="14">Computer / Information Technology (Software)</option>
+                                <option value="15">Construction / Building / Engineering</option>
+                                <option value="16">Consulting (Business & Management)</option>
+                                <option value="17">Consulting (IT, Science, Engineering & Technical)</option>
+                                <option value="18">Consumer Products / FMCG</option>
+                                <option value="19">Education</option>
+                                <option value="20">Electrical & Electronics</option>
+                                <option value="21">Entertainment / Media</option>
+                                <option value="22">Environment / Health / Safety</option>
+                                <option value="23">Exhibitions / Event management / MICE</option>
+                                <option value="24">Food & Beverage / Catering / Restaurant</option>
+                                <option value="25">Gems / Jewellery</option>
+                                <option value="26">General & Wholesale Trading</option>
+                                <option value="27">Government / Defence</option>
+                                <option value="28">Grooming / Beauty / Fitness</option>
+                                <option value="29">Healthcare / Medical</option>
+                                <option value="30">Heavy Industrial / Machinery / Equipment</option>
+                                <option value="31">Hotel / Hospitality</option>
+                                <option value="32">Human Resources Management / Consulting</option>
+                                <option value="33">Insurance</option>
+                                <option value="34">Journalism</option>
+                                <option value="35">Law / Legal</option>
+                                <option value="36">Library / Museum</option>
+                                <option value="37">Manufacturing / Production</option>
+                                <option value="38">Marine / Aquaculture</option>
+                                <option value="39">Mining</option>
+                                <option value="40">Non-Profit Organisation / Social Services /NGOServices / NGO</option>
+                                <option value="41">Oil / Gas / Petroleum</option>
+                                <option value="42">Polymer / Plastic / Rubber / Tyres</option>
+                                <option value="43">Printing / Publishing</option>
+                                <option value="44">Property / Real Estate</option>
+                                <option value="45">R&D</option>
+                                <option value="46">Retail / Merchandise</option>
+                                <option value="47">Science & Technology</option>
+                                <option value="48">Security / Law Enforcement</option>
+                                <option value="49">Semiconductor/Wafer Fabrication</option>
+                                <option value="50">Sports</option>
+                                <option value="51">Stockbroking / Securities</option>
+                                <option value="52">Telecommunication</option>
+                                <option value="53">Textiles / Garment</option>
+                                <option value="54">Tobacco</option>
+                                <option value="55">Transportation / Logistics</option>
+                                <option value="56">Travel / Tourism</option>
+                                <option value="57">Utilities / Power</option>
+                                <option value="58">Wood / Fibre / Paper</option>
+                            </select>
+                        </div>
+                    </li>
+                    <!-- Position Level-->
+                    <li class="list-group-item md-transparent p-2">
+                        <div class="media">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
+                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
+                            </div>
+                            <div class="media-body">
+                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Position Level
+                                    <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="md-checkbox-list">
+                            <!-- Checkbox Junior-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxJunior" class="md-check">
+                                <label for="checkboxJunior">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Junior </label>
+                            </div>
+                            <!-- Checkbox Senior-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxSenior" class="md-check">
+                                <label for="checkboxSenior">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Senior </label>
+                            </div>
+                            <!-- Checkbox Executive -->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxExecutive" class="md-check">
+                                <label for="checkboxExecutive">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> Executive </label>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Experience Level-->
+                    <li class="list-group-item md-transparent p-2">
+                        <div class="media">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
+                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
+                            </div>
+                            <div class="media-body">
+                                <h4 class="my-2 text-uppercase font-weight-600 roboto-font font-14-xs"> Experience
+                                    <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="md-checkbox-list">
+                            <!-- Checkbox No Experience-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkboxNoExperience" class="md-check">
+                                <label for="checkboxNoExperience">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> No Experience </label>
+                            </div>
+                            <!-- Checkbox 1 to 5 year-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkbox1to5Year" class="md-check">
+                                <label for="checkbox1to5Year">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 1 to 5 Years </label>
+                            </div>
+                            <!-- Checkbox 6 to 10  Year-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkbox6to10year" class="md-check">
+                                <label for="checkbox6to10year">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 6 to 10 Years </label>
+                            </div>
+                            <!-- Checkbox 10  Year and above-->
+                            <div class="md-checkbox">
+                                <input type="checkbox" id="checkbox10YearAbove" class="md-check">
+                                <label for="checkbox10YearAbove">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span> 10 Years and Above</label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- COL : Job Search Content -->
+            <div class="col-md-7">
+
+                <!-- @if empty  -->
+                <div class="portlet px-4 py-10 md-shadow-none">
+                    <div class="portlet-body text-center">
+                        <i class="icon-close font-grey-mint font-40-xs mb-4"></i>
+                        <h4 class="text-center font-weight-500 font-grey-mint text-none"> Oh no! </h4>
+                        <h5 class="text-center  font-grey-cascade mt-1 text-none">We didn't found any suitable job for you. Try again?</h5>
+                    </div>
+                </div>
+                <!-- @else -->
+                <div class="portlet light hidden">
+                    <div class="portlet-title mb-0">
+                        <div class="caption">
+                            <!-- <i class="icon-speech"></i> -->
+                            <span class="caption-subject font-weight-700 text-uppercase"> Result [ 5 ]</span>
+                            <!-- <span class="caption-helper">weekly stats...</span> -->
+                        </div>
+                        <div class="actions">
+
+                            <a href="javascript:;" class="btn btn-circle btn-default">
+                                Latest </a>
+                            <a href="javascript:;" class="btn btn-circle btn-default">
+                                Popular </a>
+                            <!-- <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <ul class="list-group list-border">
+                            <!-- Login -->
+                            <li class="list-group-item px-0">
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs">Apply</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="my-1 font-weight-700 roboto-font">
+                                            <a>Job Position Title </a>
+                                        </h6>
+                                        <h6 class="my-1 roboto-font">
+                                            <a href="">Company Name</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="my-1 roboto-font">
+                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
+                                    <span class="label label-md-red label-sm">Location</span>
+                                    <span class="label label-md-blue label-sm">Job Type</span>
+                                    <span class="label label-md-purple label-sm">Position Level</span>
+                                </p>
+                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
+                                </p>
+                            </li>
+                            <li class="list-group-item px-0">
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs">Apply</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="my-1 font-weight-700 roboto-font">
+                                            <a>Job Position Title </a>
+                                        </h6>
+                                        <h6 class="my-1 roboto-font">
+                                            <a href="">Company Name</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                < <p class="my-1 roboto-font">
+                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
+                                    <span class="label label-md-red label-sm">Location</span>
+                                    <span class="label label-md-blue label-sm">Job Type</span>
+                                    <span class="label label-md-purple label-sm">Position Level</span>
+                                    </p>
+                                    <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
+                                    </p>
+                            </li>
+                            <li class="list-group-item px-0">
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs">Apply</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="my-1 font-weight-700 roboto-font">
+                                            <a>Job Position Title </a>
+                                        </h6>
+                                        <h6 class="my-1 roboto-font">
+                                            <a href="">Company Name</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="my-1 roboto-font">
+                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
+                                    <span class="label label-md-red label-sm">Location</span>
+                                    <span class="label label-md-blue label-sm">Job Type</span>
+                                    <span class="label label-md-purple label-sm">Position Level</span>
+                                </p>
+                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
+                                </p>
+
+                            </li>
+                            <li class="list-group-item px-0">
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs">Apply</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="my-1 font-weight-700 roboto-font">
+                                            <a>Job Position Title </a>
+                                        </h6>
+                                        <h6 class="my-1 roboto-font">
+                                            <a href="">Company Name</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="my-1 roboto-font">
+                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
+                                    <span class="label label-md-red label-sm">Location</span>
+                                    <span class="label label-md-blue label-sm">Job Type</span>
+                                    <span class="label label-md-purple label-sm">Position Level</span>
+                                </p>
+                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
+                                </p>
+                            </li>
+
+                            <!-- Only Guest -->
+                            <li class="list-group-item px-0">
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="login.html" class="btn btn-md-green btn-sm letter-space-xs">Login to view </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="my-1 font-weight-700 roboto-font">
+                                            Job Position Title
+                                        </h6>
+                                        <h6 class="my-1 roboto-font">
+                                            Company Name
+                                        </h6>
+                                        </dv>
+
+                                    </div>
+                                </div>
+
+                                <p class="my-1 roboto-font">
+                                    <!-- <span class="label label-md-green label-sm">Login to view salary</span> -->
+                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
+                                    <span class="label label-md-red label-sm">Location</span>
+                                    <span class="label label-md-blue label-sm">Job Type</span>
+                                    <span class="label label-md-purple label-sm">Position Level</span>
+                                </p>
+                                <p class="multiline-truncate roboto-font font-weight-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
+                                </p>
+                            </li>
+
+                            <!-- Pagination-->
+                            <li class="list-group-item px-0">
+                                <ul class="pagination pagination-lg">
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="fa fa-angle-left"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> 1 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> 2 </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="javascript:;"> 3 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> 4 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> 5 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;"> 6 </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COL : Advertisement -->
+            <div class="col-md-2">
+                <div class="row mt-fullheight-xs md-yellow">
+                    <p>Ad</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--========== END CONTENT ==========-->
+
+    <!--========== FOOTER  ==========-->
+    <footer class="g-bg-color-dark">
+        <!-- Links -->
+        <div class="g-hor-divider-dashed-white-opacity-lightest">
+            <div class="container g-padding-y-40-xs">
+                <div class="row">
+                    <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
+                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
+
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/welcome.html">Home</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/about.html">About</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/services.html">Service</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/contacts.html">Contacts</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/article.html">Article</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
+                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="privacy-policy.html">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="terms-use.html">Terms of Use</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
+                        <a href="index.html">
+                            <img class="g-height-45-xs mb-2" src="../HTML/img/Xremo/all/xremo-logo-white.png" alt="Xremo Logo">
+                        </a>
+                        <!-- <h3 class="g-font-size-18-xs g-color-white">Xremo </h3> -->
+                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
+                        <ul class="list-unstyled g-ul-li-tb-5-xs list-inline">
+                            <li>
+                                <a class="fa fa-youtube-play fa-lg social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw"></a>
+                            </li>
+                            <li>
+                                <a class="social-tw fa-lg fa fa-twitter" href="https://twitter.com/xremomy"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-facebook social-fb fa-lg" href="https://www.prod.facebook.com/xremomy/"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin social-li fa-lg" href="https://www.linkedin.com/company/6382421/"></a>
+                            </li>
+
+                        </ul>
+                        <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light">
+                            <i class="fa fa-copyright fa-fw"></i>2018 Copyright Xremo.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Links -->
+
+        <!-- Copyright -->
+        <div class="container g-padding-y-20-xs" hidden>
+            <div class="row">
+                <div class="col-xs-6">
+                    <a href="index.html">
+                        <img class="g-height-40-xs" src="../HTML/img/Xremo/all/xremo-logo-white.png" alt="Xremo Logo">
+                    </a>
+                </div>
+                <div class="col-xs-6 g-text-right-xs">
+                    <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light my-3">
+                        <i class="fa fa-copyright fa-fw"></i>2018 Copyright Xremo.com
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Copyright -->
+    </footer>
+    <!--========== END FOOTER ==========-->
+
+
+    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
+    <!-- Back To Top -->
+
+    <!-- BEGIN CORE PLUGINS -->
+    <!-- Metronic -->
+    <script type="text/javascript" src="../assets/global/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/js.cookie.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- Megakit -->
+    <script type="text/javascript" src="../assets/global/plugins/jquery.smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.back-to-top.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/swiper/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/masonry/jquery.masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/masonry/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.equal-height.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.parallax.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/jquery.wow.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/rateit/jquery.rateit.min.js"></script>
+    <script type="text/javascript" src="../assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+    <!-- General Components and Settings -->
+    <script type="text/javascript" src="../assets/global/scripts/app.min.js"></script>
+    <script type="text/javascript" src="../assets/layouts/layout8/scripts/global.js"></script>
+
+    <script type="text/javascript" src="../assets/pages/scripts/components-bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/header-sticky.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/scrollbar.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/swiper.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/masonry.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/equal-height.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/parallax.min.js"></script>
+    <script type="text/javascript" src="../assets/pages/scripts/wow.min.js"></script>
+</body>
+
+
+</html>
