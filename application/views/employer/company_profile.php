@@ -3,6 +3,7 @@
 	$profile_image = end($profile_photo);
 	$company_location = json_decode($detail['address']);
     $login = $this->session->userdata('id');
+    $roles= $this->session->userdata('roles');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -105,21 +106,21 @@
                                         </a>
                                         <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/profile" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
-                                            <?php $roles= $this->session->userdata('roles'); if ($roles == 'student') {?>
+                                            <?php  if ($roles == 'student') {?>
                                                 <li>
                                                     <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
                                                         <i class="icon-book-open mr-3"></i>My Resume</a>
                                                 </li>
                                             <?php } ?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/calendar" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
                                             <li class="divider"></li>
@@ -285,18 +286,17 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab_job_info">
-
                                 <ul class="list-group list-border pt-0">
                                     <!-- Content -->
-                                    <?php foreach ($job as $key => $value) {?>
+                                    <?php foreach ($job as $key => $value) { ?>
                                         <li class="list-group-item ">
                                             <div class="media">
                                                 <div class="pull-right ">
-                                                    <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                    <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
                                                 </div>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
+                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -304,7 +304,7 @@
                                                 <!-- <span class="label label-md-green label-sm">Salary</span> -->
                                                 <span class="label label-md-red label-sm">Location</span>
                                                 <span class="label label-md-blue label-sm">Job Type</span>
-                                                <span class="label label-md-purple label-sm">Position Level</span>
+                                                <span class="label label-md-purple label-sm"><?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?></span>
                                             </p>
                                             <p class="multiline-truncate roboto-font font-weight-300 mb-3"><?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
                                             </p>
@@ -357,6 +357,7 @@
                 <div class="row mb-5   mx-0 ">
                     <ul class="list-unstyled ">
                         <!-- Company Industry -->
+                        <?php if (!empty($detail['industry'])): ?>    
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-industry mr-1"></i>Industry</h5>
@@ -364,15 +365,18 @@
                                 <?php echo $detail['industry']; ?>
                             </p>
                         </li>
+                        <?php endif ?>
 
                         <!-- Company Size -->
+                        <?php if (!empty($detail['total_staff'])): ?>
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-building-o mr-1"></i>Company Size</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
                                 <?php echo $detail['total_staff']; ?> People
                             </p>
-                        </li>
+                        </li>                            
+                        <?php endif ?>
 
                         <!-- Working Hour -->
                         <li>
@@ -384,33 +388,40 @@
                         </li>
 
                         <!-- Dress Code -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-users mr-1"></i>Dress Code </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['dress_code']; ?>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['dress_code'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="icon-users mr-1"></i>Dress Code </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <?php echo $detail['dress_code']; ?>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Website -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-screen-desktop mr-1"></i>Website </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <a href="https://www.xremo.com"><?php echo $detail['url']; ?></a>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['url'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="icon-screen-desktop mr-1"></i>Website </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <a href="https://www.xremo.com"><?php echo $detail['url']; ?></a>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Spoken Language -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="fa fa-language mr-1"></i>Spoken Language </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['spoken_language']; ?>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['spoken_language'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="fa fa-language mr-1"></i>Spoken Language </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <?php echo $detail['spoken_language']; ?>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Benefit -->
+                        <?php if (!empty($detail['benefits'])): ?>   
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-diamond mr-1"></i>Benefit </h5>
@@ -418,6 +429,8 @@
                                 <?php echo $detail['benefits'] ?>
                             </p>
                         </li>
+                        <?php endif ?>
+
                     </ul>
                 </div>
 

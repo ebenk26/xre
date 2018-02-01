@@ -84,9 +84,13 @@ class Profile extends CI_Controller {
         }
 
         $languages = $this->input->post('language');
-
-        foreach ($languages as $key => $value) {
-            $language .= $value == end($languages) ? $value : $value.',';
+        
+        if (!empty($languages)) {
+            foreach ($languages as $key => $value) {
+                $language .= $value == end($languages) ? $value : $value.',';
+            }
+        }else{
+            $language = '';
         }
 
         $hour_start = $this->input->post('work_hour_start');

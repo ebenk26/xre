@@ -373,6 +373,74 @@
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <h4 class="form-section ">Location</h4>
+                                <hr class="my-2">
+                                <!-- Address -->
+                                <div class="row mx-0">
+                                    <div class="col-md-12">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label">Address</label>
+                                            <input type="text" class="form-control" placeholder="Unit / Lot , Road ,">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- City & State-->
+                                <div class="row mx-0">
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label">City</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0 ">
+                                            <label class="control-label">State</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Postcode & Country -->
+                                <div class="row mx-0">
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label">Postcode</label>
+
+                                            <input type="text" class="form-control" placeholder="Postcode">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <!-- <label class="control-label">Country</label> -->
+                                            <label class="control-label ">Country</label>
+
+                                            <select class="form-control">
+                                                <option>Country 1</option>
+                                                <option>Country 2</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row mx-0">
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label">Latitude</label>
+                                            <input type="text" class="form-control" placeholder="1.643604 ">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mx-0">
+                                            <label class="control-label">Longititude</label>
+                                            <input type="text" class="form-control" placeholder="1.955566)">
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
