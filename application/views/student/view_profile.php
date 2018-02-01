@@ -365,7 +365,25 @@
                         </li>
                         <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Date Of Birth </h5>
-                            <p class="mt-1 "> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></p>
+                            <p class="mt-1 "> 
+                                <?php   
+                                    if(!empty($user_profile['overview']['student_bios_DOB']))
+                                    {
+                                        if(empty($user_profile['overview']['student_bios_DOB']) || $user_profile['overview']['student_bios_DOB'] == '0000-00-00')
+                                        {
+                                            echo 'Not Provided';
+                                        }
+                                        else
+                                        {
+                                            echo date('d F Y', strtotime($user_profile['overview']['student_bios_DOB']));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo date('d F Y');
+                                    }
+                                ?>
+                            </p>
                         </li>
                         <li>
                             <h5 class="font-weight-700 font-grey-gallery mb-0 font-13-xs text-uppercase">Gender</h5>
@@ -609,7 +627,22 @@
                                     <?php foreach($user_profile['academics'] as $key => $value){?>
                                     <ul class="list-unstyled ">
                                         <li class="font-weight-500 font-16-xs text-capitalize roboto-font"><?php echo $value['degree_name']?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></small>
+                                            <small class="font-weight-400 font-13-xs pull-right"> 
+                                                <?php 
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                    {
+                                                        echo 'Not Provided';
+                                                    }
+                                                    else
+                                                    {
+                                                        echo date('d F Y', strtotime($value['start_date']));
+                                                ?> 
+                                                - 
+                                                <?php 
+                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));
+                                                    }
+                                                ?>
+                                            </small>
                                         </li>
                                         <hr class="my-1 mt-width-100-xs">
                                         <li class="font-weight-400 font-15-xs ">
@@ -628,7 +661,22 @@
                                         <li class="mb-3">
                                             <h5 class="font-weight-500 font-16-xs text-capitalize roboto-font mb-1"> <?php echo $value['experiences_title'];?>
                                                 <span class="badge badge-roundless badge-md-blue-grey"><?php echo $value['employment_type'];?></span>
-                                                <small class="font-weight-400 font-13-xs pull-right"> <?php echo date('F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));?></small>
+                                                <small class="font-weight-400 font-13-xs pull-right"> 
+                                                    <?php 
+                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('F Y', strtotime($value['experiences_start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
+                                                        }
+                                                    ?>
+                                                </small>
                                             </h5>
                                             <hr class="my-1 mt-width-100-xs">
                                             <h5 class=" font-weight-400 font-15-xs">
@@ -646,7 +694,22 @@
                                         <?php foreach($user_profile['achievement'] as $key => $value){?>
                                         <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
                                             <i class="icon-notebook"></i> <?php echo $value['achievement_title']; ?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> <?php echo date('d F Y', strtotime($value['achievement_start_date']));?> - <?php echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['achievement_end_date']));?> </small>
+                                            <small class="font-weight-400 font-13-xs pull-right"> 
+                                                <?php 
+                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                    {
+                                                        echo 'Not Provided';
+                                                    }
+                                                    else
+                                                    {
+                                                        echo date('d F Y', strtotime($value['achievement_start_date']));
+                                                ?> 
+                                                - 
+                                                <?php 
+                                                        echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['achievement_end_date']));
+                                                    }
+                                                ?> 
+                                            </small>
                                         </li>
                                         <?php } ?>
                                     </ul>
@@ -660,7 +723,22 @@
                                         <?php foreach($user_profile['projects'] as $key => $value){?>
                                         <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
                                             <i class="fa fa-tasks fa-fw"></i><?php echo $value['name']; ?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> <?php echo date('F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));?> </small>
+                                            <small class="font-weight-400 font-13-xs pull-right"> 
+                                                <?php 
+                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                    {
+                                                        echo 'Not Provided';
+                                                    }
+                                                    else
+                                                    {
+                                                        echo date('F Y', strtotime($value['start_date']));
+                                                ?> 
+                                                - 
+                                                <?php 
+                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
+                                                    }
+                                                ?> 
+                                            </small>
                                         </li>
                                         <?php }?>
                                     </ul>
