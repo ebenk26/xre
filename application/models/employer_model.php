@@ -117,6 +117,16 @@ class Employer_Model extends CI_Model{
         return $query->last_row();
     }
 
+    function get_more_from($id, $job_id_not){
+        $this->db->select('job_positions.*, employment_types.name as employment_name');
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+        $this->db->where('job_positions.user_id', $id);
+        $this->db->where('job_positions.id !=', $job_id_not);
+        $this->db->limit(5);
+        $query = $this->db->get('job_positions');
+        return $query->result_array();
+    }
+
     function job_delete($id){
         try {
             $this->db->delete('job_positions', array('id' => $id)); 

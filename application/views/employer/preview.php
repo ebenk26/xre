@@ -2,7 +2,9 @@
 $roles = $this->session->userdata('roles'); 
 $image = end($company_image);
 $login = $this->session->userdata('id');
-$location = json_decode($job->location);
+if (!empty($job->location)) {
+    $location = json_decode($job->location);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -204,7 +206,7 @@ $location = json_decode($job->location);
             <h1 class="md-white-text font-weight-500 display-4"><?php echo isset($job->name) ? $job->name: 'Job title';?> </h1>
             <p class=" roboto-font mt-4 ">
                 <span class="label label-md-green font-weight-500 md-shadow-z-1">
-                    <i class="fa fa-money mr-2"></i><?php echo $this->session->userdata('forex')?> <?php echo $job->budget_min; ?> - <?php echo $this->session->userdata('forex');?> <?php echo $job->budget_max; ?></span>
+                    <i class="fa fa-money mr-2"></i><?php echo $job->forex; ?> <?php echo $job->budget_min; ?> - <?php echo $job->forex; ?> <?php echo $job->budget_max; ?></span>
                 <span class="label label-md-red font-weight-500 md-shadow-z-1">
                     <i class="icon-pointer mr-2"> <?php echo $this->session->userdata('country')?></i></span>
                 <!-- <span class="label label-md-blue-grey font-weight-500 md-shadow-z-1">
@@ -233,7 +235,9 @@ $location = json_decode($job->location);
                                 <a href="<?php echo base_url(); ?>profile/company/<?php echo base64_encode($user_profile['id_users']); ?>" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
-                                <i class="icon-pointer"></i> <?php echo $location->city; ?> , <?php echo $location->state; ?>
+                                <?php if (!empty($location)): ?>
+                                    <i class="icon-pointer"></i> <?php echo $location->city; ?> , <?php echo $location->state; ?>
+                                <?php endif ?>
                             </h6>
                             <h6>
                                 <span class="label label-md-blue-grey font-weight-500 mb-2">
@@ -337,6 +341,8 @@ $location = json_decode($job->location);
                 </div>
 
                 <!-- Location -->
+                <?php if (!empty($location)): ?>
+                    
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Location</h5>
                     <h6 class=" roboto-font  font-14-xs ">
@@ -349,7 +355,7 @@ $location = json_decode($job->location);
                     </section> -->
                     <div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
                 </div>
-				-->
+                <?php endif ?>
             </div>
             <!-- COL - Button / Share / List of Job Available from that company -->
             <div class="col-md-3">
@@ -402,31 +408,21 @@ $location = json_decode($job->location);
                     <!-- More From -->
                     <div class="row mb-5 mx-0">
                         <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">More From
-                            <a href="" class="md-orange-text">Company #1</a>
+                            <a href="" class="md-orange-text"><?php echo $user_profile['company_name']; ?></a>
                         </h5>
 
                         <ul class="list-group list-borderless">
-                            <li class="list-group-item px-0 py-1">
-                                <p class="roboto-font my-0 font-14-xs font-weight-500 ">Job Position Title #2
-                                    <small class="font-weight-400">[ Part Time ]</small>
-                                </p>
-                                <small class="roboto-font my-1 font-13-xs">
-                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
-                            </li>
-                            <li class="list-group-item px-0 py-1">
-                                <p class="roboto-font my-0 font-14-xs font-weight-500 md- ">Job Position Title #2
-                                    <small class="font-weight-400">[ Part Time ]</small>
-                                </p>
-                                <small class="roboto-font my-1 font-13-xs">
-                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
-                            </li>
-                            <li class="list-group-item px-0 py-1">
-                                <p class="roboto-font my-0 font-14-xs font-weight-500 ">Job Position Title #2
-                                    <small class="font-weight-400">[ Part Time ]</small>
-                                </p>
-                                <small class="roboto-font my-1 font-13-xs">
-                                    <i class="icon-pointer"></i> Subang Jaya , Selangor</small>
-                            </li>
+                            <?php foreach ($more_jobs as $key => $value): $address=json_decode($value['location']); ?>
+                                <li class="list-group-item px-0 py-1">
+                                    <p class="roboto-font my-0 font-14-xs font-weight-500 "><?php echo $value['name']; ?>
+                                        <small class="font-weight-400">[ <?php echo $value['employment_name'] ?> ]</small>
+                                    </p>
+                                    <?php if(!empty($address)){ ?>
+                                    <small class="roboto-font my-1 font-13-xs">
+                                        <i class="icon-pointer"></i> <?php echo $address->city; ?> , <?php  echo $address->state ?></small>
+                                    <?php } ?>
+                                </li>
+                            <?php endforeach ?>
                         </ul>
 
                     </div>
