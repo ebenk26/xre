@@ -3,6 +3,7 @@
 	$profile_image = end($profile_photo);
 	$company_location = json_decode($detail['address']);
     $login = $this->session->userdata('id');
+    $roles= $this->session->userdata('roles');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +93,7 @@
                                     <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
@@ -105,21 +106,21 @@
                                         </a>
                                         <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/profile" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
-                                            <?php $roles= $this->session->userdata('roles'); if ($roles == 'student') {?>
+                                            <?php  if ($roles == 'student') {?>
                                                 <li>
                                                     <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
                                                         <i class="icon-book-open mr-3"></i>My Resume</a>
                                                 </li>
                                             <?php } ?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/calendar" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
                                             <li class="divider"></li>
@@ -285,18 +286,17 @@
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab_job_info">
-
                                 <ul class="list-group list-border pt-0">
                                     <!-- Content -->
-                                    <?php foreach ($job as $key => $value) {?>
+                                    <?php foreach ($job as $key => $value) { ?>
                                         <li class="list-group-item ">
                                             <div class="media">
                                                 <div class="pull-right ">
-                                                    <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                    <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
                                                 </div>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
+                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -304,7 +304,7 @@
                                                 <!-- <span class="label label-md-green label-sm">Salary</span> -->
                                                 <span class="label label-md-red label-sm">Location</span>
                                                 <span class="label label-md-blue label-sm">Job Type</span>
-                                                <span class="label label-md-purple label-sm">Position Level</span>
+                                                <span class="label label-md-purple label-sm"><?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?></span>
                                             </p>
                                             <p class="multiline-truncate roboto-font font-weight-300 mb-3"><?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
                                             </p>
@@ -357,6 +357,7 @@
                 <div class="row mb-5   mx-0 ">
                     <ul class="list-unstyled ">
                         <!-- Company Industry -->
+                        <?php if (!empty($detail['industry'])): ?>    
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-industry mr-1"></i>Industry</h5>
@@ -364,15 +365,18 @@
                                 <?php echo $detail['industry']; ?>
                             </p>
                         </li>
+                        <?php endif ?>
 
                         <!-- Company Size -->
+                        <?php if (!empty($detail['total_staff'])): ?>
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-building-o mr-1"></i>Company Size</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
                                 <?php echo $detail['total_staff']; ?> People
                             </p>
-                        </li>
+                        </li>                            
+                        <?php endif ?>
 
                         <!-- Working Hour -->
                         <li>
@@ -384,33 +388,40 @@
                         </li>
 
                         <!-- Dress Code -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-users mr-1"></i>Dress Code </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['dress_code']; ?>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['dress_code'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="icon-users mr-1"></i>Dress Code </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <?php echo $detail['dress_code']; ?>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Website -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-screen-desktop mr-1"></i>Website </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <a href="https://www.xremo.com"><?php echo $detail['url']; ?></a>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['url'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="icon-screen-desktop mr-1"></i>Website </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <a href="https://www.xremo.com"><?php echo $detail['url']; ?></a>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Spoken Language -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="fa fa-language mr-1"></i>Spoken Language </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['spoken_language']; ?>
-                            </p>
-                        </li>
+                        <?php if (!empty($detail['spoken_language'])): ?>
+                            <li>
+                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                    <i class="fa fa-language mr-1"></i>Spoken Language </h5>
+                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                    <?php echo $detail['spoken_language']; ?>
+                                </p>
+                            </li>
+                        <?php endif ?>
 
                         <!-- Benefit -->
+                        <?php if (!empty($detail['benefits'])): ?>   
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-diamond mr-1"></i>Benefit </h5>
@@ -418,6 +429,8 @@
                                 <?php echo $detail['benefits'] ?>
                             </p>
                         </li>
+                        <?php endif ?>
+
                     </ul>
                 </div>
 
@@ -538,86 +551,7 @@
     </div>
     <!--========== END CONTENT ==========-->
 
-    <!--========== FOOTER ==========-->
-    <footer class="g-bg-color-dark">
-        <!-- Links -->
-        <div class="g-hor-divider-dashed-white-opacity-lightest">
-            <div class="container g-padding-y-40-xs">
-                <div class="row">
-                    <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url() ?>home">Home</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url() ?>about">About</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>services">Service</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>contacts">Contacts</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>article">Article</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="privacy-policy.html">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="terms-use.html">Terms of Use</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
-                        <h3 class="g-font-size-18-xs g-color-white">Xremo </h3>
-                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
-                            <li>
-                                <a class="fa fa-youtube-play fa-lg social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw"></a>
-                            </li>
-                            <li>
-                                <a class=" social-tw fa-lg fa fa-twitter" href="https://twitter.com/xremomy"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-facebook social-fb fa-lg" href="https://www.prod.facebook.com/xremomy/"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-linkedin social-li fa-lg" href="https://www.linkedin.com/company/6382421/"></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Links -->
-
-        <!-- Copyright -->
-        <div class="container g-padding-y-20-xs">
-            <div class="row">
-                <div class="col-xs-6">
-                    <a href="<?php echo base_url(); ?>">
-                        <img class="g-height-40-xs" src="<?php echo IMG; ?>/site/xremo.png" alt=" Xremo Logo">
-                    </a>
-                </div>
-                <div class="col-xs-6 g-text-right-xs">
-                    <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light my-3">
-                        <i class="fa fa-copyright fa-fw"></i><?php echo date('Y') ?> Copyright Xremo.com
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright -->
-    </footer>
-    <!--========== END FOOTER =======s===-->
-
-    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
-    <!-- Back To Top -->
+	<?php $this->load->view('main/footer_content');?>
 
     <!-- BEGIN CORE PLUGINS -->
     <!-- Metronic -->

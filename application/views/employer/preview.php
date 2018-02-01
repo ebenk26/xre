@@ -149,10 +149,10 @@ $login = $this->session->userdata('id');
                                     <a href="<?php echo base_url();?>services/" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url();?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="#" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url();?>article/" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
@@ -493,92 +493,7 @@ $login = $this->session->userdata('id');
     </div>
     <!--========== END CONTENT ==========-->
 
-    <!--========== FOOTER ==========-->
-    <footer class="g-bg-color-dark">
-        <!-- Links -->
-        <div class="g-hor-divider-dashed-white-opacity-lightest">
-            <div class="container g-padding-y-40-xs">
-                <div class="row">
-                    <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li class="font-13-xs md-white-text font-weight-500 letter-space-xs text-uppercase">Sitemap</li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/welcome.html">Home</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/about.html">About</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/services.html">Service</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/contacts.html">Contacts</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/article.html">Article</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Subscribe to Our Newsletter</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Terms &amp; Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
-                        <h3 class="font-18-xs g-color-white roboto-font">Xremo </h3>
-                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
-                            <li>
-                                <a class="fa fa-youtube font-24-xs social-yt" href="https://www.youtube.com"></a>
-                            </li>
-                            <li>
-                                <a class=" social-tw font-24-xs fa fa-twitter" href="https://www.twitter.com"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-facebook social-fb font-24-xs" href="https://www.facebook.com"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-linkedin social-li font-24-xs" href="https://www.linkedin.com"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-google-plus social-gplus font-24-xs" href="https://www.linkedin.com"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Links -->
-
-        <!-- Copyright -->
-        <div class="container g-padding-y-20-xs">
-            <div class="row">
-                <div class="col-xs-6">
-                    <a href="index.html">
-                        <img class="g-height-35-xs" src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.png" alt=" Xremo Logo">
-                    </a>
-                </div>
-                <div class="col-xs-6 g-text-right-xs">
-                    <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light mt-2">
-                        <i class="fa fa-copyright fa-fw"></i><?php echo date('Y') ?> Copyright Xremo.com
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright -->
-    </footer>
-    <!--========== END FOOTER ==========-->
-
-    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
-    <!-- Back To Top -->
+    <?php $this->load->view('main/footer_content');?>
 
     <!-- BEGIN CORE PLUGINS -->
     <!-- Metronic -->

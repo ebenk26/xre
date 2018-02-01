@@ -1,4 +1,7 @@
-<?php $id = $this->session->userdata('id'); ?>
+<?php   $id = $this->session->userdata('id'); 
+        $roles= $this->session->userdata('roles');
+
+?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
@@ -122,19 +125,21 @@
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
+                                        <?php if ($roles !='employer') {?>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($id),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            </li>
+                                        <?php } ?>
                                         <li>
-                                            <a href="<?php echo base_url(); ?>student/view_my_profile/<?php echo base64_encode($id);?>" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-book-open mr-3"></i>My Resume</a>
-                                        </li>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
                                         <li class="divider"></li>
@@ -1251,15 +1256,7 @@
         </div>
     </div>
 
-    <div class="container-fluid md-black ">
-        <p class="g-font-size-14-xs  g-color-white-opacity-light text-center ">
-            <i class="fa fa-copyright"></i> <?php echo date('Y');?> Xremo
-        </p>
-    </div>
-
-
-    <!-- Back To Top -->
-    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
+    <?php $this->load->view('main/footer_content');?>
 
     <!-- BEGIN CORE PLUGINS -->
     <!-- Metronic -->

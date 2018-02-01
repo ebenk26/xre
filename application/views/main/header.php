@@ -8,7 +8,8 @@
     <title>Xremo - <?php echo $title; ?></title>
 
     <!-- Web Fonts -->
-    <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
     <!-- Vendor Styles -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
