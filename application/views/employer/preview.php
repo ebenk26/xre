@@ -2,6 +2,7 @@
 $roles = $this->session->userdata('roles'); 
 $image = end($company_image);
 $login = $this->session->userdata('id');
+$location = json_decode($job->location);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -232,7 +233,7 @@ $login = $this->session->userdata('id');
                                 <a href="<?php echo base_url(); ?>profile/company/<?php echo base64_encode($user_profile['id_users']); ?>" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
-                                <i class="icon-pointer"></i> Subang , Selangor
+                                <i class="icon-pointer"></i> <?php echo $location->city; ?> , <?php echo $location->state; ?>
                             </h6>
                             <h6>
                                 <span class="label label-md-blue-grey font-weight-500 mb-2">
@@ -336,16 +337,17 @@ $login = $this->session->userdata('id');
                 </div>
 
                 <!-- Location -->
-                <!--<div class="row mb-5 mx-0">
+                <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Location</h5>
                     <h6 class=" roboto-font  font-14-xs ">
                         <i class="icon-pointer mr-2"></i>
-                        Suite 20-01 & 20-02B, Level 20 , The Pinnacle, Persiaran Lagoon Bandar Sunway, 47500 Subang Jaya, Selangor, Malaysia. </h6>-->
-						<!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-						<!-- <section class="s-google-map">
-							<div id="js-google-container" class="s-google-container g-height-400-xs"></div>
-						</section> -->
-                    <!--<div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
+
+                        <?php echo $location->address; ?>, <?php echo !empty($location->postcode) ? $location->postcode : '' ; ?> <?php echo $location->city; ?>, <?php echo $location->state; ?>, <?php echo $location->country; ?>. </h6>
+                    <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
+                    <!-- <section class="s-google-map">
+                        <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
+                    </section> -->
+                    <div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
                 </div>
 				-->
             </div>
@@ -568,7 +570,7 @@ $login = $this->session->userdata('id');
 
     <script>
       function initMap() {
-        var latLang = {lat: -34.397, lng: 150.644};
+        var latLang = {lat: <?php echo $location->latitude; ?>, lng: <?php echo $location->longitude; ?>};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,
@@ -578,7 +580,7 @@ $login = $this->session->userdata('id');
          var marker = new google.maps.Marker({
           map: map,
           position: latLang,
-          title: 'Hello World!'
+          title: '<?php echo $user_profile['company_name'];?>'
         });
       }
 
