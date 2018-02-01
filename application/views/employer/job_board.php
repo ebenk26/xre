@@ -458,7 +458,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Address</label>
-                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ,">
+                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," required>
                                         </div>
                                     </div>
                                 </div>
@@ -468,13 +468,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">City</label>
-                                            <input type="text" class="form-control" name="city">
+                                            <input type="text" class="form-control" name="city" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mx-0 ">
                                             <label class="control-label">State</label>
-                                            <input type="text" class="form-control" name="state">
+                                            <input type="text" class="form-control" name="state" required>
                                         </div>
                                     </div>
                                 </div>
@@ -484,7 +484,7 @@
                                         <div class="form-group mx-0">
                                             <label class="control-label">Postcode</label>
 
-                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode">
+                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode" required>
 
                                         </div>
                                     </div>
@@ -494,7 +494,7 @@
                                             <!-- <label class="control-label">Country</label> -->
                                             <label class="control-label ">Country</label>
 
-                                            <select class="form-control" name="country">
+                                            <select class="form-control" name="country" required>
                                                 <?php foreach ($countries as $key => $value) {?>
                                                     <option><?php echo $value['name']; ?></option>
                                                 <?php } ?>
@@ -508,14 +508,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Latitude</label>
-                                            <input type="text" class="form-control" placeholder="1.643604 " name="latitude">
+                                            <input type="text" class="form-control" placeholder="1.643604 " name="latitude" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Longititude</label>
-                                            <input type="text" class="form-control" placeholder="1.955566" name="longitude">
+                                            <input type="text" class="form-control" placeholder="1.955566" name="longitude" required>
                                         </div>
                                     </div>
                                 </div>
