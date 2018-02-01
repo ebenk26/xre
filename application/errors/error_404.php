@@ -36,7 +36,7 @@
                 <h3>Oops! You're lost.</h3>
                 <p> We can not find the page you're looking for.
                 </p>
-                <a href="home" class="btn btn-md-red "> Return home </a>
+                <a href="<?php echo base_url(); ?>home" class="btn btn-md-red "> Return home </a>
             </div>
         </div>
     </div>

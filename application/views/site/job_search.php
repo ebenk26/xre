@@ -70,26 +70,26 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link ">Search Job</a>
+                                    <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about/" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services/" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>articles/" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="signup.html" class="s-header-v2-nav-link  g-color-md-orange-text ">SIGN UP</a>
+                                    <a href="<?php echo base_url(); ?>signup/" class="s-header-v2-nav-link  g-color-md-orange-text ">SIGN UP</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
-                                    <a href="login.html" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
+                                    <a href="<?php echo base_url(); ?>login/" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
+                                    <a href="<?php echo base_url(); ?>login/" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -98,20 +98,20 @@
                             <ul class="s-header-v2-nav hidden">
                                 <!-- NOTE : Student got "Search Job " link meanwhile employer do not have -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link">Search Job</a>
+                                    <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link">Search Job</a>
                                 </li>
                                 <!-- ########################################################## -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="about.html" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about/" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="services.html" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services/" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="contacts.html" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="article.html" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
