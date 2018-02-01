@@ -99,7 +99,9 @@ class Employer_Model extends CI_Model{
     }
 
     function get_job_post($id){
-        $this->db->where('user_id', $id);
+        $this->db->select('job_positions.*, employment_types.name as employment_name');
+		$this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+		$this->db->where('user_id', $id);
         $query = $this->db->get('job_positions');
         return $query->result_array();
     }

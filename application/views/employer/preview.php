@@ -93,7 +93,7 @@ $login = $this->session->userdata('id');
                                     <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
@@ -143,16 +143,16 @@ $login = $this->session->userdata('id');
                                     <a href="job-search.html" class="s-header-v2-nav-link md-orange-text">Search Job</a>
                                 </li> -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>about/" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url();?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>services/" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url();?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url();?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>article/" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url();?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
@@ -205,7 +205,7 @@ $login = $this->session->userdata('id');
                 <span class="label label-md-green font-weight-500 md-shadow-z-1">
                     <i class="fa fa-money mr-2"></i><?php echo $this->session->userdata('forex')?> <?php echo $job->budget_min; ?> - <?php echo $this->session->userdata('forex');?> <?php echo $job->budget_max; ?></span>
                 <span class="label label-md-red font-weight-500 md-shadow-z-1">
-                    <i class="icon-pointer mr-2"><?php echo $this->session->userdata('country')?></i></span>
+                    <i class="icon-pointer mr-2"> <?php echo $this->session->userdata('country')?></i></span>
                 <!-- <span class="label label-md-blue-grey font-weight-500 md-shadow-z-1">
                         <i class="fa fa-building-o mr-2"></i>Company Industry</span> -->
                 <span class="label label-md-orange font-weight-500 md-shadow-z-1"><?php echo $job->employment_name ;?></span>
@@ -255,7 +255,7 @@ $login = $this->session->userdata('id');
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text primary-font text-uppercase font-17-xs">JOB DESCRIPTION </h5>
                     <hr class="my-2 mt-width-100-xs border-md-indigo">
-                    <p class="roboto-font font-grey-gallery  "><?php echo $job->job_description;?>
+                    <p class="roboto-font font-grey-gallery  "><?php echo $job->job_description != ""?$job->job_description:"Not Provided";?>
                     </p>
 
                     <!-- <ul class=" roboto-font font-grey-gallery ">
@@ -275,7 +275,7 @@ $login = $this->session->userdata('id');
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Requirement</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo $job->qualifications;?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->qualifications != ""?$job->qualifications:"Not Provided";?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -294,7 +294,7 @@ $login = $this->session->userdata('id');
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Nice To Have</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo $job->other_requirements;?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->other_requirements != ""?$job->other_requirements:"Not Provided";?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -312,7 +312,7 @@ $login = $this->session->userdata('id');
                 <!-- Benefits -->
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Benefits</h5>
-                    <p class="roboto-font font-grey-gallery "><?php echo $user_profile['benefits'];?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $user_profile['benefits'] != ""?$user_profile['benefits']:"Not Provided";?>
                     </p>
 
                 </div>
@@ -320,7 +320,7 @@ $login = $this->session->userdata('id');
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Additional Info</h5>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <p class="roboto-font font-grey-gallery "><?php echo $job->additional_info;?>
+                    <p class="roboto-font font-grey-gallery "><?php echo $job->additional_info != ""?$job->additional_info:"Not Provided";?>
                     </p>
                     <!-- <ul class=" roboto-font font-grey-gallery ">
                         <li>
@@ -336,18 +336,18 @@ $login = $this->session->userdata('id');
                 </div>
 
                 <!-- Location -->
-                <div class="row mb-5 mx-0">
+                <!--<div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Location</h5>
                     <h6 class=" roboto-font  font-14-xs ">
                         <i class="icon-pointer mr-2"></i>
-                        Suite 20-01 & 20-02B, Level 20 , The Pinnacle, Persiaran Lagoon Bandar Sunway, 47500 Subang Jaya, Selangor, Malaysia. </h6>
-                    <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <!-- <section class="s-google-map">
-                        <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
-                    </section> -->
-                    <div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
+                        Suite 20-01 & 20-02B, Level 20 , The Pinnacle, Persiaran Lagoon Bandar Sunway, 47500 Subang Jaya, Selangor, Malaysia. </h6>-->
+						<!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
+						<!-- <section class="s-google-map">
+							<div id="js-google-container" class="s-google-container g-height-400-xs"></div>
+						</section> -->
+                    <!--<div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
                 </div>
-
+				-->
             </div>
             <!-- COL - Button / Share / List of Job Available from that company -->
             <div class="col-md-3">

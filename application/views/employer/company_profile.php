@@ -151,7 +151,7 @@
                                     <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
@@ -206,14 +206,24 @@
     <!--========== END HEADER ==========-->
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
-    <div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1;">
+    <?php if($header_image['name'] != ""){?>
+		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1;">
+	<?php }else{?>
+		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1;">
+	<?php }?>
+	
     </div>
     <div class="container mt-margin-t-o-120-xs ">
         <div class="row mx-0">
             <div class="s-mockup-v3 md-transparent ">
                 <div class="media py-4 ">
                     <div class="pull-left mr-3">
-                        <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large avatar-border-sm  p-2 md-white border-mdo-bluegrey-slight g-box-shadow-dark-lightest-v3">
+                        <?php if($profile_image['name'] != ""){?>
+							<img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large avatar-border-sm  p-2 md-white border-mdo-bluegrey-slight g-box-shadow-dark-lightest-v3">
+						<?php }else{?>
+							<img src="<?=base_url()?>assets/img/site/xremo-logo-blue.png" alt="" class="avatar avatar-large avatar-border-sm  p-2 md-white border-mdo-bluegrey-slight g-box-shadow-dark-lightest-v3">
+						<?php }?>
+						
                     </div>
                     <div class="media-body ">
                         <h1 class="roboto-font mt-2 font-weight-500 md-white-text "><?php echo $detail['company_name']; ?></h1>
@@ -252,19 +262,29 @@
                                 <div class="row mt-3 mb-5 mx-0">
                                     <h5 class="font-weight-600 md-grey-text text-darken-3 primary-font font-20-xs text-uppercase letter-space-xs">About <?php echo $detail['company_name']; ?></h5>
                                     <hr class="g-hor-border-1-solid-md-orange my-2 mt-width-60-xs">
-                                    <p class="roboto-font font-grey-gallery "><?php echo $detail['company_description']; ?>
-                                    </p>
+									<?php if($detail['company_description'] == ""){?>
+										<div class="portlet p-4 md-shadow-none">
+											<div class="portlet-body text-center">
+												<i class="icon-ghost font-grey-mint font-40-xs mb-4"></i>
+												<h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
+												<!--<h6 class="text-center  font-grey-cascade mt-1 text-none">Add your info in here to make your company look great.</h6>
+												<a href="employer-profile.html" class="btn btn-outline-md-indigo px-6">My Profile</a>-->
+											</div>
+										</div>
+									<?php }else{?>
+										<p class="roboto-font font-grey-gallery "><?php echo $detail['company_description']; ?></p>
+									<?php }?>
                                 </div>
 
                                 <!-- Location -->
                                 <div class="row mb-5 mx-0">
                                     <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-17-xs text-uppercase letter-space-xs">Location</h5>
                                     <hr class="g-hor-border-1-solid-md-orange my-2 mt-width-60-xs">
-                                    <div id="gmapbg" class="s-google-map mt-height-auto-xs mt-height-300-xs my-4"></div>
-                                    <ul class="list-unstyled">
                                     	<?php 
-                                        if(!empty($company_location)){
-                                        foreach ($company_location as $key => $value) {
+                                        if(!empty($company_location)){?>
+                                        <div id="gmapbg" class="s-google-map mt-height-auto-xs mt-height-300-xs my-4"></div>
+										<ul class="list-unstyled">
+										<?php foreach ($company_location as $key => $value) {
                                     		?>
                                     		<li>
 	                                            <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-15-xs text-uppercase letter-space-xs"><?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?></h5>
@@ -281,8 +301,21 @@
 	                                                </li>
 	                                            </ul>
 	                                        </li>
-                                    	<?php }} ?>
-                                    </ul>
+                                    	<?php }?>
+											</ul>
+										<?php }else{ ?>
+											<!--<p class="roboto-font font-grey-gallery font-14-xs ">
+												Not Provided
+											</p>-->
+											<div class="portlet p-4 md-shadow-none">
+												<div class="portlet-body text-center">
+													<i class="icon-puzzle font-grey-mint font-40-xs mb-4"></i>
+													<h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
+													<!--<h6 class="text-center  font-grey-cascade mt-1 text-none">It's seem like this company forgot to update his/her info. </h6>-->
+												</div>
+											</div>
+										<?php }?>
+                                    
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab_job_info">
@@ -292,7 +325,7 @@
                                         <li class="list-group-item ">
                                             <div class="media">
                                                 <div class="pull-right ">
-                                                    <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                    <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs " target="_blank">Apply</a>
                                                 </div>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
@@ -302,8 +335,8 @@
                                             </div>
                                             <p class="my-1 roboto-font">
                                                 <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                                <span class="label label-md-red label-sm">Location</span>
-                                                <span class="label label-md-blue label-sm">Job Type</span>
+                                                <span class="label label-md-red label-sm"><i class="icon-pointer"></i> <?php echo $this->session->userdata('country')?></span>
+                                                <span class="label label-md-blue label-sm"><?php echo $value['employment_name'] ;?></span>
                                                 <span class="label label-md-purple label-sm"><?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?></span>
                                             </p>
                                             <p class="multiline-truncate roboto-font font-weight-300 mb-3"><?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
@@ -354,71 +387,71 @@
             <div class="col-md-3">
 
                 <!-- Company Short Info -->
-                <div class="row mb-5   mx-0 ">
+                <div class="row mb-3   mx-0 ">
                     <ul class="list-unstyled ">
                         <!-- Company Industry -->
-                        <?php if (!empty($detail['industry'])): ?>    
+                        <?php //if (!empty($detail['industry'])): ?>    
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-industry mr-1"></i>Industry</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['industry']; ?>
+                                <?php echo $detail['industry'] != ""?$detail['industry']:"Not Provided"; ?>
                             </p>
                         </li>
-                        <?php endif ?>
+                        <?php //endif ?>
 
                         <!-- Company Size -->
-                        <?php if (!empty($detail['total_staff'])): ?>
+                        <?php //if (!empty($detail['total_staff'])): ?>
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-building-o mr-1"></i>Company Size</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['total_staff']; ?> People
+                                <?php echo $detail['total_staff'] != ""?$detail['total_staff']:"Not Provided"; ?> People
                             </p>
                         </li>                            
-                        <?php endif ?>
+                        <?php //endif ?>
 
                         <!-- Working Hour -->
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="icon-clock mr-1"></i>Working Hour</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_hours']; ?>
+                                <?php echo $detail['working_hours'] != ""?$detail['working_hours']:"Not Provided"; ?>
                             </p>
                         </li>
 
                         <!-- Dress Code -->
-                        <?php if (!empty($detail['dress_code'])): ?>
+                        <?php //if (!empty($detail['dress_code'])): ?>
                             <li>
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-users mr-1"></i>Dress Code </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['dress_code']; ?>
+                                    <?php echo $detail['dress_code'] != ""?$detail['dress_code']:"Not Provided"; ?>
                                 </p>
                             </li>
-                        <?php endif ?>
+                        <?php //endif ?>
 
                         <!-- Website -->
-                        <?php if (!empty($detail['url'])): ?>
+                        <?php //if (!empty($detail['url'])): ?>
                             <li>
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-screen-desktop mr-1"></i>Website </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <a href="https://www.xremo.com"><?php echo $detail['url']; ?></a>
+                                    <?php echo $detail['url'] != ""?"<a href='".$detail['url']."'>".$detail['url']."</a>":"Not Provided"; ?>
                                 </p>
                             </li>
-                        <?php endif ?>
+                        <?php //endif ?>
 
                         <!-- Spoken Language -->
-                        <?php if (!empty($detail['spoken_language'])): ?>
+                        <?php //if (!empty($detail['spoken_language'])): ?>
                             <li>
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="fa fa-language mr-1"></i>Spoken Language </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['spoken_language']; ?>
+                                    <?php echo $detail['spoken_language'] != ""?$detail['spoken_language']:"Not Provided"; ?>
                                 </p>
                             </li>
-                        <?php endif ?>
+                        <?php //endif ?>
 
                         <!-- Benefit -->
                         <?php if (!empty($detail['benefits'])): ?>   
@@ -426,7 +459,7 @@
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-diamond mr-1"></i>Benefit </h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['benefits'] ?>
+                                <?php echo $detail['benefits'] != ""?$detail['benefits']:"Not Provided"; ?>
                             </p>
                         </li>
                         <?php endif ?>
@@ -438,27 +471,32 @@
                 <div class="row mb-5 mx-0 ">
                     <h5 class="font-weight-600 md-orange-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Follow Me </h5>
                     <ul class="social-icons social-icons-color">
-                    	<?php foreach ($social as $key => $value) { 
+                    	<?php $followme = 0;foreach ($social as $key => $value) { 
                             switch ($value['name']) {
                                 case 'facebook':
                                     ?>
                                 <li>
-		                            <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Facebook" class="facebook"> </a>
+		                            <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Facebook" class="facebook" target="_blank"> </a>
 		                        </li>
-                            <?php break;
+                            <?php $followme++;break;
                                 case 'twitter': ?>
                                 <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Twitter"  class="twitter"></a>
+                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Twitter"  class="twitter" target="_blank"></a>
                                 </li>        
-                            <?php break;
+                            <?php $followme++;break;
                                 case 'linkedin': ?>
                                 <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Linked In"  class="linkedin"></a>
+                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Linked In"  class="linkedin" target="_blank"></a>
                                 </li>        
-                            <?php break;
+                            <?php $followme++;break;
                                 case 'gplus': ?>
                                 <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="googleplus" data-original-title="Google Plus"></a>
+                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="googleplus" data-original-title="Google Plus" target="_blank"></a>
+                                </li>
+							<?php $followme++;break;
+                                case 'instagram': ?>
+                                <li>
+                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="instagram" data-original-title="Instagram" target="_blank"></a>
                                 </li>
                             <?php break; default:?>
                                 <li>
@@ -466,17 +504,21 @@
                                 </li>
                             <?php break; } ?>
                             
-                        <?php } ?>
+                        <?php } if($followme == 0){?>
+							<p class="roboto-font font-grey-gallery font-14-xs ">
+                                Not Provided
+                            </p>
+						<?php }?>						
                     </ul>
                 </div>
                 <!-- Ad -->
-                <div class="row mb-5 mx-0">
+                <!--<div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-orange-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Recent view
-                        <!-- <a href="" class="md-orange-text">Company #1</a> -->
+                        <a href="" class="md-orange-text">Company #1</a>
                     </h5>
-                    <!-- <div class="g-fullheight-xs md-yellow col-md-12">
+                    <div class="g-fullheight-xs md-yellow col-md-12">
                         Here is Advertisement o r whatsover
-                    </div> -->
+                    </div> 
                     <ul class="list-unstyled">
                         <li>
                             <a href="">Petronas</a>
@@ -494,8 +536,7 @@
                             <a href="">Company #3</a>
                         </li>
                     </ul>
-
-                </div>
+                </div>-->
             </div>
         </div>
 
