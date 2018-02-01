@@ -149,10 +149,10 @@ $login = $this->session->userdata('id');
                                     <a href="<?php echo base_url();?>services/" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url();?>contacts" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url();?>contacts/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="#" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url();?>article/" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
@@ -503,19 +503,19 @@ $login = $this->session->userdata('id');
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
                             <li class="font-13-xs md-white-text font-weight-500 letter-space-xs text-uppercase">Sitemap</li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/welcome.html">Home</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>">Home</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/about.html">About</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>about/">About</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/services.html">Service</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>services/">Service</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/contacts.html">Contacts</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>contact/">Contacts</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="../custom_pages/article.html">Article</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>article/">Article</a>
                             </li>
                         </ul>
                     </div>
@@ -525,10 +525,10 @@ $login = $this->session->userdata('id');
                                 <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Subscribe to Our Newsletter</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Privacy Policy</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy">Privacy Policy</a>
                             </li>
                             <li>
-                                <a class="font-13-xs g-color-white-opacity" href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes">Terms &amp; Conditions</a>
+                                <a class="font-13-xs g-color-white-opacity" href="<?php echo base_url(); ?>terms">Terms &amp; Conditions</a>
                             </li>
                         </ul>
                     </div>
@@ -537,20 +537,20 @@ $login = $this->session->userdata('id');
                         <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
                             <li>
-                                <a class="fa fa-youtube font-24-xs social-yt" href="https://www.youtube.com"></a>
+                                <a class="fa fa-youtube font-24-xs social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw"></a>
                             </li>
                             <li>
-                                <a class=" social-tw font-24-xs fa fa-twitter" href="https://www.twitter.com"></a>
+                                <a class=" social-tw font-24-xs fa fa-twitter" href="https://twitter.com/xremomy"></a>
                             </li>
                             <li>
-                                <a class=" fa fa-facebook social-fb font-24-xs" href="https://www.facebook.com"></a>
+                                <a class=" fa fa-facebook social-fb font-24-xs" href="https://www.prod.facebook.com/xremomy/"></a>
                             </li>
                             <li>
-                                <a class=" fa fa-linkedin social-li font-24-xs" href="https://www.linkedin.com"></a>
+                                <a class=" fa fa-linkedin social-li font-24-xs" href="https://www.linkedin.com/company/6382421/"></a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a class=" fa fa-google-plus social-gplus font-24-xs" href="https://www.linkedin.com"></a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
