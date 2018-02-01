@@ -321,7 +321,13 @@
                             <div class="tab-pane" id="tab_job_info">
                                 <ul class="list-group list-border pt-0">
                                     <!-- Content -->
-                                    <?php foreach ($job as $key => $value) { ?>
+                                    <?php 
+										$article_page 	= $this->session->userdata('article_page');
+										$no = 1;
+										foreach ($job as $key => $value) {
+											if(($no < $article_page*5-4) || ($no > $article_page*5)){$no++;continue;} 
+											$no++; 
+									?>
                                         <li class="list-group-item ">
                                             <div class="media">
                                                 <div class="pull-right ">
@@ -346,7 +352,66 @@
                                     <!-- Pagination -->
                                     <li class="list-group-item px-0 ">
                                         <ul class="pagination pagination-lg">
-                                            <li>
+                                            <?php
+												$article_total = 0;
+												foreach($job as $row){
+													$article_total++;
+												}
+												
+												$max_page = 0;
+												if($article_total%5 == 0){
+													$max_page = $article_total/5;
+												}else{
+													$max_page = floor($article_total/5) + 1;
+												}
+												
+												
+												$article_page 	= $this->session->userdata('article_page');
+												$prev 			= $article_page - 1;
+												$next 			= $article_page + 1;
+											?>
+											<li>
+												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info'?>"> First </a>
+											</li>
+											<li>
+												<a href="<?=$article_page == 1?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'page/'.$prev.'#tab_job_info'?>">
+													<i class="fa fa-angle-left"></i>
+												</a>
+											</li>
+											<?php if($article_page-2 > 0){ $other_page = $article_page-2;?>
+												<li>
+													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page-2?> </a>
+												</li>
+											<?php }?>
+											<?php if($article_page-1 > 0){ $other_page = $article_page-1;?>
+											<li>
+												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page-1?> </a>
+											</li>
+											<?php }?>
+											<li class="active">
+												<a href="javascript:;"> <?=$article_page?> </a>
+											</li>
+											<?php if($article_total > $article_page+$article_page*4){ $other_page = $article_page+1;?>
+												<li>
+													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page+1?> </a>
+												</li>
+											<?php }?>
+											<?php if($article_total > $article_page+$article_page*4+5){ $other_page = $article_page+2;?>
+												<li>
+													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page+2?> </a>
+												</li>
+											<?php }?>
+											<li>
+												<a href="<?=$article_page == $max_page || $article_page > $max_page?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$next.'#tab_job_info'?>">
+													<i class="fa fa-angle-right"></i>
+												</a>
+											</li>
+											<li>
+												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info'?>"> Last </a>
+											</li>
+											
+											
+											<!--<li>
                                                 <a href="javascript:;">
                                                     <i class="fa fa-angle-left"></i>
                                                 </a>
@@ -373,7 +438,7 @@
                                                 <a href="javascript:;">
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
-                                            </li>
+                                            </li>-->
                                         </ul>
                                     </li>
                                 </ul>

@@ -208,7 +208,10 @@ class Profile extends CI_Controller {
     }
 
     public function company(){
-        $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
+        $this->session->unset_userdata('article_page');
+		$this->session->set_userdata('article_page', 1);
+		
+		$id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
         if (!$id) {
             redirect(show_404());
         }
@@ -220,6 +223,25 @@ class Profile extends CI_Controller {
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
         $this->load->view('employer/company_profile', $profile_form);
     }
+	
+	public function company_page($id,$separator,$page){
+        if($page < 1 || !is_numeric($page)){
+			redirect(base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL));
+		}
+		$this->session->set_userdata('article_page', $page);
+		
+		$id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
+        if (!$id) {
+            redirect(show_404());
+        }
+        $profile_form['job'] = $this->employer_model->get_job_post($id);
+        $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile_form['detail'] = $get_user_profile;
+        $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));
+        $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'profile_photo'));
+        $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
+        $this->load->view('employer/company_profile', $profile_form);
+	}
 
     public function detail_profile(){
         $id = base64_decode($this->input->post('user_id'));

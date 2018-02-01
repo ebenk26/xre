@@ -19,12 +19,10 @@
             <div class="col-md-9">
 
                 <ul class="list-group list-border">
-                    <?php
+                    <?php 
 						$article_page 	= $this->session->userdata('article_page');
-					?>
-					
-					<?php 
-						$no = 1;foreach($result as $row){ 
+						$no = 1;
+						foreach($result as $row){ 
 							if(($no < $article_page*5-4) || ($no > $article_page*5)){$no++;continue;} 
 							$no++;					
 					?>
