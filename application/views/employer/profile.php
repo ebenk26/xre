@@ -44,6 +44,7 @@
                                                 <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs "><?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Xremo Sdn Bhd'; ?></h3>
                                                 <h5 class="md-grey-text text-darken-1 font-24-xs my-4"><?php echo !empty($detail['industry']) ? $detail['industry']: 'Job Portal'; ?></h5>
                                                 <hr class="mt-width-400-xs center-block">
+                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="btn btn-md-indigo mb-6">View My Profile</a>
                                                 <div class="mt-card-social">
                                                     <ul>
                                                         <?php if (!empty($social)) {
@@ -116,8 +117,19 @@
                                     <div class="tab-pane active" id="tab_about_info">
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="md-indigo-text  font-weight-700 text-uppercase">About Company</h5>       
-                                                <p class="text-justify"> <?php echo ucfirst($detail['company_description']); ?></p>
+                                                <h5 class="md-indigo-text  font-weight-700 text-uppercase">About Company</h5> 
+                                                <?php if (!empty($detail['company_description'])) {?>
+                                                    <p class="text-justify"> <?php echo ucfirst($detail['company_description']); ?></p>
+                                                <?php }else{ ?>      
+                                                    <div class="portlet px-4 py-10 md-shadow-none bg-grey-cararra">
+                                                        <div class="portlet-body text-center">
+                                                            <i class="icon-note font-grey-mint font-40-xs mb-4"></i>
+                                                            <h4 class="text-center font-weight-500 font-grey-mint">No Info</h4>
+                                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by click on "
+                                                                <i class="icon-pencil"></i> Edit Profile"</h5>
+                                                        </div>
+                                                    </div>
+                                                <?php } ?>
                                             </div>
                                         </div>
 
@@ -132,27 +144,27 @@
                                                     <dt class="font-20-xs md-grey-text font-weight-600 ">Spoken Language</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <ul class="list-inline unstyled-list mb-0">
-                                                            <li><?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : 'English'; ?></li>
+                                                            <li><?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></li>
                                                         </ul>
                                                     </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Size</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : 'Unknown'; ?> People</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?> People</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">DressCode</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code']) : 'Unknown' ?> </dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Benefit</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : 'Unknown'?></dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?></dd>
                                                 </dl>
                                             </div>
                                             <div class="m-grid-col">
                                                 <dl>
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Industry</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['industry']) ? $detail['industry'] : 'Unknown'; ?></dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['industry']) ? $detail['industry'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Working Hour</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['working_days']) ? ucwords($detail['working_days']) : 'Unknown'?> ( <?php echo !empty($detail['working_hours']) ? $detail['working_hours'] : 'Unknown' ?>)</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['working_days']) ? ucwords($detail['working_days']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?> ( <?php echo !empty($detail['working_hours']) ? $detail['working_hours'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?>)</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Website</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
@@ -166,70 +178,35 @@
 
                                     </div>
                                     <div class="tab-pane " id="tab_contact_info">
+                                        <h4 class="font-weight-500">Contact Information</h4>
+                                        <hr>
+                                        <?php $addr = json_decode($detail['address']); 
+                                            if (!empty($addr)) {?>
+                                        <ul class="list-group list-border">
+                                            
+                                            <?php foreach ($addr as $key => $value) {?>
+                                            <li class="list-group-item">
+                                                <span class="label label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>"><?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?></span>
+                                                <h5 class="font-weight-500">[<?php echo $value->building_address; ?>],[<?php echo $value->building_city; ?>],[<?php echo $value->building_postcode; ?>],[<?php echo $value->building_state; ?>],[<?php echo $value->building_country; ?>]</h5>
+                                                <h5><?php echo $value->building_email; ?></h5>
+                                                <h5>
+                                                    <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>
+                                                <h5>
+                                                    <i class="fa fa-fax mr-2"></i> <?php echo $value->building_fax; ?></h5>
 
-                                        <!-- Email and Full address -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <dl>
-
-                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Email</dt>
-
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['registered_email']) ? $detail['registered_email'] : 'cs@xremo.com' ?></dd>
-                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Address</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <ul class="list-unstyled">
-                                                            <?php $addr = json_decode($detail['address']); 
-                                                                if (!empty($addr)) {
-                                                                foreach ($addr as $key => $value) {?>
-                                                                    <li>
-                                                                    <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?>  mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> </span> <?php echo $value->building_address; ?> , <?php echo $value->building_city ?> , <?php echo $value->building_postcode ?> ,<?php echo $value->building_state ?> , <?php echo $value->building_country ?>.
-                                                                    </li>
-                                                                <?php } ?>
-                                                            <?php }else{ echo '<li><span>Unknown</span></li>'; } ?>
-                                                        </ul>
-                                                    </dd>
-                                                </dl>
+                                            </li>
+                                            <?php } ?>
+                                        </ul>
+                                        <?php }else{ ?>
+                                        <div class="portlet px-4 py-10 md-shadow-none bg-grey-cararra">
+                                            <div class="portlet-body text-center">
+                                                <i class="icon-note font-grey-mint font-40-xs mb-4"></i>
+                                                <h4 class="text-center font-weight-500 font-grey-mint">No Info</h4>
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by click on "
+                                                    <i class="icon-pencil"></i> Edit Profile"</h5>
                                             </div>
                                         </div>
-                                        <!-- Phone And Fax -->
-                                        <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <dl>
-                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Phone</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <ul class="list-unstyled">
-                                                            <?php $addr = json_decode($detail['address']); 
-                                                                if (!empty($addr)) {
-                                                                foreach ($addr as $key => $value) {?>
-                                                                    <li>
-                                                                        <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
-                                                                        </span> <?php echo $value->building_phone; ?> 
-                                                                    </li>
-                                                                <?php } ?> 
-                                                            <?php }else{ echo '<li><span>Unknown</span></li>'; } ?>
-                                                        </ul>
-                                                    </dd>
-                                                </dl>
-                                            </div>
-                                            <div class="m-grid-col">
-                                                <dl>
-                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Fax</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <ul class="list-unstyled">
-                                                            <?php 
-                                                                if (!empty($addr)) { 
-                                                            foreach ($addr as $key => $value) {?>
-                                                                <li>
-                                                                    <span class="badge badge-roundless <?php echo ($value->optionsRadios=='HQ') ? 'badge-md-orange' : 'badge-md-indigo' ?> mr-2"> <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?> (<?php echo $value->building_state; ?>) 
-                                                                    </span> <?php echo $value->building_fax; ?> 
-                                                                </li>
-                                                            <?php } ?> 
-                                                        <?php }else{ echo '<li><span>Unknown</span></li>'; } ?>
-                                                        </ul>
-                                                    </dd>
-                                                </dl>
-                                            </div>
-                                        </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -552,32 +529,21 @@
                                 </div>
                             </form>
                         </div>
-
-                        <!-- Tab Edit Contact Info -->
                         <div class="tab-pane form " id="tab_edit_contact_info">
                             <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_contact_info"  class="form-horizontal">
-                                <div class="modal-body form-body ">
+                                <div class="modal-body form-body">
                                     <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
-
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Email Address</label>
-                                            <div class="col-md-10 ">
-                                                <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="email" value="<?php echo !empty($user_profile['email']) ? $user_profile['email'] : ''; ?>">
-                                            </div>
-                                        </div>
-                                        <h4 class="form-section"> Office</h4>
                                         <div class="mt-repeater">
                                             <div data-repeater-list="contact_info">
-                                            <?php if (!empty($company_address)) {
-                                             foreach ($company_address as $key => $value) { ?>
+                                                <?php if (!empty($company_address)) {
+                                                foreach ($company_address as $key => $value) { ?>
                                                 <div data-repeater-item class="mt-repeater-item">
-
                                                     <!-- Address -->
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-2">Address</label>
-                                                                <div class="col-md-10 ">
+                                                                <div class="col-md-10">
                                                                     <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="building_address" value="<?php echo $value->building_address; ?>">
                                                                 </div>
                                                             </div>
@@ -618,7 +584,7 @@
 
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <!-- <label class="control-label ">Country</label> -->
+                                                                <!-- <label class="control-label">Country</label> -->
                                                                 <label class="control-label col-md-4">Country</label>
                                                                 <div class="col-md-8">
                                                                     <select class="form-control " name="building_country">
@@ -635,6 +601,25 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group">
+                                                                <label class="control-label col-md-4">Latitude</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" name="building_latitude" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_latitude; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Longititude</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" name="building_longitude" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_longitude; ?>">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
                                                                 <label class="control-label col-md-4">Phone Number</label>
                                                                 <div class="col-md-8">
                                                                     <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_phone; ?>">
@@ -646,7 +631,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Fax Number</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" value="<?php echo $value->building_fax; ?>">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_fax; ?>">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -658,7 +643,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Office Type</label>
                                                                 <div class="col-md-8">
-                                                                    <div class="mt-radio-inline ">
+                                                                    <div class="mt-radio-inline">
                                                                         <label class="mt-radio">
                                                                             <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" <?php echo ($value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
                                                                             <span></span>
@@ -672,26 +657,32 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <div class="pull-right mt-width-300-xs  ">
-                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block ">
-                                                                    <i class="fa fa-close"></i> Remove
-                                                                </a>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Email Address</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="building_email" value="<?php echo $value->building_email; ?>">
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     </div>
-
+                                                    <div class="row mx-0">
+                                                        <div class="mt-width-300-xs">
+                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block">
+                                                                <i class="fa fa-close"></i> Remove
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            <?php }
-                                            }else{?>
+                                                <?php } }else{ ?>
                                                 <div data-repeater-item class="mt-repeater-item">
-
                                                     <!-- Address -->
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-2">Address</label>
-                                                                <div class="col-md-10 ">
-                                                                    <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="building_address">
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control" placeholder="Unit / Lot , Road ,">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -704,7 +695,7 @@
 
                                                                 <label class="control-label col-md-4">City</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control " name="building_city">
+                                                                    <input type="text" class="form-control" name="building_city">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -731,19 +722,38 @@
 
                                                         <div class="col-md-6">
                                                             <div class="form-group">
-                                                                <!-- <label class="control-label ">Country</label> -->
+                                                                <!-- <label class="control-label">Country</label> -->
                                                                 <label class="control-label col-md-4">Country</label>
                                                                 <div class="col-md-8">
                                                                     <select class="form-control " name="building_country">
                                                                         <option value="" selected disabled>Select one </option>
-                                                                        <?php foreach ($countries as $key => $value) { ?>
-                                                                            <option><?php echo $value['name']; ?></option>
+                                                                        <?php foreach ($countries as $key => $country_value) { ?>
+                                                                            <option><?php echo $country_value['name']; ?></option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <!--/span-->
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Latitude</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" placeholder="1.643604 " name="building_latitude">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Longititude</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control" placeholder="1.955566" name="building_longitude">
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-6">
@@ -759,7 +769,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Fax Number</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" >
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -771,9 +781,9 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Office Type</label>
                                                                 <div class="col-md-8">
-                                                                    <div class="mt-radio-inline ">
+                                                                    <div class="mt-radio-inline">
                                                                         <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" checked name="HQ"> Headquarter
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" name="HQ"> Headquarter
                                                                             <span></span>
                                                                         </label>
                                                                         <label class="mt-radio">
@@ -785,32 +795,38 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
-                                                            <div class="pull-right mt-width-300-xs  ">
-                                                                <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block ">
-                                                                    <i class="fa fa-close"></i> Remove
-                                                                </a>
+                                                            <div class="form-group">
+                                                                <label class="control-label col-md-4">Email Address</label>
+                                                                <div class="col-md-8">
+                                                                    <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="building_email">
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     </div>
-
+                                                    <div class="row mx-0">
+                                                        <div class="mt-width-300-xs">
+                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block">
+                                                                <i class="fa fa-close"></i> Remove
+                                                            </a>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
-                                            <?php }?>
+                                                <?php } ?>
                                             </div>
-                                            <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add ">
+                                            <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add">
                                                 <i class="fa fa-plus"></i> Add new office</a>
                                         </div>
 
 
                                     </div>
                                 </div>
-                                <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs" id="save_profile">Save</button>
+                                <div class="modal-footer form-actions">
+                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
                                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                                 </div>
                             </form>
                         </div>
-
                     </div>
                     <!-- /.modal-content -->
                 </div>

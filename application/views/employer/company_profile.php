@@ -105,19 +105,21 @@
                                         </a>
                                         <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
                                             <li>
-                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
+                                            <?php $roles= $this->session->userdata('roles'); if ($roles == 'student') {?>
+                                                <li>
+                                                    <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                        <i class="icon-book-open mr-3"></i>My Resume</a>
+                                                </li>
+                                            <?php } ?>
                                             <li>
-                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
                                             <li class="divider"></li>
@@ -663,6 +665,8 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
     <script>
+    var address = <?php echo $detail['address']; ?>;
+
       function initMap() {
         var latLang = {lat: -34.397, lng: 150.644};
         // Create a map object and specify the DOM element for display.

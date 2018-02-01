@@ -79,16 +79,16 @@
                                     <a href="job-search.html" class="s-header-v2-nav-link  g-color-md-orange-text ">Search Job</a>
                                 </li> -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/about" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/services" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="#" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>site/user/login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
@@ -103,16 +103,16 @@
                                     <a href="job-search.html" class="s-header-v2-nav-link md-orange-text">Search Job</a>
                                 </li> -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/about" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/services" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>site/contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="#" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <?php if(!empty($id)){?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
