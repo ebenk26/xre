@@ -207,16 +207,24 @@
                                     </h5>
                                 </li>
                                 <li>
-                                    <i class="fa fa-facebook g-font-size-20-xs social-fb"></i>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" class="fb-share-button share-fb" data-href="umroh-bersama-ustadz-subhan-bawazier" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank">
+                                        <i class="fa fa-facebook g-font-size-20-xs social-fb"></i>
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="fa fa-google-plus g-font-size-20-xs social-gplus"></i>
+                                    <a href="https://plus.google.com/share?url=<?= XREMO_URL; ?><?= uri_string(); ?>" class="share-gplus" target="_blank">
+                                        <i class="fa fa-google-plus g-font-size-20-xs social-gplus"></i>
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="fa fa-linkedin g-font-size-20-xs social-li"></i>
+                                    <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" class="share-tw" target="_blank">
+                                        <i class="fa fa-linkedin g-font-size-20-xs social-li"></i>
+                                    </a>
                                 </li>
                                 <li>
-                                    <i class="fa fa-twitter g-font-size-20-xs social-tw"></i>
+                                    <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" class="share-tw" target="_blank">
+                                        <i class="fa fa-twitter g-font-size-20-xs social-tw"></i>
+                                    </a>
                                 </li>
 
                             </ul>

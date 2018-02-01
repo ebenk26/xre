@@ -34,11 +34,13 @@ if (defined('ENVIRONMENT'))
 	{
 		case 'development':
 			error_reporting(E_ALL);
+			define('XREMO_URL', 'https://elabram.com/xremo/');
 		break;
 
 		case 'testing':
 		case 'production':
 			error_reporting(0);
+			define('XREMO_URL', 'https://xremo.com/');
 		break;
 
 		default:
