@@ -888,7 +888,22 @@
                                                 <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['achievement_title']?>
                                                 </h5>
                                                 <small>
-                                                    <i class="fa fa-calendar mr-1"></i><?php echo date('F Y', strtotime($value['achievement_start_date']));?> - <?php echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['achievement_end_date']));?> </small>
+                                                    <i class="fa fa-calendar mr-1"></i>
+                                                    <?php 
+                                                        if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('F Y', strtotime($value['achievement_start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['achievement_end_date']));
+                                                        }
+                                                    ?>
+                                                </small>
                                             </div>
                                         </div>
                                         <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
@@ -926,7 +941,22 @@
                                                 <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['name']?>
                                                 </h5>
                                                 <small>
-                                                    <i class="fa fa-calendar mr-1"></i><?php echo date('F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));?> </small>
+                                                    <i class="fa fa-calendar mr-1"></i>
+                                                    <?php 
+                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('F Y', strtotime($value['start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
+                                                        }
+                                                    ?> 
+                                                </small>
                                             </div>
                                         </div>
                                         <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
