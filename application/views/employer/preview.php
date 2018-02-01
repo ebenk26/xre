@@ -112,18 +112,22 @@ if (!empty($job->location)) {
                                                 <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
+											<?php if ($roles !='administrator') {?>
                                             <li>
                                                 <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
+											<?php }?>
                                             <li>
                                                 <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-book-open mr-3"></i>My Resume</a>
                                             </li>
+											<?php if ($roles !='administrator') {?>
                                             <li>
                                                 <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
+											<?php }?>
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
@@ -163,23 +167,27 @@ if (!empty($job->location)) {
                                         <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
-                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                         <li>
                                             <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/dashboard/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
+										<?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/profile/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
+										<?php }?>
                                         <!-- <li>
                                             <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-book-open mr-3"></i>My Resume</a>
                                         </li> -->
+										<?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/calendar/" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
+										<?php }?>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="<?php echo base_url();?>site/user/logout/" class="s-header-v2-dropdown-menu-link">

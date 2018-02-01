@@ -104,25 +104,29 @@
                                             <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
                                             <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                         </a>
-                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                             <li>
                                                 <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
+											<?php if ($roles !='administrator') {?>
                                             <li>
                                                 <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
+											<?php }?>
                                             <?php  if ($roles == 'student') {?>
                                                 <li>
                                                     <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
                                                         <i class="icon-book-open mr-3"></i>My Resume</a>
                                                 </li>
                                             <?php } ?>
+											<?php if ($roles !='administrator') {?>
                                             <li>
                                                 <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
+											<?php }?>
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">

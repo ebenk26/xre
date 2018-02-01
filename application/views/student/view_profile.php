@@ -123,25 +123,29 @@
                                         <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
-                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                    <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                         <li>
                                             <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
+										<?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
-                                        <?php if ($roles !='employer') {?>
+										<?php } ?>
+                                        <?php if ($roles !='employer' && $roles !='administrator') {?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($id),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($student_id),'=');?>" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-book-open mr-3"></i>My Resume</a>
                                             </li>
                                         <?php } ?>
+										<?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
+										<?php } ?>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">

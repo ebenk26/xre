@@ -378,6 +378,7 @@ class Profile extends CI_Controller {
     public function view_my_profile(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
         $profile['user_profile'] = $this->student_model->get_user_profile($id);
+		$profile['student_id'] = $id;
         $this->load->view('student/view_profile',$profile);
     }
 }
