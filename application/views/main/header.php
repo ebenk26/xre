@@ -54,7 +54,7 @@
                     <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
                         <!-- Logo -->
                         <div class="s-header-v2-logo ">
-                            <a href="<?php echo base_url(); ?>site/home" class="s-header-v2-logo-link ">
+                            <a href="<?php echo base_url(); ?>home" class="s-header-v2-logo-link ">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo base_url(); ?>assets/img/site/xremo.png" alt="Dublin Logo" style="height:47px">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
                             </a>
