@@ -1248,15 +1248,7 @@
         </div>
     </div>
 
-    <div class="container-fluid md-black ">
-        <p class="g-font-size-14-xs  g-color-white-opacity-light text-center ">
-            <i class="fa fa-copyright"></i> <?php echo date('Y');?> Xremo
-        </p>
-    </div>
-
-
-    <!-- Back To Top -->
-    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
+    <?php $this->load->view('main/footer_content');?>
 
     <!-- BEGIN CORE PLUGINS -->
     <!-- Metronic -->
