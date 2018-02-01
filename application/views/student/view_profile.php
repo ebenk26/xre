@@ -725,7 +725,7 @@
                                             <i class="fa fa-tasks fa-fw"></i><?php echo $value['name']; ?>
                                             <small class="font-weight-400 font-13-xs pull-right"> 
                                                 <?php 
-                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
                                                     {
                                                         echo 'Not Provided';
                                                     }
@@ -771,7 +771,21 @@
                                                 <i class="fa fa-institution mr-1"></i><?php echo $value['university_name']; ?>
                                             </h6>
                                             <small>
-                                                <i class="fa fa-calendar mr-1"></i><?php echo date('F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));?>
+                                                <i class="fa fa-calendar mr-1"></i>
+                                                <?php 
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                    {
+                                                        echo 'Not Provided';
+                                                    }
+                                                    else
+                                                    {
+                                                        echo date('F Y', strtotime($value['start_date']));
+                                                ?> 
+                                                - 
+                                                <?php 
+                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
+                                                    }
+                                                ?>
                                             </small>
                                             <h6 class=" font-weight-400 font-grey-gallery mb-1">
                                             </h6>
