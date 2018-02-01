@@ -24,12 +24,23 @@ class Job_Board extends CI_Controller {
         $complement['position_levels'] = $this->employer_model->get_position();
         $complement['year_of_experience'] = $this->employer_model->get_year_of_experience();
         $complement['job_post'] = $this->employer_model->get_job_post($id);
+        $complement['countries'] = $this->employer_model->get('countries', 'name', 'asc');
+        $complement['forex'] = $this->employer_model->get('forex', 'name', 'asc');
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/job_board', $complement);
         $this->load->view('employer/main/footer');
 	}
 
     public function post(){
+        $address= array('address' => $this->input->post('address'),
+                        'city' => $this->input->post('city'),
+                        'state' => $this->input->post('state'),
+                        'postcode' => $this->input->post('postcode'),
+                        'country' => $this->input->post('country'),
+                        'latitude' => $this->input->post('latitude'),
+                        'longitude' => $this->input->post('longitude')
+                        );
+        $status = $this->input->post('status');
         $jobPost = array('name' => $this->input->post('job_position_name'),
                          'user_id' => $this->session->userdata('id'),
                          'position_level_id' => $this->input->post('employmentLevel'),
@@ -39,7 +50,9 @@ class Job_Board extends CI_Controller {
                          'qualifications' => $this->input->post('jobRequirement'),
                          'other_requirements' => $this->input->post('niceToHave'),
                          'additional_info'=> $this->input->post('additionalInfo'),
-                         'status'=> $this->input->post('status'),
+                         'status'=> !empty($status) ? $status : 'post',
+                         'location'=> json_encode($address),
+                         'forex' => $this->input->post('currency'),
                          'budget_min' => $this->input->post('budget_min'),
                          'budget_max' => $this->input->post('budget_max'),
                          'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
@@ -62,6 +75,15 @@ class Job_Board extends CI_Controller {
     }
 
     public function update(){
+        $address= array('address' => $this->input->post('address'),
+                        'city' => $this->input->post('city'),
+                        'state' => $this->input->post('state'),
+                        'postcode' => $this->input->post('postcode'),
+                        'country' => $this->input->post('country'),
+                        'latitude' => $this->input->post('latitude'),
+                        'longitude' => $this->input->post('longitude')
+                        );
+
         $jobPost = array('name' => $this->input->post('title'),
                          'id' => $this->input->post('job_id'),
                          'user_id' => $this->session->userdata('id'),
@@ -73,6 +95,8 @@ class Job_Board extends CI_Controller {
                          'other_requirements' => $this->input->post('nice_To_Have'),
                          'additional_info'=> $this->input->post('additional_Info'),
                          'status'=> $this->input->post('status'),
+                         'location'=> $address,
+                         'forex' => $this->input->post('currency'),
                          'budget_min' => $this->input->post('budget_min'),
                          'budget_max' => $this->input->post('budget_max'),
                          'updated_at' => date('Y-m-d H:i:s')
@@ -130,7 +154,6 @@ class Job_Board extends CI_Controller {
 
     public function reject(){
         $id = base64_decode($this->input->post('post_id'));
-        var_dump($id);exit();
         $shorlist_job = $this->job_model->reject($id);
         
         if ($shorlist_job == true) {
