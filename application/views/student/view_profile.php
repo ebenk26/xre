@@ -827,7 +827,22 @@
                                                     <span class="badge badge-roundless badge-md-deep-purple letter-space-sm font-weight-500"> Volunteer</span>
                                                     <span class="badge badge-roundless badge-md-purple letter-space-sm font-weight-500"> Contract</span>
                                                     <span class="badge badge-roundless badge-md-amber letter-space-sm font-weight-500"> Temporary</span> -->
-                                                <small><?php echo date('F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));?> </small>
+                                                <small>
+                                                    <?php 
+                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('F Y', strtotime($value['experiences_start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
+                                                        }
+                                                    ?> 
+                                                </small>
                                             </h5>
                                             <h6 class=" font-weight-400 font-15-xs">
                                                 <i class="fa fa-building-o"></i> <?php echo $value['experiences_company_name']; ?>
