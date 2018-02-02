@@ -186,10 +186,14 @@
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font">
-                                                                <?php foreach ($user_profile['language'] as $key => $language) {?>
-                                                                    <b><?php echo !empty($language['title']) ?  $language['title'] : 'Please edit your profile';?></b>
-                                                                    [ Spoken : <?php echo $language['spoken']; ?> Level , Written : <?php echo $language['written']; ?> Level]
-                                                                    <br>
+                                                                <?php if (!empty($user_profile['language'])) {?>
+                                                                    <?php foreach ($user_profile['language'] as $key => $language) {?>
+                                                                        <b><?php echo !empty($language['title']) ?  $language['title'] : 'Please edit your profile';?></b>
+                                                                        [ Spoken : <?php echo $language['spoken']; ?> Level , Written : <?php echo $language['written']; ?> Level]
+                                                                        <br>
+                                                                    <?php } ?>
+                                                                <?php }else{ ?>
+                                                                    <h5>Please edit your profile</h5>
                                                                 <?php } ?>
                                                                 </h5>
                                                             </li>
