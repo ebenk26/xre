@@ -29,4 +29,31 @@ function time_elapsed_string($datetime, $full = false) {
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
+function xrPagination($param=array())
+{
+    $CI =& get_instance();
+    $CI->load->library('pagination');
+
+    $config['base_url']         = $param["base_url"];
+    $config['total_rows']       = $param["total_rows"];
+    $config['per_page']         = $param["perPage"];
+    $config['uri_segment']      = 3;
+    $config['num_links']        = 5;
+    $config['full_tag_open']    = '<li>';
+    $config['full_tag_close']   = '</li>';
+    $config['prev_link']        = '<i class="fa fa-angle-left"></i>';
+    $config['next_link']        = '<i class="fa fa-angle-right"></i>';
+    $config['cur_tag_open']     = '<li class="active"><a>';
+    $config['cur_tag_close']    = '</a></li>';
+    $config['next_tag_open']    = '<li>';
+    $config['next_tag_close']   = '</li>';
+    $config['num_tag_open']     = '<li>';
+    $config['num_tag_close']    = '</li>';
+    $config['first_link']       = FALSE;
+    $config['last_link']        = FALSE;
+
+    $CI->pagination->initialize($config); 
+
+    return $CI->pagination->create_links();
+}
 ?>

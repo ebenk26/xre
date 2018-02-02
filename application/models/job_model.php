@@ -2,21 +2,36 @@
 
 class Job_Model extends CI_Model{
 
-	function get_job($word){
-		$this->db->select('job_positions.*, users.fullname as username, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level');
-		$this->db->from('job_positions');		
-        $this->db->join('users', 'users.id = job_positions.user_id', 'left');
-        $this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
+	function get_job($word,$offset,$perPage){
+		$this->db->select('job_positions.*, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level, employment_types.name as job_type');
+		$this->db->from('job_positions');
+        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
-		$this->db->like('job_positions.name', $word); 
-		$this->db->or_like('users.fullname', $word);
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+		$this->db->like('job_positions.name', $word);
+		$this->db->or_like('industries.name', $word);
+		$this->db->or_like('position_levels.name', $word);
+		$this->db->limit($perPage,$offset);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	function get_total_job($word){
+		$this->db->from('job_positions');
+        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.id', 'left');
+        $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
+        $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
+        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
+        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+		$this->db->like('job_positions.name', $word);
 		$this->db->or_like('industries.name', $word);
 		$this->db->or_like('position_levels.name', $word);
 		$query = $this->db->get();
-		return $query->result_array();
+		return $query->num_rows();
 	}
 
 	function apply($job){

@@ -191,9 +191,9 @@
                                                             <li>
                                                                 <h5 class=" roboto-font">
                                                                 <?php if (!empty($user_profile['language'])) {?>
-                                                                    <?php foreach ($user_profile['language'] as $key => $language) {?>
-                                                                        <b><?php echo !empty($language['title']) ?  $language['title'] : 'Please edit your profile';?></b>
-                                                                        [ Spoken : <?php echo $language['spoken']; ?> Level , Written : <?php echo $language['written']; ?> Level]
+                                                                    <?php foreach ($user_profile['language'] as $key => $lang) {?>
+                                                                        <b><?php echo !empty($lang['title']) ?  $lang['title'] : 'Please edit your profile';?></b>
+                                                                        [ Spoken : <?php echo $lang['spoken']; ?> Level , Written : <?php echo $lang['written']; ?> Level]
                                                                         <br>
                                                                     <?php } ?>
                                                                 <?php }else{ ?>
@@ -1041,6 +1041,7 @@
                                             </div>
                                         </div>
 
+
                                         <!-- SECTION : Language Profieciency -->
                                         <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="languageSection"> Language Profieciency </h4>
                                         <hr class="mt-2">
@@ -1049,7 +1050,8 @@
                                                 <div class="form-group mx-0">
                                                     <div class="mt-repeater">
                                                         <div data-repeater-list="group-b">
-                                                            <?php
+                                                        
+                                                            <?php 
                                                                 if (!empty($user_profile['language'])) {
                                                                 foreach ($user_profile['language'] as $user_language_key => $user_language_value) {?>
                                                                 <div data-repeater-item class=" row mt-2">
@@ -1086,7 +1088,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                            <?php }
+                                                                <?php }
                                                             }else{ ?>
                                                                 <div data-repeater-item class=" row mt-2">
                                                                     <div class="col-md-4">
