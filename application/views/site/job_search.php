@@ -164,7 +164,7 @@
                     <div class="col-md-12">
                         <div class="form-group mx-0">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control " placeholder="Search Job Now" value="<?php echo $keyword; ?>">
+                                <input type="text" name="query" class="form-control " placeholder="Search Job Now" value="<?php echo $keyword; ?>">
                                 <!-- <input type="text" class="form-control input-medium" placeholder="Location"> -->
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-md-orange btn-lg mb-0">Search</button>
@@ -316,7 +316,7 @@
                     <div class="portlet-title mb-0">
                         <div class="caption">
                             <!-- <i class="icon-speech"></i> -->
-                            <span class="caption-subject font-weight-700 text-uppercase"> Result [ 5 ]</span>
+                            <span class="caption-subject font-weight-700 text-uppercase"> Result [ <?= $total_result; ?> ]</span>
                             <!-- <span class="caption-helper">weekly stats...</span> -->
                         </div>
                         <div class="actions">
@@ -330,170 +330,59 @@
                     </div>
                     <div class="portlet-body">
                         <ul class="list-group list-border">
-                            <!-- Login -->
-                            <li class="list-group-item px-0">
-                                <div class="media">
-                                    <div class="pull-right ">
-                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                    </div>
-                                    <div class="media-body ">
-                                        <h6 class="my-1 font-weight-700 roboto-font">
-                                            <a>Job Position Title </a>
-                                        </h6>
-                                        <h6 class=" my-1 roboto-font">
-                                            <a href="">Company Name</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <p class="my-1 roboto-font">
-                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
-                                    <span class="label label-md-red label-sm">Location</span>
-                                    <span class="label label-md-blue label-sm">Job Type</span>
-                                    <span class="label label-md-purple label-sm">Position Level</span>
-                                </p>
-                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                    magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
-                                </p>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="media">
-                                    <div class="pull-right ">
-                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                    </div>
-                                    <div class="media-body ">
-                                        <h6 class="my-1 font-weight-700 roboto-font">
-                                            <a>Job Position Title </a>
-                                        </h6>
-                                        <h6 class=" my-1 roboto-font">
-                                            <a href="">Company Name</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                < <p class="my-1 roboto-font">
-                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
-                                    <span class="label label-md-red label-sm">Location</span>
-                                    <span class="label label-md-blue label-sm">Job Type</span>
-                                    <span class="label label-md-purple label-sm">Position Level</span>
-                                    </p>
-                                    <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                        magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
-                                    </p>
-                            </li>
-                            <li class="list-group-item px-0">
-                                <div class="media">
-                                    <div class="pull-right ">
-                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                    </div>
-                                    <div class="media-body ">
-                                        <h6 class="my-1 font-weight-700 roboto-font">
-                                            <a>Job Position Title </a>
-                                        </h6>
-                                        <h6 class=" my-1 roboto-font">
-                                            <a href="">Company Name</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <p class="my-1 roboto-font">
-                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
-                                    <span class="label label-md-red label-sm">Location</span>
-                                    <span class="label label-md-blue label-sm">Job Type</span>
-                                    <span class="label label-md-purple label-sm">Position Level</span>
-                                </p>
-                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                    magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
-                                </p>
-
-                            </li>
-                            <li class="list-group-item px-0 ">
-                                <div class="media">
-                                    <div class="pull-right ">
-                                        <a href="job-description.html" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                    </div>
-                                    <div class="media-body ">
-                                        <h6 class="my-1 font-weight-700 roboto-font">
-                                            <a>Job Position Title </a>
-                                        </h6>
-                                        <h6 class=" my-1 roboto-font">
-                                            <a href="">Company Name</a>
-                                        </h6>
-                                    </div>
-                                </div>
-                                <p class="my-1 roboto-font">
-                                    <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
-                                    <span class="label label-md-red label-sm">Location</span>
-                                    <span class="label label-md-blue label-sm">Job Type</span>
-                                    <span class="label label-md-purple label-sm">Position Level</span>
-                                </p>
-                                <p class="multiline-truncate roboto-font font-weight-300 mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                    magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
-                                </p>
-                            </li>
-
-                            <!-- Only Guest -->
-                            <li class="list-group-item px-0">
-                                <div class="media">
-                                    <div class="pull-right ">
-                                        <a href="login.html" class="btn btn-md-green btn-sm letter-space-xs ">Login to view </a>
-                                    </div>
-                                    <div class="media-body ">
-                                        <h6 class="my-1 font-weight-700 roboto-font">
-                                            Job Position Title
-                                        </h6>
-                                        <h6 class=" my-1 roboto-font">
-                                            Company Name
-                                        </h6>
-                                        </dv>
-
-                                    </div>
-                                </div>
-
-                                <p class="my-1 roboto-font">
-                                    <!-- <span class="label label-md-green label-sm">Login to view salary</span> -->
-                                    <span class="label label-md-blue-grey label-sm">Company Industry</span>
-                                    <span class="label label-md-red label-sm">Location</span>
-                                    <span class="label label-md-blue label-sm">Job Type</span>
-                                    <span class="label label-md-purple label-sm">Position Level</span>
-                                </p>
-                                <p class="multiline-truncate roboto-font font-weight-300 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse aliquet urna elit, a pharetra lectus gravida nec. Pellentesque dignissim metus purus, non tincidunt
-                                    magna ultrices facilisis. Mauris placerat erat ultricies euismod facilisis. Curabitur malesuada varius massa sit amet convallis. Ut at tellus ut ligula dapibus consectetur.
-                                </p>
-                            </li>
+                            <?php
+                                if($search_result)
+                                {
+                                    foreach ($search_result as $job_result)
+                                    {
+                            ?>
+                                        <li class="list-group-item px-0">
+                                            <div class="media">
+                                                <div class="pull-right ">
+                                                    <?php 
+                                                        if($this->session->userdata('id') != NULL)
+                                                        {
+                                                    ?>
+                                                            <a href="/job/details" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                    <?php
+                                                        }
+                                                        else
+                                                        {
+                                                    ?>
+                                                            <a href="/login" class="btn btn-md-green btn-sm letter-space-xs ">Login to view </a>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </div>
+                                                <div class="media-body ">
+                                                    <h6 class="my-1 font-weight-700 roboto-font">
+                                                        <a><?= $job_result["name"]; ?></a>
+                                                    </h6>
+                                                    <h6 class=" my-1 roboto-font">
+                                                        <a href=""><?= $job_result["company_name"]; ?></a>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            <p class="my-1 roboto-font">
+                                                <!-- <span class="label label-md-green label-sm">Salary</span> -->
+                                                <span class="label label-md-blue-grey label-sm"><?= $job_result["industry_name"]; ?></span>
+                                                <span class="label label-md-red label-sm"><?= $job_result["state_name"]; ?></span>
+                                                <span class="label label-md-blue label-sm"><?= $job_result["job_type"]; ?></span>
+                                                <span class="label label-md-purple label-sm"><?= $job_result["position_level"]; ?></span>
+                                            </p>
+                                            <p class="multiline-truncate roboto-font font-weight-300 mb-3">
+                                                <?= $job_result["job_description"]; ?>
+                                            </p>
+                                        </li>
+                            <?php
+                                    }
+                                }
+                            ?>
 
                             <!-- Pagination-->
                             <li class="list-group-item px-0 ">
                                 <ul class="pagination pagination-lg">
-                                    <li>
-                                        <a href="javascript:;">
-                                            <i class="fa fa-angle-left"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 1 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 2 </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="javascript:;"> 3 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 4 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 5 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;"> 6 </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
+                                    <?= $pagination; ?>
                                 </ul>
                             </li>
                         </ul>
