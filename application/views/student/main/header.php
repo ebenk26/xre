@@ -91,7 +91,7 @@
 
                 <!-- BEGIN HEADER SEARCH BOX -->
 
-                <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
+                <!--<form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
                         <span class="input-group-btn">
@@ -100,7 +100,7 @@
                             </a>
                         </span>
                     </div>
-                </form>
+                </form>-->
                 <!-- END HEADER SEARCH BOX -->
 
                 <!-- BEGIN TOP NAVIGATION MENU -->
@@ -110,7 +110,11 @@
                         <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-
+						
+						<li class="">
+                            <a href="<?=base_url()?>job/search" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left" target="_blank">Search Job</a>
+                        </li>
+						
 						<!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->
                         <!--<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
