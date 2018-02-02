@@ -323,7 +323,7 @@
                                     <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['degree_name']);?></h4>
+                                    <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
                                     <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
                                     <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
                                     <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['degree_description']);?>
@@ -745,7 +745,7 @@
                                     </div>
                                     <div class="media-body">
                                         <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['name']);?> </h4>
-                                        <!-- <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> 1 September 2013 - 22 February 2017</h6> -->
+                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y',strtotime($value['start_date'])); ?> - <?php echo ($value['end_date'] != '0000-00-00') ? date('d F Y',strtotime($value['start_date'])) : 'Now'; ?></h6>
                                         <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['description']);?>
                                         </p>
                                         <h5 class="font-weight-500 font-20-xs font-22-md mt-3 mb-0 roboto-font">Skills Earned :</h5>

@@ -79,6 +79,10 @@ class Candidate extends CI_Controller {
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
     }
 
+    function invitation(){
+        
+    }
+
 }
 
 ?>
