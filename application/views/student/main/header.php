@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Employer | Profile </title>
+    <title>Student | Profile </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description" />
@@ -105,14 +105,14 @@
 
                 <!-- BEGIN TOP NAVIGATION MENU -->
                 <div class="top-menu">
-
                     <ul class="nav navbar-nav pull-right">
                         <!-- BEGIN NOTIFICATION DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
 
-                        <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+						<!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->
+                        <!--<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
                                 <span class="badge badge-default"> 7 </span>
@@ -209,7 +209,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <!-- END NOTIFICATION DROPDOWN -->
 
                         <!-- BEGIN USER LOGIN DROPDOWN -->

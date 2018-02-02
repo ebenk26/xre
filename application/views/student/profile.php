@@ -619,7 +619,7 @@
                                                             <div class="row ">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group mx-0 mb-0">
-                                                                        <label class="control-label">Job Post</label>
+                                                                        <label class="control-label">Job Title</label>
                                                                         <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept" value="<?php echo ucfirst($value['experiences_title']);?>">
                                                                         <span class="help-block small"> Add your current status career info </span>
                                                                     </div>
@@ -1380,7 +1380,7 @@
                                     <div class="row ">
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
-                                                <label class="control-label">Job Post</label>
+                                                <label class="control-label">Job Title</label>
                                                 <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title" required>
                                                 <span class="help-block small"> Add your current status career info </span>
                                             </div>
