@@ -298,7 +298,7 @@
 
                     </li>
                     <!-- Sidebar Menu Job Application History -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'application_history'): echo 'active'; endif?>">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'applications_history'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title">Application History</span>
