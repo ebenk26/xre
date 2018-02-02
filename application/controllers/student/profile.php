@@ -101,6 +101,7 @@ class Profile extends CI_Controller {
             'language' => $this->input->post('group-b')
         );
         $this->student_model->profile_post($profile);
+        $this->session->set_userdata('name', $this->this->input->post('fullname'));
         redirect(base_url().'student/profile/');
     }
 
