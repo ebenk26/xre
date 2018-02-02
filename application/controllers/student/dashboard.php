@@ -23,6 +23,16 @@ class Dashboard extends CI_Controller {
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $job['job_positions'] = $this->student_model->get_all_job($id);
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
+		$job['users'] = $get_user_profile;
+		
+		//get rate
+		//$this->db->select_average('rate as rate');
+		$this->db->select('AVG(rate) as rate');
+		$this->db->where('user_id', $id);
+		$query = $this->db->get('user_rate');
+		$rate = $query->row()->rate;
+		$job['rate'] = round($rate, 2);
+		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
         $this->load->view('student/main/footer');

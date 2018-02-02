@@ -378,8 +378,35 @@ class Profile extends CI_Controller {
 
     public function view_my_profile(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
-        $profile['user_profile'] = $this->student_model->get_user_profile($id);
+		$profile['user_profile'] = $this->student_model->get_user_profile($id);
 		$profile['student_id'] = $id;
+		
+		//increase number of seen
+		if($this->session->userdata('roles') != "administrator" && $this->session->userdata('id') != $id){
+			$last_seen_by = $profile['user_profile']['overview']['last_seen_by'];
+			$last_seen_at = $profile['user_profile']['overview']['last_seen_at'];
+			
+			$record = false;
+			if($last_seen_by == $this->session->userdata('id')){
+				$now 		= date('Y-m-d H:i:s');
+				$now 		= strtotime($now);
+				$last_seen 	= strtotime($last_seen_at);
+				//10s
+				if($now - $last_seen > 300){
+					$record = true;
+				}
+			}else{
+				$record = true;
+			}
+			if($record){
+				$this->db->set('number_of_seen', 'number_of_seen+1', FALSE);
+				$this->db->set('last_seen_by', $this->session->userdata('id'));
+				$this->db->set('last_seen_at', date('Y-m-d H:i:s'));
+				$this->db->where('id', $id);
+				$this->db->update('users');
+			}
+		}
+		
         $this->load->view('student/view_profile',$profile);
     }
 }

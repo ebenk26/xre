@@ -27,7 +27,7 @@
                             <div class="display my-0">
                                 <div class="number">
                                     <h3 class="font-green-sharp">
-                                        <span data-counter="counterup" data-value="60">60</span>
+                                        <span data-counter="counterup" data-value="<?=$users['overview']['number_of_seen']?>">60</span>
                                     </h3>
                                     <small class="text-uppercase">Profile Seen</small>
                                 </div>
@@ -42,7 +42,7 @@
                             <div class="display my-0">
                                 <div class="number">
                                     <h3 class="font-red-haze">
-                                        <span data-counter="counterup" data-value="3.5" data-></span>
+                                        <span data-counter="counterup" data-value="<?=$rate?>"></span>
                                     </h3>
                                     <small class="text-uppercase">Your Profile Rate</small>
                                 </div>
