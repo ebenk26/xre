@@ -1,4 +1,4 @@
-<div class="page-content-wrapper">
+        <div class="page-content-wrapper">
             <!-- BEGIN CONTENT BODY -->
             <div class="page-content">
                 <!-- BEGIN PAGE HEADER-->
@@ -43,13 +43,13 @@
                                                             </div>
                                                             <div class="media-body">
                                                                 <ul class="list-unstyled">
-                                                                    <li class="font-24-xs font-weight-600"><?php echo $value['name'] ?></li>
-                                                                    <li><a><?php echo $value['company_name'] ?></a></li>
+                                                                    <li class="font-24-xs font-weight-600"> <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" style="color:grey;"><?php echo $value['name'] ?></a></li>
+                                                                    <li><a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['company_id']), '='); ?>"><?php echo $value['company_name'] ?></a></li>
                                                                 </ul>
                                                             </div>
                                                         </td>
-                                                        <td class="text-center"> <?php echo time_elapsed_string($value['created_at']); ?> </td>
-                                                        <td class="text-center"> <span class="label label-sm label-md-green"> Applied </span> </td>
+                                                        <td class="text-center"> <?php echo time_elapsed_string($value['apply_time']); ?> </td>
+                                                        <td class="text-center"> <span class="label label-sm label-md-<?php echo ($value['applieds_status'] == 'WITHDRAW' || $value['applieds_status'] == 'REJECTED') ? 'red' : 'green'; ?>   "> <?php echo $value['applieds_status']; ?> </span> </td>
                                                         <td class="text-center">
                                                             <a href="#" class="btn btn-icon-only btn-danger dlt-history" data-id="<?php echo $value['job_id']; ?>"><i class="icon-trash"></i></a>
                                                         </td>
