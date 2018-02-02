@@ -645,7 +645,7 @@
                                     <div class="widget-media mb-0">
                                         <div class="widget-media-body text-center">
                                             <!-- <img class="widget-media-avatar img-responsive" src="../HTML/img/Xremo/all/xremo-logo-blue.png" alt=""> -->
-                                            <a class="md-grey-text text-darken-1 " href="#">View All </a>
+                                            <a class="md-grey-text text-darken-1 " href="<?=base_url()?>job/search">View All </a>
                                         </div>
 
                                     </div>
