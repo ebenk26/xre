@@ -1256,7 +1256,7 @@
                                                 <div class="m-grid-col m-grid-col-xs-6">
                                                     <input class="form-control form-control-inline date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until" required>
                                                     <span class="help-block md-checkbox has-warning"> 
-                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date" required>
+                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date" >
                                                     <label for="add_education">
                                                         <span></span>
                                                     <span class="check"></span>
@@ -1293,7 +1293,7 @@
                     <div class="modal-content portlet light">
                         <div class="modal-header portlet-title">
                             <div class="caption">
-                                <span class="caption-subject text-capitalize font-weight-500">Add Achievements</span>
+                                <span class="caption-subject text-capitalize font-weight-500">Add Non-Education</span>
                                 <!-- <span class="caption-helper">add about your education info</span> -->
                             </div>
                             <div class="actions py-4">
@@ -1523,7 +1523,7 @@
                                                         <div class="m-grid-col m-grid-col-xs-6">
                                                             <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date" required>
                                                             <span class="help-block md-checkbox has-warning mb-0">
-                                                                <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date" required>
+                                                                <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
                                                                 <label for="checkbox_add_project">
                                                                     <span></span>
                                                                     <span class="check"></span>
