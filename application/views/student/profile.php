@@ -177,6 +177,25 @@
                                                         </ul>
                                                     </div>
                                                 </div>
+                                                <!-- Language Preferences -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Preferences</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font">
+                                                                <?php foreach ($user_profile['language'] as $key => $language) {?>
+                                                                    <b><?php echo !empty($language['title']) ?  $language['title'] : 'Please edit your profile';?></b>
+                                                                    [ Spoken : <?php echo $language['spoken']; ?> Level , Written : <?php echo $language['written']; ?> Level]
+                                                                    <br>
+                                                                <?php } ?>
+                                                                </h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                                 <!-- Video Link -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
