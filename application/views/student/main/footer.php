@@ -183,8 +183,6 @@
                     },
                         function(isConfirm) {
                             if (isConfirm) {
-                                console.log(apply);
-                                console.log('<?php echo base_url();?>student/applications_history/withdraw');
                                 $.ajax({
                                     url:"<?php echo base_url();?>student/applications_history/withdraw",
                                     method:"POST",
@@ -192,6 +190,7 @@
                                       job_id: parseInt(apply),
                                     },
                                     success:function(response) {
+                                        console.log(response);
                                        swal("Sucess", "Success withdraw this job.", "success");
                                        location.reload();
                                     }

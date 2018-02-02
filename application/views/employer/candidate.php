@@ -212,7 +212,7 @@
                                                         </button>
                                                         <ul class="dropdown-menu pull-right" role="menu">
                                                             <li>
-                                                                <a href="#modal_view_summary_shortlist" data-toggle="modal">
+                                                                <a href="javascript:;" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
                                                                     <i class="icon-eye"></i>
                                                                     View Summary
                                                                 </a>
