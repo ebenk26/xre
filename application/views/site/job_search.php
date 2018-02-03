@@ -82,7 +82,7 @@
                                     <a href="<?php echo base_url(); ?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>articles/" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article/" class="s-header-v2-nav-link">Article</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>signup/" class="s-header-v2-nav-link  g-color-md-orange-text ">SIGN UP</a>
@@ -399,86 +399,8 @@
         </div>
     </div>
 
-
-    <footer class="g-bg-color-dark">
-        <!-- Links -->
-        <div class="g-hor-divider-dashed-white-opacity-lightest">
-            <div class="container g-padding-y-40-xs">
-                <div class="row">
-                    <div class="col-sm-3 g-margin-b-20-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/welcome.html">Home</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/about.html">About</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/services.html">Service</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/contacts.html">Contacts</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="../custom_pages/article.html">Article</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3 g-margin-b-40-xs g-margin-b-0-md">
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs">
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="privacy-policy.html">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="terms-use.html">Terms of Use</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
-                        <h3 class="g-font-size-18-xs g-color-white">Xremo </h3>
-                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
-                        <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
-                            <li>
-                                <a class="fa fa-youtube-play fa-lg social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw"></a>
-                            </li>
-                            <li>
-                                <a class=" social-tw fa-lg fa fa-twitter" href="https://twitter.com/xremomy"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-facebook social-fb fa-lg" href="https://www.prod.facebook.com/xremomy/"></a>
-                            </li>
-                            <li>
-                                <a class=" fa fa-linkedin social-li fa-lg" href="https://www.linkedin.com/company/6382421/"></a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Links -->
-
-        <!-- Copyright -->
-        <div class="container g-padding-y-20-xs">
-            <div class="row">
-                <div class="col-xs-6">
-                    <a href="index.html">
-                        <img class="g-height-40-xs" src="../HTML/img/Xremo/all/xremo-logo-white.png" alt=" Xremo Logo">
-                    </a>
-                </div>
-                <div class="col-xs-6 g-text-right-xs">
-                    <p class="g-font-size-14-xs g-margin-b-0-xs g-color-white-opacity-light my-3">
-                        <i class="fa fa-copyright fa-fw"></i>2018 Copyright Xremo.com
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- End Copyright -->
-    </footer>
-
-
-    <a href="javascript:void(0);" class="s-back-to-top js-back-to-top"></a>
-    <!-- Back To Top -->
+	<?php $this->load->view('main/footer_content');?>
+    
 
     <!-- BEGIN CORE PLUGINS -->
     <!-- Metronic -->
