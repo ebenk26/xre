@@ -240,7 +240,7 @@ if (!empty($job->location)) {
                         <div class="media-body">
                             <h5 class="roboto-font mt-2  font-16-xs ">
                                 <i class="fa fa-building-o mr-2"></i>
-                                <a href="<?php echo base_url(); ?>profile/company/<?php echo base64_encode($user_profile['id_users']); ?>" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
+                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" class="font-weight-500"><?php echo $user_profile['company_name'];?> </a>
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <?php if (!empty($location)): ?>

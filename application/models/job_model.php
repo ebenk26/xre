@@ -55,6 +55,7 @@ class Job_Model extends CI_Model{
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'inner');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'inner');
 		$this->db->where('applieds.user_id', $this->session->userdata('id'));
+		$this->db->order_by('applieds.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result_array();
 	}
