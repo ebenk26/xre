@@ -391,39 +391,22 @@
                                             <div class="col-md-9">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'casual') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]">
-                                                        <?php }} ?>
+                                                    
+                                                    <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'casual') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox6">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Casual Dress Code</label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'formal') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]">
-                                                        <?php }} ?>
+                                                        <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'formal') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox7">
                                                             <span></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Formal Dress Code </label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'business') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]">
-                                                        <?php }} ?>
+                                                        <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'business') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox8">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
