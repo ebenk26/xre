@@ -262,7 +262,7 @@
                                     <form action="">
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -275,7 +275,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -288,7 +288,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -301,7 +301,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -314,7 +314,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -327,7 +327,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -340,7 +340,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -353,7 +353,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
@@ -366,7 +366,7 @@
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                <input type="checkbox" checked class="make-switch" data-size="mini">
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
