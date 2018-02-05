@@ -263,60 +263,83 @@
                     <div class="m-grid m-grid-full-height md-indigo login-bg" id="studentContent">
                         <div class="m-grid-col m-grid-col-middle  font-white">
                             <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3 ">Student Feature </h1>
-                                <p class="md-white-text font-18"> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam
-                                    erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
+                                <h1 class="font-weight-500 display-3">Student Feature </h1>
+                                <p class="md-white-text font-18"> Xremo empowers students in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="jobseekerContent" style="display: none;">
-                        <div class="m-grid-col m-grid-col-middle  font-white">
-                            <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3 ">Jobseeker Feature </h1>
-                                <p class="md-white-text font-18"> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam
-                                    erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
+                                    <li>
+                                        <p class="font-weight-600">Feature</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="employerContent" style="display: none;">
+                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="jobseekerContent">
                         <div class="m-grid-col m-grid-col-middle  font-white">
                             <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3 ">Employer Feature </h1>
-                                <p class="md-white-text font-18"> Lorem ipsum dolor sit amet, coectetuer adipiscing elit sed diam nonummy et nibh euismod aliquam
-                                    erat volutpat. Lorem ipsum dolor sit amet, coectetuer adipiscing. </p>
+                                <h1 class="font-weight-500 display-3">Jobseeker Feature </h1>
+                                <p class="md-white-text font-18">Xremo empowers jobseekers in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
                                 <ul class="list-unstyled">
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
-                                    <li><i class="fa fa-caret-right md-orange-text"></i>Lorem ipsum dolor sit amet, coectetuer
-                                        adipiscing elit sed diam nonummy et nibh euismod aliquam erat volutpat. Lorem ipsum
-                                        dolor sit amet, coectetuer adipiscing. </li>
+                                    <li>
+                                        <p class="font-weight-600">Feature</p>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="employerContent">
+                        <div class="m-grid-col m-grid-col-middle  font-white">
+                            <div class="portlet portlet-body px-7">
+                                <h1 class="font-weight-500 display-3">Employer Feature </h1>
+                                <p class="md-white-text font-18">Xremo is one of the first few, if not first to use the Video Resume at such a wide scale. Xremo prides itself in being dynamic and cutting edge by providing you the newest tools at an arm's length and we will continue on providing new ways in solving the problem of Internship, Career Seeking and Talent Recruitment. </p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Easy to access digital resume
+                                    </li>
+
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Candidates video resume
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Interview arrangement & schedule systems
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> Resume Search
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
+                                    </li>
                                 </ul>
                             </div>
                         </div>
