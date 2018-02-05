@@ -124,8 +124,7 @@ class Profile extends CI_Controller {
         $id = $this->session->userdata('id');
         $address = $this->input->post('contact_info');
 
-        $contact = array('email' => $this->input->post('email'),
-                         'address' => json_encode($address) );
+        $contact = array('address' => json_encode($address) );
 
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
             

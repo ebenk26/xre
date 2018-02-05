@@ -273,7 +273,6 @@
 
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
-
         <!-- BEGIN SIDEBAR -->
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse ">
@@ -299,8 +298,8 @@
                             <span class="title">Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
-                        <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?> ">
+                    <li class="nav-item  <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle ">
                             <i class="icon-diamond"></i>
                             <span class="title">Company Profile</span>
                         </a>
