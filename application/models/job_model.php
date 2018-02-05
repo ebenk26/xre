@@ -2,34 +2,93 @@
 
 class Job_Model extends CI_Model{
 
-	function get_job($word,$offset,$perPage){
+	function get_job($word,$offset,$perPage,$empType,$posLevel,$experiences,$company_industry,$country_name,$latest,$popular){
 		$this->db->select('job_positions.*, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level, employment_types.name as job_type');
 		$this->db->from('job_positions');
-        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.id', 'left');
+        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.user_id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
-		$this->db->like('job_positions.name', $word);
-		$this->db->or_like('industries.name', $word);
-		$this->db->or_like('position_levels.name', $word);
+
+        if(!empty($empType))
+        {
+        	$this->db->where("job_positions.employment_type_id IN $empType");
+        }
+
+        if(!empty($posLevel))
+        {
+        	$this->db->where("job_positions.position_level_id IN $posLevel");
+        }
+
+        if(!empty($experiences))
+        {
+        	$this->db->where("job_positions.years_of_experience IN $experiences");
+        }
+
+        if(!empty($company_industry))
+        {
+        	$this->db->where("user_profiles.company_industry_id = $company_industry");
+        }
+
+        if(!empty($country_name))
+        {
+        	$this->db->where("(countries.name LIKE '%$country_name%' OR states.name LIKE '%$country_name%')");
+        }
+
+        if(!empty($latest))
+        {
+        	$this->db->order_by("created_at DESC");
+        }
+
+        if(!empty($popular))
+        {
+        	$this->db->order_by("number_of_candidate DESC");
+        }
+
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
 		$this->db->limit($perPage,$offset);
 		$query = $this->db->get();
+		// var_dump($this->db->last_query());exit();
 		return $query->result_array();
 	}
 
-	function get_total_job($word){
+	function get_total_job($word,$empType,$posLevel,$experiences,$company_industry,$country_name){
 		$this->db->from('job_positions');
-        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.id', 'left');
+        $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.user_id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
-		$this->db->like('job_positions.name', $word);
-		$this->db->or_like('industries.name', $word);
-		$this->db->or_like('position_levels.name', $word);
+
+        if(!empty($empType))
+        {
+        	$this->db->where("job_positions.employment_type_id IN $empType");
+        }
+
+        if(!empty($posLevel))
+        {
+        	$this->db->where("job_positions.position_level_id IN $posLevel");
+        }
+
+        if(!empty($experiences))
+        {
+        	$this->db->where("job_positions.years_of_experience IN $experiences");
+        }
+
+        if(!empty($company_industry))
+        {
+        	$this->db->where("user_profiles.company_industry_id = $company_industry");
+        }
+
+        if(!empty($country_name))
+        {
+        	$this->db->where("(countries.name LIKE '%$country_name%' OR states.name LIKE '%$country_name%')");
+        }
+
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
