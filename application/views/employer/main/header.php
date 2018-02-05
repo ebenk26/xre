@@ -250,12 +250,12 @@
                         <!-- END USER LOGIN DROPDOWN -->
                         <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-extended quick-sidebar-toggler">
+                        <!--<li class="dropdown dropdown-extended quick-sidebar-toggler">
                             <a href="<?php echo base_url(); ?>site/user/logout" style="padding: 0px 15px;">
                                 <span class="sr-only">Toggle Quick Sidebar</span>
                                 <i class="icon-logout"></i>                                
                             </a>
-                        </li>
+                        </li>-->
                         <!-- END QUICK SIDEBAR TOGGLER -->
                     </ul>
                 </div>
