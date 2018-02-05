@@ -350,7 +350,6 @@
                         }
                     });
                     
-5
                     <?php if($this->session->flashdata('msg_success')){ ?>
                         alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
                     <?php } ?>
