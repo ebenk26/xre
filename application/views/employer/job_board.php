@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover  order-column" id="sample_1">
+                        <table class="table table-striped table-bordered table-hover  order-column" id="xremo_table">
                             <thead>
                                 <tr>
                                     <th class="col-md-1 text-center">#</th>

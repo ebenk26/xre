@@ -189,7 +189,7 @@
                                             <li class="list-group-item">
 
                                                 <span class="label label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>"><?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?></span>
-                                                <h5 class="font-weight-500">[<?php echo $value->building_address; ?>],[<?php echo $value->building_city; ?>],[<?php echo $value->building_postcode; ?>],[<?php echo $value->building_state; ?>],[<?php echo $value->building_country; ?>]</h5>
+                                                <h5 class="font-weight-500"><?php echo $value->building_address; ?>,<?php echo $value->building_city; ?>,<?php echo $value->building_postcode; ?>,<?php echo $value->building_state; ?>,<?php echo $value->building_country; ?></h5>
                                                 <h5><?php echo $value->building_email; ?></h5>
                                                 <h5>
                                                     <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>

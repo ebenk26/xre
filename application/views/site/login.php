@@ -65,7 +65,7 @@
                 <!-- Logo -->
                 <div class="m-grid ">
                     <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                        <img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;">
+                        <a href="home"><img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;"></a>
                     </div>
                 </div>
                 <!-- Content -->

@@ -214,7 +214,7 @@ if (!empty($job->location)) {
             <h1 class="md-white-text font-weight-500 display-4"><?php echo isset($job->name) ? $job->name: 'Job title';?> </h1>
             <p class=" roboto-font mt-4 ">
                 <span class="label label-md-green font-weight-500 md-shadow-z-1">
-                    <i class="fa fa-money mr-2"></i><?php echo $job->forex_name; ?> <?php echo $job->budget_min; ?> - <?php echo $job->forex_name; ?> <?php echo $job->budget_max; ?></span>
+                    <i class="fa fa-money mr-2"></i><?php echo $job->forex; ?> <?php echo $job->budget_min; ?> - <?php echo $job->forex; ?> <?php echo $job->budget_max; ?></span>
                 <span class="label label-md-red font-weight-500 md-shadow-z-1">
                     <i class="icon-pointer mr-2"> <?php echo $this->session->userdata('country')?></i></span>
                 <!-- <span class="label label-md-blue-grey font-weight-500 md-shadow-z-1">

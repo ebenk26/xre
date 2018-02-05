@@ -296,12 +296,14 @@
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <li class="nav-item  <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle ">
                             <i class="icon-diamond"></i>
                             <span class="title">Company Profile</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
@@ -315,12 +317,14 @@
                         <a href="<?php echo base_url(); ?>employer/calendar/" class="nav-link ">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
+							<span class="selected"></span>
                             <!-- <span class="arrow"></span> -->
                         </a>
                     </li>
@@ -328,6 +332,7 @@
                         <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>
                             <span class="title">Purchase Package</span>
+							<span class="selected"></span>
                             <!-- <span class="arrow"></span> -->
                         </a>
                     </li>
@@ -343,19 +348,21 @@
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
-                            <span class="arrow"></span>
+                            <span class="selected"></span>
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item start <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
                                 <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">
                                     <i class="icon-list"></i>
                                     <span class="title">Account</span>
+									<span class="selected"></span>
                                 </a>
                             </li>
                             <li class="nav-item start ">
                                 <a href="#" class="nav-link ">
                                     <i class="icon-user-following"></i>
                                     <span class="title">Payment</span>
+									<span class="selected"></span>
                                 </a>
                             </li>
 
