@@ -95,7 +95,7 @@ class Job_Board extends CI_Controller {
                          'other_requirements' => $this->input->post('nice_To_Have'),
                          'additional_info'=> $this->input->post('additional_Info'),
                          'status'=> $this->input->post('status'),
-                         'location'=> $address,
+                         'location'=> json_encode($address),
                          'forex' => $this->input->post('currency'),
                          'budget_min' => $this->input->post('budget_min'),
                          'budget_max' => $this->input->post('budget_max'),
