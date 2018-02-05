@@ -183,130 +183,258 @@
             <div class="col-md-3 ">
                 <div class="media">
                     <div class="pull-right  ">
-                        <a href="#" class="md-indigo-text mb-1">Clear all filter</a>
+                        <form id="clear_all_form" action="<?= current_url(); ?>" method="POST">
+                            <input type="submit" name="clear_all_filter" class="hidden">
+                            <a href="#" class="md-indigo-text mb-1">Clear all filter</a>
+                        </form>
                     </div>
                     <div class="media-body">
                         <h5 class="my-1 text-uppercase font-weight-600  font-16-xs roboto-font"> Filters</h5>
                     </div>
                 </div>
                 <hr class="border-grey-mint my-2">
+                <?php
+                    $params = $_GET;
+
+                    $clear_location         = current_url().'?';
+                    $clear_job_type         = current_url().'?';
+                    $clear_company_industry = current_url().'?';
+                    $clear_position_levels  = current_url().'?';
+                    $clear_experiences      = current_url().'?';
+                    $latest                 = isset($params["latest"]) ? current_url().'?' : current_url().'?latest=1';
+                    $popular                = isset($params["popular"]) ? current_url().'?' : current_url().'?popular=1';
+
+                    if($params)
+                    {
+                        foreach ($params as $param => $param_value)
+                        {
+                            if(isset($param) && $param != 'country_name' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $clear_location .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $clear_location .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'employment_type' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $clear_job_type .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $clear_job_type .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'company_industry' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $clear_company_industry .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $clear_company_industry .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'position_levels' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $clear_position_levels .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $clear_position_levels .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'experiences' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $clear_experiences .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $clear_experiences .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'popular' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $latest .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $latest .= '&'.$param.'='.$param_value;
+                                }
+                            }
+
+                            if(isset($param) && $param != 'latest' && !empty($param_value))
+                            {
+                                if(is_array($param_value))
+                                {
+                                    foreach ($param_value as $param_array)
+                                    {
+                                        $popular .= '&'.$param.'[]='.$param_array;
+                                    }
+                                }
+                                else
+                                {
+                                    $popular .= '&'.$param.'='.$param_value;
+                                }
+                            }
+                        }
+                    }
+                ?>
                 <ul class="list-group list-border md-transparent p-0">
-                    <!-- Location -->
-                    <li class="list-group-item md-transparent p-2">
-                        <div class="media">
-                            <div class="pull-right  ">
-                                <a href="" class="md-indigo-text">Clear </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location</h4>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control " placeholder="Enter state, country or province">
-                        </div>
-                    </li>
-                    <!-- Job Type -->
-                    <li class="list-group-item md-transparent p-2">
-                        <div class="media">
-                            <div class="pull-right  ">
-                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
-                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
-                            </div>
-                            <div class="media-body">
+                    <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="GET" id="job_search_form">
+                        <!-- Location -->
+                        <li class="list-group-item md-transparent p-2">
+                            <div class="media">
+                                <div class="pull-right  ">
+                                    <a href="<?= $clear_location; ?>" class="md-indigo-text">Clear </a>
+                                </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Job Type
+                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location</h4>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="country_name" class="form-control " placeholder="Enter country or province">
+                            </div>
+                        </li>
+                        <!-- Job Type -->
+                        <li class="list-group-item md-transparent p-2">
+                            <div class="media">
+                                <div class="pull-right  ">
+                                    <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
+                                    <a href="<?= $clear_job_type; ?>" class="md-indigo-text">Clear </a>
+                                </div>
+                                <div class="media-body">
+                                    <div class="media-body">
+                                        <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Job Type
+                                            <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-checkbox-list ">
+                                <?php foreach ($employment_type as $key => $value) { ?>
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" name="employment_type[]" id="checkbox<?php echo $value['name'];?>" value="<?php echo $value['id'] ?>" class="md-check" <?php echo (isset($_GET["employment_type"]) && in_array($value['id'],$_GET["employment_type"])) ? 'checked="checked"' : ''; ?>>
+                                        <label for="checkbox<?php echo $value['name'];?>">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> <?php echo $value['name'];?> </label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </li>
+                        <!-- Industry -->
+                        <li class="list-group-item md-transparent p-2">
+                            <div class="media">
+                                <div class="pull-right  ">
+                                    <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
+                                    <a href="<?= $clear_company_industry; ?>" class="md-indigo-text">Clear </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs"> Company Industry
+                                        <!-- <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i> -->
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="form-group mt-1">
+                                <select class="bs-select form-control" name="company_industry" id="company_industry">
+                                    <option value="" selected disabled>Company Industry </option>
+                                    <?php foreach ($industry as $key => $value) {?>
+                                        <option table="industries" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET["company_industry"]) && $value['id'] == $_GET["company_industry"]) ? 'selected="selected"' : ''; ?>><?php echo $value['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </li>
+                        <!-- Position Level-->
+                        <li class="list-group-item md-transparent p-2">
+                            <div class="media">
+                                <div class="pull-right  ">
+                                    <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
+                                    <a href="<?= $clear_position_levels; ?>" class="md-indigo-text">Clear </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Position Level
                                         <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
                                     </h4>
                                 </div>
                             </div>
-                        </div>
-                        <div class="md-checkbox-list ">
-                            <?php foreach ($employment_type as $key => $value) { ?>
-                                <div class="md-checkbox">
-                                    <input type="checkbox" id="checkbox<?php echo $value['name'];?>" table="employment_types" value="<?php echo $value['id'] ?>" class="md-check">
-                                    <label for="checkbox<?php echo $value['name'];?>">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> <?php echo $value['name'];?> </label>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </li>
-                    <!-- Industry -->
-                    <li class="list-group-item md-transparent p-2">
-                        <div class="media">
-                            <div class="pull-right  ">
-                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
-                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
-                            </div>
-                            <div class="media-body">
-                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs"> Company Industry
-                                    <!-- <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i> -->
-                                </h4>
-                            </div>
-                        </div>
-                        <div class="form-group mt-1">
-                            <select class="bs-select form-control   ">
-                                <option value="" selected disabled>Company Industry </option>
-                                <?php foreach ($industry as $key => $value) {?>
-                                    <option table="industries" value="<?php echo $value['id'] ?>"><?php echo $value['name']; ?></option>
+
+                            <div class="md-checkbox-list ">
+                                <!-- Checkbox Junior-->
+                                <?php foreach ($position_levels as $key => $value) {?>
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" name="position_levels[]" id="checkbox<?php echo $value['name']?>" class="md-check" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET["position_levels"]) && in_array($value['id'],$_GET["position_levels"])) ? 'checked="checked"' : ''; ?>>
+                                        <label for="checkbox<?php echo $value['name']?>">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> <?php echo $value['name']?> </label>
+                                    </div>
                                 <?php } ?>
-                            </select>
-                        </div>
-                    </li>
-                    <!-- Position Level-->
-                    <li class="list-group-item md-transparent p-2">
-                        <div class="media">
-                            <div class="pull-right  ">
-                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
-                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
                             </div>
-                            <div class="media-body">
-                                <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Position Level
-                                    <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div class="md-checkbox-list ">
-                            <!-- Checkbox Junior-->
-                            <?php foreach ($position_levels as $key => $value) {?>
-                                <div class="md-checkbox">
-                                    <input type="checkbox" id="checkbox<?php echo $value['name']?>" class="md-check" table="position_levels" value="<?php echo $value['id'] ?>">
-                                    <label for="checkbox<?php echo $value['name']?>">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> <?php echo $value['name']?> </label>
+                        </li>
+                        <!-- Experience Level-->
+                        <li class="list-group-item md-transparent p-2">
+                            <div class="media">
+                                <div class="pull-right  ">
+                                    <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
+                                    <a href="<?= $clear_experiences; ?>" class="md-indigo-text">Clear </a>
                                 </div>
-                            <?php } ?>
-                        </div>
-                    </li>
-                    <!-- Experience Level-->
-                    <li class="list-group-item md-transparent p-2">
-                        <div class="media">
-                            <div class="pull-right  ">
-                                <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button>
-                                <!-- <a href="" class="md-indigo-text">Clear </a> -->
-                            </div>
-                            <div class="media-body">
-                                <h4 class="my-2 text-uppercase font-weight-600 roboto-font font-14-xs"> Experience
-                                    <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <div class="md-checkbox-list ">
-                            <?php foreach ($year_of_experiences as $key => $value) { ?>
-                                <div class="md-checkbox">
-                                    <input type="checkbox" id="checkbox<?php echo str_replace(' ', '', $value['name']);?>" class="md-check" table="year_of_experience" value="<?php echo $value['id'] ?>">
-                                    <label for="checkbox<?php echo str_replace(' ', '', $value['name']);?>">
-                                        <span></span>
-                                        <span class="check"></span>
-                                        <span class="box"></span> <?php echo $value['name'];?> </label>
+                                <div class="media-body">
+                                    <h4 class="my-2 text-uppercase font-weight-600 roboto-font font-14-xs"> Experience
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                    </h4>
                                 </div>
-                            <?php } ?>
-                        </div>
-                    </li>
+                            </div>
+
+                            <div class="md-checkbox-list ">
+                                <?php foreach ($year_of_experiences as $key => $value) { ?>
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" name="experiences[]" id="checkbox<?php echo str_replace(' ', '', $value['name']);?>" class="md-check" table="year_of_experience" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET["experiences"]) && in_array($value['id'],$_GET["experiences"])) ? 'checked="checked"' : ''; ?>>
+                                        <label for="checkbox<?php echo str_replace(' ', '', $value['name']);?>">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> <?php echo $value['name'];?> </label>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </li>
+                        <input type="submit" name="job_search_submit" value="true" class="hidden">
+                    </form>
                 </ul>
             </div>
 
@@ -321,9 +449,9 @@
                         </div>
                         <div class="actions">
 
-                            <a href="javascript:;" class="btn btn-circle btn-default">
+                            <a href="<?= $latest; ?>" class="btn btn-circle btn-default">
                                 Latest </a>
-                            <a href="javascript:;" class="btn btn-circle btn-default">
+                            <a href="<?= $popular; ?>" class="btn btn-circle btn-default">
                                 Popular </a>
                             <!-- <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a> -->
                         </div>
@@ -335,31 +463,20 @@
                                 {
                                     foreach ($search_result as $job_result)
                                     {
+                                        $url_detail     = base_url().'job/details/'.rtrim(base64_encode($job_result['id']), '=');
+                                        $company_url    = base_url().'profile/company/'.rtrim(base64_encode($job_result['user_id']), '=');
                             ?>
                                         <li class="list-group-item px-0">
                                             <div class="media">
-                                                <div class="pull-right ">
-                                                    <?php 
-                                                        if($this->session->userdata('id') != NULL)
-                                                        {
-                                                    ?>
-                                                            <a href="/job/details" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
-                                                    <?php
-                                                        }
-                                                        else
-                                                        {
-                                                    ?>
-                                                            <a href="/login" class="btn btn-md-green btn-sm letter-space-xs ">Login to view </a>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                </div>
+                                                <!-- <div class="pull-right ">
+                                                   <a href="#" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
+                                                </div> -->
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a><?= $job_result["name"]; ?></a>
+                                                        <a href="<?= $url_detail; ?>"><?= $job_result["name"]; ?></a>
                                                     </h6>
                                                     <h6 class=" my-1 roboto-font">
-                                                        <a href=""><?= $job_result["company_name"]; ?></a>
+                                                        <a href="<?= $company_url; ?>"><?= $job_result["company_name"]; ?></a>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -519,7 +636,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('input[type=checkbox]').each(function(){
+            /*$('input[type=checkbox]').each(function(){
                 $(this).click(function(){
                     alert($(this).val());
                     $.ajax({
@@ -534,8 +651,23 @@
                         }
                     })
                 });
-            })
+            })*/
             // console.log($('#checkboxInternship').val());
+
+            $('#clear_all_form a').click(function()
+            {
+                $('#clear_all_form input:submit').trigger('click');
+            });
+
+            $('#job_search_form input:checkbox').click(function()
+            {
+                $('#job_search_form input:submit').trigger('click');
+            });
+
+            $('#company_industry').change(function()
+            {
+                $('#job_search_form input:submit').trigger('click');
+            });
         });
     </script>
 </body>
