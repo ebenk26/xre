@@ -104,16 +104,18 @@ class Job_Model extends CI_Model{
 	}
 
 	function get_applied_job(){
-		$this->db->select('job_positions.*, users.fullname as username, states.name as state_name, countries.name as country_name, user_profiles.company_name, user_profiles.user_id as company_id, industries.name as industry_namem, applieds.id as job_id, applieds.status as applieds_status, applieds.created_at as apply_time');
+		$this->db->select('job_positions.*, users.fullname as username, states.name as state_name, countries.name as country_name, user_profiles.company_name, user_profiles.user_id as company_id, industries.name as industry_namem, applieds.id as job_id, applieds.status as applieds_status, applieds.created_at as apply_time, profile_uploads.name as profile_photo');
 		$this->db->from('applieds');		
         $this->db->join('job_positions', 'job_positions.id = applieds.job_position_id', 'left');
         $this->db->join('users', 'users.id = job_positions.user_id', 'left');
         $this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
-        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'inner');
-        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'inner');
+        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
+        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
+		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id', 'left');
 		$this->db->where('applieds.user_id', $this->session->userdata('id'));
+		$this->db->where('profile_uploads.type', 'profile_photo');
 		$this->db->order_by('applieds.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result_array();

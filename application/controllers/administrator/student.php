@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Job_Seeker extends CI_Controller {
+class Student extends CI_Controller {
     
     function __construct(){
         parent::__construct();
@@ -16,7 +16,7 @@ class Job_Seeker extends CI_Controller {
     }
     
     public function index(){
-        $profile['page_title'] 		= 'Job Seeker | Admin';
+        $profile['page_title'] 		= 'Student | Admin';
         $id 						= $this->session->userdata('id');
         $get_user_profile 			= $this->employer_model->get_user_profile($id);
         $profile['user_profile'] 	= $get_user_profile;
@@ -28,13 +28,13 @@ class Job_Seeker extends CI_Controller {
 		$complement['job_seeker'] 			= $this->get_data();
 		
         $this->load->view('administrator/main/header', $profile);
-        $this->load->view('administrator/job_seeker', $complement);
+        $this->load->view('administrator/student', $complement);
         $this->load->view('administrator/main/footer');
 	}
 	
 	public function export(){
-        $data['page_title'] = 'Job Seeker';
-		$data['type'] 		= 'Job Seeker';
+        $data['page_title'] = 'Student';
+		$data['type'] 		= 'Student';
 		$data['hasil'] 		= $this->get_data();
 		
         $this->load->view('administrator/excel', $data);
@@ -45,7 +45,7 @@ class Job_Seeker extends CI_Controller {
 		$this->db->from('users');
 		$this->db->join('user_role', 'users.id = user_role.user_id');
 		$this->db->join('student_bios', 'users.id = student_bios.user_id', 'left');
-		$this->db->where('user_role.role_id = 4');
+		$this->db->where('user_role.role_id = 5');
 		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
@@ -132,22 +132,6 @@ class Job_Seeker extends CI_Controller {
         $job_post['header_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'header_photo'));
         $job_post['user_profile'] = $get_user_profile;
         $this->load->view('employer/preview',$job_post);
-    }
-
-    public function post_job(){
-        $id = $this->input->post('post_id');
-        $this->job_model->post_job($id, array('status'=>'post'));
-    }
-
-    public function shortlist(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->shortlist($id);
-        
-        if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
-        }
     }
 
 }

@@ -487,40 +487,53 @@
                             </div>
                         </div>
                     </li>-->
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'student'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>administrator/student" class="nav-link ">
+                            <i class="icon-user"></i>
+                            <span class="title">Student</span>
+							<span class="selected"></span>
+                        </a>
+					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_seeker'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/job_seeker" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">Job Seeker</span>
-                        </a>
-					</li>
-					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url(); ?>administrator/job_board" class="nav-link ">
-                            <i class="icon-briefcase"></i>
-                            <span class="title">Job List</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'employer'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/employer" class="nav-link ">
                             <i class="icon-moustache"></i>
                             <span class="title">Employer</span>
+							<span class="selected"></span>
+                        </a>
+					</li>
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>administrator/job_board" class="nav-link ">
+                            <i class="icon-briefcase"></i>
+                            <span class="title">Job List</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/package" class="nav-link ">
                             <i class="icon-wallet"></i>
                             <span class="title">Package</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'service_item'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/service_item" class="nav-link ">
                             <i class="icon-layers"></i>
                             <span class="title">Service Item</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'industry'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/industry" class="nav-link ">
                             <i class="icon-diamond"></i>
                             <span class="title">Industry</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<!--<li class="nav-item <?php if ($this->uri->segment(2) == 'speciaization'): echo 'active'; endif?> ">
@@ -533,12 +546,14 @@
                         <a href="<?php echo base_url(); ?>administrator/article" class="nav-link ">
                             <i class="icon-feed"></i>
                             <span class="title">Article</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'pages'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/pages" class="nav-link ">
                             <i class="icon-note"></i>
                             <span class="title">Pages</span>
+							<span class="selected"></span>
                         </a>
 					</li>
 					

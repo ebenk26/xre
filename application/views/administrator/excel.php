@@ -10,7 +10,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 		<table border="1">	
 			<tr>
 				<th>No</th>
-				<?php if($type == "Job Seeker"){?>
+				<?php if($type == "Job Seeker" || "Student"){?>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Video CV</th>
@@ -117,7 +117,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 			?>
 				<tr>
 					<td><?=$no++?></td>
-					<?php if($type == "Job Seeker"){?>
+					<?php if($type == "Job Seeker" || "Student"){?>
 						<td><?=$row->fullname?></td>
 						<td><?=$row->email?></td>
 						<td><?=$row->youtubelink?></td>

@@ -251,6 +251,11 @@ if (!empty($job->location)) {
                                 <span class="label label-md-blue-grey font-weight-500 mb-2">
                                     <?php echo $user_profile['industry'];?></span>
                             </h6>
+							<h6>
+                                <span class="label label-md-red font-weight-500 mb-2">
+                                    Expired on <?php echo date('j F Y', strtotime($job->expiry_date));?></span>
+                            </h6>
+							
                         </div>
                     </div>
                     <!-- <h5 class="font-weight-500 md-indigo-text primary-font mb-1">Job Description</h5>

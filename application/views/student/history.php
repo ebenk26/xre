@@ -39,12 +39,14 @@
                                                         <td class="text-center"> <?php echo $i; ?> </td>
                                                         <td class="media">
                                                             <div class="pull-left">
-                                                                <img src="<?php echo IMG_EMPLOYER?>xremo/xremo.png" class="avatar avatar-mini" alt="">
+                                                                <!--<img src="<?php echo IMG_EMPLOYER?><?=$value['profile_photo']?>" class="avatar avatar-mini" alt="">-->
+																
+																<img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="avatar avatar-mini">
                                                             </div>
                                                             <div class="media-body">
                                                                 <ul class="list-unstyled">
-                                                                    <li class="font-24-xs font-weight-600"> <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" style="color:grey;"><?php echo $value['name'] ?></a></li>
-                                                                    <li><a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['company_id']), '='); ?>"><?php echo $value['company_name'] ?></a></li>
+                                                                    <li class="font-24-xs font-weight-600"> <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" style="color:grey;" target="_blank"><?php echo $value['name'] ?></a></li>
+                                                                    <li><a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['company_id']), '='); ?>" target="_blank"><?php echo $value['company_name'] ?></a></li>
                                                                 </ul>
                                                             </div>
                                                         </td>
