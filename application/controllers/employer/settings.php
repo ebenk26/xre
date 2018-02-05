@@ -28,6 +28,7 @@ class settings extends CI_Controller {
         $data = array('company_name' => $this->input->post('company_name'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
+        $this->session->set_userdata('name', $this->input->post('company_name'));
         redirect(base_url().'employer/settings');
     }
 

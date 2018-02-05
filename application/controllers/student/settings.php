@@ -32,6 +32,7 @@ class settings extends CI_Controller {
         $data = array('fullname' => $this->input->post('fullname'));
         $where = array('id' => $this->session->userdata('id'));
         $this->global_model->update('users', $where, $data);
+        $this->session->set_userdata('name', $this->input->post('fullname'));
         redirect(base_url().'student/settings');
     }
 

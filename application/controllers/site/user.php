@@ -256,10 +256,15 @@ class User extends CI_Controller {
     function changePassword(){
         $roles = $this->session->userdata('roles');
         $this->form_validation->set_rules('password', 'Password', 'required|matches[conf_password]');
-        $this->form_validation->set_rules('conf_password', 'Password Confirmation', 'required');
-        $password = md5(SALT.sha1($this->input->post('password')));
-        $id = $this->session->userdata('id');
-        $this->user_model->change_password($id ,$password);
+        $this->form_validation->set_rules('conf_password', 'Password Confirmation', 'required|matches[password]');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('msg_failed', 'Password and confirm password not match.');
+        }else{            
+            $password = md5(SALT.sha1($this->input->post('password')));
+            $id = $this->session->userdata('id');
+            $this->user_model->change_password($id ,$password);
+            $this->session->set_flashdata('msg_success', 'Password has been changed.');
+        }
         redirect(base_url().$roles.'/settings');
     }
 
