@@ -382,8 +382,17 @@ if (!empty($job->location)) {
                 <?php if (($roles == 'student' || $roles =='jobseeker') && $job->status == 'post') :?>
                     <!-- Button -->
                     <div class="row mb-5 mx-0">
-                        <a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange roboto-font">
-                            <i class="icon-note mr-2 "></i>Apply This Job</a>
+                        <?php if(strtotime(date('Y-m-d')) > strtotime($job->expiry_date)){?>
+							<a class=" btn btn-block btn-md-orange roboto-font">
+								<i class="icon-info mr-2 "></i>Expired Job Vacancy</a>
+						<?php }else{?>						
+						<?php if($applied == null){?>
+							<a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange roboto-font">
+								<i class="icon-note mr-2 "></i>Apply This Job</a>
+						<?php }else{?>
+							<a class=" btn btn-block btn-md-orange roboto-font">
+								<i class="icon-info mr-2 "></i><?=$applied->status?></a>							
+						<?php }}?>
                         <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
                             <i class="fa fa-building-o mr-2 "></i>View Company</a>
                     </div>
@@ -404,7 +413,7 @@ if (!empty($job->location)) {
                         <div class="mt-clipboard-container px-0 py-1">
 
                             <div class="input-group">
-                                <input type="text" id="clipboard" class="form-control" value="<?php echo current_url(); ?>" />
+                                <input type="text" id="clipboard" class="form-control" value="<?php echo base_url().uri_string(); ?>" />
                                 <span class="input-group-btn-vertical">
                                     <a href="javascript:;" class="btn green mt-clipboard" data-clipboard-action="copy" data-clipboard-target="#clipboard">
                                         <i class="icon-note"></i> Copy Url</a>

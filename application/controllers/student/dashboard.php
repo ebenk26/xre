@@ -45,24 +45,42 @@ class Dashboard extends CI_Controller {
 	}
 
     public function applied(){
-        $id = $this->session->userdata('id');
-        $job_id = $this->input->post('job_id');
-        $jobs = array(  'user_id'=> $id,
-                        'job_position_id' => $job_id,
-                        'created_at' => date('Y-m-d H:i:s'),
-                        'updated_at' => date('Y-m-d H:i:s'),
-                        'status' => 'APPLIED',
-                        'employer_message_status' => 'NEW',
-                        'job_seeker_message_status' => 'NEW',
-                        'coverletter' => $this->input->post('coverletter'),
-                        );
-        $apply_job = $this->job_model->apply($jobs);
+        $id 			= $this->session->userdata('id');
+        $job_id 		= $this->input->post('job_id');
+		$job_id_code 	= rtrim(base64_encode($job_id), '=');
+        
+		$this->db->select('*');
+		$this->db->from('applieds');
+		$this->db->where('user_id', $id);
+		$this->db->where('job_position_id', $job_id);
+		$query = $this->db->get();
+		$ada = $query->num_rows();
+		
+		if($ada > 0){
+			$apply_job = false;
+		}else{
+			$this->db->set('number_of_candidate', 'number_of_candidate+1', FALSE);
+			$this->db->where('id', $job_id);
+			$this->db->update('job_positions');
+			
+			$jobs = array(  'user_id'=> $id,
+							'job_position_id' => $job_id,
+							'created_at' => date('Y-m-d H:i:s'),
+							'updated_at' => date('Y-m-d H:i:s'),
+							'status' => 'APPLIED',
+							'employer_message_status' => 'NEW',
+							'job_seeker_message_status' => 'NEW',
+							'coverletter' => $this->input->post('coverletter'),
+							);
+			$apply_job = $this->job_model->apply($jobs);
+		}
+		
         if ($apply_job == true) {
-            $this->session->set_flashdata('msg_success', 'Success apply dream job');            
+            $this->session->set_flashdata('msg_success', 'Success apply dream job'); 
         }else{
             $this->session->set_flashdata('msg_error', 'Failed apply your dream job');
         }
-        redirect(base_url().'student/dashboard/');
+        redirect(base_url().'job/details/'.$job_id_code);
     }
 
 }

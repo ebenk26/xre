@@ -126,6 +126,14 @@ class Job_Board extends CI_Controller {
         if (!$id) {
             redirect(show_404());
         }
+		
+		$this->db->select('*');
+		$this->db->from('applieds');
+		$this->db->where('user_id', $this->session->userdata('id'));
+		$this->db->where('job_position_id', $id);
+		$query = $this->db->get();
+		$applied = $query->row();
+		$job_post['applied'] = $applied;
 
         $job_post['job'] = $this->employer_model->get_job_detail($id);
         $user_id = $job_post['job']->user_id;
