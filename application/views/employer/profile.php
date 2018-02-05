@@ -180,14 +180,16 @@
                                     <div class="tab-pane " id="tab_contact_info">
                                         <h4 class="font-weight-500">Contact Information</h4>
                                         <hr>
-                                        <?php $addr = json_decode($detail['address']); 
-                                            if (!empty($addr)) {?>
+                                        <?php 
+                                            $addr = json_decode($detail['address']); 
+                                            if (!empty($addr)) { ?>
                                         <ul class="list-group list-border">
                                             
                                             <?php foreach ($addr as $key => $value) {?>
                                             <li class="list-group-item">
+
                                                 <span class="label label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>"><?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?></span>
-                                                <h5 class="font-weight-500">[<?php echo $value->building_address; ?>],[<?php echo $value->building_city; ?>],[<?php echo $value->building_postcode; ?>],[<?php echo $value->building_state; ?>],[<?php echo $value->building_country; ?>]</h5>
+                                                <h5 class="font-weight-500"><?php echo $value->building_address; ?>,<?php echo $value->building_city; ?>,<?php echo $value->building_postcode; ?>,<?php echo $value->building_state; ?>,<?php echo $value->building_country; ?></h5>
                                                 <h5><?php echo $value->building_email; ?></h5>
                                                 <h5>
                                                     <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>
@@ -389,39 +391,22 @@
                                             <div class="col-md-9">
                                                 <div class="md-checkbox-inline">
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'casual') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]">
-                                                        <?php }} ?>
+                                                    
+                                                    <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'casual') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox6">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Casual Dress Code</label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'formal') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]">
-                                                        <?php }} ?>
+                                                        <input type="checkbox" id="checkbox7" class="md-check" value="formal" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'formal') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox7">
                                                             <span></span>
                                                             <span class="check"></span>
                                                             <span class="box"></span> Formal Dress Code </label>
                                                     </div>
                                                     <div class="md-checkbox">
-                                                        <?php foreach ($dress_code as $key => $value) { 
-                                                            if ($value == 'business') {
-                                                            ?>
-                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]" checked>
-                                                        <?php }else{?>
-                                                            <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]">
-                                                        <?php }} ?>
+                                                        <input type="checkbox" id="checkbox8" class="md-check" value="business" name="dress[]" <?php foreach($dress_code as $key => $value) : echo ($value == 'business') ? 'checked' : ''; endforeach; ?>>
                                                         <label for="checkbox8">
                                                             <span class="inc"></span>
                                                             <span class="check"></span>
@@ -581,14 +566,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <!-- <label class="control-label">Country</label> -->
                                                                 <label class="control-label col-md-4">Country</label>
                                                                 <div class="col-md-8">
                                                                     <select class="form-control " name="building_country">
-                                                                        <option value="" selected disabled>Select one </option>
+                                                                        <option value="" disabled>Select one </option>
                                                                         <?php foreach ($countries as $key => $country_value) { ?>
                                                                             <option <?php ($value->building_country == $country_value['name']) ? 'selected' : ''; ?>><?php echo $country_value['name']; ?></option>
                                                                         <?php } ?>
@@ -682,7 +666,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-2">Address</label>
                                                                 <div class="col-md-10">
-                                                                    <input type="text" class="form-control" placeholder="Unit / Lot , Road ,">
+                                                                    <input type="text" class="form-control" name="building_address" placeholder="Unit / Lot , Road ," required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -695,7 +679,7 @@
 
                                                                 <label class="control-label col-md-4">City</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" name="building_city">
+                                                                    <input type="text" class="form-control" name="building_city" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -704,7 +688,7 @@
 
                                                                 <label class="control-label col-md-4">State</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" name="building_state">
+                                                                    <input type="text" class="form-control" name="building_state" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -715,7 +699,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Postcode</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="Postcode" name="building_postcode">
+                                                                    <input type="text" class="form-control" placeholder="Postcode" name="building_postcode" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -760,7 +744,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Phone Number</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -783,7 +767,7 @@
                                                                 <div class="col-md-8">
                                                                     <div class="mt-radio-inline">
                                                                         <label class="mt-radio">
-                                                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" name="HQ"> Headquarter
+                                                                            <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
                                                                             <span></span>
                                                                         </label>
                                                                         <label class="mt-radio">

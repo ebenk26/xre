@@ -51,7 +51,7 @@
                                                         <td class="text-center"> <?php echo time_elapsed_string($value['apply_time']); ?> </td>
                                                         <td class="text-center"> <span class="label label-sm label-md-<?php echo ($value['applieds_status'] == 'WITHDRAW' || $value['applieds_status'] == 'REJECTED') ? 'red' : 'green'; ?>   "> <?php echo $value['applieds_status']; ?> </span> </td>
                                                         <td class="text-center">
-                                                            <a href="#" class="btn btn-icon-only btn-danger dlt-history" data-id="<?php echo $value['job_id']; ?>"><i class="icon-trash"></i></a>
+                                                            <a href="#" class="btn btn-icon-only btn-danger dlt-history" data-id="<?php echo $value['job_id']; ?>" title="Withdraw"><i class="icon-trash"></i></a>
                                                         </td>
                                                     </tr>
                                                 <?php $i++; } ?>

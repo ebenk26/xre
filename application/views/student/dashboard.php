@@ -5,7 +5,7 @@
                 <!-- BEGIN PAGE HEADER-->
 
                 <h1 class="page-title"> Welcome back , <?php echo ucfirst($this->session->userdata('name'));?>!
-                    <small>last login on <?php echo !empty($last_logged_in[count($last_logged_in)-2]['user_history']) ? $last_logged_in[count($last_logged_in)-2]['user_history'] : date('d F Y H:i:m'); ?> </small>
+                    <small>last login on <?php echo !empty($last_logged_in[count($last_logged_in)-2]['user_history']) ? date('d F Y H:i:m', strtotime($last_logged_in[count($last_logged_in)-2]['user_history'])) : date('d F Y H:i:m'); ?> </small>
                 </h1>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
@@ -67,12 +67,13 @@
                             </div>
                         </div>
                     </div>
+					<?php $new_job = 0;foreach ($job_positions as $key => $value) {$new_job++;}?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="dashboard-stat2 p-4">
                             <div class="display my-0">
                                 <div class="number">
                                     <h3 class="font-purple-soft">
-                                        <span data-counter="counterup" data-value="76"></span>
+                                        <span data-counter="counterup" data-value="<?=$new_job?>"></span>
                                     </h3>
                                     <small class="text-uppercase">New Job Vacancy</small>
                                 </div>
@@ -602,22 +603,25 @@
                                 <div class="caption">
                                     We found new job for you !
                                     <div class="pull-right">
-                                        <span class="label label-success ml-3">76</span>
+                                        <span class="label label-success ml-3"><?=$new_job?></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="portlet-body">
                                 <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                    <?php foreach ($job_positions as $key => $value) {?>
+                                    <?php $no_new = 0;foreach ($job_positions as $key => $value) { if($no_new == 5){break;} $no_new++;?>
                                         <div class="widget-media">
                                             <div class="widget-media-elements text-center">
-                                                <img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS ?>xremo-logo-blue.png" alt="">
+                                                <!--<img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS ?>xremo-logo-blue.png" alt="">-->
+												
+												<img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="widget-media-avatar img-responsive">
+												
                                                 <!-- <a class="btn btn-outline-md-indigo btn-xs mt-3" href="#">View</a> -->
                                             </div>
                                             <div class="pull-right">
                                                 <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
                                                 <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
-                                                <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>">View Job</a>
+                                                <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">View Job</a>
                                                 <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs apply" id="<?php echo $value['job_id'] ?>" href="#">Apply</a>
                                                 <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
                                             </div>
@@ -625,13 +629,15 @@
                                             <div class="widget-media-body">
                                                 <h4 class="widget-media-body-title font-blue-ebonyclay mb-0"> <?php echo $value['job_post'] ?> <small class="md-grey-text font-weight-600 ml-2"> <?php echo time_elapsed_string($value['job_created_time']); ?></small>
                                                 </h4>
-                                                <p class="widget-media-body-subtitle my-2"><a> <?php echo $value['company_name'] ?>
-                                                    </a></p>
+                                                <p class="widget-media-body-subtitle my-2">
+													<a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank"> <?php echo $value['company_name'] ?>
+                                                    </a>
+												</p>
                                                 <?php if (!empty($value['state_name'])) {?>
                                                 <a href="" class="badge badge-primary badge-roundless"> <?php echo $value['state_name'] ?></a>
                                                 <?php } ?>
                                                 <a href="" class="badge badge-md-green badge-roundless"> <?php echo $this->session->userdata('forex') ?> <?php echo $value['min_budget']; ?> - <?php echo $this->session->userdata('forex') ?> <?php echo $value['max_budget']; ?></a>
-                                                <a href="" class="badge badge-md-deep-orange badge-roundless"> Full time</a>
+                                                <a href="" class="badge badge-md-deep-orange badge-roundless"> <?php echo $value['employment_name'] ;?></a>
                                                 <?php if (!empty($value['position_name'])) {?>
                                                     <a href="" class="badge badge-blue-ebonyclay badge-roundless"> <?php echo $value['position_name'] ?></a>
                                                 <?php } ?>
@@ -645,7 +651,7 @@
                                     <div class="widget-media mb-0">
                                         <div class="widget-media-body text-center">
                                             <!-- <img class="widget-media-avatar img-responsive" src="../HTML/img/Xremo/all/xremo-logo-blue.png" alt=""> -->
-                                            <a class="md-grey-text text-darken-1 " href="#">View All </a>
+                                            <a class="md-grey-text text-darken-1 " href="<?=base_url()?>job/search" target="_blank">View All </a>
                                         </div>
 
                                     </div>

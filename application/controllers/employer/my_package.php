@@ -16,7 +16,9 @@ class my_package extends CI_Controller {
 
     public function index(){
     	$profile['page_title'] = 'Purchase Package';
-        $this->load->view('employer/main/header');
+        $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile['user_profile'] = $get_user_profile;
+        $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/my_package');
         $this->load->view('employer/main/footer');
     }

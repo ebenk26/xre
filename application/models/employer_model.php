@@ -42,7 +42,7 @@ class Employer_Model extends CI_Model{
 
     function get_user_profile($id){
         $this->db->select('users.id as id_users, users.email as registered_email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.name as roles, user_profiles.*, industries.name as industry, countries.name as country_name, countries.country_code,
-            states.name as state_name');
+            states.name as state_name,profile_uploads.name as img');
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id', 'left');
         $this->db->join('roles', 'roles.id = user_role.role_id', 'left');
@@ -50,7 +50,9 @@ class Employer_Model extends CI_Model{
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.company_industry_id', 'left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id', 'left');
         $this->db->where(array('users.id' => $id));
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $query = $this->db->get();
         return $query->last_row('array');
     }
@@ -107,12 +109,12 @@ class Employer_Model extends CI_Model{
     }
 
     function get_job_detail($id){
-        $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name, profile_uploads.name as img, forex.name as forex_name');
+        $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name, profile_uploads.name as img');
         $this->db->from('job_positions');
         $this->db->join('position_levels', 'job_positions.position_level_id = position_levels.id', 'left');
         $this->db->join('employment_types', 'job_positions.employment_type_id = employment_types.id', 'left');
         $this->db->join('profile_uploads', 'job_positions.user_id = profile_uploads.user_id', 'left');
-		$this->db->join('forex', 'job_positions.forex = forex.id', 'left');
+		//$this->db->join('forex', 'job_positions.forex = forex.id', 'left');
         $this->db->where('job_positions.id', $id);
         $query = $this->db->get();
         return $query->last_row();

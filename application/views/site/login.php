@@ -8,8 +8,8 @@
     <meta content="" name="author">
 	
 	<!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css">
@@ -65,7 +65,7 @@
                 <!-- Logo -->
                 <div class="m-grid ">
                     <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                        <img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;">
+                        <a href="home"><img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;"></a>
                     </div>
                 </div>
                 <!-- Content -->

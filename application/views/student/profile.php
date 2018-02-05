@@ -9,20 +9,24 @@
                         <!-- <i class="icon-user font-44-xs "></i> -->
                         <span class="caption-subject font-weight-300 text-capitalize primary-font font-44-xs">User Profile</span>
                     </div>
-                    <ul class="nav nav-tabs  mb-0 pb-0">
-                        <li class="active">
+					<ul class="nav nav-tabs  mb-0 pb-0">
+                        <?php
+							$tab_student = $this->session->flashdata('tab_student');
+						?>						
+						
+						<li class="<?=$tab_student == "tab_overview" || $tab_student == ""?"active":""?>">
                             <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab"><i class="icon-user font-26-xs"></i> Overview</a>
                         </li>
-                        <li>
+                        <li class="<?=$tab_student == "tab_education"?"active":""?>">
                             <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab"> <i class="icon-graduation font-26-xs"></i>Education </a>
                         </li>
-                        <li>
+                        <li class="<?=$tab_student == "tab_experience"?"active":""?>">
                             <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
                         </li>
-                        <li>
+                        <li class="<?=$tab_student == "tab_non_education"?"active":""?>">
                             <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
                         </li>
-                        <li>
+                        <li class="<?=$tab_student == "tab_project"?"active":""?>">
                             <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Project</a>
                         </li>
                         <!-- <li>
@@ -36,7 +40,7 @@
         <div class="portlet mt-0 ">
             <div class="tab-content">
                 <!-- Tab Content : Overview -->
-                <div class="tab-pane active " id="tab_overview">
+                <div class="tab-pane <?=$tab_student == "tab_overview" || $tab_student == ""?"active":""?> " id="tab_overview">
                     <div class="m-grid">
                         <div class=" view mt-height-250-xs hm-black-slight" style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                             <!-- <img src="../assets/global/img/portfolio/1200x900/03.jpg" class="img-fluid" alt=""> -->
@@ -187,9 +191,9 @@
                                                             <li>
                                                                 <h5 class=" roboto-font">
                                                                 <?php if (!empty($user_profile['language'])) {?>
-                                                                    <?php foreach ($user_profile['language'] as $key => $language) {?>
-                                                                        <b><?php echo !empty($language['title']) ?  $language['title'] : 'Please edit your profile';?></b>
-                                                                        [ Spoken : <?php echo $language['spoken']; ?> Level , Written : <?php echo $language['written']; ?> Level]
+                                                                    <?php foreach ($user_profile['language'] as $key => $lang) {?>
+                                                                        <b><?php echo !empty($lang['title']) ?  $lang['title'] : 'Please edit your profile';?></b>
+                                                                        [ Spoken : <?php echo $lang['spoken']; ?> Level , Written : <?php echo $lang['written']; ?> Level]
                                                                         <br>
                                                                     <?php } ?>
                                                                 <?php }else{ ?>
@@ -324,8 +328,9 @@
                                 </div>
                     </div>
                 </div>
+				
                 <!-- Tab Content :Education -->
-                <div class="tab-pane " id="tab_education">
+                <div class="tab-pane <?=$tab_student == "tab_education"?"active":""?>" id="tab_education">
                     <div class="portlet light md-shadow-none">
                         <div class="portlet-title ">
                             <div class="caption ">
@@ -451,7 +456,7 @@
                     </div>
                 </div>
                 <!-- Tab Content : Achievements -->
-                <div class="tab-pane " id="tab_non_education">
+                <div class="tab-pane <?=$tab_student == "tab_non_education"?"active":""?>" id="tab_non_education">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -568,7 +573,7 @@
                     </div>
                 </div>
                 <!-- Tab Content : Experience -->
-                <div class="tab-pane " id="tab_experience">
+                <div class="tab-pane <?=$tab_student == "tab_experience"?"active":""?>" id="tab_experience">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -747,7 +752,7 @@
                     </div>
                 </div>
                 <!-- Tab Content : Project -->
-                <div class="tab-pane" id="tab_project">
+                <div class="tab-pane <?=$tab_student == "tab_project"?"active":""?>" id="tab_project">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -1036,6 +1041,7 @@
                                             </div>
                                         </div>
 
+
                                         <!-- SECTION : Language Profieciency -->
                                         <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="languageSection"> Language Profieciency </h4>
                                         <hr class="mt-2">
@@ -1044,7 +1050,8 @@
                                                 <div class="form-group mx-0">
                                                     <div class="mt-repeater">
                                                         <div data-repeater-list="group-b">
-                                                            <?php
+                                                        
+                                                            <?php 
                                                                 if (!empty($user_profile['language'])) {
                                                                 foreach ($user_profile['language'] as $user_language_key => $user_language_value) {?>
                                                                 <div data-repeater-item class=" row mt-2">
@@ -1081,7 +1088,7 @@
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                            <?php }
+                                                                <?php }
                                                             }else{ ?>
                                                                 <div data-repeater-item class=" row mt-2">
                                                                     <div class="col-md-4">

@@ -1,16 +1,7 @@
     </div>
     <!-- END CONTAINER -->
 
-<!-- BEGIN FOOTER -->
-    <div class="page-footer">
-        <div class="page-footer-inner"> <?php echo date('Y'); ?> © Xremo.com
-            <div class="scroll-to-top">
-                <i class="icon-arrow-up"></i>
-            </div>
-        </div>
-    </div>
-
-    <!-- END FOOTER -->
+	<?php $this->load->view('main/footer_app');?>
 
     <!--[if lt IE 9]>
     
@@ -91,7 +82,49 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
-            $('#clickmewow').click(function () {
+            var e = $("#xremo_table");
+			e.dataTable({
+				language: {
+					aria: {
+						sortAscending: ": activate to sort column ascending",
+						sortDescending: ": activate to sort column descending"
+					},
+					emptyTable: "No data available in table",
+					info: "Showing _START_ to _END_ of _TOTAL_ records",
+					infoEmpty: "No records found",
+					infoFiltered: "(filtered1 from _MAX_ total records)",
+					lengthMenu: "Show _MENU_",
+					search: "Search:",
+					zeroRecords: "No matching records found",
+					paginate: {
+						previous: "Prev",
+						next: "Next",
+						last: "Last",
+						first: "First"
+					}
+				},
+				bStateSave: !0,
+				lengthMenu: [
+					[5, 15, 20, -1],
+					[5, 15, 20, "All"]
+				],
+				pageLength: 5,
+				pagingType: "bootstrap_full_number",
+				columnDefs: [{
+					orderable: !1,
+					targets: [0]
+				}, {
+					searchable: !1,
+					targets: [0]
+				}, {
+					className: "dt-right"
+				}],
+				order: [
+					//[1, "asc"]
+				]
+			});
+			
+			$('#clickmewow').click(function () {
                 $('#radio1003').attr('checked', 'checked');
             });
             $('#preview_button_add').click(function(){
@@ -359,7 +392,6 @@
                         }
                     });
                     
-5
                     <?php if($this->session->flashdata('msg_success')){ ?>
                         alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
                     <?php } ?>
@@ -398,6 +430,13 @@
                         }
                     );
             });
+
+            <?php if($this->session->flashdata('msg_success')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
         })
     </script>
 

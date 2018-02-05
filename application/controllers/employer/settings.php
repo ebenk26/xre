@@ -19,7 +19,9 @@ class settings extends CI_Controller {
     	$profile['page_title'] = 'Setting';
         $where = array('user_id' => $this->session->userdata('id'));
         $setting['settings'] = $this->global_model->get_by_id('user_profiles', $where);
-        $this->load->view('employer/main/header');
+        $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile['user_profile'] = $get_user_profile;
+        $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/setting', $setting);
         $this->load->view('employer/main/footer');
     }
@@ -28,6 +30,7 @@ class settings extends CI_Controller {
         $data = array('company_name' => $this->input->post('company_name'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
+        $this->session->set_userdata('name', $this->input->post('company_name'));
         redirect(base_url().'employer/settings');
     }
 

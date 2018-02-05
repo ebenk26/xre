@@ -18,6 +18,7 @@ class Dashboard extends CI_Controller {
         $profile['page_title'] = 'Dashboard';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile['user_profile'] = $get_user_profile;
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
         $this->load->view('employer/main/header', $profile);

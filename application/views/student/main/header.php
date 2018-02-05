@@ -16,8 +16,11 @@
 
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    
+	<link href="<?php echo ASSETS; ?>plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
@@ -55,7 +58,7 @@
     <link href="<?php echo ASSETS; ?>css/portfolio.min.css" rel="stylesheet" type="text/css" />
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo ASSETS; ?>css/layout.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/grey.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="<?php echo CSS_EMPLOYER; ?>blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="<?php echo ASSETS; ?>css/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT STYLES -->
@@ -298,14 +301,15 @@
                         <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">Profile</span>
+							<span class="selected"></span>
                         </a>
-
                     </li>
                     <!-- Sidebar Menu Job Application History -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'applications_history'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title">Application History</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Inbox -->
@@ -313,6 +317,7 @@
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Calendar  -->
@@ -320,6 +325,7 @@
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
+							<span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Wishlist-->
@@ -335,6 +341,7 @@
                         <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
+							<span class="selected"></span>
                         </a>
                     </li>
 

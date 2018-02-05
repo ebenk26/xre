@@ -276,7 +276,7 @@ class Student_Model extends CI_Model{
 
 
     function get_all_job($id){
-        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget');
+        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget, employment_types.name as employment_name, profile_uploads.name as profile_photo');
         $this->db->from('users');
         $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
         $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
@@ -284,8 +284,28 @@ class Student_Model extends CI_Model{
         $this->db->join('job_positions', 'job_positions.user_id = users.id', 'left');
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
-        $this->db->where('expiry_date >=', date('Y-m-d')); 
-        $this->db->where('job_positions.status =', 'post'); 
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id', 'left');
+		$this->db->where('expiry_date >=', date('Y-m-d')); 
+        $this->db->where('job_positions.status', 'post');
+		$this->db->where('profile_uploads.type', 'profile_photo');
+        $allJob = $this->db->get();
+        return $allJob->result_array();
+    }
+	
+	function get_all_new_job($last_login){
+        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget, employment_types.name as employment_name');
+        $this->db->from('users');
+        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
+        $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
+        $this->db->join('job_positions', 'job_positions.user_id = users.id', 'left');
+        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
+        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+        $this->db->where('job_positions.created_at >=', $last_login);
+		$this->db->where('job_positions.expiry_date >=', date('Y-m-d'));		
+        $this->db->where('job_positions.status', 'post'); 
         $allJob = $this->db->get();
         return $allJob->result_array();
     }

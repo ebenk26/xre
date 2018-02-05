@@ -10,7 +10,7 @@
     <meta content="Preview page of Metronic Admin Theme #1 for 404 page option 2" name="description" />
     <meta content="" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS;?>plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS;?>plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS;?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -36,7 +36,7 @@
                 <h3>Oops! You're lost.</h3>
                 <p> We can not find the page you're looking for.
                 </p>
-                <a href="<?php echo base_url(); ?>home" class="btn btn-md-red "> Return home </a>
+                <a href="home" class="btn btn-md-red "> Return home </a>
             </div>
         </div>
     </div>

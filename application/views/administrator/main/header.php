@@ -8,8 +8,9 @@
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description">
 
     <meta content="" name="author">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&amp;subset=all">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
+    <!--<link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">-->
     <link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +50,7 @@
     <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo CSS_EMPLOYER; ?>layout.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>grey.min.css" rel="stylesheet" type="text/css" id="style_color">
+    <link href="<?php echo CSS_EMPLOYER; ?>blue.min.css" rel="stylesheet" type="text/css" id="style_color">
     <link href="<?php echo CSS_EMPLOYER; ?>custom.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">

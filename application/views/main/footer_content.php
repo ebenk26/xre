@@ -30,7 +30,7 @@
                                 <a class="g-font-size-15-xs g-color-white-opacity" href="#">Subscribe to Our Newsletter</a>
                             </li>-->
                             <li>
-                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy">Privacy</a>
+                                <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>privacy">Privacy Policy</a>
                             </li>
                             <li>
                                 <a class="g-font-size-15-xs g-color-white-opacity" href="<?php echo base_url(); ?>terms-of-use">Terms of Use</a>

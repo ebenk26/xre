@@ -1,15 +1,7 @@
 </div>
     <!-- END CONTAINER -->
 
-    <!-- BEGIN FOOTER -->
-    <div class="page-footer">
-        <div class="page-footer-inner"> <?php echo date('Y') ?> © Copyright By Xremo
-        </div>
-        <div class="scroll-to-top" style="display: none;">
-            <i class="icon-arrow-up"></i>
-        </div>
-    </div>
-    <!-- END FOOTER -->
+	<?php $this->load->view('main/footer_app');?>
 
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_STUDENTS; ?>jquery.min.js" type="text/javascript"></script>

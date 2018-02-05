@@ -102,6 +102,7 @@ class Profile extends CI_Controller {
         );
         $this->student_model->profile_post($profile);
         $this->session->set_userdata('name', $this->input->post('fullname'));
+		$this->session->set_flashdata('tab_student', 'tab_overview');
         redirect(base_url().'student/profile/');
     }
 
@@ -129,8 +130,9 @@ class Profile extends CI_Controller {
         $table = 'academics';
         $result = $this->student_model->add($education, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
-
-        redirect(base_url().'student/profile/');
+		
+		$this->session->set_flashdata('tab_student', 'tab_education');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_education(){
@@ -161,7 +163,8 @@ class Profile extends CI_Controller {
         $result = $this->student_model->update($education, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
 
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_education');
+        redirect(base_url().'student/profile');
         
     }
 
@@ -196,7 +199,8 @@ class Profile extends CI_Controller {
             $result = $this->student_model->add($experience, $table);
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data added') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
         // }
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_experience');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_experience(){
@@ -229,7 +233,8 @@ class Profile extends CI_Controller {
         $table = 'experiences';
         $result = $this->student_model->update($experience, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data updated') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_experience');
+        redirect(base_url().'student/profile');
     }
 
     public function add_skills(){
@@ -284,6 +289,17 @@ class Profile extends CI_Controller {
         $deleteData = array('id' => $this->input->post('id'), 
                             'table' => $this->input->post('table'));
         $result['data'] = $this->student_model->delete($deleteData, $deleteData['table']);
+		
+		if($deleteData['table'] == "academics"){
+			$this->session->set_flashdata('tab_student', 'tab_education');
+		}elseif($deleteData['table'] == "achievement"){
+			$this->session->set_flashdata('tab_student', 'tab_non_education');
+		}elseif($deleteData['table'] == "experiences"){
+			$this->session->set_flashdata('tab_student', 'tab_experience');
+		}elseif($deleteData['table'] == "user_projects"){
+			$this->session->set_flashdata('tab_student', 'tab_project');
+		}
+		
         return $result;
     }
 
@@ -301,7 +317,8 @@ class Profile extends CI_Controller {
             $result = $this->student_model->add($achievement, $table);
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
         }
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_non_education');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_achievement(){
@@ -319,7 +336,8 @@ class Profile extends CI_Controller {
             $result = $this->student_model->update($achievement, $table);
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
         }
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_non_education');
+        redirect(base_url().'student/profile');
     }
 
     public function add_project(){
@@ -346,7 +364,8 @@ class Profile extends CI_Controller {
         $table = 'user_projects';
         $result = $this->student_model->add($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_project');
+		redirect(base_url().'student/profile');
     }
 
     public function edit_project(){
@@ -372,7 +391,8 @@ class Profile extends CI_Controller {
         $table = 'user_projects';
         $result = $this->student_model->update($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
-        redirect(base_url().'student/profile/');
+		$this->session->set_flashdata('tab_student', 'tab_project');
+        redirect(base_url().'student/profile');
 
     }
 
