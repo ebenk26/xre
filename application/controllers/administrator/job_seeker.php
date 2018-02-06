@@ -52,35 +52,42 @@ class Job_Seeker extends CI_Controller {
 	}
 
     public function post(){
-        $jobPost = array('name' => $this->input->post('job_position_name'),
-                         'user_id' => $this->session->userdata('id'),
-                         'position_level_id' => $this->input->post('employmentLevel'),
-                         'employment_type_id' => $this->input->post('employmentType'),
-                         'years_of_experience' => $this->input->post('yearOfExperience'),
-                         'job_description' => $this->input->post('jobDescription'),
-                         'qualifications' => $this->input->post('jobRequirement'),
-                         'other_requirements' => $this->input->post('niceToHave'),
-                         'additional_info'=> $this->input->post('additionalInfo'),
-                         'status'=> $this->input->post('status'),
-                         'budget_min' => $this->input->post('budget_min'),
-                         'budget_max' => $this->input->post('budget_max'),
-                         'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
-                         'created_at'=> date('Y-m-d H:i:s'),
-                         'updated_at' => date('Y-m-d H:i:s')
-                         );
-        $postJob = $this->employer_model->job_post($jobPost);
-
-        if ($postJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success post job');            
+        $id 		= $this->input->post('id');
+		//$password 	= md5(SALT.sha1($this->input->post('password')));
+		
+		/*$post_status = false;
+		if($this->input->post('password') != $this->input->post('password_old')){				
+			$data = array(
+					'password' => $password,
+			);
+			$this->db->where('id', $id);
+			$post_status = $this->db->update('users', $data);
+		}*/
+		
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where('email', $this->input->post('email'));
+		$this->db->where('id !=', $id);
+		$query = $this->db->get();
+		
+		if($query->num_rows() == 0){
+			$data = array(
+					'email' => $this->input->post('email'),
+			);
+			$this->db->where('id', $id);
+			$post_status = $this->db->update('users', $data);
+		}else{
+			$post_status = false;
+		}
+		
+		
+        if ($post_status == true) {
+            $this->session->set_flashdata('msg_success', 'Success');            
         }else{
-            $this->session->set_flashdata('msg_error', 'Failed post data');
+            $this->session->set_flashdata('msg_error', 'Failed');
         }
-
-        if ($this->input->post('status') == 'draft') {
-            redirect(base_url().'job/details/'.rtrim(base64_encode($postJob),'=') );
-        }else{
-            redirect(base_url().'employer/job_board/');
-        }
+		
+		redirect(base_url().'administrator/job_seeker');
     }
 
     public function update(){

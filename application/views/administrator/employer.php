@@ -151,12 +151,12 @@
 									</div>
 									
 									<div class="form-group">
-										<label>Company Email Address</label>
+										<label>Contact Person Email Address</label>
 										<div class="input-group">
 											<span class="input-group-addon">
 												<i class="fa fa-envelope font-yellow-gold"></i>
 											</span>
-											<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$row->company_email?>" readonly> 
+											<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$row->email?>"> 
 										</div>
 									</div>
 									

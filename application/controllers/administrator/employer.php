@@ -83,12 +83,29 @@ class Employer extends CI_Controller {
 			);
 			$post_status = $this->db->insert('user_role', $data2);
 		}else{
+			$post_status = false;
 			if($this->input->post('password') != $this->input->post('password_old')){				
 				$data = array(
 						'password' => $password,
 				);
 				$this->db->where('id', $id);
 				$post_status = $this->db->update('users', $data);
+			}
+			
+			$this->db->select('*');
+			$this->db->from('users');
+			$this->db->where('email', $this->input->post('email'));
+			$this->db->where('id !=', $id);
+			$query = $this->db->get();
+			
+			if($query->num_rows() == 0){
+				$data = array(
+						'email' => $this->input->post('email'),
+				);
+				$this->db->where('id', $id);
+				$post_status = $this->db->update('users', $data);
+			}else{
+				$post_status = false;
 			}
 		}
 		
