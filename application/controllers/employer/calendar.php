@@ -16,11 +16,7 @@ class Calendar extends CI_Controller {
 
     public function index(){
     	$profile['page_title'] = 'Calendar';
-<<<<<<< HEAD
 		$id = $this->session->userdata('id');
-=======
-        $id = $this->session->userdata('id');
->>>>>>> cd3f11d99a2cfca853bf1d00692829d9b374fe0b
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
 		$this->load->view('employer/main/header', $profile);
