@@ -3,9 +3,13 @@ $roles = $this->session->userdata('roles');
 $image = end($company_image);
 $login = $this->session->userdata('id');
 if (!empty($job->location)) {
-    $location = json_decode($job->location);
+    $location = json_decode($job->location, true);
 }
 $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
+
+if (!empty($job->location)) {
+    $location_map = json_decode($job->location);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -245,7 +249,7 @@ $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <?php if (!empty($location)): ?>
-                                    <i class="icon-pointer"></i> <?php echo $location->city; ?> , <?php echo $location->state; ?>
+                                    <i class="icon-pointer"></i> <?php echo $location['city']; ?> , <?php echo $location['state']; ?>
                                 <?php endif ?>
                             </h6>
                             <h6>
@@ -362,7 +366,7 @@ $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
                     <h6 class=" roboto-font  font-14-xs ">
                         <i class="icon-pointer mr-2"></i>
 
-                        <?php echo $location->address; ?>, <?php echo !empty($location->postcode) ? $location->postcode : '' ; ?> <?php echo $location->city; ?>, <?php echo $location->state; ?>, <?php echo $location->country; ?>. </h6>
+                        <?php echo $location['address']; ?>, <?php echo !empty($location['postcode']) ? $location['postcode'] : '' ; ?> <?php echo $location['city']; ?>, <?php echo $location['state']; ?>, <?php echo $location['country']; ?>. </h6>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
                     <!-- <section class="s-google-map">
                         <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
@@ -604,7 +608,7 @@ $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
 
     <script>
       function initMap() {
-        var latLang = {lat: parseInt(<?php echo $location->latitude; ?>), lng: parseInt(<?php echo $location->longitude; ?>)};
+        var latLang = {lat: parseInt(<?php echo $location_map->latitude; ?>), lng: parseInt(<?php echo $location_map->longitude; ?>)};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,
