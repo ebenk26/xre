@@ -229,19 +229,31 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
+                                    <a href="<?php echo base_url().'student/dashboard/'; ?>">
+                                        <i class="icon-home"></i> Dashboard </a>
+                                </li>
+								<li>
                                     <a href="<?php echo base_url().'student/profile/'; ?>">
-                                        <i class="icon-user"></i> My Profile </a>
+                                        <i class="icon-user"></i> Edit Profile </a>
+                                </li>
+								<li>
+                                    <a href="<?php
+                                    $id = $this->session->userdata('id');
+                                    $id_encoded = rtrim(base64_encode($id), '=');
+									echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank">
+                                        <i class="icon-book-open"></i> View My Resume
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url().'student/calendar/'; ?>">
                                         <i class="icon-calendar"></i> My Calendar </a>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="<?php echo base_url().'student/inbox/'; ?>">
                                         <i class="icon-envelope-open"></i> My Inbox
                                         <span class="badge badge-danger"> 1 </span>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="divider"> </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>site/user/logout">
@@ -313,13 +325,13 @@
                         </a>
                     </li>
                     <!-- Sidebar Menu : Inbox -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?>">
+                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
 							<span class="selected"></span>
                         </a>
-                    </li>
+                    </li>-->
                     <!-- Sidebar Menu : Calendar  -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">

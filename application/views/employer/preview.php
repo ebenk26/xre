@@ -5,6 +5,7 @@ $login = $this->session->userdata('id');
 if (!empty($job->location)) {
     $location = json_decode($job->location);
 }
+$expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -374,12 +375,12 @@ if (!empty($job->location)) {
             <div class="col-md-3">
 
                 <!-- Button -->
-                <?php if ($roles == 'employer' && $job->status =='draft'): ?>
+                <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                     <div class="row mb-5 mx-0">
                         <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                             data-confirm-button-class="btn-info">
                             <i class="icon-note mr-2 "></i>Post</button>
-                        <a href="employer-jobboard.html?#modal_add_jobpost" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                        <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
                             <i class="fa fa-building-o mr-2 "></i>Edit</a>
                     </div>
                 <?php endif ?>
