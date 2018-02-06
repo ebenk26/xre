@@ -337,22 +337,21 @@
 							<span class="selected"></span>
                         </a>
                     </li>-->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
+                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>
                             <span class="title">Purchase Package</span>
 							<span class="selected"></span>
-                            <!-- <span class="arrow"></span> -->
                         </a>
-                    </li>
+                    </li>-->
                     <!-- My Package -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'my_package'): echo 'active'; endif?> ">
+                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'my_package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/my_package/" class="nav-link ">
                             <i class="icon-present"></i>
                             <span class="title">My Package</span>
                             <span class="selected"></span>
                         </a>
-                    </li>
+                    </li>-->
                     <!-- Settings -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">

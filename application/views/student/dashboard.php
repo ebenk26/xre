@@ -622,7 +622,7 @@
                                                 <!-- <a class="btn btn-xs btn-md-red ">View</a> -->
                                                 <!-- <small class="md-grey-text font-weight-600">2 days ago</small> -->
                                                 <a class="btn btn-outline-md-indigo btn-sm mt-1 mt-display-block-xs" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">View Job</a>
-                                                <a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs apply" id="<?php echo $value['job_id'] ?>" href="#">Apply</a>
+                                                <!--<a class="btn btn-outline blue-ebonyclay btn-sm mt-1 mt-display-block-xs apply" id="<?php echo $value['job_id'] ?>" href="#">Apply</a>-->
                                                 <!-- <a class="btn btn-md-red btn-sm mt-1 mt-display-block-xs" href="#"><i class="icon-pin"></i></a> -->
                                             </div>
                                             <!-- <i class="fa fa-chevron-right pull-right font-40-xs my-5"></i> -->

@@ -45,7 +45,7 @@
                                                 <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs "><?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Xremo Sdn Bhd'; ?></h3>
                                                 <h5 class="md-grey-text text-darken-1 font-24-xs my-4"><?php echo !empty($detail['industry']) ? $detail['industry']: 'Job Portal'; ?></h5>
                                                 <hr class="mt-width-400-xs center-block">
-                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="btn btn-md-indigo mb-6">View My Profile</a>
+                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank" class="btn btn-md-indigo mb-6">View My Profile</a>
                                                 <div class="mt-card-social">
                                                     <ul>
                                                         <?php if (!empty($social)) {
@@ -111,7 +111,8 @@
                                                                 </li> -->
                                     </ul>
                                     <div class="actions">
-                                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-md-indigo btn-circle">Edit Profile</a>
+                                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle">
+                                            <i class="icon-pencil mr-2"></i>Edit Profile</a>
                                     </div>
                                 </div>
                                 <div class="portlet-body tab-content ">
