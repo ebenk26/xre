@@ -125,8 +125,12 @@ class Employer_Model extends CI_Model{
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
         $this->db->where('job_positions.user_id', $id);
         $this->db->where('job_positions.id !=', $job_id_not);
+        $this->db->where('job_positions.status', 'post');
+        $this->db->where('job_positions.expiry_date >=', date('Y-m-d'));
+        $this->db->order_by('created_at DESC');
         $this->db->limit(5);
         $query = $this->db->get('job_positions');
+        // var_dump($this->db->last_query());exit();
         return $query->result_array();
     }
 
