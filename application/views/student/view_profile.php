@@ -373,7 +373,7 @@
                                 <?php   
                                     if(!empty($user_profile['overview']['student_bios_DOB']))
                                     {
-                                        if(empty($user_profile['overview']['student_bios_DOB']) || $user_profile['overview']['student_bios_DOB'] == '0000-00-00')
+                                        if(empty($user_profile['overview']['student_bios_DOB']) || $user_profile['overview']['student_bios_DOB'] == '0000-00-00' || $user_profile['overview']['student_bios_DOB'] == '1970-01-01')
                                         {
                                             echo 'Not Provided';
                                         }
@@ -633,7 +633,7 @@
                                         <li class="font-weight-500 font-16-xs text-capitalize roboto-font"><?php echo $value['degree_name']?>
                                             <small class="font-weight-400 font-13-xs pull-right"> 
                                                 <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
                                                     {
                                                         echo 'Not Provided';
                                                     }
@@ -667,7 +667,7 @@
                                                 <span class="badge badge-roundless badge-md-blue-grey"><?php echo $value['employment_type'];?></span>
                                                 <small class="font-weight-400 font-13-xs pull-right"> 
                                                     <?php 
-                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00')
+                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
                                                         {
                                                             echo 'Not Provided';
                                                         }
@@ -700,7 +700,7 @@
                                             <i class="icon-notebook"></i> <?php echo $value['achievement_title']; ?>
                                             <small class="font-weight-400 font-13-xs pull-right"> 
                                                 <?php 
-                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
                                                     {
                                                         echo 'Not Provided';
                                                     }
@@ -729,7 +729,7 @@
                                             <i class="fa fa-tasks fa-fw"></i><?php echo $value['name']; ?>
                                             <small class="font-weight-400 font-13-xs pull-right"> 
                                                 <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
                                                     {
                                                         echo 'Not Provided';
                                                     }
@@ -777,7 +777,7 @@
                                             <small>
                                                 <i class="fa fa-calendar mr-1"></i>
                                                 <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
                                                     {
                                                         echo 'Not Provided';
                                                     }
@@ -833,7 +833,7 @@
                                                     <span class="badge badge-roundless badge-md-amber letter-space-sm font-weight-500"> Temporary</span> -->
                                                 <small>
                                                     <?php 
-                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00')
+                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
                                                         {
                                                             echo 'Not Provided';
                                                         }
@@ -894,7 +894,7 @@
                                                 <small>
                                                     <i class="fa fa-calendar mr-1"></i>
                                                     <?php 
-                                                        if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00')
+                                                        if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
                                                         {
                                                             echo 'Not Provided';
                                                         }
@@ -947,7 +947,7 @@
                                                 <small>
                                                     <i class="fa fa-calendar mr-1"></i>
                                                     <?php 
-                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00')
+                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
                                                         {
                                                             echo 'Not Provided';
                                                         }
