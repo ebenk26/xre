@@ -709,22 +709,26 @@
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
     <script>
-    var address = <?php echo $detail['address']; ?>;
+        function initMap() {
+            var address = <?php echo $detail['address']; ?>;
+            var company_name = '<?php echo $detail['company_name']; ?>';
+            var latLang = {lat: 3.9453071, lng: 107.4046742};
+            // Create a map object and specify the DOM element for display.
+            var map = new google.maps.Map(document.getElementById('gmapbg'), {
+              center: latLang,
+              zoom: 4
+            });
 
-      function initMap() {
-        var latLang = {lat: -34.397, lng: 150.644};
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('gmapbg'), {
-          center: latLang,
-          zoom: 8
-        });
-
-         var marker = new google.maps.Marker({
-          map: map,
-          position: latLang,
-          title: 'Hello World!'
-        });
-      }
+            $.each(address,function(i,v){
+                var lat = parseInt(v.building_latitude);
+                var long = parseInt(v.building_longitude);
+                 var marker = new google.maps.Marker({
+                  map: map,
+                  position: {lat: lat, lng: long},
+                  title: company_name
+                });
+            });
+        }
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap"
