@@ -215,16 +215,26 @@
                                 <span class="username username-hide-on-mobile"> <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
+							
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
+                                    <a href="<?php echo base_url(); ?>employer/dashboard/">
+                                        <i class="icon-home"></i> Dashboard </a>
+                                </li>
+                                <li>
                                     <a href="<?php echo base_url(); ?>employer/profile/">
-                                        <i class="icon-user"></i> My Profile </a>
+                                        <i class="icon-user"></i> Edit Profile </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank">
+                                        <i class="icon-book-open"></i> View My Profile
+                                    </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/calendar/">
                                         <i class="icon-calendar"></i> My Calendar </a>
                                 </li>
-                                <li>
+                                <!--<li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/app_inbox.html">
                                         <i class="icon-envelope-open"></i> My Inbox
                                         <span class="badge badge-danger"> 3 </span>
@@ -235,12 +245,12 @@
                                         <i class="icon-rocket"></i> My Tasks
                                         <span class="badge badge-success"> 7 </span>
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="divider"> </li>
-                                <li>
+                                <!--<li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_lock_1.html">
                                         <i class="icon-lock"></i> Lock Screen </a>
-                                </li>
+                                </li>-->
                                 <li>
                                     <a href="<?php echo base_url(); ?>site/user/logout/">
                                         <i class="icon-key"></i> Log Out </a>
@@ -320,14 +330,13 @@
 							<span class="selected"></span>
                         </a>
                     </li>
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?> ">
+                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
 							<span class="selected"></span>
-                            <!-- <span class="arrow"></span> -->
                         </a>
-                    </li>
+                    </li>-->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>
