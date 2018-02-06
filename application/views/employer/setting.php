@@ -401,7 +401,7 @@
 
                                 <div class="form-group mx-0">
                                     <label for="">Company Name</label>
-                                    <input type="text" class="form-control " name="company_name">
+                                    <input type="text" class="form-control " name="company_name" value="<?php echo !empty($settings) ? $settings->company_name : 'Xremo Sdn Bhd'; ?>">
                                 </div>
                             </div>
                             <div class=" modal-footer">
