@@ -1,3 +1,5 @@
+<?php $pic = !empty($settings->contact_person) ? json_decode($settings->contact_person) : ''; ?>
+
 <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper ">
         <div class="page-content">
@@ -80,14 +82,14 @@
                                         </div>
                                         <div class="media-body">
                                             <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Person In Charge</h5>
-                                            <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings) ? $settings->contact_person: 'Xremo Sdn Bhd'; ?> </h4>
+                                            <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($pic->pic_name) ? $pic->pic_name: 'Xremo Sdn Bhd'; ?> </h4>
 
-                                            <h4 class="hidden">
+                                            <h4>
                                                 <small>
-                                                    <i class="icon-briefcase mr-2"></i>Administrative Manager</small>
+                                                    <i class="icon-briefcase mr-2"></i><?php echo !empty($pic->pic_position) ? $pic->pic_position: 'HR Department'; ?></small>
                                                 <i class="fa fa-circle font-10-xs vertical-middle font-grey-gallery"></i>
                                                 <small>
-                                                    <i class="icon-envelope mr-2"></i>nick_aaron@xremo.com</small>
+                                                    <i class="icon-envelope mr-2"></i><?php echo !empty($pic->pic_email) ? $pic->pic_email: 'cs@xremo.com'; ?></small>
                                             </h4>
                                         </div>
 
@@ -420,12 +422,21 @@
                             <h4>Change Person in charge </h4>
                         </div>
                         <form action="<?php echo base_url(); ?>employer/settings/change_person_in_charge" method="POST" class=" form form-horizontal">
-                            <div class="modal-body form-horizontal">
+                            <div class="modal-body form-body">
 
                                 <div class="form-group mx-0">
-                                    <label for="">Person In Charge</label>
-                                    <input type="text" class="form-control " name="person_in_charge">
+                                    <label class="control-label ">Full Name</label>
+                                    <input type="text" name="pic_name" class="form-control" placeholder="Nick Aaron " value="<?php echo !empty($pic->pic_name) ? $pic->pic_name: 'Xremo Sdn Bhd'; ?>">
                                 </div>
+                                <div class="form-group mx-0">
+                                    <label class="control-label ">Position </label>
+                                    <input type="text" name="pic_position" class="form-control" placeholder="HR " value="<?php echo !empty($pic->pic_position) ? $pic->pic_position: 'HR Department'; ?>">
+                                </div>
+                                <div class="form-group mx-0">
+                                    <label class="control-label ">Email Address</label>
+                                    <input type="email" name="pic_email" class="form-control" placeholder="nick@email.com " value="<?php echo !empty($pic->pic_email) ? $pic->pic_email: 'cs@xremo.com'; ?>">
+                                </div>
+
                             </div>
                             <div class=" modal-footer">
                                 <a href="" data-dismiss="modal" class="btn btn-default btn-outline"> Close</a>

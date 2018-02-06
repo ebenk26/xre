@@ -17,6 +17,7 @@ class settings extends CI_Controller {
 
     public function index(){
     	$profile['page_title'] = 'Setting';
+        $id = $this->session->userdata('id');
         $where = array('user_id' => $this->session->userdata('id'));
         $setting['settings'] = $this->global_model->get_by_id('user_profiles', $where);
         $get_user_profile = $this->employer_model->get_user_profile($id);
@@ -35,7 +36,11 @@ class settings extends CI_Controller {
     }
 
     public function change_person_in_charge(){
-        $data = array('contact_person' => $this->input->post('person_in_charge'));
+        $pic = array('pic_name' => $this->input->post('pic_name'),
+                     'pic_position' => $this->input->post('pic_position'),
+                     'pic_email' => $this->input->post('pic_email'));
+
+        $data = array('contact_person' => json_encode($pic));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
         redirect(base_url().'employer/settings');
