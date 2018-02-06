@@ -407,9 +407,21 @@ if (!empty($job->location)) {
                         <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Share Job</h5>
                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5459809e0d587c73"></script>
+                        <!-- <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5459809e0d587c73"></script>
 
-                        <div class="addthis_inline_share_toolbox_xng3"></div>
+                        <div class="addthis_inline_share_toolbox_xng3"></div> -->
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" class="fb-share-button share-fb" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank">
+                            <i class="fa fa-facebook-square g-font-size-30-xs social-fb"></i>
+                        </a>
+                        <a href="https://plus.google.com/share?url=<?= XREMO_URL; ?><?= uri_string(); ?>" class="share-gplus" target="_blank">
+                            <i class="fa fa-google-plus-square g-font-size-30-xs social-gplus"></i>
+                        </a>
+                        <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" class="share-tw" target="_blank">
+                            <i class="fa fa-linkedin-square g-font-size-30-xs social-li"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" class="share-tw" target="_blank">
+                            <i class="fa fa-twitter-square g-font-size-30-xs social-tw"></i>
+                        </a>
                     </div>
 
                     <!-- URL  -->
@@ -496,6 +508,7 @@ if (!empty($job->location)) {
                                 </div>
                                 <div class="form-group text-left mx-0 mb-2">
                                     <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe about yourself and why we should we hire you? Not more than 300 words"></textarea>
+                                    <input type="hidden" name="job_id" value="<?= $job_id; ?>">
                                 </div>
                             </div>
                         </div>
@@ -588,7 +601,7 @@ if (!empty($job->location)) {
 
     <script>
       function initMap() {
-        var latLang = {lat: <?php echo $location->latitude; ?>, lng: <?php echo $location->longitude; ?>};
+        var latLang = {lat: parseInt(<?php echo $location->latitude; ?>), lng: parseInt(<?php echo $location->longitude; ?>)};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,

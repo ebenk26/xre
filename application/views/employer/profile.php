@@ -3,8 +3,9 @@
         $dress_code = explode(',', $user_profile['dress_code']);
         $spoken_language = explode(',', $user_profile['spoken_language']);
         $company_address = json_decode($user_profile['address']);
-        $profile_picture = current($profile_photo); 
-        $header_picture = current($header_photo); ?>
+        $profile_picture = end($profile_photo); 
+        $header_picture = end($header_photo); 
+        ?>
 <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">

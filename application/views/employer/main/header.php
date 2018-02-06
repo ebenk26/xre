@@ -353,31 +353,14 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- Settings -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
-                        <a href="javascript:;" class="nav-link nav-toggle">
+                        <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
                             <span class="selected"></span>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
-                                <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">
-                                    <i class="icon-list"></i>
-                                    <span class="title">Account</span>
-									<span class="selected"></span>
-                                </a>
-                            </li>
-                            <li class="nav-item start ">
-                                <a href="#" class="nav-link ">
-                                    <i class="icon-user-following"></i>
-                                    <span class="title">Payment</span>
-									<span class="selected"></span>
-                                </a>
-                            </li>
-
-                        </ul>
                     </li>
-
                 </ul>
             </div>
         </div>
