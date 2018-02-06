@@ -46,7 +46,7 @@ class Dashboard extends CI_Controller {
 
     public function applied(){
         $id 			= $this->session->userdata('id');
-        $job_id 		= $this->input->post('job_id');
+        $job_id 		= base64_decode($this->input->post('job_id'));
 		$job_id_code 	= rtrim(base64_encode($job_id), '=');
         
 		$this->db->select('*');

@@ -142,6 +142,7 @@ class Job_Board extends CI_Controller {
         $job_post['header_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'header_photo'));
         $job_post['user_profile'] = $get_user_profile;
         $job_post['more_jobs'] = $this->employer_model->get_more_from($user_id, $id);
+        $job_post['job_id'] = $this->uri->segment(URI_SEGMENT_DETAIL);
         $this->load->view('employer/preview',$job_post);
     }
 

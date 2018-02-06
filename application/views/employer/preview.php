@@ -496,6 +496,7 @@ if (!empty($job->location)) {
                                 </div>
                                 <div class="form-group text-left mx-0 mb-2">
                                     <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe about yourself and why we should we hire you? Not more than 300 words"></textarea>
+                                    <input type="hidden" name="job_id" value="<?= $job_id; ?>">
                                 </div>
                             </div>
                         </div>
