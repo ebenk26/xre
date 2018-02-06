@@ -588,7 +588,7 @@ if (!empty($job->location)) {
 
     <script>
       function initMap() {
-        var latLang = {lat: <?php echo $location->latitude; ?>, lng: <?php echo $location->longitude; ?>};
+        var latLang = {lat: parseInt(<?php echo $location->latitude; ?>), lng: parseInt(<?php echo $location->longitude; ?>)};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,
