@@ -3,7 +3,12 @@ $roles = $this->session->userdata('roles');
 $image = end($company_image);
 $login = $this->session->userdata('id');
 if (!empty($job->location)) {
-    $location = json_decode($job->location);
+    $location = json_decode($job->location, true);
+}
+$expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
+
+if (!empty($job->location)) {
+    $location_map = json_decode($job->location);
 }
 ?>
 <!DOCTYPE html>
@@ -244,7 +249,7 @@ if (!empty($job->location)) {
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <?php if (!empty($location)): ?>
-                                    <i class="icon-pointer"></i> <?php echo $location->city; ?> , <?php echo $location->state; ?>
+                                    <i class="icon-pointer"></i> <?php echo $location['city']; ?> , <?php echo $location['state']; ?>
                                 <?php endif ?>
                             </h6>
                             <h6>
@@ -361,7 +366,7 @@ if (!empty($job->location)) {
                     <h6 class=" roboto-font  font-14-xs ">
                         <i class="icon-pointer mr-2"></i>
 
-                        <?php echo $location->address; ?>, <?php echo !empty($location->postcode) ? $location->postcode : '' ; ?> <?php echo $location->city; ?>, <?php echo $location->state; ?>, <?php echo $location->country; ?>. </h6>
+                        <?php echo $location['address']; ?>, <?php echo !empty($location['postcode']) ? $location['postcode'] : '' ; ?> <?php echo $location['city']; ?>, <?php echo $location['state']; ?>, <?php echo $location['country']; ?>. </h6>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
                     <!-- <section class="s-google-map">
                         <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
@@ -374,12 +379,12 @@ if (!empty($job->location)) {
             <div class="col-md-3">
 
                 <!-- Button -->
-                <?php if ($roles == 'employer' && $job->status =='draft'): ?>
+                <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                     <div class="row mb-5 mx-0">
                         <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange roboto-font mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                             data-confirm-button-class="btn-info">
                             <i class="icon-note mr-2 "></i>Post</button>
-                        <a href="employer-jobboard.html?#modal_add_jobpost" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
+                        <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
                             <i class="fa fa-building-o mr-2 "></i>Edit</a>
                     </div>
                 <?php endif ?>
@@ -601,7 +606,7 @@ if (!empty($job->location)) {
 
     <script>
       function initMap() {
-        var latLang = {lat: parseInt(<?php echo $location->latitude; ?>), lng: parseInt(<?php echo $location->longitude; ?>)};
+        var latLang = {lat: parseInt(<?php echo $location_map->latitude; ?>), lng: parseInt(<?php echo $location_map->longitude; ?>)};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,

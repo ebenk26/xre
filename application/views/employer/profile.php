@@ -153,8 +153,8 @@
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Size</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?> People</dd>
 
-                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">DressCode</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
+                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Dress Code</dt>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code'],',') : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Benefit</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?></dd>
