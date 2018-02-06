@@ -28333,6 +28333,9 @@ Custimized Bootstrap Wells
   .widget-media .widget-media-avatar {
     width: 55px;
     display: block; }
+  .widget-media .widget-media-avatar-job-search {
+    width: 80px;
+    display: block; }
   .widget-media .widget-btn-default {
     display: inline-block;
     font-size: 12px;

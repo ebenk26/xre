@@ -3,7 +3,7 @@
 class Job_Model extends CI_Model{
 
 	function get_job($word,$offset,$perPage,$empType,$posLevel,$experiences,$company_industry,$country_name,$latest,$popular){
-		$this->db->select('job_positions.*, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level, employment_types.name as job_type');
+		$this->db->select('job_positions.*, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level, employment_types.name as job_type, profile_uploads.name as company_img');
 		$this->db->from('job_positions');
         $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.user_id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
@@ -11,6 +11,7 @@ class Job_Model extends CI_Model{
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id', 'left');
 
         if(!empty($empType))
         {
@@ -47,7 +48,7 @@ class Job_Model extends CI_Model{
         	$this->db->order_by("number_of_candidate DESC");
         }
 
-		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND profile_uploads.type = 'profile_photo' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
 		$this->db->limit($perPage,$offset);
 		$query = $this->db->get();
 		// var_dump($this->db->last_query());exit();

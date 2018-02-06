@@ -324,7 +324,9 @@
                                     <a href="<?= $clear_location; ?>" class="md-indigo-text">Clear </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location</h4>
+                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="type location you desired"></i>
+                                    </h4>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -367,7 +369,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="my-2 text-uppercase font-weight-600 font-14-xs"> Company Industry
-                                        <!-- <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i> -->
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select company industry you desired"></i>
                                     </h4>
                                 </div>
                             </div>
@@ -389,7 +391,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Position Level
-                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select position level you desired"></i>
                                     </h4>
                                 </div>
                             </div>
@@ -416,7 +418,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="my-2 text-uppercase font-weight-600 roboto-font font-14-xs"> Experience
-                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
+                                        <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select experience you desired"></i>
                                     </h4>
                                 </div>
                             </div>
@@ -467,10 +469,13 @@
                                         $company_url    = base_url().'profile/company/'.rtrim(base64_encode($job_result['user_id']), '=');
                             ?>
                                         <li class="list-group-item px-0">
-                                            <div class="media">
+                                            <div class="widget-media">
                                                 <!-- <div class="pull-right ">
                                                    <a href="#" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
                                                 </div> -->
+                                                <div class="widget-media-elements text-center pull-left">
+                                                    <img src="<?php echo !empty($job_result['company_img']) ? IMG_EMPLOYERS.$job_result['company_img'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="<?= $job_result["company_name"]; ?>" class="widget-media-avatar-job-search img-responsive">
+                                                </div>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
                                                         <a href="<?= $url_detail; ?>"><?= $job_result["name"]; ?></a>
@@ -508,11 +513,11 @@
             </div>
 
             <!-- COL : Advertisement -->
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <div class="row mt-fullheight-xs md-yellow">
                     <p>Ad</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
