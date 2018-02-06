@@ -21,6 +21,15 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
+		
+		$this->db->select('*');
+		$this->db->from('blogs');
+		//$this->db->order_by('number_of_view', 'DESC');
+		$this->db->order_by('created_at', 'DESC');
+		$this->db->limit(5);
+		$query = $this->db->get();
+		$complement['article'] = $query->result();
+		
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/dashboard',$complement);
         $this->load->view('employer/main/footer');
