@@ -443,19 +443,21 @@ $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
                     <!-- More From -->
                     <div class="row mb-5 mx-0">
                         <h5 class="font-weight-600 md-indigo-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">More From
-                            <a href="" class="md-orange-text"><?php echo $user_profile['company_name']; ?></a>
+                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" class="md-orange-text"><?php echo $user_profile['company_name']; ?></a>
                         </h5>
 
                         <ul class="list-group list-borderless">
                             <?php foreach ($more_jobs as $key => $value): $address=json_decode($value['location']); ?>
                                 <li class="list-group-item px-0 py-1">
-                                    <p class="roboto-font my-0 font-14-xs font-weight-500 "><?php echo $value['name']; ?>
-                                        <small class="font-weight-400">[ <?php echo $value['employment_name'] ?> ]</small>
-                                    </p>
-                                    <?php if(!empty($address)){ ?>
-                                    <small class="roboto-font my-1 font-13-xs">
-                                        <i class="icon-pointer"></i> <?php echo $address->city; ?> , <?php  echo $address->state ?></small>
-                                    <?php } ?>
+                                    <a href="<?php echo base_url(); ?>job/details/<?= rtrim(base64_encode($value['id']), '='); ?>">
+                                        <p class="roboto-font my-0 font-14-xs font-weight-500 "><?php echo $value['name']; ?>
+                                            <small class="font-weight-400">[ <?php echo $value['employment_name'] ?> ]</small>
+                                        </p>
+                                        <?php if(!empty($address)){ ?>
+                                        <small class="roboto-font my-1 font-13-xs">
+                                            <i class="icon-pointer"></i> <?php echo $address->city; ?> , <?php  echo $address->state ?></small>
+                                        <?php } ?>
+                                    </a>
                                 </li>
                             <?php endforeach ?>
                         </ul>

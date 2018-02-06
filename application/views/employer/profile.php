@@ -171,6 +171,11 @@
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
                                                         <a href="<?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?>"><?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?></a>
                                                     </dd>
+
+                                                    <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Email</dt>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
+                                                        <?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>
+                                                    </dd>
                                                 </dl>
                                             </div>
 
