@@ -495,7 +495,7 @@
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-users mr-1"></i>Dress Code </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['dress_code'] != ""?$detail['dress_code']:"Not Provided"; ?>
+                                    <?php echo $detail['dress_code'] != ""?ucwords($detail['dress_code'],','):"Not Provided"; ?>
                                 </p>
                             </li>
                         <?php //endif ?>
