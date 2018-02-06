@@ -241,7 +241,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3  col-xs-12 text-center">
-                    <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
+					<img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
                     <li hidden>
                         <!-- <h5 class="md-white-text font-weight-700 text-uppercase letter-space-xs">
                             Share:

@@ -45,7 +45,7 @@ class Job_Seeker extends CI_Controller {
 		$this->db->from('users');
 		$this->db->join('user_role', 'users.id = user_role.user_id');
 		$this->db->join('student_bios', 'users.id = student_bios.user_id', 'left');
-		$this->db->where('user_role.role_id = 4 OR user_role.role_id = 5');
+		$this->db->where('user_role.role_id = 4');
 		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();

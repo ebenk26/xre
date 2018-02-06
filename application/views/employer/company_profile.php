@@ -334,9 +334,9 @@
 									?>
                                         <li class="list-group-item ">
                                             <div class="media">
-                                                <div class="pull-right ">
+                                                <!--<div class="pull-right ">
                                                     <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs " target="_blank">Apply</a>
-                                                </div>
+                                                </div>-->
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
                                                         <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>

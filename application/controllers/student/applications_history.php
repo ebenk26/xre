@@ -29,6 +29,11 @@ class Applications_history extends CI_Controller {
 
     public function withdraw(){
         $job_id = $this->input->post('job_id');
+		
+		$this->db->set('number_of_candidate', 'number_of_candidate-1', FALSE);
+		$this->db->where('id', $job_id);
+		$this->db->update('job_positions');
+		
         $result = $this->job_model->withdraw_job($job_id);
         if ($result == true) {
             $this->session->set_flashdata('msg_success', 'Success withdraw from the job');            

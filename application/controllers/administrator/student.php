@@ -1,46 +1,57 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Job_Board extends CI_Controller {
+class Student extends CI_Controller {
     
     function __construct(){
         parent::__construct();
-        $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         $this->load->model('job_model');
-        $roles = $this->session->userdata('roles');
-        $segment = $this->uri->segment(USER_ROLE);
+        $countryCheck 	= $this->session->userdata('country');
+        $roles 			= $this->session->userdata('roles');
+        $segment 		= $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) ){
             redirect(base_url());
         }
     }
     
     public function index(){
-        $header['page_title'] = 'Job Board';
-        $id = $this->session->userdata('id');
-        $get_user_profile = $this->employer_model->get_user_profile($id);
-        $profile['user_profile'] = $get_user_profile;
-        $complement['employment_type'] = $this->employer_model->get_employment();
-        $complement['position_levels'] = $this->employer_model->get_position();
-        $complement['year_of_experience'] = $this->employer_model->get_year_of_experience();
-        $complement['job_post'] = $this->employer_model->get_job_post($id);
-        $complement['countries'] = $this->employer_model->get('countries', 'name', 'asc');
-        $complement['forex'] = $this->employer_model->get('forex', 'name', 'asc');
-        $this->load->view('employer/main/header', $profile);
-        $this->load->view('employer/job_board', $complement);
-        $this->load->view('employer/main/footer');
+        $profile['page_title'] 		= 'Student | Admin';
+        $id 						= $this->session->userdata('id');
+        $get_user_profile 			= $this->employer_model->get_user_profile($id);
+        $profile['user_profile'] 	= $get_user_profile;
+		
+        $complement['employment_type'] 		= $this->employer_model->get_employment();
+        $complement['position_levels'] 		= $this->employer_model->get_position();
+        $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
+        $complement['job_post'] 			= $this->employer_model->get_job_post($id);
+		$complement['job_seeker'] 			= $this->get_data();
+		
+        $this->load->view('administrator/main/header', $profile);
+        $this->load->view('administrator/student', $complement);
+        $this->load->view('administrator/main/footer');
+	}
+	
+	public function export(){
+        $data['page_title'] = 'Student';
+		$data['type'] 		= 'Student';
+		$data['hasil'] 		= $this->get_data();
+		
+        $this->load->view('administrator/excel', $data);
+	}
+	
+	public function get_data(){
+        $this->db->select('users.*, student_bios.youtubelink');
+		$this->db->from('users');
+		$this->db->join('user_role', 'users.id = user_role.user_id');
+		$this->db->join('student_bios', 'users.id = student_bios.user_id', 'left');
+		$this->db->where('user_role.role_id = 5');
+		$this->db->order_by('users.id', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
     public function post(){
-        $address= array('address' => $this->input->post('address'),
-                        'city' => $this->input->post('city'),
-                        'state' => $this->input->post('state'),
-                        'postcode' => $this->input->post('postcode'),
-                        'country' => $this->input->post('country'),
-                        'latitude' => $this->input->post('latitude'),
-                        'longitude' => $this->input->post('longitude')
-                        );
-        $status = $this->input->post('status');
         $jobPost = array('name' => $this->input->post('job_position_name'),
                          'user_id' => $this->session->userdata('id'),
                          'position_level_id' => $this->input->post('employmentLevel'),
@@ -50,14 +61,12 @@ class Job_Board extends CI_Controller {
                          'qualifications' => $this->input->post('jobRequirement'),
                          'other_requirements' => $this->input->post('niceToHave'),
                          'additional_info'=> $this->input->post('additionalInfo'),
-                         'status'=> !empty($status) ? $status : 'post',
-                         'location'=> json_encode($address),
-                         'forex' => $this->input->post('currency'),
+                         'status'=> $this->input->post('status'),
                          'budget_min' => $this->input->post('budget_min'),
                          'budget_max' => $this->input->post('budget_max'),
                          'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
                          'created_at'=> date('Y-m-d H:i:s'),
-                         'updated_at' => date('Y-m-d H:i:s'),
+                         'updated_at' => date('Y-m-d H:i:s')
                          );
         $postJob = $this->employer_model->job_post($jobPost);
 
@@ -75,15 +84,6 @@ class Job_Board extends CI_Controller {
     }
 
     public function update(){
-        $address= array('address' => $this->input->post('address'),
-                        'city' => $this->input->post('city'),
-                        'state' => $this->input->post('state'),
-                        'postcode' => $this->input->post('postcode'),
-                        'country' => $this->input->post('country'),
-                        'latitude' => $this->input->post('latitude'),
-                        'longitude' => $this->input->post('longitude')
-                        );
-
         $jobPost = array('name' => $this->input->post('title'),
                          'id' => $this->input->post('job_id'),
                          'user_id' => $this->session->userdata('id'),
@@ -95,8 +95,6 @@ class Job_Board extends CI_Controller {
                          'other_requirements' => $this->input->post('nice_To_Have'),
                          'additional_info'=> $this->input->post('additional_Info'),
                          'status'=> $this->input->post('status'),
-                         'location'=> json_encode($address),
-                         'forex' => $this->input->post('currency'),
                          'budget_min' => $this->input->post('budget_min'),
                          'budget_max' => $this->input->post('budget_max'),
                          'updated_at' => date('Y-m-d H:i:s')
@@ -126,14 +124,6 @@ class Job_Board extends CI_Controller {
         if (!$id) {
             redirect(show_404());
         }
-		
-		$this->db->select('*');
-		$this->db->from('applieds');
-		$this->db->where('user_id', $this->session->userdata('id'));
-		$this->db->where('job_position_id', $id);
-		$query = $this->db->get();
-		$applied = $query->row();
-		$job_post['applied'] = $applied;
 
         $job_post['job'] = $this->employer_model->get_job_detail($id);
         $user_id = $job_post['job']->user_id;
@@ -141,35 +131,7 @@ class Job_Board extends CI_Controller {
         $job_post['company_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'profile_photo'));
         $job_post['header_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'header_photo'));
         $job_post['user_profile'] = $get_user_profile;
-        $job_post['more_jobs'] = $this->employer_model->get_more_from($user_id, $id);
         $this->load->view('employer/preview',$job_post);
-    }
-
-    public function post_job(){
-        $id = $this->input->post('post_id');
-        $this->job_model->post_job($id, array('status'=>'post'));
-    }
-
-    public function shortlist(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->shortlist($id);
-        
-        if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
-        }
-    }
-
-    public function reject(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->reject($id);
-        
-        if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
-        }   
     }
 
 }

@@ -12,7 +12,7 @@
                         <ul class="page-breadcrumb">
                             <li>
                                 <i class="icon-home"></i>
-                                <a href="<?=base_url()?>administrator/job_seeker">Home</a>
+                                <a href="<?=base_url()?>administrator/student">Home</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
                             <li>
