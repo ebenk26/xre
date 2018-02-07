@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
+        $profile['notification'] = $this->student_model->get_notification($id);
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
 		$job['job_positions'] = $this->student_model->get_all_job($id);
 		if(!empty($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history'])){
