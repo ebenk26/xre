@@ -38,6 +38,20 @@ class settings extends CI_Controller {
 
     public function change_phone_number(){
         $data = array('contact_number' => $this->input->post('contact_number'));
+        $where = array('user' => $this->session->userdata('id'));
+        $this->global_model->update('student_bios', $where, $data);
+        redirect(base_url().'student/settings');
+    }
+
+    public function changeSearchableDetail(){
+        $data = array('searchable_detail' => $this->input->post('status'));
+        $where = array('user_id' => $this->session->userdata('id'));
+        $this->global_model->update('student_bios', $where, $data);
+        redirect(base_url().'student/settings');
+    }
+
+    public function changeSearchable(){
+        $data = array('searchable' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
         redirect(base_url().'student/settings');

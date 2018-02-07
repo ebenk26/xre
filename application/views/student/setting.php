@@ -107,7 +107,7 @@
                                         <form action="">
                                             <div class="media">
                                                 <div class="pull-right">
-                                                    <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                    <input type="checkbox" id="searchable_detail" <?php echo ($user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Searchable with Contact Details</h5>
@@ -120,7 +120,7 @@
                                             </div>
                                             <div class="media">
                                                 <div class="pull-right">
-                                                    <input type="checkbox" checked class="make-switch" id="test" data-size="mini">
+                                                    <input type="checkbox" id="searchable" <?php echo ($user_bios->searchable == 1) ? 'checked=checked' : ''; ?>>
                                                 </div>
                                                 <div class="media-body">
                                                     <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Not Searchable</h5>

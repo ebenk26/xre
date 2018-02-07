@@ -193,6 +193,74 @@
                         }
                     );
             });
+
+            $("#searchable_detail").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable_detail   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable_detail = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>student/settings/changeSearchableDetail",
+                        method:"POST",
+                        data: {
+                          status    : searchable_detail
+                        },
+                        success:function(response)
+                        {
+                            if(searchable_detail == 1)
+                            {
+                                swal("Sucess", "Your contact detail are now searchable to employers.", "success");
+                            }
+                            else
+                            {
+                                swal("Sucess", "Your contact detail are now unavailable to employers.", "success");
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#searchable").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>student/settings/changeSearchable",
+                        method:"POST",
+                        data: {
+                          status    : searchable
+                        },
+                        success:function(response)
+                        {
+                            if(searchable == 1)
+                            {
+                                swal("Sucess", "Your contact are now searchable to employers.", "success");
+                            }
+                            else
+                            {
+                                swal("Sucess", "Your contact are now unavailable to employers.", "success");
+                            }
+                        }
+                    });
+                }
+            });
         })
     </script>
 
