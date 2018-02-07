@@ -431,6 +431,74 @@
                     );
             });
 
+            $("#searchable_detail").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable_detail   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable_detail = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>employer/settings/changeSearchableDetail",
+                        method:"POST",
+                        data: {
+                          status    : searchable_detail
+                        },
+                        success:function(response)
+                        {
+                            if(searchable_detail == 1)
+                            {
+                                swal("Success", "Your contact detail are now searchable to registered users.", "success");
+                            }
+                            else
+                            {
+                                swal("Success", "Your contact detail are now unavailable to registered users.", "success");
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#searchable").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>employer/settings/changeSearchable",
+                        method:"POST",
+                        data: {
+                          status    : searchable
+                        },
+                        success:function(response)
+                        {
+                            if(searchable == 1)
+                            {
+                                swal("Success", "Your contact are now unavailable to guest.", "success");
+                            }
+                            else
+                            {
+                                swal("Success", "Your contact are now searchable to guest.", "success");
+                            }
+                        }
+                    });
+                }
+            });
+
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>

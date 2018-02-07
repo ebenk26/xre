@@ -251,6 +251,7 @@
 
                             </div>
                         </div>
+
                         <!-- tab privacy -->
                         <div class="tab-pane" id="tab_privacy">
                             <div class="panel  panel-borderless panel-transparent">
@@ -264,125 +265,34 @@
                                     <form action="">
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
+                                                <input type="checkbox" id="searchable" <?php echo ($settings->searchable == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
                                                 <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
                                                 <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
+                                                    <small>
+                                                        Allow guests to search for my company profile.
+                                                    </small>
                                                 </h4>
                                             </div>
                                         </div>
                                         <div class="media">
                                             <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
+                                                <input type="checkbox" id="searchable_detail" <?php echo ($settings->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to registered users</h5>
                                                 <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
                                                 <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                        <div class="media">
-                                            <div class="pull-right">
-                                                <input type="checkbox" checked class="make-switch" data-size="mini">
-                                            </div>
-                                            <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
-                                                <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
-                                                <h4>
-                                                    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ornare lacus. Proin eros nisl, pharetra et euismod vitae, dapibus nec libero.
-                                                        Proin dictum pulvinar volutpat. </small>
+                                                    <small>
+                                                        Allow registered users to search for my company profile.
+                                                    </small>
                                                 </h4>
                                             </div>
                                         </div>
                                     </form>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -46,6 +46,20 @@ class settings extends CI_Controller {
         $this->global_model->update('user_profiles', $where, $data);
         redirect(base_url().'employer/settings');
     }
+
+    public function changeSearchableDetail(){
+        $data = array('searchable_detail' => $this->input->post('status'));
+        $where = array('user_id' => $this->session->userdata('id'));
+        $this->global_model->update('user_profiles', $where, $data);
+        redirect(base_url().'employer/settings');
+    }
+
+    public function changeSearchable(){
+        $data = array('searchable' => $this->input->post('status'));
+        $where = array('user_id' => $this->session->userdata('id'));
+        $this->global_model->update('user_profiles', $where, $data);
+        redirect(base_url().'employer/settings');
+    }
 }
 
 ?>
