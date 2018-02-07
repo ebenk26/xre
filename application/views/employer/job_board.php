@@ -39,7 +39,7 @@
                             <div class="widget-thumb-wrap">
                                 <i class="widget-thumb-icon bg-green icon-bulb"></i>
                                 <div class="widget-thumb-body">
-                                    <span class="widget-thumb-subtitle">Current</span>
+                                    <span class="widget-thumb-subtitle">Active</span>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $post; ?>"><?php echo $post; ?></span>
                                 </div>
                             </div>
@@ -60,21 +60,34 @@
                         </div>
                         <!-- END WIDGET THUMB -->
                     </div>
-                    <div class="col-md-6">
+					<?php $total_job = 0;if (!empty($job_post)) {
+                            $i =1;
+					foreach ($job_post as $key => $value) { $total_job++;}}?>
+					<div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB -->
+                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                            <h4 class="widget-thumb-heading">Job Post </h4>
+                            <div class="widget-thumb-wrap">
+                                <i class="widget-thumb-icon bg-yellow icon-layers"></i>
+                                <div class="widget-thumb-body">
+                                    <span class="widget-thumb-subtitle">Draft</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $total_job-$post-$expired; ?>"><?php echo $expired; ?></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END WIDGET THUMB -->
+                    </div>
+                    <!-- BUY MORE -->
+					<!--<div class="col-md-6">
                         <div class="widget-thumb widget-bg-color-gray text-uppercase mb-3 ">
 
                             <h4 class="widget-thumb-heading">Need more job post ?</h4>
-                            <!-- <div class="widget-thumb-wrap"> -->
-                            <!-- <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i> -->
                             <div class="widget-thumb-body">
                                 <div class="widget-thumb-subtitle mb-2">Purchase More in here</div>
                                 <a href="employer-purchasepackage.html" class="btn btn-md-amber">Buy More</a>
                             </div>
-                            <!-- </div> -->
                         </div>
-                        <!-- END WIDGET THUMB -->
-                    </div>
+                    </div>-->
                 </div>
 
                 <div class="portlet light">
@@ -119,7 +132,7 @@
                                         </td>
                                         <td class=""><?php echo date('d M Y', strtotime($value['expiry_date'])); ?> </td>
                                         <td class="text-center">
-                                            <i class="icon-user"></i> 50
+                                            <i class="icon-user"></i> <?=$value['number_of_candidate']?>
                                         </td>
                                         <td>
                                             <div class="btn-group">
