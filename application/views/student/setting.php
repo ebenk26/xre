@@ -104,37 +104,33 @@
                                     </div>
                                     <hr class="border-grey-silver my-2  ">
                                     <div class="panel-body">
-                                        <form action="">
-                                            <div class="media">
-                                                <div class="pull-right">
-                                                    <input type="checkbox" id="searchable_detail" <?php echo ($user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Searchable with Contact Details</h5>
-                                                    <h4>
-                                                        <small>
-                                                            Allow Employers to search for my profile, see my name and contact details.
-                                                        </small>
-                                                    </h4>
-                                                </div>
+                                        <div class="media" id="searchable_content">
+                                            <div class="pull-right">
+                                                <input type="checkbox" id="searchable" <?php echo ($user_bios->searchable == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
-                                            <div class="media">
-                                                <div class="pull-right">
-                                                    <input type="checkbox" id="searchable" <?php echo ($user_bios->searchable == 1) ? 'checked=checked' : ''; ?>>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Not Searchable</h5>
-                                                    <h4>
-                                                        <small>
-                                                            Do not allow employers to search for my profile.
-                                                        </small>
-                                                    </h4>
-                                                </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Not Searchable</h5>
+                                                <h4>
+                                                    <small>
+                                                        Do not allow employers to search for my profile.
+                                                    </small>
+                                                </h4>
                                             </div>
-                                        </form>
-
+                                        </div>
+                                        <div class="media" id="searchable_detail_content">
+                                            <div class="pull-right">
+                                                <input type="checkbox" id="searchable_detail" <?php echo ($user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Searchable with Contact Details</h5>
+                                                <h4>
+                                                    <small>
+                                                        Allow Employers to search for my profile, see my name and contact details.
+                                                    </small>
+                                                </h4>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
