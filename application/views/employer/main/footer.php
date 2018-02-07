@@ -48,6 +48,8 @@
     <script src="<?php echo JS_EMPLOYER; ?>portfolio-3.js" type="text/javascript"></script>
     <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
     <script src="<?php echo JS_EMPLOYER; ?>markdown.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-markdown.js" type="text/javascript"></script>
 
 

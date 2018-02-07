@@ -243,6 +243,16 @@
     <!--========== CONTENT ==========-->
 
     <div class="container ">
+		<!-- Send Message Button -->
+		<?php if($this->session->userdata('id') != $detail['id_users']){?>
+			<div class="row  mx-0 mt-2">
+				<!-- About Company / Job Post -->
+				<div class="col-md-9 mt-height-100-percent-xs ">
+					<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($detail['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font" target="_blank">
+						<i class="icon-envelope mr-2 "></i>Send Message</a>
+				</div>
+			</div>
+		<?php }?>
         <div class="row  mx-0 mt-2">
             <!-- About Company / Job Post -->
             <div class="col-md-9 mt-height-100-percent-xs ">

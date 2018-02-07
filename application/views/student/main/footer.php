@@ -36,6 +36,9 @@
     <script src="<?php echo JS_STUDENTS; ?>jquery.flot.categories.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.easypiechart.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.sparkline.min.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
+    
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo JS_STUDENTS; ?>app.min.js" type="text/javascript"></script>

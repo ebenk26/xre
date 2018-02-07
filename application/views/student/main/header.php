@@ -46,6 +46,9 @@
     <!-- <link href="<?php echo ASSETS; ?>plugins/morris/morris.css" rel="stylesheet" type="text/css" /> -->
     <link href="<?php echo ASSETS; ?>plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+	<link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">
+    
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
