@@ -1,4 +1,4 @@
-</div>
+	</div>
     <!-- END CONTAINER -->
 
     <?php $this->load->view('main/footer_app');?>
@@ -12,12 +12,43 @@
     <script src="<?php echo JS_STUDENTS; ?>bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="<?php echo JS_EMPLOYER; ?>datatable.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>datatables.bootstrap.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>moment.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery.waypoints.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery.counterup.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>daterangepicker.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>morris.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>raphael-min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.waypoints.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.counterup.min.js" type="text/javascript"></script>
+	<!--<script src="<?php echo JS_EMPLOYER; ?>bootstrap-datepicker.min.js" type="text/javascript"></script>-->
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>clockface.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery.color.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery.Jcrop.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>handlebars.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>typeahead.bundle.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>autosize.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery.repeater.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>summernote.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>jquery-ui.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-tabdrop.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-fileinput.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>morris.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>raphael-min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
+    <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
+    <script src="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>portfolio-3.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>markdown.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-markdown.js" type="text/javascript"></script>
+	
+	
+	
+	
     <script src="<?php echo JS_STUDENTS; ?>amcharts.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>serial.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>pie.js" type="text/javascript"></script>
@@ -36,30 +67,53 @@
     <script src="<?php echo JS_STUDENTS; ?>jquery.flot.categories.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.easypiechart.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.sparkline.min.js" type="text/javascript"></script>
-	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
+	
+	
+	
+	
+	<!--<script src="<?php echo JS_EMPLOYER; ?>app.min.js" type="text/javascript"></script>-->
+	<script src="<?php echo JS_STUDENTS; ?>app.min.js" type="text/javascript"></script>
     
-    <!-- END PAGE LEVEL PLUGINS -->
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="<?php echo JS_STUDENTS; ?>app.min.js" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="<?php echo JS_STUDENTS; ?>dashboard.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>jquery.repeater.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>form-repeater.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>bootstrap-fileinput.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>form-image-crop.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>bootstrap-tagsinput.js" type="text/javascript"></script>
+    <!-- <script src="../assets/pages/scripts/portfolio-1.min.js" type="text/javascript"></script> -->
+    <script src="<?php echo JS_EMPLOYER; ?>table-datatables-managed.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>calendar.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
+    <!-- <script src="../assets/pages/scripts/table-datatables-colreorder.min.js" type="text/javascript"></script> -->
+
+    <script src="<?php echo JS_EMPLOYER; ?>dashboard.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>form-repeater.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>components-date-time-pickers.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>form-image-crop.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>components-bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>ui-modals.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>components-editors.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>ui-sweetalert.min.js" type="text/javascript"></script>
+	<script src="<?php echo JS_STUDENTS; ?>bootstrap-tagsinput.js" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <script src="<?php echo JS_STUDENTS; ?>layout.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>demo.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>quick-sidebar.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_STUDENTS; ?>quick-nav.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
-    <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="<?php echo JS_EMPLOYER; ?>layout.min.js" type="text/javascript"></script>
+    <!-- <script src="../assets/layouts/layout2/scripts/demo.min.js" type="text/javascript"></script> -->
+    <script src="<?php echo JS_EMPLOYER; ?>quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>quick-nav.min.js" type="text/javascript"></script>
+	
+	
+	
+	
+	
+    
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    
+
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+	
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {

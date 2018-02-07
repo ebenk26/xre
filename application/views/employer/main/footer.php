@@ -3,12 +3,6 @@
 
 	<?php $this->load->view('main/footer_app');?>
 
-    <!--[if lt IE 9]>
-    
-            <script src="../assets/global/plugins/respond.min.js"></script>
-    <script src="../assets/global/plugins/excanvas.min.js"></script> 
-    <script src="../assets/global/plugins/ie8.fix.min.js"></script> 
-    <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_EMPLOYER; ?>jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap.min.js" type="text/javascript"></script>
@@ -71,7 +65,6 @@
     <script src="<?php echo JS_EMPLOYER; ?>components-bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>ui-modals.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>components-editors.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>form-image-crop.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>ui-sweetalert.min.js" type="text/javascript"></script>
 
 
