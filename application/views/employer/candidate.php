@@ -196,14 +196,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($shortlisted as $key => $value) {?>
+                                        <?php foreach ($shortlisted as $key => $value) { ?>
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1">1</td>
                                                 <td class="col-xs-8">
                                                     <?php echo $value['user_name']; ?>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-shades darkblue label-sm">Not Sent Invitation</span>
+                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? $value['interview_status'] : 'Not Sent Invitation' ?></span>
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
@@ -218,10 +218,17 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#">
-                                                                    <i class="icon-paper-plane"></i>
-                                                                    Send Invitation Interview
-                                                                </a>
+                                                                <?php if (!empty($interview->id)) {?>
+                                                                    <a href="#" class="invite-candidate" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>" interview-id="<?php echo rtrim(base64_encode($interview->id),'=')?>">
+                                                                        <i class="icon-paper-plane"></i>
+                                                                        Send Invitation Interview
+                                                                    </a>
+                                                                <?php }else{ ?>
+                                                                    <a href="#" class="invite-candidate" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                        <i class="icon-paper-plane"></i>
+                                                                        Send Invitation Interview
+                                                                    </a>
+                                                                <?php } ?>
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>

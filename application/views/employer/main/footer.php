@@ -406,7 +406,6 @@
 
             $('.reject-candidate').click(function(){
                 var del = $(this).attr('data-id');
-                console.log(del);
                     swal({
                         title: "Do you reject this candidate?",
                         type: "info",
@@ -431,6 +430,50 @@
                             }
                         }
                     );
+            });
+
+            $('.invite-candidate').click(function(){
+                var candidate = $(this).attr('candidate-id');
+                var job = $(this).attr('job-id');
+                var interview = $(this).attr('interview-id');
+
+                if (interview == null) {
+                    
+                    swal('Error', 'Please create an interview session before you can invite');
+
+                }else{
+
+                    swal({
+                            title: "Do you want to invite this candidate?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes",
+                            cancelButtonText: "Cancel",
+                            closeOnConfirm: false,
+                            closeOnCancel: false,
+                        },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url:"<?php echo base_url();?>employer/job_board/single_invitation",
+                                        method:"POST",
+                                        data: {
+                                          candidate_id: candidate,
+                                          job_id: job,
+                                          interview_id: interview,
+                                        },
+                                        success:function(response) {
+                                           swal("Success", "Candidate has been invited.", "success");
+                                           location.reload();
+                                        }
+                                      })
+                                } else {
+                                    swal("Cancelled", "Invitation has been cancelled", "error");
+                                }
+                            }
+                        );
+                }
+
             });
 
             <?php if($this->session->flashdata('msg_success')){ ?>
