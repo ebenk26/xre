@@ -117,7 +117,7 @@
                                                 </h4>
                                             </div>
                                         </div>
-                                        <div class="media" id="searchable_detail_content">
+                                        <div class="media <?php echo ($user_bios->searchable == 1) ? 'hidden' : ''; ?>" id="searchable_detail_content">
                                             <div class="pull-right">
                                                 <input type="checkbox" id="searchable_detail" <?php echo ($user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
