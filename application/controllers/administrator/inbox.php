@@ -32,6 +32,7 @@ class Inbox extends CI_Controller {
         if($roles == "student"){
 			$get_user_profile = $this->student_model->get_user_profile($id);
 			$profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
+			$profile['notification'] = $this->student_model->get_notification($id);
 		}elseif($roles == "employer"){
 			$get_user_profile = $this->employer_model->get_user_profile($id);
 		}

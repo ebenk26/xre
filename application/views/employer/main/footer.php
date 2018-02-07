@@ -224,7 +224,7 @@
                                                     <hr class="hidden-sm">\
                                                     <div class="row">\
                                                         <div class="col-md-6">\
-                                                            <!-- Education -->\
+                                                            \
                                                             <div class="portlet ">\
                                                                 <div class="portlet-title ">\
                                                                     <div class="caption">\
@@ -263,7 +263,7 @@
                                                     </div>\
                                                     <div class="row">\
                                                         <div class="col-md-6">\
-                                                            <!-- Skill -->\
+                                                            \
                                                             <div class="portlet">\
                                                                 <div class="portlet-title">\
                                                                     <div class="caption">\
@@ -281,7 +281,7 @@
                                                             </div>\
                                                         </div>\
                                                         <div class="col-md-6">\
-                                                            <!-- Experience -->\
+                                                            \
                                                             <div class="portlet">\
                                                                 <div class="portlet-title">\
                                                                     <div class="caption">\
@@ -314,9 +314,9 @@
                                                     <i class="icon-trash"></i> Reject\
                                                 </a>\
                                             </div>\
-                                            <!-- /.modal-content -->\
+                                            \
                                         </div>\
-                                        <!-- /.modal-dialog -->\
+                                        \
                                     </div>');
                         $('#modal_view_summary').modal('show', {backdrop: 'static'});
                     }
