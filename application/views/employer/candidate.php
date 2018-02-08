@@ -88,12 +88,12 @@
                                                         </button>
                                                         <ul class="dropdown-menu pull-left" role="menu">
                                                             <li>
-                                                                <a href="javascript:;" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" data-original-title="View Summary">
+                                                                <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" data-original-title="View Summary">
                                                                     <i class="icon-eye"></i>
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="javascript:;" class="btn btn-md-orange btn-icon-only tooltips my-2 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
+                                                                <a href="javascript:void(0)" class="btn btn-md-orange btn-icon-only tooltips my-2 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
                                                                     <i class="icon-star"></i>
                                                                 </a>
                                                             </li>
@@ -109,12 +109,12 @@
                                                     </div>
                                                     <ul class="list-unstyled list-inline my-0 hidden-xs vertical-middle">
                                                         <li>
-                                                            <a href="javascript:;" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" data-container="body" data-placement="top" data-original-title="View Summary">
+                                                            <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-container="body" data-placement="top" data-original-title="View Summary">
                                                                 <i class="icon-eye"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a href="javascript:;" class="btn btn-md-orange btn-icon-only tooltips my-2 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
+                                                            <a href="javascript:void(0)" class="btn btn-md-orange btn-icon-only tooltips my-2 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
                                                                 <i class="icon-star"></i>
                                                             </a>
                                                         </li>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="actions">
                                     <div class="btn-group">
-                                        <a class="btn btn-circle btn-default " href="javascript:;" data-toggle="dropdown">
+                                        <a class="btn btn-circle btn-default " href="javascript:void(0)" data-toggle="dropdown">
                                             <i class="fa fa-calendar"></i> Interview Schedule
                                             <i class="fa fa-angle-down"></i>
                                         </a>
@@ -169,7 +169,7 @@
 
                                             <li class="divider"> </li>
                                             <li>
-                                                <a href="javascript:;" class="mt-sweetalert md-red-text" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Are you sure you want to reset the everything." data-type="warning"
+                                                <a href="javascript:void(0)" class="mt-sweetalert md-red-text" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Are you sure you want to reset the everything." data-type="warning"
                                                     data-allow-outside-click="true" data-show-confirm-button="true" data-confirm-button-text='OK' data-confirm-button-class="btn-info">
                                                     <i class="fa fa-ban md-red-text"></i>Reset Schedule</a>
                                             </li>
@@ -212,7 +212,7 @@
                                                         </button>
                                                         <ul class="dropdown-menu pull-right" role="menu">
                                                             <li>
-                                                                <a href="javascript:;" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
+                                                                <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
                                                                     <i class="icon-eye"></i>
                                                                     View Summary
                                                                 </a>
