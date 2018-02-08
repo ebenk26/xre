@@ -423,7 +423,7 @@
                         }
                     }
 
-                    $('#fullcalendar').fullCalendar('destroy'); 
+					$('#fullcalendar').fullCalendar('destroy'); 
                     var invitation = <?php echo $invitation; ?>;
                     var invitation_calendar = [];
                     $.each(invitation, function(i,v){

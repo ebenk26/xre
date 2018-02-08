@@ -104,7 +104,7 @@
                                 <div class="inbox-body">
                                     <div class="inbox-header">
                                         <h1 class="pull-left"><?=ucfirst($type)?></h1>
-										<div class="btn-group input-actions">
+										<!--<div class="btn-group input-actions">
 											<a class="btn btn-sm blue btn-outline dropdown-toggle sbold" href="javascript:;" data-toggle="dropdown"> Actions
 												<i class="fa fa-angle-down"></i>
 											</a>
@@ -124,7 +124,7 @@
 												</li>
 											</ul>
 										</div>
-                                        <!--<form class="form-inline pull-right" action="index.html">
+                                        <form class="form-inline pull-right" action="index.html">
                                             <div class="input-group input-medium">
                                                 <input type="text" class="form-control" placeholder="Password">
                                                 <span class="input-group-btn">
@@ -152,7 +152,10 @@
 													<?php 
 														$bold1 = "";$bold2 = "";
 														if($type == "inbox"){
-															if($row->status_receiver == "NEW"){ $bold1 = "<b>";$bold2 = "</b>";}}?>
+															if(($id == $row->receiver_id && ($row->status_receiver == "NEW" || $row->status_receiver == "REPLIED")) || ($id == $row->sender_id && $row->status_sender == "REPLIED")){ $bold1 = "<b>";$bold2 = "</b>";}
+															
+															//if($row->status_receiver == "NEW"){ $bold1 = "<b>";$bold2 = "</b>";}
+															}?>
 													<tr class="odd gradeX">
 														<td class="text-center" ><?=$bold1.$no.$bold2;?></td>
 														<td>

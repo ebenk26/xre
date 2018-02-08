@@ -38,6 +38,10 @@ class Inbox extends CI_Controller {
 		}
         $profile['user_profile'] = $get_user_profile;
 		
+		if($roles == "employer"){
+			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
+		}
+		
 		$data['roles'] 	= $roles;
 		$data['type'] 	= $type;
 		
@@ -306,6 +310,7 @@ class Inbox extends CI_Controller {
 	public function view_list($type){
     	$roles 	= $this->session->userdata('roles');
 		$id 	= $this->session->userdata('id');
+		$calendar = array();
         
 		if($roles == "employer"){
 			$get_user_profile = $this->employer_model->get_user_profile($id);
@@ -314,9 +319,13 @@ class Inbox extends CI_Controller {
 		}
         $profile['user_profile'] = $get_user_profile;
 		
+		if($roles == "employer"){
+			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
+		}
 		if($roles == "student"){
 			$profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
 			$profile['notification'] = $this->student_model->get_notification($id);
+			$calendar['invitation'] = $this->student_model->get_interview_invitation($id);
 		}
 		
 		if($type == "inbox"){
@@ -339,11 +348,12 @@ class Inbox extends CI_Controller {
 		$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
 		$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');
 		if($type == "inbox"){
-			$this->db->where('(inbox.receiver_id = '.$this->session->userdata('id').' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$this->session->userdata('id').' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00")');
+			//harus sama dengan yg di bawah
+			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
 		}elseif($type == "sent"){
-			$this->db->where('inbox.sender_id = '.$this->session->userdata('id').' AND inbox.status_sender != "TRASH"');
+			$this->db->where('inbox.sender_id = '.$id.' AND inbox.status_sender != "TRASH"');
 		}elseif($type == "trash"){
-			$this->db->where('(inbox.receiver_id = '.$this->session->userdata('id').' AND inbox.status_receiver = "TRASH") OR (inbox.sender_id = '.$this->session->userdata('id').' AND inbox.status_sender = "TRASH")');
+			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver = "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.status_sender = "TRASH")');
 			$this->db->order_by('inbox.updated_at', 'DESC');
 		}
 		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
@@ -364,7 +374,8 @@ class Inbox extends CI_Controller {
 		$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
 		$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');
 		
-		$this->db->where('(inbox.receiver_id = '.$this->session->userdata('id').' AND inbox.status_receiver = "REPLIED") OR (inbox.sender_id = '.$this->session->userdata('id').' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender = "REPLIED")');
+		//harus sama dengan yg di atas
+		$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
 		
 		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
 		$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');		
@@ -375,15 +386,17 @@ class Inbox extends CI_Controller {
 		
 		$new = 0;
 		foreach ($message_inbox as $row) { 
-			if($row->status_receiver == "NEW" || $row->status_receiver == "REPLIED" || $row->status_sender == "REPLIED"){ $new++;}
+			if(($id == $row->receiver_id && ($row->status_receiver == "NEW" || $row->status_receiver == "REPLIED")) || ($id == $row->sender_id && $row->status_sender == "REPLIED")){ $new++;}
 		}
-		$data['new'] = $new;
+		$data['new'] 	= $new;
 		
-		$data['type'] = $type;
+		$data['type'] 	= $type;
+		
+		$data['id'] 	= $id;
 		
         $this->load->view($roles.'/main/header', $profile);
         //$this->load->view('student/inbox', $data);
 		$this->load->view('administrator/inbox_list', $data);
-        $this->load->view($roles.'/main/footer');
+        $this->load->view($roles.'/main/footer', $calendar);
     }
 }
