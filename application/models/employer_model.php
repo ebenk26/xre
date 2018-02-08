@@ -344,6 +344,21 @@ class Employer_Model extends CI_Model{
     //     $this->db-
     // }
 
+    
+    function get_interview_invitation($id){
+
+        $this->db->select('interview_schedule.*, interview_schedule_user.job_id as interview_job_id, interview_schedule_user.session_id, interview_schedule_user.employer_id, interview_schedule_user.user_id, interview_schedule_user.status, job_positions.name as job_name, user_profiles.company_name');
+        $this->db->from('interview_schedule');
+        $this->db->join('interview_schedule_user','interview_schedule_user.session_id = interview_schedule.id', 'left' );
+        $this->db->join('job_positions','job_positions.id = interview_schedule_user.job_id', 'left' );
+        $this->db->join('user_profiles','user_profiles.user_id = interview_schedule_user.employer_id', 'left' );
+        $this->db->join('student_bios','student_bios.user_id = interview_schedule_user.user_id', 'left' );
+        $this->db->where('interview_schedule_user.employer_id', $id); 
+        $interview = $this->db->get();
+
+        return $interview->result_array();
+    }
+
 
 }
 

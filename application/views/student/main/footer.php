@@ -322,6 +322,90 @@
                     });
                 }
             });
+
+            var AppCalendar = function () {
+
+            return {
+                //main function to initiate the module
+                init: function () {
+                    this.initCalendar();
+                },
+
+                initCalendar: function () {
+
+                    if (!jQuery().fullCalendar) {
+                        return;
+                    }
+
+                    var date = new Date();
+                    var d = date.getDate();
+                    var m = date.getMonth();
+                    var y = date.getFullYear();
+
+                    var h = {};
+
+                    if (App.isRTL()) {
+                        if ($('#fullcalendar').parents(".portlet").width() <= 720) {
+                            $('#fullcalendar').addClass("mobile");
+                            h = {
+                                right: 'title, prev, next',
+                                center: '',
+                                // left: 'agendaDay, agendaWeek, month, today'
+                                left: ' month, today'
+                            };
+                        } else {
+                            $('#fullcalendar').removeClass("mobile");
+                            h = {
+                                right: 'title',
+                                center: '',
+                                // left: 'agendaDay, agendaWeek, month, today, prev,next'
+                                left: ' month, today, prev,next'
+                            };
+                        }
+                    } else {
+                        if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
+                            $('#fullcalendar').addClass("mobile");
+                            h = {
+                                left: 'title, prev, next',
+                                center: '',
+                                // right: 'today,month,agendaWeek,agendaDay'
+                                right: 'month,agendaWeek'
+                            };
+                        } else {
+                            $('#fullcalendar').removeClass("mobile");
+                            h = {
+                                left: 'title',
+                                center: '',
+                                // right: 'prev,next,today,month,agendaWeek,agendaDay'
+                                right: 'prev,next,month,agendaWeek'
+                            };
+                        }
+                    }
+
+                    $('#fullcalendar').fullCalendar('destroy'); 
+                    var invitation = <?php echo $invitation; ?>;
+                    var invitation_calendar = [];
+                    $.each(invitation, function(i,v){
+                        invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
+
+                        });
+                    $('#fullcalendar').fullCalendar({ 
+                        header: h,
+                        defaultView: 'month', 
+                        slotMinutes: 15,
+                        editable: false, 
+                        droppable: false, 
+                        events: invitation_calendar
+                    });
+
+                }
+
+            };
+
+        }();
+
+        AppCalendar.init();
+
         })
     </script>
 
