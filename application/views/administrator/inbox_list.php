@@ -1,20 +1,23 @@
 <!-- BEGIN CONTENT -->
+		<?php
+			$roles = $this->session->userdata('roles');
+		?>
         <div class="page-content-wrapper">
             <!-- BEGIN CONTENT BODY -->
-            <div class="page-content" style="min-height: 597px;">
+            <div class="page-content">
                 <!-- BEGIN PAGE HEADER-->
-                <h1 class="page-title"> Inbox
-                    <small>here list of your message</small>
+                <h1 class="page-title"> <?=ucfirst($type)?>
+                    <!--<small>here list of your message</small>-->
                 </h1>
                 <div class="page-bar">
                     <ul class="page-breadcrumb">
                         <li>
                             <i class="icon-home"></i>
-                            <a href="index.html">Home</a>
+                            <a href="<?=base_url().$roles?>/dashboard">Home</a>
                             <i class="fa fa-angle-right"></i>
                         </li>
                         <li>
-                            <span>Inbox</span>
+                            <span><?=ucfirst($type)?></span>
                         </li>
                     </ul>
 
@@ -30,16 +33,21 @@
                                         <i class="fa fa-edit"></i> Compose </a>-->
                                     <ul class="inbox-nav">
                                         <li class="<?=$type == "inbox"?"active":""?>">
-											<a href="<?=base_url()?>student/inbox" data-type="inbox" data-title="Inbox"> Inbox
+											<a href="<?=base_url().$roles?>/inbox" data-type="inbox" data-title="Inbox"> Inbox
                                                 <?=$new > 0?'<span class="badge badge-success">'.$new.'</span>':''?>
                                             </a>
                                         </li>
                                         <li class="<?=$type == "sent"?"active":""?>">
-                                            <a href="<?=base_url()?>student/sent" data-type="sent" data-title="Sent"> Sent </a>
+                                            <a href="<?=base_url().$roles?>/sent" data-type="sent" data-title="Sent"> Sent </a>
                                         </li>
+                                        <!--<li class="">
+                                            <a href="javascript:;" data-type="draft" data-title="Draft"> Draft
+                                                <span class="badge badge-danger">8</span>
+                                            </a>
+                                        </li>-->
                                         <li class="divider"></li>
                                         <li class="<?=$type == "trash"?"active":""?>">
-                                            <a href="<?=base_url()?>student/trash" class="sbold uppercase" data-title="Trash"> Trash
+                                            <a href="<?=base_url().$roles?>/trash" class="sbold uppercase" data-title="Trash"> Trash
                                                 <!--<span class="badge badge-info">23</span>-->
                                             </a>
                                         </li>
@@ -133,6 +141,7 @@
 												<tr>
 													<th class="text-center">#</th>
 													<th> From </th>
+													<th> To </th>
 													<th> Subject </th>
 													<th> Date </th>
 													<th> Actions </th>
@@ -147,7 +156,10 @@
 													<tr class="odd gradeX">
 														<td class="text-center" ><?=$bold1.$no.$bold2;?></td>
 														<td>
-														<?=$bold1?><?=$row->sender_role == 'employer'?$row->sender_company_name:$row->sender_name;?><?=$bold2?>
+															<?=$bold1?><?=$row->sender_role == 'employer'?$row->sender_company_name:$row->sender_name;?><?=$bold2?>														
+														</td>
+														<td>
+															<?=$bold1?><?=$row->receiver_role == 'employer'?$row->receiver_company_name:$row->receiver_name;?><?=$bold2?>
 														</td>
 														<td> <?=$bold1?><?php echo $row->subject; ?><?=$bold2?></td>
 														<td> <?=$bold1?><?php echo date('d M Y H:i:s', strtotime($row->last_reply_at_sender != '0000-00-00 00:00:00'?$row->last_reply_at_sender:$row->created_at)); ?><?=$bold2?> </td>

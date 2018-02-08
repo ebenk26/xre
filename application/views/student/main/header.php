@@ -283,13 +283,13 @@
                         </a>
                     </li>
                     <!-- Sidebar Menu : Inbox -->
-                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?>">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
 							<span class="selected"></span>
                         </a>
-                    </li>-->
+                    </li>
                     <!-- Sidebar Menu : Calendar  -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">

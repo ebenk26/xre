@@ -67,6 +67,21 @@ $route['article/page/(:any)'] = 'administrator/article/list_public_page/$1';
 $route['article/(:any)'] = 'administrator/article/view_public/$1';
 $route['article'] = 'administrator/article/list_public';
 $route['send_message/(:any)/new'] = 'administrator/inbox/view/$1/new';
+$route['message/(:any)'] = 'administrator/inbox/view/$1';
+
+$route['employer/inbox'] = 'administrator/inbox/view_list/inbox';
+$route['employer/sent'] = 'administrator/inbox/view_list/sent';
+$route['employer/trash'] = 'administrator/inbox/view_list/trash';
+$route['student/inbox'] = 'administrator/inbox/view_list/inbox';
+$route['student/sent'] = 'administrator/inbox/view_list/sent';
+$route['student/trash'] = 'administrator/inbox/view_list/trash';
+
+/*$route['employer/inbox'] = 'employer/inbox/view_list/inbox';
+$route['employer/sent'] = 'employer/inbox/view_list/sent';
+$route['employer/trash'] = 'employer/inbox/view_list/trash';
+$route['student/inbox'] = 'student/inbox/view_list/inbox';
+$route['student/sent'] = 'student/inbox/view_list/sent';
+$route['student/trash'] = 'student/inbox/view_list/trash';*/
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

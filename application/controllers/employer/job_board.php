@@ -17,7 +17,7 @@ class Job_Board extends CI_Controller {
     }
     
     public function index(){
-        $header['page_title'] = 'Job Board';
+        $profile['page_title'] = 'Job Board';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
