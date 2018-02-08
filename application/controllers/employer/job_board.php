@@ -21,6 +21,7 @@ class Job_Board extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
         $complement['employment_type'] = $this->employer_model->get_employment();
         $complement['position_levels'] = $this->employer_model->get_position();
         $complement['year_of_experience'] = $this->employer_model->get_year_of_experience();

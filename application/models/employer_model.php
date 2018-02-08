@@ -288,6 +288,58 @@ class Employer_Model extends CI_Model{
         $applicants = $this->db->get();
         return $applicants->result_array();
     }
+
+    function get_profile_completion($params){
+        $profile['social'] = $this->get_where('user_social', 'name', 'asc', array('user_id' => $this->session->userdata('id') ));
+        $profile['profile_photo'] = $this->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'profile_photo'));
+        $profile['header_photo'] = $this->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'header_photo'));
+
+        //About Company 40%
+        $About["company_name"]      = !empty($params["user_profile"]['company_name']) ? 5 : 0;
+        $About["industry"]          = !empty($params["user_profile"]['industry']) ? 5 : 0;
+        $About["reg_number"]        = !empty($params["user_profile"]['company_registration_number']) ? 5 : 0;
+        $About["company_desc"]      = !empty($params["user_profile"]['company_description']) ? 5 : 0;
+        $About["company_url"]       = !empty($params["user_profile"]['url']) ? 5 : 0;
+        $About["profile_photo"]     = !empty($profile["profile_photo"]) ? 5 : 0;
+        $About["header_photo"]      = !empty($profile["header_photo"]) ? 5 : 0;
+        $About["social"]            = !empty($profile["social"]) ? 5 : 0;
+        
+        //Additional Info 30%
+        $Additional   = !empty($params["user_profile"]['spoken_language']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['total_staff']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['dress_code']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['benefits']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['industry']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['working_days']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['url']) ? 3.75 : 0;
+        $Additional   += !empty($params["user_profile"]['email']) ? 3.75 : 0;
+
+        //Contact Information 30%
+        $addr = json_decode($params["user_profile"]['address']);
+        $Contact = 0;
+
+        if(!empty($addr))
+        {
+            $addr = $addr[0];
+
+            $Contact   += !empty($addr->optionsRadios) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_address) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_city) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_postcode) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_state) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_country) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_email) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_phone) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_fax) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_latitude) ? 2.7272727273 : 0;
+            $Contact   += !empty($addr->building_longitude) ? 2.7272727273 : 0;
+        }
+
+        $sum    = array_sum($About) + $Additional + $Contact;
+        $total  = round($sum);
+        
+        return $total;
+    }
     // function get_detail_candidate($id){
     //     $this->db-
     // }

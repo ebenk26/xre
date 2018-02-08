@@ -23,6 +23,7 @@ class settings extends CI_Controller {
 		$id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/setting', $setting);
         $this->load->view('employer/main/footer');
