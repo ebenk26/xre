@@ -251,14 +251,15 @@
                         {
                             if(searchable == 1)
                             {
-                                swal("Success", "Your contact are now unavailable to employers.", "success");
                                 $("#searchable_detail_content").addClass('hidden');
                                 $('#searchable_detail').bootstrapSwitch('state', false);
+                                swal("Success", "Your contact are now unavailable to employers.", "success");
                             }
                             else
                             {
-                                swal("Success", "Your contact are now searchable to employers.", "success");
+                                $('#searchable_detail').bootstrapSwitch('state', true);
                                 $("#searchable_detail_content").removeClass('hidden');
+                                swal("Success", "Your contact are now searchable to employers.", "success");
                             }
                         }
                     });
