@@ -5,6 +5,19 @@
         $company_address = json_decode($user_profile['address']);
         $profile_picture = end($profile_photo); 
         $header_picture = end($header_photo); 
+        $dress_code_detail = explode(',', $detail['dress_code']);
+        $dresscode = ucwords(str_replace(',',', ',$detail['dress_code']),', ');
+        /*$dresscode = '';
+        if (!empty($dress_code_detail)) {
+            foreach ($dress_code_detail as $key => $value) {
+                if ($value == end($dress_code_detail)) {
+                    $dresscode .= ucwords($value);
+                }else{
+                    $dresscode .= ucwords($value).', ';
+                }
+            }
+        }*/
+
         ?>
 <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
@@ -154,7 +167,7 @@
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?> People</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Dress Code</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['dress_code']) ? ucwords($detail['dress_code'],',') : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($dresscode) ? ucwords($dresscode) : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Benefit</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?></dd>

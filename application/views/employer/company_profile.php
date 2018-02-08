@@ -4,6 +4,17 @@
 	$company_location = json_decode($detail['address']);
     $login = $this->session->userdata('id');
     $roles= $this->session->userdata('roles');
+    $dress_code_detail = explode(',', $detail['dress_code']);
+    $dresscode = '';
+    if (!empty($dress_code_detail)) {
+        foreach ($dress_code_detail as $key => $value) {
+            if ($value == end($dress_code_detail)) {
+                $dresscode .= ucwords($value);
+            }else{
+                $dresscode .= ucwords($value).', ';
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -505,7 +516,7 @@
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-users mr-1"></i>Dress Code </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['dress_code'] != ""?ucwords($detail['dress_code'],','):"Not Provided"; ?>
+                                    <?php echo $dresscode != ""?ucwords($dresscode):"Not Provided"; ?>
                                 </p>
                             </li>
                         <?php //endif ?>

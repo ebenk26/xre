@@ -22,9 +22,10 @@ class Calendar extends CI_Controller {
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $profile['notification'] = $this->student_model->get_notification($id);
         $calendar['invitation'] = $this->student_model->get_interview_invitation($id);
+        $calendar_footer['invitation'] = json_encode($this->student_model->get_interview_invitation($id));
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/calendar', $calendar);
-        $this->load->view('student/main/footer');
+        $this->load->view('student/main/footer', $calendar_footer);
 	}
 
 }

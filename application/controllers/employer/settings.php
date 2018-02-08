@@ -23,6 +23,7 @@ class settings extends CI_Controller {
 		$id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/setting', $setting);
         $this->load->view('employer/main/footer');
@@ -42,6 +43,20 @@ class settings extends CI_Controller {
                      'pic_email' => $this->input->post('pic_email'));
 
         $data = array('contact_person' => json_encode($pic));
+        $where = array('user_id' => $this->session->userdata('id'));
+        $this->global_model->update('user_profiles', $where, $data);
+        redirect(base_url().'employer/settings');
+    }
+
+    public function changeSearchableDetail(){
+        $data = array('searchable_detail' => $this->input->post('status'));
+        $where = array('user_id' => $this->session->userdata('id'));
+        $this->global_model->update('user_profiles', $where, $data);
+        redirect(base_url().'employer/settings');
+    }
+
+    public function changeSearchable(){
+        $data = array('searchable' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
         redirect(base_url().'employer/settings');

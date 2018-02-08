@@ -131,6 +131,7 @@
 
             $('.user-btn').click(function(){
                 var id = $(this).attr('uid');
+                var app_id = $(this).attr('app-id');
                 var image_directory = window.location.origin+'/xremo/assets/img/student/';
                 $.ajax({
                     url:"<?php echo base_url();?>employer/profile/detail_profile",
@@ -184,137 +185,179 @@
                         });
                          
                         $('#modal_view_summary').html('<div class="modal-dialog modal-lg">\
-                                        <div class="modal-content ">\
-                                            <div class="modal-header md-indigo">\
-                                                <div class="media">\
-                                                    <div class="pull-left">\
-                                                        <img src="'+image_directory+student.user_profile.profile_photo+'" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
+                            <div class="modal-content ">\
+                                <div class="modal-header md-indigo">\
+                                    <div class="media">\
+                                        <div class="pull-left">\
+                                            <img src="'+image_directory+student.user_profile.profile_photo+'" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
+                                        </div>\
+                                        <div class="pull-right">\
+                                            <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">\
+                                                <i class="fa fa-close"></i>\
+                                            </a>\
+                                        </div>\
+                                        <div class="media-body">\
+                                            <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">'+student.user_profile.overview.name+'</h3>\
+                                            <ul class="list-inline list-unstyled md-white-text ">\
+                                                <li>\
+                                                    <i class="icon-pointer"></i>'+student.user_profile.address.city+' ,'+student.user_profile.address.states+'</li>\
+                                                <li>\
+                                                    <i class="icon-envelope"></i>'+student.user_profile.overview.email+'</li>\
+                                            </ul>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="row">\
+                                            <div class="col-md-12 pr-0">\
+                                                <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
+                                                <p class="mt-0">'+student.user_profile.overview.summary+'</p>\
+                                            </div>\
+                                        </div>\
+                                        <hr class="hidden-sm">\
+                                        <div class="row">\
+                                            <div class="col-md-6">\
+                                                \
+                                                <div class="portlet ">\
+                                                    <div class="portlet-title ">\
+                                                        <div class="caption">\
+                                                            <i class="icon-graduation"></i>\
+                                                            <span class="caption-subject font-26-xs"> Education</span>\
+                                                            <span class="caption-helper">Summary</span>\
+                                                        </div>\
+                                                        <div class="tools">\
+                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
+                                                        </div>\
                                                     </div>\
-                                                    <div class="pull-right">\
-                                                        <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">\
-                                                            <i class="fa fa-close"></i>\
-                                                        </a>\
+                                                    <div class="portlet-body ">\
+                                                    '+academics+'\
                                                     </div>\
-                                                    <div class="media-body">\
-                                                        <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">'+student.user_profile.overview.name+'</h3>\
-                                                        <ul class="list-inline list-unstyled md-white-text ">\
-                                                            <li>\
-                                                                <i class="icon-pointer"></i>'+student.user_profile.address.city+' ,'+student.user_profile.address.states+'</li>\
-                                                            <li>\
-                                                                <i class="icon-envelope"></i>'+student.user_profile.overview.email+'</li>\
+                                                </div>\
+                                            </div>\
+                                            <div class="col-md-6">\
+                                                <div class="portlet  ">\
+                                                    <div class="portlet-title ">\
+                                                        <div class="caption">\
+                                                            <i class="icon-trophy"></i>\
+                                                            <span class="caption-subject font-26-xs">Achievement</span>\
+                                                            <span class="caption-helper">Summary</span>\
+                                                        </div>\
+                                                        <div class="tools">\
+                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="portlet-body">\
+                                                        <ul class="list-unstyled">\
+                                                            '+non_academics+'\
                                                         </ul>\
                                                     </div>\
                                                 </div>\
                                             </div>\
-                                            <div class="modal-body">\
-                                                <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">\
-                                                    <div class="row">\
-                                                        <div class="col-md-12 pr-0">\
-                                                            <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
-                                                            <p class="mt-0">'+student.user_profile.overview.summary+'</p>\
+                                        </div>\
+                                        <div class="row">\
+                                            <div class="col-md-6">\
+                                                \
+                                                <div class="portlet">\
+                                                    <div class="portlet-title">\
+                                                        <div class="caption">\
+                                                            <i class="icon-badge"></i>\
+                                                            <span class="caption-subject font-26-xs">Project</span>\
+                                                            <span class="caption-helper">Summary</span>\
+                                                        </div>\
+                                                        <div class="tools">\
+                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
                                                         </div>\
                                                     </div>\
-                                                    <hr class="hidden-sm">\
-                                                    <div class="row">\
-                                                        <div class="col-md-6">\
-                                                            \
-                                                            <div class="portlet ">\
-                                                                <div class="portlet-title ">\
-                                                                    <div class="caption">\
-                                                                        <i class="icon-graduation"></i>\
-                                                                        <span class="caption-subject font-26-xs"> Education</span>\
-                                                                        <span class="caption-helper">Summary</span>\
-                                                                    </div>\
-                                                                    <div class="tools">\
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="portlet-body ">\
-                                                                '+academics+'\
-                                                                </div>\
-                                                            </div>\
-                                                        </div>\
-                                                        <div class="col-md-6">\
-                                                            <div class="portlet  ">\
-                                                                <div class="portlet-title ">\
-                                                                    <div class="caption">\
-                                                                        <i class="icon-trophy"></i>\
-                                                                        <span class="caption-subject font-26-xs">Achievement</span>\
-                                                                        <span class="caption-helper">Summary</span>\
-                                                                    </div>\
-                                                                    <div class="tools">\
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="portlet-body">\
-                                                                    <ul class="list-unstyled">\
-                                                                        '+non_academics+'\
-                                                                    </ul>\
-                                                                </div>\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="row">\
-                                                        <div class="col-md-6">\
-                                                            \
-                                                            <div class="portlet">\
-                                                                <div class="portlet-title">\
-                                                                    <div class="caption">\
-                                                                        <i class="icon-badge"></i>\
-                                                                        <span class="caption-subject font-26-xs">Project</span>\
-                                                                        <span class="caption-helper">Summary</span>\
-                                                                    </div>\
-                                                                    <div class="tools">\
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="portlet-body  ">\
-                                                                    '+project+'\
-                                                                </div>\
-                                                            </div>\
-                                                        </div>\
-                                                        <div class="col-md-6">\
-                                                            \
-                                                            <div class="portlet">\
-                                                                <div class="portlet-title">\
-                                                                    <div class="caption">\
-                                                                        <i class="icon-briefcase"></i>\
-                                                                        <span class="caption-subject font-26-xs"> Experience</span>\
-                                                                        <span class="caption-helper">Summary</span>\
-                                                                    </div>\
-                                                                    <div class="tools">\
-                                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                                    </div>\
-                                                                </div>\
-                                                                <div class="portlet-body ">\
-                                                                    <ul class="list-unstyled">\
-                                                                        '+experience+'\
-                                                                    </ul>\
-                                                                </div>\
-                                                            </div>\
-                                                        </div>\
+                                                    <div class="portlet-body  ">\
+                                                        '+project+'\
                                                     </div>\
                                                 </div>\
                                             </div>\
-                                            <div class="modal-footer ">\
-                                                <a href="" class="btn btn-md-amber">\
-                                                    <i class="icon-star"></i> Add Shortlist\
-                                                </a>\
-                                                <a href="" class="btn btn-md-cyan">\
-                                                    <i class="icon-users"></i> View Resume\
-                                                </a>\
-                                                <a href="" class="btn btn-md-red">\
-                                                    <i class="icon-trash"></i> Reject\
-                                                </a>\
+                                            <div class="col-md-6">\
+                                                \
+                                                <div class="portlet">\
+                                                    <div class="portlet-title">\
+                                                        <div class="caption">\
+                                                            <i class="icon-briefcase"></i>\
+                                                            <span class="caption-subject font-26-xs"> Experience</span>\
+                                                            <span class="caption-helper">Summary</span>\
+                                                        </div>\
+                                                        <div class="tools">\
+                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="portlet-body ">\
+                                                        <ul class="list-unstyled">\
+                                                            '+experience+'\
+                                                        </ul>\
+                                                    </div>\
+                                                </div>\
                                             </div>\
-                                            \
                                         </div>\
-                                        \
-                                    </div>');
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer ">\
+                                    <a href="javascript:void(0)" app-id="'+id+'" class="btn btn-md-amber shortlist-btn">\
+                                        <i class="icon-star"></i> Add Shortlist\
+                                    </a>\
+                                    <a href="<?php echo base_url();?>profile/user/'+id+'" class="btn btn-md-cyan">\
+                                        <i class="icon-users"></i> View Resume\
+                                    </a>\
+                                    <a href="javascript:void(0)" data-id="'+id+'" class="btn btn-md-red reject-btn">\
+                                        <i class="icon-trash"></i> Reject\
+                                    </a>\
+                                </div>\
+                                \
+                            </div>\
+                            \
+                        </div>');
                         $('#modal_view_summary').modal('show', {backdrop: 'static'});
+                        
+                        $('.shortlist-btn').click(function () {
+                            var id = $(this).attr('app-id');
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/shortlist",
+                                    method:"POST",
+                                    data: {
+                                      post_id: id,
+                                    }
+                                });
+                                
+
+                                <?php if($this->session->flashdata('msg_success')){ ?>
+                                    alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+                                <?php } ?>
+                                <?php if($this->session->flashdata('msg_failed')){ ?>
+                                    alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+                                <?php } ?>
+                                
+                            location.reload();
+                        });
+
+                        $('.reject-btn').click(function () {
+                            var id = $(this).attr('app-id');
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/reject",
+                                    method:"POST",
+                                    data: {
+                                      post_id: id,
+                                    }
+                                });
+                                
+                                <?php if($this->session->flashdata('msg_success')){ ?>
+                                    alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+                                <?php } ?>
+                                <?php if($this->session->flashdata('msg_failed')){ ?>
+                                    alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+                                <?php } ?>
+                                
+                            location.reload();
+                        });
                     }
                 })
             });
+
 
             $('.dlt-btn').click(function () {
                 var del = $(this).attr('id');
@@ -425,6 +468,74 @@
                     );
             });
 
+            $("#searchable_detail").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable_detail   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable_detail = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>employer/settings/changeSearchableDetail",
+                        method:"POST",
+                        data: {
+                          status    : searchable_detail
+                        },
+                        success:function(response)
+                        {
+                            if(searchable_detail == 1)
+                            {
+                                swal("Success", "Your contact detail are now searchable to registered users.", "success");
+                            }
+                            else
+                            {
+                                swal("Success", "Your contact detail are now unavailable to registered users.", "success");
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("#searchable").bootstrapSwitch(
+            {
+                size:'mini',
+                onSwitchChange:function(event, state)
+                {
+                    var parentClass         = $(this).parent().parent();
+                    var searchable   = 0;
+
+                    if(parentClass.hasClass('bootstrap-switch-on'))
+                    {
+                        searchable = 1;
+                    }
+
+                    $.ajax({
+                        url:"<?php echo base_url();?>employer/settings/changeSearchable",
+                        method:"POST",
+                        data: {
+                          status    : searchable
+                        },
+                        success:function(response)
+                        {
+                            if(searchable == 1)
+                            {
+                                swal("Success", "Your contact are now unavailable to guest.", "success");
+                            }
+                            else
+                            {
+                                swal("Success", "Your contact are now searchable to guest.", "success");
+                            }
+                        }
+                    });
+                }
+            });
+
             $('.invite-candidate').click(function(){
                 var candidate = $(this).attr('candidate-id');
                 var job = $(this).attr('job-id');
@@ -466,7 +577,6 @@
                             }
                         );
                 }
-
             });
 
             <?php if($this->session->flashdata('msg_success')){ ?>
@@ -475,6 +585,88 @@
             <?php if($this->session->flashdata('msg_failed')){ ?>
                 alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
             <?php } ?>
+
+                var AppCalendar = function () {
+
+                return {
+                    //main function to initiate the module
+                    init: function () {
+                        this.initCalendar();
+                    },
+
+                    initCalendar: function () {
+
+                        if (!jQuery().fullCalendar) {
+                            return;
+                        }
+
+                        var date = new Date();
+                        var d = date.getDate();
+                        var m = date.getMonth();
+                        var y = date.getFullYear();
+
+                        var h = {};
+
+                        if (App.isRTL()) {
+                            if ($('#fullcalendar').parents(".portlet").width() <= 720) {
+                                $('#fullcalendar').addClass("mobile");
+                                h = {
+                                    right: 'title, prev, next',
+                                    center: '',
+                                    // left: 'agendaDay, agendaWeek, month, today'
+                                    left: ' month, today'
+                                };
+                            } else {
+                                $('#fullcalendar').removeClass("mobile");
+                                h = {
+                                    right: 'title',
+                                    center: '',
+                                    // left: 'agendaDay, agendaWeek, month, today, prev,next'
+                                    left: ' month, today, prev,next'
+                                };
+                            }
+                        } else {
+                            if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
+                                $('#fullcalendar').addClass("mobile");
+                                h = {
+                                    left: 'title, prev, next',
+                                    center: '',
+                                    // right: 'today,month,agendaWeek,agendaDay'
+                                    right: 'month,agendaWeek'
+                                };
+                            } else {
+                                $('#fullcalendar').removeClass("mobile");
+                                h = {
+                                    left: 'title',
+                                    center: '',
+                                    // right: 'prev,next,today,month,agendaWeek,agendaDay'
+                                    right: 'prev,next,month,agendaWeek'
+                                };
+                            }
+                        }
+
+                        $('#fullcalendar').fullCalendar('destroy'); 
+                        var invitation = <?php echo $invitation; ?>;
+                        var invitation_calendar = [];
+                        $.each(invitation, function(i,v){
+                            invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
+
+                            });
+                        $('#fullcalendar').fullCalendar({ 
+                            header: h,
+                            defaultView: 'month', 
+                            slotMinutes: 15,
+                            editable: false, 
+                            droppable: false, 
+                            events: invitation_calendar
+                        });
+
+                    }
+
+                };
+             }();
+
+        AppCalendar.init();
         })
     </script>
 
