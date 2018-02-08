@@ -4,6 +4,17 @@
 	$company_location = json_decode($detail['address']);
     $login = $this->session->userdata('id');
     $roles= $this->session->userdata('roles');
+    $dress_code_detail = explode(',', $detail['dress_code']);
+    $dresscode = '';
+    if (!empty($dress_code_detail)) {
+        foreach ($dress_code_detail as $key => $value) {
+            if ($value == end($dress_code_detail)) {
+                $dresscode .= ucwords($value);
+            }else{
+                $dresscode .= ucwords($value).', ';
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -243,6 +254,16 @@
     <!--========== CONTENT ==========-->
 
     <div class="container ">
+		<!-- Send Message Button -->
+		<?php if($this->session->userdata('id') != $detail['id_users']){?>
+			<div class="row  mx-0 mt-2">
+				<!-- About Company / Job Post -->
+				<div class="col-md-9 mt-height-100-percent-xs ">
+					<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($detail['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font" target="_blank">
+						<i class="icon-envelope mr-2 "></i>Send Message</a>
+				</div>
+			</div>
+		<?php }?>
         <div class="row  mx-0 mt-2">
             <!-- About Company / Job Post -->
             <div class="col-md-9 mt-height-100-percent-xs ">
@@ -495,7 +516,7 @@
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-users mr-1"></i>Dress Code </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['dress_code'] != ""?ucwords($detail['dress_code'],','):"Not Provided"; ?>
+                                    <?php echo $dresscode != ""?ucwords($dresscode):"Not Provided"; ?>
                                 </p>
                             </li>
                         <?php //endif ?>

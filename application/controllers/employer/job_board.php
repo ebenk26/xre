@@ -8,6 +8,7 @@ class Job_Board extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         $this->load->model('job_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) ){
@@ -171,6 +172,29 @@ class Job_Board extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }   
+    }
+
+    public function single_invitation(){
+        $job_id = base64_decode($this->input->post('job_id'));
+        $candidate_id = base64_decode($this->input->post('candidate_id'));
+        $interview_id = base64_decode($this->input->post('interview_id'));
+        $employer_id = $this->session->userdata('id');
+
+        $invite = array('session_id' => $interview_id,
+                    'employer_id' => $employer_id,
+                    'user_id' => $candidate_id,
+                    'job_id' => $job_id,
+                    'status' => 'pending');
+
+
+        $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
+
+        if ($invite_user_interview == true) {
+            $this->session->set_flashdata('msg_success', 'Success invite this candidate');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
+        }
+        redirect(base_url().'job/candidate/'.base64_encode($job_id));
     }
 
 }

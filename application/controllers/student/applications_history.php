@@ -22,6 +22,7 @@ class Applications_history extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $applications['applications_history'] = $this->job_model->get_applied_job();
+        $profile['notification'] = $this->student_model->get_notification($id);
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/history', $applications);
         $this->load->view('student/main/footer');

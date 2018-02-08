@@ -3,12 +3,6 @@
 
 	<?php $this->load->view('main/footer_app');?>
 
-    <!--[if lt IE 9]>
-    
-            <script src="../assets/global/plugins/respond.min.js"></script>
-    <script src="../assets/global/plugins/excanvas.min.js"></script> 
-    <script src="../assets/global/plugins/ie8.fix.min.js"></script> 
-    <![endif]-->
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_EMPLOYER; ?>jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap.min.js" type="text/javascript"></script>
@@ -48,6 +42,8 @@
     <script src="<?php echo JS_EMPLOYER; ?>portfolio-3.js" type="text/javascript"></script>
     <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
     <script src="<?php echo JS_EMPLOYER; ?>markdown.js" type="text/javascript"></script>
+	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-markdown.js" type="text/javascript"></script>
 
 
@@ -69,7 +65,6 @@
     <script src="<?php echo JS_EMPLOYER; ?>components-bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>ui-modals.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>components-editors.min.js" type="text/javascript"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>form-image-crop.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>ui-sweetalert.min.js" type="text/javascript"></script>
 
 
@@ -222,7 +217,7 @@
                                                     <hr class="hidden-sm">\
                                                     <div class="row">\
                                                         <div class="col-md-6">\
-                                                            <!-- Education -->\
+                                                            \
                                                             <div class="portlet ">\
                                                                 <div class="portlet-title ">\
                                                                     <div class="caption">\
@@ -261,7 +256,7 @@
                                                     </div>\
                                                     <div class="row">\
                                                         <div class="col-md-6">\
-                                                            <!-- Skill -->\
+                                                            \
                                                             <div class="portlet">\
                                                                 <div class="portlet-title">\
                                                                     <div class="caption">\
@@ -279,7 +274,7 @@
                                                             </div>\
                                                         </div>\
                                                         <div class="col-md-6">\
-                                                            <!-- Experience -->\
+                                                            \
                                                             <div class="portlet">\
                                                                 <div class="portlet-title">\
                                                                     <div class="caption">\
@@ -312,9 +307,9 @@
                                                     <i class="icon-trash"></i> Reject\
                                                 </a>\
                                             </div>\
-                                            <!-- /.modal-content -->\
+                                            \
                                         </div>\
-                                        <!-- /.modal-dialog -->\
+                                        \
                                     </div>');
                         $('#modal_view_summary').modal('show', {backdrop: 'static'});
                     }
@@ -404,7 +399,6 @@
 
             $('.reject-candidate').click(function(){
                 var del = $(this).attr('data-id');
-                console.log(del);
                     swal({
                         title: "Do you reject this candidate?",
                         type: "info",
@@ -496,6 +490,49 @@
                             }
                         }
                     });
+                }
+            });
+
+            $('.invite-candidate').click(function(){
+                var candidate = $(this).attr('candidate-id');
+                var job = $(this).attr('job-id');
+                var interview = $(this).attr('interview-id');
+
+                if (interview == null) {
+                    
+                    swal('Error', 'Please create an interview session before you can invite');
+
+                }else{
+
+                    swal({
+                            title: "Do you want to invite this candidate?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes",
+                            cancelButtonText: "Cancel",
+                            closeOnConfirm: false,
+                            closeOnCancel: false,
+                        },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url:"<?php echo base_url();?>employer/job_board/single_invitation",
+                                        method:"POST",
+                                        data: {
+                                          candidate_id: candidate,
+                                          job_id: job,
+                                          interview_id: interview,
+                                        },
+                                        success:function(response) {
+                                           swal("Success", "Candidate has been invited.", "success");
+                                           location.reload();
+                                        }
+                                      })
+                                } else {
+                                    swal("Cancelled", "Invitation has been cancelled", "error");
+                                }
+                            }
+                        );
                 }
             });
 

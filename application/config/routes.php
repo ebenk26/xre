@@ -66,6 +66,7 @@ $route['administrator/dashboard'] = 'administrator/student';
 $route['article/page/(:any)'] = 'administrator/article/list_public_page/$1';
 $route['article/(:any)'] = 'administrator/article/view_public/$1';
 $route['article'] = 'administrator/article/list_public';
+$route['send_message/(:any)/new'] = 'administrator/inbox/view/$1/new';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
