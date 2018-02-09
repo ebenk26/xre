@@ -40,6 +40,9 @@ class Dashboard extends CI_Controller {
 		$rate = $query->row()->rate;
 		$job['rate'] = round($rate, 2);
 		
+		//get upcoming interview
+		$job['upcoming_interview'] = $this->student_model->get_upcoming_interview($id);
+		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
         $this->load->view('student/main/footer');
