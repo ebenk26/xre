@@ -543,7 +543,7 @@
 
                 if (interview == null) {
                     
-                    swal('Error', 'Please create an interview session before you can invite');
+                    swal('Info', 'Please create an interview session before you can invite');
 
                 }else{
 
