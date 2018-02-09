@@ -75,13 +75,6 @@ $route['employer/trash'] = 'administrator/inbox/view_list/trash';
 $route['student/inbox'] = 'administrator/inbox/view_list/inbox';
 $route['student/sent'] = 'administrator/inbox/view_list/sent';
 $route['student/trash'] = 'administrator/inbox/view_list/trash';
-
-/*$route['employer/inbox'] = 'employer/inbox/view_list/inbox';
-$route['employer/sent'] = 'employer/inbox/view_list/sent';
-$route['employer/trash'] = 'employer/inbox/view_list/trash';
-$route['student/inbox'] = 'student/inbox/view_list/inbox';
-$route['student/sent'] = 'student/inbox/view_list/sent';
-$route['student/trash'] = 'student/inbox/view_list/trash';*/
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
