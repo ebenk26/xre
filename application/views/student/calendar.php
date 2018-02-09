@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <!-- Calendar -->
                                     <div class="col-md-6 col-sm-12">
-                                        <div id="calendar" class="has-toolbar"> </div>
+                                        <div id="fullcalendar" class="has-toolbar"> </div>
 
                                     </div>
                                     <!-- Event / Agenda / Upcoming Interview -->
@@ -83,71 +83,70 @@
                                                         </div>
                                                     </div>
                                                     <hr>                                                    
-                                                <?php endforeach ?>
-
-                                                </div>
-                                                <div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-hidden="false">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                                <h4 class="modal-title">
-                                                                    <i class="icon-briefcase mr-2"></i>Internship In IT</h4>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
-                                                                    <ul class="list-unstyled">
-                                                                        <li>
-                                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                                Job Position
-                                                                            </div>
-                                                                            <div class="col-md-9 text-uppercase font-weight-600">
-                                                                                Internship In IT
-                                                                            </div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                                Title
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                Session 1
-                                                                            </div>
-                                                                        </li>
-                                                                        <!-- From -->
-                                                                        <li>
-                                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                                From
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <i class="icon-calendar mr-2"></i> 1 November 2017 - 10:30
-                                                                            </div>
-                                                                        </li>
-                                                                        <!-- To -->
-                                                                        <li>
-                                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                                To
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                <i class="icon-calendar mr-2"></i> 1 November 2017 - 13:30
-                                                                            </div>
-                                                                        </li>
-                                                                        <!-- Details -->
-                                                                        <li>
-                                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                                Details
-                                                                            </div>
-                                                                            <div class="col-md-9">
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non magna fringilla, semper quam nec, maximus magna. Quisque nec faucibus sem. Duis non magna ut nibh accumsan consectetur. Suspendisse interdum, felis quis sollicitudin vulputate, arcu urna pellentesque quam, vitae fringilla nunc metus eget sem. Curabitur eu felis dapibus, semper magna ac, pulvinar magna. Sed aliquam ipsum ullamcorper ultrices sodales. Donec eget interdum felis. Aenean lorem eros, scelerisque gravida vehicula eu, commodo
-                                                                                et nisi. Aenean at massa eu erat placerat viverra. Phasellus placerat eros lorem, in mollis risus interdum id. Nullam posuere orci porta gravida facilisis. Suspendisse quis fermentum enim, ut semper elit.
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
+                                                    <div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-hidden="false">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                                                    <h4 class="modal-title">
+                                                                        <i class="icon-briefcase mr-2"></i><?php echo $value['job_name'] ?> (<?php echo $value['company_name']; ?>)</h4>
                                                                 </div>
+                                                                <div class="modal-body">
+                                                                    <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                                                                        <ul class="list-unstyled">
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                    Job Position
+                                                                                </div>
+                                                                                <div class="col-md-9 text-uppercase font-weight-600">
+                                                                                    <?php echo $value['job_name'] ?>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                    Title
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <?php echo $value['title']; ?>
+                                                                                </div>
+                                                                            </li>
+                                                                            <!-- From -->
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                    From
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['start_date'])); ?> - <?php echo date('H:i', strtotime($value['start_date'])); ?>
+                                                                                </div>
+                                                                            </li>
+                                                                            <!-- To -->
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                    To
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['end_date'])); ?> - <?php echo date('H:i', strtotime($value['end_date'])); ?>
+                                                                                </div>
+                                                                            </li>
+                                                                            <!-- Details -->
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                    Details
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <?php echo $value['description']; ?>
+                                                                                </div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+
                                                             </div>
-
-
                                                         </div>
                                                     </div>
+                                                <?php endforeach ?>
+
                                                 </div>
                                             </div>
                                         </div>

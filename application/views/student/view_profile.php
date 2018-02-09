@@ -235,7 +235,7 @@
                                         <i class="fa fa-twitter g-font-size-20-xs social-tw"></i>
                                     </a>
                                 </li>
-
+								
                             </ul>
                         </li>
                     </ul>
@@ -354,6 +354,12 @@
 
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
+                            <?php //if($this->session->userdata('id') != $detail['id_users']){?>										
+								<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-4" target="_blank">
+											<i class="icon-envelope mr-2 "></i>Send Message</a>
+							<?php //}?>                                        
+                        </li>
+						<li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">ADDRESS</h5>
                             <p class="mt-1 "><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?>, <?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?> <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?> , <?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None';?>, <?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></p>
                         </li>

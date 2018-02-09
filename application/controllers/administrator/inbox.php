@@ -25,7 +25,7 @@ class Inbox extends CI_Controller {
             redirect(base_url());
         }
 		
-		$profile['page_title'] 		= 'Inbox';
+		$profile['page_title'] 		= 'Message';
 		
 		//data for each header
 		$id = $this->session->userdata('id');
@@ -37,6 +37,10 @@ class Inbox extends CI_Controller {
 			$get_user_profile = $this->employer_model->get_user_profile($id);
 		}
         $profile['user_profile'] = $get_user_profile;
+		
+		if($roles == "employer"){
+			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
+		}
 		
 		$data['roles'] 	= $roles;
 		$data['type'] 	= $type;
@@ -81,8 +85,74 @@ class Inbox extends CI_Controller {
 			$this->load->view($roles.'/main/header', $profile);
 			$this->load->view('administrator/inbox', $data);
 			$this->load->view($roles.'/main/footer');
+		//if READ
 		}else{
+			$inbox_id = base64_decode($to_or_inbox_id);
+			
 			//cek apakah ada inbox dengan id to
+			$this->db->select('inbox.*, sender.fullname as sender_name, receiver.fullname as receiver_name, company1.company_name as sender_company_name, company2.company_name as receiver_company_name, sender_role.slug as sender_role, receiver_role.slug as receiver_role, profile_uploads.name as profile_photo');
+			$this->db->from('inbox');
+			$this->db->join('users as sender', 'sender.id = inbox.sender_id', 'left');
+			$this->db->join('users as receiver', 'receiver.id = inbox.receiver_id', 'left');
+			$this->db->join('user_profiles as company1', 'company1.user_id = sender.id', 'left');
+			$this->db->join('user_profiles as company2', 'company2.user_id = receiver.id', 'left');		
+			$this->db->join('user_role as user_role1', 'user_role1.user_id = sender.id', 'left');
+			$this->db->join('user_role as user_role2', 'user_role2.user_id = receiver.id', 'left');		
+			$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
+			$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');
+			$this->db->join('profile_uploads as profile_uploads', 'profile_uploads.user_id = sender.id', 'left');
+			
+			$this->db->where('inbox.id', $inbox_id);
+			$this->db->where('profile_uploads.type', 'profile_photo');
+			
+			$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
+			$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');		
+			$this->db->order_by('inbox.created_at', 'DESC');
+			$query = $this->db->get();
+			$message = $query->row();
+			$data['message'] = $message;
+			
+			if($message->sender_id == $this->session->userdata('id') && $message->status_sender != "TRASH"){
+				$data1 	= array('status_sender' 		=> 'READ',
+								);				
+				$this->db->where('id', $inbox_id);
+				$post_status = $this->db->update('inbox', $data1);			
+			}elseif($message->sender_id != $this->session->userdata('id') && $message->status_receiver != "TRASH"){
+				$data1 	= array('status_receiver' 		=> 'READ',
+								);				
+				$this->db->where('id', $inbox_id);
+				$post_status = $this->db->update('inbox', $data1);
+			}
+			
+			//cek apakah ada reply dengan id inbox to
+			$this->db->select('inbox_reply.*, users.fullname, user_profiles.company_name, roles.slug as replier_roles, profile_uploads.name as profile_photo');
+			$this->db->from('inbox_reply');
+			$this->db->join('users', 'users.id = inbox_reply.user_id', 'left');
+			$this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
+			$this->db->join('user_role', 'user_role.user_id = users.id', 'left');
+			$this->db->join('roles', 'roles.id = user_role.role_id', 'left');
+			$this->db->join('profile_uploads as profile_uploads', 'profile_uploads.user_id = users.id', 'left');
+			
+			/*$this->db->join('users as sender', 'sender.id = inbox.sender_id', 'left');
+			$this->db->join('users as receiver', 'receiver.id = inbox.receiver_id', 'left');
+			$this->db->join('user_profiles as company1', 'company1.user_id = sender.id', 'left');
+			$this->db->join('user_profiles as company2', 'company2.user_id = receiver.id', 'left');		
+			$this->db->join('user_role as user_role1', 'user_role1.user_id = sender.id', 'left');
+			$this->db->join('user_role as user_role2', 'user_role2.user_id = receiver.id', 'left');		
+			$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
+			$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');*/
+			
+			$this->db->where('inbox_reply.inbox_id', $inbox_id);
+			$this->db->where('profile_uploads.type', 'profile_photo');
+			
+			$this->db->order_by('inbox_reply.id', 'DESC');
+			$query = $this->db->get();
+			$message_reply = $query->result();
+			$data['message_reply'] = $message_reply;
+			
+			$this->load->view($roles.'/main/header', $profile);
+			$this->load->view('administrator/inbox', $data);
+			$this->load->view($roles.'/main/footer');
 		}
 		
 		/*$complement['result'] 		= $this->get_data();
@@ -117,34 +187,72 @@ class Inbox extends CI_Controller {
 	}
 
     public function post(){
-        $data = array(
-				'sender_id' 				=> $this->input->post('sender_id'),
-				'receiver_id' 				=> $this->input->post('receiver_id'),
-				'subject' 					=> $this->input->post('subject'),
-				'message' 					=> $this->input->post('message'),
-				'status_sender' 			=> "SENT",
-				'status_receiver' 			=> "NEW",
-				'created_at' 				=> date('Y-m-d H:i:s'),
-		);
-		$post_status = $this->db->insert('inbox', $data);
-		$user_id = $this->db->insert_id();
+        $type = $this->input->post('type');
 		
-		/*$id 	= $this->input->post('id');
-		$data 	= array('description' 			=> $this->input->post('description'),
-                        'updated_at' 			=> date('Y-m-d H:i:s'),
-                        );
-        
-		$this->db->where('id', $id);
-		$post_status = $this->db->update('site', $data);*/
-
-        if ($post_status == true) {
-            $this->session->set_flashdata('msg_success', 'Success');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed');
-        }
-		
-		$roles = $this->session->userdata('roles');
-		redirect(base_url().$roles.'/inbox');
+		//new message
+		if($type == "new"){
+			$data = array(
+					'sender_id' 				=> $this->input->post('sender_id'),
+					'receiver_id' 				=> $this->input->post('receiver_id'),
+					'subject' 					=> $this->input->post('subject'),
+					'message' 					=> $this->input->post('message'),
+					'status_sender' 			=> "SENT",
+					'status_receiver' 			=> "NEW",
+					'created_at' 				=> date('Y-m-d H:i:s'),
+			);
+			$post_status = $this->db->insert('inbox', $data);
+			$user_id = $this->db->insert_id();
+			
+			if ($post_status == true) {
+				$this->session->set_flashdata('msg_success', 'Success');            
+			}else{
+				$this->session->set_flashdata('msg_error', 'Failed');
+			}
+			
+			$roles = $this->session->userdata('roles');
+			redirect(base_url().$roles.'/inbox');
+		//reply
+		}else{
+			$inbox_id = rtrim(base64_encode($this->input->post('inbox_id')), '=');
+			$data = array(
+					'user_id' 					=> $this->input->post('user_id'),
+					'inbox_id' 					=> $this->input->post('inbox_id'),
+					'message' 					=> $this->input->post('message'),
+					'created_at' 				=> date('Y-m-d H:i:s'),
+			);
+			$post_status = $this->db->insert('inbox_reply', $data);
+			$id = $this->db->insert_id();
+			
+			//update status message
+			$user_id = $this->input->post('user_id');
+			$sender_id = $this->input->post('sender_id');
+			//if sender reply
+			if($user_id == $sender_id){
+				$data 	= array('status_receiver' 		=> 'REPLIED',
+								'last_reply_at_sender' 	=> date('Y-m-d H:i:s'),
+								);
+				
+				$this->db->where('id', $this->input->post('inbox_id'));
+				$post_status = $this->db->update('inbox', $data);
+			//if receiver reply
+			}else{
+				$data 	= array('status_sender' 		=> 'REPLIED',
+								'last_reply_at_receiver'=> date('Y-m-d H:i:s'),
+								);
+				
+				$this->db->where('id', $this->input->post('inbox_id'));
+				$post_status = $this->db->update('inbox', $data);
+			}
+			
+			if ($post_status == true) {
+				$this->session->set_flashdata('msg_success', 'Success');            
+			}else{
+				$this->session->set_flashdata('msg_error', 'Failed');
+			}
+			
+			$roles = $this->session->userdata('roles');
+			redirect(base_url().'message/'.$inbox_id);
+		}
     }
 
     public function update(){
@@ -173,13 +281,122 @@ class Inbox extends CI_Controller {
     }
 
     public function delete(){
-        $id = $this->input->post('post_id');
-        $deleteJob = $this->employer_model->job_delete($id);
-        if ($deleteJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success delete job');            
+        $id 	= $this->input->post('id');
+		$type 	= $this->input->post('type');
+		$sender = $this->input->post('sender');
+		
+		if($sender == "true"){
+			$data 	= array('status_sender' 	=> 'TRASH',
+							'remove_at_sender' 	=> date('Y-m-d H:i:s'),
+							);
+		}else{
+			$data 	= array('status_receiver' 	=> 'TRASH',
+							'remove_at_receiver'=> date('Y-m-d H:i:s'),
+							);
+		}
+		$this->db->where('id', $id);
+		$post_status = $this->db->update('inbox', $data);
+		
+        if ($delete_status == true) {
+            $this->session->set_flashdata('msg_success', 'Success');            
         }else{
-            $this->session->set_flashdata('msg_error', 'Failed delete job');
+            $this->session->set_flashdata('msg_error', 'Failed');
         }
-        redirect(base_url().'employer/job_board/');
+		
+		$roles = $this->session->userdata('roles');
+		redirect(base_url().$roles.'/'.$type);
+    }
+	
+	public function view_list($type){
+    	$roles 	= $this->session->userdata('roles');
+		$id 	= $this->session->userdata('id');
+		$calendar = array();
+        
+		if($roles == "employer"){
+			$get_user_profile = $this->employer_model->get_user_profile($id);
+		}elseif($roles == "student"){
+			$get_user_profile = $this->student_model->get_user_profile($id);
+		}
+        $profile['user_profile'] = $get_user_profile;
+		
+		if($roles == "employer"){
+			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
+		}
+		if($roles == "student"){
+			$profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
+			$profile['notification'] = $this->student_model->get_notification($id);
+			$calendar['invitation'] = $this->student_model->get_interview_invitation($id);
+		}
+		
+		if($type == "inbox"){
+			$profile['page_title'] = 'Inbox';
+		}elseif($type == "sent"){
+			$profile['page_title'] = 'Sent';
+		}elseif($type == "trash"){
+			$profile['page_title'] = 'Trash';
+		}
+		
+		//get certain message as type
+		$this->db->select('inbox.*, sender.fullname as sender_name, receiver.fullname as receiver_name, company1.company_name as sender_company_name, company2.company_name as receiver_company_name, sender_role.slug as sender_role, receiver_role.slug as receiver_role');
+		$this->db->from('inbox');
+		$this->db->join('users as sender', 'sender.id = inbox.sender_id', 'left');
+		$this->db->join('users as receiver', 'receiver.id = inbox.receiver_id', 'left');
+		$this->db->join('user_profiles as company1', 'company1.user_id = sender.id', 'left');
+		$this->db->join('user_profiles as company2', 'company2.user_id = receiver.id', 'left');		
+		$this->db->join('user_role as user_role1', 'user_role1.user_id = sender.id', 'left');
+		$this->db->join('user_role as user_role2', 'user_role2.user_id = receiver.id', 'left');		
+		$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
+		$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');
+		if($type == "inbox"){
+			//harus sama dengan yg di bawah
+			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
+		}elseif($type == "sent"){
+			$this->db->where('inbox.sender_id = '.$id.' AND inbox.status_sender != "TRASH"');
+		}elseif($type == "trash"){
+			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver = "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.status_sender = "TRASH")');
+			$this->db->order_by('inbox.updated_at', 'DESC');
+		}
+		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
+		$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');
+		$this->db->order_by('inbox.created_at', 'DESC');
+		$query = $this->db->get();
+		$data['message'] = $query->result();
+		
+		//get only inbox message
+		$this->db->select('inbox.*, sender.fullname as sender_name, receiver.fullname as receiver_name, company1.company_name as sender_company_name, company2.company_name as receiver_company_name, sender_role.slug as sender_role, receiver_role.slug as receiver_role');
+		$this->db->from('inbox');
+		$this->db->join('users as sender', 'sender.id = inbox.sender_id', 'left');
+		$this->db->join('users as receiver', 'receiver.id = inbox.receiver_id', 'left');
+		$this->db->join('user_profiles as company1', 'company1.user_id = sender.id', 'left');
+		$this->db->join('user_profiles as company2', 'company2.user_id = receiver.id', 'left');		
+		$this->db->join('user_role as user_role1', 'user_role1.user_id = sender.id', 'left');
+		$this->db->join('user_role as user_role2', 'user_role2.user_id = receiver.id', 'left');		
+		$this->db->join('roles as sender_role', 'sender_role.id = user_role1.role_id', 'left');
+		$this->db->join('roles as receiver_role', 'receiver_role.id = user_role2.role_id', 'left');
+		
+		//harus sama dengan yg di atas
+		$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
+		
+		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
+		$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');		
+		$this->db->order_by('inbox.created_at', 'DESC');
+		$query = $this->db->get();
+		$message_inbox = $query->result();
+		$data['message_inbox'] = $message_inbox;
+		
+		$new = 0;
+		foreach ($message_inbox as $row) { 
+			if(($id == $row->receiver_id && ($row->status_receiver == "NEW" || $row->status_receiver == "REPLIED")) || ($id == $row->sender_id && $row->status_sender == "REPLIED")){ $new++;}
+		}
+		$data['new'] 	= $new;
+		
+		$data['type'] 	= $type;
+		
+		$data['id'] 	= $id;
+		
+        $this->load->view($roles.'/main/header', $profile);
+        //$this->load->view('student/inbox', $data);
+		$this->load->view('administrator/inbox_list', $data);
+        $this->load->view($roles.'/main/footer', $calendar);
     }
 }

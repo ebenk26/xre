@@ -2,7 +2,7 @@
 <!-- saved from url=(0073)https://xremo.github.io/XremoFrontEnd/custom_pages/employer-jobboard.html -->
 <html lang="en"><!--<![endif]--><!-- BEGIN HEAD --><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <title>Employer | Job Board </title>
+    <title><?=$page_title?> | Employer</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description">
@@ -331,13 +331,13 @@
 							<span class="selected"></span>
                         </a>
                     </li>
-                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'inbox'): echo 'active'; endif?> ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
 							<span class="selected"></span>
                         </a>
-                    </li>-->
+                    </li>
                     <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>

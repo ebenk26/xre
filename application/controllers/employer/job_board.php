@@ -17,7 +17,7 @@ class Job_Board extends CI_Controller {
     }
     
     public function index(){
-        $header['page_title'] = 'Job Board';
+        $profile['page_title'] = 'Job Board';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
@@ -27,9 +27,11 @@ class Job_Board extends CI_Controller {
         $complement['job_post'] = $this->employer_model->get_job_post($id);
         $complement['countries'] = $this->employer_model->get('countries', 'name', 'asc');
         $complement['forex'] = $this->employer_model->get('forex', 'name', 'asc');
+        $complement['invitation'] = $this->employer_model->get_interview_invitation($id);
+        $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/job_board', $complement);
-        $this->load->view('employer/main/footer');
+        $this->load->view('employer/main/footer', $calendar_footer);
 	}
 
     public function post(){

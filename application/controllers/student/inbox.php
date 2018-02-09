@@ -7,6 +7,7 @@ class Inbox extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
+		$this->load->model('employer_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) || ($roles !== $segment)){
@@ -25,5 +26,4 @@ class Inbox extends CI_Controller {
         $this->load->view('student/inbox');
         $this->load->view('student/main/footer');
 	}
-
 }

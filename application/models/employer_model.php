@@ -250,16 +250,16 @@ class Employer_Model extends CI_Model{
                             applieds.job_seeker_message_status,
                             applieds.created_at as sent_at,
                             users.id as id_user, 
-                            users.fullname as user_name');
+                            users.fullname as user_name,
+                            profile_uploads.name as img');
         $this->db->from('users');
         $this->db->join('applieds','users.id = applieds.user_id', 'left');
-        // $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
-        // $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $this->db->where(array('applieds.job_position_id' => $id)); //job position id
         $applicant = $this->db->get();
         $applicants = $applicant->result_array();
 
-        
 
         return $applicants;
     }
@@ -276,7 +276,7 @@ class Employer_Model extends CI_Model{
                             applieds.created_at as sent_at,
                             users.id as id_user, 
                             users.fullname as user_name, 
-                            profile_uploads.name as user_image,
+                            profile_uploads.name as img,
                             interview_schedule_user.status as interview_status');
         $this->db->from('users');
         $this->db->join('applieds','users.id = applieds.user_id', 'left');
@@ -343,6 +343,21 @@ class Employer_Model extends CI_Model{
     // function get_detail_candidate($id){
     //     $this->db-
     // }
+
+    
+    function get_interview_invitation($id){
+
+        $this->db->select('interview_schedule.*, interview_schedule_user.job_id as interview_job_id, interview_schedule_user.session_id, interview_schedule_user.employer_id, interview_schedule_user.user_id, interview_schedule_user.status, job_positions.name as job_name, user_profiles.company_name');
+        $this->db->from('interview_schedule');
+        $this->db->join('interview_schedule_user','interview_schedule_user.session_id = interview_schedule.id', 'left' );
+        $this->db->join('job_positions','job_positions.id = interview_schedule_user.job_id', 'left' );
+        $this->db->join('user_profiles','user_profiles.user_id = interview_schedule_user.employer_id', 'left' );
+        $this->db->join('student_bios','student_bios.user_id = interview_schedule_user.user_id', 'left' );
+        $this->db->where('interview_schedule_user.employer_id', $id); 
+        $interview = $this->db->get();
+
+        return $interview->result_array();
+    }
 
 
 }

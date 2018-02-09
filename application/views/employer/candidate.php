@@ -46,7 +46,7 @@
                                 <div class="caption">
                                     <!-- <i class="icon-user font-44-xs "></i> -->
                                     <span class="caption-subject"> New Candidates</span>
-                                    <span class="caption-helper ">Internship in IT</span>
+                                    <span class="caption-helper "><?php echo !empty($job) ? $job->name : 'none'; ?></span>
                                 </div>
                                 <!-- <div class="actions">
                                     <a href="" class="btn btn-md-indigo">Add to shortlist</a>
@@ -59,18 +59,20 @@
                                         <tr>
                                             <th class="text-center col-sm-1">#</th>
                                             <th class="col-sm-8"> Candidates Info </th>
-                                            <th class="text-center col-sm-1 "> Sent </th>
+                                            <th class="text-center col-sm-1 "> Applied Date </th>
                                             <th class="text-center col-sm-2"> Actions </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i=1; foreach ($candidates as $key => $value) {?>
+                                        <?php $i=1; foreach ($candidates as $key => $value) { 
+                                            if ($value['application_status'] != 'SHORTLISTED') {
+                                            ?>
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
                                                 <td class="col-xs-8">
                                                     <div class="media verticle-middle hidden-xs ">
                                                         <div class="pull-left">
-                                                            <img src="<?php echo IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                            <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
@@ -80,7 +82,7 @@
                                                         <?php echo $value['user_name']; ?>
                                                     </div>
                                                 </td>
-                                                <td class="text-center vertical-middle col-xs-1"> <?php echo date('d/m/Y',strtotime($value['sent_at'])); ?> </td>
+                                                <td class="text-center vertical-middle col-xs-1"> <?php echo date('j F Y',strtotime($value['sent_at'])); ?> </td>
                                                 <td class=" col-xs-2">
                                                     <div class="btn-group visible-xs">
                                                         <button class="btn green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -131,7 +133,7 @@
 
                                                 </td>
                                             </tr>
-                                        <?php $i++; } ?>
+                                        <?php $i++; }} ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -200,7 +202,12 @@
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1">1</td>
                                                 <td class="col-xs-8">
-                                                    <?php echo $value['user_name']; ?>
+                                                    <div class="pull-left">
+                                                        <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
+                                                    </div>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
                                                     <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? $value['interview_status'] : 'Not Sent Invitation' ?></span>
