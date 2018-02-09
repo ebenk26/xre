@@ -72,7 +72,7 @@
                                                 <td class="col-xs-8">
                                                     <div class="media verticle-middle hidden-xs ">
                                                         <div class="pull-left">
-                                                            <img src="<?php echo IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                            <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
@@ -202,7 +202,12 @@
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1">1</td>
                                                 <td class="col-xs-8">
-                                                    <?php echo $value['user_name']; ?>
+                                                    <div class="pull-left">
+                                                        <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
+                                                    </div>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
                                                     <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? $value['interview_status'] : 'Not Sent Invitation' ?></span>
