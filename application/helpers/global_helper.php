@@ -57,7 +57,7 @@ function xrPagination($param=array())
     return $CI->pagination->create_links();
 }
 
-function profileCompletion($params)
+function ProfileCompletion($params)
 {
     $CI =& get_instance();
     $CI->load->model('employer_model');
@@ -111,5 +111,17 @@ function profileCompletion($params)
     $total  = round($sum);
     
     return $total;
+}
+
+function Notification($status='0')
+{
+    $CI =& get_instance();
+    $CI->load->model('notification_model');
+
+    $user_id = $CI->session->userdata('id');
+
+    $notif = $CI->notification_model->get_where('notifications','created_at','DESC',"user_id = $user_id AND viewed IN($status)");
+
+    return $notif;
 }
 ?>

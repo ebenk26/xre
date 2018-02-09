@@ -112,98 +112,45 @@
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-default"> 7 </span>
+                                <span class="badge badge-default"> <?= count(Notification()); ?> </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>
-                                        <span class="bold">12 pending</span> notifications</h3>
-                                    <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">view all</a>
+                                        <span class="bold"><?= count(Notification()); ?> pending</span> notifications</h3>
+                                    <!-- <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">view all</a> -->
                                 </li>
                                 <li>
-                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">just now</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-success">
-                                                        <i class="fa fa-plus"></i>
-                                                    </span> New user registered. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Server #12 overloaded. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">10 mins</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Server #2 not responding. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">14 hrs</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> Application error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">2 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Database overloaded 68%. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> A user IP blocked. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">4 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-warning">
-                                                        <i class="fa fa-bell-o"></i>
-                                                    </span> Storage Server #4 not responding dfdfdfd. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">5 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-info">
-                                                        <i class="fa fa-bullhorn"></i>
-                                                    </span> System Error. </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">9 days</span>
-                                                <span class="details">
-                                                    <span class="label label-sm label-icon label-danger">
-                                                        <i class="fa fa-bolt"></i>
-                                                    </span> Storage server failed. </span>
-                                            </a>
-                                        </li>
-                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                                        <ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                                            <?php
+                                                $notifications = Notification('0,1');
+
+                                                if(!empty($notifications))
+                                                {
+                                                    foreach ($notifications as $notif)
+                                                    {
+                                                        $elapsed    = time_elapsed_string($notif["created_at"]);
+
+                                                        $readUnread = ($notif["viewed"] == 0) ? 'style="background-color:#ffe2e2"' : '';
+                                            ?>
+                                                        <li <?= $readUnread; ?>>
+                                                            <a href="<?= base_url().$notif["url"]; ?>">
+                                                                <span class="time"><?= $elapsed; ?></span>
+                                                                <span class="details">
+                                                                    <span class="label label-sm label-icon label-success">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </span> <?= $notif["subject"]; ?> </span>
+                                                            </a>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </ul>
+                                        <div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
+                                        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                    </div>
                                 </li>
                             </ul>
                         </li>
@@ -293,12 +240,12 @@
                             <div class="m-grid mb-2 mt-4">
                                 <div class="m-grid-row md-white-text font-20-xs">
                                     <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                    <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?= profileCompletion($user_profile); ?>%</div>
+                                    <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?= ProfileCompletion($user_profile); ?>%</div>
                                 </div>
                             </div>
                             <div class="progress progress-lg ">
-                                <span class="sr-only"> <?= profileCompletion($user_profile); ?>% Complete (warning) </span>
-                                <div class="progress-bar bar-md-amber " role="progressbar" aria-valuenow="<?= profileCompletion($user_profile); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= profileCompletion($user_profile); ?>%">
+                                <span class="sr-only"> <?= ProfileCompletion($user_profile); ?>% Complete (warning) </span>
+                                <div class="progress-bar bar-md-amber " role="progressbar" aria-valuenow="<?= ProfileCompletion($user_profile); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= ProfileCompletion($user_profile); ?>%">
                                 </div>
                             </div>
                         </div>
