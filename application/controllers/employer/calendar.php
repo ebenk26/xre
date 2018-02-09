@@ -19,7 +19,6 @@ class Calendar extends CI_Controller {
 		$id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
-        $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
         $calendar['invitation'] = $this->employer_model->get_interview_invitation($id);
         $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));
 		$this->load->view('employer/main/header', $profile);

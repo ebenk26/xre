@@ -293,12 +293,12 @@
                             <div class="m-grid mb-2 mt-4">
                                 <div class="m-grid-row md-white-text font-20-xs">
                                     <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                    <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?= $profile_completion; ?>%</div>
+                                    <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?= profileCompletion($user_profile); ?>%</div>
                                 </div>
                             </div>
                             <div class="progress progress-lg ">
-                                <span class="sr-only"> <?= $profile_completion; ?>% Complete (warning) </span>
-                                <div class="progress-bar bar-md-amber " role="progressbar" aria-valuenow="<?= $profile_completion; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $profile_completion; ?>%">
+                                <span class="sr-only"> <?= profileCompletion($user_profile); ?>% Complete (warning) </span>
+                                <div class="progress-bar bar-md-amber " role="progressbar" aria-valuenow="<?= profileCompletion($user_profile); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= profileCompletion($user_profile); ?>%">
                                 </div>
                             </div>
                         </div>
