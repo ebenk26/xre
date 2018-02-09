@@ -64,7 +64,8 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i=1; foreach ($candidates as $key => $value) { 
+                                        <?php 
+                                        $i=1; foreach ($candidates as $key => $value) { 
                                             if ($value['application_status'] != 'SHORTLISTED') {
                                             ?>
                                             <tr class="odd gradeX ">

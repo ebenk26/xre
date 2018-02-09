@@ -261,7 +261,6 @@ class Employer_Model extends CI_Model{
         $applicant = $this->db->get();
         $applicants = $applicant->result_array();
 
-
         return $applicants;
     }
 

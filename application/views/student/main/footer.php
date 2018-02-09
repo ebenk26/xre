@@ -280,13 +280,88 @@
                                       job_id: parseInt(apply),
                                     },
                                     success:function(response) {
-                                        console.log(response);
                                        swal("Sucess", "Success withdraw this job.", "success");
                                        location.reload();
                                     }
                                   })
                             } else {
                                 swal("Cancelled", "This job still fit for you", "error");
+                            }
+                        }
+                    );
+            });
+
+            $('.btn-acc').click(function () {
+                $('#modal-info').modal('hide');
+                var job_id = $(this).attr('job-id');
+                var session_id = $(this).attr('session-id');
+                var employer_id = $(this).attr('employer-id');
+                    swal({
+                        title: "Are you sure you want to accept the invitation?",
+                        text: "You accept the invitation",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Accept",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>student/applications_history/accept_invitation",
+                                    method:"POST",
+                                    data: {
+                                      job_id: parseInt(job_id),
+                                      session_id: parseInt(session_id),
+                                      employer_id: parseInt(employer_id)
+                                    },
+                                    success:function(response) {
+                                       swal("Sucess", "Success accept the invitation.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You still thinking about other possibilities", "error");
+                            }
+                        }
+                    );
+            });
+
+            $('.btn-rej').click(function () {
+                $('#modal-info').modal('hide');
+                var job_id = $(this).attr('job-id');
+                var session_id = $(this).attr('session-id');
+                var employer_id = $(this).attr('employer-id');
+                    swal({
+                        title: "Are you sure you want to reject the invitation?",
+                        text: "You reject the invitation",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Reject",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>student/applications_history/reject_invitation",
+                                    method:"POST",
+                                    data: {
+                                      job_id: parseInt(job_id),
+                                      session_id: parseInt(session_id),
+                                      employer_id: parseInt(employer_id)
+                                    },
+                                    success:function(response) {
+                                       swal("Sucess", "Success reject the invitation.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You still thinking about other possibilities", "error");
                             }
                         }
                     );

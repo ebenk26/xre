@@ -8,6 +8,7 @@ class Applications_history extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
         $this->load->model('job_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck)){
@@ -42,6 +43,34 @@ class Applications_history extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed withdraw from the job');
         }
         redirect(base_url().'student/applications_history/');
+    }
+
+    public function accept_invitation(){
+        $job_id = $this->input->post('job_id');
+        $session_id = $this->input->post('session_id');
+        $employer_id = $this->input->post('employer_id');
+        $where = array( 'job_id'=>$job_id,
+                        'session_id' => $session_id,
+                        'employer_id' => $employer_id);
+        $data = array('status' => 'accept');
+
+        $this->global_model->update('interview_schedule_user', $where, $data);
+        redirect(base_url().'student/calendar/');
+
+    }
+
+    public function reject_invitation(){
+        $job_id = $this->input->post('job_id');
+        $session_id = $this->input->post('session_id');
+        $employer_id = $this->input->post('employer_id');
+        $where = array( 'job_id'=>$job_id,
+                        'session_id' => $session_id,
+                        'employer_id' => $employer_id);
+        $data = array('status' => 'reject');
+
+        $this->global_model->update('interview_schedule_user', $where, $data);
+        redirect(base_url().'student/calendar/');
+
     }
 
 }

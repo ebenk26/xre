@@ -1,4 +1,4 @@
-<!-- BEGIN CONTENT -->
+BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content" style="min-height: 598px;">
                 <!-- BEGIN PAGE HEAD-->
@@ -92,7 +92,7 @@
                                                                         <i class="icon-briefcase mr-2"></i><?php echo $value['job_name'] ?> (<?php echo $value['company_name']; ?>)</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                                                         <ul class="list-unstyled">
                                                                             <li>
                                                                                 <div class="col-md-3 text-right font-weight-700">
@@ -138,7 +138,18 @@
                                                                                 </div>
                                                                             </li>
                                                                         </ul>
+                                                                        
                                                                     </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <?php if ($value['status'] == 'pending') {?>
+                                                                        <div class="col-md-12 text-right">
+                                                                            <a href="#" class="btn btn-md-indigo btn-acc" job-id="<?php echo $value['job_id'];?>"  session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>" >Accept</a>
+                                                                            <a href="#" class="btn btn-md-orange btn-resc" job-id="<?php echo $value['job_id'];?>" session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>">Reschedule</a>
+                                                                            <a href="#" class="btn btn-md-red btn-rej" job-id="<?php echo $value['job_id'];?>" session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>">Reject</a>
+
+                                                                        </div>
+                                                                    <?php } ?>
                                                                 </div>
 
 
@@ -161,4 +172,4 @@
             </div>
         </div>
 
-        <!-- END CONTENT -->
+        <!-- END CONTENT
