@@ -57,7 +57,7 @@
                             <div class="display my-0">
                                 <div class="number">
                                     <h3 class="font-blue-sharp">
-                                        <span data-counter="counterup" data-value="4"></span>
+                                        <span data-counter="counterup" data-value="<?=$upcoming_interview['upcoming_interview_number']?>"></span>
                                     </h3>
                                     <small class="text-uppercase">Upcoming Interview</small>
                                 </div>

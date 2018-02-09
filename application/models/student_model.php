@@ -402,6 +402,23 @@ class Student_Model extends CI_Model{
 
         return $interview->result_array();
     }
+	
+	function get_upcoming_interview($id){
+        //upcoming_interview
+        $this->db->select('interview_schedule.title, interview_schedule.description, interview_schedule.start_date, job_positions.name as position, user_profiles.company_name, profile_uploads.name as profile_photo');
+        $this->db->from('interview_schedule_user');
+        $this->db->join('job_positions', 'job_positions.id = interview_schedule_user.job_id','left');
+        $this->db->join('interview_schedule', 'interview_schedule.id = interview_schedule_user.session_id','left');
+        $this->db->join('users', 'users.id = interview_schedule_user.employer_id','left');
+        $this->db->join('user_profiles', 'user_profiles.user_id = users.id','left');
+		$this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"','left');
+        $this->db->where(array('interview_schedule_user.user_id' => $id, 'interview_schedule_user.status' => 'accept', 'interview_schedule.start_date >' => date('Y-m-d')));
+        $query = $this->db->get();
+        $result['upcoming_interview'] = $query->result();
+        $result['upcoming_interview_number'] = $query->num_rows();
+		//, 'profile_uploads.type' => 'profile_photo'
+		return $result;
+	}
 }
 
 ?>
