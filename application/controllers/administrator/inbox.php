@@ -38,10 +38,6 @@ class Inbox extends CI_Controller {
 		}
         $profile['user_profile'] = $get_user_profile;
 		
-		if($roles == "employer"){
-			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
-		}
-		
 		$data['roles'] 	= $roles;
 		$data['type'] 	= $type;
 		

@@ -50,9 +50,10 @@ class Employer_Model extends CI_Model{
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.company_industry_id', 'left');
-        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id', 'left');
+        //$this->db->join('profile_uploads', 'profile_uploads.user_id = users.id', 'left');
+		$this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"','left');
         $this->db->where(array('users.id' => $id));
-        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $query = $this->db->get();
         return $query->last_row('array');
     }
