@@ -28,7 +28,6 @@ class Profile extends CI_Controller {
         $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'profile_photo'));
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'header_photo'));
         $profile_form['user_profile'] = $get_user_profile;
-        $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile_form);
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/profile', $profile_form);
         $this->load->view('employer/main/footer');
