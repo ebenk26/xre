@@ -38,43 +38,46 @@
 |
 */
 
-$route['default_controller'] = "welcome";
-$route['404_override'] = '';
-$route['country/(:any)'] = 'site/country/(:any)';
-$route['job/details/(:any)'] = 'employer/job_board/details/(:any)';
-$route['job/preview/(:any)'] = 'employer/job_board/preview/(:any)';
-$route['job/candidate/(:any)'] = 'employer/candidate/index/(:any)';
-$route['profile/company/(:any)/page/(:any)'] = 'employer/profile/company_page/$1/page/$2';
-$route['profile/company/(:any)'] = 'employer/profile/company/(:any)';
-$route['candidate/add_session'] = 'employer/candidate/add_session';
-$route['candidate/edit_session'] = 'employer/candidate/edit_session';
-$route['profile/user/(:any)'] = 'student/profile/view_my_profile/(:any)';
-$route['home'] = 'site/main';
-$route['about'] = 'site/main';
-$route['services'] = 'site/main';
-$route['contact'] = 'site/main';
-$route['privacy'] = 'site/main';
-$route['terms-of-use'] = 'site/main';
-$route['login'] = 'site/user/login';
-$route['signup'] = 'site/user/signup';
-$route['job/search'] = 'site/job_search_result';
-$route['job/search/(:any)'] = 'site/job_search_result';
-$route['filter'] = 'site/job_search_result/filter_get';
-$route['employer/change_password'] = 'site/user/changePassword';
-$route['student/change_password'] = 'site/user/changePassword';
-$route['administrator/dashboard'] = 'administrator/student';
-$route['article/page/(:any)'] = 'administrator/article/list_public_page/$1';
-$route['article/(:any)'] = 'administrator/article/view_public/$1';
-$route['article'] = 'administrator/article/list_public';
-$route['send_message/(:any)/new'] = 'administrator/inbox/view/$1/new';
-$route['message/(:any)'] = 'administrator/inbox/view/$1';
+$route['default_controller'] 					= "welcome";
+$route['404_override'] 							= '';
+$route['country/(:any)'] 						= 'site/country/(:any)';
+$route['job/details/(:any)'] 					= 'employer/job_board/details/(:any)';
+$route['job/preview/(:any)'] 					= 'employer/job_board/preview/(:any)';
+$route['job/candidate/(:any)'] 					= 'employer/candidate/index/(:any)';
+$route['profile/company/(:any)/page/(:any)'] 	= 'employer/profile/company_page/$1/page/$2';
+$route['profile/company/(:any)'] 				= 'employer/profile/company/(:any)';
+$route['candidate/add_session'] 				= 'employer/candidate/add_session';
+$route['candidate/edit_session'] 				= 'employer/candidate/edit_session';
+$route['profile/user/(:any)'] 					= 'student/profile/view_my_profile/(:any)';
+$route['home'] 									= 'site/main';
+$route['about'] 								= 'site/main';
+$route['services'] 								= 'site/main';
+$route['contact'] 								= 'site/main';
+$route['privacy'] 								= 'site/main';
+$route['terms-of-use'] 							= 'site/main';
+$route['login'] 								= 'site/user/login';
+$route['signup'] 								= 'site/user/signup';
+$route['job/search'] 							= 'site/job_search_result';
+$route['job/search/(:any)'] 					= 'site/job_search_result';
+$route['filter'] 								= 'site/job_search_result/filter_get';
+$route['employer/change_password'] 				= 'site/user/changePassword';
+$route['student/change_password'] 				= 'site/user/changePassword';
+$route['administrator/dashboard'] 				= 'administrator/student';
+$route['article/page/(:any)'] 					= 'administrator/article/list_public_page/$1';
+$route['article/(:any)'] 						= 'administrator/article/view_public/$1';
+$route['article'] 								= 'administrator/article/list_public';
+$route['send_message/(:any)/new'] 				= 'administrator/inbox/view/$1/new';
+$route['message/(:any)'] 						= 'administrator/inbox/view/$1';
 
-$route['employer/inbox'] = 'administrator/inbox/view_list/inbox';
-$route['employer/sent'] = 'administrator/inbox/view_list/sent';
-$route['employer/trash'] = 'administrator/inbox/view_list/trash';
-$route['student/inbox'] = 'administrator/inbox/view_list/inbox';
-$route['student/sent'] = 'administrator/inbox/view_list/sent';
-$route['student/trash'] = 'administrator/inbox/view_list/trash';
+$route['employer/inbox'] 						= 'administrator/inbox/view_list/inbox';
+$route['employer/sent'] 						= 'administrator/inbox/view_list/sent';
+$route['employer/trash'] 						= 'administrator/inbox/view_list/trash';
+$route['student/inbox'] 						= 'administrator/inbox/view_list/inbox';
+$route['student/sent'] 							= 'administrator/inbox/view_list/sent';
+$route['student/trash'] 						= 'administrator/inbox/view_list/trash';
+
+$route['notif'] 								= 'notifications/notifications/list';
+$route['notif_time'] 							= 'notifications/notifications/getInterval';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -666,8 +666,36 @@
                 };
              }();
 
-        AppCalendar.init();
-        })
+            AppCalendar.init();
+            showNotif();
+            notifTime();
+
+            // setInterval(showNotif(),notifTime());
+        });
+
+        function showNotif()
+        {
+            $.ajax({
+                url:"<?php echo base_url();?>notif",
+                method:"POST",
+                success:function(response)
+                {
+                    console.log(response);
+                }
+            });
+        }
+
+        function notifTime()
+        {
+            $.ajax({
+                url:"<?php echo base_url();?>notif_time",
+                method:"POST",
+                success:function(response)
+                {
+                    console.log(response);
+                }
+            });
+        }
     </script>
 
 

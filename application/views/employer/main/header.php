@@ -110,44 +110,19 @@
                         </li>-->
 
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="count_notif">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-default"> <?= count(Notification()); ?> </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
-                                    <h3>
-                                        <span class="bold"><?= count(Notification()); ?> pending</span> notifications</h3>
+                                    <h3 id="count_notif_in">
+                                        <span class="bold">There are no pending</span> notifications
+                                    </h3>
                                     <!-- <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/page_user_profile_1.html">view all</a> -->
                                 </li>
                                 <li>
                                     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;">
-                                        <ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
-                                            <?php
-                                                $notifications = Notification('0,1');
-
-                                                if(!empty($notifications))
-                                                {
-                                                    foreach ($notifications as $notif)
-                                                    {
-                                                        $elapsed    = time_elapsed_string($notif["created_at"]);
-
-                                                        $readUnread = ($notif["viewed"] == 0) ? 'style="background-color:#ffe2e2"' : '';
-                                            ?>
-                                                        <li <?= $readUnread; ?>>
-                                                            <a href="<?= base_url().$notif["url"]; ?>">
-                                                                <span class="time"><?= $elapsed; ?></span>
-                                                                <span class="details">
-                                                                    <span class="label label-sm label-icon label-success">
-                                                                        <i class="fa fa-plus"></i>
-                                                                    </span> <?= $notif["subject"]; ?> </span>
-                                                            </a>
-                                                        </li>
-                                            <?php
-                                                    }
-                                                }
-                                            ?>
-                                        </ul>
+                                        <ul class="dropdown-menu-list scroller" id="notif_msg" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1"></ul>
                                         <div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
                                         <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
                                     </div>
