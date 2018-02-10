@@ -85,8 +85,11 @@ class Candidate extends CI_Controller {
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
     }
 
-    function invitation(){
-        
+    function remove_interview_session(){
+        $session_id = base64_decode($this->input->post('session_id'));
+        $page_id = $this->uri->segment(URI_SEGMENT_DETAIL);
+        $this->global_model->remove('interview_schedule', array('id' => $session_id));
+        redirect(base_url().'job/candidate/'.rtrim(base64_encode($page_id),'='));   
     }
 
 }

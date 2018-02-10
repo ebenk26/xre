@@ -42,5 +42,26 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <!--========== END JAVASCRIPTS ==========-->
     
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            setTimeout(function(){
+                getArticle();
+            }, 1000);
+        })
 
+        function getArticle()
+        {
+            $.ajax({
+                type    : "POST",
+                url     : "<?php echo base_url();?>home-article",
+                success:function(response)
+                {
+                    var data = JSON.parse(response);
+
+                    $("#latest_article").html(data.article);
+                }
+            });
+        }
+    </script>
 </body></html>

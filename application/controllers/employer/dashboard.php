@@ -33,7 +33,6 @@ class Dashboard extends CI_Controller {
 		$this->db->limit(5);
 		$query = $this->db->get();
 		$complement['article'] = $query->result();
-		
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/dashboard',$complement);
         $this->load->view('employer/main/footer', $calendar_footer);

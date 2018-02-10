@@ -1,4 +1,3 @@
-BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
                 <div class="portlet light md-transparent portlet-fit p-0">
@@ -59,7 +58,7 @@ BEGIN CONTENT -->
                                         <tr>
                                             <th class="text-center col-sm-1">#</th>
                                             <th class="col-sm-7"> Candidates Info </th>
-                                            <th class="text-center col-sm-1 "> Status </th>
+                                            <th class="text-center col-sm-1 "> Applied Status </th>
                                             <th class="text-center col-sm-1 "> Applied Date </th>
                                             <th class="text-center col-sm-2"> Actions </th>
                                         </tr>
@@ -154,49 +153,13 @@ BEGIN CONTENT -->
                                 </div>
                                 <div class="actions">
                                     <div class="btn-group">
-                                        <a class="btn btn-circle btn-default " href="javascript:void(0)" data-toggle="dropdown">
-                                            <i class="fa fa-calendar"></i> Interview Schedule
-                                            <i class="fa fa-angle-down"></i>
+                                        <a class="btn btn-circle btn-default " href="#modal_set_session" data-toggle="modal">
+                                            <i class="fa fa-calendar"></i> Set Interview Session
                                         </a>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li>
-                                                <a href="#modal_set_session" data-toggle="modal">
-                                                    <i class="fa fa-plus"></i> Set Session</a>
-                                            </li>
-                                            <li>
-                                                <a href="#modal_edit_session" data-toggle="modal">
-                                                    <i class="fa fa-pencil"></i> Edit Session </a>
-                                            </li>
-                                            <li>
-                                                <a href="#modal_view_detail" data-toggle="modal">
-                                                    <i class="fa fa-file-text"></i> View Schedule Detail</a>
-                                            </li>
-
-                                            <li class="divider"> </li>
-                                            <li>
-                                                <a href="javascript:void(0)" class="mt-sweetalert md-red-text" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Are you sure you want to reset the everything." data-type="warning"
-                                                    data-allow-outside-click="true" data-show-confirm-button="true" data-confirm-button-text='OK' data-confirm-button-class="btn-info">
-                                                    <i class="fa fa-ban md-red-text"></i>Reset Schedule</a>
-                                            </li>
-                                        </ul>
 
                                     </div>
-                                    <div class="btn-group">
-                                        <select class="form-control" id="session_list">
-                                            <option disabled selected>Session List</option>
-                                            <?php foreach ($interview_session as $key => $session_value) {?>
-                                                <option value="<?php echo $session_value['id'];?>"><?php echo $session_value['title'] ?></option>
-                                            <?php } ?>
-                                        </select>
-
-                                    </div>
-                                    <!-- If Employer != Set Session -->
-                                    <!-- <button type="submit" class="btn btn-circle btn-md-indigo mt-sweetalert" data-title="Oh no ! You still not set the date for inteview session yet. Create session now." data-type="warning" data-allow-outside-click="true"
-                                        data-show-confirm-button="true" data-confirm-button-text='OK' data-confirm-button-class="btn-info">
-                                        <i class="icon-paper-plane mr-2"></i>Invite all to Interview</button>
-                                    <a href="" class="btn btn-default btn-circle btn-icon-only tooltips" data-container="body" data-placement="top" data-original-title="Download all resume">
-                                        <i class="icon-cloud-download"></i>
-                                    </a> -->
+                                        <a class="btn btn-circle btn-md-indigo" href="#modal_interview_session_list" data-toggle="modal">
+                                        <i class="fa fa-calendar"></i> All Interview Session</a>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -205,8 +168,8 @@ BEGIN CONTENT -->
                                         <tr>
                                             <th class="text-center col-xs-1 col-md-1">#</th>
                                             <th class="col-xs-8 col-md-8"> Candidates Info </th>
-                                            <th class="text-center col-md-1 "> Status </th>
-                                            <th class="text-center col-xs-2 col-md-2"> Status Invitation </th>
+                                            <th class="text-center col-md-1 "> Applied Status </th>
+                                            <th class="text-center col-xs-2 col-md-2"> Invitation   Status </th>
                                             <th class="text-center col-xs-1 col-md-1"> Actions </th>
                                         </tr>
                                     </thead>
@@ -226,7 +189,7 @@ BEGIN CONTENT -->
                                                     <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? $value['interview_status'] : 'Not Sent Invitation' ?></span>
+                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? ucfirst($value['interview_status']) : 'Not Sent Invitation' ?> <?php echo $value['interview_title']; ?></span>
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
@@ -241,21 +204,20 @@ BEGIN CONTENT -->
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <?php if (!empty($interview->id)) {?>
-                                                                    <a href="#" class="invite-candidate" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>" interview-id="<?php echo rtrim(base64_encode($interview->id),'=')?>">
+                                                                <a href="#choose_interview_session" class="choose_session" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
                                                                         <i class="icon-paper-plane"></i>
                                                                         Send Invitation Interview
                                                                     </a>
-                                                                <?php }else{ ?>
-                                                                    <a href="#" class="invite-candidate" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
-                                                                        <i class="icon-paper-plane"></i>
-                                                                        Send Invitation Interview
-                                                                    </a>
-                                                                <?php } ?>
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
-                                                                <a href="#" class="md-red-text mt-sweetalert" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate? " data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
+                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                    <i class="icon-check md-green-text"></i>
+                                                                    Hire Candidate
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
                                                                     <i class="icon-close md-red-text"></i>
                                                                     Reject Candidate
                                                                 </a>
@@ -512,137 +474,7 @@ BEGIN CONTENT -->
                                 </div>
                                 <!-- END MODAL : Set Interview Session -->
 
-                                <!-- BEGIN MODAL : Edit Interview Session -->
-                                <div class="modal fade " id="modal_edit_session" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content ">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                <h4 class="modal-title font-weight-600 "> Edit [ <?php echo !empty($interview->title) ? $interview->title : 'Session Name'; ?> ]
-                                                </h4>
-                                            </div>
-                                            <form action="<?php echo base_url(); ?>candidate/edit_session" method="POST" class="form-horizontal">
-                                                <div class="modal-body form-body ">
-                                                <input type="hidden" name="id" value="<?php echo !empty($interview->id) ? $interview->id : 0; ?>"></input>
-                                                <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
-                                                    <div class="form-group mx-0">
-                                                        <label class="control-label col-md-3">Title</label>
-                                                        <div class="col-md-9">
-                                                            <input type="text" value="<?php echo !empty($interview->title) ? $interview->title : 'Session Name'; ?>" class="form-control input-medium" name="title" readonly>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group mx-0">
-                                                        <label class="control-label col-md-3">From</label>
-                                                        <div class="col-md-6">
-                                                            <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control" name="start_date" value="<?php echo !empty($interview->start_date) ? date('d F Y - H:i', strtotime($interview->start_date)) : '01 January 2018 - 00:00'; ?>">
-                                                                <span class="input-group-addon">
-                                                                    <button class="btn default date-set" type="button">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group mx-0">
-                                                        <label class="control-label col-md-3">To</label>
-                                                        <div class="col-md-6">
-                                                            <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                <input type="text" size="16" class="form-control" name="end_date" value="<?php echo !empty($interview->end_date) ? date('d F Y - H:i', strtotime($interview->end_date)) : '01 January 2018 - 00:00'; ?>">
-                                                                <span class="input-group-addon">
-                                                                    <button class="btn default date-set" type="button">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                    </button>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group mx-0">
-                                                        <label class="control-label col-md-3">Details</label>
-                                                        <div class="col-md-9 ">
-                                                            <textarea class="form-control" rows="5" name="description"><?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="modal-footer form-actions ">
-                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END MODAL : Edit Interview Session -->
-
-                                <!-- BEGIN MODAL : View Interview Detail-->
-                                <div class="modal fade " id="modal_view_detail" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog ">
-                                        <div class="modal-content ">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                                <h4 class="modal-title font-weight-600 "> View Interview Details
-                                                </h4>
-                                            </div>
-
-
-                                            <div class="modal-body">
-                                                <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
-                                                    <ul class="list-unstyled">
-                                                        <li>
-                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                Job Position
-                                                            </div>
-                                                            <div class="col-md-9 text-uppercase font-weight-600 ">
-                                                                <?php echo !empty($job) ? $job->name : 'none'; ?>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                Title
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <?php echo !empty($interview) ? $interview->title : 'none'; ?>
-                                                            </div>
-                                                        </li>
-                                                        <!-- From -->
-                                                        <li>
-                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                From
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <i class="icon-calendar mr-2"></i> <?php echo !empty($interview->start_date) ? date('d F Y - H:i', strtotime($interview->start_date)) : '01 January 2018 - 00:00'; ?>
-                                                            </div>
-                                                        </li>
-                                                        <!-- To -->
-                                                        <li>
-                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                To
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <i class="icon-calendar mr-2"></i> <?php echo !empty($interview->end_date) ? date('d F Y - H:i', strtotime($interview->end_date)) : '01 January 2018 - 00:00'; ?>
-                                                            </div>
-                                                        </li>
-                                                        <!-- Details -->
-                                                        <li>
-                                                            <div class="col-md-3 text-right font-weight-700">
-                                                                Details
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <?php echo !empty($interview->description) ? $interview->description : 'Session Name'; ?>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- END MODAL : View Interview Detail-->
+                                
 
                             </div>
                         </div>
@@ -655,6 +487,308 @@ BEGIN CONTENT -->
                     </div>
                     <!-- END MODAL : View Candidate Summary -->
 
+                    <!-- BEGIN MODAL : All available session -->
+                    <div class="modal fade modal-open-noscroll" id="modal_interview_session_list" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content form">
+                                <div class="modal-header">
+                                    <h4 class="font-weight-600">All available interview session
+                                    </h4>
+
+                                </div>
+                                <div class="modal-body form-body">
+                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
+                                        <div class="row mx-0">
+                                            <div class="form-group mx-0 col-md-12">
+                                                    <table class="table table-striped table-bordered table-hover  order-column">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">#</th>
+                                                                <th> Title </th>
+                                                                <th> From </th>
+                                                                <th> To </th>
+                                                                <th> Action </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $no = 1;foreach ($interview_session as $key => $session_value) { ?>
+                                                                
+                                                                <tr class="odd gradeX">
+                                                                    <td class="text-center" ><?=$no?></td>
+                                                                    <td>
+                                                                        <?=$session_value['title']?>                                                     
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=date('d M Y H:i:s', strtotime($session_value['start_date'] ));?>
+                                                                    </td>
+                                                                    <td> <?=date('d M Y H:i:s', strtotime($session_value['end_date'] ));?></td>
+                                                                    <td> 
+                                                                        <a href="#modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-eye"></i></a>
+                                                                        <a href="#modal_edit_session_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-edit"></i></a>
+                                                                        <a href="#" class="remove-interview-session" session-id="<?php echo rtrim(base64_encode($session_value['id']), '=');?>"><i class="fa fa-trash"></i></a>
+                                                                    </td>
+                                                                </tr>         
+                                                                                           
+                                                            <?php $no++;} ?>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer ">
+                                    <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Close</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END MODAL : All available session-->
+
+                    <!-- BEGIN MODAL : All available session -->
+                    <div class="modal fade modal-open-noscroll" id="modal_interview_session_list" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content form">
+                                <div class="modal-header">
+                                    <h4 class="font-weight-600">All available session
+                                    </h4>
+
+                                </div>
+                                <div class="modal-body form-body">
+                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
+                                        <div class="row mx-0">
+                                            <div class="form-group mx-0 col-md-12">
+                                                    <table class="table table-striped table-bordered table-hover  order-column">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="text-center">#</th>
+                                                                <th> Title </th>
+                                                                <th> From </th>
+                                                                <th> To </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php $no = 1;foreach ($interview_session as $key => $session_value) { ?>
+                                                                
+                                                                <tr class="odd gradeX">
+                                                                    <td class="text-center" ><?=$no?></td>
+                                                                    <td>
+                                                                        <?=$session_value['title']?>                                                     
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=date('d M Y H:i:s', strtotime($session_value['start_date'] ));?>
+                                                                    </td>
+                                                                    <td> <?=date('d M Y H:i:s', strtotime($session_value['end_date'] ));?></td>
+                                                                </tr>                                        
+                                                            <?php $no++;} ?>
+                                                        </tbody>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer ">
+                                    <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Close</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END MODAL : All available session-->
+
+                    
+
+                    <?php foreach ($interview_session as $key => $session_value): ?>
+                    
+                    <!-- BEGIN MODAL : View Interview Detail-->
+                    <div class="modal fade " id="modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog ">
+                            <div class="modal-content ">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="modal-title font-weight-600 "> View Interview Details
+                                    </h4>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <div class="col-md-3 text-right font-weight-700">
+                                                    Job Position
+                                                </div>
+                                                <div class="col-md-9 text-uppercase font-weight-600 ">
+                                                    <?php echo !empty($job) ? $job->name : 'none'; ?>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="col-md-3 text-right font-weight-700">
+                                                    Title
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <?php echo !empty($session_value) ? $session_value['title'] : 'none'; ?>
+                                                </div>
+                                            </li>
+                                            <!-- From -->
+                                            <li>
+                                                <div class="col-md-3 text-right font-weight-700">
+                                                    From
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <i class="icon-calendar mr-2"></i> <?php echo !empty($session_value['start_date']) ? date('d F Y - H:i', strtotime($session_value['start_date'])) : '01 January 2018 - 00:00'; ?>
+                                                </div>
+                                            </li>
+                                            <!-- To -->
+                                            <li>
+                                                <div class="col-md-3 text-right font-weight-700">
+                                                    To
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <i class="icon-calendar mr-2"></i> <?php echo !empty($session_value['end_date']) ? date('d F Y - H:i', strtotime($session_value['end_date'])) : '01 January 2018 - 00:00'; ?>
+                                                </div>
+                                            </li>
+                                            <!-- Details -->
+                                            <li>
+                                                <div class="col-md-3 text-right font-weight-700">
+                                                    Details
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <?php echo !empty($session_value['description']) ? $session_value['description'] : 'Session Name'; ?>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END MODAL : View Interview Detail-->   
+
+
+                    <!-- BEGIN MODAL : Edit Interview Session -->
+                        <div class="modal fade " id="modal_edit_session_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog ">
+                                <div class="modal-content ">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                        <h4 class="modal-title font-weight-600 "> Edit [ <?php echo !empty($session_value['title']) ? $session_value['title'] : 'Session Name'; ?> ]
+                                        </h4>
+                                    </div>
+                                    <form action="<?php echo base_url(); ?>candidate/edit_session" method="POST" class="form-horizontal">
+                                        <div class="modal-body form-body ">
+                                        <input type="hidden" name="id" value="<?php echo !empty($session_value['id']) ? $session_value['id'] : 0; ?>"></input>
+                                        <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
+                                            <div class="form-group mx-0">
+                                                <label class="control-label col-md-3">Title</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" value="<?php echo !empty($session_value['title']) ? $session_value['title'] : 'Session Name'; ?>" class="form-control input-medium" name="title" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mx-0">
+                                                <label class="control-label col-md-3">From</label>
+                                                <div class="col-md-6">
+                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                        <input type="text" size="16" class="form-control" name="start_date" value="<?php echo !empty($session_value['start_date']) ? date('d F Y - H:i', strtotime($session_value['start_date'])) : '01 January 2018 - 00:00'; ?>">
+                                                        <span class="input-group-addon">
+                                                            <button class="btn default date-set" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mx-0">
+                                                <label class="control-label col-md-3">To</label>
+                                                <div class="col-md-6">
+                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                        <input type="text" size="16" class="form-control" name="end_date" value="<?php echo !empty($session_value['end_date']) ? date('d F Y - H:i', strtotime($session_value['end_date'])) : '01 January 2018 - 00:00'; ?>">
+                                                        <span class="input-group-addon">
+                                                            <button class="btn default date-set" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mx-0">
+                                                <label class="control-label col-md-3">Details</label>
+                                                <div class="col-md-9 ">
+                                                    <textarea class="form-control" rows="5" name="description"><?php echo !empty($session_value['description']) ? $session_value['description'] : 'Session Name'; ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer form-actions ">
+                                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MODAL : Edit Interview Session -->
+
+                    <?php endforeach ?> 
+                        <!-- BEGIN MODAL : Choose interview session for user -->
+                        <div class="modal fade " id="choose_interview_session" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content form">
+                                    <div class="modal-header">
+                                        <h4 class="font-weight-600">Select interview session for the user
+                                        </h4>
+
+                                    </div>
+                                    <div class="modal-body form-body">
+                                        <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
+                                            <div class="row mx-0">
+                                                <div class="form-group mx-0 col-md-12">
+                                                        <table class="table table-striped table-bordered table-hover  order-column">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="text-center">#</th>
+                                                                    <th> Title </th>
+                                                                    <th> From </th>
+                                                                    <th> To </th>
+                                                                    <th> Action </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php $no = 1;foreach ($interview_session as $key => $session_value) { ?>
+                                                                    
+                                                                    <tr class="odd gradeX">
+                                                                        <td class="text-center" ><?=$no?></td>
+                                                                        <td>
+                                                                            <?=$session_value['title']?>                                                     
+                                                                        </td>
+                                                                        <td>
+                                                                            <?=date('d M Y H:i:s', strtotime($session_value['start_date'] ));?>
+                                                                        </td>
+                                                                        <td> <?=date('d M Y H:i:s', strtotime($session_value['end_date'] ));?></td>
+                                                                        <td> 
+                                                                            <a href="#" class="send-invitation invite-candidate" interview-id="<?php echo rtrim(base64_encode($session_value['id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'='); ?>"  data-toggle="modal"><i class="icon-paper-plane"></i></a>
+                                                                        </td>
+                                                                    </tr>         
+                                                                                               
+                                                                <?php $no++;} ?>
+                                                            </tbody>
+                                                        </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer ">
+                                        <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- END MODAL :  Choose interview session for user -->
 
                 </div>
 

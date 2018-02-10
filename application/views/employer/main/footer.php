@@ -298,14 +298,8 @@
                                     </div>\
                                 </div>\
                                 <div class="modal-footer ">\
-                                    <a href="javascript:void(0)" app-id="'+id+'" class="btn btn-md-amber shortlist-btn">\
-                                        <i class="icon-star"></i> Add Shortlist\
-                                    </a>\
-                                    <a href="<?php echo base_url();?>profile/user/'+id+'" class="btn btn-md-cyan">\
+                                    <a href="<?php echo base_url();?>profile/user/'+id+'" target="_blank" class="btn btn-md-cyan">\
                                         <i class="icon-users"></i> View Resume\
-                                    </a>\
-                                    <a href="javascript:void(0)" data-id="'+id+'" class="btn btn-md-red reject-btn">\
-                                        <i class="icon-trash"></i> Reject\
                                     </a>\
                                 </div>\
                                 \
@@ -443,10 +437,15 @@
             $('.reject-candidate').click(function(){
                 var del = $(this).attr('data-id');
                     swal({
-                        title: "Do you reject this candidate?",
-                        type: "info",
-                        confirmButtonText: "Yes, I agree",
-                        closeOnConfirm: false
+                        title: "Do you want to reject this candidate?",
+                        text: "You will not be able to process this candidate",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Reject",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
                     },
                         function(isConfirm) {
                             if (isConfirm) {
@@ -454,7 +453,7 @@
                                     url:"<?php echo base_url();?>employer/job_board/reject",
                                     method:"POST",
                                     data: {
-                                      post_id: parseInt(del),
+                                      post_id: del,
                                     },
                                     success:function(response) {
                                        swal("Success", "Candidate has been rejected.", "success");
@@ -462,7 +461,40 @@
                                     }
                                   })
                             } else {
-                                swal("Cancelled", "Reject candidate has been cancelled", "error");
+                                swal("Cancelled", "You still think this candidate deserve the job", "error");
+                            }
+                        }
+                    );
+            });
+
+            $('.hire-candidate').click(function(){
+                var del = $(this).attr('data-id');
+                    swal({
+                        title: "Do you want to hire this candidate?",
+                        text: "You will not be able to process this candidate",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Hire",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/hire",
+                                    method:"POST",
+                                    data: {
+                                      post_id: del,
+                                    },
+                                    success:function(response) {
+                                       swal("Success", "Candidate has been rejected.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You still think this candidate not deserve the job", "error");
                             }
                         }
                     );
@@ -579,6 +611,50 @@
                 }
             });
 
+            $('.choose_session').click(function(){
+                var id = $(this).attr('candidate-id');
+                $('#choose_interview_session .send-invitation').attr('candidate-id', id);
+            });
+
+            $('.remove-interview-session').click(function(){
+                var id = $(this).attr('session-id');
+
+                if (id == null) {
+                    
+                    swal('Info', 'Interview session not found');
+
+                }else{
+
+                    swal({
+                            title: "Do you want to remove this interview session?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes",
+                            cancelButtonText: "Cancel",
+                            closeOnConfirm: false,
+                            closeOnCancel: false,
+                        },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url:"<?php echo base_url();?>employer/candidate/remove_interview_session",
+                                        method:"POST",
+                                        data: {
+                                              session_id: id,
+                                            },
+                                            success:function(response) {
+                                               swal("Success", "Interview Schedule has been remove", "success");
+                                               location.reload();
+                                            }
+                                    });
+                                } else {
+                                    swal("Cancelled", "Interview session still exist", "error");
+                                }
+                            }
+                        );
+                }
+            })
+
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>
@@ -692,6 +768,7 @@
                 }
             });
         }
+
     </script>
 
 

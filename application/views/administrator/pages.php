@@ -87,7 +87,7 @@
 									
 									<div class="form-group">
 										<label class="control-label">Content</label>
-										<textarea name="description" class="wysihtml5 form-control" rows="6"><?php echo $row->description?></textarea>
+										<textarea name="description" class="textarea_tiny form-control" rows="6"><?php echo $row->description?></textarea>
 									</div>									
 								</div>
 								</div>
