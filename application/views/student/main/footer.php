@@ -497,6 +497,7 @@
                             };
                         }
                     }
+                    <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
 
 					$('#fullcalendar').fullCalendar('destroy'); 
                     var invitation = <?php echo $invitation; ?>;
@@ -513,6 +514,7 @@
                         droppable: false, 
                         events: invitation_calendar
                     });
+                    <?php } ?>
 
                 }
 
