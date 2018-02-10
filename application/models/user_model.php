@@ -21,9 +21,9 @@ class User_Model extends CI_Model{
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
-        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"', 'left');
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
-        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $query = $this->db->get();
         $result = $query->last_row('array');
         if (!empty($result)) {
