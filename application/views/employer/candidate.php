@@ -53,7 +53,7 @@
                                 </div> -->
                             </div>
                             <div class="portlet-body">
-                                <table class="table table-striped table-bordered order-column" id="sample_1">
+                                <table class="table table-striped table-bordered order-column" id="xremo_table">
                                     <thead>
                                         <tr>
                                             <th class="text-center col-sm-1">#</th>
@@ -163,7 +163,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body">
-                                <table class="table table-striped table-bordered " id="sample_2">
+                                <table class="table table-striped table-bordered " id="xremo_table">
                                     <thead>
                                         <tr>
                                             <th class="text-center col-xs-1 col-md-1">#</th>
