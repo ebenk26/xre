@@ -204,7 +204,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#choose_interview_session" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                <a href="#choose_interview_session" class="choose_session" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
                                                                         <i class="icon-paper-plane"></i>
                                                                         Send Invitation Interview
                                                                     </a>
@@ -770,7 +770,7 @@
                                                                         </td>
                                                                         <td> <?=date('d M Y H:i:s', strtotime($session_value['end_date'] ));?></td>
                                                                         <td> 
-                                                                            <a href="#modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="icon-paper-plane"></i></a>
+                                                                            <a href="#" class="send-invitation invite-candidate" interview-id="<?php echo rtrim(base64_encode($session_value['id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'='); ?>"  data-toggle="modal"><i class="icon-paper-plane"></i></a>
                                                                         </td>
                                                                     </tr>         
                                                                                                

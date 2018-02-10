@@ -76,13 +76,13 @@
                                                                         <i class="icon-clock mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#modal-info" data-toggle="modal" class="btn btn-xs btn-md-indigo vertical-middle">More Info</a>
+                                                                    <a href="#modal_info_<?php echo rtrim(base64_encode($value['id']), '='); ?>" data-toggle="modal" class="btn btn-xs btn-md-indigo vertical-middle">More Info</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <hr>                                                    
-                                                    <div class="modal fade" id="modal-info" tabindex="-1" role="dialog" aria-hidden="false">
+                                                    <div class="modal fade" id="modal_info_<?php echo rtrim(base64_encode($value['id']), '='); ?>" tabindex="-1" role="dialog" aria-hidden="false">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">

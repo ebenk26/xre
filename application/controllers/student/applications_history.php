@@ -66,8 +66,7 @@ class Applications_history extends CI_Controller {
                         'employer_id' => $employer_id);
         $data = array('status' => 'accept');
 
-        $this->global_model->update('interview_schedule_user', $where, $data);
-		
+        $update = $this->global_model->update('interview_schedule_user', $where, $data);
 		//BEGIN : set recent activities
 		$data = array(
 					'user_id' 		=> $this->session->userdata('id'),

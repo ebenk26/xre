@@ -318,6 +318,7 @@
                                       employer_id: parseInt(employer_id)
                                     },
                                     success:function(response) {
+                                        console.log(response);
                                        swal("Sucess", "Success accept the invitation.", "success");
                                        location.reload();
                                     }

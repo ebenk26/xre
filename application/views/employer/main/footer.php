@@ -611,6 +611,11 @@
                 }
             });
 
+            $('.choose_session').click(function(){
+                var id = $(this).attr('candidate-id');
+                $('#choose_interview_session .send-invitation').attr('candidate-id', id);
+            });
+
             $('.remove-interview-session').click(function(){
                 var id = $(this).attr('session-id');
 
