@@ -41,7 +41,7 @@ class Employer_Model extends CI_Model{
     }
 
     function get_user_profile($id){
-        $this->db->select('users.id as id_users, users.email as registered_email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.name as roles, user_profiles.*, industries.name as industry, countries.name as country_name, countries.country_code,
+        $this->db->select('users.id as id_users, users.email as registered_email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, users.last_seen_by, users.last_seen_at, users.number_of_seen, roles.name as roles, user_profiles.*, industries.name as industry, countries.name as country_name, countries.country_code,
             states.name as state_name,profile_uploads.name as img');
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id', 'left');

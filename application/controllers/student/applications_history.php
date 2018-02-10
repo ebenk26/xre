@@ -73,7 +73,7 @@ class Applications_history extends CI_Controller {
 					'user_id' 		=> $this->session->userdata('id'),
 					'ip_address' 	=> $this->input->ip_address(),
 					'activity' 		=> "Accept Interview Invitation",
-					'icon' 			=> "fa-calendar-check-o",
+					'icon' 			=> "fa-check",
 					'label' 		=> "success",
 					'created_at' 	=> date('Y-m-d H:i:s'),
 				);
@@ -100,7 +100,7 @@ class Applications_history extends CI_Controller {
 					'user_id' 		=> $this->session->userdata('id'),
 					'ip_address' 	=> $this->input->ip_address(),
 					'activity' 		=> "Reject Interview Invitation",
-					'icon' 			=> "fa-calendar-times-o",
+					'icon' 			=> "fa-remove",
 					'label' 		=> "danger",
 					'created_at' 	=> date('Y-m-d H:i:s'),
 				);

@@ -276,6 +276,12 @@
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
+							<?php 
+								$data_message = getDataMessage("general");
+								if($data_message['new'] > 0){
+							?>
+								<span class="badge badge-md-cyan"><?=$data_message['new']?></span>
+							<?php }?>
 							<span class="selected"></span>
                         </a>
                     </li>

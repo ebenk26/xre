@@ -24,6 +24,8 @@ class Dashboard extends CI_Controller {
         $complement['job_post'] = $this->employer_model->get_job_post($id);
 		$complement['interview_session'] = $this->global_model->get_where('interview_schedule_user', array('user_id'=>$id));
         $calendar_footer['invitation'] = json_encode($this->global_model->get_where('interview_schedule_user', array('user_id'=>$id)));
+		
+		//get 5 latest article
 		$this->db->select('*');
 		$this->db->from('blogs');
 		//$this->db->order_by('number_of_view', 'DESC');

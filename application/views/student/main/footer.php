@@ -498,7 +498,7 @@
                                     };
                                 }
                             }
-                            <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
+                            <?php if (($this->session->userdata('roles') == "employer" && ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar')) || ($this->session->userdata('roles') == "student" && $this->uri->segment(2) == 'calendar')) {?>
 
         					$('#fullcalendar').fullCalendar('destroy'); 
                             var invitation = <?php echo $invitation; ?>;

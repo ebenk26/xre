@@ -155,4 +155,14 @@ function CreateNotif($data)
 
     return $insertNotif;
 }
+
+function getDataMessage($type)
+{
+    $CI =& get_instance();
+    $CI->load->model('user_model');
+
+    $message = $CI->user_model->get_data_message($type);
+
+    return $message;
+}
 ?>

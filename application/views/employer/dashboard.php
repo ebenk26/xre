@@ -31,8 +31,16 @@
                             <div class="widget-thumb-wrap">
                                 <i class="widget-thumb-icon bg-green icon-briefcase"></i>
                                 <div class="widget-thumb-body">
-                                    <span class="widget-thumb-subtitle">Active</span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="10"></span>
+                                    <?php 
+										$active = 0; 
+										foreach ($job_post as $key => $value) { 
+											if(strtotime(date('Y-m-d')) <= strtotime($value['expiry_date']) && $value['status'] == 'post'){
+												$active++;
+											}
+										}									
+									?>
+									<span class="widget-thumb-subtitle">Active</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$active?>"></span>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +54,7 @@
                                 <i class="widget-thumb-icon bg-red icon-eye"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Seen</span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="300">300</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$user_profile['number_of_seen']?>">0</span>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +81,9 @@
                             <div class="widget-thumb-wrap">
                                 <i class="widget-thumb-icon bg-blue icon-envelope"></i>
                                 <div class="widget-thumb-body">
-                                    <span class="widget-thumb-subtitle">Unread Message</span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="46">46</span>
+                                    <?php $message = getDataMessage("general");?>
+									<span class="widget-thumb-subtitle">Unread Message</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$message['new']?>">0</span>
                                 </div>
                             </div>
                         </div>

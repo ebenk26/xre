@@ -222,6 +222,34 @@ class Profile extends CI_Controller {
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));
         $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'profile_photo'));
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
+		
+		//BEGIN : increase number of seen
+		if($this->session->userdata('roles') != "administrator" && $this->session->userdata('id') != $id){
+			$last_seen_by = $get_user_profile['last_seen_by'];
+			$last_seen_at = $get_user_profile['last_seen_at'];
+			
+			$record = false;
+			if($last_seen_by == $this->session->userdata('id')){
+				$now 		= date('Y-m-d H:i:s');
+				$now 		= strtotime($now);
+				$last_seen 	= strtotime($last_seen_at);
+				//10s
+				if($now - $last_seen > 300){
+					$record = true;
+				}
+			}else{
+				$record = true;
+			}
+			if($record){
+				$this->db->set('number_of_seen', 'number_of_seen+1', FALSE);
+				$this->db->set('last_seen_by', $this->session->userdata('id'));
+				$this->db->set('last_seen_at', date('Y-m-d H:i:s'));
+				$this->db->where('id', $id);
+				$this->db->update('users');
+			}
+		}
+		//END : increase number of seen
+		
         $this->load->view('employer/company_profile', $profile_form);
     }
 	
