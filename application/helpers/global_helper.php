@@ -125,7 +125,7 @@ function Notification($status='0')
     return $notif;
 }
 
-function getInterval()
+function GetInterval()
 {
     $CI =& get_instance();
     $CI->load->model('notification_model');
@@ -135,5 +135,15 @@ function getInterval()
     $result = $getInterval[0]["interval_second"] * 1000;
 
     return $result;
+}
+
+function CreateNotif($data)
+{
+    $CI =& get_instance();
+    $CI->load->model('notification_model');
+
+    $insertNotif = $CI->notification_model->insertNotif($data);
+
+    return $insertNotif;
 }
 ?>
