@@ -536,8 +536,6 @@
                 }
             });
             
-                
-            
             $('.invite-candidate').click(function(){
                 var candidate = $(this).attr('candidate-id');
                 var job = $(this).attr('job-id');
@@ -581,8 +579,6 @@
                 }
             });
 
-            
-
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>
@@ -594,87 +590,108 @@
 
                 var AppCalendar = function () {
 
-                return {
-                    //main function to initiate the module
-                    init: function () {
-                        this.initCalendar();
-                    },
+                    return {
+                        //main function to initiate the module
+                        init: function () {
+                            this.initCalendar();
+                        },
 
-                    initCalendar: function () {
+                        initCalendar: function () {
 
-                        if (!jQuery().fullCalendar) {
-                            return;
-                        }
-
-                        var date = new Date();
-                        var d = date.getDate();
-                        var m = date.getMonth();
-                        var y = date.getFullYear();
-
-                        var h = {};
-
-                        if (App.isRTL()) {
-                            if ($('#fullcalendar').parents(".portlet").width() <= 720) {
-                                $('#fullcalendar').addClass("mobile");
-                                h = {
-                                    right: 'title, prev, next',
-                                    center: '',
-                                    // left: 'agendaDay, agendaWeek, month, today'
-                                    left: ' month, today'
-                                };
-                            } else {
-                                $('#fullcalendar').removeClass("mobile");
-                                h = {
-                                    right: 'title',
-                                    center: '',
-                                    // left: 'agendaDay, agendaWeek, month, today, prev,next'
-                                    left: ' month, today, prev,next'
-                                };
+                            if (!jQuery().fullCalendar) {
+                                return;
                             }
-                        } else {
-                            if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
-                                $('#fullcalendar').addClass("mobile");
-                                h = {
-                                    left: 'title, prev, next',
-                                    center: '',
-                                    // right: 'today,month,agendaWeek,agendaDay'
-                                    right: 'month,agendaWeek'
-                                };
+
+                            var date = new Date();
+                            var d = date.getDate();
+                            var m = date.getMonth();
+                            var y = date.getFullYear();
+
+                            var h = {};
+
+                            if (App.isRTL()) {
+                                if ($('#fullcalendar').parents(".portlet").width() <= 720) {
+                                    $('#fullcalendar').addClass("mobile");
+                                    h = {
+                                        right: 'title, prev, next',
+                                        center: '',
+                                        // left: 'agendaDay, agendaWeek, month, today'
+                                        left: ' month, today'
+                                    };
+                                } else {
+                                    $('#fullcalendar').removeClass("mobile");
+                                    h = {
+                                        right: 'title',
+                                        center: '',
+                                        // left: 'agendaDay, agendaWeek, month, today, prev,next'
+                                        left: ' month, today, prev,next'
+                                    };
+                                }
                             } else {
-                                $('#fullcalendar').removeClass("mobile");
-                                h = {
-                                    left: 'title',
-                                    center: '',
-                                    // right: 'prev,next,today,month,agendaWeek,agendaDay'
-                                    right: 'prev,next,month,agendaWeek'
-                                };
+                                if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
+                                    $('#fullcalendar').addClass("mobile");
+                                    h = {
+                                        left: 'title, prev, next',
+                                        center: '',
+                                        // right: 'today,month,agendaWeek,agendaDay'
+                                        right: 'month,agendaWeek'
+                                    };
+                                } else {
+                                    $('#fullcalendar').removeClass("mobile");
+                                    h = {
+                                        left: 'title',
+                                        center: '',
+                                        // right: 'prev,next,today,month,agendaWeek,agendaDay'
+                                        right: 'prev,next,month,agendaWeek'
+                                    };
+                                }
                             }
-                        }
 
-                        $('#fullcalendar').fullCalendar('destroy'); 
-                        var invitation = <?php echo $invitation; ?>;
-                        var invitation_calendar = [];
-                        $.each(invitation, function(i,v){
-                            invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
+                            $('#fullcalendar').fullCalendar('destroy'); 
+                            var invitation = <?php echo $invitation; ?>;
+                            var invitation_calendar = [];
+                            $.each(invitation, function(i,v){
+                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
 
+                                });
+                            $('#fullcalendar').fullCalendar({ 
+                                header: h,
+                                defaultView: 'month', 
+                                slotMinutes: 15,
+                                editable: false, 
+                                droppable: false, 
+                                events: invitation_calendar
                             });
-                        $('#fullcalendar').fullCalendar({ 
-                            header: h,
-                            defaultView: 'month', 
-                            slotMinutes: 15,
-                            editable: false, 
-                            droppable: false, 
-                            events: invitation_calendar
-                        });
+                        }
+                    };
+                }();
 
-                    }
-
-                };
-             }();
-
-            AppCalendar.init();
+                AppCalendar.init();
             <?php } ?>
-        })
+
+            showNotif();
+
+            setInterval(function(){showNotif()},<?= getInterval(); ?>);
+        });
+
+        function showNotif()
+        {
+            $.ajax({
+                url:"<?php echo base_url();?>notif",
+                method:"POST",
+                success:function(response)
+                {
+                    var data = JSON.parse(response)
+                    
+                    if(data.message == "success")
+                    {
+                        $("#notif_msg").html(data.notif);
+                        $("#count_notif").html(data.total);
+                        $("#count_notif_in").html(data.total_in);
+                    }
+                }
+            });
+        }
     </script>
 
 
