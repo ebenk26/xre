@@ -47,8 +47,8 @@
 	<script src="<?php echo JS_EMPLOYER; ?>table-datatables-managed.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>calendar.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
-	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
+	<!-- <script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script> -->
 	<script src="<?php echo JS_EMPLOYER; ?>components-editors.js" type="text/javascript"></script>
 
 	
@@ -70,8 +70,32 @@
     <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
     <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT SCRIPTS -->
+
+    <!-- BEGIN TINY MCE EDITOR SCRIPTS -->
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/tinymce/tinymce.min.js"></script>
+    <!-- END TINY MCE EDITOR SCRIPTS -->
+
     <script>
         $(document).ready(function () {
+            tinymce.init({
+                selector: 'textarea',
+                height: 500,
+                theme: 'modern',
+                plugins: 'code advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+                toolbar1: 'code undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | fontsizeselect forecolor backcolor emoticons | codesample',
+                fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+                image_advtab: true,
+                templates: [
+                    { title: 'Test template 1', content: 'Test 1' },
+                    { title: 'Test template 2', content: 'Test 2' }
+                ],
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tinymce.com/css/codepen.min.css'
+                ]
+            });
+
             var e = $("#xremo_table");
 			e.dataTable({
 				language: {
@@ -247,7 +271,14 @@
                         }
                     );
             });
-        })
+        });
+        
+        //Allow live edit for code in Tiny.mce Editor
+        $(document).on('focusin', function(e) {
+            if ($(e.target).closest(".mce-window").length) {
+                e.stopImmediatePropagation();
+            }
+        });
     </script>
 
 

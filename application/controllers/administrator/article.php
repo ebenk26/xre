@@ -227,4 +227,19 @@ class Article extends CI_Controller {
         $this->load->view('main/footer');
 	}
 	
+	public function getArticle(){
+        $this->db->select('*');
+		$this->db->from('blogs');
+		$this->db->order_by('created_at', 'DESC');
+		$this->db->limit(3);
+		
+		$query = $this->db->get();
+		$data['article'] = $query->result_array();
+		$article['article'] = $this->load->view('administrator/article_home',$data,true);
+
+		$result = json_encode($article);
+
+		echo $result;
+	}
+	
 }
