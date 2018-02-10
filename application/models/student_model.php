@@ -423,7 +423,7 @@ class Student_Model extends CI_Model{
 	
 	function get_upcoming_interview($id){
         //upcoming_interview
-        $this->db->select('interview_schedule.title, interview_schedule.description, interview_schedule.start_date, job_positions.name as position, user_profiles.company_name, profile_uploads.name as profile_photo');
+        $this->db->select('interview_schedule_user.employer_id, interview_schedule_user.job_id, interview_schedule.title, interview_schedule.description, interview_schedule.start_date, job_positions.name as position, user_profiles.company_name, profile_uploads.name as profile_photo');
         $this->db->from('interview_schedule_user');
         $this->db->join('job_positions', 'job_positions.id = interview_schedule_user.job_id','left');
         $this->db->join('interview_schedule', 'interview_schedule.id = interview_schedule_user.session_id','left');

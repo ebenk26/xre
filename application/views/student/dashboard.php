@@ -149,7 +149,7 @@
 														<div class="item-head">
 															<div class="item-details">
 																<img class="item-pic rounded" src="<?=$row->profile_photo != ""?IMG_EMPLOYERS.$row->profile_photo:IMG_STUDENTS.'xremo-logo-blue.png'; ?>">
-																<a href="" class="item-name primary-link"><?=$row->company_name?></a>
+																<a href="<?=base_url()?>profile/company/<?=rtrim(base64_encode($row->employer_id),'=') ?>" target="_blank" class="item-name primary-link"><?=$row->company_name?></a>
 																<span class="item-label"><?=date('j F Y H:i A', strtotime($row->start_date))?></span>
 															</div>
 															<span class="item-status">
@@ -159,7 +159,7 @@
 																<span class="badge badge-empty badge-danger mr-2"></span>Upcoming</span>
 															</span>
 														</div>
-														<div class="item-body"> <b>[<?=$row->position?>]</b> <?=$row->description?>
+														<div class="item-body"> <a href="<?=base_url()?>job/details/<?=rtrim(base64_encode($row->job_id),'=') ?>" target="_blank" class="item-name primary-link"><b>[<?=$row->position?>]</b></a> <?=$row->description?>
 														</div>
 													</div>
 												<?php }?>	
