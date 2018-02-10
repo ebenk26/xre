@@ -535,7 +535,9 @@
                     });
                 }
             });
-
+            
+                
+            
             $('.invite-candidate').click(function(){
                 var candidate = $(this).attr('candidate-id');
                 var job = $(this).attr('job-id');
@@ -579,12 +581,16 @@
                 }
             });
 
+            
+
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>
             <?php if($this->session->flashdata('msg_failed')){ ?>
                 alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
             <?php } ?>
+
+            <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
 
                 var AppCalendar = function () {
 
@@ -666,7 +672,8 @@
                 };
              }();
 
-        AppCalendar.init();
+            AppCalendar.init();
+            <?php } ?>
         })
     </script>
 

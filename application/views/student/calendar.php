@@ -1,4 +1,3 @@
-BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content" style="min-height: 598px;">
                 <!-- BEGIN PAGE HEAD-->

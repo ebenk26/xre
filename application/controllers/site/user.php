@@ -34,6 +34,15 @@ class User extends CI_Controller {
             $user_email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
+            $login_result = array(  'id' => $login_result['id'],
+                                    'email' => $login_result['email'],
+                                    'name' => $login_result['name'],
+                                    'verified' => $login_result['verified'],
+                                    'status' => $login_result['status'],
+                                    'remember_token' => $login_result['remember_token'],
+                                    'roles' => $login_result['roles'],
+                                    'img_profile' => base64_encode($login_result['img_profile']),
+                                    'img_type' => $login_result['img_type']);
             if (!empty($login_result)) {
                 $page = strtolower($login_result['roles']);
 
