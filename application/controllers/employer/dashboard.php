@@ -21,7 +21,8 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
-		
+		$complement['interview_session'] = $this->global_model->get_where('interview_schedule', array('job_id'=>$job_id));
+        $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));
 		$this->db->select('*');
 		$this->db->from('blogs');
 		//$this->db->order_by('number_of_view', 'DESC');
@@ -32,6 +33,6 @@ class Dashboard extends CI_Controller {
 		
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/dashboard',$complement);
-        $this->load->view('employer/main/footer');
+        $this->load->view('employer/main/footer', $calendar_footer);
 	}
 }
