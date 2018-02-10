@@ -211,6 +211,12 @@
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
+                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                    <i class="icon-check md-green-text"></i>
+                                                                    Hire Candidate
+                                                                </a>
+                                                            </li>
+                                                            <li>
                                                                 <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
                                                                     <i class="icon-close md-red-text"></i>
                                                                     Reject Candidate

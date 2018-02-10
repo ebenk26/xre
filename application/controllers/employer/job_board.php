@@ -176,6 +176,17 @@ class Job_Board extends CI_Controller {
         }   
     }
 
+    public function hire(){
+        $id = base64_decode($this->input->post('post_id'));
+        $shorlist_job = $this->job_model->hire($id);
+        
+        if ($shorlist_job == true) {
+            $this->session->set_flashdata('msg_success', 'Successfully hire this candidate');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed to hire this candidate');
+        }   
+    }
+
     public function single_invitation(){
         $job_id = base64_decode($this->input->post('job_id'));
         $candidate_id = base64_decode($this->input->post('candidate_id'));

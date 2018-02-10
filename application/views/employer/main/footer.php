@@ -298,14 +298,8 @@
                                     </div>\
                                 </div>\
                                 <div class="modal-footer ">\
-                                    <a href="javascript:void(0)" app-id="'+id+'" class="btn btn-md-amber shortlist-btn">\
-                                        <i class="icon-star"></i> Add Shortlist\
-                                    </a>\
-                                    <a href="<?php echo base_url();?>profile/user/'+id+'" class="btn btn-md-cyan">\
+                                    <a href="<?php echo base_url();?>profile/user/'+id+'" target="_blank" class="btn btn-md-cyan">\
                                         <i class="icon-users"></i> View Resume\
-                                    </a>\
-                                    <a href="javascript:void(0)" data-id="'+id+'" class="btn btn-md-red reject-btn">\
-                                        <i class="icon-trash"></i> Reject\
                                     </a>\
                                 </div>\
                                 \
@@ -462,13 +456,45 @@
                                       post_id: del,
                                     },
                                     success:function(response) {
-                                        console.log(response);
                                        swal("Success", "Candidate has been rejected.", "success");
                                        location.reload();
                                     }
                                   })
                             } else {
                                 swal("Cancelled", "You still think this candidate deserve the job", "error");
+                            }
+                        }
+                    );
+            });
+
+            $('.hire-candidate').click(function(){
+                var del = $(this).attr('data-id');
+                    swal({
+                        title: "Do you want to hire this candidate?",
+                        text: "You will not be able to process this candidate",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Hire",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/hire",
+                                    method:"POST",
+                                    data: {
+                                      post_id: del,
+                                    },
+                                    success:function(response) {
+                                       swal("Success", "Candidate has been rejected.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You still think this candidate not deserve the job", "error");
                             }
                         }
                     );
