@@ -190,6 +190,10 @@ class User_Model extends CI_Model{
             return false;
         }
     }
+	
+	public function setRecentActivities($data){
+        $this->db->insert('activities', $data);
+    }
 
 }
 

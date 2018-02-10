@@ -437,6 +437,17 @@ class Student_Model extends CI_Model{
 		//, 'profile_uploads.type' => 'profile_photo'
 		return $result;
 	}
+	
+	function get_recent_activities(){
+        $this->db->select('*');
+        $this->db->from('activities');
+		$this->db->where('user_id', $this->session->userdata('id'));
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(10);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+	}
 }
 
 ?>

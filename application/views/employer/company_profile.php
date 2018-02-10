@@ -360,7 +360,7 @@
                                                 </div>-->
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
+                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" target="_blank"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
                                                     </h6>
                                                 </div>
                                             </div>

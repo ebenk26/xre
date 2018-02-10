@@ -42,7 +42,10 @@ class Dashboard extends CI_Controller {
 		$job['rate'] = round($rate, 2);
 		
 		//get upcoming interview
-		$job['upcoming_interview'] = $this->student_model->get_upcoming_interview($id);
+		$job['upcoming_interview'] 	= $this->student_model->get_upcoming_interview($id);
+		
+		//get recent activities
+		$job['recent_activities'] 	= $this->student_model->get_recent_activities();
 		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
@@ -82,6 +85,18 @@ class Dashboard extends CI_Controller {
 		
         if ($apply_job == true) {
             $this->session->set_flashdata('msg_success', 'Success apply dream job'); 
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Apply Job Vacancy",
+						'icon' 			=> "fa-briefcase",
+						'label' 		=> "info",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed apply your dream job');
         }

@@ -5,7 +5,8 @@ class Profile extends CI_Controller {
     
     function __construct(){
         parent::__construct();
-        $this->load->model('student_model');
+        //date_default_timezone_set('Asia/Jakarta');
+		$this->load->model('student_model');
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
@@ -117,6 +118,19 @@ class Profile extends CI_Controller {
         $this->session->set_userdata('name', $this->input->post('fullname'));
         $this->session->set_userdata('img_profile', $profile_photo);
 		$this->session->set_flashdata('tab_student', 'tab_overview');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Update Profile Information",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile/');
     }
 
@@ -146,6 +160,19 @@ class Profile extends CI_Controller {
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data added') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
 		
 		$this->session->set_flashdata('tab_student', 'tab_education');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Add Education",
+					'icon' 			=> "fa-plus",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
     }
 
@@ -178,6 +205,19 @@ class Profile extends CI_Controller {
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Education data updated') : $this->session->set_flashdata('msg_failed', 'Education data failed to update');
 
 		$this->session->set_flashdata('tab_student', 'tab_education');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Edit Education",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
         
     }
@@ -214,6 +254,19 @@ class Profile extends CI_Controller {
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data added') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
         // }
 		$this->session->set_flashdata('tab_student', 'tab_experience');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Add Experience",
+					'icon' 			=> "fa-plus",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
     }
 
@@ -248,6 +301,19 @@ class Profile extends CI_Controller {
         $result = $this->student_model->update($experience, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Experience data updated') : $this->session->set_flashdata('msg_failed', 'Experience data failed to update');
 		$this->session->set_flashdata('tab_student', 'tab_experience');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Edit Experience",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
     }
 
@@ -299,24 +365,6 @@ class Profile extends CI_Controller {
         redirect(base_url().'student/profile/');
     }
 
-    public function delete(){
-        $deleteData = array('id' => $this->input->post('id'), 
-                            'table' => $this->input->post('table'));
-        $result['data'] = $this->student_model->delete($deleteData, $deleteData['table']);
-		
-		if($deleteData['table'] == "academics"){
-			$this->session->set_flashdata('tab_student', 'tab_education');
-		}elseif($deleteData['table'] == "achievement"){
-			$this->session->set_flashdata('tab_student', 'tab_non_education');
-		}elseif($deleteData['table'] == "experiences"){
-			$this->session->set_flashdata('tab_student', 'tab_experience');
-		}elseif($deleteData['table'] == "user_projects"){
-			$this->session->set_flashdata('tab_student', 'tab_project');
-		}
-		
-        return $result;
-    }
-
     public function add_achievement(){
         if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
             $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
@@ -332,6 +380,19 @@ class Profile extends CI_Controller {
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
         }
 		$this->session->set_flashdata('tab_student', 'tab_non_education');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Add Non-Education",
+					'icon' 			=> "fa-plus",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
     }
 
@@ -351,6 +412,19 @@ class Profile extends CI_Controller {
             ($result == true) ? $this->session->set_flashdata('msg_success', 'Non-educational data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
         }
 		$this->session->set_flashdata('tab_student', 'tab_non_education');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Edit Non-Education",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
     }
 
@@ -379,6 +453,19 @@ class Profile extends CI_Controller {
         $result = $this->student_model->add($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data added') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
 		$this->session->set_flashdata('tab_student', 'tab_project');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Add Project",
+					'icon' 			=> "fa-plus",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
 		redirect(base_url().'student/profile');
     }
 
@@ -406,8 +493,55 @@ class Profile extends CI_Controller {
         $result = $this->student_model->update($project_name, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Projects data updated') : $this->session->set_flashdata('msg_failed', 'Non-educational data failed to update');
 		$this->session->set_flashdata('tab_student', 'tab_project');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Edit Project",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/profile');
 
+    }
+	
+	public function delete(){
+        $deleteData = array('id' => $this->input->post('id'), 
+                            'table' => $this->input->post('table'));
+        $result['data'] = $this->student_model->delete($deleteData, $deleteData['table']);
+		
+		if($deleteData['table'] == "academics"){
+			$this->session->set_flashdata('tab_student', 'tab_education');
+			$activity = "Delete Education";
+		}elseif($deleteData['table'] == "achievement"){
+			$this->session->set_flashdata('tab_student', 'tab_non_education');
+			$activity = "Delete Non-Education";
+		}elseif($deleteData['table'] == "experiences"){
+			$this->session->set_flashdata('tab_student', 'tab_experience');
+			$activity = "Delete Experience";
+		}elseif($deleteData['table'] == "user_projects"){
+			$this->session->set_flashdata('tab_student', 'tab_project');
+			$activity = "Delete Project";
+		}
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> $activity,
+					'icon' 			=> "fa-trash",
+					'label' 		=> "danger",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
+        return $result;
     }
 
     public function view_my_profile(){

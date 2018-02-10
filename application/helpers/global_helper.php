@@ -14,8 +14,8 @@ function time_elapsed_string($datetime, $full = false) {
         'w' => 'week',
         'd' => 'day',
         'h' => 'hour',
-        'i' => 'minute',
-        's' => 'second',
+        'i' => 'min',
+        's' => 'sec',
     );
     foreach ($string as $k => &$v) {
         if ($diff->$k) {
@@ -26,7 +26,8 @@ function time_elapsed_string($datetime, $full = false) {
     }
 
     if (!$full) $string = array_slice($string, 0, 1);
-    return $string ? implode(', ', $string) . ' ago' : 'just now';
+    return $string ? implode(', ', $string) . '' : 'just now';
+	//return $string ? implode(', ', $string) . ' ago' : 'just now';
 }
 
 function xrPagination($param=array())
@@ -135,6 +136,14 @@ function GetInterval()
     $result = $getInterval[0]["interval_second"] * 1000;
 
     return $result;
+}
+
+function setRecentActivities($data)
+{
+    $CI =& get_instance();
+    $CI->load->model('user_model');
+
+    $CI->user_model->setRecentActivities($data);
 }
 
 function CreateNotif($data)

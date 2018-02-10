@@ -478,10 +478,10 @@
                                                 </div>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a href="<?= $url_detail; ?>"><?= $job_result["name"]; ?></a>
+                                                        <a href="<?= $url_detail; ?>" target="_blank"><?= $job_result["name"]; ?></a>
                                                     </h6>
                                                     <h6 class=" my-1 roboto-font">
-                                                        <a href="<?= $company_url; ?>"><?= $job_result["company_name"]; ?></a>
+                                                        <a href="<?= $company_url; ?>" target="_blank"><?= $job_result["company_name"]; ?></a>
                                                     </h6>
                                                 </div>
                                             </div>

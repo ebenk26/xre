@@ -37,7 +37,20 @@ class Applications_history extends CI_Controller {
 		
         $result = $this->job_model->withdraw_job($job_id);
         if ($result == true) {
-            $this->session->set_flashdata('msg_success', 'Success withdraw from the job');            
+            $this->session->set_flashdata('msg_success', 'Success withdraw from the job');
+
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Withdraw Job Vacancy Application",
+						'icon' 			=> "fa-undo",
+						'label' 		=> "danger",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
+			
         }else{
             $this->session->set_flashdata('msg_error', 'Failed withdraw from the job');
         }
@@ -53,7 +66,19 @@ class Applications_history extends CI_Controller {
                         'employer_id' => $employer_id);
         $data = array('status' => 'accept');
 
-        $this->global_model->update('interview_schedule_user', $where, $data);
+        $update = $this->global_model->update('interview_schedule_user', $where, $data);
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Accept Interview Invitation",
+					'icon' 			=> "fa-calendar-check-o",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/calendar/');
 
     }
@@ -68,6 +93,19 @@ class Applications_history extends CI_Controller {
         $data = array('status' => 'reject');
 
         $this->global_model->update('interview_schedule_user', $where, $data);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Reject Interview Invitation",
+					'icon' 			=> "fa-calendar-times-o",
+					'label' 		=> "danger",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/calendar/');
 
     }
