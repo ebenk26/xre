@@ -167,12 +167,12 @@ class Job_Board extends CI_Controller {
 
     public function reject(){
         $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->reject($id);
+        $shorlist_job = $this->job_model->rejected($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
+            $this->session->set_flashdata('msg_success', 'Successfully reject this candidate');            
         }else{
-            $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
+            $this->session->set_flashdata('msg_error', 'Failed to reject this candidate');
         }   
     }
 

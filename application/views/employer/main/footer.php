@@ -443,10 +443,15 @@
             $('.reject-candidate').click(function(){
                 var del = $(this).attr('data-id');
                     swal({
-                        title: "Do you reject this candidate?",
-                        type: "info",
-                        confirmButtonText: "Yes, I agree",
-                        closeOnConfirm: false
+                        title: "Do you want to reject this candidate?",
+                        text: "You will not be able to process this candidate",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Reject",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
                     },
                         function(isConfirm) {
                             if (isConfirm) {
@@ -454,15 +459,16 @@
                                     url:"<?php echo base_url();?>employer/job_board/reject",
                                     method:"POST",
                                     data: {
-                                      post_id: parseInt(del),
+                                      post_id: del,
                                     },
                                     success:function(response) {
+                                        console.log(response);
                                        swal("Success", "Candidate has been rejected.", "success");
                                        location.reload();
                                     }
                                   })
                             } else {
-                                swal("Cancelled", "Reject candidate has been cancelled", "error");
+                                swal("Cancelled", "You still think this candidate deserve the job", "error");
                             }
                         }
                     );
@@ -579,6 +585,45 @@
                 }
             });
 
+            $('.remove-interview-session').click(function(){
+                var id = $(this).attr('session-id');
+
+                if (id == null) {
+                    
+                    swal('Info', 'Interview session not found');
+
+                }else{
+
+                    swal({
+                            title: "Do you want to remove this interview session?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes",
+                            cancelButtonText: "Cancel",
+                            closeOnConfirm: false,
+                            closeOnCancel: false,
+                        },
+                            function(isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url:"<?php echo base_url();?>employer/candidate/remove_interview_session",
+                                        method:"POST",
+                                        data: {
+                                              session_id: id,
+                                            },
+                                            success:function(response) {
+                                               swal("Success", "Interview Schedule has been remove", "success");
+                                               location.reload();
+                                            }
+                                    });
+                                } else {
+                                    swal("Cancelled", "Interview session still exist", "error");
+                                }
+                            }
+                        );
+                }
+            })
+
             <?php if($this->session->flashdata('msg_success')){ ?>
                 alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>
@@ -692,6 +737,7 @@
                 }
             });
         }
+
     </script>
 
 
