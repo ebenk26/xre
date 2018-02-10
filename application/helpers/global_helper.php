@@ -126,7 +126,7 @@ function Notification($status='0')
     return $notif;
 }
 
-function getInterval()
+function GetInterval()
 {
     $CI =& get_instance();
     $CI->load->model('notification_model');
@@ -144,5 +144,15 @@ function setRecentActivities($data)
     $CI->load->model('user_model');
 
     $CI->user_model->setRecentActivities($data);
+}
+
+function CreateNotif($data)
+{
+    $CI =& get_instance();
+    $CI->load->model('notification_model');
+
+    $insertNotif = $CI->notification_model->insertNotif($data);
+
+    return $insertNotif;
 }
 ?>

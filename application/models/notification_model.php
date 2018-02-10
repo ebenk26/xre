@@ -5,6 +5,7 @@ class Notification_Model extends CI_Model
     function get($table)
     {
         $query = $this->db->get($table);
+        
         return $query->result_array();   
     }
 
@@ -15,5 +16,19 @@ class Notification_Model extends CI_Model
         $query = $this->db->get($table);
 
         return $query->result_array();   
+    }
+
+    function insertNotif($data)
+    {
+        try
+        {
+            $query = $this->db->insert('notifications',$data);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+        
+        return $query;   
     }
 }

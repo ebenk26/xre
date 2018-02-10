@@ -671,7 +671,7 @@
 
             showNotif();
 
-            setInterval(function(){showNotif()},<?= getInterval(); ?>);
+            setInterval(function(){showNotif()},<?= GetInterval(); ?>);
         });
 
         function showNotif()
