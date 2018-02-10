@@ -7,6 +7,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) || ($roles !== $segment)){
@@ -21,7 +22,8 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
-		
+		$complement['interview_session'] = $this->global_model->get_where('interview_schedule_user', array('user_id'=>$id));
+        $calendar_footer['invitation'] = json_encode($this->global_model->get_where('interview_schedule_user', array('user_id'=>$id)));
 		$this->db->select('*');
 		$this->db->from('blogs');
 		//$this->db->order_by('number_of_view', 'DESC');
@@ -32,6 +34,6 @@ class Dashboard extends CI_Controller {
 		
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/dashboard',$complement);
-        $this->load->view('employer/main/footer');
+        $this->load->view('employer/main/footer', $calendar_footer);
 	}
 }
