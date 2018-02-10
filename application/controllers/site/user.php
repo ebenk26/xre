@@ -273,6 +273,18 @@ class User extends CI_Controller {
             $id = $this->session->userdata('id');
             $this->user_model->change_password($id ,$password);
             $this->session->set_flashdata('msg_success', 'Password has been changed.');
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Change Password",
+						'icon' 			=> "fa-lock",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }
         redirect(base_url().$roles.'/settings');
     }

@@ -205,6 +205,18 @@ class Inbox extends CI_Controller {
 				$this->session->set_flashdata('msg_error', 'Failed');
 			}
 			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Send New Message",
+						'icon' 			=> "fa-plus",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
+			
 			$roles = $this->session->userdata('roles');
 			redirect(base_url().$roles.'/inbox');
 		//reply
@@ -246,9 +258,60 @@ class Inbox extends CI_Controller {
 				$this->session->set_flashdata('msg_error', 'Failed');
 			}
 			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Reply Message",
+						'icon' 			=> "fa-plus",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
+			
 			$roles = $this->session->userdata('roles');
 			redirect(base_url().'message/'.$inbox_id);
 		}
+    }
+	
+	public function delete(){
+        $id 	= $this->input->post('id');
+		$type 	= $this->input->post('type');
+		$sender = $this->input->post('sender');
+		
+		if($sender == "true"){
+			$data 	= array('status_sender' 	=> 'TRASH',
+							'remove_at_sender' 	=> date('Y-m-d H:i:s'),
+							);
+		}else{
+			$data 	= array('status_receiver' 	=> 'TRASH',
+							'remove_at_receiver'=> date('Y-m-d H:i:s'),
+							);
+		}
+		$this->db->where('id', $id);
+		$post_status = $this->db->update('inbox', $data);
+		
+        if ($delete_status == true) {
+            $this->session->set_flashdata('msg_success', 'Success');            
+        }else{
+            $this->session->set_flashdata('msg_error', 'Failed');
+        }
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Delete Message",
+					'icon' 			=> "fa-trash",
+					'label' 		=> "danger",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
+		$roles = $this->session->userdata('roles');
+		redirect(base_url().$roles.'/'.$type);
     }
 
     public function update(){
@@ -274,33 +337,6 @@ class Inbox extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed edit job');
         }
         redirect(base_url().'employer/job_board/');
-    }
-
-    public function delete(){
-        $id 	= $this->input->post('id');
-		$type 	= $this->input->post('type');
-		$sender = $this->input->post('sender');
-		
-		if($sender == "true"){
-			$data 	= array('status_sender' 	=> 'TRASH',
-							'remove_at_sender' 	=> date('Y-m-d H:i:s'),
-							);
-		}else{
-			$data 	= array('status_receiver' 	=> 'TRASH',
-							'remove_at_receiver'=> date('Y-m-d H:i:s'),
-							);
-		}
-		$this->db->where('id', $id);
-		$post_status = $this->db->update('inbox', $data);
-		
-        if ($delete_status == true) {
-            $this->session->set_flashdata('msg_success', 'Success');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed');
-        }
-		
-		$roles = $this->session->userdata('roles');
-		redirect(base_url().$roles.'/'.$type);
     }
 	
 	public function view_list($type){

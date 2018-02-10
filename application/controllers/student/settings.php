@@ -33,6 +33,19 @@ class settings extends CI_Controller {
         $where = array('id' => $this->session->userdata('id'));
         $this->global_model->update('users', $where, $data);
         $this->session->set_userdata('name', $this->input->post('fullname'));
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Full Name",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/settings');
     }
 
@@ -40,6 +53,19 @@ class settings extends CI_Controller {
         $data = array('contact_number' => $this->input->post('contact_number'));
         $where = array('user' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Phone Number",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/settings');
     }
 
@@ -47,6 +73,19 @@ class settings extends CI_Controller {
         $data = array('searchable_detail' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Privacy Setting",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/settings');
     }
 
@@ -54,6 +93,19 @@ class settings extends CI_Controller {
         $data = array('searchable' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Privacy Setting",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'student/settings');
     }
 }
