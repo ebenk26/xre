@@ -670,9 +670,8 @@
             <?php } ?>
 
             showNotif();
-            notifTime();
 
-            // setInterval(showNotif(),notifTime());
+            setInterval(function(){showNotif()},<?= getInterval(); ?>);
         });
 
         function showNotif()
@@ -682,19 +681,14 @@
                 method:"POST",
                 success:function(response)
                 {
-                    console.log(response);
-                }
-            });
-        }
-
-        function notifTime()
-        {
-            $.ajax({
-                url:"<?php echo base_url();?>notif_time",
-                method:"POST",
-                success:function(response)
-                {
-                    console.log(response);
+                    var data = JSON.parse(response)
+                    
+                    if(data.message == "success")
+                    {
+                        $("#notif_msg").html(data.notif);
+                        $("#count_notif").html(data.total);
+                        $("#count_notif_in").html(data.total_in);
+                    }
                 }
             });
         }

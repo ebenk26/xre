@@ -124,4 +124,16 @@ function Notification($status='0')
 
     return $notif;
 }
+
+function getInterval()
+{
+    $CI =& get_instance();
+    $CI->load->model('notification_model');
+
+    $getInterval  = $CI->notification_model->get('notifications_setting');
+
+    $result = $getInterval[0]["interval_second"] * 1000;
+
+    return $result;
+}
 ?>

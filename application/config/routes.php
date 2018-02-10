@@ -77,7 +77,6 @@ $route['student/sent'] 							= 'administrator/inbox/view_list/sent';
 $route['student/trash'] 						= 'administrator/inbox/view_list/trash';
 
 $route['notif'] 								= 'notifications/notifications/list';
-$route['notif_time'] 							= 'notifications/notifications/getInterval';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

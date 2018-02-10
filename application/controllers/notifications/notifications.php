@@ -31,23 +31,4 @@ class notifications extends CI_Controller
 
         echo $result;
     }
-    
-    public function getInterval()
-    {
-        $getInterval  = $this->notification_model->get('notifications_setting');
-
-        if(!empty($getInterval))
-        {
-            $data["interval_time"]  = $getInterval[0]["interval_second"];
-            $data["message"]        = "success";
-        }
-        else
-        {
-            $data["message"]    = "error";
-        }
-
-        $result = json_encode($data);
-
-        echo $result;
-	}
 }
