@@ -20,8 +20,7 @@ class Inbox extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
-        $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
-        $profile['notification'] = $this->student_model->get_notification($id);
+        $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/inbox');
         $this->load->view('student/main/footer');

@@ -439,92 +439,116 @@
                 }
             });
 
-            var AppCalendar = function () {
+            <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
+                var AppCalendar = function () {
 
-            return {
-                //main function to initiate the module
-                init: function () {
-                    this.initCalendar();
-                },
+                    return {
+                        //main function to initiate the module
+                        init: function () {
+                            this.initCalendar();
+                        },
 
-                initCalendar: function () {
+                        initCalendar: function () {
 
-                    if (!jQuery().fullCalendar) {
-                        return;
-                    }
+                            if (!jQuery().fullCalendar) {
+                                return;
+                            }
 
-                    var date = new Date();
-                    var d = date.getDate();
-                    var m = date.getMonth();
-                    var y = date.getFullYear();
+                            var date = new Date();
+                            var d = date.getDate();
+                            var m = date.getMonth();
+                            var y = date.getFullYear();
 
-                    var h = {};
+                            var h = {};
 
-                    if (App.isRTL()) {
-                        if ($('#fullcalendar').parents(".portlet").width() <= 720) {
-                            $('#fullcalendar').addClass("mobile");
-                            h = {
-                                right: 'title, prev, next',
-                                center: '',
-                                // left: 'agendaDay, agendaWeek, month, today'
-                                left: ' month, today'
-                            };
-                        } else {
-                            $('#fullcalendar').removeClass("mobile");
-                            h = {
-                                right: 'title',
-                                center: '',
-                                // left: 'agendaDay, agendaWeek, month, today, prev,next'
-                                left: ' month, today, prev,next'
-                            };
+                            if (App.isRTL()) {
+                                if ($('#fullcalendar').parents(".portlet").width() <= 720) {
+                                    $('#fullcalendar').addClass("mobile");
+                                    h = {
+                                        right: 'title, prev, next',
+                                        center: '',
+                                        // left: 'agendaDay, agendaWeek, month, today'
+                                        left: ' month, today'
+                                    };
+                                } else {
+                                    $('#fullcalendar').removeClass("mobile");
+                                    h = {
+                                        right: 'title',
+                                        center: '',
+                                        // left: 'agendaDay, agendaWeek, month, today, prev,next'
+                                        left: ' month, today, prev,next'
+                                    };
+                                }
+                            } else {
+                                if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
+                                    $('#fullcalendar').addClass("mobile");
+                                    h = {
+                                        left: 'title, prev, next',
+                                        center: '',
+                                        // right: 'today,month,agendaWeek,agendaDay'
+                                        right: 'month,agendaWeek'
+                                    };
+                                } else {
+                                    $('#fullcalendar').removeClass("mobile");
+                                    h = {
+                                        left: 'title',
+                                        center: '',
+                                        // right: 'prev,next,today,month,agendaWeek,agendaDay'
+                                        right: 'prev,next,month,agendaWeek'
+                                    };
+                                }
+                            }
+                            <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
+
+        					$('#fullcalendar').fullCalendar('destroy'); 
+                            var invitation = <?php echo $invitation; ?>;
+                            var invitation_calendar = [];
+                            $.each(invitation, function(i,v){
+                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
+
+                                });
+                            $('#fullcalendar').fullCalendar({ 
+                                header: h,
+                                defaultView: 'month', 
+                                slotMinutes: 15,
+                                editable: false, 
+                                droppable: false, 
+                                events: invitation_calendar
+                            });
+                            <?php } ?>
+
                         }
-                    } else {
-                        if ($('#fullcalendar').parents(".portlet ").width() <= 720) {
-                            $('#fullcalendar').addClass("mobile");
-                            h = {
-                                left: 'title, prev, next',
-                                center: '',
-                                // right: 'today,month,agendaWeek,agendaDay'
-                                right: 'month,agendaWeek'
-                            };
-                        } else {
-                            $('#fullcalendar').removeClass("mobile");
-                            h = {
-                                left: 'title',
-                                center: '',
-                                // right: 'prev,next,today,month,agendaWeek,agendaDay'
-                                right: 'prev,next,month,agendaWeek'
-                            };
-                        }
+
+                    };
+
+                }();
+
+                AppCalendar.init();
+            <?php } ?>
+
+            showNotif();
+
+            setInterval(function(){showNotif()},<?= getInterval(); ?>);
+        });
+
+        function showNotif()
+        {
+            $.ajax({
+                url:"<?php echo base_url();?>notif",
+                method:"POST",
+                success:function(response)
+                {
+                    var data = JSON.parse(response)
+                    
+                    if(data.message == "success")
+                    {
+                        $("#notif_msg").html(data.notif);
+                        $("#count_notif").html(data.total);
+                        $("#count_notif_in").html(data.total_in);
                     }
-                    <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
-
-					$('#fullcalendar').fullCalendar('destroy'); 
-                    var invitation = <?php echo $invitation; ?>;
-                    var invitation_calendar = [];
-                    $.each(invitation, function(i,v){
-                        invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
-
-                        });
-                    $('#fullcalendar').fullCalendar({ 
-                        header: h,
-                        defaultView: 'month', 
-                        slotMinutes: 15,
-                        editable: false, 
-                        droppable: false, 
-                        events: invitation_calendar
-                    });
-                    <?php } ?>
-
                 }
-
-            };
-
-        }();
-
-        AppCalendar.init();
-
-        })
+            });
+        }
     </script>
 
 

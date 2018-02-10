@@ -24,7 +24,10 @@ class notifications extends CI_Controller
         }
         else
         {
-            $data["message"]    = "error";
+            $data["notif"]      = '';
+            $data["total"]      = '<i class="icon-bell"></i>';
+            $data["total_in"]   = '<span class="bold">There are no pending</span> notifications';
+            $data["message"]    = "success";
         }
 
         $result = json_encode($data);

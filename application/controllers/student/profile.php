@@ -22,8 +22,7 @@ class Profile extends CI_Controller {
         $profile['language'] = $this->student_model->get_array('language', 'id', 'asc');
         $profile['employment_types'] = $this->student_model->get_array('employment_types', 'id', 'asc');
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
-        $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
-        $profile['notification'] = $this->student_model->get_notification($id);
+        $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/profile', $profile);
         $this->load->view('student/main/footer');
