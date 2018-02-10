@@ -48,7 +48,7 @@ class User extends CI_Controller {
 
                 if ($login_result['verified'] == 0) {
                     
-                    $this->session->set_flashdata('msg_failed', 'Please chack your email to verify before you can login');
+                    $this->session->set_flashdata('msg_failed', 'Please check your email to verify before you can login');
                     $header['page_title'] = 'Login';
                     $this->load->view('site/login', $header);
                     

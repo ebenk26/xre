@@ -93,17 +93,17 @@
                             <div class="portlet-title tabbable-line">
                                 <div class="caption">
                                     <i class="icon-share font-dark"></i>
-                                    <span class="caption-subject font-dark bold uppercase">Portlet Tabs</span>
+                                    <span class="caption-subject font-dark bold uppercase">Informations</span>
                                 </div>
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a href="#portlet_tab1" data-toggle="tab"> Profile </a>
+                                        <a href="#portlet_tab1" data-toggle="tab"> New Join </a>
                                     </li>
                                     <li>
-                                        <a href="#portlet_tab2" data-toggle="tab"> Interview </a>
+                                        <a href="#portlet_tab2" data-toggle="tab"> Upcoming Interview </a>
                                     </li>
                                     <li>
-                                        <a href="#portlet_tab3" data-toggle="tab"> Systems </a>
+                                        <a href="#portlet_tab3" data-toggle="tab"> Recent Activities </a>
                                     </li>
                                 </ul>
                             </div>
@@ -113,94 +113,28 @@
                                     <div class="tab-pane active" id="portlet_tab1">
                                         <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                             <div class="mt-comments-v2">
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar1.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a><span class="mt-comment-author">Michael Baker</span></a>
-                                                            <!-- <span class="mt-comment-action"> -->
-                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">Follow</a>
-                                                            <!-- <a class="btn btn-xs btn-outline-md-indigo btn-circle" href="#">View</a> -->
-                                                            <!-- </span> -->
-                                                            <span class="mt-comment-date">26 Feb, 10:30AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text">Rate <strong>University ABCDE</strong>
-                                                        </div>
+                                                <?php foreach($new_join as $row){?>
+													<div class="mt-comment">
+														<div class="mt-comment-img">
+															<?php if($row->profile_photo != ""){?>
+																<img src="<?=IMG_STUDENTS.$row->profile_photo;?>" style="height:35px;margin-right:10px;"/>
+															<?php }?>
+														</div>
+														<div class="mt-comment-body">
+															<div class="mt-comment-info">
+																<a><span class="mt-comment-author"><?=$row->fullname?></span></a>
+																<!-- <span class="mt-comment-action"> -->
+																<!--<a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">View Profile</a>-->
+																<a class="btn btn-xs btn-outline-md-indigo btn-circle ml-2" href="<?=base_url()?>profile/user/<?=rtrim(base64_encode($row->id), '=');?>" target="_blank">View Profile</a>
+																<!-- </span> --> 
+																<span class="mt-comment-date"><?=date('j M Y H:i A', strtotime($row->created_at))?></span>
+															</div>
+															<div class="mt-comment-text"><?=$row->quote != ""?$row->quote:""?>
+															</div>
 
-                                                    </div>
-                                                </div>
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar6.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a><span class="mt-comment-author">Larisa Maskalyova</span></a>
-
-                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="#">Followed</a>
-                                                            <span class="mt-comment-date">12 Feb, 08:30AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text"> It is a long established fact that a reader will be distracted. </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar8.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a class="" href="#"><span class="mt-comment-author">Natasha Kim</span></a>
-                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="#">Follow</a>
-                                                            <span class="mt-comment-date">19 Dec,09:50 AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text"> The generated Lorem or non-characteristic Ipsum is therefore or non-characteristic.
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar1.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a><span class="mt-comment-author">Michael Baker</span></a>
-                                                            <!-- <span class="mt-comment-action"> -->
-                                                            <a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">Follow</a>
-                                                            <!-- <a class="btn btn-xs btn-outline-md-indigo btn-circle" href="#">View</a> -->
-                                                            <!-- </span> -->
-                                                            <span class="mt-comment-date">26 Feb, 10:30AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text">Rate <strong>University ABCDE</strong>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar6.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a><span class="mt-comment-author">Larisa Maskalyova</span></a>
-
-                                                            <a class="btn btn-xs blue-ebonyclay btn-circle mt-comment-action" href="#">Followed</a>
-                                                            <span class="mt-comment-date">12 Feb, 08:30AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text"> It is a long established fact that a reader will be distracted. </div>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-comment">
-                                                    <div class="mt-comment-img">
-                                                        <img src="<?php echo IMG_STUDENTS; ?>avatar8.jpg" /> </div>
-                                                    <div class="mt-comment-body">
-                                                        <div class="mt-comment-info">
-                                                            <a class="" href="#"><span class="mt-comment-author">Natasha Kim</span></a>
-                                                            <a class="btn btn-xs btn-outline blue-ebonyclay btn-circle mt-comment-action" href="#">Follow</a>
-                                                            <span class="mt-comment-date">19 Dec,09:50 AM</span>
-                                                        </div>
-                                                        <div class="mt-comment-text"> The generated Lorem or non-characteristic Ipsum is therefore or non-characteristic.
-                                                        </div>
-
-                                                    </div>
-                                                </div>
+														</div>
+													</div>
+												<?php }?>
                                             </div>
                                         </div>
                                     </div>
@@ -210,61 +144,25 @@
                                     <div class="tab-pane " id="portlet_tab2">
                                         <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                             <div class="general-item-list">
-                                                <!-- Example : Ongoing Interview Session -->
-                                                <div class="item">
-                                                    <div class="item-head">
-                                                        <div class="item-details">
-                                                            <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar4.jpg">
-                                                            <a href="" class="item-name primary-link">Xremo Sdn Bhd</a>
-                                                            <span class="item-label">16/10/2017</span>
-                                                        </div>
-                                                        <span class="item-status">
-                                                            <span class="badge badge-empty badge-success mr-2"></span>Ongoing
-                                                        </span>
-                                                    </div>
-                                                    <div class="item-body"> Ongoing interview session for job position Marketing Executive.
-                                                    </div>
-                                                </div>
-                                                <!-- Example : Pending Interview Session -->
-                                                <div class="item">
-                                                    <div class="item-head">
-                                                        <div class="item-details">
-                                                            <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar3.jpg">
-                                                            <a href="" class="item-name primary-link">Time dot com</a>
-                                                            <span class="item-label">5 hrs ago</span>
-                                                        </div>
-                                                        <span class="item-status">
-                                                            <span class="badge badge-empty badge-warning mr-2"></span>Pending</span>
-                                                    </div>
-                                                    <div class="item-body"> Request confirmation to go interview for job position IT Support </div>
-                                                </div>
-                                                <!-- Example : Closed Interview Session -->
-                                                <div class="item">
-                                                    <div class="item-head">
-                                                        <div class="item-details">
-                                                            <img class="item-pic rounded" src="<?php echo IMG_STUDENTS; ?>avatar6.jpg">
-                                                            <a href="" class="item-name primary-link">IBM</a>
-                                                            <span class="item-label">22 days ago</span>
-                                                        </div>
-                                                        <span class="item-status">
-                                                            <span class="badge badge-empty badge-primary mr-2"></span>Closed</span>
-                                                    </div>
-                                                    <div class="item-body">Interview session for job position Project Manager has finished . Please wait for another reply from your interview session.</div>
-                                                </div>
-                                                <!-- Example : Cancel Interview Session -->
-                                                <div class="item">
-                                                    <div class="item-head">
-                                                        <div class="item-details">
-                                                            <img class="item-pic" src=".<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png">
-                                                            <a href="" class="item-name primary-link">Intel Sdn Bhd</a>
-                                                            <span class="item-label">2 days ago</span>
-                                                        </div>
-                                                        <span class="item-status">
-                                                            <span class="badge badge-empty badge-danger mr-2"></span>Cancel</span>
-                                                    </div>
-                                                    <div class="item-body"> You already cancel for this interview session for job position Hardware Engineering.
-                                                    </div>
-                                                </div>
+                                                <?php foreach($upcoming_interview['upcoming_interview'] as $row){?>
+													<div class="item">
+														<div class="item-head">
+															<div class="item-details">
+																<img class="item-pic rounded" src="<?=$row->profile_photo != ""?IMG_EMPLOYERS.$row->profile_photo:IMG_STUDENTS.'xremo-logo-blue.png'; ?>">
+																<a href="" class="item-name primary-link"><?=$row->company_name?></a>
+																<span class="item-label"><?=date('j F Y H:i A', strtotime($row->start_date))?></span>
+															</div>
+															<span class="item-status">
+																<!--<span class="badge badge-empty badge-success mr-2"></span>Ongoing
+																<span class="badge badge-empty badge-warning mr-2"></span>Pending</span>
+																<span class="badge badge-empty badge-primary mr-2"></span>Closed</span>-->
+																<span class="badge badge-empty badge-danger mr-2"></span>Upcoming</span>
+															</span>
+														</div>
+														<div class="item-body"> <b>[<?=$row->position?>]</b> <?=$row->description?>
+														</div>
+													</div>
+												<?php }?>	
                                             </div>
                                         </div>
                                     </div>
@@ -601,7 +499,7 @@
                         <div class="portlet box task-widget">
                             <div class="portlet-title bg-blue-ebonyclay py-4">
                                 <div class="caption">
-                                    We found new job for you !
+                                    We found <?=$new_job == 0?"no":""?> new job for you !
                                     <div class="pull-right">
                                         <span class="label label-success ml-3"><?=$new_job?></span>
                                     </div>
@@ -651,7 +549,9 @@
                                     <div class="widget-media mb-0">
                                         <div class="widget-media-body text-center">
                                             <!-- <img class="widget-media-avatar img-responsive" src="../HTML/img/Xremo/all/xremo-logo-blue.png" alt=""> -->
-                                            <a class="md-grey-text text-darken-1 " href="<?=base_url()?>job/search" target="_blank">View All </a>
+                                            <!--<a class="md-grey-text text-darken-1 " href="<?=base_url()?>job/search" target="_blank">View Job Dashboard </a>-->
+											
+											<a href="<?=base_url()?>job/search" target="_blank" class="btn  btn-md-orange m-4 letter-space-xs">View Job Dashboard</a>
                                         </div>
 
                                     </div>

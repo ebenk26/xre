@@ -79,6 +79,19 @@ class Profile extends CI_Controller {
             $userImage = $this->student_model->checkImageExist($userImageID);
             $header_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
         }
+		
+		$youtubelink = $this->input->post('youtubelink');
+
+		if (!filter_var($youtubelink, FILTER_VALIDATE_URL)) {
+			$youtubelink = "";
+		}else{
+			//cek apakah link youtube atau tidak
+			if (strpos($youtubelink, 'youtube.com') !== false) {
+				$youtubelink = str_replace("watch?v=","embed/",$youtubelink);
+			}else{
+				$youtubelink = "";
+			}
+		}
 
         $profile = array(
             'student_name' => $this->input->post('fullname'),
@@ -90,7 +103,7 @@ class Profile extends CI_Controller {
             'country'=> $this->input->post('country'),
             'quote'=> $this->input->post('quotes'),
             'summary'=> $this->input->post('summary'),
-            'youtubelink'=> $this->input->post('youtubelink'),
+            'youtubelink'=> $youtubelink,
             'address' => $this->input->post('address'),
             'state' => $this->input->post('state'),
             'city' => $this->input->post('city'),
@@ -103,7 +116,7 @@ class Profile extends CI_Controller {
         );
         $this->student_model->profile_post($profile);
         $this->session->set_userdata('name', $this->input->post('fullname'));
-        $this->session->set_userdata('img_profile' => $profile_photo);
+        $this->session->set_userdata('img_profile', $profile_photo);
 		$this->session->set_flashdata('tab_student', 'tab_overview');
         redirect(base_url().'student/profile/');
     }

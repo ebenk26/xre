@@ -305,9 +305,27 @@ class Student_Model extends CI_Model{
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
         $this->db->where('job_positions.created_at >=', $last_login);
 		$this->db->where('job_positions.expiry_date >=', date('Y-m-d'));		
-        $this->db->where('job_positions.status', 'post'); 
+        $this->db->where('job_positions.status', 'post');
+		$this->db->order_by('job_positions.id', 'DESC');
+		$this->db->limit(5);
         $allJob = $this->db->get();
         return $allJob->result_array();
+    }
+	
+	function get_new_join($last_login){
+        $this->db->select('users.*, student_bios.quote, student_bios.summary, profile_uploads.name as profile_photo');
+        $this->db->from('users');
+        $this->db->join('student_bios', 'student_bios.user_id = users.id');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"', 'left');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
+        $this->db->where('users.created_at >=', $last_login);
+		$this->db->where('users.id !=', $this->session->userdata('id'));
+		$this->db->where('roles.slug', 'student');
+		$this->db->order_by('users.id', 'DESC');
+		$this->db->limit(10);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     function get_user_history($id){

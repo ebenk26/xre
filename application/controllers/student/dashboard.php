@@ -25,11 +25,13 @@ class Dashboard extends CI_Controller {
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
 		$job['job_positions'] = $this->student_model->get_all_job($id);
 		if(!empty($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history'])){
-			$job['job_positions_new'] = $this->student_model->get_all_new_job($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
+			$job['job_positions_new'] 	= $this->student_model->get_all_new_job($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
+			$job['new_join'] 			= $this->student_model->get_new_join($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
 		}else{
-			$job['job_positions_new'] = $this->student_model->get_all_new_job("1970-01-01");
+			$job['job_positions_new'] 	= $this->student_model->get_all_new_job("1970-01-01");
+			$job['new_join'] 			= $this->student_model->get_new_join("1970-01-01");
 		}
-        
+		
         $job['users'] = $get_user_profile;
 		
 		//get rate
