@@ -168,6 +168,7 @@ class Profile extends CI_Controller {
         }
 
         $image = array('profile_photo' =>  $profile_photo);
+        $this->session->set_userdata('img_profile' => $profile_photo);
 
         $this->employer_model->upload_image_logo($image);
         redirect(base_url().'employer/profile/');

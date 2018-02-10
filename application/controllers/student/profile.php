@@ -103,6 +103,7 @@ class Profile extends CI_Controller {
         );
         $this->student_model->profile_post($profile);
         $this->session->set_userdata('name', $this->input->post('fullname'));
+        $this->session->set_userdata('img_profile' => $profile_photo);
 		$this->session->set_flashdata('tab_student', 'tab_overview');
         redirect(base_url().'student/profile/');
     }

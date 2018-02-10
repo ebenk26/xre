@@ -17,11 +17,13 @@ class User_Model extends CI_Model{
     }
 
     public function loginUser($email, $password){
-        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.slug as roles');
+        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.slug as roles, profile_uploads.name as img_profile, profile_uploads.type as img_type');
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id');
         $this->db->where(array('users.email' => $email, 'users.password' => $password));
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $query = $this->db->get();
         $result = $query->last_row('array');
         if (!empty($result)) {

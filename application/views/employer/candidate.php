@@ -1,4 +1,4 @@
-<!-- BEGIN CONTENT -->
+BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
                 <div class="portlet light md-transparent portlet-fit p-0">
@@ -58,7 +58,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center col-sm-1">#</th>
-                                            <th class="col-sm-8"> Candidates Info </th>
+                                            <th class="col-sm-7"> Candidates Info </th>
+                                            <th class="text-center col-sm-1 "> Status </th>
                                             <th class="text-center col-sm-1 "> Applied Date </th>
                                             <th class="text-center col-sm-2"> Actions </th>
                                         </tr>
@@ -83,6 +84,7 @@
                                                         <?php echo $value['user_name']; ?>
                                                     </div>
                                                 </td>
+                                                <td class="text-center vertical-middle col-xs-1"> <?php echo $value['application_status']; ?> </td>
                                                 <td class="text-center vertical-middle col-xs-1"> <?php echo date('j F Y',strtotime($value['sent_at'])); ?> </td>
                                                 <td class=" col-xs-2">
                                                     <div class="btn-group visible-xs">
@@ -179,13 +181,22 @@
                                         </ul>
 
                                     </div>
+                                    <div class="btn-group">
+                                        <select class="form-control" id="session_list">
+                                            <option disabled selected>Session List</option>
+                                            <?php foreach ($interview_session as $key => $session_value) {?>
+                                                <option value="<?php echo $session_value['id'];?>"><?php echo $session_value['title'] ?></option>
+                                            <?php } ?>
+                                        </select>
+
+                                    </div>
                                     <!-- If Employer != Set Session -->
-                                    <button type="submit" class="btn btn-circle btn-md-indigo mt-sweetalert" data-title="Oh no ! You still not set the date for inteview session yet. Create session now." data-type="warning" data-allow-outside-click="true"
+                                    <!-- <button type="submit" class="btn btn-circle btn-md-indigo mt-sweetalert" data-title="Oh no ! You still not set the date for inteview session yet. Create session now." data-type="warning" data-allow-outside-click="true"
                                         data-show-confirm-button="true" data-confirm-button-text='OK' data-confirm-button-class="btn-info">
                                         <i class="icon-paper-plane mr-2"></i>Invite all to Interview</button>
                                     <a href="" class="btn btn-default btn-circle btn-icon-only tooltips" data-container="body" data-placement="top" data-original-title="Download all resume">
                                         <i class="icon-cloud-download"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -194,6 +205,7 @@
                                         <tr>
                                             <th class="text-center col-xs-1 col-md-1">#</th>
                                             <th class="col-xs-8 col-md-8"> Candidates Info </th>
+                                            <th class="text-center col-md-1 "> Status </th>
                                             <th class="text-center col-xs-2 col-md-2"> Status Invitation </th>
                                             <th class="text-center col-xs-1 col-md-1"> Actions </th>
                                         </tr>
@@ -209,6 +221,9 @@
                                                     <div class="media-body">
                                                         <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
                                                     </div>
+                                                </td>
+                                                <td class="text-center vertical-middle col-xs-2">
+                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
                                                     <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? $value['interview_status'] : 'Not Sent Invitation' ?></span>
@@ -645,4 +660,4 @@
 
             </div>
         </div>
-        <!-- END CONTENT -->
+        <!-- END CONTENT
