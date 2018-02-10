@@ -19,7 +19,7 @@ class notifications extends CI_Controller
         {
             $data["notif"]      = $this->load->view('notification/list',array("data"=>$get_notif),true);
             $data["total"]      = '<i class="icon-bell"></i><span class="badge badge-default">'.count($unread_notif).'</span>';
-            $data["total_in"]   = '<span class="bold">'.count($unread_notif).' pending</span> notifications';
+            $data["total_in"]   = (count($unread_notif)>0) ? '<span class="bold">'.count($unread_notif).' pending</span> notifications' : '<span class="bold">There are no pending</span> notifications';
             $data["message"]    = "success";
         }
         else
