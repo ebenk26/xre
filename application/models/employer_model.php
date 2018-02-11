@@ -275,17 +275,22 @@ class Employer_Model extends CI_Model{
                             applieds.job_seeker_message_status,
                             applieds.created_at as sent_at,
                             users.id as id_user, 
-                            users.fullname as user_name, 
+                            users.fullname as user_name,
+                            users.email as user_email, 
                             profile_uploads.name as img,
+                            interview_schedule.title as interview_title,
                             interview_schedule_user.status as interview_status,
-                            interview_schedule.title as interview_title
+                            interview_schedule_user.employer_id as employer_id,
+                            interview_schedule_user.candidate_reply as candidate_reply,
+                            interview_schedule_user.suggested_start_date as suggested_start_date,
+                            interview_schedule_user.suggested_end_date as suggested_end_date,
+                            interview_schedule_user.id as interview_schedule_user_id
                             ');
-        $this->db->from('users');
-        $this->db->join('applieds','users.id = applieds.user_id', 'left');
-        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
-        $this->db->join('interview_schedule_user','interview_schedule_user.user_id = users.id', 'left');
+        $this->db->from('applieds');
+        $this->db->join('users','users.id = applieds.user_id');
+        $this->db->join('profile_uploads','profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"', 'left');
+        $this->db->join('interview_schedule_user','interview_schedule_user.user_id = users.id AND interview_schedule_user.job_id = '.$id, 'left');
         $this->db->join('interview_schedule','interview_schedule.id = interview_schedule_user.session_id', 'left');
-        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $this->db->where(array('applieds.status !=' => 'APPLIED'));
         $this->db->where(array('applieds.job_position_id' => $id)); //job position id
         $applicants = $this->db->get();

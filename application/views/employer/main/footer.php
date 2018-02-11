@@ -572,6 +572,8 @@
                 var candidate = $(this).attr('candidate-id');
                 var job = $(this).attr('job-id');
                 var interview = $(this).attr('interview-id');
+                var candidate_name = $(this).attr('candidate-name');
+                var candidate_email = $(this).attr('candidate-email');
 
                 if (interview == null) {
                     
@@ -597,6 +599,8 @@
                                           candidate_id: candidate,
                                           job_id: job,
                                           interview_id: interview,
+                                          candidate_name: candidate_name,
+                                          candidate_email: candidate_email,
                                         },
                                         success:function(response) {
                                            swal("Success", "Candidate has been invited.", "success");
@@ -613,7 +617,20 @@
 
             $('.choose_session').click(function(){
                 var id = $(this).attr('candidate-id');
+                var candidate_name = $(this).attr('candidate-name');
+                var candidate_email = $(this).attr('candidate-email');
                 $('#choose_interview_session .send-invitation').attr('candidate-id', id);
+                $('#choose_interview_session .send-invitation').attr('candidate-name', candidate_name);
+                $('#choose_interview_session .send-invitation').attr('candidate-email', candidate_email);
+            });
+
+            $('#checkboxShipping').change(function(){
+                if($(this).is(':checked')){
+                    $('.billing-address').addClass('hidden');
+                    $('.billing-input').val('');
+                }else{
+                    $('.billing-address').removeClass('hidden');
+                }
             });
 
             $('.remove-interview-session').click(function(){

@@ -25,7 +25,7 @@ class Candidate extends CI_Controller {
         $job_id = base64_decode($segment);
         $complement['job'] = $this->global_model->get_by_id('job_positions', array('id'=>$job_id));
         $complement['candidates'] = $this->employer_model->get_all_candidate($job_id);
-        $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id);
+        $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id, $id);
         $complement['job_id'] = $segment;
         $complement['interview'] = $this->global_model->get_by_id('interview_schedule', array('job_id' => $job_id));
         $complement['invitation'] = $this->employer_model->get_interview_invitation($id);
@@ -37,7 +37,8 @@ class Candidate extends CI_Controller {
     }
 
     function get_shortlisted_candidate($job_id){
-        $candidates = $this->employer_model->get_shortlisted_candidate($job_id);
+        $id = $this->session->userdata('id');
+        $candidates = $this->employer_model->get_shortlisted_candidate($job_id, $id);
         return $candidates;
     }
 
@@ -79,6 +80,8 @@ class Candidate extends CI_Controller {
     function edit_session(){
         $job_id = base64_decode($this->input->post('job_id'));
 
+        $page = $this->input->post('page');
+
         $start = explode(' - ', $this->input->post('start_date'));
         $start_date = date('Y-m-d',strtotime(current($start)));
         $start_hour = date('H:i:s', strtotime(end($start)));
@@ -108,7 +111,11 @@ class Candidate extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+        if ($page != 'calendar') {
+            redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+        }else{
+            redirect(base_url().'employer/calendar/');
+        }
     }
 
     function remove_interview_session(){
