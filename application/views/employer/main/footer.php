@@ -765,7 +765,7 @@
                 method:"POST",
                 success:function(response)
                 {
-                    var data = JSON.parse(response)
+                    var data = JSON.parse(response);
                     
                     if(data.message == "success")
                     {

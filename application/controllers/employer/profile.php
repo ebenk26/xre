@@ -62,14 +62,26 @@ class Profile extends CI_Controller {
                          'url' => $this->input->post('corporate_website'));
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
             
-            if ($checkAvailabilityProfile) {
-                $this->employer_model->edit_profile($profile);
-            }else{
-                $this->employer_model->add_profile($profile);
-            }
+		if ($checkAvailabilityProfile) {
+			$this->employer_model->edit_profile($profile);
+		}else{
+			$this->employer_model->add_profile($profile);
+		}
 
         $this->session->set_flashdata('msg_success', 'Success Update Profile');     
         $this->session->set_flashdata('tab_profile', '#tab_edit_about');
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Update Company Profile",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
         
         redirect(base_url().'employer/profile/');
 
@@ -171,6 +183,19 @@ class Profile extends CI_Controller {
         $this->session->set_userdata('img_profile', $profile_photo);
 
         $this->employer_model->upload_image_logo($image);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Update Company Logo",
+					'icon' 			=> "fa-image",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'employer/profile/');
         
     }
@@ -204,6 +229,19 @@ class Profile extends CI_Controller {
         $image = array('header_photo' =>  $header_photo);
 
         $this->employer_model->upload_image_header($image);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Update Company Header Image",
+					'icon' 			=> "fa-image",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'employer/profile/');
 
     }

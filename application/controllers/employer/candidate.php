@@ -60,6 +60,19 @@ class Candidate extends CI_Controller {
                         'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
                         'description'=> $this->input->post('description'));
         $this->global_model->create('interview_schedule', $session);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Create Interview Schedule Session",
+					'icon' 			=> "fa-calendar",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
     }
 
@@ -84,6 +97,19 @@ class Candidate extends CI_Controller {
                         'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
                         'description'=> $this->input->post('description'));
         $this->global_model->update('interview_schedule', array('id' => $id ) ,$session);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Edit Interview Schedule Session",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         if ($page != 'calendar') {
             redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
         }else{
@@ -95,6 +121,19 @@ class Candidate extends CI_Controller {
         $session_id = base64_decode($this->input->post('session_id'));
         $page_id = $this->uri->segment(URI_SEGMENT_DETAIL);
         $this->global_model->remove('interview_schedule', array('id' => $session_id));
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Delete Interview Schedule Session",
+					'icon' 			=> "fa-trash",
+					'label' 		=> "danger",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($page_id),'='));   
     }
 

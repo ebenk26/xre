@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         $this->load->model('global_model');
+        $this->load->model('user_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) || ($roles !== $segment)){
@@ -32,6 +33,10 @@ class Dashboard extends CI_Controller {
 		$this->db->limit(5);
 		$query = $this->db->get();
 		$complement['article'] = $query->result();
+		
+		//get recent activities
+		$complement['recent_activities'] 	= $this->user_model->get_recent_activities();
+		
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/dashboard',$complement);
         $this->load->view('employer/main/footer', $calendar_footer);
