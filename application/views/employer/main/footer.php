@@ -624,6 +624,15 @@
                 $('#choose_interview_session .send-invitation').attr('candidate-email', candidate_email);
             });
 
+            $('#checkboxShipping').change(function(){
+                if($(this).is(':checked')){
+                    $('.billing-address').addClass('hidden');
+                    $('.billing-input').val('');
+                }else{
+                    $('.billing-address').removeClass('hidden');
+                }
+            });
+
             $('.remove-interview-session').click(function(){
                 var id = $(this).attr('session-id');
 

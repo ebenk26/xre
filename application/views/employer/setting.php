@@ -213,17 +213,17 @@
                                     <!-- Shipping Address -->
                                     <div class="media">
                                         <div class="pull-right">
-                                            <a href="" class="font-grey-gallery">Change</a>
+                                            <a href="#modal_edit_payment_address" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
                                             <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Shipping Address</h5>
-                                            <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4>
+                                            <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings->shipping_name) ? $settings->shipping_name : 'Please edit your shipping company name'; ?> </h4>
                                             <h4>
-                                                <small>GST No : 0123456788912</small>
+                                                <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
                                             </h4>
                                             <h4>
                                                 <small>
-                                                    <i class="icon-pointer mr-2"></i>No.30 , Jln Kampung Baru 3/7a, Kampung Baru, 41203, Kuala Lumpur.</small>
+                                                    <i class="icon-pointer mr-2"></i><?php echo !empty($settings->shipping_address) ? $settings->shipping_address : 'Please edit your shipping address'; ?></small>
                                             </h4>
                                         </div>
 
@@ -231,17 +231,17 @@
                                     <!-- Billing Address -->
                                     <div class="media">
                                         <div class="pull-right">
-                                            <a href="" class="font-grey-gallery">Change</a>
+                                            <a href="#modal_edit_payment_address" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
                                             <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Billing Address</h5>
-                                            <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4>
+                                            <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings->billing_name) ? $settings->billing_name : 'Please edit your billing company name'; ?> </h4>
                                             <h4>
-                                                <small>GST No : 0123456788912</small>
+                                                <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
                                             </h4>
                                             <h4>
                                                 <small>
-                                                    <i class="icon-pointer mr-2"></i>No.30 , Jln Kampung Baru 3/7a, Kampung Baru, 41203, Kuala Lumpur.</small>
+                                                    <i class="icon-pointer mr-2"></i><?php echo !empty($settings->billing_address) ? $settings->billing_address : 'Please edit your billing address'; ?></small>
                                             </h4>
                                         </div>
 
@@ -387,6 +387,192 @@
                     </div>
                 </div>
             </div>
+
+            <!-- BEGIN MODAL : Edit Payment Address -->
+            <div class="modal fade modal-open-noscroll " id="modal_edit_payment_address" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Shipping and Billing Address</h4>
+                        </div>
+
+                        <form action="<?php echo base_url(); ?>employer/settings/billing_shipping_address" method="POST" class="form-horizontal">
+                            <div class="modal-body form-body">
+                                <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="shipping-address">
+                                        <!-- Shipping Address -->
+                                        <h4 class="form-section">Shipping Address</h4>
+                                        <hr>
+                                        <!-- Company Name -->
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">Company name</label>
+                                                    <input type="text" name="shipping-company" class="form-control" placeholder="Xremo Sdn Bhd" value="<?php echo !empty($settings->shipping_name) ? $settings->shipping_name : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- Address -->
+                                            <div class="col-md-8">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">Address</label>
+                                                    <input type="text" name="shipping-address" class="form-control" placeholder="Unit / Lot , Road ," value="<?php echo !empty($settings->shipping_address) ? $settings->shipping_address : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Postcode / City / State-->
+                                        <div class="row">
+                                            <!-- Postcode -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Postcode</label>
+                                                    <input type="text" name="shipping-postcode" class="form-control" placeholder="Postcode" value="<?php echo !empty($settings->shipping_postcode) ? $settings->shipping_postcode : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- City -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">City</label>
+                                                    <input type="text" name="shipping-city" class="form-control" value="<?php echo !empty($settings->shipping_city) ? $settings->shipping_city : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- State -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">State</label>
+                                                    <input type="text" name="shipping-state" class="form-control" id="state" value="<?php echo !empty($settings->shipping_state) ? $settings->shipping_state : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Country / Phone Number / Fax Number -->
+                                        <div class="row">
+                                            <!-- Country  -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Country</label>
+                                                    <select name="shipping-country" class="form-control" id="country">
+                                                            <option disabled selected>- Select Country -</option>
+                                                        <?php foreach ($country as $key => $value): ?>
+                                                            <option <?php echo ($settings->shipping_country == $value['name']) ? 'selected' : '' ?>><?php echo $value['name'] ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Phone Number -->
+                                            <div class="col-md-4 ">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Phone Number</label>
+                                                    <input type="text" name="shipping-phone" class="form-control" placeholder="Phone Number" value="<?php echo !empty($settings->shipping_phone) ? $settings->shipping_phone : '12345'; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- Fax Number -->
+                                            <div class="col-md-4 ">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Fax Number</label>
+                                                    <input type="text" name="shipping-fax" class="form-control" placeholder="Fax Number" value="<?php echo !empty($settings->shipping_fax) ? $settings->shipping_fax : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- CheckBox -->
+                                        <!-- Note : @If checkbox selected , Shipping Form will hide @else default show -->
+                                        <div class="form-group mx-0">
+                                            <div class="col-md-8 ">
+                                                <label class="mt-checkbox">
+                                                    <input type="checkbox" name="billing_same_with_shipping" id="checkboxShipping"> My shipping and billing information is the same.
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="billing-address">
+                                        <!-- Billing Address -->
+                                        <h4 class="form-section">Billing Address</h4>
+                                        <hr>
+                                        <!-- Company Name -->
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">Company name</label>
+                                                    <input type="text" name="billing-company" class="form-control billing-input" placeholder="Xremo Sdn Bhd" value="<?php echo !empty($settings->billing_name) ? $settings->billing_name : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- Address -->
+                                            <div class="col-md-8">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">Address</label>
+                                                    <input type="text" name="billing-address" class="form-control billing-input" placeholder="Unit / Lot , Road ," value="<?php echo !empty($settings->billing_address) ? $settings->billing_address : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Postcode / City / State-->
+                                        <div class="row">
+                                            <!-- Postcode -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Postcode</label>
+                                                    <input type="text" name="billing-postcode" class="form-control billing-input" placeholder="Postcode" value="<?php echo !empty($settings->billing_postcode) ? $settings->billing_postcode : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- City -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label ">City</label>
+                                                    <input type="text" name="billing-city" class="form-control billing-input" value="<?php echo !empty($settings->billing_city) ? $settings->billing_city : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- State -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">State</label>
+                                                    <input type="text" name="billing-state" class="form-control billing-input" id="state" value="<?php echo !empty($settings->billing_state) ? $settings->billing_state : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Country / Phone Number / Fax Number -->
+                                        <div class="row">
+                                            <!-- Country  -->
+                                            <div class="col-md-4">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Country</label>
+                                                    <select class="form-control billing-input" name="billing-country" id="country">
+                                                        <option disabled selected>- Select Country -</option>
+                                                        <?php foreach ($country as $key => $value): ?>
+                                                            <option <?php echo ($settings->billing_country == $value['name']) ? 'selected' : '' ?>><?php echo $value['name'] ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Phone Number -->
+                                            <div class="col-md-4 ">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Phone Number</label>
+                                                    <input type="text" name="billing-phone" class="form-control billing-input" placeholder="Phone Number" value="<?php echo !empty($settings->billing_phone) ? $settings->billing_phone : ''; ?>">
+                                                </div>
+                                            </div>
+                                            <!-- Fax Number -->
+                                            <div class="col-md-4 ">
+                                                <div class="form-group mx-0">
+                                                    <label class="control-label">Fax Number</label>
+                                                    <input type="text" name="billing-fax" class="form-control billing-input" placeholder="Fax Number" value="<?php echo !empty($settings->billing_fax) ? $settings->billing_fax : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer form-actions">
+                                <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- END MODAL : Edit Payment Info -->
 
         </div>
 
