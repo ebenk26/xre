@@ -25,7 +25,7 @@ class Candidate extends CI_Controller {
         $job_id = base64_decode($segment);
         $complement['job'] = $this->global_model->get_by_id('job_positions', array('id'=>$job_id));
         $complement['candidates'] = $this->employer_model->get_all_candidate($job_id);
-        $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id);
+        $complement['shortlisted'] = $this->get_shortlisted_candidate($job_id, $id);
         $complement['job_id'] = $segment;
         $complement['interview'] = $this->global_model->get_by_id('interview_schedule', array('job_id' => $job_id));
         $complement['invitation'] = $this->employer_model->get_interview_invitation($id);
@@ -37,7 +37,8 @@ class Candidate extends CI_Controller {
     }
 
     function get_shortlisted_candidate($job_id){
-        $candidates = $this->employer_model->get_shortlisted_candidate($job_id);
+        $id = $this->session->userdata('id');
+        $candidates = $this->employer_model->get_shortlisted_candidate($job_id, $id);
         return $candidates;
     }
 

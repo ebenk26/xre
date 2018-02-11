@@ -66,7 +66,7 @@
                                     <tbody>
                                         <?php 
                                         $i=1; foreach ($candidates as $key => $value) { 
-                                            if ($value['application_status'] != 'SHORTLISTED') {
+                                            if ($value['application_status'] == 'APPLIED' ) {
                                             ?>
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
@@ -174,9 +174,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($shortlisted as $key => $value) { ?>
+                                        <?php $i =1; foreach ($shortlisted as $key => $value) { ?>
                                             <tr class="odd gradeX ">
-                                                <td class="text-center vertical-middle col-xs-1">1</td>
+                                                <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
                                                 <td class="col-xs-8">
                                                     <div class="pull-left">
                                                         <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
@@ -204,10 +204,17 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#choose_interview_session" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
-                                                                        <i class="icon-paper-plane"></i>
-                                                                        Send Invitation Interview
-                                                                    </a>
+                                                                <?php if ($value['interview_status'] == 'reschedule'): ?>
+                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_user_id']; ?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                            <i class="icon-calendar"></i>
+                                                                            Rescheduled Interview
+                                                                        </a>
+                                                                <?php else: ?>
+                                                                    <a href="#choose_interview_session" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                            <i class="icon-paper-plane"></i>
+                                                                            Send Invitation Interview
+                                                                        </a>
+                                                                <?php endif ?>
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
@@ -226,7 +233,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php $i++;} ?>
                                         <!-- BEGIN MODAL : View Candidate Summary -->
                                         <div class="modal fade modal-open-noscroll " id="modal_tab_shortlist_candidate" tabindex="-1" role="dialog" aria-hidden="false">
                                             
@@ -313,9 +320,11 @@
 
                                 </div>
                                 <!-- END MODAL : View Reject Detail-->
-
+                                <?php foreach ($shortlisted as $key => $value): ?>
+                                    
+                                
                                 <!-- BEGIN MODAL : Rescheduled Form -->
-                                <div class="modal fade modal-open-noscroll" id="modal_rescheduled_form" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+                                <div class="modal fade modal-open-noscroll" id="modal_rescheduled_form_<?php echo $value['interview_schedule_user_id'];?>" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content form">
                                             <div class="modal-header">
@@ -326,12 +335,11 @@
                                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
                                                         <div class="row mx-0">
                                                             <div class="form-group mx-0 col-md-12">
-                                                                <label class="control-label font-weight-600">Replied By Mark Adam</label>
-                                                                <p class="form-control-static">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo. Nullam euismod dictum elementum. Maecenas imperdiet orci augue,
-                                                                    at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum. Proin sit amet ligula vitae sem posuere auctor. Aenean
-                                                                    ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante id sem euismod, ut pulvinar orci porta. Nunc ut enim
-                                                                    ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis. Integer vel urna quis mi semper tempus. Vestibulum
-                                                                    non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim lobortis.</p>
+                                                                <label class="control-label font-weight-600">Replied By <?php echo $value['user_name'];?></label>
+                                                                <p class="form-control-static"><?php echo $value['candidate_reply']; ?></p>
+                                                                <label class="control-label font-weight-600">Suggested date start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_start_date'] ));?></label>
+                                                                <br/>
+                                                                <label class="control-label font-weight-600">Suggested end start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_end_date'] ));?></label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group mx-0 col-md-12">
@@ -405,6 +413,8 @@
 
                                 </div>
                                 <!-- END MODAL : Rescheduled Form -->
+
+                                <?php endforeach ?>
 
                                 <!-- INTERVIEW -->
                                 <!-- BEGIN MODAL : Set Interview Session -->

@@ -110,4 +110,44 @@ class Applications_history extends CI_Controller {
 
     }
 
+    public function reschedule_invitation(){
+        $job_id = $this->input->post('job_id');
+        $session_id = $this->input->post('session_id');
+        $employer_id = $this->input->post('employer_id');
+        $candidate_reply = $this->input->post('candidate_reply');
+
+        $start = explode(' - ', $this->input->post('start_date'));
+        $start_date = date('Y-m-d',strtotime(current($start)));
+        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date_hour = implode(' ', array($start_date, $start_hour));
+
+        $end = explode(' - ', $this->input->post('end_date'));
+        $end_date = date('Y-m-d',strtotime(current($end)));
+        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date_hour = implode(' ', array($end_date, $end_hour));
+
+        $where = array( 'job_id'=>$job_id,
+                        'session_id' => $session_id,
+                        'employer_id' => $employer_id);
+        $data = array('candidate_reply' => $candidate_reply,
+                        'status' => 'reschedule',
+                        'suggested_start_date' => $start_date_hour,
+                        'suggested_end_date' => $end_date_hour);
+                        
+        $this->global_model->update('interview_schedule_user', $where, $data);
+        //BEGIN : set recent activities
+        $data = array(
+                    'user_id'       => $this->session->userdata('id'),
+                    'ip_address'    => $this->input->ip_address(),
+                    'activity'      => "Reject Interview Invitation",
+                    'icon'          => "fa-remove",
+                    'label'         => "danger",
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        setRecentActivities($data);
+        //END : set recent activities
+
+        redirect(base_url().'student/calendar/');
+    }
+
 }
