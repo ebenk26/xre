@@ -77,7 +77,7 @@ $route['student/inbox'] 						= 'administrator/inbox/view_list/inbox';
 $route['student/sent'] 							= 'administrator/inbox/view_list/sent';
 $route['student/trash'] 						= 'administrator/inbox/view_list/trash';
 
-$route['notif'] 								= 'notifications/notifications/list';
+$route['notif'] 								= 'notifications/notifications/notifList';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

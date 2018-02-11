@@ -10,7 +10,7 @@ class notifications extends CI_Controller
         $this->load->model('notification_model');
     }
     
-    public function list()
+    public function notifList()
     {
         $get_notif  = Notification('0,1');
         $unread_notif       = Notification('0');
