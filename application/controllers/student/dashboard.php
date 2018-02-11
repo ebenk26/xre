@@ -98,6 +98,46 @@ class Dashboard extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+			//BEGIN : set create notification
+			$getUserCompany = $this->job_model->getJobById($job_id);
+
+			$userMail = $this->user_model->getUserMail(
+														array(
+																'sender_id'=>$this->session->userdata('id'),
+																'receiver_id'=>$getUserCompany['user_job']
+														)
+											);
+
+			$MailContent = array(	
+							"sender_name"		=> $userMail["sender_name"],
+							"receiver_name"		=> $userMail["receiver_name"],
+							"job_name"			=> $getUserCompany['name'],
+							'url' 				=> "job/candidate/$job_id_code"
+						);
+
+			$messageHtml 	= $this->load->view("mail/apply_job",$MailContent,true);
+			$subject 		= "[Job Applied] by ".$userMail["sender_name"];
+
+			$MailData = array(	
+							"sender_email"		=> $userMail["sender_email"],
+							"receiver_email"	=> $userMail["receiver_email"],
+							'subject' 			=> $subject,
+							'message_html'		=> $messageHtml
+						);
+
+			$NotifData = array(
+						'from_id' 		=> $this->session->userdata('id'),
+						'user_id' 		=> $getUserCompany['user_job'],
+						'subject' 		=> $subject,
+						'message_html'	=> $messageHtml,
+						'url' 			=> $MailContent["url"],
+						'type' 			=> "message",
+						'viewed'		=> 0,
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			CreateNotif($NotifData,$MailData);
+			//END : set create notification
         }else{
             $this->session->set_flashdata('msg_error', 'Failed apply your dream job');
         }

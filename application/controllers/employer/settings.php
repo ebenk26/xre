@@ -20,6 +20,7 @@ class settings extends CI_Controller {
         $id = $this->session->userdata('id');
         $where = array('user_id' => $this->session->userdata('id'));
         $setting['settings'] = $this->global_model->get_by_id('user_profiles', $where);
+        $setting['country'] = $this->global_model->get('countries', 'name');
 		$id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
@@ -84,6 +85,56 @@ class settings extends CI_Controller {
         $data = array('searchable' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
+        redirect(base_url().'employer/settings');
+    }
+
+    public function billing_shipping_address(){
+        $id = $this->session->userdata('id');
+        $billing_same_with_shipping = $this->input->post('billing_same_with_shipping');
+        $billing = array(   'billing_name' => $this->input->post('billing-company'),
+                            'billing_address' => $this->input->post('billing-address'),
+                            'billing_postcode' => $this->input->post('billing-postcode'),
+                            'billing_city' => $this->input->post('billing-city'),
+                            'billing_state' => $this->input->post('billing-state'),
+                            'billing_country' => $this->input->post('billing-country'),
+                            'billing_phone' => $this->input->post('billing-phone'),
+                            'billing_fax' => $this->input->post('billing-fax'));
+
+        $shipping = array(  'shipping_name' => $this->input->post('shipping-company'),
+                            'shipping_address' => $this->input->post('shipping-address'),
+                            'shipping_postcode' => $this->input->post('shipping-postcode'),
+                            'shipping_city' => $this->input->post('shipping-city'),
+                            'shipping_state' => $this->input->post('shipping-state'),
+                            'shipping_country' => $this->input->post('shipping-country'),
+                            'shipping_phone' => $this->input->post('shipping-phone'),
+                            'shipping_fax' => $this->input->post('shipping-fax'));
+
+        if ($billing_same_with_shipping == 'on') {
+            
+            $shipping_billing = array(  'shipping_name' => $this->input->post('shipping-company'),
+                                        'shipping_address' => $this->input->post('shipping-address'),
+                                        'shipping_postcode' => $this->input->post('shipping-postcode'),
+                                        'shipping_city' => $this->input->post('shipping-city'),
+                                        'shipping_state' => $this->input->post('shipping-state'),
+                                        'shipping_country' => $this->input->post('shipping-country'),
+                                        'shipping_phone' => $this->input->post('shipping-phone'),
+                                        'shipping_fax' => $this->input->post('shipping-fax'),
+                                        'billing_name' => $this->input->post('shipping-company'),
+                                        'billing_address' => $this->input->post('shipping-address'),
+                                        'billing_postcode' => $this->input->post('shipping-postcode'),
+                                        'billing_city' => $this->input->post('shipping-city'),
+                                        'billing_state' => $this->input->post('shipping-state'),
+                                        'billing_country' => $this->input->post('shipping-country'),
+                                        'billing_phone' => $this->input->post('shipping-phone'),
+                                        'billing_fax' => $this->input->post('shipping-fax')
+                                        );
+
+            $this->global_model->update('user_profiles', array('user_id' => $id), $shipping_billing );
+        }else{
+            $this->global_model->update('user_profiles', array('user_id' => $id), $shipping );
+            $this->global_model->update('user_profiles', array('user_id' => $id), $billing );
+        }
+
         redirect(base_url().'employer/settings');
     }
 }

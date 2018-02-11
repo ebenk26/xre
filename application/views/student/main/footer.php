@@ -292,7 +292,7 @@
             });
 
             $('.btn-acc').click(function () {
-                $('#modal-info').modal('hide');
+                $('.modal_detail_interview').modal('hide');
                 var job_id = $(this).attr('job-id');
                 var session_id = $(this).attr('session-id');
                 var employer_id = $(this).attr('employer-id');
@@ -331,7 +331,7 @@
             });
 
             $('.btn-rej').click(function () {
-                $('#modal-info').modal('hide');
+                $('.modal_detail_interview').modal('hide');
                 var job_id = $(this).attr('job-id');
                 var session_id = $(this).attr('session-id');
                 var employer_id = $(this).attr('employer-id');
@@ -366,6 +366,16 @@
                             }
                         }
                     );
+            });
+
+            $('.btn-resc').click(function () {
+                $('.modal_detail_interview').modal('hide');
+                var job_id = $(this).attr('job-id');
+                var session_id = $(this).attr('session-id');
+                var employer_id = $(this).attr('employer-id');
+                $('#modal_rescheduled_form .job-id').val(job_id);
+                $('#modal_rescheduled_form .session-id').val(session_id);
+                $('#modal_rescheduled_form .employer-id').val(employer_id);
             });
 
             $("#searchable_detail").bootstrapSwitch(
