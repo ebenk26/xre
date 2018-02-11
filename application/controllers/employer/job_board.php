@@ -191,6 +191,8 @@ class Job_Board extends CI_Controller {
         $job_id = base64_decode($this->input->post('job_id'));
         $candidate_id = base64_decode($this->input->post('candidate_id'));
         $interview_id = base64_decode($this->input->post('interview_id'));
+        $candidate_name = $this->input->post('candidate_name');
+        $candidate_email = $this->input->post('candidate_email');
         $employer_id = $this->session->userdata('id');
 
         $invite = array('session_id' => $interview_id,
@@ -199,7 +201,6 @@ class Job_Board extends CI_Controller {
                     'job_id' => $job_id,
                     'status' => 'pending');
 
-
         $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
 
         if ($invite_user_interview == true) {
@@ -207,6 +208,32 @@ class Job_Board extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
         }
+
+        $from = "support@xremo.com";    //senders email address
+        $subject = 'Interview Invitation';  //email subject
+        
+        //sending confirmEmail($receiver) function calling link to the user, inside message body
+
+        $message = 'Congratulations '. $candidate_name .', you have been invited to interview, to see the details please check your account in xremo.com<br><br>Best Regards, <br> Xremo Team';
+
+        $config['mailtype'] = 'html';
+        $config['priority'] = 2;
+        $config['wordwrap'] = TRUE;
+        
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        //send email
+        $this->email->from($from);
+        $this->email->to($candidate_email);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        
+        if($this->email->send()){
+            return true;
+        }else{
+            return false;
+        }
+
         redirect(base_url().'job/candidate/'.base64_encode($job_id));
     }
 
