@@ -68,7 +68,7 @@
                                 <i class="widget-thumb-icon bg-purple icon-calendar"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Upcoming </span>
-                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="3">3</span>
+                                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo count($invitation); ?>"><?php echo count($invitation); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -263,7 +263,7 @@
                                 </div>
                             </div>
                             <div class="portlet-body">
-                                <div id="calendar"> </div>
+                                <div id="fullcalendar"> </div>
                             </div>
                         </div>
                     </div>
