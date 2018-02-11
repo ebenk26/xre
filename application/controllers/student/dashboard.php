@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('student_model');
         $this->load->model('job_model');
+        $this->load->model('user_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck) || ($roles !== $segment)){
@@ -45,7 +46,7 @@ class Dashboard extends CI_Controller {
 		$job['upcoming_interview'] 	= $this->student_model->get_upcoming_interview($id);
 		
 		//get recent activities
-		$job['recent_activities'] 	= $this->student_model->get_recent_activities();
+		$job['recent_activities'] 	= $this->user_model->get_recent_activities();
 		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);

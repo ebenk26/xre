@@ -65,7 +65,19 @@ class Job_Board extends CI_Controller {
         $postJob = $this->employer_model->job_post($jobPost);
 
         if ($postJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success post job');            
+            $this->session->set_flashdata('msg_success', 'Success post job');
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Create New Job Post",
+						'icon' 			=> "fa-briefcase",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed post data');
         }
@@ -106,7 +118,19 @@ class Job_Board extends CI_Controller {
                          );
         $editJob = $this->employer_model->job_edit($jobPost);
         if ($editJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success edit job');            
+            $this->session->set_flashdata('msg_success', 'Success edit job');    
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Update Job Posting",
+						'icon' 			=> "fa-briefcase",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed edit job');
         }
@@ -117,7 +141,19 @@ class Job_Board extends CI_Controller {
         $id = $this->input->post('post_id');
         $deleteJob = $this->employer_model->job_delete($id);
         if ($deleteJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success delete job');            
+            $this->session->set_flashdata('msg_success', 'Success delete job');    
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Delete Job Posting",
+						'icon' 			=> "fa-trash",
+						'label' 		=> "danger",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed delete job');
         }
@@ -159,7 +195,19 @@ class Job_Board extends CI_Controller {
         $shorlist_job = $this->job_model->shortlist($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');            
+            $this->session->set_flashdata('msg_success', 'Added to shortlist');   
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Shortlist A Candidate",
+						'icon' 			=> "fa-user-plus",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }
@@ -170,7 +218,19 @@ class Job_Board extends CI_Controller {
         $shorlist_job = $this->job_model->rejected($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Successfully reject this candidate');            
+            $this->session->set_flashdata('msg_success', 'Successfully reject this candidate'); 
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Reject A Candidate",
+						'icon' 			=> "fa-user-times",
+						'label' 		=> "danger",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to reject this candidate');
         }   
@@ -181,7 +241,19 @@ class Job_Board extends CI_Controller {
         $shorlist_job = $this->job_model->hire($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Successfully hire this candidate');            
+            $this->session->set_flashdata('msg_success', 'Successfully hire this candidate');        
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Hire A Candidate",
+						'icon' 			=> "fa-user-secret",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to hire this candidate');
         }   
@@ -203,7 +275,19 @@ class Job_Board extends CI_Controller {
         $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
 
         if ($invite_user_interview == true) {
-            $this->session->set_flashdata('msg_success', 'Success invite this candidate');            
+            $this->session->set_flashdata('msg_success', 'Success invite this candidate'); 
+			
+			//BEGIN : set recent activities
+			$data = array(
+						'user_id' 		=> $this->session->userdata('id'),
+						'ip_address' 	=> $this->input->ip_address(),
+						'activity' 		=> "Send Interview Schedule Session",
+						'icon' 			=> "fa-calendar",
+						'label' 		=> "success",
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			setRecentActivities($data);
+			//END : set recent activities
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
         }

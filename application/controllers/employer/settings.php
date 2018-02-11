@@ -33,6 +33,19 @@ class settings extends CI_Controller {
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
         $this->session->set_userdata('name', $this->input->post('company_name'));
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Company Name",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'employer/settings');
     }
 
@@ -44,6 +57,19 @@ class settings extends CI_Controller {
         $data = array('contact_person' => json_encode($pic));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('user_profiles', $where, $data);
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Person in Charge",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
         redirect(base_url().'employer/settings');
     }
 
