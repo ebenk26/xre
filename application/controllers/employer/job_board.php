@@ -166,6 +166,7 @@ class Job_Board extends CI_Controller {
             redirect(show_404());
         }
 		
+		
 		$this->db->select('*');
 		$this->db->from('applieds');
 		$this->db->where('user_id', $this->session->userdata('id'));
@@ -174,7 +175,9 @@ class Job_Board extends CI_Controller {
 		$applied = $query->row();
 		$job_post['applied'] = $applied;
 
-        $job_post['job'] = $this->employer_model->get_job_detail($id);
+		
+		
+        $job_post['job'] = $this->employer_model->get_job_detail($id);		
         $user_id = $job_post['job']->user_id;
         $get_user_profile = $this->employer_model->get_user_profile($user_id);
         $job_post['company_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'profile_photo'));

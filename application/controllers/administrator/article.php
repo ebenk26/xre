@@ -25,7 +25,7 @@ class Article extends CI_Controller {
         $complement['position_levels'] 		= $this->employer_model->get_position();
         $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
         $complement['result'] 				= $this->get_data();
-        
+		
 		$this->load->view('administrator/main/header', $profile);
         $this->load->view('administrator/article', $complement);
         $this->load->view('administrator/main/footer');
@@ -80,6 +80,15 @@ class Article extends CI_Controller {
 		return $query->result();
 	}
 	
+	public function get_data_array($id){
+        $this->db->select('*');
+		$this->db->from('blogs');
+		$this->db->where('id', $id);
+		$query = $this->db->get();
+		$result = $query->row();
+		echo json_encode($result);
+	}
+	
 	public function get_data_list($type){
         $this->db->select('*');
 		$this->db->from('blogs');
@@ -97,6 +106,7 @@ class Article extends CI_Controller {
         $id 			= $this->input->post('id');
 		$slug 			= strtolower($this->input->post('title'));
 		$slug 			= str_replace(" ","-",$slug);
+		$slug 			= preg_replace('/[^A-Za-z0-9\-]/', '', $slug); // Removes special chars.
 		$featured_image = "";
 		
 		$upload_path 	= 	'assets/img/article/';
@@ -240,6 +250,25 @@ class Article extends CI_Controller {
 		$result = json_encode($article);
 
 		echo $result;
+	}
+	
+	public function set_slug(){
+        $this->db->select('*');
+		$this->db->from('blogs');
+		$query = $this->db->get();
+		$blogs = $query->result();
+		
+		foreach($blogs as $row){
+			$slug 			= strtolower($row->title);
+			$slug 			= str_replace(" ","-",$slug);
+			$slug 			= preg_replace('/[^A-Za-z0-9\-]/', '', $slug); // Removes special chars.
+			
+			$data = array(
+					'slug' 					=> $slug,
+			);
+			$this->db->where('id', $row->id);
+			$post_status = $this->db->update('blogs', $data);
+		}
 	}
 	
 }

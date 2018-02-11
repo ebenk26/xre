@@ -149,7 +149,7 @@
 												<i class="fa fa-search"></i>
 											</a>
 											
-											<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+											<a href="#modal_edit" id="row_<?=$row->id ?>" class="edit_button_job btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 												<i class="fa fa-edit"></i> 
 											</a>
 											
@@ -190,7 +190,7 @@
 
             </div>
         </div>
-        <?php foreach ($job_post as $row) {?>
+        <?php foreach ($job_post as $row) { break;?>
             <div id="modal_edit_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content ">
@@ -262,7 +262,7 @@
 											<textarea name="job_Desc" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc"><?php echo $row->job_description?></textarea>-->
 											<div class="form-group">
 												<label class="control-label">Job Description</label>
-												<textarea name="job_description" class="wysihtml5 form-control" rows="6"><?php echo $row->job_description?></textarea>
+												<textarea name="job_description" class="textarea_editor wysihtml5 form-control" rows="6"><?php echo $row->job_description?></textarea>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -271,7 +271,7 @@
 											
 											<div class="form-group">
 												<label class="control-label">Job Requirement</label>
-												<textarea name="qualifications" class="wysihtml5 form-control" rows="6"><?php echo $row->qualifications?></textarea>
+												<textarea name="qualifications" class="textarea_editor wysihtml5 form-control" rows="6"><?php echo $row->qualifications?></textarea>
 											</div>											
 										</div>
 									</div>
@@ -280,13 +280,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="control-label">Nice To Have</label>
-												<textarea name="other_requirements" class="wysihtml5 form-control" rows="6"><?php echo $row->other_requirements?></textarea>
+												<textarea name="other_requirements" class="textarea_editor wysihtml5 form-control" rows="6"><?php echo $row->other_requirements?></textarea>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="control-label">Additional Info</label>
-												<textarea name="additional_info" class="wysihtml5 form-control" rows="6"><?php echo $row->additional_info?></textarea>
+												<textarea name="additional_info" class="textarea_editor wysihtml5 form-control" rows="6"><?php echo $row->additional_info?></textarea>
 											</div>
 										</div>
 									</div>
@@ -385,21 +385,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Job Description</label>
-                                            <textarea name="jobDescription" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea class="textarea_editor" name="jobDescription" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Nice To Have</label>
-                                            <textarea name="niceToHave" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea class="textarea_editor" name="niceToHave" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Job Requirement</label>
-                                            <textarea name="jobRequirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea class="textarea_editor" name="jobRequirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2">Additional Info</label>
-                                            <textarea name="additionalInfo" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea class="textarea_editor" name="additionalInfo" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -422,4 +422,112 @@
         </div>
         <!-- END MODAL : Add Job Post Info -->
 
-        
+        <!-- EDIT JOB POST -->
+		<div id="modal_edit" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content ">
+					<div class="modal-header ">
+						<h4 class="modal-title">Edit Job Post </h4>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url(); ?>administrator/job_board/post/" method="POST">
+							<div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
+							<div class="form-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Job Position Title</label>
+											<input type="text" id="name_job" name="name" class="form-control" placeholder="Internship in IT department" value="" required> 
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Salary Range</label>
+											<div class="form-inline">
+												<input type="number" class="form-control " placeholder="0.00" value="" id="budget_min_job" name="budget_min">
+												<span class="mx-2">to</span>
+												<input type="number" class="form-control  " placeholder="0.00" value="" id="budget_max_job" name="budget_max">
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Employment Type</label>
+											<select class="form-control" id="employment_type_id_job" name="employment_type_id">
+												<option value="" selected disabled>-- Choose Employment Type --</option>
+												<?php foreach ($employment_type as $key => $employment_value) {?>
+													<option value="<?php echo $employment_value['id']; ?>" ><?php echo $employment_value['name']; ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Position Level</label>
+											<select class="form-control" id="position_level_id_job" name="position_level_id">
+												<option value="" selected disabled>-- Choose Position Level --</option>
+												<?php foreach ($position_levels as $key => $position_level_value) {?>
+													<option value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											<label>Years Of Experience</label>
+											<select class="form-control" id="years_of_experience_job" name="years_of_experience">
+												<option value="" selected disabled>-- Choose Years Of Experience --</option>
+												<?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
+													<option value="<?php echo $year_of_experience_value['id']; ?>" ><?php echo $year_of_experience_value['name']; ?></option>
+												<?php } ?>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Job Description</label>
+											<textarea id="job_description_job" name="job_description" class="textarea_editor wysihtml5 form-control" rows="6"></textarea>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Job Requirement</label>
+											<textarea id="qualifications_job" name="qualifications" class="textarea_editor wysihtml5 form-control" rows="6"></textarea>
+										</div>											
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Nice To Have</label>
+											<textarea id="other_requirements_job" name="other_requirements" class="textarea_editor wysihtml5 form-control" rows="6"></textarea>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Additional Info</label>
+											<textarea id="additional_info_job" name="additional_info" class="textarea_editor wysihtml5 form-control" rows="6"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+							<input type="hidden" id="job_id_job" name="job_id" value=""></input>
+							<div class="modal-footer form-action ">
+								<button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+								<a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+							</div>
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+		</div>

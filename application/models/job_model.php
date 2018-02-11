@@ -5,6 +5,7 @@ class Job_Model extends CI_Model{
 	function get_job($word,$offset,$perPage,$empType,$posLevel,$experiences,$company_industry,$country_name,$latest,$popular){
 		$this->db->select('job_positions.*, states.name as state_name, countries.name as country_name, user_profiles.company_name, industries.name as industry_name, position_levels.name as position_level, employment_types.name as job_type, profile_uploads.name as company_img');
 		$this->db->from('job_positions');
+        $this->db->join('users', 'users.id = job_positions.user_id');
         $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.user_id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
@@ -57,6 +58,7 @@ class Job_Model extends CI_Model{
 
 	function get_total_job($word,$empType,$posLevel,$experiences,$company_industry,$country_name){
 		$this->db->from('job_positions');
+        $this->db->join('users', 'users.id = job_positions.user_id');
         $this->db->join('user_profiles', 'user_profiles.user_id = job_positions.user_id', 'left');
         $this->db->join('states', 'user_profiles.state_id = states.id', 'left');
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');

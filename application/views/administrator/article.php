@@ -50,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($result as $row) { ?>
+                                <?php $row_no = 0;foreach ($result as $row) { ?>
                                     <tr class="odd gradeX">
                                         <td class="text-center" ><?php echo $row->id; ?></td>
                                         <td> <?php echo $row->title; ?></td>
@@ -62,7 +62,7 @@
 												<i class="fa fa-search"></i>
 											</a>
 											
-											<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+											<a href="#modal_edit" id="row_<?=$row->id?>" class="edit_button_article btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 												<i class="fa fa-edit"></i> 
 											</a>
 											
@@ -71,7 +71,7 @@
 											</a>
                                         </td>
                                     </tr>                                        
-                                <?php } ?>
+                                <?php $row_no++;} ?>
                             </tbody>
                         </table>
                     </div>
@@ -79,7 +79,7 @@
 
             </div>
         </div>
-        <?php foreach ($result as $row) { ?>
+        <?php foreach ($result as $row) { break;?>
             <div id="modal_edit_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content ">
@@ -108,7 +108,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="control-label">Excerpt</label>
-												<textarea name="excerpt" class="form-control" rows="6" maxlength="250" required><?=$row->excerpt?></textarea>
+												<textarea name="excerpt" class="textarea form-control" rows="6" maxlength="250" required><?=$row->excerpt?></textarea>
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -134,7 +134,7 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="control-label">Content</label>
-												<textarea name="body" class="wysihtml5 form-control" rows="10"><?=$row->body?></textarea>
+												<textarea name="body" class="textarea_editor wysihtml5 form-control" rows="10"><?=$row->body?></textarea>
 											</div>											
 										</div>
 									</div>
@@ -153,7 +153,8 @@
 					<!-- /.modal-dialog -->
 				</div>
 			</div>
-			
+		<?php }?>
+		<?php foreach ($result as $row) { ?>
 			<div id="modal_delete_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -227,7 +228,7 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label class="control-label">Content</label>
-											<textarea name="body" class="wysihtml5 form-control" rows="10"></textarea>
+											<textarea name="body" class="textarea_editor wysihtml5 form-control" rows="10"></textarea>
 										</div>											
 									</div>
 								</div>
@@ -247,5 +248,78 @@
 			</div>
 		</div>
         <!-- END MODAL : Add Job Post Info -->
-
-        
+		
+		<!-- MODAL EDIT -->
+		<div id="modal_edit" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content ">
+					<div class="modal-header ">
+						<h4 class="modal-title">Edit Article </h4>
+					</div>
+					<div class="modal-body">
+						<form action="<?php echo base_url(); ?>administrator/article/post/" method="POST" enctype="multipart/form-data">
+							<div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
+								<div class="form-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Title</label>
+											<input type="text" id="title_article" name="title" class="form-control" placeholder="Title" value="" required> 
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Author</label>
+											<input type="text" id="author_article" name="author" class="form-control" placeholder="Author" value="" required>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Excerpt</label>
+											<textarea id="excerpt_article" name="excerpt" class="textarea form-control" rows="6" maxlength="250" required></textarea>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label>Tags (separate by ',')</label>
+											<input type="text" id="tags_article" name="tags" class="form-control" placeholder="Tags (separate by ',')" value="">
+										</div>
+										
+										<div class="form-group">
+											<label>Featured Image</label>
+											<input type="file" name="featured_image">
+										</div>
+										
+										<?php //if($row->featured_image != ""){?>
+											<div class="form-group">
+												<img src="<?=base_url()?>assets/img/article/" height="100px" id="featured_image_article"/>
+											</div>
+										<?php //}?>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label class="control-label">Content</label>
+											<textarea id="body_article" name="body" class="textarea_editor wysihtml5 form-control" rows="10"></textarea>
+										</div>											
+									</div>
+								</div>
+							</div>
+							</div>
+							<input type="hidden" id="id_article" name="id" value=""></input>
+							<input type="hidden" name="submit_type" value="update"></input>
+							<div class="modal-footer form-action ">
+								<button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+								<a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
+							</div>
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+		</div>

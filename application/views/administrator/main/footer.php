@@ -77,24 +77,81 @@
 
     <script>
         $(document).ready(function () {
-            tinymce.init({
-                selector: 'textarea',
-                height: 500,
-                theme: 'modern',
-                plugins: 'code advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
-                toolbar1: 'code undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                toolbar2: 'print preview media | fontsizeselect forecolor backcolor emoticons | codesample',
-                fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-                image_advtab: true,
-                templates: [
-                    { title: 'Test template 1', content: 'Test 1' },
-                    { title: 'Test template 2', content: 'Test 2' }
-                ],
-                content_css: [
-                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                    '//www.tinymce.com/css/codepen.min.css'
-                ]
-            });
+            //EDIT ARTICLE
+			$( ".edit_button_article" ).on( "click", function() {
+				$('#featured_image_article').hide();
+				var row_id = this.id;
+				var res = row_id.split("_");
+				
+				row_id = res[1];
+				$.ajax({
+					url:"<?=base_url();?>administrator/article/get_data_array/"+row_id,
+					method:"POST",
+					success:function(response) {
+						var data = JSON.parse(response);
+						$('#title_article').val(data.title);
+						$('#author_article').val(data.author);
+						$('#excerpt_article').val(data.excerpt);
+						$('#tags_article').val(data.tags);
+						//$('#body_article').text(data.body);
+						$(tinymce.get('body_article').getBody()).html(data.body);
+						//tinymce.get('#body_article').setContent(data.body);
+						$('#id_article').val(data.id);
+					   
+						if(data.featured_image != ""){
+							$('#featured_image_article').attr('src', "<?=base_url()?>assets/img/article/"+data.featured_image);
+							$('#featured_image_article').show();   
+						}
+					}
+				});
+			});
+			
+			//EDIT JOB POST
+			$( ".edit_button_job" ).on( "click", function() {
+				//$('#featured_image_article').hide();
+				var row_id = this.id;
+				var res = row_id.split("_");
+				
+				row_id = res[1];
+				$.ajax({
+					url:"<?=base_url();?>administrator/job_board/get_data_array/"+row_id,
+					method:"POST",
+					success:function(response) {
+						var data = JSON.parse(response);
+						
+						$('#name_job').val(data.name);
+						$('#budget_min_job').val(data.budget_min);
+						$('#budget_max_job').val(data.budget_max);
+						$('#employment_type_id_job').val(data.employment_type_id);
+						$('#position_level_id_job').val(data.position_level_id);
+						$('#years_of_experience_job').val(data.years_of_experience);						
+						$(tinymce.get('job_description_job').getBody()).html(data.job_description);
+						$(tinymce.get('qualifications_job').getBody()).html(data.qualifications);
+						$(tinymce.get('other_requirements_job').getBody()).html(data.other_requirements);
+						$(tinymce.get('additional_info_job').getBody()).html(data.additional_info);						
+						$('#job_id_job').val(data.id);
+					}
+				});
+			});
+			
+			tinymce.init({
+				selector: '.textarea_editor',
+				height: 400,
+				theme: 'modern',
+				plugins: 'code advlist autolink lists link image charmap print preview hr anchor pagebreak searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking save table contextmenu directionality emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+				toolbar1: 'code undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+				toolbar2: 'print preview media | fontsizeselect forecolor backcolor emoticons | codesample',
+				fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+				image_advtab: true,
+				templates: [
+					{ title: 'Test template 1', content: 'Test 1' },
+					{ title: 'Test template 2', content: 'Test 2' }
+				],
+				content_css: [
+					'//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+					'//www.tinymce.com/css/codepen.min.css'
+				]
+			});
 
             var e = $("#xremo_table");
 			e.dataTable({
