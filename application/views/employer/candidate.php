@@ -204,7 +204,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#choose_interview_session" class="choose_session" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                <a href="#choose_interview_session" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
                                                                         <i class="icon-paper-plane"></i>
                                                                         Send Invitation Interview
                                                                     </a>
@@ -502,7 +502,7 @@
                                             <div class="form-group mx-0 col-md-12">
                                                     <table class="table table-striped table-bordered table-hover  order-column">
                                                         <thead>
-                                                            <tr>
+                                                            <tr>choose_session
                                                                 <th class="text-center">#</th>
                                                                 <th> Title </th>
                                                                 <th> From </th>

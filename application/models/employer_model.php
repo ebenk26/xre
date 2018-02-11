@@ -275,7 +275,8 @@ class Employer_Model extends CI_Model{
                             applieds.job_seeker_message_status,
                             applieds.created_at as sent_at,
                             users.id as id_user, 
-                            users.fullname as user_name, 
+                            users.fullname as user_name,
+                            users.email as user_email, 
                             profile_uploads.name as img,
                             interview_schedule_user.status as interview_status,
                             interview_schedule.title as interview_title

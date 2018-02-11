@@ -79,6 +79,8 @@ class Candidate extends CI_Controller {
     function edit_session(){
         $job_id = base64_decode($this->input->post('job_id'));
 
+        $page = $this->input->post('page');
+
         $start = explode(' - ', $this->input->post('start_date'));
         $start_date = date('Y-m-d',strtotime(current($start)));
         $start_hour = date('H:i:s', strtotime(end($start)));
@@ -108,7 +110,11 @@ class Candidate extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+        if ($page != 'calendar') {
+            redirect(base_url().'job/candidate/'.rtrim(base64_encode($job_id),'='));
+        }else{
+            redirect(base_url().'employer/calendar/');
+        }
     }
 
     function remove_interview_session(){
