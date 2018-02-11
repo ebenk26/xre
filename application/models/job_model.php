@@ -182,5 +182,16 @@ class Job_Model extends CI_Model{
         }
         return true;
     }
+
+    function getJobById($id)
+    {
+        $this->db->select('job_positions.user_id as user_job, job_positions.name, user_profiles.*');
+        $this->db->from('job_positions');        
+        $this->db->join('user_profiles', 'job_positions.user_id = user_profiles.user_id', 'left');
+        $this->db->where('job_positions.id', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
 }
 ?>

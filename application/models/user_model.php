@@ -268,6 +268,62 @@ class User_Model extends CI_Model{
         return $result;
 	}
 
+    function getUserById($id)
+    {
+        $this->db->select('users.id as user_id, users.email, users.fullname, users.verified, users.status, users.remember_token, roles.slug as roles');
+        $this->db->from('users');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
+        $this->db->where(array('users.id' => $id));
+        $query = $this->db->get();
+        $result = $query->row_array('array');
+        return $result;
+    }
+
+    function getCompany($id)
+    {
+        $this->db->where(array('user_id' => $id));
+        $query = $this->db->get('user_profiles');
+        $result = $query->row_array();
+        return $result;
+    }
+
+    function getUserMail($params)
+    {
+        $checkUserRole = $this->getUserById($params["sender_id"]);
+
+        if($checkUserRole["roles"] == "employer")
+        {
+            $companyData    = $this->getCompany($params["sender_id"]);
+            $data["sender_name"]    = $companyData["company_name"];
+            $data["sender_email"]   = $checkUserRole["email"];
+
+            $receiverData   = $this->getCompany($params['receiver_id']);
+            $data["receiver_name"]  = $receiverData["company_name"];
+            $data["receiver_email"] = $checkUserRole["email"];
+        }
+        else
+        {
+            $data["sender_name"]    = $checkUserRole["fullname"];
+            $data["sender_email"]   = $checkUserRole["email"];
+            $receiverData   = $this->getUserById($params['receiver_id']);
+
+            if($receiverData["roles"] == "employer")
+            {
+                $companyData    = $this->getCompany($params['receiver_id']);
+                $data["receiver_name"]  = $companyData["company_name"];
+                $data["receiver_email"] = $companyData["email"];
+            }
+            else
+            {
+                $data["receiver_name"]  = $receiverData["fullname"];
+                $data["receiver_email"] = $receiverData["email"];
+            }
+        }
+
+        return $data;
+    }
+
 }
 
 ?>

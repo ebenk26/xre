@@ -207,7 +207,7 @@ class Inbox extends CI_Controller {
 			}
 			
 			//BEGIN : set recent activities
-			$data = array(
+			$ActivitiesData = array(
 						'user_id' 		=> $this->session->userdata('id'),
 						'ip_address' 	=> $this->input->ip_address(),
 						'activity' 		=> "Send New Message",
@@ -215,8 +215,47 @@ class Inbox extends CI_Controller {
 						'label' 		=> "success",
 						'created_at' 	=> date('Y-m-d H:i:s'),
 					);
-			setRecentActivities($data);
+			setRecentActivities($ActivitiesData);
 			//END : set recent activities
+			
+			//BEGIN : set create notification
+			$inbox_id = rtrim(base64_encode($user_id), '=');
+
+			$userMail = $this->user_model->getUserMail(
+														array(
+																'sender_id'=>$this->input->post('sender_id'),
+																'receiver_id'=>$this->input->post('receiver_id')
+														)
+											);
+
+			$MailContent = array(	
+							"sender_name"		=> $userMail["sender_name"],
+							"receiver_name"		=> $userMail["receiver_name"],
+							'url' 				=> "message/$inbox_id"
+						);
+
+			$messageHtml 	= $this->load->view("mail/message",$MailContent,true);
+			$subject 		= "You have new message from ".$userMail["sender_name"];
+
+			$MailData = array(	
+							"sender_email"		=> $userMail["sender_email"],
+							"receiver_email"	=> $userMail["receiver_email"],
+							'subject' 			=> $subject,
+							'message_html'		=> $messageHtml
+						);
+
+			$NotifData = array(
+						'from_id' 		=> $this->session->userdata('id'),
+						'user_id' 		=> $this->input->post('receiver_id'),
+						'subject' 		=> $subject,
+						'message_html'	=> $messageHtml,
+						'url' 			=> $MailContent["url"],
+						'type' 			=> "message",
+						'viewed'		=> 0,
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			CreateNotif($NotifData,$MailData);
+			//END : set create notification
 			
 			$roles = $this->session->userdata('roles');
 			redirect(base_url().$roles.'/inbox');
@@ -271,6 +310,45 @@ class Inbox extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+			
+			//BEGIN : set create notification
+			$inbox_id = rtrim(base64_encode($this->input->post('inbox_id')), '=');
+
+			$userMail = $this->user_model->getUserMail(
+														array(
+																'sender_id'=>$this->input->post('user_id'),
+																'receiver_id'=>$this->input->post('receiver_id')
+														)
+											);
+
+			$MailContent = array(	
+							"sender_name"		=> $userMail["sender_name"],
+							"receiver_name"		=> $userMail["receiver_name"],
+							'url' 				=> "message/$inbox_id"
+						);
+
+			$messageHtml 	= $this->load->view("mail/message",$MailContent,true);
+			$subject 		= "You have new message from ".$userMail["sender_name"];
+
+			$MailData = array(	
+							"sender_email"		=> $userMail["sender_email"],
+							"receiver_email"	=> $userMail["receiver_email"],
+							'subject' 			=> $subject,
+							'message_html'		=> $messageHtml
+						);
+
+			$NotifData = array(
+						'from_id' 		=> $this->session->userdata('id'),
+						'user_id' 		=> $this->input->post('receiver_id'),
+						'subject' 		=> $subject,
+						'message_html'	=> $messageHtml,
+						'url' 			=> $MailContent["url"],
+						'type' 			=> "message",
+						'viewed'		=> 0,
+						'created_at' 	=> date('Y-m-d H:i:s'),
+					);
+			CreateNotif($NotifData,$MailData);
+			//END : set create notification
 			
 			$roles = $this->session->userdata('roles');
 			redirect(base_url().'message/'.$inbox_id);

@@ -146,12 +146,17 @@ function setRecentActivities($data)
     $CI->user_model->setRecentActivities($data);
 }
 
-function CreateNotif($data)
+function CreateNotif($data,$mail)
 {
     $CI =& get_instance();
     $CI->load->model('notification_model');
 
     $insertNotif = $CI->notification_model->insertNotif($data);
+
+    if($insertNotif)
+    {
+        sendEmail($mail);
+    }
 
     return $insertNotif;
 }
@@ -164,5 +169,39 @@ function getDataMessage($type)
     $message = $CI->user_model->get_data_message($type);
 
     return $message;
+}
+
+function sendEmail($params)
+{
+    $from       = $params["sender_email"];
+    $to         = $params["receiver_email"];
+    $subject    = $params["subject"];
+    $message    = $params["message_html"];
+
+    $config['mailtype'] = 'html';
+    $config['priority'] = 2;
+    $config['wordwrap'] = TRUE;
+    $config['protocol'] = 'smtp';
+    $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+    $config['smtp_port'] = 465;
+    $config['smtp_user'] = 'dearico612@gmail.com';
+    $config['smtp_pass'] = 'Rico061289';
+
+    $CI =& get_instance();
+    
+    $CI->load->library('email', $config);
+    $CI->email->initialize($config);
+
+    //send email
+    $CI->email->from($from);
+    $CI->email->to($to);
+    $CI->email->subject($subject);
+    $CI->email->message($message);
+    
+    if($CI->email->send()){
+        return true;
+    }else{
+        return false;
+    }
 }
 ?>
