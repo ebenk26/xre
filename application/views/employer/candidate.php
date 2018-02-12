@@ -205,7 +205,7 @@
                                                             </li>
                                                             <li>
                                                                 <?php if ($value['interview_status'] == 'reschedule'): ?>
-                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_user_id']; ?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
                                                                             <i class="icon-calendar"></i>
                                                                             Rescheduled Interview
                                                                         </a>
@@ -218,13 +218,13 @@
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
-                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
                                                                     <i class="icon-check md-green-text"></i>
                                                                     Hire Candidate
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
                                                                     <i class="icon-close md-red-text"></i>
                                                                     Reject Candidate
                                                                 </a>
@@ -324,13 +324,17 @@
                                     
                                 
                                 <!-- BEGIN MODAL : Rescheduled Form -->
-                                <div class="modal fade modal-open-noscroll" id="modal_rescheduled_form_<?php echo $value['interview_schedule_user_id'];?>" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+                                <div class="modal fade modal-open-noscroll" id="modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content form">
                                             <div class="modal-header">
                                                 <h4>Rescheduled</h4>
                                             </div>
-                                            <form action="" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>employer/candidate/reschedule_interview_session" method="POST" class="form-horizontal">
+                                                <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>">
+                                                <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>">
+                                                <input type="hidden" name="candidate_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_user_id']), '='); ?>">
+                                                
                                                 <div class="modal-body form-body">
                                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
                                                         <div class="row mx-0">
@@ -346,11 +350,11 @@
                                                             <label for="">Do you agree to rescheduled ?</label>
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="agree" class="agree-reschedule"  value="Yes" checked=""> Yes
+                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes" checked=""> Yes
                                                                     <span></span>
                                                                 </label>
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="disagree" class="disagree-reschedule"  value="No"> No
+                                                                    <input type="radio" name="confirmation" class="disagree-reschedule"  value="No"> No
                                                                     <span></span>
                                                                 </label>
                                                             </div>
@@ -359,7 +363,7 @@
                                                         <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
                                                         <div class="form-group mx-0 col-md-12">
                                                             <label for="" class="control-label">Reply</label>
-                                                            <textarea class="form-control" rows="10">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
+                                                            <textarea class="form-control" rows="10" name="reschedule_detail">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
                                                                 Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
                                                                 Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
                                                                 id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
@@ -701,7 +705,7 @@
                                                 <label class="control-label col-md-3">From</label>
                                                 <div class="col-md-6">
                                                     <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                        <input type="text" size="16" class="form-control" name="start_date" value="<?php echo !empty($session_value['start_date']) ? date('d F Y - H:i', strtotime($session_value['start_date'])) : '01 January 2018 - 00:00'; ?>">
+                                                        <input type="text" size="16" class="form-control" name="start_date" value="<?php echo !empty($session_value['start_date']) ? date('d F Y - H:i', strtotime($session_value['start_date'])) : date('d F Y - H:i'); ?>">
                                                         <span class="input-group-addon">
                                                             <button class="btn default date-set" type="button">
                                                                 <i class="fa fa-calendar"></i>
@@ -715,7 +719,7 @@
                                                 <label class="control-label col-md-3">To</label>
                                                 <div class="col-md-6">
                                                     <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                        <input type="text" size="16" class="form-control" name="end_date" value="<?php echo !empty($session_value['end_date']) ? date('d F Y - H:i', strtotime($session_value['end_date'])) : '01 January 2018 - 00:00'; ?>">
+                                                        <input type="text" size="16" class="form-control" name="end_date" value="<?php echo !empty($session_value['end_date']) ? date('d F Y - H:i', strtotime($session_value['end_date'])) : date('d F Y - H:i'); ?>">
                                                         <span class="input-group-addon">
                                                             <button class="btn default date-set" type="button">
                                                                 <i class="fa fa-calendar"></i>

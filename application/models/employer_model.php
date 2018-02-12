@@ -284,7 +284,9 @@ class Employer_Model extends CI_Model{
                             interview_schedule_user.candidate_reply as candidate_reply,
                             interview_schedule_user.suggested_start_date as suggested_start_date,
                             interview_schedule_user.suggested_end_date as suggested_end_date,
-                            interview_schedule_user.id as interview_schedule_user_id
+                            interview_schedule_user.id as interview_schedule_id,
+                            interview_schedule_user.user_id as interview_schedule_user_id,
+                            interview_schedule_user.session_id as session_id
                             ');
         $this->db->from('applieds');
         $this->db->join('users','users.id = applieds.user_id');
@@ -380,6 +382,16 @@ class Employer_Model extends CI_Model{
         $interview = $this->db->get();
 
         return $interview->result_array();
+    }
+
+    function interview_reschedule($reschedule, $interview_schedule_user_id){
+        $this->db->insert('interview_schedule', $reschedule);
+        $new_interview_schedule_id = $this->db->insert_id();;
+        $update_schedule = array(   'session_id' => $new_interview_schedule_id,
+                                    'status' => 'pending');
+        $this->db->where('id', $interview_schedule_user_id);
+        $this->db->update('interview_schedule_user', $update_schedule);
+
     }
 
 

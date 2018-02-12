@@ -132,7 +132,7 @@ class Dashboard extends CI_Controller {
 						'subject' 		=> $subject,
 						'message_html'	=> $messageHtml,
 						'url' 			=> $MailContent["url"],
-						'type' 			=> "message",
+						'type' 			=> "apply",
 						'viewed'		=> 0,
 						'created_at' 	=> date('Y-m-d H:i:s'),
 					);
