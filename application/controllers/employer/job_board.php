@@ -292,33 +292,48 @@ class Job_Board extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById($job_id);
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'     =>  $employer_id,
+                                                                'receiver_id'   =>  $candidate_id
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/applications_history"
+                        );
+
+            $messageHtml    = $this->load->view("mail/send_interview_session",$MailContent,true);
+            $subject        = "[Interview Invitation] from ".$userMail["sender_name"];
+
+            $MailData = array(  
+                            "sender_email"      => "support@xremo.com",
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $this->session->userdata('id'),
+                        'user_id'       => $candidate_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "new_interview",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
-        }
-
-        $from = "support@xremo.com";    //senders email address
-        $subject = 'Interview Invitation';  //email subject
-        
-        //sending confirmEmail($receiver) function calling link to the user, inside message body
-
-        $message = 'Congratulations '. $candidate_name .', you have been invited to interview, to see the details please check your account in xremo.com<br><br>Best Regards, <br> Xremo Team';
-
-        $config['mailtype'] = 'html';
-        $config['priority'] = 2;
-        $config['wordwrap'] = TRUE;
-        
-        $this->load->library('email', $config);
-        $this->email->initialize($config);
-        //send email
-        $this->email->from($from);
-        $this->email->to($candidate_email);
-        $this->email->subject($subject);
-        $this->email->message($message);
-        
-        if($this->email->send()){
-            return true;
-        }else{
-            return false;
         }
 
         redirect(base_url().'job/candidate/'.base64_encode($job_id));
