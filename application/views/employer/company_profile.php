@@ -310,20 +310,42 @@
                                         <div id="gmapbg" class="s-google-map mt-height-auto-xs mt-height-300-xs my-4"></div>
 										<ul class="list-unstyled">
 										<?php foreach ($company_location as $key => $value) {
-                                    		?>
+											$lat = -6;$long = 100;
+										?>
                                     		<li>
 	                                            <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-15-xs text-uppercase letter-space-xs"><?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?></h5>
-	                                            <h6 class=" roboto-font  font-14-xs mb-1">
-	                                                <i class="icon-pointer mr-2"></i><?php echo $value->building_address; ?> </h6>
+												
+												<?php
+													$full_address = $value->building_address != ""?$value->building_address.", ":"";
+													$full_address .= $value->building_city != ""?$value->building_city.", ":"";
+													$full_address .= $value->building_postcode != ""?$value->building_postcode.", ":"";
+													$full_address .= $value->building_state != ""?$value->building_state.", ":"";
+													$full_address .= $value->building_country != ""?$value->building_country.", ":"";
+													$full_address = $full_address != ""?substr($full_address, 0, -2):"";
+												?>
+	                                            <?php if($full_address != ""){?>
+													<h6 class=" roboto-font  font-14-xs mb-1" style="text-transform:none;">
+	                                                <i class="icon-pointer mr-2"></i><?php echo $full_address; ?> </h6>
+												<?php }?>
 	                                            <ul class="list-inline list-unstyled mx-0">
-	                                                <li>
-	                                                    <h6 class=" roboto-font  font-14-xs ">
-	                                                        <i class="fa fa-phone mr-2"></i><?php echo $value->building_phone; ?> </h6>
-	                                                </li>
-	                                                <li>
-	                                                    <h6 class=" roboto-font  font-14-xs ">
-	                                                        <i class="fa fa-fax mr-2"></i><?php echo $value->building_fax; ?> </h6>
-	                                                </li>
+	                                                <?php if($value->building_email != ""){?>
+														<li>
+															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
+																<i class="fa fa-envelope mr-2"></i><?php echo $value->building_email; ?> </h6>
+														</li>
+													<?php }?>
+													<?php if($value->building_phone != ""){?>
+														<li>
+															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
+																<i class="fa fa-phone mr-2"></i><?php echo $value->building_phone; ?> </h6>
+														</li>
+													<?php }?>
+													<?php if($value->building_fax != ""){?>
+														<li>
+															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
+																<i class="fa fa-fax mr-2"></i><?php echo $value->building_fax; ?> </h6>
+														</li>
+													<?php }?>
 	                                            </ul>
 	                                        </li>
                                     	<?php }?>
@@ -496,17 +518,26 @@
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="fa fa-building-o mr-1"></i>Company Size</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['total_staff'] != ""?$detail['total_staff']:"Not Provided"; ?> People
+                                <?php echo $detail['total_staff'] != ""?$detail['total_staff']." People":"Not Provided"; ?>
                             </p>
                         </li>                            
                         <?php //endif ?>
 
-                        <!-- Working Hour -->
+                        <!-- Working Day -->
+                        <li>
+                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
+                                <i class="icon-calendar mr-1"></i>Working Day</h5>
+                            <p class="roboto-font font-grey-gallery font-14-xs ">
+                                <?php echo $detail['working_days'] != "" && $detail['working_days'] != " - "?$detail['working_days']:"Not Provided"; ?>
+                            </p>
+                        </li>
+						
+						<!-- Working Hour -->
                         <li>
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="icon-clock mr-1"></i>Working Hour</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_hours'] != ""?$detail['working_hours']:"Not Provided"; ?>
+                                <?php echo $detail['working_hours'] != "" && $detail['working_hours'] != " - "?$detail['working_hours']:"Not Provided"; ?>
                             </p>
                         </li>
 
@@ -527,7 +558,11 @@
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="icon-screen-desktop mr-1"></i>Website </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['url'] != ""?"<a href='".$detail['url']."'>".$detail['url']."</a>":"Not Provided"; ?>
+                                    <?php if($detail['url'] != ""){?>
+										<a href="<?=$detail['url']?>" target="_blank"><?=$detail['url']?></a>
+									<?php }else{?>
+										Not Provided
+									<?php }?>
                                 </p>
                             </li>
                         <?php //endif ?>
@@ -538,7 +573,7 @@
                                 <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                     <i class="fa fa-language mr-1"></i>Spoken Language </h5>
                                 <p class="roboto-font font-grey-gallery font-14-xs ">
-                                    <?php echo $detail['spoken_language'] != ""?$detail['spoken_language']:"Not Provided"; ?>
+                                    <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:"Not Provided"; ?>
                                 </p>
                             </li>
                         <?php //endif ?>
@@ -733,7 +768,7 @@
         function initMap() {
             var address = <?php echo $detail['address']; ?>;
             var company_name = '<?php echo $detail['company_name']; ?>';
-            var latLang = {lat: 3.9453071, lng: 107.4046742};
+            var latLang = {lat: 0, lng: 120};
             // Create a map object and specify the DOM element for display.
             var map = new google.maps.Map(document.getElementById('gmapbg'), {
               center: latLang,
@@ -741,13 +776,15 @@
             });
 
             $.each(address,function(i,v){
-                var lat = parseInt(v.building_latitude);
-                var long = parseInt(v.building_longitude);
-                 var marker = new google.maps.Marker({
-                  map: map,
-                  position: {lat: lat, lng: long},
-                  title: company_name
-                });
+                if(v.optionsRadios == 'HQ'){
+					var lat = parseInt(v.building_latitude);
+					var longi = parseInt(v.building_longitude);
+					 var marker = new google.maps.Marker({
+					  map: map,
+					  position: {lat: lat, lng: longi},
+					  title: company_name
+					});
+				}
             });
         }
 

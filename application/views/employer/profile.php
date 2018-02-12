@@ -222,8 +222,18 @@
                                             <li class="list-group-item">
 
                                                 <span class="label label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>"><?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?></span>
-                                                <h5 class="font-weight-500"><?php echo $value->building_address; ?>,<?php echo $value->building_city; ?>,<?php echo $value->building_postcode; ?>,<?php echo $value->building_state; ?>,<?php echo $value->building_country; ?></h5>
-                                                <h5><?php echo $value->building_email; ?></h5>
+												
+												<?php
+													$full_address = $value->building_address != ""?$value->building_address.", ":"";
+													$full_address .= $value->building_city != ""?$value->building_city.", ":"";
+													$full_address .= $value->building_postcode != ""?$value->building_postcode.", ":"";
+													$full_address .= $value->building_state != ""?$value->building_state.", ":"";
+													$full_address .= $value->building_country != ""?$value->building_country.", ":"";
+													$full_address = $full_address != ""?substr($full_address, 0, -2):"";
+												?>
+                                                <h5 class="font-weight-500"><?php echo $full_address; ?></h5>
+												
+                                                <h5><i class="fa fa-envelope mr-2"></i> <?php echo $value->building_email; ?></h5>
                                                 <h5>
                                                     <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>
                                                 <h5>
@@ -656,7 +666,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Fax Number</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_fax; ?>">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" value="<?php echo $value->building_fax; ?>">
                                                                 </div>
                                                             </div>
                                                         </div>
