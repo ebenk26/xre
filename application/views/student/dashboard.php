@@ -27,7 +27,7 @@
                             <div class="display my-0">
                                 <div class="number">
                                     <h3 class="font-green-sharp">
-                                        <span data-counter="counterup" data-value="<?=$users['overview']['number_of_seen']?>">60</span>
+                                        <span data-counter="counterup" data-value="<?=$users['overview']['number_of_seen'] != null?$users['overview']['number_of_seen']:0?>">0</span>
                                     </h3>
                                     <small class="text-uppercase">Profile Seen</small>
                                 </div>
