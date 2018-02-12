@@ -469,6 +469,7 @@
 
             $('.hire-candidate').click(function(){
                 var del = $(this).attr('data-id');
+                var candidate = $(this).attr('candidate-id');
                     swal({
                         title: "Do you want to hire this candidate?",
                         text: "You will not be able to process this candidate",
@@ -487,6 +488,7 @@
                                     method:"POST",
                                     data: {
                                       post_id: del,
+                                      candidate_id: candidate,
                                     },
                                     success:function(response) {
                                        swal("Success", "Candidate has been rejected.", "success");
