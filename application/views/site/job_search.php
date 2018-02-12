@@ -34,7 +34,7 @@
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo ASSETS; ?>css/style.css" rel="stylesheet" type="text/css" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 </head>
 
 <body>

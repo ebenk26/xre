@@ -41,6 +41,17 @@ class Job_Board extends CI_Controller {
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	public function get_data_array($id){
+        $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
+		$this->db->from('job_positions');
+		$this->db->join('users', 'users.id = job_positions.user_id');
+		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+        $this->db->where('job_positions.id', $id);
+		$query = $this->db->get();
+		$result = $query->row();
+		echo json_encode($result);
+	}
 
     public function post(){
         $id 	= $this->input->post('job_id');
@@ -146,5 +157,23 @@ class Job_Board extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }
     }
+	
+	public function set_expiry_date(){
+        $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
+		$this->db->from('job_positions');
+		$this->db->join('users', 'users.id = job_positions.user_id');
+		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+        $this->db->order_by('job_positions.id', 'DESC');
+		$query = $this->db->get();
+		$job = $query->result();
+		
+		foreach($job as $row){
+			$expiry_date = date('Y-m-d', strtotime($row->created_at." +30 days"));
+			
+			$data 	= array('expiry_date'=> $expiry_date);
+			$this->db->where('id', $row->id);
+			$post_status = $this->db->update('job_positions', $data);
+		}
+	}
 
 }

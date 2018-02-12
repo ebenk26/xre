@@ -346,11 +346,11 @@
                                                             <label for="">Do you agree to rescheduled ?</label>
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="optionsRadios" id="optionsRadios4" value="option1" checked=""> Yes
+                                                                    <input type="radio" name="agree" class="agree-reschedule"  value="Yes" checked=""> Yes
                                                                     <span></span>
                                                                 </label>
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="optionsRadios" id="optionsRadios5" value="option2"> No
+                                                                    <input type="radio" name="disagree" class="disagree-reschedule"  value="No"> No
                                                                     <span></span>
                                                                 </label>
                                                             </div>
@@ -359,7 +359,7 @@
                                                         <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
                                                         <div class="form-group mx-0 col-md-12">
                                                             <label for="" class="control-label">Reply</label>
-                                                            <textarea class="form-control" rows="10">Hi Mark Adam ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
+                                                            <textarea class="form-control" rows="10">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
                                                                 Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
                                                                 Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
                                                                 id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
@@ -371,7 +371,7 @@
                                                                 <div class="form-group mx-0">
                                                                     <label class="control-label">From</label>
                                                                     <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                        <input type="text" size="16" class="form-control">
+                                                                        <input type="text" size="16" class="form-control" name="start_date">
                                                                         <span class="input-group-addon">
                                                                             <button class="btn default date-set" type="button">
                                                                                 <i class="fa fa-calendar"></i>

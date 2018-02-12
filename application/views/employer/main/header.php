@@ -9,6 +9,10 @@
 
     <meta content="" name="author">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+	
     <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">

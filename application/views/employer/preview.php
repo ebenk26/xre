@@ -46,7 +46,7 @@ if (!empty($job->location)) {
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo ASSETS; ?>css/portfolio.min.css" rel="stylesheet" type="text/css" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
     <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
