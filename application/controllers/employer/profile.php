@@ -54,6 +54,7 @@ class Profile extends CI_Controller {
         }
 
         $profile = array('company_name' => $this->input->post('company_name'),
+						 'email' => $this->input->post('email'),
                          'company_registration_number' => $this->input->post('company_registration_number'),
                          'company_industry_id' => $this->input->post('industry'),
                          'company_description' => $this->input->post('about_company'),

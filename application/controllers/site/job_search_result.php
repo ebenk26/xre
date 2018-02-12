@@ -13,7 +13,17 @@ class Job_Search_Result extends CI_Controller {
     }
     
     public function index(){
-        $keyword            = trim($this->input->post('query'));
+        $this->load->library('user_agent');
+		if ($this->agent->is_referral())
+		{
+			$refer =  explode('/',$this->agent->referrer());
+			if(!in_array('job',$refer) || !in_array('search',$refer))
+			{
+				$this->session->unset_userdata('keyword');
+			}
+		}
+		
+		$keyword            = trim($this->input->post('query'));
         $offset             = $this->uri->segment(3);
         $perPage            = 5;
         $employment_type    = '';

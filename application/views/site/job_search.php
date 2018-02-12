@@ -84,13 +84,21 @@
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article/" class="s-header-v2-nav-link">Article</a>
                                 </li>
-                                <li class="s-header-v2-nav-item">
+								<li class="s-header-v2-nav-item">
+                                    <?php if ($this->session->userdata('name')){ ?>
+                                        <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-nav-link">Welcome, <?php echo $this->session->userdata('name') ;?></a>
+                                    <?php }else{ ?>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                    <?php } ?>
+                                </li>
+                                <!--<li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>signup/" class="s-header-v2-nav-link  g-color-md-orange-text ">SIGN UP</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>login/" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-md-orange-bg  s-btn-xs font-weight-700 g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-shrink text-uppercase">Login</a>
                                     <a href="<?php echo base_url(); ?>login/" class=" g-letter-spacing-1 g-radius-50 g-font-size-14-xs s-btn s-btn-white-bg  g-color-md-orange-text s-btn-xs font-weight-700  g-margin-t-25-xs g-margin-b-20-xs s-header-v2-logo-img-default text-uppercase">Login</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                         <!--logged user -->
@@ -473,12 +481,14 @@
                                                 <!-- <div class="pull-right ">
                                                    <a href="#" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
                                                 </div> -->
-                                                <div class="widget-media-elements text-center pull-left">
+                                                <?php if(!empty($job_result['company_img'])){?>
+												<div class="widget-media-elements text-center pull-left">
                                                     <img src="<?php echo !empty($job_result['company_img']) ? IMG_EMPLOYERS.$job_result['company_img'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="<?= $job_result["company_name"]; ?>" class="widget-media-avatar-job-search img-responsive">
                                                 </div>
+												<?php }?>
                                                 <div class="media-body ">
                                                     <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a href="<?= $url_detail; ?>" target="_blank"><?= $job_result["name"]; ?></a>
+                                                        <a href="<?= $url_detail; ?>" target="_blank" style="color:coral;"><?= $job_result["name"]; ?></a>
                                                     </h6>
                                                     <h6 class=" my-1 roboto-font">
                                                         <a href="<?= $company_url; ?>" target="_blank"><?= $job_result["company_name"]; ?></a>
@@ -493,7 +503,8 @@
                                                 <span class="label label-md-purple label-sm"><?= $job_result["position_level"]; ?></span>
                                             </p>
                                             <p class="multiline-truncate roboto-font font-weight-300 mb-3">
-                                                <?= $job_result["job_description"]; ?>
+                                                <?//= substr($job_result["job_description"],0,250); ?>
+												<?= strip_tags($job_result["job_description"]); ?>
                                             </p>
                                         </li>
                             <?php
