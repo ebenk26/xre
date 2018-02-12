@@ -230,7 +230,7 @@
                                     Please login to read a message or click button bellow.
                                     <br/>
                                     <br/>
-                                    <a href="<?= $url; ?>" style="background: #fb8c00; border: 15px solid #fb8c00; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a" target="_blank">
+                                    <a href="<?= base_url().$url; ?>" style="background: #fb8c00; border: 15px solid #fb8c00; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a" target="_blank">
                                         <span style="color:#ffffff;" class="button-link">
                                             &nbsp;&nbsp;&nbsp;&nbsp;Check message&nbsp;&nbsp;&nbsp;&nbsp;
                                         </span>
