@@ -6,6 +6,10 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="author">
 
+	<!-- Web Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+	
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -50,8 +54,8 @@
                         <div class="btn-group mb-3" data-toggle="buttons">
                             <a class="btn btn-circle btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
                                 <input type="radio"> Student</a>
-                            <a class="btn btn-circle btn-outline-md-indigo px-4" href="<?php echo base_url(); ?>site/user/signup#jobseekerUser" data-toggle="tab" id="jobseekerRadio">
-                                <input type="radio"> Jobseeker</a>
+                            <!--<a class="btn btn-circle btn-outline-md-indigo px-4" href="<?php echo base_url(); ?>site/user/signup#jobseekerUser" data-toggle="tab" id="jobseekerRadio">
+                                <input type="radio"> Jobseeker</a>-->
                             <a class="btn btn-outline-md-indigo btn-circle px-4 " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio"> 
                                 <input type="radio"> Employer </a>
                         </div>
@@ -95,16 +99,17 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-3">
-                                            <div class="col-md-8 col-md-offset-2 ">
-
-                                                <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" name="terms" id="checkboxregisterstudent" class="md-check" required>
+                                            <div class="col-md-9 col-md-offset-2 ">
+												<div class="md-checkbox-list md-checkbox md-indigo-box">
+                                                    <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
+													<input type="checkbox" name="terms" id="checkboxregisterstudent" class="md-check" required>
                                                     <label for="checkboxregisterstudent" class="pl-1">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span> 
-                                                    I agreee with all the <a href="<?php echo base_url(); ?>site/user/signup#">terms and conditions</a>
-                                                </label>
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> I agree with all the
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank"> privacy policy</a>
+                                                    </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -155,14 +160,16 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-3">
-                                            <div class="col-md-8 col-md-offset-2 ">
-
-                                                <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" id="checkboxregisterjobseeker" name="terms" class="md-check">
+                                            <div class="col-md-9 col-md-offset-2 ">
+												<div class="md-checkbox-list md-checkbox md-indigo-box">
+                                                    <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
+													<input type="checkbox" name="terms" id="checkboxregisterjobseeker" class="md-check" required>
                                                     <label for="checkboxregisterjobseeker" class="pl-1">
                                                         <span></span>
                                                         <span class="check"></span>
-                                                        <span class="box "></span> I agreee with all the <a href="<?php echo base_url(); ?>site/user/signup#">terms and conditions</a>
+                                                        <span class="box"></span> I agree with all the
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank"> privacy policy</a>
                                                     </label>
                                                 </div>
                                             </div>
@@ -222,14 +229,16 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-2">
-                                            <div class="col-md-8 col-md-offset-2 ">
-
-                                                <div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <input type="checkbox" id="checkboxemployer" name="terms" class="md-check">
+                                            <div class="col-md-9 col-md-offset-2 ">
+												<div class="md-checkbox-list md-checkbox md-indigo-box">
+                                                    <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
+													<input type="checkbox" name="terms" id="checkboxemployer" class="md-check" required>
                                                     <label for="checkboxemployer" class="pl-1">
                                                         <span></span>
                                                         <span class="check"></span>
-                                                        <span class="box "></span> I agreee with all the <a href="<?php echo base_url(); ?>site/user/signup#">terms and conditions</a>
+                                                        <span class="box"></span> I agree with all the
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank"> privacy policy</a>
                                                     </label>
                                                 </div>
                                             </div>
