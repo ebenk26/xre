@@ -94,8 +94,9 @@ class User_Model extends CI_Model{
             
             //sending confirmEmail($receiver) function calling link to the user, inside message body
 
-            $message = 'Hello '.$receiver['fullname'].',<br><br>Please change your password by clicking on the link below:<br><br>
-            <a href='. base_url() .'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=').'>'. base_url() .'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=').'</a><br><br>Thanks';
+            $receiver["url"] = 'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=');
+
+            $message = $this->load->view("mail/forgot_password",$receiver,true);
 
             $config['mailtype'] = 'html';
             $config['priority'] = 2;

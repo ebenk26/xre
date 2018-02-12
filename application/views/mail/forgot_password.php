@@ -222,17 +222,15 @@
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
                                 <td style="padding: 40px; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">
-                                    Hi <?= $receiver_name; ?>,
+                                    Hi <?= $fullname; ?>,
                                     <br/>
                                     <br/>
-                                    Your job has been applied by <?= $sender_name; ?> with position <?= $job_name; ?>.
-                                    <br/>
-                                    Please login to view candidate profile or click button bellow.
+                                    Please change your password by clicking on the button below :
                                     <br/>
                                     <br/>
                                     <a href="<?= base_url().$url; ?>" style="background: #fb8c00; border: 15px solid #fb8c00; font-family: sans-serif; font-size: 13px; line-height: 110%; text-align: center; text-decoration: none; display: block; border-radius: 3px; font-weight: bold;" class="button-a" target="_blank">
                                         <span style="color:#ffffff;" class="button-link">
-                                            &nbsp;&nbsp;&nbsp;&nbsp;Check candidate&nbsp;&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;Change password&nbsp;&nbsp;&nbsp;&nbsp;
                                         </span>
                                     </a>
                                 </td>
