@@ -138,6 +138,44 @@ class Candidate extends CI_Controller {
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($page_id),'='));   
     }
 
+    public function reschedule_interview_session(){
+        $interview_schedule_user_id = base64_decode($this->input->post('interview_schedule_id'));
+        $page_id = $this->input->post('job_position_id');
+        $start = explode(' - ', $this->input->post('start_date'));
+        $start_date = date('Y-m-d',strtotime(current($start)));
+        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date_hour = implode(' ', array($start_date, $start_hour));
+
+        $end = explode(' - ', $this->input->post('end_date'));
+        $end_date = date('Y-m-d',strtotime(current($end)));
+        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date_hour = implode(' ', array($end_date, $end_hour));
+
+        $title = 'Reschedule Session on'. $this->input->post('start_date');
+        $description = $this->input->post('reschedule_detail');
+
+        $reschedule_data = array(   'start_date' => $start_date_hour,
+                                    'end_date' => $end_date_hour,
+                                    'title' => $title,
+                                    'description' => $description,
+                                    'job_id' => base64_decode($page_id));
+        $reschedule = $this->employer_model->interview_reschedule($reschedule_data, $interview_schedule_user_id);
+
+        //BEGIN : set recent activities
+        $data = array(
+                    'user_id'       => $this->session->userdata('id'),
+                    'ip_address'    => $this->input->ip_address(),
+                    'activity'      => "Edit Interview Schedule Session",
+                    'icon'          => "fa-edit",
+                    'label'         => "success",
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        setRecentActivities($data);
+        //END : set recent activities
+
+        redirect(base_url().'job/candidate/'.$page_id);   
+    }
+
 }
 
 ?>
