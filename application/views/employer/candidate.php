@@ -205,7 +205,7 @@
                                                             </li>
                                                             <li>
                                                                 <?php if ($value['interview_status'] == 'reschedule'): ?>
-                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
                                                                             <i class="icon-calendar"></i>
                                                                             Rescheduled Interview
                                                                         </a>
@@ -331,8 +331,9 @@
                                                 <h4>Rescheduled</h4>
                                             </div>
                                             <form action="<?php echo base_url(); ?>employer/candidate/reschedule_interview_session" method="POST" class="form-horizontal">
-                                                <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>"></input>
-                                                <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>"></input>
+                                                <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>">
+                                                <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>">
+                                                <input type="hidden" name="candidate_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_user_id']), '='); ?>">
                                                 
                                                 <div class="modal-body form-body">
                                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">

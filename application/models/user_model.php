@@ -301,8 +301,8 @@ class User_Model extends CI_Model{
             $data["sender_name"]    = $companyData["company_name"];
             $data["sender_email"]   = $checkUserRole["email"];
 
-            $receiverData   = $this->getCompany($params['receiver_id']);
-            $data["receiver_name"]  = $receiverData["company_name"];
+            $receiverData   = $this->getUserById($params['receiver_id']);
+            $data["receiver_name"]  = $receiverData["fullname"];
             $data["receiver_email"] = $checkUserRole["email"];
         }
         else

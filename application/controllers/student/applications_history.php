@@ -67,6 +67,7 @@ class Applications_history extends CI_Controller {
         $data = array('status' => 'accept');
 
         $update = $this->global_model->update('interview_schedule_user', $where, $data);
+
 		//BEGIN : set recent activities
 		$data = array(
 					'user_id' 		=> $this->session->userdata('id'),
@@ -78,6 +79,46 @@ class Applications_history extends CI_Controller {
 				);
 		setRecentActivities($data);
 		//END : set recent activities
+
+        //BEGIN : set create notification
+        $getUserCompany = $this->job_model->getJobById($job_id);
+
+        $userMail = $this->user_model->getUserMail(
+                                                    array(
+                                                            'sender_id'     =>  $data["user_id"],
+                                                            'receiver_id'   =>  $employer_id
+                                                    )
+                                        );
+
+        $MailContent = array(   
+                        "sender_name"       => $userMail["sender_name"],
+                        "receiver_name"     => $userMail["receiver_name"],
+                        "job_name"          => $getUserCompany['name'],
+                        'url'               => "job/candidate/".rtrim(base64_encode($job_id),'=')."#tab_shortlisted_candidates"
+                    );
+
+        $messageHtml    = $this->load->view("mail/accept_interview",$MailContent,true);
+        $subject        = "[INTERVIEW ACCEPTED] ".$userMail["sender_name"]." accept to attend the interview";
+
+        $MailData = array(  
+                        "sender_email"      => "support@xremo.com",
+                        "receiver_email"    => $userMail["receiver_email"],
+                        'subject'           => $subject,
+                        'message_html'      => $messageHtml
+                    );
+
+        $NotifData = array(
+                    'from_id'       => $data["user_id"],
+                    'user_id'       => $employer_id,
+                    'subject'       => $subject,
+                    'message_html'  => $messageHtml,
+                    'url'           => $MailContent["url"],
+                    'type'          => "reschedule_interview_by_employer",
+                    'viewed'        => 0,
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        CreateNotif($NotifData,$MailData);
+        //END : set create notification
 		
         redirect(base_url().'student/calendar/');
 
@@ -105,8 +146,48 @@ class Applications_history extends CI_Controller {
 				);
 		setRecentActivities($data);
 		//END : set recent activities
+
+        //BEGIN : set create notification
+        $getUserCompany = $this->job_model->getJobById($job_id);
+
+        $userMail = $this->user_model->getUserMail(
+                                                    array(
+                                                            'sender_id'     =>  $data["user_id"],
+                                                            'receiver_id'   =>  $employer_id
+                                                    )
+                                        );
+
+        $MailContent = array(   
+                        "sender_name"       => $userMail["sender_name"],
+                        "receiver_name"     => $userMail["receiver_name"],
+                        "job_name"          => $getUserCompany['name'],
+                        'url'               => "job/candidate/".rtrim(base64_encode($job_id),'=')."#tab_shortlisted_candidates"
+                    );
+
+        $messageHtml    = $this->load->view("mail/reject_interview",$MailContent,true);
+        $subject        = "[INTERVIEW REJECTED] ".$userMail["sender_name"]." reject to attend the interview";
+
+        $MailData = array(  
+                        "sender_email"      => "support@xremo.com",
+                        "receiver_email"    => $userMail["receiver_email"],
+                        'subject'           => $subject,
+                        'message_html'      => $messageHtml
+                    );
+
+        $NotifData = array(
+                    'from_id'       => $data["user_id"],
+                    'user_id'       => $employer_id,
+                    'subject'       => $subject,
+                    'message_html'  => $messageHtml,
+                    'url'           => $MailContent["url"],
+                    'type'          => "reschedule_interview_by_employer",
+                    'viewed'        => 0,
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        CreateNotif($NotifData,$MailData);
+        //END : set create notification
 		
-        redirect(base_url().'student/calendar/');
+        // redirect(base_url().'student/calendar/');
 
     }
 
@@ -146,6 +227,46 @@ class Applications_history extends CI_Controller {
                 );
         setRecentActivities($data);
         //END : set recent activities
+
+        //BEGIN : set create notification
+        $getUserCompany = $this->job_model->getJobById($job_id);
+
+        $userMail = $this->user_model->getUserMail(
+                                                    array(
+                                                            'sender_id'     =>  $data["user_id"],
+                                                            'receiver_id'   =>  $employer_id
+                                                    )
+                                        );
+
+        $MailContent = array(   
+                        "sender_name"       => $userMail["sender_name"],
+                        "receiver_name"     => $userMail["receiver_name"],
+                        "job_name"          => $getUserCompany['name'],
+                        'url'               => "job/candidate/".rtrim(base64_encode($job_id),'=')."#tab_shortlisted_candidates"
+                    );
+
+        $messageHtml    = $this->load->view("mail/reschedule_interview",$MailContent,true);
+        $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." request to reschedule the interview";
+
+        $MailData = array(  
+                        "sender_email"      => "support@xremo.com",
+                        "receiver_email"    => $userMail["receiver_email"],
+                        'subject'           => $subject,
+                        'message_html'      => $messageHtml
+                    );
+
+        $NotifData = array(
+                    'from_id'       => $data["user_id"],
+                    'user_id'       => $employer_id,
+                    'subject'       => $subject,
+                    'message_html'  => $messageHtml,
+                    'url'           => $MailContent["url"],
+                    'type'          => "reschedule_interview",
+                    'viewed'        => 0,
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        CreateNotif($NotifData,$MailData);
+        //END : set create notification
 
         redirect(base_url().'student/calendar/');
     }

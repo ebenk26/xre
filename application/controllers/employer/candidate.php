@@ -8,6 +8,8 @@ class Candidate extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         $this->load->model('global_model');
+        $this->load->model('job_model');
+        $this->load->model('user_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck)){
@@ -16,6 +18,8 @@ class Candidate extends CI_Controller {
     }
 
     public function index(){
+        if($this->session->userdata('id') == FALSE) redirect(base_url().'login');
+
     	$profile['page_title'] = 'Candidate';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
@@ -139,27 +143,30 @@ class Candidate extends CI_Controller {
     }
 
     public function reschedule_interview_session(){
-        $interview_schedule_user_id = base64_decode($this->input->post('interview_schedule_id'));
-        $page_id = $this->input->post('job_position_id');
-        $start = explode(' - ', $this->input->post('start_date'));
-        $start_date = date('Y-m-d',strtotime(current($start)));
-        $start_hour = date('H:i:s', strtotime(end($start)));
-        $start_date_hour = implode(' ', array($start_date, $start_hour));
+        if($this->session->userdata('id') == FALSE) redirect(base_url().'login');
+        
+        $interview_schedule_id      = base64_decode($this->input->post('interview_schedule_id'));
+        $interview_schedule_user_id = base64_decode($this->input->post('candidate_id'));
+        $page_id                    = $this->input->post('job_position_id');
+        $start                      = explode(' - ', $this->input->post('start_date'));
+        $start_date                 = date('Y-m-d',strtotime(current($start)));
+        $start_hour                 = date('H:i:s', strtotime(end($start)));
+        $start_date_hour            = implode(' ', array($start_date, $start_hour));
 
-        $end = explode(' - ', $this->input->post('end_date'));
-        $end_date = date('Y-m-d',strtotime(current($end)));
-        $end_hour = date('H:i:s', strtotime(end($end)));
-        $end_date_hour = implode(' ', array($end_date, $end_hour));
+        $end            = explode(' - ', $this->input->post('end_date'));
+        $end_date       = date('Y-m-d',strtotime(current($end)));
+        $end_hour       = date('H:i:s', strtotime(end($end)));
+        $end_date_hour  = implode(' ', array($end_date, $end_hour));
 
-        $title = 'Reschedule Session on'. $this->input->post('start_date');
-        $description = $this->input->post('reschedule_detail');
+        $title          = 'Reschedule Session on'. $this->input->post('start_date');
+        $description    = $this->input->post('reschedule_detail');
 
         $reschedule_data = array(   'start_date' => $start_date_hour,
                                     'end_date' => $end_date_hour,
                                     'title' => $title,
                                     'description' => $description,
                                     'job_id' => base64_decode($page_id));
-        $reschedule = $this->employer_model->interview_reschedule($reschedule_data, $interview_schedule_user_id);
+        $reschedule = $this->employer_model->interview_reschedule($reschedule_data, $interview_schedule_id);
 
         //BEGIN : set recent activities
         $data = array(
@@ -172,6 +179,91 @@ class Candidate extends CI_Controller {
                 );
         setRecentActivities($data);
         //END : set recent activities
+
+        if($this->input->post('confirmation') == 'Yes')
+        {
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById(base64_decode($page_id));
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'     =>  $data["user_id"],
+                                                                'receiver_id'   =>  $interview_schedule_user_id
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/calendar"
+                        );
+
+            $messageHtml    = $this->load->view("mail/reschedule_interview_accept",$MailContent,true);
+            $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." accept to reschedule the interview";
+
+            $MailData = array(  
+                            "sender_email"      => "support@xremo.com",
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $data["user_id"],
+                        'user_id'       => $interview_schedule_user_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "reschedule_interview_by_employer",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
+        }
+        else
+        {
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById(base64_decode($page_id));
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'     =>  $data["user_id"],
+                                                                'receiver_id'   =>  $interview_schedule_user_id
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/calendar"
+                        );
+
+            $messageHtml    = $this->load->view("mail/reschedule_interview_reject",$MailContent,true);
+            $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." rejected to reschedule the interview";
+
+            $MailData = array(  
+                            "sender_email"      => "support@xremo.com",
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $data["user_id"],
+                        'user_id'       => $interview_schedule_user_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "reschedule_interview_by_employer",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
+        }
 
         redirect(base_url().'job/candidate/'.$page_id);   
     }
