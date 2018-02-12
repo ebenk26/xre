@@ -258,7 +258,10 @@ class User extends CI_Controller {
         $user_email = base64_decode($email);
         $user = $this->user_model->get_user($user_email);
         $this->session->set_userdata($user);
-        redirect(base_url().$user['roles'].'/profile/');
+		if($user['roles'] == "administrator"){
+			redirect(base_url().'administrator/dashboard/');
+		}
+        redirect(base_url().$user['roles'].'/settings/');
 
     }
 
