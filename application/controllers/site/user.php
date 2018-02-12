@@ -7,6 +7,7 @@ class User extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
+        $this->load->model('global_model');
         if(empty($countryCheck)){
             redirect(base_url());
         }
@@ -95,6 +96,7 @@ class User extends CI_Controller {
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password')))
             );
+
             
             $this->session->set_flashdata('name', $this->input->post('fullname'));
             $this->session->set_flashdata('email', $this->input->post('email'));
@@ -103,6 +105,7 @@ class User extends CI_Controller {
             
             try{
                 $save = $this->user_model->signup_post($data, $role);
+                
                 if ($save == false) {
                     throw new Exception('Email Send Failed');
                 }

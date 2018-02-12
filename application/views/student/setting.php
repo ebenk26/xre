@@ -52,7 +52,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-600 roboto-font font-20-xs mt-0 md-indigo-text">Full Name</h5>
-                                                <h4 class="mt-1 font-weight-400 roboto-font"><?php echo $user->fullname; ?> </h4>
+                                                <h4 class="mt-1 font-weight-400 roboto-font"><?php echo !empty($user->fullname) ? $user->fullname : 'Please Edit your profile'; ?> </h4>
                                             </div>
 
                                         </div>
@@ -63,7 +63,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Email Address</h5>
-                                                <h4 class="mt-1  roboto-font font-weight-400"> <?php echo $user->email; ?></h4>
+                                                <h4 class="mt-1  roboto-font font-weight-400"> <?php echo !empty($user->email) ? $user->email : 'Please Edit your profile'; ?></h4>
                                             </div>
                                         </div>
 
@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Phone Number</h5>
-                                                <h4 class="mt-1  roboto-font font-weight-400"> <?php echo $user_bios->contact_number; ?></h4>
+                                                <h4 class="mt-1  roboto-font font-weight-400"> <?php echo isset($user_bios->contact_number) ? $user_bios->contact_number : 'Please Edit your profile' ; ?></h4>
                                             </div>
                                         </div>
 
@@ -106,7 +106,7 @@
                                     <div class="panel-body">
                                         <div class="media" id="searchable_content">
                                             <div class="pull-right">
-                                                <input type="checkbox" id="searchable" <?php echo ($user_bios->searchable == 1) ? 'checked=checked' : ''; ?>>
+                                                <input type="checkbox" id="searchable" <?php echo (isset($user_bios->searchable) && $user_bios->searchable == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Not Searchable</h5>
@@ -117,9 +117,9 @@
                                                 </h4>
                                             </div>
                                         </div>
-                                        <div class="media <?php echo ($user_bios->searchable == 1) ? 'hidden' : ''; ?>" id="searchable_detail_content">
+                                        <div class="media <?php echo (isset($user_bios->searchable) && $user_bios->searchable == 1) ? 'hidden' : ''; ?>" id="searchable_detail_content">
                                             <div class="pull-right">
-                                                <input type="checkbox" id="searchable_detail" <?php echo ($user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
+                                                <input type="checkbox" id="searchable_detail" <?php echo (isset($user_bios->searchable_detail) && $user_bios->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Searchable with Contact Details</h5>
@@ -177,7 +177,7 @@
                                         <label for="">Phone Number</label>
                                         <div class="form-inline">
                                             <div class="input-group">
-                                                <input type="text" name="contact_number" class="form-control " value="<?php echo $user_bios->contact_number ?>">
+                                                <input type="text" name="contact_number" class="form-control " value="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: 'Please Edit your profile'; ?>">
                                             </div>
 
                                         </div>
