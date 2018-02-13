@@ -1,4 +1,4 @@
-<!-- BEGIN CONTENT -->
+BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h1 class="page-title"> Calendar
@@ -70,6 +70,14 @@
                                                                             </li>
                                                                             <li>
                                                                                 <div class="col-md-3 text-right font-weight-700">
+                                                                                    User Name
+                                                                                </div>
+                                                                                <div class="col-md-9 text-uppercase ">
+                                                                                    <?php echo $value['fullname'] ?>
+                                                                                </div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="col-md-3 text-right font-weight-700">
                                                                                     Title
                                                                                 </div>
                                                                                 <div class="col-md-9">
@@ -108,9 +116,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer ">
-                                                                    <a href="#modal_edit_session_<?php echo rtrim(base64_encode($value['id']), '=');?>" data-toggle="modal" class="btn btn-md-indigo ">
+                                                                <!--     <a href="#modal_edit_session_<?php echo rtrim(base64_encode($value['id']), '=');?>" data-toggle="modal" class="btn btn-md-indigo ">
                                                                         Edit
-                                                                    </a>                 
+                                                                    </a>                  -->
                                                                 </div>
 
                                                             </div>
@@ -200,4 +208,4 @@
             </div>
         </div>
 
-        <!-- END CONTENT -->
+        <!-- END CONTENT
