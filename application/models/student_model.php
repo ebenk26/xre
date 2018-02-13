@@ -14,19 +14,25 @@ class Student_Model extends CI_Model{
                             'type' => 'header_photo');
         $checkUserProfilePhotoExist = $this->checkImageExist($userProfilePhotoID);
         $checkUserHeaderPhotoExist = $this->checkImageExist($userHeaderPhotoID);
-        $dataUploadsProfilePhoto = array(
-            'user_id' => $this->session->userdata('id'),
-            'name' => $profile['profile_photo'],
-            'type' => 'profile_photo',
-            'updated_at' => date('Y-m-d H:i:s')
-        );
-
-        $dataUploadsHeaderPhoto = array(
-            'user_id' => $this->session->userdata('id'),
-            'name' => $profile['header_photo'],
-            'type' => 'header_photo',
-            'updated_at' => date('Y-m-d H:i:s')
-        );
+        
+        if($profile['profile_photo'] != ""){
+            $dataUploadsProfilePhoto = array(
+                'user_id' => $this->session->userdata('id'),
+                'name' => $profile['profile_photo'],
+                'type' => 'profile_photo',
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+        }
+        
+        if($profile['header_photo'] != ""){
+            $dataUploadsHeaderPhoto = array(
+                'user_id' => $this->session->userdata('id'),
+                'name' => $profile['header_photo'],
+                'type' => 'header_photo',
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+        }
+        
 
         $dataBios = array(
            'user_id' => $this->session->userdata('id'),
@@ -80,19 +86,24 @@ class Student_Model extends CI_Model{
                 }
             }
 
-            if ($checkUserProfilePhotoExist) {
-                $this->db->where($userProfilePhotoID);
-                $this->db->update('profile_uploads', $dataUploadsProfilePhoto); 
-            }else{
-                $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
+            if($profile['profile_photo'] != ""){
+                if ($checkUserProfilePhotoExist) {
+                    $this->db->where($userProfilePhotoID);
+                    $this->db->update('profile_uploads', $dataUploadsProfilePhoto); 
+                }else{
+                    $this->db->insert('profile_uploads', $dataUploadsProfilePhoto); 
+                }
             }
-
-            if ($checkUserHeaderPhotoExist) {
-                $this->db->where($userHeaderPhotoID);
-                $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
-            }else{
-                $this->db->insert('profile_uploads', $dataUploadsHeaderPhoto); 
+            
+            if($profile['header_photo'] != ""){
+                if ($checkUserHeaderPhotoExist) {
+                    $this->db->where($userHeaderPhotoID);
+                    $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
+                }else{
+                    $this->db->insert('profile_uploads', $dataUploadsHeaderPhoto); 
+                }
             }
+            
 
             if ($checkUserBioExist) {
                 $this->db->where('user_id', $this->session->userdata('id'));
@@ -201,6 +212,19 @@ class Student_Model extends CI_Model{
             $result['student_skill_percent'] =  0;
         }
 
+        //skills
+        $this->db->select('user_skill_set.id as id, user_skill_set.id as skill_id ,user_skill_set.name, user_skill_set.description, user_skill_set.level');
+        $this->db->from('users');
+        $this->db->join('user_skill_set', 'user_skill_set.user_id = users.id','left');
+        $this->db->where(array('user_skill_set.user_id' => $id));
+        $skills = $this->db->get();
+        $result['skill'] = $skills->result_array();
+        if ($skills->result_array()) {
+            $result['skill_percent'] =  0.1;
+        }else{
+            $result['skill_percent'] = 0;
+        }
+
         //address
         $this->db->select('user_address.address, user_address.postcode, user_address.city, user_address.state as states, user_address.country');
         $this->db->from('users');
@@ -223,7 +247,7 @@ class Student_Model extends CI_Model{
         //image
         $this->db->select('profile_uploads.name, profile_uploads.type');
         $this->db->from('users');
-        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id','left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id');
         $this->db->where(array('profile_uploads.user_id' => $id));
         $image = $this->db->get();
         $result['image'] = $image->result_array();
@@ -245,6 +269,7 @@ class Student_Model extends CI_Model{
         }else{
             $result['image_profile'] =  0;
         }
+
 
         //image header profile
         $this->db->select('profile_uploads.name, profile_uploads.type');
@@ -276,6 +301,7 @@ class Student_Model extends CI_Model{
         }else{
             $result['skill_percent'] = 0;
         }
+
 
         //language
         $this->db->select('user_language_set.id as id, user_language_set.id as skill_id ,user_language_set.language as title, user_language_set.written, user_language_set.spoken');

@@ -102,9 +102,11 @@
                         <!--logged user -->
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse" >
                             <ul class="s-header-v2-nav">
-                                <!-- <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link md-orange-text">Search Job</a>
-                                </li> -->
+                                <?php if ($roles =='student' || empty($id)) {?>
+                                    <li class="s-header-v2-nav-item">
+                                        <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
+                                    </li>
+                                <?php }?>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
@@ -119,8 +121,19 @@
                                 </li>
                                 <?php if(!empty($id)){?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                    <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                    <a href="<?=base_url()?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <?php if ($roles =='administrator') {?>
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <?php }?>
+
+                                        <?php if ($roles =='employer') {?>
+                                            <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                        <?php }?>
+                                        
+                                        <?php if ($roles =='student') {?>
+                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                        <?php }?>
+
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
@@ -136,10 +149,17 @@
 										<?php } ?>
                                         <?php if ($roles !='employer' && $roles !='administrator') {?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($student_id),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-book-open mr-3"></i>My Resume</a>
                                             </li>
                                         <?php } ?>
+                                        <?php if ($roles =='employer') {?>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-book-open mr-3"></i> View My Profile
+                                            </a>
+                                        </li>
+                                        <?php }?>
 										<?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
@@ -241,7 +261,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3  col-xs-12 text-center">
-					<img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
+					<img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
                     <li hidden>
                         <!-- <h5 class="md-white-text font-weight-700 text-uppercase letter-space-xs">
                             Share:
@@ -354,10 +374,10 @@
 
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
-                            <?php //if($this->session->userdata('id') != $detail['id_users']){?>										
+                            <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>									
 								<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-4" target="_blank">
 											<i class="icon-envelope mr-2 "></i>Send Message</a>
-							<?php //}?>                                        
+							<?php }?>                                        
                         </li>
 						<li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">ADDRESS</h5>

@@ -20,7 +20,7 @@ class Profile extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
-        $profile['language'] = $this->student_model->get_array('language', 'id', 'asc');
+        $profile['language'] = $this->student_model->get_array('language', 'name', 'asc');
         $profile['employment_types'] = $this->student_model->get_array('employment_types', 'id', 'asc');
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
@@ -30,6 +30,7 @@ class Profile extends CI_Controller {
 	}
 
     public function post(){
+        //IF NOT EMPTY PROFILE PICTURE
         if(!empty($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
@@ -55,6 +56,7 @@ class Profile extends CI_Controller {
             $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'profile-pic.png';
         }
 
+        //IF NOT EMPTY HEADER PICTURE
         if(!empty($_FILES['header_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');
@@ -77,9 +79,10 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $header_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+            $header_photo = isset($userImage['name']) ? $userImage['name'] : '';
         }
 		
+        //YOUTUBE LINK
 		$youtubelink = $this->input->post('youtubelink');
 
 		if (!filter_var($youtubelink, FILTER_VALIDATE_URL)) {
