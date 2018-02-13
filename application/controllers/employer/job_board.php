@@ -217,8 +217,9 @@ class Job_Board extends CI_Controller {
     }
 
     public function reject(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->rejected($id);
+        $id             = base64_decode($this->input->post('post_id'));
+        $candidate_id   = base64_decode($this->input->post('candidate_id'));
+        $shorlist_job   = $this->job_model->rejected($id);
         
         if ($shorlist_job == true) {
             $this->session->set_flashdata('msg_success', 'Successfully reject this candidate'); 
@@ -234,14 +235,55 @@ class Job_Board extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById($id);
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'     =>  $data["user_id"],
+                                                                'receiver_id'   =>  $candidate_id
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/applications_history"
+                        );
+
+            $messageHtml    = $this->load->view("mail/rejected",$MailContent,true);
+            $subject        = "[REJECTED] You've been rejected by ".$userMail["sender_name"];
+
+            $MailData = array(  
+                            "sender_email"      => "support@xremo.com",
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $data["user_id"],
+                        'user_id'       => $candidate_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "rejected",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to reject this candidate');
         }   
     }
 
     public function hire(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->hire($id);
+        $id             = base64_decode($this->input->post('post_id'));
+        $candidate_id   = base64_decode($this->input->post('candidate_id'));
+        $shorlist_job   = $this->job_model->hire($id);
         
         if ($shorlist_job == true) {
             $this->session->set_flashdata('msg_success', 'Successfully hire this candidate');        
@@ -257,6 +299,46 @@ class Job_Board extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById($id);
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'     =>  $data["user_id"],
+                                                                'receiver_id'   =>  $candidate_id
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/applications_history"
+                        );
+
+            $messageHtml    = $this->load->view("mail/hired",$MailContent,true);
+            $subject        = "[HIRED] You've been hired by ".$userMail["sender_name"];
+
+            $MailData = array(  
+                            "sender_email"      => "support@xremo.com",
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $data["user_id"],
+                        'user_id'       => $candidate_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "hired",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to hire this candidate');
         }   
@@ -326,7 +408,7 @@ class Job_Board extends CI_Controller {
                             "sender_name"       => $userMail["sender_name"],
                             "receiver_name"     => $userMail["receiver_name"],
                             "job_name"          => $getUserCompany['name'],
-                            'url'               => "student/applications_history"
+                            'url'               => "student/calendar"
                         );
 
             $messageHtml    = $this->load->view("mail/send_interview_session",$MailContent,true);
@@ -340,7 +422,7 @@ class Job_Board extends CI_Controller {
                         );
 
             $NotifData = array(
-                        'from_id'       => $this->session->userdata('id'),
+                        'from_id'       => $employer_id,
                         'user_id'       => $candidate_id,
                         'subject'       => $subject,
                         'message_html'  => $messageHtml,

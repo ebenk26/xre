@@ -52,11 +52,11 @@
                         <div class="clearfix"></div>
                         <!-- Button Toggle : Select User -->
                         <div class="btn-group mb-3" data-toggle="buttons">
-                            <a class="btn btn-circle btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
+                            <a class="btn btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
                                 <input type="radio"> Student</a>
                             <!--<a class="btn btn-circle btn-outline-md-indigo px-4" href="<?php echo base_url(); ?>site/user/signup#jobseekerUser" data-toggle="tab" id="jobseekerRadio">
                                 <input type="radio"> Jobseeker</a>-->
-                            <a class="btn btn-outline-md-indigo btn-circle px-4 " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio"> 
+                            <a class="btn btn-outline-md-indigo px-4 " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio"> 
                                 <input type="radio"> Employer </a>
                         </div>
                         <!-- Tab Content : Form Signup User  -->
@@ -68,7 +68,7 @@
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="text" name="fullname" class="form-control " placeholder="FullName" required>
+                                                <input type="text" name="fullname" class="form-control " placeholder="Full Name" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
@@ -78,7 +78,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input type="email" name="email" class="form-control " placeholder="Email Address" required>
                                                 <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('email'); ?></span>
+                                                <span class="text-danger"><?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Password -->
@@ -94,7 +94,7 @@
                                             <div class="col-md-8 col-md-offset-2 ">
                                                 <input type="password" name="confirm_password" class="form-control " placeholder="Confirm Password" required>
                                                 <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
+                                                <span class="text-danger"><?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?></span>
                                             </div>
                                         </div>
                                         <!-- Checkbox : I Agree -->
@@ -198,7 +198,7 @@
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="fullname" type="text" class="form-control " placeholder="FullName">
+                                                <input name="fullname" type="text" class="form-control " placeholder="Full Name">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>

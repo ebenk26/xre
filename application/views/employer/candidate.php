@@ -206,7 +206,7 @@
                                                             </li>
                                                             <li>
                                                                 <?php if ($value['interview_status'] == 'reschedule'): ?>
-                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
                                                                             <i class="icon-calendar"></i>
                                                                             Rescheduled Interview
                                                                         </a>
@@ -219,13 +219,13 @@
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
-                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
                                                                     <i class="icon-check md-green-text"></i>
                                                                     Hire Candidate
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" >
+                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
                                                                     <i class="icon-close md-red-text"></i>
                                                                     Reject Candidate
                                                                 </a>
@@ -332,8 +332,9 @@
                                                 <h4>Rescheduled</h4>
                                             </div>
                                             <form action="<?php echo base_url(); ?>employer/candidate/reschedule_interview_session" method="POST" class="form-horizontal">
-                                                <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>"></input>
-                                                <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>"></input>
+                                                <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>">
+                                                <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>">
+                                                <input type="hidden" name="candidate_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_user_id']), '='); ?>">
                                                 
                                                 <div class="modal-body form-body">
                                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">

@@ -55,8 +55,8 @@
 
                                             </div>
                                             <div class="mt-card-content  ">
-                                                <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs "><?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Xremo Sdn Bhd'; ?></h3>
-                                                <h5 class="md-grey-text text-darken-1 font-24-xs my-4"><?php echo !empty($detail['industry']) ? $detail['industry']: 'Job Portal'; ?></h5>
+                                                <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs "><?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Set Your Company Name'; ?></h3>
+                                                <h5 class="md-grey-text text-darken-1 font-24-xs my-4"><?php echo !empty($detail['industry']) ? $detail['industry']: ''; ?></h5>
                                                 <hr class="mt-width-400-xs center-block">
                                                 <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank" class="btn btn-md-indigo mb-6">View My Profile</a>
                                                 <div class="mt-card-social">
@@ -140,7 +140,7 @@
                                                         <div class="portlet-body text-center">
                                                             <i class="icon-note font-grey-mint font-40-xs mb-4"></i>
                                                             <h4 class="text-center font-weight-500 font-grey-mint">No Info</h4>
-                                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by click on "
+                                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by clicking on "
                                                                 <i class="icon-pencil"></i> Edit Profile"</h5>
                                                         </div>
                                                     </div>
@@ -155,40 +155,53 @@
                                         <div class="m-grid">
 
                                             <div class="m-grid-col">
-                                                <dl>
+                                                <dl style="margin-right: 8px;">
                                                     <dt class="font-20-xs md-grey-text font-weight-600 ">Spoken Language</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <ul class="list-inline unstyled-list mb-0">
-                                                            <li><?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></li>
-                                                        </ul>
+                                                        <?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?>
                                                     </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Size</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?> People</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' People' : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Dress Code</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($dresscode) ? ucwords($dresscode) : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($dresscode) ? ucwords($dresscode) : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Benefit</dt>
-                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?></dd>
+                                                    <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'?></dd>
                                                 </dl>
                                             </div>
                                             <div class="m-grid-col">
                                                 <dl>
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Industry</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['industry']) ? $detail['industry'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['industry']) ? $detail['industry'] : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Working Hour</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['working_days']) ? ucwords($detail['working_days']) : '<i class="icon-pencil"></i> Edit Profile" button</h6>'?> ( <?php echo !empty($detail['working_hours']) ? $detail['working_hours'] : '<i class="icon-pencil"></i> Edit Profile" button</h6>' ?>)</dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
+													<?php if(!empty($detail['working_days']) && $detail['working_days'] != " - "){?>
+														<?php echo ucwords($detail['working_days']);?>
+														<?php if(!empty($detail['working_hours']) && $detail['working_hours'] != " - "){?>
+															( <?php echo $detail['working_hours'];?> )
+														<?php }else{?>
+															<h6 class="font-grey-cascade mt-1 text-none">Hour not set. Click " <i class="icon-pencil"></i> Edit Profile" button</h6>
+														<?php }?>
+													<?php }else{?>
+														<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>
+													<?php }?>
+													</dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Website</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <a href="<?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?>"><?php echo !empty($detail['url']) ? $detail['url'] : 'https://www.Xremo.com/' ?></a>
+                                                        <?php if(!empty($detail['url'])){?>
+															<a href="<?php echo $detail['url']?>" target="_blank"><?php echo $detail['url']?></a>
+														<?php }else{?>
+															<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>
+														<?php }?>
                                                     </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Email</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-                                                        <?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>
+                                                        <?php echo !empty($detail['email']) ? $detail['email'] : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?>
                                                     </dd>
                                                 </dl>
                                             </div>
@@ -209,8 +222,18 @@
                                             <li class="list-group-item">
 
                                                 <span class="label label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>"><?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?></span>
-                                                <h5 class="font-weight-500"><?php echo $value->building_address; ?>,<?php echo $value->building_city; ?>,<?php echo $value->building_postcode; ?>,<?php echo $value->building_state; ?>,<?php echo $value->building_country; ?></h5>
-                                                <h5><?php echo $value->building_email; ?></h5>
+												
+												<?php
+													$full_address = $value->building_address != ""?$value->building_address.", ":"";
+													$full_address .= $value->building_city != ""?$value->building_city.", ":"";
+													$full_address .= $value->building_postcode != ""?$value->building_postcode.", ":"";
+													$full_address .= $value->building_state != ""?$value->building_state.", ":"";
+													$full_address .= $value->building_country != ""?$value->building_country.", ":"";
+													$full_address = $full_address != ""?substr($full_address, 0, -2):"";
+												?>
+                                                <h5 class="font-weight-500"><?php echo $full_address; ?></h5>
+												
+                                                <h5><i class="fa fa-envelope mr-2"></i> <?php echo $value->building_email; ?></h5>
                                                 <h5>
                                                     <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>
                                                 <h5>
@@ -224,7 +247,7 @@
                                             <div class="portlet-body text-center">
                                                 <i class="icon-note font-grey-mint font-40-xs mb-4"></i>
                                                 <h4 class="text-center font-weight-500 font-grey-mint">No Info</h4>
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by click on "
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Edit your info by clicking on "
                                                     <i class="icon-pencil"></i> Edit Profile"</h5>
                                             </div>
                                         </div>
@@ -272,8 +295,16 @@
                                         <div class="form-group">
                                             <label class="control-label col-sm-3">Company Name</label>
                                             <div class="col-sm-9 ">
-                                                <input type="text" class="form-control " name="company_name" placeholder="Xremo Sdn Bhd" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : 'Xremo Sdn Bhd'; ?>" required>
-                                                <span class="help-block small">Company Full Name </span>
+                                                <input type="text" class="form-control " name="company_name" placeholder="Your company name" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : ''; ?>" required>
+                                                <!--<span class="help-block small">Company Full Name </span>-->
+                                            </div>
+                                        </div>
+										
+										<!-- Company Email -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3">Company Email</label>
+                                            <div class="col-sm-9 ">
+                                                <input type="text" class="form-control " name="email" placeholder="your@company.com" value="<?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>" required>
                                             </div>
                                         </div>
 
@@ -281,11 +312,11 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Company Registration Number</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control input-medium" name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : 'Xremo Sdn Bhd'; ?>">
+                                                <input type="text" class="form-control input-medium" name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : ''; ?>">
                                                 <!-- <span class="help-block small"></span> -->
                                             </div>
                                         </div>
-
+										
                                         <!-- Industry -->
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Industry</label>
@@ -397,7 +428,7 @@
                                             <label class="control-label col-md-3">Company Size</label>
                                             <div class="col-md-9">
                                                 <select class="bs-select form-control input-xlarge  " name="company_size">
-                                                    <option value="" disabled>Select one </option>
+                                                    <option value="">Select company size</option>
                                                     <option value="1-50" <?php echo ($user_profile['total_staff'] == '1-50') ? 'selected' : ''; ?>>1 to 50 employee</option>
                                                     <option value="51-100" <?php echo ($user_profile['total_staff'] == '51-100') ? 'selected' : ''; ?>>50 to 100 employee</option>
                                                     <option value="100<" <?php echo ($user_profile['total_staff'] == '100<') ? 'selected' : ''; ?>>100 to above employee</option>
@@ -445,7 +476,7 @@
                                                 <div class="m-grid">
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_start">
-                                                            <option value="" disabled>Select Day Start </option>
+                                                            <option value="">Select Day Start</option>
                                                             <option value="monday" <?php echo ($working_days[0] == 'monday') ? 'selected' : '' ?>>Monday</option>
                                                             <option value="tuesday" <?php echo ($working_days[0] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
                                                             <option value="wednesday" <?php echo ($working_days[0] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
@@ -460,7 +491,7 @@
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_end">
-                                                            <option value="" disabled>Select Day End </option>
+                                                            <option value="">Select Day End</option>
                                                             <option value="monday" <?php echo ($working_days[1] == 'monday') ? 'selected' : '' ?>>Monday</option>
                                                             <option value="tuesday" <?php echo ($working_days[1] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
                                                             <option value="wednesday" <?php echo ($working_days[1] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
@@ -635,7 +666,7 @@
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-4">Fax Number</label>
                                                                 <div class="col-md-8">
-                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_fax; ?>">
+                                                                    <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" value="<?php echo $value->building_fax; ?>">
                                                                 </div>
                                                             </div>
                                                         </div>

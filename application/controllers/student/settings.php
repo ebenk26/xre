@@ -51,7 +51,7 @@ class settings extends CI_Controller {
 
     public function change_phone_number(){
         $data = array('contact_number' => $this->input->post('contact_number'));
-        $where = array('user' => $this->session->userdata('id'));
+        $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
 		
 		//BEGIN : set recent activities
