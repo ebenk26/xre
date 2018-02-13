@@ -52,7 +52,7 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'xremo-logo-blue.png';
+            $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'profile-pic.png';
         }
 
         if(!empty($_FILES['header_photo']['tmp_name'])){
