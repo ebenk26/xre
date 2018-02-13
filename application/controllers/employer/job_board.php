@@ -162,21 +162,22 @@ class Job_Board extends CI_Controller {
 
     public function details(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
+        $applicant_id = $this->session->userdata('id');
         if (!$id) {
             redirect(show_404());
         }
-		
-		
-		$this->db->select('*');
-		$this->db->from('applieds');
-		$this->db->where('user_id', $this->session->userdata('id'));
-		$this->db->where('job_position_id', $id);
-		$query = $this->db->get();
-		$applied = $query->row();
-		$job_post['applied'] = $applied;
+        
+        
+        $this->db->select('*');
+        $this->db->from('applieds');
+        $this->db->where('user_id', $this->session->userdata('id'));
+        $this->db->where('job_position_id', $id);
+        $query = $this->db->get();
+        $applied = $query->row();
+        $job_post['applied'] = $applied;
 
-		
-		
+        
+        
         $job_post['job'] = $this->employer_model->get_job_detail($id);		
         $user_id = $job_post['job']->user_id;
         $get_user_profile = $this->employer_model->get_user_profile($user_id);
@@ -185,6 +186,7 @@ class Job_Board extends CI_Controller {
         $job_post['user_profile'] = $get_user_profile;
         $job_post['more_jobs'] = $this->employer_model->get_more_from($user_id, $id);
         $job_post['job_id'] = $this->uri->segment(URI_SEGMENT_DETAIL);
+        $job_post['applicant'] = $this->employer_model->get_user_profile($applicant_id);
         $this->load->view('employer/preview',$job_post);
     }
 
