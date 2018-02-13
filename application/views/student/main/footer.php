@@ -330,44 +330,6 @@
                     );
             });
 
-            $('.btn-rej').click(function () {
-                $('.modal_detail_interview').modal('hide');
-                var job_id = $(this).attr('job-id');
-                var session_id = $(this).attr('session-id');
-                var employer_id = $(this).attr('employer-id');
-                    swal({
-                        title: "Are you sure you want to reject the invitation?",
-                        text: "You reject the invitation",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Reject",
-                        cancelButtonText: "Cancel",
-                        closeOnConfirm: false,
-                        closeOnCancel: false 
-                    },
-                        function(isConfirm) {
-                            if (isConfirm) {
-                                $.ajax({
-                                    url:"<?php echo base_url();?>student/applications_history/reject_invitation",
-                                    method:"POST",
-                                    data: {
-                                      job_id: parseInt(job_id),
-                                      session_id: parseInt(session_id),
-                                      employer_id: parseInt(employer_id)
-                                    },
-                                    success:function(response) {
-                                       swal("Sucess", "Success reject the invitation.", "success");
-                                       location.reload();
-                                    }
-                                  })
-                            } else {
-                                swal("Cancelled", "You still thinking about other possibilities", "error");
-                            }
-                        }
-                    );
-            });
-
             $('.btn-resc').click(function () {
                 $('.modal_detail_interview').modal('hide');
                 var job_id = $(this).attr('job-id');
@@ -376,6 +338,16 @@
                 $('#modal_rescheduled_form .job-id').val(job_id);
                 $('#modal_rescheduled_form .session-id').val(session_id);
                 $('#modal_rescheduled_form .employer-id').val(employer_id);
+            });
+
+            $('.btn-rej').click(function () {
+                $('.modal_detail_interview').modal('hide');
+                var job_id = $(this).attr('job-id');
+                var session_id = $(this).attr('session-id');
+                var employer_id = $(this).attr('employer-id');
+                $('#modal_reject_form .job-id').val(job_id);
+                $('#modal_reject_form .session-id').val(session_id);
+                $('#modal_reject_form .employer-id').val(employer_id);
             });
 
             $("#searchable_detail").bootstrapSwitch(
