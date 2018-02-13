@@ -1,24 +1,25 @@
-<?php   $working_days = explode(' - ', $user_profile['working_days']);
-        $working_hours = explode(' - ', $user_profile['working_hours']);
-        $dress_code = explode(',', $user_profile['dress_code']);
-        $spoken_language = explode(',', $user_profile['spoken_language']);
-        $company_address = json_decode($user_profile['address']);
-        $profile_picture = end($profile_photo); 
-        $header_picture = end($header_photo); 
-        $dress_code_detail = explode(',', $detail['dress_code']);
-        $dresscode = ucwords(str_replace(',',', ',$detail['dress_code']),', ');
-        /*$dresscode = '';
-        if (!empty($dress_code_detail)) {
-            foreach ($dress_code_detail as $key => $value) {
-                if ($value == end($dress_code_detail)) {
-                    $dresscode .= ucwords($value);
-                }else{
-                    $dresscode .= ucwords($value).', ';
-                }
-            }
-        }*/
+<?php   
+//$working_days = explode(' - ', $user_profile['working_days']);
+//$working_hours = explode(' - ', $user_profile['working_hours']);
+$dress_code = explode(',', $user_profile['dress_code']);
+$spoken_language = explode(',', $user_profile['spoken_language']);
+$company_address = json_decode($user_profile['address']);
+$profile_picture = end($profile_photo); 
+$header_picture = end($header_photo); 
+$dress_code_detail = explode(',', $detail['dress_code']);
+$dresscode = ucwords(str_replace(',',', ',$detail['dress_code']),', ');
+/*$dresscode = '';
+if (!empty($dress_code_detail)) {
+    foreach ($dress_code_detail as $key => $value) {
+        if ($value == end($dress_code_detail)) {
+            $dresscode .= ucwords($value);
+        }else{
+            $dresscode .= ucwords($value).', ';
+        }
+    }
+}*/
 
-        ?>
+?>
 <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -77,17 +78,23 @@
                                                             <?php break;
                                                                 case 'linkedin': ?>
                                                                 <li class="socicons">
-                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-li-bg socicon-linkedin tooltips" data-original-title="Linked In"></a>
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-li-bg socicon-linkedin tooltips" data-original-title="LinkedIn"></a>
                                                                 </li>
                                                             <?php break;
                                                                 case 'gplus': ?>
                                                                 <li class="socicons">
-                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-gplus-bg socicon-google tooltips" data-original-title="Google"></a>
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-gplus-bg socicon-google tooltips" data-original-title="Google Plus"></a>
                                                                 </li>
-                                                            <?php case 'youtube':?>
+                                                            <?php break;
+																case 'youtube':?>
                                                                 <li class="socicons">
-                                                                    <a href="#" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-yt-bg socicon-youtube tooltips" data-original-title="Youtube"></a>
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-yt-bg socicon-youtube tooltips" data-original-title="Youtube"></a>
                                                                 </li>
+															<?php break;
+																case 'instagram':?>
+                                                                <li class="socicons">
+                                                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="socicon-btn socicon-btn-circle socicon-sm socicon-solid social-yt-bg socicon-instagram tooltips" data-original-title="Instagram"></a>
+                                                                </li>															
                                                             <?php break; default:?>
                                                                 <li class="socicons">
                                                                     
@@ -162,7 +169,7 @@
                                                     </dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Company Size</dt>
-                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' People' : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
+                                                    <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' Employee' : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?></dd>
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Dress Code</dt>
                                                     <dd class="md-grey-text text-darken-3 font-weight-600 mb-3 "><?php echo !empty($dresscode) ? ucwords($dresscode) : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>' ?> </dd>
@@ -178,10 +185,10 @@
 
                                                     <dt class=" font-20-xs md-grey-text font-weight-600 ">Working Hour</dt>
                                                     <dd class=" md-grey-text text-darken-3 font-weight-600 mb-3 ">
-													<?php if(!empty($detail['working_days']) && $detail['working_days'] != " - "){?>
-														<?php echo ucwords($detail['working_days']);?>
-														<?php if(!empty($detail['working_hours']) && $detail['working_hours'] != " - "){?>
-															( <?php echo $detail['working_hours'];?> )
+													<?php if($detail['working_days_start'] != "" && $detail['working_days_end'] != ""){?>
+														<?php echo ucwords($detail['working_days_start'].' - '.$detail['working_days_end']);?>
+														<?php if($detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""){?>
+															( <?php echo $detail['working_hours_start'].' - '.$detail['working_hours_end'];?> )
 														<?php }else{?>
 															<h6 class="font-grey-cascade mt-1 text-none">Hour not set. Click " <i class="icon-pencil"></i> Edit Profile" button</h6>
 														<?php }?>
@@ -365,10 +372,9 @@
                                                                         <option value="facebook" <?php echo ($value['name']=='facebook') ? 'selected' : '' ?>>Facebook</option>
                                                                         <option value="twitter" <?php echo ($value['name']=='twitter') ? 'selected' : '' ?>>Twitter</option>
                                                                         <option value="gplus" <?php echo ($value['name']=='gplus') ? 'selected' : '' ?>>Google Plus</option>
-                                                                        <option value="linkedin" <?php echo ($value['name']=='linkedin') ? 'selected' : '' ?>>Linked In</option>
+                                                                        <option value="linkedin" <?php echo ($value['name']=='linkedin') ? 'selected' : '' ?>>LinkedIn</option>
                                                                         <option value="instagram" <?php echo ($value['name']=='instagram') ? 'selected' : '' ?>>Instagram</option>
                                                                         <option value="youtube" <?php echo ($value['name']=='youtube') ? 'selected' : '' ?>>Youtube</option>
-                                                                        <option value="snapchat" <?php echo ($value['name']=='snapchat') ? 'selected' : '' ?>>SnapChat</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -388,10 +394,9 @@
                                                                         <option value="facebook" >Facebook</option>
                                                                         <option value="twitter"  >Twitter</option>
                                                                         <option value="gplus"    >Google Plus</option>
-                                                                        <option value="linkedin" >Linked In</option>
+                                                                        <option value="linkedin" >LinkedIn</option>
                                                                         <option value="instagram">Instagram</option>
                                                                         <option value="youtube"  >Youtube</option>
-                                                                        <option value="snapchat" >SnapChat</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-2">
@@ -430,8 +435,8 @@
                                                 <select class="bs-select form-control input-xlarge  " name="company_size">
                                                     <option value="">Select company size</option>
                                                     <option value="1-50" <?php echo ($user_profile['total_staff'] == '1-50') ? 'selected' : ''; ?>>1 to 50 employee</option>
-                                                    <option value="51-100" <?php echo ($user_profile['total_staff'] == '51-100') ? 'selected' : ''; ?>>50 to 100 employee</option>
-                                                    <option value="100<" <?php echo ($user_profile['total_staff'] == '100<') ? 'selected' : ''; ?>>100 to above employee</option>
+                                                    <option value="51-100" <?php echo ($user_profile['total_staff'] == '51-100') ? 'selected' : ''; ?>>51 to 100 employee</option>
+                                                    <option value="> 100" <?php echo ($user_profile['total_staff'] == '> 100') ? 'selected' : ''; ?>>100 to above employee</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -477,13 +482,13 @@
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_start">
                                                             <option value="">Select Day Start</option>
-                                                            <option value="monday" <?php echo ($working_days[0] == 'monday') ? 'selected' : '' ?>>Monday</option>
-                                                            <option value="tuesday" <?php echo ($working_days[0] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
-                                                            <option value="wednesday" <?php echo ($working_days[0] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
-                                                            <option value="thursday" <?php echo ($working_days[0] == 'thursday') ? 'selected' : '' ?>>Thursday</option>
-                                                            <option value="friday" <?php echo ($working_days[0] == 'friday') ? 'selected' : '' ?>>Friday</option>
-                                                            <option value="saturday" <?php echo ($working_days[0] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
-                                                            <option value="sunday" <?php echo ($working_days[0] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
+                                                            <option value="monday" <?php echo ($detail['working_days_start'] == 'monday') ? 'selected' : '' ?>>Monday</option>
+                                                            <option value="tuesday" <?php echo ($detail['working_days_start'] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
+                                                            <option value="wednesday" <?php echo ($detail['working_days_start'] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
+                                                            <option value="thursday" <?php echo ($detail['working_days_start'] == 'thursday') ? 'selected' : '' ?>>Thursday</option>
+                                                            <option value="friday" <?php echo ($detail['working_days_start'] == 'friday') ? 'selected' : '' ?>>Friday</option>
+                                                            <option value="saturday" <?php echo ($detail['working_days_start'] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
+                                                            <option value="sunday" <?php echo ($detail['working_days_start'] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
                                                         </select>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-md-2 m-grid-col-center">
@@ -492,13 +497,13 @@
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <select class="bs-select form-control" name="day_end">
                                                             <option value="">Select Day End</option>
-                                                            <option value="monday" <?php echo ($working_days[1] == 'monday') ? 'selected' : '' ?>>Monday</option>
-                                                            <option value="tuesday" <?php echo ($working_days[1] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
-                                                            <option value="wednesday" <?php echo ($working_days[1] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
-                                                            <option value="thursday" <?php echo ($working_days[1] == 'thursday') ? 'selected' : '' ?>>Thursday</option>
-                                                            <option value="friday" <?php echo ($working_days[1] == 'friday') ? 'selected' : '' ?>>Friday</option>
-                                                            <option value="saturday" <?php echo ($working_days[1] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
-                                                            <option value="sunday" <?php echo ($working_days[0] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
+                                                            <option value="friday" <?php echo ($detail['working_days_end'] == 'friday') ? 'selected' : '' ?>>Friday</option>
+                                                            <option value="saturday" <?php echo ($detail['working_days_end'] == 'saturday') ? 'selected' : '' ?>>Saturday</option>
+                                                            <option value="sunday" <?php echo ($detail['working_days_end'] == 'sunday') ? 'selected' : '' ?>>Sunday</option>
+                                                            <option value="monday" <?php echo ($detail['working_days_end'] == 'monday') ? 'selected' : '' ?>>Monday</option>
+                                                            <option value="tuesday" <?php echo ($detail['working_days_end'] == 'tuesday') ? 'selected' : '' ?>>Tuesday</option>
+                                                            <option value="wednesday" <?php echo ($detail['working_days_end'] == 'wednesday') ? 'selected' : '' ?>>Wednesday</option>
+                                                            <option value="thursday" <?php echo ($detail['working_days_end'] == 'thursday') ? 'selected' : '' ?>>Thursday</option>               
                                                         </select>
                                                     </div>
                                                 </div>
@@ -508,7 +513,7 @@
                                                     <!-- Start Time -->
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="Start At" name="work_hour_start" value="<?php echo !empty($working_hours[0]) ? $working_hours[0] : '' ?>">
+                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="Start At" name="work_hour_start" value="<?php echo $detail['working_hours_start'] != "" ? $detail['working_hours_start'] : '' ?>">
                                                             <span class="input-group-btn">
                                                                 <button class="btn default" type="button">
                                                                     <i class="fa fa-clock-o"></i>
@@ -522,7 +527,7 @@
                                                     <!-- End Time -->
                                                     <div class="m-grid-col m-grid-col-md-5">
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="End At" name="work_hour_end" value="<?php echo !empty($working_hours[1]) ? $working_hours[1] : '' ?>">
+                                                            <input type="text" class="form-control timepicker timepicker-no-seconds" placeholder="End At" name="work_hour_end" value="<?php echo $detail['working_hours_end'] != "" ? $detail['working_hours_end'] : '' ?>">
                                                             <span class="input-group-btn">
                                                                 <button class="btn default" type="button">
                                                                     <i class="fa fa-clock-o"></i>

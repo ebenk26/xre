@@ -58,7 +58,7 @@ class Profile extends CI_Controller {
                          'company_registration_number' => $this->input->post('company_registration_number'),
                          'company_industry_id' => $this->input->post('industry'),
                          'company_description' => $this->input->post('about_company'),
-                         'spoken_language' => $this->input->post('language'),
+                         //'spoken_language' => $this->input->post('language'),
                          'user_id' => $id,
                          'url' => $this->input->post('corporate_website'));
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
@@ -107,15 +107,14 @@ class Profile extends CI_Controller {
             $language = '';
         }
 
-        $hour_start = $this->input->post('work_hour_start');
-        $hour_end = $this->input->post('work_hour_end');
-        $day_start = $this->input->post('day_start');
-        $day_end = $this->input->post('day_end');
-
+        
+        
         $info = array(  'total_staff' => $this->input->post('company_size'),
                         'dress_code' => $dresscode,
-                        'working_days' => $day_start.' - '.$day_end,
-                        'working_hours' => $hour_start.' - '.$hour_end,
+                        'working_days_start' => $this->input->post('day_start'),
+                        'working_days_end' => $this->input->post('day_end'),
+                        'working_hours_start' => $this->input->post('work_hour_start'),
+                        'working_hours_end' => $this->input->post('work_hour_end'),
                         'spoken_language' => $language,
                         'benefits' => $this->input->post('benefits'),
                         'total_staff' => $this->input->post('company_size'),

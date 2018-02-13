@@ -67,27 +67,27 @@ function ProfileCompletion($params)
     $profile['profile_photo'] = $CI->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $CI->session->userdata('id'), 'type'=>'profile_photo'));
     $profile['header_photo'] = $CI->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $CI->session->userdata('id'), 'type'=>'header_photo'));
 
-    //About Company 40%
-    $About["company_name"]      = !empty($params['company_name']) ? 5 : 0;
+    //About Company 50%
+    $About["company_name"]      = !empty($params['company_name']) ? 10 : 0;
+	$About["company_email"]     = !empty($params['email']) ? 5 : 0;
     $About["industry"]          = !empty($params['industry']) ? 5 : 0;
-    $About["reg_number"]        = !empty($params['company_registration_number']) ? 5 : 0;
     $About["company_desc"]      = !empty($params['company_description']) ? 5 : 0;
     $About["company_url"]       = !empty($params['url']) ? 5 : 0;
-    $About["profile_photo"]     = !empty($profile["profile_photo"]) ? 5 : 0;
+    $About["profile_photo"]     = !empty($profile["profile_photo"]) ? 10 : 0;
     $About["header_photo"]      = !empty($profile["header_photo"]) ? 5 : 0;
     $About["social"]            = !empty($profile["social"]) ? 5 : 0;
     
     //Additional Info 30%
-    $Additional   = !empty($params['spoken_language']) ? 3.75 : 0;
-    $Additional   += !empty($params['total_staff']) ? 3.75 : 0;
-    $Additional   += !empty($params['dress_code']) ? 3.75 : 0;
-    $Additional   += !empty($params['benefits']) ? 3.75 : 0;
-    $Additional   += !empty($params['industry']) ? 3.75 : 0;
-    $Additional   += !empty($params['working_days']) ? 3.75 : 0;
-    $Additional   += !empty($params['url']) ? 3.75 : 0;
-    $Additional   += !empty($params['email']) ? 3.75 : 0;
-
-    //Contact Information 30%
+    $Additional   = !empty($params['total_staff']) ? 5 : 0;
+    $Additional   += !empty($params['dress_code']) ? 5 : 0;
+    $Additional   += !empty($params['working_days_start']) ? 2.5 : 0;
+    $Additional   += !empty($params['working_days_end']) ? 2.5 : 0;
+    $Additional   += !empty($params['working_hours_start']) ? 2.5 : 0;
+    $Additional   += !empty($params['working_hours_end']) ? 2.5 : 0;
+    $Additional   += !empty($params['spoken_language']) ? 5 : 0;
+    $Additional   += !empty($params['benefits']) ? 5 : 0;
+    
+    //Contact Information 20%
     $addr = json_decode($params['address']);
     $Contact = 0;
 
@@ -95,17 +95,17 @@ function ProfileCompletion($params)
     {
         $addr = $addr[0];
 
-        $Contact   += !empty($addr->optionsRadios) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_address) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_city) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_postcode) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_state) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_country) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_email) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_phone) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_fax) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_latitude) ? 2.7272727273 : 0;
-        $Contact   += !empty($addr->building_longitude) ? 2.7272727273 : 0;
+        $Contact   += !empty($addr->optionsRadios) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_address) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_city) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_postcode) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_state) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_country) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_email) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_phone) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_fax) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_latitude) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr->building_longitude) ? 1.81818181818 : 0;
     }
 
     $sum    = array_sum($About) + $Additional + $Contact;
