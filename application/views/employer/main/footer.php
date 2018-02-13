@@ -571,48 +571,40 @@
             $('.invite-candidate').click(function(){
                 var candidate = $(this).attr('candidate-id');
                 var job = $(this).attr('job-id');
-                var interview = $(this).attr('interview-id');
                 var candidate_name = $(this).attr('candidate-name');
                 var candidate_email = $(this).attr('candidate-email');
 
-                if (interview == null) {
-                    
-                    swal('Info', 'Please create an interview session before you can invite');
-
-                }else{
-
+                
                     swal({
-                            title: "Do you want to invite this candidate?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonText: "Yes",
-                            cancelButtonText: "Cancel",
-                            closeOnConfirm: false,
-                            closeOnCancel: false,
-                        },
-                            function(isConfirm) {
-                                if (isConfirm) {
-                                    $.ajax({
-                                        url:"<?php echo base_url();?>employer/job_board/single_invitation",
-                                        method:"POST",
-                                        data: {
-                                          candidate_id: candidate,
-                                          job_id: job,
-                                          interview_id: interview,
-                                          candidate_name: candidate_name,
-                                          candidate_email: candidate_email,
-                                        },
-                                        success:function(response) {
-                                           swal("Success", "Candidate has been invited.", "success");
-                                           location.reload();
-                                        }
-                                      })
-                                } else {
-                                    swal("Cancelled", "Invitation has been cancelled", "error");
-                                }
+                        title: "Do you want to invite this candidate?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false,
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>employer/job_board/single_invitation",
+                                    method:"POST",
+                                    data: {
+                                      candidate_id: candidate,
+                                      job_id: job,
+                                      candidate_name: candidate_name,
+                                      candidate_email: candidate_email,
+                                    },
+                                    success:function(response) {
+                                       swal("Success", "Candidate has been invited.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "Invitation has been cancelled", "error");
                             }
-                        );
-                }
+                        }
+                    );
             });
 
             $('.choose_session').click(function(){

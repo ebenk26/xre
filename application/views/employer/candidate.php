@@ -189,7 +189,8 @@
                                                     <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? ucfirst($value['interview_status']) : 'Not Sent Invitation' ?> <?php echo $value['interview_title']; ?></span>
+                                                    <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
+                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?> - <?php echo $value['interview_title']; ?></span>
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
@@ -210,7 +211,7 @@
                                                                             Rescheduled Interview
                                                                         </a>
                                                                 <?php else: ?>
-                                                                    <a href="#choose_interview_session" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                    <a href="#modal_set_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
                                                                             <i class="icon-paper-plane"></i>
                                                                             Send Invitation Interview
                                                                         </a>
@@ -417,7 +418,7 @@
                                 </div>
                                 <!-- END MODAL : Rescheduled Form -->
 
-                                <?php endforeach ?>
+
 
                                 <!-- INTERVIEW -->
                                 <!-- BEGIN MODAL : Set Interview Session -->
@@ -429,8 +430,11 @@
                                                 <h4 class="modal-title font-weight-600 ">Interview Schedule
                                                 </h4>
                                             </div>
-                                            <form action="<?php echo base_url(); ?>candidate/add_session" method="POST" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>employer/job_board/single_invitation" method="POST" class="form-horizontal">
                                                 <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
+                                                <input type="hidden" value="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" name="candidate_id"></input>
+                                                <input type="hidden" name="candidate_email" value="<?php echo $value['user_email']; ?>"></input>
+                                                <input type="hidden" name="candidate_name" value="<?php echo $value['user_name'];?>"></input>
                                                 <div class="modal-body form-body ">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Title</label>
@@ -487,8 +491,7 @@
                                 </div>
                                 <!-- END MODAL : Set Interview Session -->
 
-                                
-
+                                <?php endforeach ?>
                             </div>
                         </div>
 
