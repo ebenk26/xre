@@ -152,7 +152,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                            <i class="icon-eye"></i> Draft </a>
+                                                            <i class="icon-eye"></i> <?php echo ($value['status'] == 'post') ? 'Preview' : 'Draft' ?></a>
                                                     </li>
                                                     <li class="divider"> </li>
                                                     <li>
@@ -183,6 +183,7 @@
                             </div>
 
                             <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal form-row-seperated ">
+                                <input type="hidden" id="job_status_edit" name="status" value="<?php echo ($value['status'] == 'post') ? 'post' : 'draft'; ?>"></input>
                                 <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                                     <div class="modal-body form-body pr-0">
                                         <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
@@ -225,7 +226,7 @@
                                                 <div class="form-group mx-0">
                                                     <label class="control-label ">Employment Type</label>
                                                     <select class="bs-select form-control  " name="employment_Type">
-                                                        <option value="" selected disabled>Employment Type</option>
+                                                        <option value="" disabled>Employment Type</option>
                                                         <?php foreach ($employment_type as $key => $employment_value) {?>
                                                             <option <?php echo $value['employment_type_id'] == $employment_value['id'] ? 'selected':''; ?> value="<?php echo $employment_value['id']; ?>" ><?php echo $employment_value['name']; ?></option>
                                                         <?php } ?>
@@ -236,6 +237,7 @@
                                                 <div class="form-group mx-0">
                                                     <label class="control-label ">Position Level</label>
                                                     <select class="bs-select form-control   " name="employment_level">
+                                                        <option disabled>Position Level</option>
                                                         <?php foreach ($position_levels as $key => $position_level_value) {?>
                                                             <option <?php echo $value['position_level_id'] == $position_level_value['id'] ? 'selected':''; ?> value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
                                                         <?php } ?>
@@ -259,21 +261,21 @@
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2 ">Job Description</label>
-                                                    <textarea name="job_Desc" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc"><?php echo $value['job_description']?></textarea>
+                                                    <textarea name="job_Desc" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc" class="textarea_editor"><?php echo $value['job_description']?></textarea>
                                                 </div>
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2 ">Nice To Have</label>
-                                                    <textarea name="nice_To_Have" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['other_requirements']?></textarea>
+                                                    <textarea name="nice_To_Have" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['other_requirements']?></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2 ">Job Requirement</label>
-                                                    <textarea name="job_Requirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['qualifications']?></textarea>
+                                                    <textarea name="job_Requirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['qualifications']?></textarea>
                                                 </div>
                                                 <div class="form-group mx-0">
                                                     <label class="control-label mb-2">Additional Info</label>
-                                                    <textarea name="additional_Info" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"><?php echo $value['additional_info']?></textarea>
+                                                    <textarea name="additional_Info" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['additional_info']?></textarea>
                                                 </div>
                                             </div>
 
@@ -346,7 +348,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="job_status_edit" name="status" value="<?php echo (!empty($value['status']) && $value['status'] == 'post') ? 'post' : 'draft'; ?>"></input>
                                     </div>
                                 </div>
                                 <div class="modal-footer form-action ">
@@ -422,6 +423,7 @@
                                         <div class="form-group mx-0">
                                             <label class="control-label ">Position Level</label>
                                             <select class="bs-select form-control" name="employmentLevel">
+                                                <option disabled selected>Position Level</option>
                                                 <?php foreach ($position_levels as $key => $position_level_value) {?>
                                                     <option value="<?php echo $position_level_value['id']; ?>" ><?php echo $position_level_value['name']; ?></option>
                                                 <?php } ?>
@@ -445,21 +447,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Job Description</label>
-                                            <textarea name="jobDescription" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea name="jobDescription" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                                         </div>
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Nice To Have</label>
-                                            <textarea name="niceToHave" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea name="niceToHave" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2 ">Job Requirement</label>
-                                            <textarea name="jobRequirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea name="jobRequirement" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                                         </div>
                                         <div class="form-group mx-0">
                                             <label class="control-label mb-2">Additional Info</label>
-                                            <textarea name="additionalInfo" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote"></textarea>
+                                            <textarea name="additionalInfo" data-provide="markdown" rows="6" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                                         </div>
                                     </div>
                                 </div>
