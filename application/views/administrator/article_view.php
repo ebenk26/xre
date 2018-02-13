@@ -39,20 +39,20 @@
 						<hr class="g-hor-border-1-solid-md-orange mt-width-50-xs mt-2">
 						<ul class="social-icons social-icons-color">
 							<li>
-								<a href="javascript:;" data-original-title="facebook" class="facebook"> </a>
-							</li>
-							<!--<li>
-								<a href="javascript:;" data-original-title="Google Plus" class="googleplus"> </a>
-							</li>-->
-							<li>
-								<a href="javascript:;" data-original-title="linkedin" class="linkedin"> </a>
+								<a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-original-title="facebook" class="facebook fb-share-button share-fb" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank"> </a>
 							</li>
 							<li>
-								<a href="javascript:;" data-original-title="twitter" class="twitter"> </a>
+								<a href="https://plus.google.com/share?url=<?= XREMO_URL; ?><?= uri_string(); ?>" data-original-title="Google Plus" class="googleplus" target="_blank"> </a>
 							</li>
 							<li>
+								<a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" data-original-title="linkedin" class="linkedin" target="_blank"> </a>
+							</li>
+							<li>
+								<a href="https://twitter.com/intent/tweet?text=<?php echo $article->title; ?> <?= XREMO_URL.uri_string(); ?>" data-original-title="twitter" class="twitter" target="_blank"> </a>
+							</li>
+							<!-- <li>
 								<a href="javascript:;" data-original-title="instagram" class="instagram"> </a>
-							</li>
+							</li> -->
 						</ul>
 					</div>
                 </div>
