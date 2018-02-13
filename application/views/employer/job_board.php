@@ -152,7 +152,7 @@
                                                     </li>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                            <i class="icon-eye"></i> Preview Job </a>
+                                                            <i class="icon-eye"></i> Draft </a>
                                                     </li>
                                                     <li class="divider"> </li>
                                                     <li>
@@ -346,7 +346,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <input type="hidden" id="job_status_edit" name="status" value="post"></input>
+                                        <input type="hidden" id="job_status_edit" name="status" value="<?php echo (!empty($value['status']) && $value['status'] == 'post') ? 'post' : 'draft'; ?>"></input>
                                     </div>
                                 </div>
                                 <div class="modal-footer form-action ">
@@ -538,7 +538,7 @@
                         <input type="hidden" id="job_status_add" name="status"></input>
                         <div class="modal-footer form-action ">
                             <!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
-                            <button type="submit" id="preview_button_add" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</button>
+                            <button type="submit" id="preview_button_add" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Draft</button>
                             <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Post</button>
                             <a data-dismiss="modal" id="submit_button_add" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                         </div>
