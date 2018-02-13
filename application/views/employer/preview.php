@@ -109,30 +109,50 @@ if (!empty($job->location)) {
                                 <?php if (!empty($login)): ?>
                                     <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
                                         <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <?php if ($roles =='administrator') {?>
+                                                <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <?php }?>
+
+                                            <?php if ($roles =='employer') {?>
+                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                            <?php }?>
+                                            
+                                            <?php if ($roles =='student') {?>
+                                                <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                            <?php }?>
+
                                             <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                         </a>
-                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
+                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                             <li>
-                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-home mr-3"></i>Dashboard</a>
                                             </li>
-											<?php if ($roles !='administrator') {?>
+                                            <?php if ($roles !='administrator') {?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-note mr-3"></i>Edit Profile</a>
                                             </li>
-											<?php }?>
+                                            <?php } ?>
+                                            <?php if ($roles !='employer' && $roles !='administrator') {?>
+                                                <li>
+                                                    <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                                        <i class="icon-book-open mr-3"></i>My Resume</a>
+                                                </li>
+                                            <?php } ?>
+                                            <?php if ($roles =='employer') {?>
                                             <li>
-                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>View My Profile
+                                                </a>
                                             </li>
-											<?php if ($roles !='administrator') {?>
+                                            <?php }?>
+                                            <?php if ($roles !='administrator') {?>
                                             <li>
-                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
+                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                     <i class="icon-calendar mr-3"></i>My Calendar</a>
                                             </li>
-											<?php }?>
+                                            <?php } ?>
                                             <li class="divider"></li>
                                             <li>
                                                 <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
@@ -151,9 +171,9 @@ if (!empty($job->location)) {
                         <!--logged user -->
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
-                                <!-- <li class="s-header-v2-nav-item">
-                                    <a href="job-search.html" class="s-header-v2-nav-link md-orange-text">Search Job</a>
-                                </li> -->
+                                <li class="s-header-v2-nav-item">
+                                    <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
+                                </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url();?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
@@ -167,40 +187,66 @@ if (!empty($job->location)) {
                                     <a href="<?php echo base_url();?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
 
+                                <?php if (!empty($login)){ ?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                    <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                    <a href="<?=base_url()?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <?php if ($roles =='administrator') {?>
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <?php }?>
+
+                                        <?php if ($roles =='employer') {?>
+                                            <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                        <?php }?>
+                                        
+                                        <?php if ($roles =='student') {?>
+                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                        <?php }?>
+
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                         <li>
-                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/dashboard/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
-										<?php if ($roles !='administrator') {?>
+                                        <?php if ($roles !='administrator') {?>
                                         <li>
-                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/profile/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
-										<?php }?>
-                                        <!-- <li>
-                                            <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
-                                                <i class="icon-book-open mr-3"></i>My Resume</a>
-                                        </li> -->
-										<?php if ($roles !='administrator') {?>
+                                        <?php } ?>
+                                        <?php if ($roles !='employer' && $roles !='administrator') {?>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            </li>
+                                        <?php } ?>
+                                        <?php if ($roles =='employer') {?>
                                         <li>
-                                            <a href="<?php echo base_url();?><?php echo strtolower($roles); ?>/calendar/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
+                                                <i class="icon-book-open mr-3"></i>View My Profile
+                                            </a>
+                                        </li>
+                                        <?php }?>
+                                        <?php if ($roles !='administrator') {?>
+                                        <li>
+                                            <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
-										<?php }?>
+                                        <?php } ?>
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="<?php echo base_url();?>site/user/logout/" class="s-header-v2-dropdown-menu-link">
+                                            <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-key mr-3"></i>Log Out</a>
                                         </li>
                                     </ul>
                                 </li>
-
+                                <?php }else{ ?>
+                                    <li class="s-header-v2-nav-item">
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </div>
                         <!-- End Nav Menu -->
@@ -470,10 +516,10 @@ if (!empty($job->location)) {
                 <?php endif; ?>
 
                 <?php if (empty($login)) : ?>
-                    <div class="row mb-5 mx-0">
+                    <!--<div class="row mb-5 mx-0">
                         <a href="<?php echo base_url() ?>login" target="_blank" class=" btn btn-block btn-md-indigo roboto-font">
                             Login</a>
-                    </div>
+                    </div>-->
                 <?php endif; ?>
 
                 

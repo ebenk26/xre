@@ -62,6 +62,9 @@
         .progress-bar::-moz-progress-bar {
           background-color: #7cc4ff;
         }
+        .ajs-message{
+            color: #FFFFFF;
+        }
     </style>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
@@ -116,7 +119,7 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input type="password" name="password" class="form-control" id="pass-strength" placeholder="Password" required>
+                                                <input type="password" name="password" id="password" class="form-control" id="pass-strength" placeholder="Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
@@ -134,7 +137,7 @@
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?></span>
                                             </div>
@@ -187,7 +190,7 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input name="password" type="password" class="form-control " placeholder="Password">
+                                                <input name="password" id="password" type="password" class="form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
@@ -195,7 +198,7 @@
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
+                                                <input name="confirm_password" id="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
@@ -256,7 +259,7 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input name="password" type="password" class="form-control " placeholder="Password">
+                                                <input name="password" id="password" type="password" class="form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
@@ -264,7 +267,7 @@
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
+                                                <input name="confirm_password" id="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
@@ -423,8 +426,9 @@
     <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
+    <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
+    <!-- END PASSWORD STRENGTH SCRIPTS -->
     <script>
         $(document).ready(function () {
             $('#clickmewow').click(function () {
@@ -447,115 +451,74 @@
                 $("#jobseekerContent").hide();
                 $("#employerContent").hide();
             });
-            $("#studentRadio").click(function () {
-                if ($('#studentRadio').prop('checked') === false) {
-                    $('#studentContent').hide();
+
+            $("#studentUser button").click(function(argument)
+            {
+                if($("#studentUser #password").val() != $("#studentUser #confirm_password").val())
+                {
+                    alertify.error('Your password and confirm password did not same', 'error', 5);
                 }
+
+                if($('#studentUser #checkboxregisterstudent').prop('checked') === false)
+                {
+                    alertify.error('Please check agree term of use and privacy policy', 'error', 5);
+                }
+
+                return false;
             });
+            
             // Jobseeker
             $("#jobseekerRadio").click(function () {
                 $("#jobseekerContent").show();
                 $("#studentContent").hide();
                 $("#employerContent").hide();
-            });
-            $("#jobseekerRadio").click(function () {
+
                 if ($('#jobseekerRadio').prop('checked') === false) {
                     $('#jobseekerContent').hide();
                 }
             });
+
+            $("#jobseekerUser button").click(function(argument)
+            {
+                if($("#jobseekerUser #password").val() != $("#jobseekerUser #confirm_password").val())
+                {
+                    alertify.error('Your password and confirm password did not same', 'error', 5);
+                }
+
+                if($('#jobseekerUser #checkboxregisterjobseeker').prop('checked') === false)
+                {
+                    alertify.error('Please check agree term of use and privacy policy', 'error', 5);
+                }
+
+                return false;
+            });
+            
             // Employer
             $("#employerRadio").click(function () {
                 $("#employerContent").show();
                 $("#studentContent").hide();
                 $("#jobseekerContent").hide();
-            });
-            $("#employerRadio").click(function () {
+
                 if ($('#employerRadio').prop('checked') === false) {
                     $('#employerContent').hide();
                 }
             });
 
-            $("#pass-strength").keyup(function()
+            $("#employerUser button").click(function(argument)
             {
-                checkPassStrength($(this).val());
+                if($("#employerUser #password").val() != $("#employerUser #confirm_password").val())
+                {
+                    alertify.error('Your password and confirm password did not same', 'error', 5);
+                }
+
+                if($('#employerUser #checkboxemployer').prop('checked') === false)
+                {
+                    alertify.error('Please check agree term of use and privacy policy', 'error', 5);
+                }
+
+                return false;
             });
         });
-
-        function scorePassword(pass)
-        {
-            var score = 0;
-
-            if (!pass)
-                return score;
-
-            // award every unique letter until 5 repetitions
-            var letters = new Object();
-
-            for (var i=0; i<pass.length; i++)
-            {
-                letters[pass[i]] = (letters[pass[i]] || 0) + 1;
-                score += 5.0 / letters[pass[i]];
-            }
-
-            // bonus points for mixing it up
-            var variations = 
-            {
-                digits: /\d/.test(pass),
-                lower: /[a-z]/.test(pass),
-                upper: /[A-Z]/.test(pass),
-                nonWords: /\W/.test(pass),
-            }
-
-            variationCount = 0;
-
-            for (var check in variations)
-            {
-                variationCount += (variations[check] == true) ? 1 : 0;
-            }
-
-            score += (variationCount - 1) * 10;
-
-            if(score>100) score = 100;
-
-            return parseInt(score);
-        }
-
-        function checkPassStrength(pass)
-        {
-            var score = scorePassword(pass);
-
-            $(".progress-bar").attr('aria-valuenow',score);
-            $(".progress-bar").attr('style','width: '+score+'%');
-            
-
-            if (score > 80)
-            {
-                $(".progress-bar").attr('data-label','Strong');
-                $(".progress-bar").attr('class','progress-bar progress-bar-success');
-                $(".progress-bar span").text('Strong');
-            }
-
-            else if (score > 60)
-            {
-                $(".progress-bar").attr('data-label','Good');
-                $(".progress-bar").attr('class','progress-bar progress-bar-info');
-                $(".progress-bar span").text('Good');
-            }
-
-            else if (score >= 30)
-            {
-                $(".progress-bar").attr('data-label','Weak');
-                $(".progress-bar").attr('class','progress-bar progress-bar-warning');
-                $(".progress-bar span").text('Weak');
-            }
-
-            else if (score < 30)
-            {
-                $(".progress-bar").attr('data-label','Poor');
-                $(".progress-bar").attr('class','progress-bar progress-bar-danger');
-                $(".progress-bar span").text('Poor');
-            }
-        }
     </script>
     <script>
         // assumes you're using jQuery

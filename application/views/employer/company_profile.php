@@ -111,8 +111,19 @@
                                 </li>
                                 <?php if (!empty($login)): ?>
                                     <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                        <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <a href="<?=base_url()?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            <?php if ($roles =='administrator') {?>
+                                                <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                            <?php }?>
+
+                                            <?php if ($roles =='employer') {?>
+                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                            <?php }?>
+                                            
+                                            <?php if ($roles =='student') {?>
+                                                <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                            <?php }?>
+
                                             <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                         </a>
                                         <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
@@ -128,10 +139,17 @@
 											<?php }?>
                                             <?php  if ($roles == 'student') {?>
                                                 <li>
-                                                    <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
+                                                    <a href="<?=base_url()?>profile/user/<?=rtrim(base64_encode($this->session->userdata('id')), '='); ?>" class="s-header-v2-dropdown-menu-link">
                                                         <i class="icon-book-open mr-3"></i>My Resume</a>
                                                 </li>
                                             <?php } ?>
+                                            <?php if ($roles =='employer') {?>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
+                                                    <i class="icon-book-open mr-3"></i>View My Profile
+                                                </a>
+                                            </li>
+                                            <?php }?>
 											<?php if ($roles !='administrator') {?>
                                             <li>
                                                 <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
@@ -255,7 +273,7 @@
 
     <div class="container ">
 		<!-- Send Message Button -->
-		<?php if($this->session->userdata('id') != $detail['id_users']){?>
+		<?php if($this->session->userdata('id') && ($this->session->userdata('id') != $detail['id_users'])){?>
 			<div class="row  mx-0 mt-2">
 				<!-- About Company / Job Post -->
 				<div class="col-md-9 mt-height-100-percent-xs ">
