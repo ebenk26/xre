@@ -53,7 +53,7 @@ class Profile extends CI_Controller {
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $userImage = $this->student_model->checkImageExist($userImageID);
-            $profile_photo = isset($userImage['name']) ? $userImage['name'] : '';
+            $profile_photo = isset($userImage['name']) ? $userImage['name'] : 'profile-pic.png';
         }
 
         //IF NOT EMPTY HEADER PICTURE

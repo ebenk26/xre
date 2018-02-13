@@ -143,7 +143,7 @@ class Student_Model extends CI_Model{
         $experiences = $this->db->get();
         $result['experiences'] = $experiences->result_array();
         if ($experiences->result_array()) {
-            $result['exp_percent'] =  0.1;
+            $result['exp_percent'] =  0.10;
         }else{
             $result['exp_percent'] =  0;
         }
@@ -155,8 +155,8 @@ class Student_Model extends CI_Model{
         $this->db->where(array('achievement.user_id' => $id));
         $achievement = $this->db->get();
         $result['achievement'] = $achievement->result_array();
-        if ($achievement->result_array()) {
-            $result['achievement_percent'] =  0.1;
+        if ($experiences->result_array()) {
+            $result['achievement_percent'] =  0.10;
         }else{
             $result['achievement_percent'] =  0;
         }
@@ -168,11 +168,23 @@ class Student_Model extends CI_Model{
         $this->db->where(array('student_bios.user_id' => $id));
         $overview = $this->db->get();
         $result['overview'] = $overview->last_row('array');
-        if ($overview->last_row('array')) {
-            $result['overview_percent'] =  0.1;
+        // var_dump($result['overview']['name']);exit;
+        $overviews['name'] = $result['overview']['name'] ? 0.03 : 0;
+        $overviews['preference_name'] = !empty($result['overview']['preference_name']) ? 0.03 : 0;
+        $overviews['youtubelink'] = !empty($result['overview']['youtubelink']) ? 0.03 : 0;
+        $overviews['student_bios_gender'] = !empty($result['overview']['student_bios_gender']) ? 0.03 : 0;
+        $overviews['student_bios_DOB'] = !empty($result['overview']['student_bios_DOB']) ? 0.03 : 0;
+        $overviews['student_bios_contact_number'] = !empty($result['overview']['student_bios_contact_number']) ? 0.03 : 0;
+        $overviews['expected_salary'] = !empty($result['overview']['expected_salary']) ? 0.03 : 0;
+        $overviews['summary'] = !empty($result['overview']['summary']) ? 0.03 : 0;
+        $overviews['quote'] = !empty($result['overview']['quote']) ? 0.03 : 0;
+        
+        if ($overviews) {
+            $result['overview_percent'] =  $overviews['name'] + $overviews['preference_name'] + $overviews['youtubelink'] + $overviews['student_bios_gender'] + $overviews['student_bios_DOB'] + $overviews['student_bios_contact_number'] + $overviews['expected_salary'] + $overviews['summary'] + $overviews['quote'];
         }else{
             $result['overview_percent'] =  0;
         }
+
 
         //academics
         $this->db->select('academics.id as academic_id, academics.university_name, academics.degree_name, academics.degree_description, academics.qualification_level, academics.date, academics.start_date, academics.end_date');
@@ -195,7 +207,7 @@ class Student_Model extends CI_Model{
         $student_skill = $this->db->get();
         $result['skills'] = $student_skill->result_array();
         if ($student_skill->result_array()) {
-            $result['student_skill_percent'] =  0.1;
+            $result['student_skill_percent'] =  0;
         }else{
             $result['student_skill_percent'] =  0;
         }
@@ -220,8 +232,14 @@ class Student_Model extends CI_Model{
         $this->db->where(array('user_address.user_id' => $id));
         $address = $this->db->get();
         $result['address'] = current($address->result_array());  
-        if ($address->result_array()) {
-            $result['address_percent'] =  0.1;
+        $address_precentage['country'] = !empty($result['address']['country']) ? 0.03 : 0;
+        $address_precentage['address'] = !empty($result['address']['address']) ? 0.03 : 0;
+        $address_precentage['city'] = !empty($result['address']['city']) ? 0.03 : 0;
+        $address_precentage['state'] = !empty($result['address']['states']) ? 0.03 : 0;
+        $address_precentage['postcode'] = !empty($result['address']['postcode']) ? 0.03 : 0;
+
+        if ($address_precentage) {
+            $result['address_percent'] =  $address_precentage['country'] + $address_precentage['address'] + $address_precentage['city'] + $address_precentage['state'] + $address_precentage['postcode'];
         }else{
             $result['address_percent'] =  0;
         }
@@ -236,19 +254,69 @@ class Student_Model extends CI_Model{
         foreach ($result['image'] as $key => $value) {
             $result[$value['type']] = $value['name'];
         }
-        if ($image->result_array()) {
-            $result['image_percent'] =  0.1;
+
+        //image profile
+        $this->db->select('profile_uploads.name, profile_uploads.type');
+        $this->db->from('users');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id','left');
+        $this->db->where(array('profile_uploads.user_id' => $id));
+        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $image = $this->db->get();
+        $result['image_profile'] = $image->last_row('array');
+
+        if ($result['image_profile']) {
+            $result['image_profile'] =  0.08;
         }else{
-            $result['image_percent'] =  0;
+            $result['image_profile'] =  0;
         }
+
+
+        //image header profile
+        $this->db->select('profile_uploads.name, profile_uploads.type');
+        $this->db->from('users');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id','left');
+        $this->db->where(array('profile_uploads.user_id' => $id));
+        $this->db->where(array('profile_uploads.type' => 'header_photo'));
+        $image = $this->db->get();
+        $result['image_header'] = $image->last_row('array');
+
+        if ($result['image_header']) {
+            $result['image_header'] =  0.02;
+        }else{
+            $result['image_header'] =  0;
+        }        
+
+        $result['image_percent'] = $result['image_profile'] + $result['image_header'];
+
+
+        //skills
+        $this->db->select('user_skill_set.id as id, user_skill_set.id as skill_id ,user_skill_set.name, user_skill_set.description, user_skill_set.level');
+        $this->db->from('users');
+        $this->db->join('user_skill_set', 'user_skill_set.user_id = users.id','left');
+        $this->db->where(array('user_skill_set.user_id' => $id));
+        $skills = $this->db->get();
+        $result['skill'] = $skills->result_array();
+        if ($skills->result_array()) {
+            $result['skill_percent'] =  0;
+        }else{
+            $result['skill_percent'] = 0;
+        }
+
 
         //language
         $this->db->select('user_language_set.id as id, user_language_set.id as skill_id ,user_language_set.language as title, user_language_set.written, user_language_set.spoken');
         $this->db->from('users');
         $this->db->join('user_language_set', 'user_language_set.user_id = users.id','left');
         $this->db->where(array('user_language_set.user_id' => $id));
-        $skills = $this->db->get();
-        $result['language'] = $skills->result_array();
+        $language = $this->db->get();
+        $result['language'] = $language->result_array();
+        if ($language->result_array()) {
+            $result['language_percent'] =  0.03;
+        }else{
+            $result['language_percent'] = 0;
+        }
+
+
 
         //project
         $this->db->select('*');
@@ -257,12 +325,13 @@ class Student_Model extends CI_Model{
         $project = $this->db->get();
         $result['projects'] = $project->result_array();
         if ($project->result_array()) {
-            $result['project_percent'] =  0.05;
+            $result['project_percent'] =  0.1;
         }else{
             $result['project_percent'] = 0;
         }
 
-        $result['percent'] = ( $result['exp_percent'] + $result['achievement_percent'] + $result['overview_percent'] + $result['academic_percent'] + $result['student_skill_percent'] + $result['address_percent'] + $result['image_percent'] + $result['skill_percent'] + $result['project_percent'] ) *100;
+
+        $result['percent'] = ( $result['exp_percent'] + $result['achievement_percent'] + $result['overview_percent'] + $result['academic_percent'] + $result['image_percent'] + $result['project_percent'] + $result['language_percent'] + $result['address_percent'] ) *100;
 
         return $result;
     }
