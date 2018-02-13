@@ -138,10 +138,11 @@ class User extends CI_Controller {
                     redirect(base_url().'site/user/signup');
             }*/
 
-            $this->session->set_flashdata('msg_success', 'Register Complete, Please confirm the email.');
+            $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
-            $header['page_title'] = 'Sign Up';
-            redirect(base_url().'site/user/signup');          
+            //$header['page_title'] = 'Sign Up';
+            //$this->load->view('site/signup', $header);
+            redirect(base_url().'login');          
         }
     }
 
@@ -152,7 +153,8 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
-        
+        $this->form_validation->set_message('is_unique', 'Email already registered');
+
         $this->session->set_flashdata('name', $this->input->post('fullname'));
         $this->session->set_flashdata('email', $this->input->post('email'));
 
@@ -188,8 +190,9 @@ class User extends CI_Controller {
             $this->user_model->sendEmail($data);
             $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
-            $header['page_title'] = 'Sign Up';
-            $this->load->view('site/signup', $header);   
+            //$header['page_title'] = 'Sign Up';
+            //$this->load->view('site/signup', $header); 
+            redirect(base_url().'login');  
         }
     }
 
@@ -197,10 +200,11 @@ class User extends CI_Controller {
 
         $this->form_validation->set_rules('company_name','Company name', 'required');
         $this->form_validation->set_rules('fullname','Company Admin Name', 'required');
-        $this->form_validation->set_rules('email','Jobseeker email', 'trim|required|valid_email|is_unique[users.email]');
+        $this->form_validation->set_rules('email','Employer email', 'trim|required|valid_email|is_unique[users.email]');
         $this->form_validation->set_rules('password','Password', 'required');
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
+        $this->form_validation->set_message('is_unique', 'Email already registered');
         
         if($this->form_validation->run() == false){
             $header['page_title'] = 'Sign Up';
@@ -235,8 +239,9 @@ class User extends CI_Controller {
             $this->user_model->sendEmail($data);
             $this->session->set_flashdata('msg_success', 'Successfully registered. Please confirm the mail that has been sent to your email.');
 
-            $header['page_title'] = 'Sign Up';
-            $this->load->view('site/signup', $header);   
+            //$header['page_title'] = 'Sign Up';
+            //$this->load->view('site/signup', $header);
+            redirect(base_url().'login');
         }
     }
 

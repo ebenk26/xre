@@ -98,12 +98,12 @@
                         <div class="tab-content">
                             <!-- Form User : Student -->
                             <div class="tab-pane active" id="studentUser">
-                                <form method="POST" action="<?php echo base_url(); ?>site/user/student_signup_post" class="form-horizontal">
+                                <form method="POST" action="<?php echo base_url(); ?>site/user/student_signup_post" class="form-horizontal" id="studentUserForm">
                                     <div class="form-body">
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="text" name="fullname" class="form-control " placeholder="Full Name" required>
+                                                <input type="text" name="fullname" id="fullname_student" class="form-control " placeholder="Full Name" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
@@ -111,7 +111,7 @@
                                         <!-- Input : Email -->
                                         <div class="form-group form-md-line-input mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="email" name="email" class="form-control " placeholder="Email Address" required>
+                                                <input type="email" name="email" id="email_student" class="form-control " placeholder="Email Address" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?></span>
                                             </div>
@@ -119,15 +119,15 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input type="password" name="password" id="password" class="form-control" id="pass-strength" placeholder="Password" required>
+                                                <input type="password" name="password" id="password_student" class="pass-strength-student form-control" placeholder="Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Password -->
-                                        <div class="form-group form-md-line-input  mb-1">
+                                        <div class="form-group form-md-line-input  mb-1 password-strength-bar-student" id="password-strength-bar" style="display:none;">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <div class="progress progress-striped active">
+                                                <div class="progress progress-striped active mb-0">
                                                   <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
                                                     <span class="sr-only">0% CompletePoor</span>
                                                   </div>
@@ -137,7 +137,7 @@
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                                                <input type="password" name="confirm_password" id="confirm_password_student" class="form-control" placeholder="Confirm Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?></span>
                                             </div>
@@ -169,12 +169,12 @@
                             </div>
                             <!-- Form User : Jobseeker -->
                             <div class="tab-pane " id="jobseekerUser">
-                                <form method="POST" action="<?php echo base_url(); ?>site/user/jobseeker_signup_post" class="form-horizontal">
+                                <form method="POST" action="<?php echo base_url(); ?>site/user/jobseeker_signup_post" class="form-horizontal" id="jobseekerUserForm">
                                     <div class="form-body">
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="fullname" type="text" class="form-control " placeholder="FullName">
+                                                <input name="fullname" id="fullname_jobseeker" type="text" class="form-control " placeholder="FullName">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
@@ -182,7 +182,7 @@
                                         <!-- Input : Email -->
                                         <div class="form-group form-md-line-input mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="email" type="email" class="form-control " placeholder="Email Address">
+                                                <input name="email" id="email_jobseeker" type="email" class="form-control " placeholder="Email Address">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('email'); ?></span>
                                             </div>
@@ -190,15 +190,25 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input name="password" id="password" type="password" class="form-control " placeholder="Password">
+                                                <input name="password" id="password_jobseeker" type="password" class="pass-strength-jobseeker form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
+                                            </div>
+                                        </div>
+                                        <!-- Input : Password -->
+                                        <div class="form-group form-md-line-input  mb-1 password-strength-bar-jobseeker" style="display:none;">
+                                            <div class="col-md-8 col-md-offset-2  ">
+                                                <div class="progress progress-striped active mb-0">
+                                                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                                    <span class="sr-only">0% CompletePoor</span>
+                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="confirm_password" id="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
+                                                <input name="confirm_password" id="confirm_password_jobseeker" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
@@ -230,12 +240,12 @@
                             </div>
                             <!-- Form User : Employer -->
                             <div class="tab-pane " id="employerUser">
-                                <form method="POST" action="<?php echo base_url(); ?>site/user/employer_signup_post" class="form-horizontal">
+                                <form method="POST" action="<?php echo base_url(); ?>site/user/employer_signup_post" class="form-horizontal" id="employerUserForm">
                                     <div class="form-body">
                                         <!-- Input : Company Name -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="text" name="company_name" class="form-control " placeholder="Company Name">
+                                                <input type="text" name="company_name" id="company_name_employer" class="form-control " placeholder="Company Name">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('company_name'); ?></span>
                                             </div>
@@ -243,7 +253,7 @@
                                         <!-- Input : Fullname -->
                                         <div class="form-group form-md-line-input  mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="fullname" type="text" class="form-control " placeholder="Full Name">
+                                                <input name="fullname" id="fullname_employer" type="text" class="form-control " placeholder="Full Name">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('fullname'); ?></span>
                                             </div>
@@ -251,23 +261,33 @@
                                         <!-- Input : Email -->
                                         <div class="form-group form-md-line-input mb-1 ">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="email" type="email" class="form-control " placeholder="Email Address">
+                                                <input name="email" id="email_employer" type="email" class="form-control " placeholder="Email Address">
                                                 <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('email'); ?></span>
+                                                <span class="text-danger"><?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?></span>
                                             </div>
                                         </div>
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input name="password" id="password" type="password" class="form-control " placeholder="Password">
+                                                <input name="password" id="password_employer" type="password" class="pass-strength-employer form-control " placeholder="Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
+                                            </div>
+                                        </div>
+                                        <!-- Input : Password -->
+                                        <div class="form-group form-md-line-input  mb-1 password-strength-bar-employer" style="display:none;">
+                                            <div class="col-md-8 col-md-offset-2  ">
+                                                <div class="progress progress-striped active mb-0">
+                                                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                                    <span class="sr-only">0% CompletePoor</span>
+                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="confirm_password" id="confirm_password" type="password" class="form-control " placeholder="Confirm Password">
+                                                <input name="confirm_password" id="confirm_password_employer" type="password" class="form-control " placeholder="Confirm Password">
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
                                             </div>
@@ -450,21 +470,44 @@
                 $("#studentContent").show();
                 $("#jobseekerContent").hide();
                 $("#employerContent").hide();
+
+                $("#studentUserForm")[0].reset();
+                $(".password-strength-bar-student").hide();
+                $(".password-strength-bar-employer").hide();
+                $(".password-strength-bar-jobseeker").hide();
             });
 
             $("#studentUser button").click(function(argument)
             {
-                if($("#studentUser #password").val() != $("#studentUser #confirm_password").val())
+                var error = false;
+                if($("#studentUser #fullname_student").val() == "")
+                {
+                    alertify.error('Please fill in your full name', 'error', 5);
+                    error = true;
+                }
+
+                if($("#studentUser #email_student").val() == "")
+                {
+                    alertify.error('Please fill in your email address', 'error', 5);
+                    error = true;
+                }
+
+                if($("#studentUser #password_student").val() != $("#studentUser #confirm_password_student").val())
                 {
                     alertify.error('Your password and confirm password did not same', 'error', 5);
+                    error = true;
                 }
 
                 if($('#studentUser #checkboxregisterstudent').prop('checked') === false)
                 {
                     alertify.error('Please check agree term of use and privacy policy', 'error', 5);
+                    error = true;
                 }
 
-                return false;
+                if(error){
+                    return false;
+                }
+                
             });
             
             // Jobseeker
@@ -473,6 +516,11 @@
                 $("#studentContent").hide();
                 $("#employerContent").hide();
 
+                $("#jobseekerUserForm")[0].reset();
+                $(".password-strength-bar-student").hide();
+                $(".password-strength-bar-employer").hide();
+                $(".password-strength-bar-jobseeker").hide();
+
                 if ($('#jobseekerRadio').prop('checked') === false) {
                     $('#jobseekerContent').hide();
                 }
@@ -480,7 +528,7 @@
 
             $("#jobseekerUser button").click(function(argument)
             {
-                if($("#jobseekerUser #password").val() != $("#jobseekerUser #confirm_password").val())
+                if($("#jobseekerUser #password_jobseeker").val() != $("#jobseekerUser #confirm_password_jobseeker").val())
                 {
                     alertify.error('Your password and confirm password did not same', 'error', 5);
                 }
@@ -490,7 +538,9 @@
                     alertify.error('Please check agree term of use and privacy policy', 'error', 5);
                 }
 
-                return false;
+                if(error){
+                    return false;
+                }
             });
             
             // Employer
@@ -499,6 +549,11 @@
                 $("#studentContent").hide();
                 $("#jobseekerContent").hide();
 
+                $("#employerUserForm")[0].reset();
+                $(".password-strength-bar-student").hide();
+                $(".password-strength-bar-employer").hide();
+                $(".password-strength-bar-jobseeker").hide();
+
                 if ($('#employerRadio').prop('checked') === false) {
                     $('#employerContent').hide();
                 }
@@ -506,17 +561,40 @@
 
             $("#employerUser button").click(function(argument)
             {
-                if($("#employerUser #password").val() != $("#employerUser #confirm_password").val())
+                var error = false;
+                if($("#employerUser #company_name_employer").val() == "")
+                {
+                    alertify.error('Please fill in your company name', 'error', 5);
+                    error = true;
+                }
+
+                if($("#employerUser #fullname_employer").val() == "")
+                {
+                    alertify.error('Please fill in your full name', 'error', 5);
+                    error = true;
+                }
+
+                if($("#employerUser #email_employer").val() == "")
+                {
+                    alertify.error('Please fill in your email address', 'error', 5);
+                    error = true;
+                }
+
+                if($("#employerUser #password_employer").val() != $("#employerUser #confirm_password_employer").val())
                 {
                     alertify.error('Your password and confirm password did not same', 'error', 5);
+                    error = true;
                 }
 
                 if($('#employerUser #checkboxemployer').prop('checked') === false)
                 {
                     alertify.error('Please check agree term of use and privacy policy', 'error', 5);
+                    error = true;
                 }
 
-                return false;
+                if(error){
+                    return false;
+                }
             });
         });
     </script>
@@ -524,7 +602,7 @@
         // assumes you're using jQuery
         $(document).ready(function() {
             <?php if($this->session->flashdata('msg_success')){ ?>
-                alertify.success('<?php echo $this->session->flashdata('msg_succes'); ?>', 'success', 5);
+                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 10);
             <?php } ?>
             <?php if($this->session->flashdata('msg_failed')){ ?>
                 alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);

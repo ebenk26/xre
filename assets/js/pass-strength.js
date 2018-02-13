@@ -1,6 +1,16 @@
-$("#pass-strength").keyup(function()
+$(".pass-strength-student").keyup(function()
 {
-    checkPassStrength($(this).val());
+    checkPassStrength($(this).val(), "student");
+});
+
+$(".pass-strength-employer").keyup(function()
+{
+    checkPassStrength($(this).val(), "employer");
+});
+
+$(".pass-strength-jobseeker").keyup(function()
+{
+    checkPassStrength($(this).val(), "jobseeker");
 });
 
 function scorePassword(pass)
@@ -42,8 +52,16 @@ function scorePassword(pass)
     return parseInt(score);
 }
 
-function checkPassStrength(pass)
+function checkPassStrength(pass, category)
 {
+    if(pass == ""){
+        $(".password-strength-bar-student").hide();
+        $(".password-strength-bar-employer").hide();
+        $(".password-strength-bar-jobseeker").hide();
+    }else{
+        $(".password-strength-bar-"+category).show();
+    }
+
     var score = scorePassword(pass);
 
     $(".progress-bar").attr('aria-valuenow',score);
