@@ -31,6 +31,38 @@
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/login-5.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .progress-bar {
+          text-align: center;
+          height: 1.5em;
+          width: 100%;
+          -webkit-appearance: none;
+          border: none;
+          
+          /* Set the progressbar to relative */
+          position:relative;
+        }
+        .progress-bar:before {
+          content: attr(data-label);
+          font-size: 0.8em;
+          vertical-align: 0;
+          
+          /*Position text over the progress bar */
+          position:absolute;
+          left:0;
+          right:0;
+        }
+        .progress-bar::-webkit-progress-bar {
+          background-color: #c9c9c9;
+        }
+        .progress-bar::-webkit-progress-value {
+          background-color: #7cc4ff;
+        }
+        .progress-bar::-moz-progress-bar {
+          background-color: #7cc4ff;
+        }
+    </style>
     <!-- END PAGE LEVEL STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 </head>
@@ -84,15 +116,25 @@
                                         <!-- Input : Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2  ">
-                                                <input type="password" name="password" class="form-control " placeholder="Password" required>
+                                                <input type="password" name="password" class="form-control" id="pass-strength" placeholder="Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php echo form_error('password'); ?></span>
+                                            </div>
+                                        </div>
+                                        <!-- Input : Password -->
+                                        <div class="form-group form-md-line-input  mb-1">
+                                            <div class="col-md-8 col-md-offset-2  ">
+                                                <div class="progress progress-striped active">
+                                                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                                    <span class="sr-only">0% CompletePoor</span>
+                                                  </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- Input : Confirm Password -->
                                         <div class="form-group form-md-line-input  mb-1">
                                             <div class="col-md-8 col-md-offset-2 ">
-                                                <input type="password" name="confirm_password" class="form-control " placeholder="Confirm Password" required>
+                                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
                                                 <div class="form-control-focus"> </div>
                                                 <span class="text-danger"><?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?></span>
                                             </div>
@@ -432,7 +474,88 @@
                     $('#employerContent').hide();
                 }
             });
+
+            $("#pass-strength").keyup(function()
+            {
+                checkPassStrength($(this).val());
+            });
         });
+
+        function scorePassword(pass)
+        {
+            var score = 0;
+
+            if (!pass)
+                return score;
+
+            // award every unique letter until 5 repetitions
+            var letters = new Object();
+
+            for (var i=0; i<pass.length; i++)
+            {
+                letters[pass[i]] = (letters[pass[i]] || 0) + 1;
+                score += 5.0 / letters[pass[i]];
+            }
+
+            // bonus points for mixing it up
+            var variations = 
+            {
+                digits: /\d/.test(pass),
+                lower: /[a-z]/.test(pass),
+                upper: /[A-Z]/.test(pass),
+                nonWords: /\W/.test(pass),
+            }
+
+            variationCount = 0;
+
+            for (var check in variations)
+            {
+                variationCount += (variations[check] == true) ? 1 : 0;
+            }
+
+            score += (variationCount - 1) * 10;
+
+            if(score>100) score = 100;
+
+            return parseInt(score);
+        }
+
+        function checkPassStrength(pass)
+        {
+            var score = scorePassword(pass);
+
+            $(".progress-bar").attr('aria-valuenow',score);
+            $(".progress-bar").attr('style','width: '+score+'%');
+            
+
+            if (score > 80)
+            {
+                $(".progress-bar").attr('data-label','Strong');
+                $(".progress-bar").attr('class','progress-bar progress-bar-success');
+                $(".progress-bar span").text('Strong');
+            }
+
+            else if (score > 60)
+            {
+                $(".progress-bar").attr('data-label','Good');
+                $(".progress-bar").attr('class','progress-bar progress-bar-info');
+                $(".progress-bar span").text('Good');
+            }
+
+            else if (score >= 30)
+            {
+                $(".progress-bar").attr('data-label','Weak');
+                $(".progress-bar").attr('class','progress-bar progress-bar-warning');
+                $(".progress-bar span").text('Weak');
+            }
+
+            else if (score < 30)
+            {
+                $(".progress-bar").attr('data-label','Poor');
+                $(".progress-bar").attr('class','progress-bar progress-bar-danger');
+                $(".progress-bar span").text('Poor');
+            }
+        }
     </script>
     <script>
         // assumes you're using jQuery
