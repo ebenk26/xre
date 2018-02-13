@@ -1,23 +1,24 @@
+
 <?php   
-//$working_days = explode(' - ', $user_profile['working_days']);
-//$working_hours = explode(' - ', $user_profile['working_hours']);
-$dress_code = explode(',', $user_profile['dress_code']);
-$spoken_language = explode(',', $user_profile['spoken_language']);
-$company_address = json_decode($user_profile['address']);
-$profile_picture = end($profile_photo); 
-$header_picture = end($header_photo); 
-$dress_code_detail = explode(',', $detail['dress_code']);
-$dresscode = ucwords(str_replace(',',', ',$detail['dress_code']),', ');
-/*$dresscode = '';
-if (!empty($dress_code_detail)) {
-    foreach ($dress_code_detail as $key => $value) {
-        if ($value == end($dress_code_detail)) {
-            $dresscode .= ucwords($value);
-        }else{
-            $dresscode .= ucwords($value).', ';
+    //$working_days = explode(' - ', $user_profile['working_days']);
+    //$working_hours = explode(' - ', $user_profile['working_hours']);
+    $dress_code = explode(',', $user_profile['dress_code']);
+    $spoken_language = explode(',', $user_profile['spoken_language']);
+    $company_address = json_decode($user_profile['address']);
+    $profile_picture = end($profile_photo); 
+    $header_picture = end($header_photo); 
+    $dress_code_detail = explode(',', $detail['dress_code']);
+    $dresscode = ucwords(str_replace(',',', ',$detail['dress_code']).', ');
+    /*$dresscode = '';
+    if (!empty($dress_code_detail)) {
+        foreach ($dress_code_detail as $key => $value) {
+            if ($value == end($dress_code_detail)) {
+                $dresscode .= ucwords($value);
+            }else{
+                $dresscode .= ucwords($value).', ';
+            }
         }
-    }
-}*/
+    }*/
 
 ?>
 <!-- BEGIN CONTENT -->

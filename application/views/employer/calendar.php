@@ -103,13 +103,14 @@
                                                                                     <?php echo $value['description']; ?>
                                                                                 </div>
                                                                             </li>
+                                                                            
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer ">
                                                                     <a href="#modal_edit_session_<?php echo rtrim(base64_encode($value['id']), '=');?>" data-toggle="modal" class="btn btn-md-indigo ">
                                                                         Edit
-                                                                    </a>
+                                                                    </a>                 
                                                                 </div>
 
                                                             </div>

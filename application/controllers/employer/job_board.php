@@ -345,14 +345,35 @@ class Job_Board extends CI_Controller {
     }
 
     public function single_invitation(){
+        $application_id = base64_decode($this->input->post('application_id'));
         $job_id = base64_decode($this->input->post('job_id'));
         $candidate_id = base64_decode($this->input->post('candidate_id'));
-        $interview_id = base64_decode($this->input->post('interview_id'));
         $candidate_name = $this->input->post('candidate_name');
         $candidate_email = $this->input->post('candidate_email');
         $employer_id = $this->session->userdata('id');
 
-        $invite = array('session_id' => $interview_id,
+        
+
+        $start = explode(' - ', $this->input->post('start_date'));
+        $start_date = date('Y-m-d',strtotime(current($start)));
+        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date_hour = implode(' ', array($start_date, $start_hour));
+
+        $end = explode(' - ', $this->input->post('end_date'));
+        $end_date = date('Y-m-d',strtotime(current($end)));
+        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date_hour = implode(' ', array($end_date, $end_hour));
+
+        $session = array('job_id'=>$job_id,
+                        'title' => $this->input->post('title'), 
+                        'start_date'=> date('Y-m-d H:i:s', strtotime($start_date_hour)),
+                        'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
+                        'description'=> $this->input->post('description'));
+
+        $this->global_model->update('applieds', array('id' => $application_id), array('status'=>'INTERVIEW'));
+        $session_id = $this->global_model->create_return_id('interview_schedule', $session);
+
+        $invite = array( 'session_id' => $session_id,
                     'employer_id' => $employer_id,
                     'user_id' => $candidate_id,
                     'job_id' => $job_id,

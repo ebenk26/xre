@@ -144,7 +144,8 @@ class Candidate extends CI_Controller {
 
     public function reschedule_interview_session(){
         if($this->session->userdata('id') == FALSE) redirect(base_url().'login');
-        
+
+        $confirmation                 = $this->input->post('confirmation');        
         $interview_schedule_id      = base64_decode($this->input->post('interview_schedule_id'));
         $interview_schedule_user_id = base64_decode($this->input->post('candidate_id'));
         $page_id                    = $this->input->post('job_position_id');
@@ -166,7 +167,15 @@ class Candidate extends CI_Controller {
                                     'title' => $title,
                                     'description' => $description,
                                     'job_id' => base64_decode($page_id));
-        $reschedule = $this->employer_model->interview_reschedule($reschedule_data, $interview_schedule_id);
+
+        $reschedule_data_rejected   =   array('status' => 'reject');
+
+        if($confirmation == 'Yes'){
+            $reschedule = $this->employer_model->interview_reschedule($reschedule_data, $interview_schedule_id);
+        }else{
+            $reschedule = $this->global_model->update('interview_schedule_user', array('id' => $interview_schedule_id), $reschedule_data_rejected);
+        }
+
 
         //BEGIN : set recent activities
         $data = array(
@@ -180,7 +189,7 @@ class Candidate extends CI_Controller {
         setRecentActivities($data);
         //END : set recent activities
 
-        if($this->input->post('confirmation') == 'Yes')
+        if($confirmation == 'Yes')
         {
             //BEGIN : set create notification
             $getUserCompany = $this->job_model->getJobById(base64_decode($page_id));
@@ -215,7 +224,7 @@ class Candidate extends CI_Controller {
                         'subject'       => $subject,
                         'message_html'  => $messageHtml,
                         'url'           => $MailContent["url"],
-                        'type'          => "reschedule_interview_by_employer",
+                        'type'          => "reschedule_interview_accepted_by_employer",
                         'viewed'        => 0,
                         'created_at'    => date('Y-m-d H:i:s'),
                     );
@@ -257,7 +266,7 @@ class Candidate extends CI_Controller {
                         'subject'       => $subject,
                         'message_html'  => $messageHtml,
                         'url'           => $MailContent["url"],
-                        'type'          => "reschedule_interview_by_employer",
+                        'type'          => "reschedule_interview_rejected_by_employer",
                         'viewed'        => 0,
                         'created_at'    => date('Y-m-d H:i:s'),
                     );

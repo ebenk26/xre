@@ -54,5 +54,16 @@ class Global_Model extends CI_Model{
 			return false;
 		}
 	}
+
+	public function create_return_id($table, $data){
+		try {
+			
+			$this->db->insert($table, $data);
+			$id = $this->db->insert_id();
+			return $id;
+		} catch (Exception $e) {
+			return false;
+		}
+	}
 }
 ?>

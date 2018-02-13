@@ -186,50 +186,59 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
+                                                    <span class="label label-md-shades <?php if($value['application_status'] == 'SHORTLISTED'){echo 'label-warning';}elseif ($value['application_status'] == 'ACCEPTED'){ echo 'label-md-green';
+                                                    }elseif ($value['application_status'] == 'REJECTED' || $value['application_status'] == 'WITHDRAW') {echo 'label-md-red';}elseif ($value['application_status'] == 'INTERVIEW') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-2">
-                                                    <span class="label label-md-shades darkblue label-sm"><?php echo !empty($value['interview_status']) ? ucfirst($value['interview_status']) : 'Not Sent Invitation' ?> <?php echo $value['interview_title']; ?></span>
+                                                    <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
+                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?> - <?php echo $value['interview_title']; ?></span>
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                        <?php if ($value['interview_status']!='reject'): ?>
+                                                            <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                             <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu pull-right" role="menu">
-                                                            <li>
-                                                                <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
-                                                                    <i class="icon-eye"></i>
-                                                                    View Summary
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <?php if ($value['interview_status'] == 'reschedule'): ?>
-                                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
-                                                                            <i class="icon-calendar"></i>
-                                                                            Rescheduled Interview
-                                                                        </a>
-                                                                <?php else: ?>
-                                                                    <a href="#choose_interview_session" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
-                                                                            <i class="icon-paper-plane"></i>
-                                                                            Send Invitation Interview
-                                                                        </a>
-                                                                <?php endif ?>
-                                                            </li>
-                                                            <li class="divider"> </li>
-                                                            <li>
-                                                                <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
-                                                                    <i class="icon-check md-green-text"></i>
-                                                                    Hire Candidate
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
-                                                                    <i class="icon-close md-red-text"></i>
-                                                                    Reject Candidate
-                                                                </a>
-                                                            </li>
-                                                        </ul>
+                                                            </button>
+                                                            <ul class="dropdown-menu pull-right" role="menu">
+                                                                <li>
+                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
+                                                                        <i class="icon-eye"></i>
+                                                                        View Summary
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <?php if ($value['interview_status'] == 'reschedule'): ?>
+                                                                        <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
+                                                                                <i class="icon-calendar"></i>
+                                                                                Rescheduled Interview
+                                                                            </a>
+                                                                    <?php else: ?>
+                                                                        <a href="#modal_set_session_<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
+                                                                                <i class="icon-paper-plane"></i>
+                                                                                Send Invitation Interview
+                                                                            </a>
+                                                                    <?php endif ?>
+                                                                </li>
+                                                                <li class="divider"> </li>
+                                                                <li>
+                                                                    <a href="#" class="md-green-text mt-sweetalert hire-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
+                                                                        <i class="icon-check md-green-text"></i>
+                                                                        Hire Candidate
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#" class="md-red-text mt-sweetalert reject-candidate" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" >
+                                                                        <i class="icon-close md-red-text"></i>
+                                                                        Reject Candidate
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        <?php else: ?>
+                                                            <a href="#modal_view_reject_detail" class="btn btn-md-red btn-xs" data-toggle="modal">
+                                                                View
+                                                            </a>
+                                                        <?php endif ?>
+                                                        
                                                     </div>
                                                 </td>
                                             </tr>
@@ -275,51 +284,6 @@
                                 </div>
                                 <!-- END MODAL : Reject Form -->
 
-                                <!-- BEGIN MODAL : View Reject Detail -->
-                                <div class="modal fade modal-open-noscroll" id="modal_view_reject_detail" tabindex="-1" role="dialog" aria-hidden="false">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content form">
-                                            <div class="modal-header">
-                                                <h4 class="font-weight-600">Rejection Letter
-                                                    <small class="font-weight-300">by Ellie Lau</small>
-                                                </h4>
-
-                                            </div>
-                                            <form action="" class="form-horizontal">
-                                                <div class="modal-body form-body">
-                                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
-                                                        <div class="row mx-0">
-                                                            <div class="form-group mx-0 col-md-12">
-                                                                <p class="form-control-static">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo. Nullam euismod dictum elementum. Maecenas imperdiet orci augue,
-                                                                    at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum. Proin sit amet ligula vitae sem posuere auctor. Aenean
-                                                                    ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante id sem euismod, ut pulvinar orci porta. Nunc ut enim
-                                                                    ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis. Integer vel urna quis mi semper tempus. Vestibulum
-                                                                    non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim lobortis.</p>
-
-                                                                <p class="form-control-static">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo. Nullam euismod dictum elementum. Maecenas imperdiet orci augue,
-                                                                    at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum. Proin sit amet ligula vitae sem posuere auctor. Aenean
-                                                                    ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante id sem euismod, ut pulvinar orci porta. Nunc ut enim
-                                                                    ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis. Integer vel urna quis mi semper tempus. Vestibulum
-                                                                    non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim lobortis.</p>
-                                                            </div>
-                                                        </div>
-
-
-
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer ">
-                                                    <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Close</a>
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- END MODAL : View Reject Detail-->
                                 <?php foreach ($shortlisted as $key => $value): ?>
                                     
                                 
@@ -350,7 +314,7 @@
                                                             <label for="">Do you agree to rescheduled ?</label>
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes" checked=""> Yes
+                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes"> Yes
                                                                     <span></span>
                                                                 </label>
                                                                 <label class="mt-radio">
@@ -360,49 +324,47 @@
                                                             </div>
                                                         </div>
                                                         <!-- If Radio "Yes" -->
-                                                        <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
-                                                        <div class="form-group mx-0 col-md-12">
-                                                            <label for="" class="control-label">Reply</label>
-                                                            <textarea class="form-control" rows="10" name="reschedule_detail">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
-                                                                Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
-                                                                Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
-                                                                id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
-                                                                Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
-                                                                lobortis. </textarea>
-                                                        </div>
-                                                        <div class="row mx-0">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group mx-0">
-                                                                    <label class="control-label">From</label>
-                                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                        <input type="text" size="16" class="form-control" name="start_date">
-                                                                        <span class="input-group-addon">
-                                                                            <button class="btn default date-set" type="button">
-                                                                                <i class="fa fa-calendar"></i>
-                                                                            </button>
-                                                                        </span>
+                                                        <div class="recreate-session">
+                                                            <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
+                                                            <div class="form-group mx-0 col-md-12">
+                                                                <label for="" class="control-label">Reply</label>
+                                                                <textarea class="form-control" rows="10" name="reschedule_detail">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
+                                                                    Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
+                                                                    Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
+                                                                    id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
+                                                                    Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
+                                                                    lobortis. </textarea>
+                                                            </div>
+                                                            <div class="row mx-0">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group mx-0">
+                                                                        <label class="control-label">From</label>
+                                                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                                            <input type="text" size="16" class="form-control" name="start_date">
+                                                                            <span class="input-group-addon">
+                                                                                <button class="btn default date-set" type="button">
+                                                                                    <i class="fa fa-calendar"></i>
+                                                                                </button>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">To</label>
+                                                                        <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                                            <input type="text" size="16" class="form-control">
+                                                                            <span class="input-group-addon">
+                                                                                <button class="btn default date-set" type="button">
+                                                                                    <i class="fa fa-calendar"></i>
+                                                                                </button>
+                                                                            </span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-
-                                                                <div class="form-group">
-                                                                    <label class="control-label">To</label>
-                                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                        <input type="text" size="16" class="form-control">
-                                                                        <span class="input-group-addon">
-                                                                            <button class="btn default date-set" type="button">
-                                                                                <i class="fa fa-calendar"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                         </div>
-
-
-
-
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer ">
@@ -418,11 +380,11 @@
                                 </div>
                                 <!-- END MODAL : Rescheduled Form -->
 
-                                <?php endforeach ?>
+
 
                                 <!-- INTERVIEW -->
                                 <!-- BEGIN MODAL : Set Interview Session -->
-                                <div class="modal fade" id="modal_set_session" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                                <div class="modal fade" id="modal_set_session_<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                                     <div class="modal-dialog ">
                                         <div class="modal-content ">
                                             <div class="modal-header">
@@ -430,8 +392,12 @@
                                                 <h4 class="modal-title font-weight-600 ">Interview Schedule
                                                 </h4>
                                             </div>
-                                            <form action="<?php echo base_url(); ?>candidate/add_session" method="POST" class="form-horizontal">
+                                            <form action="<?php echo base_url(); ?>employer/job_board/single_invitation" method="POST" class="form-horizontal">
                                                 <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
+                                                <input type="hidden" value="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" name="candidate_id"></input>
+                                                <input type="hidden" value="<?php echo rtrim(base64_encode($value['application_id']),'='); ?>" name="application_id"></input>
+                                                <input type="hidden" name="candidate_email" value="<?php echo $value['user_email']; ?>"></input>
+                                                <input type="hidden" name="candidate_name" value="<?php echo $value['user_name'];?>"></input>
                                                 <div class="modal-body form-body ">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label col-md-3">Title</label>
@@ -488,8 +454,43 @@
                                 </div>
                                 <!-- END MODAL : Set Interview Session -->
 
-                                
+                                <!-- BEGIN MODAL : View Reject Detail -->
+                                <div class="modal fade modal-open-noscroll" id="modal_view_reject_detail" tabindex="-1" role="dialog" aria-hidden="false">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content form">
+                                            <div class="modal-header">
+                                                <h4 class="font-weight-600">Rejection Letter
+                                                    <small class="font-weight-300">by <?php echo $value['user_name'] ?></small>
+                                                </h4>
 
+                                            </div>
+                                            <form action="" class="form-horizontal">
+                                                <div class="modal-body form-body">
+                                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
+                                                        <div class="row mx-0">
+                                                            <div class="form-group mx-0 col-md-12">
+                                                                <p class="form-control-static"><?php echo $value['candidate_reply'] ?></p>
+                                                            </div>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer ">
+                                                    <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Close</a>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- END MODAL : View Reject Detail-->
+
+                                <?php endforeach ?>
                             </div>
                         </div>
 
