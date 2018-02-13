@@ -109,7 +109,10 @@ class User extends CI_Controller {
                 if ($save == false) {
                     throw new Exception('Email Send Failed');
                 }
-                $this->user_model->sendEmail($data);    
+
+                $this->user_model->sendEmail($data);
+
+                $this->session->set_flashdata('msg_success', 'Registration Successfully. Please check you email to verify your account');
             }catch (Exception $e){
                 $this->session->set_flashdata('msg_failed', 'Failed!! Please try again later.');
                 redirect(base_url().'site/user/signup');
@@ -169,9 +172,12 @@ class User extends CI_Controller {
             
             try{
                 $save = $this->user_model->signup_post($data, $role);
+
                 if ($save == false) {
                     throw new Exception('Save failed');
                 }
+
+                $this->session->set_flashdata('msg_success', 'Registration Successfully. Please check you email to verify your account');
             }catch (Exception $e){
                 $this->session->set_flashdata('msg_failed', 'Failed!! Please try again.');
                 $header['page_title'] = 'Sign Up';
@@ -213,9 +219,12 @@ class User extends CI_Controller {
             
              try{
                 $save = $this->user_model->signup_post($data, $role);
+                
                 if ($save == false) {
                     throw new Exception('Save failed');
                 }
+
+                $this->session->set_flashdata('msg_success', 'Registration Successfully. Please check you email to verify your account');
             }catch (Exception $e){
                 $this->session->set_flashdata('msg_failed', 'Failed!! Please try again.');
                 $header['page_title'] = 'Sign Up';
