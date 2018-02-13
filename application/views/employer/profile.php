@@ -6,7 +6,7 @@
         $profile_picture = end($profile_photo); 
         $header_picture = end($header_photo); 
         $dress_code_detail = explode(',', $detail['dress_code']);
-        $dresscode = ucwords(str_replace(',',', ',$detail['dress_code']),', ');
+        $dresscode = ucwords(str_replace(',',', ',$detail['dress_code']).', ');
         /*$dresscode = '';
         if (!empty($dress_code_detail)) {
             foreach ($dress_code_detail as $key => $value) {
