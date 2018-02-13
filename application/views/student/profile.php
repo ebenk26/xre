@@ -67,7 +67,7 @@
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
                                             <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
@@ -936,13 +936,13 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
-                                                            <!-- <label class="control-label">City</label> -->
-                                                            <input type="text" class="form-control" name="city" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> </div>
+                                                            <label class="control-label">City</label>
+                                                            <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
-                                                            <!-- <label class="control-label ">State</label> -->
-                                                            <input type="text" class="form-control" name="state" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
+                                                            <label class="control-label ">State</label>
+                                                            <input type="text" class="form-control" name="state" placeholder="State" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -951,15 +951,15 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
-                                                            <!-- <label class="control-label ">Post Code</label> -->
-                                                            <input type="text" class="form-control" name="post_code" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
+                                                            <label class="control-label ">Postcode</label>
+                                                            <input type="text" class="form-control" name="post_code" placeholder="Postcode" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
-                                                            <!-- <label class="control-label ">Country</label> -->
-                                                            <input type="text" class="form-control" name="country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
+                                                            <label class="control-label ">Country</label>
+                                                            <input type="text" class="form-control" name="country" placeholder="Country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
                                                         </div>
                                                     </div>
                                                     <!--/span-->
@@ -996,7 +996,7 @@
                                                         <!-- DOB -->
                                                         <div class="form-group mx-0">
                                                             <label class="control-label ">Date of Birth</label>
-                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d/m/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy">
+                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -1143,8 +1143,8 @@
                                         <div class="row mx-0">
                                             <div class="col-md-12">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label"> Headlines</label>
-                                                    <textarea name="quotes" class="form-control" id="" rows="3" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi consectetur possimus pariatur nihil praesentium veniam asperiores, debitis consequatur commodi esse, id sit? Perferendis maxime ea odit asperiores animi earum pariatur!"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
+                                                    <label class="control-label"> Quote</label>
+                                                    <textarea name="quotes" class="form-control" id="" rows="5" placeholder="Your quote"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1153,7 +1153,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group mx-0 ">
                                                     <label class="control-label"> Summary</label>
-                                                    <textarea name="summary" class="form-control" id="" rows="3" placeholder="Summarize about yourself"><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
+                                                    <textarea name="summary" class="form-control" id="" rows="5" placeholder="Summary about yourself"><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1162,7 +1162,7 @@
                                         <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="videoSection"> Video Resume </h4>
                                         <hr class="mt-2">
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Upload video link</label>
+                                            <label class="control-label col-md-2">Upload Youtube link</label>
                                             <div class="col-md-10">
                                                 <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
                                             </div>

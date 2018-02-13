@@ -120,7 +120,18 @@
                                 <?php if(!empty($id)){?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
                                     <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <?php if ($roles =='administrator') {?>
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                        <?php }?>
+
+                                        <?php if ($roles =='employer') {?>
+                                            <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                        <?php }?>
+                                        
+                                        <?php if ($roles =='student') {?>
+                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                        <?php }?>
+
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
@@ -241,7 +252,7 @@
                     </ul>
                 </div>
                 <div class="col-md-3  col-xs-12 text-center">
-					<img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
+					<img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
                     <li hidden>
                         <!-- <h5 class="md-white-text font-weight-700 text-uppercase letter-space-xs">
                             Share:
