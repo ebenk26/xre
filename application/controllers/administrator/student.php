@@ -90,31 +90,6 @@ class Student extends CI_Controller {
 		redirect(base_url().'administrator/student');
     }
 
-    public function update(){
-        $jobPost = array('name' => $this->input->post('title'),
-                         'id' => $this->input->post('job_id'),
-                         'user_id' => $this->session->userdata('id'),
-                         'position_level_id' => $this->input->post('employment_Level'),
-                         'employment_type_id' => $this->input->post('employment_Type'),
-                         'years_of_experience' => $this->input->post('year_Of_Experience'),
-                         'job_description' => $this->input->post('job_Desc'),
-                         'qualifications' => $this->input->post('job_Requirement'),
-                         'other_requirements' => $this->input->post('nice_To_Have'),
-                         'additional_info'=> $this->input->post('additional_Info'),
-                         'status'=> $this->input->post('status'),
-                         'budget_min' => $this->input->post('budget_min'),
-                         'budget_max' => $this->input->post('budget_max'),
-                         'updated_at' => date('Y-m-d H:i:s')
-                         );
-        $editJob = $this->employer_model->job_edit($jobPost);
-        if ($editJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success edit job');            
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed edit job');
-        }
-        redirect(base_url().'employer/job_board/');
-    }
-
     public function delete(){
         $id = $this->input->post('post_id');
         $deleteJob = $this->employer_model->job_delete($id);
@@ -139,6 +114,33 @@ class Student extends CI_Controller {
         $job_post['header_image'] = $this->employer_model->get_where('profile_uploads', 'id', 'asc', array('user_id'=>$user_id, 'type'=>'header_photo'));
         $job_post['user_profile'] = $get_user_profile;
         $this->load->view('employer/preview',$job_post);
+    }
+
+    public function set_student_bios(){
+        $this->db->select('users.fullname, users.id as user_id, roles.slug, student_bios.id');
+        $this->db->from('users');
+        $this->db->join('student_bios', 'student_bios.user_id = users.id', 'left');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
+        $this->db->where('roles.slug', 'student');
+        $this->db->order_by('users.id', 'DESC');
+        $query = $this->db->get();
+        $user_student = $query->result();
+
+        //print_r($user_student);
+
+        $no = 1;
+        foreach($user_student as $row){
+            if($row->id == ""){
+                $data = array(
+                        'user_id'               => $row->user_id,
+                        'created_at'            => date('Y-m-d H:i:s'),
+                );
+                $post_status = $this->db->insert('student_bios', $data);
+            }
+        }
+
+        
     }
 
 }

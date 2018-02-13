@@ -421,7 +421,7 @@
                     <h4 class="text-center text-uppercase  md-orange-text text-darken-1 font-weight-700"> Video Resume</h4>
                     <hr class="border-mdo-orange-light mt-width-300-xs center-block">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="<?php echo !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>"></iframe>
+                        <iframe width="560" height="315" src="<?php echo !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                 </li>
                 <!-- Gallery -->

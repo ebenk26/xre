@@ -128,10 +128,12 @@ class Applications_history extends CI_Controller {
         $job_id = $this->input->post('job_id');
         $session_id = $this->input->post('session_id');
         $employer_id = $this->input->post('employer_id');
+
         $where = array( 'job_id'=>$job_id,
                         'session_id' => $session_id,
                         'employer_id' => $employer_id);
-        $data = array('status' => 'reject');
+        $data = array(  'status' => 'reject',
+                        'candidate_reply' => $this->input->post('candidate_reply'));
 
         $this->global_model->update('interview_schedule_user', $where, $data);
 		
@@ -187,7 +189,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 		
-        // redirect(base_url().'student/calendar/');
+        redirect(base_url().'student/calendar/');
 
     }
 

@@ -416,6 +416,7 @@ class Student_Model extends CI_Model{
         $this->db->join('user_profiles','user_profiles.user_id = interview_schedule_user.employer_id', 'left' );
         $this->db->join('student_bios','student_bios.user_id = interview_schedule_user.user_id', 'left' );
         $this->db->where('interview_schedule_user.user_id', $id); 
+        $this->db->where('interview_schedule_user.status !=', 'reject');
         $interview = $this->db->get();
 
         return $interview->result_array();

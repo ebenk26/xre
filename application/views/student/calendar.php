@@ -145,7 +145,7 @@
                                                                         <div class="col-md-12 text-right">
                                                                             <a href="#" class="btn btn-md-indigo btn-acc" job-id="<?php echo $value['job_id'];?>"  session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>" >Accept</a>
                                                                             <a href="#modal_rescheduled_form" data-toggle="modal" class="btn btn-md-orange btn-resc" job-id="<?php echo $value['job_id'];?>" session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>">Reschedule</a>
-                                                                            <a href="#" class="btn btn-md-red btn-rej" job-id="<?php echo $value['job_id'];?>" session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>">Reject</a>
+                                                                            <a href="#modal_reject_form" data-toggle="modal" class="btn btn-md-red btn-rej" job-id="<?php echo $value['job_id'];?>" session-id="<?php echo $value['session_id'];?>" employer-id="<?php echo $value['employer_id'];?>">Reject</a>
 
                                                                         </div>
                                                                     <?php } ?>
@@ -225,6 +225,43 @@
 
                                                     </div>
                                                     <!-- END MODAL : Rescheduled Form -->
+
+                                                    <!-- BEGIN MODAL : Reject Form -->
+                                                    <div class="modal fade modal-open-noscroll" id="modal_reject_form" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content form">
+                                                                <div class="modal-header">
+                                                                    <h4>Rejection Letter</h4>
+                                                                </div>
+                                                                <form action="<?php echo base_url(); ?>student/applications_history/reject_invitation" class="form-horizontal" method="POST">
+                                                                <input type="hidden" class="job-id" name="job_id"></input>
+                                                                <input type="hidden" class="session-id" name="session_id"></input>
+                                                                <input type="hidden" class="employer-id" name="employer_id"></input>
+                                                                    <div class="modal-body form-body">
+                                                                            <h5 class="form-section mx-0 col-md-12 mt-0">Letter Content</h5>
+                                                                            <div class="form-group mx-0 col-md-12">
+                                                                                <label for="" class="control-label">Reply</label>
+                                                                                <textarea class="form-control" rows="10" name="candidate_reply" required>Hi Mark Adam ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
+                                                                                        Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
+                                                                                        Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
+                                                                                        id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
+                                                                                        Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
+                                                                                        lobortis. </textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+
+                                                                        <button class="btn btn-md-red" type="submit"> Save</button>
+                                                                        <a href="#" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
+
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <!-- END MODAL : Reject Form -->
 
                                                 </div>
                                             </div>

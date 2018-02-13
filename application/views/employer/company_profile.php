@@ -528,7 +528,7 @@
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="icon-calendar mr-1"></i>Working Day</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_days'] != "" && $detail['working_days'] != " - "?$detail['working_days']:"Not Provided"; ?>
+                                <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):"Not Provided"; ?>
                             </p>
                         </li>
 						
@@ -537,7 +537,7 @@
                             <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
                                 <i class="icon-clock mr-1"></i>Working Hour</h5>
                             <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_hours'] != "" && $detail['working_hours'] != " - "?$detail['working_hours']:"Not Provided"; ?>
+                                <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):"Not Provided"; ?>
                             </p>
                         </li>
 
@@ -622,6 +622,11 @@
                                 case 'instagram': ?>
                                 <li>
                                     <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="instagram" data-original-title="Instagram" target="_blank"></a>
+                                </li>
+                            <?php $followme++;break;
+                                case 'youtube': ?>
+                                <li>
+                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="youtube" data-original-title="Youtube" target="_blank"></a>
                                 </li>
                             <?php break; default:?>
                                 <li>

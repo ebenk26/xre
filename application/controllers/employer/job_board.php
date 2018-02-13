@@ -345,6 +345,7 @@ class Job_Board extends CI_Controller {
     }
 
     public function single_invitation(){
+        $application_id = base64_decode($this->input->post('application_id'));
         $job_id = base64_decode($this->input->post('job_id'));
         $candidate_id = base64_decode($this->input->post('candidate_id'));
         $candidate_name = $this->input->post('candidate_name');
@@ -369,6 +370,7 @@ class Job_Board extends CI_Controller {
                         'end_date'=> date('Y-m-d H:i:s', strtotime($end_date_hour)),
                         'description'=> $this->input->post('description'));
 
+        $this->global_model->update('applieds', array('id' => $application_id), array('status'=>'INTERVIEW'));
         $session_id = $this->global_model->create_return_id('interview_schedule', $session);
 
         $invite = array( 'session_id' => $session_id,
