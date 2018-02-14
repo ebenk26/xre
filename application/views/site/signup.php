@@ -479,6 +479,8 @@
 
             $("#studentUser button").click(function(argument)
             {
+                alertify.set('notifier','position', 'bottom-left');
+                
                 var error = false;
                 if($("#studentUser #fullname_student").val() == "")
                 {
@@ -561,6 +563,8 @@
 
             $("#employerUser button").click(function(argument)
             {
+                alertify.set('notifier','position', 'bottom-left');
+                
                 var error = false;
                 if($("#employerUser #company_name_employer").val() == "")
                 {
