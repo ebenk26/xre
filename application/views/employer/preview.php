@@ -548,7 +548,7 @@ if (!empty($job->location)) {
                             <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
                                 <div class="media ">
                                     <div class="pull-left">
-                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="avatar avatar-mini avatar-circle">
+                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
                                     </div>
                                     <div class="media-body">
                                         <h6 class="mt-1 mb-1 md-indigo-text font-weight-500 roboto-font"><?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
