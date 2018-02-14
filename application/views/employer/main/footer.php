@@ -76,6 +76,10 @@
     <script src="<?php echo JS_EMPLOYER; ?>quick-sidebar.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>quick-nav.min.js" type="text/javascript"></script>
     <!-- END THEME LAYOUT SCRIPTS -->
+
+    <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
+    <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
+    <!-- END PASSWORD STRENGTH SCRIPTS -->
     <script>
         $(document).ready(function () {
             var e = $("#xremo_table");

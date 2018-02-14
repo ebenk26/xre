@@ -354,7 +354,9 @@
                                     <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
                                     <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
                                     <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
-                                    <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['degree_description']);?>
+                                    <p class="roboto-font mb-0 multiline-truncate"> 
+                                        <?//=strip_tags($value['degree_description']); ?>
+                                        <?=ucfirst($value['degree_description']);?>
                                     </p>
                                 </div>
                             </div>
@@ -417,7 +419,7 @@
                                                                     <span class="help-block"> to </span>
                                                                 </div>
                                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until">
+                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? "" : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
                                                                     <span class="help-block md-checkbox has-warning"> 
                                                                     <input type="checkbox" class="md-check" id="md-check-edu-end_<?php echo $i;?>" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                     <label for="md-check-edu-end_<?php echo $i;?>">
@@ -540,7 +542,7 @@
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year">
+                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -665,7 +667,7 @@
                                                                                 <span class="help-block"> to </span>
                                                                             </div>
                                                                             <div class="m-grid-col m-grid-col-xs-6">
-                                                                                <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
+                                                                                <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? "" : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3" required>
                                                                                 <span class="help-block md-checkbox has-warning mb-0">
                                                                                     <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                                     <label for="checkbox<?php echo $i; ?>">
@@ -825,14 +827,14 @@
 
                                                     <div class="m-grid ">
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date">
+                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date" required>
                                                             <!-- <span class="help-block"> Select date </span> -->
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? "" : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date">
                                                             <span class="help-block md-checkbox has-warning mb-0">
                                                             <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                 <label for="checkbox<?php echo $i;?>">
@@ -853,7 +855,7 @@
                                                 <!-- Description -->
                                                 <div class="form-group mx-0 mb-0">
                                                     <label class="control-label ">Description</label>
-                                                    <textarea class="form-control autosizeme" name="project_description" rows="4" placeholder="Brief about yourproject progress ...."><?php echo ucfirst($value['description']); ?></textarea>
+                                                    <textarea class="form-control autosizeme" name="project_description" rows="6" placeholder="Brief about yourproject progress ...."><?php echo ucfirst($value['description']); ?></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -925,7 +927,7 @@
                                                 <!-- Full name -->
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Full Name</label>
-                                                    <input type="text" class="form-control input-xlarge" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
+                                                    <input type="text" class="form-control" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
                                                 </div>
                                                 <!-- Address -->
                                                 <div class="form-group mx-0">
@@ -1162,8 +1164,8 @@
                                         <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="videoSection"> Video Resume </h4>
                                         <hr class="mt-2">
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Upload Youtube link</label>
-                                            <div class="col-md-10">
+                                            <label class="control-label col-md-3">Upload Youtube link</label>
+                                            <div class="col-md-9">
                                                 <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
                                             </div>
                                         </div>
@@ -1361,7 +1363,7 @@
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date">
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -1429,7 +1431,7 @@
                                                         <span class="help-block"> to </span>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                        <input class="form-control form-control-inline date-picker-end input-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year" required>
                                                         <span class="help-block md-checkbox has-warning"> 
                                                             <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
                                                             <label for="add_experience">
@@ -1551,7 +1553,7 @@
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date" >
                                                             <span class="help-block md-checkbox has-warning mb-0">
                                                                 <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
                                                                 <label for="checkbox_add_project">
@@ -1572,7 +1574,7 @@
                                                 <!-- Description -->
                                                 <div class="form-group mx-0 mb-0">
                                                     <label class="control-label ">Description</label>
-                                                    <textarea class="form-control autosizeme" rows="4" placeholder="Brief about yourproject progress ...." name="project_description"></textarea>
+                                                    <textarea class="form-control autosizeme" rows="6" placeholder="Brief about yourproject progress ...." name="project_description"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

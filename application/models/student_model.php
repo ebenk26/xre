@@ -162,7 +162,7 @@ class Student_Model extends CI_Model{
         }
 
         //overview
-        $this->db->select('users.fullname as name, users.email as email, users.preference_name as preference_name, users.verified as verified, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary, users.number_of_seen, users.last_seen_by, users.last_seen_at, users.id as id_users');
+        $this->db->select('users.fullname as name, users.email as email, users.preference_name as preference_name, users.verified as verified, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary, users.number_of_seen, users.last_seen_by, users.last_seen_at, users.id as id_users, users.preference_name');
         $this->db->from('users');
         $this->db->join('student_bios', 'student_bios.user_id = users.id');
         $this->db->where(array('student_bios.user_id' => $id));

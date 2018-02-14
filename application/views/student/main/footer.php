@@ -100,7 +100,9 @@
     <script src="<?php echo JS_EMPLOYER; ?>quick-sidebar.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>quick-nav.min.js" type="text/javascript"></script>
 	
-	
+	<!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
+    <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
+    <!-- END PASSWORD STRENGTH SCRIPTS -->
 	
 	
 	
@@ -198,8 +200,10 @@
             $('.md-check').change(function(){
                 if(this.checked) {
                     $('.input-date-picker-end').prop( "disabled", true );
+                    $('.input-date-picker-end').removeAttr( "required" );
                 }else{
                     $('.input-date-picker-end').removeAttr( "disabled" );
+                    $('.input-date-picker-end').attr( "required" );
                 }
             });
             
