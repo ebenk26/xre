@@ -1,6 +1,5 @@
 <?php   $id = $this->session->userdata('id'); 
         $roles= $this->session->userdata('roles');
-
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -379,6 +378,7 @@
 											<i class="icon-envelope mr-2 "></i>Send Message</a>
 							<?php }?>                                        
                         </li>
+                        <?php if(!empty($roles) && $roles == 'employer'){ ?>
 						<li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">ADDRESS</h5>
                             <p class="mt-1 "><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?>, <?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?> <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?> , <?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None';?>, <?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></p>
@@ -393,6 +393,8 @@
                                 <span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>
                             </p>
                         </li>
+                        <?php } ?>
+                        <?php if(!empty($roles)){ ?>
                         <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Date Of Birth </h5>
                             <p class="mt-1 "> 
@@ -415,6 +417,7 @@
                                 ?>
                             </p>
                         </li>
+                        <?php } ?>
                         <li>
                             <h5 class="font-weight-700 font-grey-gallery mb-0 font-13-xs text-uppercase">Gender</h5>
                             <p class="mt-1  text-lighten-4"><?php echo !empty($user_profile['overview']['student_bios_gender']) ?  $user_profile['overview']['student_bios_gender'] : 'Prefer not to say'; ?></p>
