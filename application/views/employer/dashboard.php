@@ -164,8 +164,7 @@
 												<h3 class="widget-blog-title"><?=$row->title?></h3>
 												<span class="widget-blog-subtitle"><?=date('j F Y', strtotime($row->created_at))?></span>
 											</div>
-											<p><?=$row->excerpt?>
-											</p>
+											<p><?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?></p>
 											<br/>
 											<a class="btn btn-danger text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
 										</div>

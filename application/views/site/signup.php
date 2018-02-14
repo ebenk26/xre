@@ -77,7 +77,7 @@
             <div class="col-md-6 login-container bs-reset">
                 <div class="m-grid ">
                     <div class="m-grid-col  m-grid-col-center ">
-                        <img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;">
+                        <a href="<?=base_url()?>"><img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;"></a>
                     </div>
                 </div>
                 <div class="login-content portlet">
