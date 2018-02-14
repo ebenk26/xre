@@ -266,6 +266,7 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('email','User email', 'trim|required|valid_email|matches[users.email]');
         $email = $this->input->post('email');
         $this->user_model->forgotPassword($email);
+        $this->session->set_flashdata('msg_success', 'Please check your email to reset password');
         redirect(base_url().'login');
     }
 

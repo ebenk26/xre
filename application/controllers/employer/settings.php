@@ -135,6 +135,18 @@ class settings extends CI_Controller {
             $this->global_model->update('user_profiles', array('user_id' => $id), $billing );
         }
 
+        //BEGIN : set recent activities
+        $data = array(
+                    'user_id'       => $this->session->userdata('id'),
+                    'ip_address'    => $this->input->ip_address(),
+                    'activity'      => "Change Payment Setting",
+                    'icon'          => "fa-money",
+                    'label'         => "success",
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        setRecentActivities($data);
+        //END : set recent activities
+
         redirect(base_url().'employer/settings#tab_payment');
     }
 }
