@@ -417,7 +417,7 @@
                                                                     <span class="help-block"> to </span>
                                                                 </div>
                                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
+                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until">
                                                                     <span class="help-block md-checkbox has-warning"> 
                                                                     <input type="checkbox" class="md-check" id="md-check-edu-end_<?php echo $i;?>" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                     <label for="md-check-edu-end_<?php echo $i;?>">
@@ -540,7 +540,7 @@
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
+                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year">
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -696,7 +696,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group mx-0 mb-0">
                                                                                 <label class="control-label ">Employement Type</label>
-                                                                                <select class="bs-select form-control" name="employment_type">
+                                                                                <select class="form-control" name="employment_type">
                                                                                     <?php foreach ($employment_types as $key => $employment_types_value) {?>
                                                                                         <option value="<?php echo !empty($employment_types_value['id']) ? $employment_types_value['id'] : ''?>" <?php echo $value['employment_type_id'] == $employment_types_value['id'] ? 'selected' : '' ?>><?php echo !empty($employment_types_value['name']) ? $employment_types_value['name'] : ''?></option>
                                                                                     <?php } ?>
@@ -707,7 +707,7 @@
                                                                         <div class="col-md-6">
                                                                             <div class="form-group mx-0 mb-0">
                                                                                 <label class="control-label ">Industry</label>
-                                                                                <select class="bs-select form-control   " name="industry">
+                                                                                <select class="form-control   " name="industry">
                                                                                     <option value="" selected disabled>Company Industry </option>
                                                                                     <?php foreach ($industries as $key => $industry_value) {?>
                                                                                         <option value="<?php echo !empty($industry_value['id']) ? $industry_value['id'] : ''?>" <?php echo $value['industries_id'] == $industry_value['id'] ? 'selected' : '' ?>><?php echo !empty($industry_value['name']) ? $industry_value['name'] : ''?></option>
@@ -1004,7 +1004,7 @@
                                                         <!-- Gender -->
                                                         <div class="form-group mx-0">
                                                             <label class="control-label ">Gender</label>
-                                                            <select class="bs-select form-control" name="gender">
+                                                            <select class="form-control" name="gender">
                                                                         <?php if (!empty($user_profile['overview']['student_bios_gender'])){ ?>
                                                                             <option <?php if($user_profile['overview']['student_bios_gender'] == 'Male'){echo "selected";}?>>Male</option>
                                                                             <option <?php if($user_profile['overview']['student_bios_gender'] == 'Female'){echo "selected";}?>>Female</option>
@@ -1058,7 +1058,7 @@
                                                                     <input type="hidden" name="language_id" value="<?php echo $user_language_value['id'] ?>"></input>
                                                                     <div class="col-md-4">
                                                                         <label for="" class="control-label"> Language</label>
-                                                                        <select class="bs-select form-control " name="name">
+                                                                        <select class="form-control " name="name">
                                                                         <?php foreach ($language as $key => $value) { ?>
                                                                             <option <?php echo $user_language_value['title'] == $value['name'] ? 'selected' : '' ?>><?php echo $value['name']; ?></option>
                                                                         <?php } ?>
@@ -1066,8 +1066,8 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Written</label>
-                                                                        <select class="bs-select form-control" name="written">
-                                                                            <option>Select level </option>
+                                                                        <select class="form-control" name="written">
+                                                                            <option disabled>Select level </option>
                                                                             <option <?php echo $user_language_value['written'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
                                                                             <option <?php echo $user_language_value['written'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
                                                                             <option <?php echo $user_language_value['written'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
@@ -1075,8 +1075,8 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Spoken</label>
-                                                                        <select class="bs-select form-control" name="spoken">
-                                                                            <option>Select level </option>
+                                                                        <select class="form-control" name="spoken">
+                                                                            <option disabled>Select level </option>
                                                                             <option <?php echo $user_language_value['spoken'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
                                                                             <option <?php echo $user_language_value['spoken'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
                                                                             <option <?php echo $user_language_value['spoken'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
@@ -1093,7 +1093,7 @@
                                                                 <div data-repeater-item class=" row mt-2">
                                                                     <div class="col-md-4">
                                                                         <label for="" class="control-label"> Language</label>
-                                                                        <select class="bs-select form-control " name="name">
+                                                                        <select class="form-control " name="name">
                                                                         <?php foreach ($language as $key => $value) { ?>
                                                                             <option><?php echo $value['name']; ?></option>
                                                                         <?php } ?>
@@ -1101,8 +1101,8 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Written</label>
-                                                                        <select class="bs-select form-control" name="written">
-                                                                            <option>Select level </option>
+                                                                        <select class="form-control" name="written">
+                                                                            <option selected disabled>Select level </option>
                                                                             <option>Beginner</option>
                                                                             <option>Intermediate</option>
                                                                             <option>Advanced</option>
@@ -1110,8 +1110,8 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Spoken</label>
-                                                                        <select class="bs-select form-control" name="spoken">
-                                                                            <option>Select level </option>
+                                                                        <select class="form-control" name="spoken">
+                                                                            <option selected disabled>Select level </option>
                                                                             <option>Beginner</option>
                                                                             <option>Intermediate</option>
                                                                             <option>Advanced</option>
@@ -1361,7 +1361,7 @@
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date">
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -1429,7 +1429,7 @@
                                                         <span class="help-block"> to </span>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year" required>
+                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
                                                         <span class="help-block md-checkbox has-warning"> 
                                                             <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
                                                             <label for="add_experience">
@@ -1459,7 +1459,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group mx-0 mb-0">
                                                         <label class="control-label ">Employement Type</label>
-                                                        <select class="bs-select form-control" name="employment_type">
+                                                        <select class="form-control" name="employment_type">
                                                             <?php foreach ($employment_types as $key => $value) {?>
                                                                 <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
                                                             <?php } ?>
@@ -1470,7 +1470,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group mx-0 mb-0">
                                                         <label class="control-label ">Industry</label>
-                                                        <select class="bs-select form-control   " name="industry">
+                                                        <select class="form-control   " name="industry">
                                                             <option value="" selected disabled>Company Industry </option>
                                                             <?php foreach ($industries as $key => $value) {?>
                                                                 <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>"><?php echo !empty($value['name']) ? $value['name'] : ''?></option>
@@ -1551,7 +1551,7 @@
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date" required>
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
                                                             <span class="help-block md-checkbox has-warning mb-0">
                                                                 <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
                                                                 <label for="checkbox_add_project">
