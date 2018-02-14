@@ -83,70 +83,82 @@
                             </div>
                             <div class="clearfix"></div>
                             <!-- Email Input -->
-                            <div class="form-group form-md-line-input px-5">
-                                <div class="col-md-12">
-                                    <div class="input-icon">
-                                        <input name="email" type="email" class="form-control " placeholder="Email" required>
-                                        <div class="form-control-focus"> </div>
-                                        <i class="fa fa-envelope-o"></i>
+                            <div class="form-body">
+                                <!--<div class="form-group form-md-line-input px-5">-->
+                                <div class="form-group form-md-line-input">                                     
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="input-icon">
+                                            <input name="email" type="email" class="form-control " placeholder="Email" required>
+                                            <div class="form-control-focus"> </div>
+                                            <i class="fa fa-envelope-o"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-- Password Input -->
-                            <div class="form-group form-md-line-input px-5">
-                                <div class="col-md-12">
-                                    <div class="input-icon ">
-                                        <input name="password" type="password" class="form-control " placeholder="Password" required>
-                                        <div class="form-control-focus"> </div>
-                                        <i class="fa fa-key"></i>
+                                <div class="clearfix"></div>
+                                <!-- Password Input -->
+                                <div class="form-group form-md-line-input">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="input-icon ">
+                                            <input name="password" type="password" class="form-control " placeholder="Password" required>
+                                            <div class="form-control-focus"> </div>
+                                            <i class="fa fa-key"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-- Remember Me & Forgot Password  -->
-                            <div class="m-grid my-4 px-5">
-                                <div class="m-grid-col m-grid-col-middle m-grid-col-left">
-                                    <div class="md-checkbox md-indigo-box">
-                                        <input type="checkbox" id="checkbox16" name="remember" class="md-check">
-                                        <label for="checkbox16">
-                                                <span></span>
-                                                <span class="check"></span>
-                                                <span class="box"></span> Remember Me
-                                            </label>
+                                <div class="clearfix"></div>
+                                <!-- Remember Me & Forgot Password  -->
+                                <div class="form-group form-md-line-input">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="m-grid my-4">
+                                            <div class="m-grid-col m-grid-col-middle m-grid-col-left">
+                                                <div class="md-checkbox md-indigo-box">
+                                                    <input type="checkbox" id="checkbox16" name="remember" class="md-check">
+                                                    <label for="checkbox16">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> Remember Me
+                                                        </label>
+                                                </div>
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-middle m-grid-col-right">
+                                                <a href="javascript:;" id="forget-password" class="forget-password"><label>Forgot Password? </label> </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="m-grid-col m-grid-col-middle m-grid-col-right">
-                                    <a href="javascript:;" id="forget-password" class="forget-password"><label>Forgot Password? </label> </a>
+                                <div class="clearfix"></div>
+                                <!-- Submit Button -->
+                                <div class="form-group my-4">
+                                    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+                                        <button type="submit" class="btn btn-md-indigo btn-block">Sign in</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-- Submit Button -->
-                            <div class="form-group my-4">
-                                <div class="col-md-offset-2 col-md-8 col-md-offset-2">
-                                    <button type="submit" class="btn btn-md-indigo btn-block">Sign in</button>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="m-grid my-4">
-                                <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                                    Don't have an account ?<a href="<?php echo base_url(); ?>signup"> Sign Up </a>
+                                <div class="clearfix"></div>
+                                <div class="m-grid my-4">
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
+                                        Don't have an account ?<a href="<?php echo base_url(); ?>signup"> Sign Up </a>
+                                    </div>
                                 </div>
                             </div>
                         </form>
 
                         <!-- BEGIN FORGOT PASSWORD FORM -->
                         <form class="forget-form px-7 text-center" action="<?php echo base_url(); ?>site/user/forgot_password" method="post" style="display: none;">
-
-                            <h3 class="md-indigo-text">Forgot Password ?</h3>
-                            <p> Enter your e-mail address below to reset your password. </p>
-                            <div class="form-group">
-                                <input class="form-control placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email">
-                            </div>
-                            <div class="form-actions">
-                                <button type="button" id="back-btn" class="btn btn-warning mr-4">Back</button>
-                                <button type="submit" class="btn btn-md-indigo text-uppercase">Submit</button>
-                                <!--<button type="submit" class="btn btn-md-indigo text-uppercase pull-right">Submit</button>-->
+                            <div class="form-body">
+                                <h3 class="md-indigo-text">Forgot Password ?</h3>
+                                <p> Enter your e-mail address below to reset your password. </p>
+                                <div class="form-group">
+                                    <div class="col-md-8 col-md-offset-2">
+                                    <input class="form-control placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email">
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <button type="button" id="back-btn" class="btn btn-warning mr-4">Back</button>
+                                        <button type="submit" class="btn btn-md-indigo text-uppercase">Submit</button>
+                                        <!--<button type="submit" class="btn btn-md-indigo text-uppercase pull-right">Submit</button>-->
+                                    </div>
+                                </div>
                             </div>
                         </form>
                         <!-- END FORGOT PASSWORD FORM -->
