@@ -509,6 +509,10 @@
                 AppCalendar.init();
             <?php } ?>
 
+            $('#notif_msg').slimScroll({
+                height: '250px'
+            });
+
             showNotif();
 
             setInterval(function(){showNotif()},<?= GetInterval(); ?>);
@@ -528,6 +532,26 @@
                         $("#notif_msg").html(data.notif);
                         $("#count_notif").html(data.total);
                         $("#count_notif_in").html(data.total_in);
+                    }
+                }
+            });
+        }
+
+        function notif_list(param)
+        {
+            var source = param.getAttribute('data-source');
+
+            $.ajax({
+                url:"<?php echo base_url();?>clear-notif",
+                method:"POST",
+                data:{id:source},
+                success:function(response)
+                {
+                    var data = JSON.parse(response);
+                    
+                    if(data.message == "success")
+                    {
+                        location.href = data.url;
                     }
                 }
             });

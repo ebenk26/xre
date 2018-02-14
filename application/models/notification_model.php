@@ -31,4 +31,19 @@ class Notification_Model extends CI_Model
         
         return $query;   
     }
+
+    function updateNotif($data,$id)
+    {
+        try
+        {
+            $this->db->where('type',$id);
+            $query = $this->db->update('notifications',$data);
+        }
+        catch (Exception $e)
+        {
+            return false;
+        }
+        
+        return $query;   
+    }
 }

@@ -6,7 +6,7 @@
         $readUnread = ($notif["viewed"] == 0) ? 'style="background-color:#ffe2e2"' : '';
 ?>
         <li <?= $readUnread; ?>>
-            <a href="<?= base_url().$notif["url"]; ?>">
+            <a href="#" class="notif_list" data-source="<?= $notif["id"]; ?>" onclick="notif_list(this)">
                 <span class="time"><?= $elapsed; ?></span>
                 <span class="details">
                     <span class="label label-sm label-icon label-success">
