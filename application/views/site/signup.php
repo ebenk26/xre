@@ -479,6 +479,7 @@
 
             $("#studentUser button").click(function(argument)
             {
+                alertify.dismissAll();
                 alertify.set('notifier','position', 'bottom-left');
                 
                 var error = false;
@@ -491,6 +492,18 @@
                 if($("#studentUser #email_student").val() == "")
                 {
                     alertify.error('Please fill in your email address', 'error', 5);
+                    error = true;
+                }
+
+                if($("#studentUser #password_student").val() == "")
+                {
+                    alertify.error('Please fill in your password', 'error', 5);
+                    error = true;
+                }
+
+                if($("#studentUser #confirm_password_student").val() == "")
+                {
+                    alertify.error('Please fill in your confirm password', 'error', 5);
                     error = true;
                 }
 
@@ -563,8 +576,9 @@
 
             $("#employerUser button").click(function(argument)
             {
+                alertify.dismissAll();
                 alertify.set('notifier','position', 'bottom-left');
-                
+
                 var error = false;
                 if($("#employerUser #company_name_employer").val() == "")
                 {
@@ -581,6 +595,18 @@
                 if($("#employerUser #email_employer").val() == "")
                 {
                     alertify.error('Please fill in your email address', 'error', 5);
+                    error = true;
+                }
+
+                if($("#employerUser #password_employer").val() == "")
+                {
+                    alertify.error('Please fill in your password', 'error', 5);
+                    error = true;
+                }
+
+                if($("#employerUser #confirm_password_employer").val() == "")
+                {
+                    alertify.error('Please fill in your confirm password', 'error', 5);
                     error = true;
                 }
 
