@@ -204,9 +204,18 @@
 
                                     <div class="form-group mx-0">
                                         <label for="">New Password</label>
-                                        <input type="password" name="password" class="form-control " value="" required>
+                                        <input type="password" name="password" class="pass-strength-student-setting form-control " value="" required>
                                     </div>
-
+                                    <!-- Input : Password -->
+                                    <div class="form-group  mx-0 password-strength-bar-student-setting" style="display:none;">
+                                        <!--<div class="col-md-8 col-md-offset-2  ">-->
+                                            <div class="progress progress-striped active mb-0">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                                <span class="sr-only">0% CompletePoor</span>
+                                              </div>
+                                            </div>
+                                        <!--</div>-->
+                                    </div>
                                     <div class="form-group mx-0">
                                         <label for="">Confirm New Password</label>
                                         <input type="password" name="conf_password" class="form-control " value="" required>

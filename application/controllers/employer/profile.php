@@ -53,11 +53,13 @@ class Profile extends CI_Controller {
             $this->employer_model->delete_social($id);
         }
 
-        $profile = array('company_name' => $this->input->post('company_name'),
-						 'email' => $this->input->post('email'),
-                         'company_registration_number' => $this->input->post('company_registration_number'),
-                         'company_industry_id' => $this->input->post('industry'),
-                         'company_description' => $this->input->post('about_company'),
+        $profile = array('company_name'                 => $this->input->post('company_name'),
+                         'shipping_name'                => $this->input->post('company_name'),
+                         'billing_name'                 => $this->input->post('company_name'),
+						 'email'                        => $this->input->post('email'),
+                         'company_registration_number'  => $this->input->post('company_registration_number'),
+                         'company_industry_id'          => $this->input->post('industry'),
+                         'company_description'          => $this->input->post('about_company'),
                          //'spoken_language' => $this->input->post('language'),
                          'user_id' => $id,
                          'url' => $this->input->post('corporate_website'));
@@ -84,7 +86,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
         
-        redirect(base_url().'employer/profile/');
+        redirect(base_url().'employer/profile');
 
     }
 
@@ -137,15 +139,39 @@ class Profile extends CI_Controller {
         $id = $this->session->userdata('id');
         $address = $this->input->post('contact_info');
 
+        //BEGIN : SET SHIPPING ADDRESS AND LAT LONG
+        $hq = false;$array_no = 0;$no = 0;
+        foreach($address as $value){
+            if($value['optionsRadios'] == "HQ"){
+                $hq = true;$array_no = $no;break;
+            }
+            $no++;
+        }
+        if($hq){
+            $shipping = array(
+                        'shipping_address'  => $address[$array_no]["building_address"],
+                        'shipping_city'     => $address[$array_no]["building_city"],
+                        'shipping_state'    => $address[$array_no]["building_state"],
+                        'shipping_country'  => $address[$array_no]["building_country"],
+                        'shipping_postcode' => $address[$array_no]["building_postcode"],
+                        'shipping_phone'    => $address[$array_no]["building_phone"],
+                        'shipping_fax'      => $address[$array_no]["building_fax"],
+                        'latitude'          => $address[$array_no]["building_latitude"],
+                        'longitude'         => $address[$array_no]["building_longitude"],
+            );
+            $this->employer_model->edit_profile($shipping);
+        }
+        //END : SET SHIPPING ADDRESS AND LAT LONG
+
         $contact = array('address' => json_encode($address) );
 
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
             
-            if ($checkAvailabilityProfile) {
-                $this->employer_model->edit_profile($contact);
-            }else{
-                $this->employer_model->add_profile($contact);
-            }
+        if ($checkAvailabilityProfile) {
+            $this->employer_model->edit_profile($contact);
+        }else{
+            $this->employer_model->add_profile($contact);
+        }
 
         $this->session->set_flashdata('msg_success', 'Success update contact info');
         $this->session->set_flashdata('tab_profile', '#tab_edit_contact_info');

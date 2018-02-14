@@ -167,7 +167,13 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
-                                <span class="username username-hide-on-mobile"> <?php echo $this->session->userdata('name'); ?> </span>
+                                <span class="username username-hide-on-mobile"> 
+                                    <?php
+                                        $fullname = $this->session->userdata('name');
+                                        $arr = explode(' ',trim($fullname));
+                                        $fullname_short = $arr[0];
+                                    ?>
+                                    <?php echo $user_profile['overview']['preference_name'] != ""?$user_profile['overview']['preference_name']:$fullname_short; ?> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">

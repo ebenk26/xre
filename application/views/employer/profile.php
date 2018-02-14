@@ -241,11 +241,11 @@
 												?>
                                                 <h5 class="font-weight-500"><?php echo $full_address; ?></h5>
 												
-                                                <h5><i class="fa fa-envelope mr-2"></i> <?php echo $value->building_email; ?></h5>
+                                                <h5><i class="fa fa-envelope mr-2"></i> <?=$value->building_email != ""?$value->building_email:"Not provided"; ?></h5>
                                                 <h5>
-                                                    <i class="fa fa-phone mr-2"></i> <?php echo $value->building_phone; ?></h5>
+                                                    <i class="fa fa-phone mr-2"></i> <?=$value->building_phone != ""?$value->building_phone:"Not provided"; ?></h5>
                                                 <h5>
-                                                    <i class="fa fa-fax mr-2"></i> <?php echo $value->building_fax; ?></h5>
+                                                    <i class="fa fa-fax mr-2"></i> <?=$value->building_fax != ""?$value->building_fax:"Not provided"; ?></h5>
 
                                             </li>
                                             <?php } ?>

@@ -473,7 +473,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Address</label>
-                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," required>
+                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -483,13 +483,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">City</label>
-                                            <input type="text" class="form-control" name="city" required>
+                                            <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mx-0 ">
                                             <label class="control-label">State</label>
-                                            <input type="text" class="form-control" name="state" required>
+                                            <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" required>
                                         </div>
                                     </div>
                                 </div>
@@ -499,7 +499,7 @@
                                         <div class="form-group mx-0">
                                             <label class="control-label">Postcode</label>
 
-                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode" required>
+                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" required>
 
                                         </div>
                                     </div>
@@ -511,7 +511,7 @@
 
                                             <select class="form-control" name="country" required>
                                                 <?php foreach ($countries as $key => $value) {?>
-                                                    <option><?php echo $value['name']; ?></option>
+                                                    <option value="<?=$value['name']?>" <?php if($value['name'] == $user_profile['shipping_country']){echo "selected";}?>><?php echo $value['name']; ?></option>
                                                 <?php } ?>
                                             </select>
 
@@ -523,14 +523,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Latitude</label>
-                                            <input type="text" class="form-control" placeholder="1.643604 " name="latitude" required>
+                                            <input type="text" class="form-control" placeholder="1.643604 " name="latitude" value="<?=$user_profile['latitude']?>" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Longititude</label>
-                                            <input type="text" class="form-control" placeholder="1.955566" name="longitude" required>
+                                            <input type="text" class="form-control" placeholder="1.955566" name="longitude" value="<?=$user_profile['longitude']?>" required>
                                         </div>
                                     </div>
                                 </div>

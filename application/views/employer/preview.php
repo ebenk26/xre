@@ -190,10 +190,6 @@ if (!empty($job->location)) {
 
                                 <?php if (!empty($login)){ ?>
                                 <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-<<<<<<< HEAD
-                                    <a href="index.html" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <img src="<?php echo !empty($image['name']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
-=======
                                     <a href="<?=base_url()?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <?php if ($roles =='administrator') {?>
                                             <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
@@ -206,8 +202,6 @@ if (!empty($job->location)) {
                                         <?php if ($roles =='student') {?>
                                             <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                         <?php }?>
-
->>>>>>> c4c3161721453c851255ebec5a183819c6eb4b1a
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
@@ -554,7 +548,7 @@ if (!empty($job->location)) {
                             <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
                                 <div class="media ">
                                     <div class="pull-left">
-                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'xremo-logo-white.svg'; ?>" alt="" class="avatar avatar-mini avatar-circle">
+                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
                                     </div>
                                     <div class="media-body">
                                         <h6 class="mt-1 mb-1 md-indigo-text font-weight-500 roboto-font"><?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
