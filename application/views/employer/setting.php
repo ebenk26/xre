@@ -158,6 +158,7 @@
                                                         <input type="text" class="form-control input-large">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
                                                     <label for="" class="col-md-4 control-label">Confirm New Password</label>
                                                     <div class="col-md-8">
@@ -222,8 +223,20 @@
                                                 <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
                                             </h4>
                                             <h4>
+                                                <?php
+                                                    $full_address = $settings->shipping_address != ""?$settings->shipping_address.", ":"";
+                                                    $full_address .= $settings->shipping_city != ""?$settings->shipping_city.", ":"";
+                                                    $full_address .= $settings->shipping_postcode != ""?$settings->shipping_postcode.", ":"";
+                                                    $full_address .= $settings->shipping_state != ""?$settings->shipping_state.", ":"";
+                                                    $full_address .= $settings->shipping_country != ""?$settings->shipping_country.", ":"";
+                                                    $full_address = $full_address != ""?substr($full_address, 0, -2):"";
+                                                ?>
                                                 <small>
-                                                    <i class="icon-pointer mr-2"></i><?php echo !empty($settings->shipping_address) ? $settings->shipping_address : 'Please edit your shipping address'; ?></small>
+                                                    <i class="icon-pointer mr-2"></i><?php echo $full_address != "" ? $full_address : 'Please edit your shipping address'; ?></small>
+                                                <h5>
+                                                    <i class="fa fa-phone mr-2"></i> <?=$settings->shipping_phone != ""?$settings->shipping_phone:"Not provided"; ?></h5>
+                                                <h5>
+                                                    <i class="fa fa-fax mr-2"></i> <?=$settings->shipping_fax != ""?$settings->shipping_fax:"Not provided"; ?></h5>
                                             </h4>
                                         </div>
 
@@ -240,8 +253,20 @@
                                                 <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
                                             </h4>
                                             <h4>
+                                                <?php
+                                                    $full_address = $settings->billing_address != ""?$settings->billing_address.", ":"";
+                                                    $full_address .= $settings->billing_city != ""?$settings->billing_city.", ":"";
+                                                    $full_address .= $settings->billing_postcode != ""?$settings->billing_postcode.", ":"";
+                                                    $full_address .= $settings->billing_state != ""?$settings->billing_state.", ":"";
+                                                    $full_address .= $settings->billing_country != ""?$settings->billing_country.", ":"";
+                                                    $full_address = $full_address != ""?substr($full_address, 0, -2):"";
+                                                ?>
                                                 <small>
-                                                    <i class="icon-pointer mr-2"></i><?php echo !empty($settings->billing_address) ? $settings->billing_address : 'Please edit your billing address'; ?></small>
+                                                    <i class="icon-pointer mr-2"></i><?php echo $full_address != "" ? $full_address : 'Please edit your billing address'; ?></small>
+                                                <h5>
+                                                    <i class="fa fa-phone mr-2"></i> <?=$settings->billing_phone != ""?$settings->billing_phone:"Not provided"; ?></h5>
+                                                <h5>
+                                                    <i class="fa fa-fax mr-2"></i> <?=$settings->billing_fax != ""?$settings->billing_fax:"Not provided"; ?></h5>
                                             </h4>
                                         </div>
 
@@ -370,9 +395,18 @@
 
                                 <div class="form-group mx-0">
                                     <label for="">New Password</label>
-                                    <input type="password" class="form-control " name="password">
+                                    <input type="password" class="pass-strength-employer-setting form-control " name="password">
                                 </div>
-
+                                <!-- Input : Password -->
+                                <div class="form-group  mx-0 password-strength-bar-employer-setting" style="display:none;">
+                                    <!--<div class="col-md-8 col-md-offset-2  ">-->
+                                        <div class="progress progress-striped active mb-0">
+                                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                            <span class="sr-only">0% CompletePoor</span>
+                                          </div>
+                                        </div>
+                                    <!--</div>-->
+                                </div>
                                 <div class="form-group mx-0">
                                     <label for="">Confirm New Password</label>
                                     <input type="password" class="form-control " name="conf_password">
@@ -439,7 +473,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">State</label>
-                                                    <input type="text" name="shipping-state" class="form-control" id="state" value="<?php echo !empty($settings->shipping_state) ? $settings->shipping_state : ''; ?>">
+                                                    <input type="text" name="shipping-state" class="form-control" value="<?php echo !empty($settings->shipping_state) ? $settings->shipping_state : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -449,7 +483,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Country</label>
-                                                    <select name="shipping-country" class="form-control" id="country">
+                                                    <select name="shipping-country" class="form-control" >
                                                             <option disabled selected>- Select Country -</option>
                                                         <?php foreach ($country as $key => $value): ?>
                                                             <option <?php echo ($settings->shipping_country == $value['name']) ? 'selected' : '' ?>><?php echo $value['name'] ?></option>
@@ -525,7 +559,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">State</label>
-                                                    <input type="text" name="billing-state" class="form-control billing-input" id="state" value="<?php echo !empty($settings->billing_state) ? $settings->billing_state : ''; ?>">
+                                                    <input type="text" name="billing-state" class="form-control billing-input"  value="<?php echo !empty($settings->billing_state) ? $settings->billing_state : ''; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -535,7 +569,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Country</label>
-                                                    <select class="form-control billing-input" name="billing-country" id="country">
+                                                    <select class="form-control billing-input" name="billing-country" >
                                                         <option disabled selected>- Select Country -</option>
                                                         <?php foreach ($country as $key => $value): ?>
                                                             <option <?php echo ($settings->billing_country == $value['name']) ? 'selected' : '' ?>><?php echo $value['name'] ?></option>

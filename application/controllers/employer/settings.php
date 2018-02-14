@@ -135,7 +135,7 @@ class settings extends CI_Controller {
             $this->global_model->update('user_profiles', array('user_id' => $id), $billing );
         }
 
-        redirect(base_url().'employer/settings');
+        redirect(base_url().'employer/settings#tab_payment');
     }
 }
 

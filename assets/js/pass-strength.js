@@ -13,6 +13,16 @@ $(".pass-strength-jobseeker").keyup(function()
     checkPassStrength($(this).val(), "jobseeker");
 });
 
+$(".pass-strength-employer-setting").keyup(function()
+{
+    checkPassStrength($(this).val(), "employer-setting");
+});
+
+$(".pass-strength-student-setting").keyup(function()
+{
+    checkPassStrength($(this).val(), "student-setting");
+});
+
 function scorePassword(pass)
 {
     var score = 0;
@@ -58,6 +68,8 @@ function checkPassStrength(pass, category)
         $(".password-strength-bar-student").hide();
         $(".password-strength-bar-employer").hide();
         $(".password-strength-bar-jobseeker").hide();
+        $(".password-strength-bar-employer-setting").hide();
+        $(".password-strength-bar-student-setting").hide();
     }else{
         $(".password-strength-bar-"+category).show();
     }
