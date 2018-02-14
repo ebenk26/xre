@@ -23,7 +23,7 @@ if (!empty($job->location)) {
 
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
     <!-- Vendor Styles -->
     <link href="<?php echo ASSETS; ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -654,6 +654,7 @@ if (!empty($job->location)) {
     </script>
 
     <script>
+      <?php if (!empty($job->location)) {?>
       function initMap() {
         var latLang = {lat: parseInt(<?php echo $location_map->latitude; ?>), lng: parseInt(<?php echo $location_map->longitude; ?>)};
         // Create a map object and specify the DOM element for display.
@@ -668,7 +669,7 @@ if (!empty($job->location)) {
           title: '<?php echo $user_profile['company_name'];?>'
         });
       }
-
+      <?php }?>
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap"
     async defer></script>

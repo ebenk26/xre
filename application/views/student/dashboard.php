@@ -113,7 +113,7 @@
                                     <div class="tab-pane active" id="portlet_tab1">
                                         <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                             <div class="mt-comments-v2">
-                                                <?php foreach($new_join as $row){?>
+                                                <?php $shown_new = 0;foreach($new_join as $row){$shown_new++;?>
 													<div class="mt-comment">
 														<div class="mt-comment-img">
 															<?php if($row->profile_photo != ""){?>
@@ -135,6 +135,16 @@
 														</div>
 													</div>
 												<?php }?>
+
+                                                <?php if($shown_new == 0){?>
+                                                    <!-- @IF empty / No Info -->
+                                                    <div class="portlet light md-shadow-none">
+                                                        <div class="portlet-body p-2">
+                                                            <h3 class="text-center font-weight-500 md-indigo-text"> No new join student.</h3>
+                                                            <h5 class="text-center font-grey-cascade mt-4">New registered student since your last logged in</h5>
+                                                        </div>
+                                                    </div>
+                                                <?php }?>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +154,7 @@
                                     <div class="tab-pane " id="portlet_tab2">
                                         <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                             <div class="general-item-list">
-                                                <?php foreach($upcoming_interview['upcoming_interview'] as $row){?>
+                                                <?php $shown_interview = 0;foreach($upcoming_interview['upcoming_interview'] as $row){ $shown_interview++;?>
 													<div class="item">
 														<div class="item-head">
 															<div class="item-details">
@@ -162,7 +172,20 @@
 														<div class="item-body"> <a href="<?=base_url()?>job/details/<?=rtrim(base64_encode($row->job_id),'=') ?>" target="_blank" class="item-name primary-link"><b>[<?=$row->position?>]</b></a> <?=$row->description?>
 														</div>
 													</div>
-												<?php }?>	
+												<?php }?>
+
+                                                <?php if($shown_interview == 0){?>
+                                                    <!-- @IF empty / No Info -->
+                                                    <div class="portlet light md-shadow-none">
+                                                        <div class="portlet-body p-2">
+                                                            <h3 class="text-center font-weight-500 md-indigo-text"> You have no Interview invitation yet.</h3>
+                                                            <h5 class="text-center font-grey-cascade mt-4">Search job that suitable to built your career ! If not , update your profile</h5>
+                                                            <div class="col-xs-offset-4 col-xs-4 mt-4">
+                                                                <a href="<?=base_url()?>student/profile" class="btn btn-outline-md-indigo">Update Profile ! </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php }?>                                                	
                                             </div>
                                         </div>
                                     </div>

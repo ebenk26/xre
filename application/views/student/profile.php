@@ -939,7 +939,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
                                                             <label class="control-label">City</label>
-                                                            <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>"> </div>
+                                                            <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>" required> </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
@@ -998,7 +998,7 @@
                                                         <!-- DOB -->
                                                         <div class="form-group mx-0">
                                                             <label class="control-label ">Date of Birth</label>
-                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy">
+                                                            <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
