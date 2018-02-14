@@ -417,7 +417,7 @@
                                                                     <span class="help-block"> to </span>
                                                                 </div>
                                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until">
+                                                                    <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
                                                                     <span class="help-block md-checkbox has-warning"> 
                                                                     <input type="checkbox" class="md-check" id="md-check-edu-end_<?php echo $i;?>" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                     <label for="md-check-edu-end_<?php echo $i;?>">
@@ -540,7 +540,7 @@
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year">
+                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -665,7 +665,7 @@
                                                                                 <span class="help-block"> to </span>
                                                                             </div>
                                                                             <div class="m-grid-col m-grid-col-xs-6">
-                                                                                <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3">
+                                                                                <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3" required>
                                                                                 <span class="help-block md-checkbox has-warning mb-0">
                                                                                     <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['experiences_end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                                     <label for="checkbox<?php echo $i; ?>">
@@ -825,14 +825,14 @@
 
                                                     <div class="m-grid ">
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date">
+                                                            <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date" required>
                                                             <!-- <span class="help-block"> Select date </span> -->
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date" required>
                                                             <span class="help-block md-checkbox has-warning mb-0">
                                                             <input type="checkbox" id="checkbox<?php echo $i; ?>" class="md-check" name="current_date" <?php echo ($value['end_date'] == '0000-00-00')? 'checked' : ''; ?>>
                                                                 <label for="checkbox<?php echo $i;?>">
@@ -1361,7 +1361,7 @@
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date">
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
@@ -1429,7 +1429,7 @@
                                                         <span class="help-block"> to </span>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-xs-6">
-                                                        <input class="form-control form-control-inline date-picker-end exp-add-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year">
+                                                        <input class="form-control form-control-inline date-picker-end input-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year" required>
                                                         <span class="help-block md-checkbox has-warning"> 
                                                             <input type="checkbox" id="add_experience" class="md-check md-check-add-experience" name="current_date">
                                                             <label for="add_experience">
@@ -1551,7 +1551,7 @@
                                                             <span class="help-block"> to </span>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
+                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date" required>
                                                             <span class="help-block md-checkbox has-warning mb-0">
                                                                 <input type="checkbox" id="checkbox_add_project" class="md-check" name="current_date">
                                                                 <label for="checkbox_add_project">

@@ -198,8 +198,10 @@
             $('.md-check').change(function(){
                 if(this.checked) {
                     $('.input-date-picker-end').prop( "disabled", true );
+                    $('.input-date-picker-end').removeAttr( "required" );
                 }else{
                     $('.input-date-picker-end').removeAttr( "disabled" );
+                    $('.input-date-picker-end').attr( "required" );
                 }
             });
             
