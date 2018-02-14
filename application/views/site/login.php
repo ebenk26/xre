@@ -69,10 +69,10 @@
                     </div>
                 </div>
                 <!-- Content -->
-                <div class="login-content ">
+                <div class="login-content " style="padding: 0 5%;">
                     <div class="portlet portlet-body text-center">
                         <!-- Form Login -->
-                        <form class="form-horizontal login-form px-7" action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
+                        <form class="form-horizontal login-form px-4" action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
                             <h4 class="fw-semibold md-grey-text text-darken-2">Login to your account</h4>
                             <div class="clearfix"></div>
                             <div class="clearfix"></div>
@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="m-grid-col m-grid-col-middle m-grid-col-right">
-                                    <a href="javascript:;" id="forget-password" class="forget-password"><label>Forgot Password ? </label> </a>
+                                    <a href="javascript:;" id="forget-password" class="forget-password"><label>Forgot Password? </label> </a>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -144,15 +144,16 @@
                                 <input class="form-control placeholder-no-fix form-group" type="text" autocomplete="off" placeholder="Email" name="email">
                             </div>
                             <div class="form-actions">
-                                <button type="button" id="back-btn" class="btn btn-outline-md-indigo">Back</button>
-                                <button type="submit" class="btn btn-md-indigo text-uppercase pull-right">Submit</button>
+                                <button type="button" id="back-btn" class="btn btn-warning mr-4">Back</button>
+                                <button type="submit" class="btn btn-md-indigo text-uppercase">Submit</button>
+                                <!--<button type="submit" class="btn btn-md-indigo text-uppercase pull-right">Submit</button>-->
                             </div>
                         </form>
                         <!-- END FORGOT PASSWORD FORM -->
                     </div>
                 </div>
                 <!-- Footer -->
-                <div class="login-footer">
+                <!--<div class="login-footer">
                     <div class="row bs-reset">
                         <div class="col-xs-12 bs-reset">
                             <div class="login-copyright text-right">
@@ -160,10 +161,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
 
-        </div>
+        </div>  
     </div>
     <!-- END : LOGIN PAGE 5-1 -->
 

@@ -144,11 +144,11 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-3">
-                                            <div class="col-md-9 col-md-offset-2 ">
+                                            <div class="col-md-8 col-md-offset-2 ">
 												<div class="md-checkbox-list md-checkbox md-indigo-box">
                                                     <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
 													<input type="checkbox" name="terms" id="checkboxregisterstudent" class="md-check" required>
-                                                    <label for="checkboxregisterstudent" class="pl-1">
+                                                    <label for="checkboxregisterstudent" class="ml-1">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> I agree with all the
@@ -215,11 +215,11 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-3">
-                                            <div class="col-md-9 col-md-offset-2 ">
+                                            <div class="col-md-8 col-md-offset-2 ">
 												<div class="md-checkbox-list md-checkbox md-indigo-box">
                                                     <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
 													<input type="checkbox" name="terms" id="checkboxregisterjobseeker" class="md-check" required>
-                                                    <label for="checkboxregisterjobseeker" class="pl-1">
+                                                    <label for="checkboxregisterjobseeker" class="ml-1">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> I agree with all the
@@ -294,11 +294,11 @@
                                         </div>
                                         <!-- Checkbox : I Agree -->
                                         <div class="form-group form-md-line-input  my-2">
-                                            <div class="col-md-9 col-md-offset-2 ">
+                                            <div class="col-md-8 col-md-offset-2 ">
 												<div class="md-checkbox-list md-checkbox md-indigo-box">
                                                     <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
 													<input type="checkbox" name="terms" id="checkboxemployer" class="md-check" required>
-                                                    <label for="checkboxemployer" class="pl-1">
+                                                    <label for="checkboxemployer" class="ml-1">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> I agree with all the
