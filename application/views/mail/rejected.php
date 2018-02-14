@@ -211,7 +211,7 @@
                 <!-- Clear Spacer : BEGIN -->
                 <tr>
                     <td aria-hidden="true" height="40" style="font-size: 0; line-height: 0;text-align: center;">
-                        <img src="<?= base_url(); ?>assets/img/student/xremo-logo-white.svg" alt="logo" style="width: 75px;padding-top: 10px;padding-bottom: 8px;">
+                        <img src="<?= base_url(); ?>assets/img/student/xremo-logo-white.png" alt="logo" style="width: 75px;padding-top: 10px;padding-bottom: 8px;">
                     </td>
                 </tr>
                 <!-- Clear Spacer : END -->
