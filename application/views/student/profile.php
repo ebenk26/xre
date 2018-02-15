@@ -60,9 +60,9 @@
                     </div>
                     <div class="md-white">
                         <!--  Brief you whole profile -->
-                        <div class="m-grid m-grid-col m-grid-col-center">
+                        <div class="m-grid m-grid-col m-grid-col-center m-grid-responsive-xs">
                             <div class="m-grid-col m-grid-col-sm-3"></div>
-                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-6">
+                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-6 m-grid-col-xs-12">
                                 <!-- <h3 class="">Jennifer Lawrence</h3> -->
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
@@ -83,8 +83,8 @@
                                                     <!-- <li class="font-26-xs"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
                                                 </ul>
                                             <p></p>
-                                            <p class="mt-card-desc"> <i class="fa fa-quote-left font-14-xs vertical-top"></i> <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
-                                                <i class="fa fa-quote-right vertical-top font-14-xs"></i> </p>
+                                            <p class="mt-card-desc">  <?php echo !empty($user_profile['overview']['quote']) ? '<i class="fa fa-quote-left font-14-xs vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-14-xs"></i>' : '';?>
+                                                 </p>
                                             <p class="mt-card-desc text-justify hidden">
                                                 <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
                                             </p>
@@ -93,17 +93,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-5">
+                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-4 hidden-xs">
                                 <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
+                            </div>
+                            <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo">
+                                        <i class="icon-pencil"></i>Edit</a>
+                                    <a href="<?php echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-outline-md-indigo  letter-space-xs">View My resume</a>
+                                </div>
+
                             </div>
                         </div>
 
                         <hr class="mt-1">
                         <!-- About myself -->
                         <div class="m-grid m-grid-col m-grid-col-center">
-                            <div class="m-grid-col m-grid-col-sm-1"></div>
+                            <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
                             <!-- content -->
-                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-10">
+                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-10 m-grid-col-xs-10">
                                 <div class="m-grid">
                                     <div class="m-grid-col">
                                         <ul class="list-unstyled">
@@ -118,17 +126,17 @@
                                 </div>
 
                             </div>
-                            <div class="m-grid-col m-grid-col-sm-1 "></div>
+                            <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1 "></div>
                         </div>
                         <!-- Profile Information -->
                         <div class="clearfix my-3"></div>
                         <div class="m-grid m-grid-col m-grid-col-center pb-5">
-                                    <div class="m-grid-col m-grid-col-sm-1"></div>
-                                    <div class="m-grid-col  m-grid-col-sm-10">
+                                    <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
+                                    <div class="m-grid-col  m-grid-col-sm-10 m-grid-col-xs-10">
                                         <h4 class="font-weight-700 text-uppercase ">Personal Information</h4>
                                         <hr class="mb-1">
-                                        <div class="m-grid">
-                                            <div class="m-grid-col m-grid-col-md-6  p-2">
+                                        <div class="m-grid m-grid-responsive-xs">
+                                            <div class="m-grid-col m-grid-col-sm-6  p-2 m-grid-col-xs-12">
                                                 <!-- preferences-name -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -219,7 +227,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="m-grid-col m-grid-col-md-6 p-2">
+                                            <div class="m-grid-col m-grid-col-sm-6 p-2 m-grid-col-xs-12">
                                                 <!-- Salary Expectation -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -322,7 +330,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="m-grid-col m-grid-col-sm-1 ">
+                                    <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1">
                                         <!-- <a href="" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a> -->
                                     </div>
                                 </div>

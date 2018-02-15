@@ -222,8 +222,8 @@
 
                         <li>
                             <p class=" font-14-xs font-weight-500 mdo-white-strong-text">
-                                <i class="fa fa-quote-left font-10-xs vertical-top"></i><?php echo !empty($user_profile['overview']['quote']) ?  $user_profile['overview']['quote'] : 'The best preparation for tomorrow is doing your best today.'; ?>
-                                <i class="fa fa-quote-right vertical-top font-10-xs"></i>
+                                <?php echo !empty($user_profile['overview']['quote']) ?  '<i class="fa fa-quote-left font-10-xs vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-10-xs"></i>' : ''; ?>
+                                
                             </p>
                         </li>
                         <li>
@@ -649,6 +649,10 @@
                     </ul>
                 </div>
 
+                <?php 
+                    $data_arr['roles'] = $roles;
+                    $data_arr['user_profile'] = $user_profile;
+                ?>
                 <!-- Tab Content -->
                 <div class="portlet-body">
                     <div class="tab-content">
@@ -661,26 +665,8 @@
                                     <hr class="border-md-blue-grey mt-width-40-xs my-1">
                                     <?php if(!empty($user_profile['overview']['summary'])){?>
                                         <p class="mb-1"><?php echo $user_profile['overview']['summary']?></p>
-                                    <?php }else{?>
-                                        <?php if(empty($roles) || $this->session->userdata('id') != $user_profile['overview']['id_users']){ ?>
-                                            <div class="portlet p-4 md-shadow-none bg-grey-cararra">
-                                                <div class="portlet-body text-center">
-                                                    <i class="icon-puzzle font-grey-mint font-40-xs mb-4"></i>
-                                                    <h4 class="text-center font-weight-500 font-grey-mint">Found Nothing</h4>
-                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none mb-1">The person have not updated their info yet. </h5>
-                                                </div>
-                                            </div>
-                                        <?php }?>
-                                        <?php if(!empty($roles) && $this->session->userdata('id') == $user_profile['overview']['id_users']){ ?>
-                                            <div class="portlet p-4 md-shadow-none bg-grey-cararra">
-                                                <div class="portlet-body text-center">
-                                                    <i class="icon-ghost font-grey-mint font-40-xs mb-4"></i>
-                                                    <h4 class="text-center font-weight-500 font-grey-mint">Something is missing...</h4>
-                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Add your info here to make your resume look great.</h5>
-                                                    <a href="<?=base_url()?>student/profile" class="btn btn-outline-md-indigo px-6">My Profile</a>
-                                                </div>
-                                            </div>
-                                        <?php }?>
+                                    <?php }else{?>                                        
+                                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
                                     <?php }?>
                                 </li>
                                 <hr>
@@ -688,32 +674,36 @@
                                 <li class="list-group-item noborder py-4">
                                     <h4 class="font-weight-700 text-uppercase font-blue-chambray mb-1 letter-space-xs">Education</h4>
                                     <hr class="border-md-blue-grey mt-width-40-xs mt-1 mb-3">
-                                    <?php foreach($user_profile['academics'] as $key => $value){?>
-                                    <ul class="list-unstyled ">
-                                        <li class="font-weight-500 font-16-xs text-capitalize roboto-font"><?php echo $value['degree_name']?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> 
-                                                <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
-                                                    {
-                                                        echo 'Not Provided';
-                                                    }
-                                                    else
-                                                    {
-                                                        echo date('d F Y', strtotime($value['start_date']));
-                                                ?> 
-                                                - 
-                                                <?php 
-                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));
-                                                    }
-                                                ?>
-                                            </small>
-                                        </li>
-                                        <hr class="my-1 mt-width-100-xs">
-                                        <li class="font-weight-400 font-15-xs ">
-                                            <i class="fa fa-university"></i> <?php echo $value['university_name']?> </li>
-                                    </ul>
-                                    <br>
-                                    <?php } ?>
+                                    <?php if(!empty($user_profile['academics'])){?>
+                                        <?php foreach($user_profile['academics'] as $key => $value){?>
+                                        <ul class="list-unstyled ">
+                                            <li class="font-weight-500 font-16-xs text-capitalize roboto-font"><?php echo $value['degree_name']?>
+                                                <small class="font-weight-400 font-13-xs pull-right"> 
+                                                    <?php 
+                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('d F Y', strtotime($value['start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));
+                                                        }
+                                                    ?>
+                                                </small>
+                                            </li>
+                                            <hr class="my-1 mt-width-100-xs">
+                                            <li class="font-weight-400 font-15-xs ">
+                                                <i class="fa fa-university"></i> <?php echo $value['university_name']?> </li>
+                                        </ul>
+                                        <br>
+                                        <?php } ?>
+                                    <?php }else{?>
+                                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php }?>
                                 </li>
                                 <hr>
                                 <!-- Experience [All] -->
@@ -721,32 +711,36 @@
                                     <h4 class="font-weight-700 text-uppercase font-blue-chambray mb-1 letter-space-xs">Experience</h4>
                                     <hr class="border-md-blue-grey mt-width-40-xs mt-1 mb-3">
                                     <ul class="list-unstyled ">
-                                        <?php foreach($user_profile['experiences'] as $key => $value){?>
-                                        <li class="mb-3">
-                                            <h5 class="font-weight-500 font-16-xs text-capitalize roboto-font mb-1"> <?php echo $value['experiences_title'];?>
-                                                <span class="badge badge-roundless badge-md-blue-grey"><?php echo $value['employment_type'];?></span>
-                                                <small class="font-weight-400 font-13-xs pull-right"> 
-                                                    <?php 
-                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
-                                                        {
-                                                            echo 'Not Provided';
-                                                        }
-                                                        else
-                                                        {
-                                                            echo date('F Y', strtotime($value['experiences_start_date']));
-                                                    ?> 
-                                                    - 
-                                                    <?php 
-                                                            echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
-                                                        }
-                                                    ?>
-                                                </small>
-                                            </h5>
-                                            <hr class="my-1 mt-width-100-xs">
-                                            <h5 class=" font-weight-400 font-15-xs">
-                                                <i class="fa fa-building-o"></i> <?php echo $value['experiences_company_name'];?> </h5>
-                                        </li>
-                                        <?php } ?>
+                                        <?php if(!empty($user_profile['experiences'])){?>
+                                            <?php foreach($user_profile['experiences'] as $key => $value){?>
+                                            <li class="mb-3">
+                                                <h5 class="font-weight-500 font-16-xs text-capitalize roboto-font mb-1"> <?php echo $value['experiences_title'];?>
+                                                    <span class="badge badge-roundless badge-md-blue-grey"><?php echo $value['employment_type'];?></span>
+                                                    <small class="font-weight-400 font-13-xs pull-right"> 
+                                                        <?php 
+                                                            if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
+                                                            {
+                                                                echo 'Not Provided';
+                                                            }
+                                                            else
+                                                            {
+                                                                echo date('F Y', strtotime($value['experiences_start_date']));
+                                                        ?> 
+                                                        - 
+                                                        <?php 
+                                                                echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
+                                                            }
+                                                        ?>
+                                                    </small>
+                                                </h5>
+                                                <hr class="my-1 mt-width-100-xs">
+                                                <h5 class=" font-weight-400 font-15-xs">
+                                                    <i class="fa fa-building-o"></i> <?php echo $value['experiences_company_name'];?> </h5>
+                                            </li>
+                                            <?php } ?>
+                                        <?php }else{?>
+                                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                        <?php }?>
                                     </ul>
                                 </li>
                                 <hr>
@@ -755,27 +749,31 @@
                                     <h4 class="font-weight-700 text-uppercase font-blue-chambray mb-1 letter-space-xs">Non Education </h4>
                                     <hr class="border-md-blue-grey mt-width-40-xs mt-1 mb-3">
                                     <ul class="list-unstyled">
-                                        <?php foreach($user_profile['achievement'] as $key => $value){?>
-                                        <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
-                                            <i class="icon-notebook"></i> <?php echo $value['achievement_title']; ?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> 
-                                                <?php 
-                                                    if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
-                                                    {
-                                                        echo 'Not Provided';
-                                                    }
-                                                    else
-                                                    {
-                                                        echo date('d F Y', strtotime($value['achievement_start_date']));
-                                                ?> 
-                                                - 
-                                                <?php 
-                                                        echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['achievement_end_date']));
-                                                    }
-                                                ?> 
-                                            </small>
-                                        </li>
-                                        <?php } ?>
+                                        <?php if(!empty($user_profile['achievement'])){?>
+                                            <?php foreach($user_profile['achievement'] as $key => $value){?>
+                                            <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
+                                                <i class="icon-notebook"></i> <?php echo $value['achievement_title']; ?>
+                                                <small class="font-weight-400 font-13-xs pull-right"> 
+                                                    <?php 
+                                                        if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('d F Y', strtotime($value['achievement_start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['achievement_end_date']));
+                                                        }
+                                                    ?> 
+                                                </small>
+                                            </li>
+                                            <?php } ?>
+                                        <?php }else{?>
+                                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                        <?php }?>
                                     </ul>
                                 </li>
                                 <hr>
@@ -784,228 +782,11 @@
                                     <h4 class="font-weight-700 text-uppercase font-blue-chambray mb-1 letter-space-xs">Skill </h4>
                                     <hr class="border-md-blue-grey mt-width-40-xs mt-1 mb-3">
                                     <ul class="list-unstyled">
-                                        <?php foreach($user_profile['projects'] as $key => $value){?>
-                                        <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
-                                            <i class="fa fa-tasks fa-fw"></i><?php echo $value['name']; ?>
-                                            <small class="font-weight-400 font-13-xs pull-right"> 
-                                                <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
-                                                    {
-                                                        echo 'Not Provided';
-                                                    }
-                                                    else
-                                                    {
-                                                        echo date('F Y', strtotime($value['start_date']));
-                                                ?> 
-                                                - 
-                                                <?php 
-                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
-                                                    }
-                                                ?> 
-                                            </small>
-                                        </li>
-                                        <?php }?>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Tab Education [Rate & Review]-->
-                        <div class="tab-pane" id="tab_education">
-                            <ul class="list-group list-border">
-                                <?php foreach($user_profile['academics'] as $key => $value){?>
-                                <!-- User View -->
-                                <li class="list-group-item  ">
-                                    <div class="media">
-                                        <!-- Overall Rate and Total Review -->
-                                        <!-- <div class="pull-right">
-                                            <div class="btn-group">
-                                                <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                    4.5
-                                                    <i class="icon-star text-center"></i>
-                                                </a>
-                                                <a href="#modal_readonlyreview" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                    <i class="icon-note"></i>
-                                                </a>
-                                            </div>
-                                        </div> -->
-                                        <div class="media-body">
-                                            <h5 class="font-weight-600 font-14-xs font-16-xs mb-1"><?php echo $value['qualification_level'];?> in <?php echo $value['degree_name'];?>
-                                            </h5>
-                                            <h6 class=" font-weight-400 font-15-xs mb-1">
-                                                <i class="fa fa-institution mr-1"></i><?php echo $value['university_name']; ?>
-                                            </h6>
-                                            <small>
-                                                <i class="fa fa-calendar mr-1"></i>
-                                                <?php 
-                                                    if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
-                                                    {
-                                                        echo 'Not Provided';
-                                                    }
-                                                    else
-                                                    {
-                                                        echo date('F Y', strtotime($value['start_date']));
-                                                ?> 
-                                                - 
-                                                <?php 
-                                                        echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
-                                                    }
-                                                ?>
-                                            </small>
-                                            <h6 class=" font-weight-400 font-grey-gallery mb-1">
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
-                                    <p class="font-15-xs"><?php echo $value['degree_description']; ?></p>
-                                </li>
-                                <?php } ?>
-                            </ul>
-
-                        </div>
-
-                        <!-- Experience [Rate & Review]-->
-                        <div class="tab-pane" id="tab_experience">
-                            <ul class="list-group list-border">
-                                <!-- User View : User can only VIEW people who rate and review -->
-                                <?php foreach($user_profile['experiences'] as $key => $value){?>
-                                <li class="list-group-item  ">
-                                    <div class="media">
-                                        <!-- Overall Rate and Total Review -->
-                                        <div class="pull-right">
-                                            <!-- <h4 class="font-weight-700 text-uppercase font-13-xs text-center mb-1 font-grey-gallery">Overall</h4> -->
-                                            <!-- <hr class="my-1">  -->
-                                            <!-- <div class="btn-group">
-                                                <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                    4.5
-                                                    <i class="icon-star text-center"></i>
-                                                </a>
-                                                <a href="#modal_readonlyreview" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                    <i class="icon-note"></i>
-                                                </a>
-                                            </div> -->
-                                        </div>
-                                        <div class="media-body">
-                                            <h5 class="font-weight-600 font-16-xs"> <?php echo $value['experiences_title'];?>
-                                                <!-- <span class="badge badge-roundless badge-md-blue letter-space-sm font-weight-500"> Full Time</span>
-                                                    <span class="badge badge-roundless badge-md-green letter-space-sm font-weight-500"> Part Time</span>
-                                                    <span class="badge badge-roundless badge-md-deep-purple letter-space-sm font-weight-500"> Volunteer</span>
-                                                    <span class="badge badge-roundless badge-md-purple letter-space-sm font-weight-500"> Contract</span>
-                                                    <span class="badge badge-roundless badge-md-amber letter-space-sm font-weight-500"> Temporary</span> -->
-                                                <small>
-                                                    <?php 
-                                                        if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
-                                                        {
-                                                            echo 'Not Provided';
-                                                        }
-                                                        else
-                                                        {
-                                                            echo date('F Y', strtotime($value['experiences_start_date']));
-                                                    ?> 
-                                                    - 
-                                                    <?php 
-                                                            echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
-                                                        }
-                                                    ?> 
-                                                </small>
-                                            </h5>
-                                            <h6 class=" font-weight-400 font-15-xs">
-                                                <i class="fa fa-building-o"></i> <?php echo $value['experiences_company_name']; ?>
-                                            </h6>
-                                            <h6 class="mb-1">
-                                                <span class="badge badge-roundless badge-md-teal letter-space-sm font-weight-500"> <?php echo $value['employment_type']; ?></span>
-                                                <span class="badge badge-roundless badge-important letter-space-sm font-weight-500"> <?php echo $value['industry_name']; ?></span>
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
-                                    <p class="font-15-xs "><?php echo $value['experiences_description']; ?></p>
-                                    <p class="font-weight-500 font-14-xs text-uppercase mb-1">Skill Earned</p>
-                                    <ul class="list-unstyled list-inline ml-0">
-                                        <?php $skill = explode(',', $value['skills']);?>
-                                        <?php foreach($skill as $key => $skill_value){?>
-                                        <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($skill_value) ? strtoupper($skill_value) : 'NONE'; ?> </li>
-                                        <?php } ?>
-                                    </ul>
-                                </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-
-                        <!-- Non Education [Endorse]-->
-                        <div class="tab-pane" id="tab_noneducation">
-                            <ul class="list-group list-border">
-                                <ul class="list-group list-border">
-                                    <!-- User View : User can onlyview endorser-->
-                                    <?php foreach($user_profile['achievement'] as $key => $value){?>
-                                    <li class="list-group-item  ">
-                                        <div class="media">
-                                            <!-- Overall Rate and Total Review -->
-                                            <!-- <div class="pull-right">
-                                                <div class="btn-group">
-                                                    <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
-                                                        <i class="icon-users"></i>
-                                                        3 endorser
-                                                    </a>
-                                                </div>
-                                            </div> -->
-                                            <div class="media-body">
-                                                <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['achievement_title']?>
-                                                </h5>
-                                                <small>
-                                                    <i class="fa fa-calendar mr-1"></i>
-                                                    <?php 
-                                                        if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
-                                                        {
-                                                            echo 'Not Provided';
-                                                        }
-                                                        else
-                                                        {
-                                                            echo date('F Y', strtotime($value['achievement_start_date']));
-                                                    ?> 
-                                                    - 
-                                                    <?php 
-                                                            echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['achievement_end_date']));
-                                                        }
-                                                    ?>
-                                                </small>
-                                            </div>
-                                        </div>
-                                        <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
-                                        <p class="font-15-xs "><?php echo $value['achievement_description']?></p>
-                                        <p class="font-weight-500 font-14-xs text-uppercase mb-1">Skill Earned</p>
-                                        <ul class="list-unstyled list-inline ml-0">
-                                            <?php $non_edu = explode(',', $value['achievement_tag']);?>
-                                        <?php foreach($non_edu as $key => $non_edu_value){?>
-                                            <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($non_edu_value) ? strtoupper($non_edu_value) : 'NONE'; ?> </li>
-                                        <?php } ?>
-                                        </ul>
-                                    </li>
-                                    <?php } ?>
-                                </ul>
-                            </ul>
-                        </div>
-                        <!-- Skill -->
-                        <div class="tab-pane" id="tab_skills">
-                            <ul class="list-group list-border">
-                                <ul class="list-group list-border">
-                                    <!-- User View : User can onlyview endorser-->
-                                    <?php foreach($user_profile['projects'] as $key => $value){?>
-                                    <li class="list-group-item  ">
-                                        <div class="media">
-                                            <!-- Overall Rate and Total Review -->
-                                            <!-- <div class="pull-right">
-                                                <div class="btn-group">
-                                                    <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
-                                                        <i class="icon-users"></i>
-                                                        3 endorser
-                                                    </a>
-                                                </div>
-                                            </div> -->
-                                            <div class="media-body">
-                                                <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['name']?>
-                                                </h5>
-                                                <small>
-                                                    <i class="fa fa-calendar mr-1"></i>
+                                        <?php if(!empty($user_profile['achievement'])){?>
+                                            <?php foreach($user_profile['projects'] as $key => $value){?>
+                                            <li class="font-weight-500 font-weight-18-xs text-capitalize roboto-font">
+                                                <i class="fa fa-tasks fa-fw"></i><?php echo $value['name']; ?>
+                                                <small class="font-weight-400 font-13-xs pull-right"> 
                                                     <?php 
                                                         if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
                                                         {
@@ -1021,19 +802,256 @@
                                                         }
                                                     ?> 
                                                 </small>
+                                            </li>
+                                            <?php }?>
+                                        <?php }else{?>
+                                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                        <?php }?>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Tab Education [Rate & Review]-->
+                        <div class="tab-pane" id="tab_education">
+                            <ul class="list-group list-border">
+                                <?php if(!empty($user_profile['academics'])){?>
+                                    <?php foreach($user_profile['academics'] as $key => $value){?>
+                                    <!-- User View -->
+                                    <li class="list-group-item  ">
+                                        <div class="media">
+                                            <!-- Overall Rate and Total Review -->
+                                            <!-- <div class="pull-right">
+                                                <div class="btn-group">
+                                                    <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                        4.5
+                                                        <i class="icon-star text-center"></i>
+                                                    </a>
+                                                    <a href="#modal_readonlyreview" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                        <i class="icon-note"></i>
+                                                    </a>
+                                                </div>
+                                            </div> -->
+                                            <div class="media-body">
+                                                <h5 class="font-weight-600 font-14-xs font-16-xs mb-1"><?php echo $value['qualification_level'];?> in <?php echo $value['degree_name'];?>
+                                                </h5>
+                                                <h6 class=" font-weight-400 font-15-xs mb-1">
+                                                    <i class="fa fa-institution mr-1"></i><?php echo $value['university_name']; ?>
+                                                </h6>
+                                                <small>
+                                                    <i class="fa fa-calendar mr-1"></i>
+                                                    <?php 
+                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
+                                                        {
+                                                            echo 'Not Provided';
+                                                        }
+                                                        else
+                                                        {
+                                                            echo date('F Y', strtotime($value['start_date']));
+                                                    ?> 
+                                                    - 
+                                                    <?php 
+                                                            echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
+                                                        }
+                                                    ?>
+                                                </small>
+                                                <h6 class=" font-weight-400 font-grey-gallery mb-1">
+                                                </h6>
                                             </div>
                                         </div>
                                         <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
-                                        <p class="font-15-xs "><?php echo $value['description']?></p>
+                                        <p class="font-15-xs"><?php echo $value['degree_description']; ?></p>
+                                    </li>
+                                    <?php } ?>
+                                <?php }else{?>
+                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                <?php }?>
+                            </ul>
+
+                        </div>
+
+                        <!-- Experience [Rate & Review]-->
+                        <div class="tab-pane" id="tab_experience">
+                            <ul class="list-group list-border">
+                                <!-- User View : User can only VIEW people who rate and review -->
+                                <?php if(!empty($user_profile['experiences'])){?>
+                                    <?php foreach($user_profile['experiences'] as $key => $value){?>
+                                    <li class="list-group-item  ">
+                                        <div class="media">
+                                            <!-- Overall Rate and Total Review -->
+                                            <div class="pull-right">
+                                                <!-- <h4 class="font-weight-700 text-uppercase font-13-xs text-center mb-1 font-grey-gallery">Overall</h4> -->
+                                                <!-- <hr class="my-1">  -->
+                                                <!-- <div class="btn-group">
+                                                    <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                        4.5
+                                                        <i class="icon-star text-center"></i>
+                                                    </a>
+                                                    <a href="#modal_readonlyreview" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                        <i class="icon-note"></i>
+                                                    </a>
+                                                </div> -->
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="font-weight-600 font-16-xs"> <?php echo $value['experiences_title'];?>
+                                                    <!-- <span class="badge badge-roundless badge-md-blue letter-space-sm font-weight-500"> Full Time</span>
+                                                        <span class="badge badge-roundless badge-md-green letter-space-sm font-weight-500"> Part Time</span>
+                                                        <span class="badge badge-roundless badge-md-deep-purple letter-space-sm font-weight-500"> Volunteer</span>
+                                                        <span class="badge badge-roundless badge-md-purple letter-space-sm font-weight-500"> Contract</span>
+                                                        <span class="badge badge-roundless badge-md-amber letter-space-sm font-weight-500"> Temporary</span> -->
+                                                    <small>
+                                                        <?php 
+                                                            if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
+                                                            {
+                                                                echo 'Not Provided';
+                                                            }
+                                                            else
+                                                            {
+                                                                echo date('F Y', strtotime($value['experiences_start_date']));
+                                                        ?> 
+                                                        - 
+                                                        <?php 
+                                                                echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
+                                                            }
+                                                        ?> 
+                                                    </small>
+                                                </h5>
+                                                <h6 class=" font-weight-400 font-15-xs">
+                                                    <i class="fa fa-building-o"></i> <?php echo $value['experiences_company_name']; ?>
+                                                </h6>
+                                                <h6 class="mb-1">
+                                                    <span class="badge badge-roundless badge-md-teal letter-space-sm font-weight-500"> <?php echo $value['employment_type']; ?></span>
+                                                    <span class="badge badge-roundless badge-important letter-space-sm font-weight-500"> <?php echo $value['industry_name']; ?></span>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                        <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
+                                        <p class="font-15-xs "><?php echo $value['experiences_description']; ?></p>
                                         <p class="font-weight-500 font-14-xs text-uppercase mb-1">Skill Earned</p>
                                         <ul class="list-unstyled list-inline ml-0">
-                                            <?php $project = explode(',', $value['skills_acquired']);?>
-                                        <?php foreach($project as $key => $project_value){?>
-                                            <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($project_value) ? strtoupper($project_value) : 'NONE'; ?> </li>
-                                        <?php } ?>
+                                            <?php $skill = explode(',', $value['skills']);?>
+                                            <?php foreach($skill as $key => $skill_value){?>
+                                            <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($skill_value) ? strtoupper($skill_value) : 'NONE'; ?> </li>
+                                            <?php } ?>
                                         </ul>
                                     </li>
                                     <?php } ?>
+                                <?php }else{?>
+                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                <?php }?>
+                            </ul>
+                        </div>
+
+                        <!-- Non Education [Endorse]-->
+                        <div class="tab-pane" id="tab_noneducation">
+                            <ul class="list-group list-border">
+                                <ul class="list-group list-border">
+                                    <!-- User View : User can onlyview endorser-->
+                                    <?php if(!empty($user_profile['achievement'])){?>
+                                        <?php foreach($user_profile['achievement'] as $key => $value){?>
+                                        <li class="list-group-item  ">
+                                            <div class="media">
+                                                <!-- Overall Rate and Total Review -->
+                                                <!-- <div class="pull-right">
+                                                    <div class="btn-group">
+                                                        <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
+                                                            <i class="icon-users"></i>
+                                                            3 endorser
+                                                        </a>
+                                                    </div>
+                                                </div> -->
+                                                <div class="media-body">
+                                                    <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['achievement_title']?>
+                                                    </h5>
+                                                    <small>
+                                                        <i class="fa fa-calendar mr-1"></i>
+                                                        <?php 
+                                                            if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
+                                                            {
+                                                                echo 'Not Provided';
+                                                            }
+                                                            else
+                                                            {
+                                                                echo date('F Y', strtotime($value['achievement_start_date']));
+                                                        ?> 
+                                                        - 
+                                                        <?php 
+                                                                echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['achievement_end_date']));
+                                                            }
+                                                        ?>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
+                                            <p class="font-15-xs "><?php echo $value['achievement_description']?></p>
+                                            <p class="font-weight-500 font-14-xs text-uppercase mb-1">Skill Earned</p>
+                                            <ul class="list-unstyled list-inline ml-0">
+                                                <?php $non_edu = explode(',', $value['achievement_tag']);?>
+                                            <?php foreach($non_edu as $key => $non_edu_value){?>
+                                                <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($non_edu_value) ? strtoupper($non_edu_value) : 'NONE'; ?> </li>
+                                            <?php } ?>
+                                            </ul>
+                                        </li>
+                                        <?php } ?>
+                                    <?php }else{?>
+                                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php }?>
+                                </ul>
+                            </ul>
+                        </div>
+                        <!-- Skill -->
+                        <div class="tab-pane" id="tab_skills">
+                            <ul class="list-group list-border">
+                                <ul class="list-group list-border">
+                                    <!-- User View : User can onlyview endorser-->
+                                    <?php if(!empty($user_profile['projects'])){?>
+                                        <?php foreach($user_profile['projects'] as $key => $value){?>
+                                        <li class="list-group-item  ">
+                                            <div class="media">
+                                                <!-- Overall Rate and Total Review -->
+                                                <!-- <div class="pull-right">
+                                                    <div class="btn-group">
+                                                        <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
+                                                            <i class="icon-users"></i>
+                                                            3 endorser
+                                                        </a>
+                                                    </div>
+                                                </div> -->
+                                                <div class="media-body">
+                                                    <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['name']?>
+                                                    </h5>
+                                                    <small>
+                                                        <i class="fa fa-calendar mr-1"></i>
+                                                        <?php 
+                                                            if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
+                                                            {
+                                                                echo 'Not Provided';
+                                                            }
+                                                            else
+                                                            {
+                                                                echo date('F Y', strtotime($value['start_date']));
+                                                        ?> 
+                                                        - 
+                                                        <?php 
+                                                                echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['end_date']));
+                                                            }
+                                                        ?> 
+                                                    </small>
+                                                </div>
+                                            </div>
+                                            <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
+                                            <p class="font-15-xs "><?php echo $value['description']?></p>
+                                            <p class="font-weight-500 font-14-xs text-uppercase mb-1">Skill Earned</p>
+                                            <ul class="list-unstyled list-inline ml-0">
+                                                <?php $project = explode(',', $value['skills_acquired']);?>
+                                            <?php foreach($project as $key => $project_value){?>
+                                                <li class="label label-md-shades darkblue font-13-xs"> <?php echo !empty($project_value) ? strtoupper($project_value) : 'NONE'; ?> </li>
+                                            <?php } ?>
+                                            </ul>
+                                        </li>
+                                        <?php } ?>
+                                    <?php }else{?>
+                                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php }?>
                                 </ul>
                             </ul>
                         </div>
