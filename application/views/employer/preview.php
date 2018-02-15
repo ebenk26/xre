@@ -200,7 +200,7 @@ if (!empty($job->location)) {
                                         <?php }?>
                                         
                                         <?php if ($roles =='student') {?>
-                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                         <?php }?>
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
                                     </a>

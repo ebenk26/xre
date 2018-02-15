@@ -117,7 +117,7 @@
                                             <?php }?>
 
                                             <?php if ($roles =='employer') {?>
-                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.$this->session->userdata('img_profile') : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
                                             <?php }?>
                                             
                                             <?php if ($roles =='student') {?>
