@@ -325,6 +325,7 @@
                 ?>
                 <ul class="list-group list-border md-transparent p-0">
                     <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="GET" id="job_search_form">
+                        <input type="hidden" name="query" value="<?php echo $keyword; ?>">
                         <!-- Location -->
                         <li class="list-group-item md-transparent p-2">
                             <div class="media">

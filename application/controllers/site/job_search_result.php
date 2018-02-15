@@ -22,8 +22,28 @@ class Job_Search_Result extends CI_Controller {
 				$this->session->unset_userdata('keyword');
 			}
 		}
-		
-		$keyword            = trim($this->input->post('query'));
+
+		if($this->input->post('query')){
+            $keyword            = trim($this->input->post('query'));
+            if($this->input->post('query') == ""){
+                $this->session->unset_userdata('keyword');
+                $keyword            = "";
+            }
+        }else{
+            if($this->input->get('query')){
+                $keyword            = trim($this->input->get('query'));
+                if($this->input->get('query') == ""){
+                    $this->session->unset_userdata('keyword');
+                    $keyword            = "";
+                }
+            }else{
+                $this->session->unset_userdata('keyword');
+                $keyword            = $this->session->userdata('keyword');
+            }
+        }
+
+        
+
         $offset             = $this->uri->segment(3);
         $perPage            = 5;
         $employment_type    = '';
@@ -39,6 +59,7 @@ class Job_Search_Result extends CI_Controller {
         $latest             = '';
         $popular            = '';
 
+        //filter : employment type
         if($this->input->get('employment_type') != NULL)
         {
             $employment_type    = array();
@@ -52,6 +73,7 @@ class Job_Search_Result extends CI_Controller {
             $employment_type = '&employment_type[]='.implode('&employment_type[]=', $employment_type);
         }
 
+        //filter : position level
         if($this->input->get('position_levels') != NULL)
         {
             $position_levels    = array();
@@ -65,6 +87,7 @@ class Job_Search_Result extends CI_Controller {
             $position_levels = '&position_levels[]='.implode('&position_levels[]=', $position_levels);
         }
 
+        //filter : experiences
         if($this->input->get('experiences') != NULL)
         {
             $experiences    = array();
@@ -78,12 +101,14 @@ class Job_Search_Result extends CI_Controller {
             $experiences = '&experiences[]='.implode('&experiences[]=', $experiences);
         }
 
+        //filter : company industry
         if($this->input->get('company_industry') != NULL)
         {
             $company_industry   = $this->input->get('company_industry');
             $company_industries = '&company_industry='.$company_industry;
         }
 
+        //filter : country
         if($this->input->get('country_name') != NULL)
         {
             $country_name   = $this->input->get('country_name');
@@ -104,10 +129,10 @@ class Job_Search_Result extends CI_Controller {
             $popular   = $this->input->get('popular');
         }
 
-        if ($keyword)
-        {
+        //if ($keyword)
+        //{
             $this->session->set_userdata('keyword', $keyword);
-        }
+        //}
 
         $keyword = $this->session->userdata('keyword');
 

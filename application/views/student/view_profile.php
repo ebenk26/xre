@@ -130,7 +130,7 @@
                                         <?php }?>
                                         
                                         <?php if ($roles =='student') {?>
-                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.$this->session->userdata('img_profile') : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                            <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                         <?php }?>
 
                                         <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
@@ -378,22 +378,10 @@
 											<i class="icon-envelope mr-2 "></i>Send Message</a>
 							<?php }?>                                        
                         </li>
-                        <?php if(!empty($roles) && $roles == 'employer'){ ?>
-						<li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">ADDRESS</h5>
-                            <p class="mt-1 "><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?>, <?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?> <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?> , <?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None';?>, <?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></p>
-                        </li>
                         <li>
-                            <h5 class="font-weight-700  mb-0 font-13-xs text-uppercase font-grey-gallery">EMAIL ADDRESS</h5>
-                            <p class="mt-1 "><?php echo !empty($user_profile['overview']['email']) ?  $user_profile['overview']['email'] : 'cs@xremo.com'; ?></p>
+                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-13-xs text-uppercase">Gender</h5>
+                            <p class="mt-1  text-lighten-4"><?php echo !empty($user_profile['overview']['student_bios_gender']) ?  $user_profile['overview']['student_bios_gender'] : '-'; ?></p>
                         </li>
-                        <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Phone Number</h5>
-                            <p class="mt-1 "><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ?  $user_profile['overview']['student_bios_contact_number'] : '(+60)0000000)'; ?>
-                                <span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>
-                            </p>
-                        </li>
-                        <?php } ?>
                         <?php if(!empty($roles)){ ?>
                         <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Date Of Birth </h5>
@@ -403,7 +391,7 @@
                                     {
                                         if(empty($user_profile['overview']['student_bios_DOB']) || $user_profile['overview']['student_bios_DOB'] == '0000-00-00' || $user_profile['overview']['student_bios_DOB'] == '1970-01-01')
                                         {
-                                            echo 'Not Provided';
+                                            echo '-';
                                         }
                                         else
                                         {
@@ -412,16 +400,37 @@
                                     }
                                     else
                                     {
-                                        echo date('d F Y');
+                                        echo "-";
                                     }
                                 ?>
                             </p>
                         </li>
                         <?php } ?>
-                        <li>
-                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-13-xs text-uppercase">Gender</h5>
-                            <p class="mt-1  text-lighten-4"><?php echo !empty($user_profile['overview']['student_bios_gender']) ?  $user_profile['overview']['student_bios_gender'] : 'Prefer not to say'; ?></p>
+                        <?php if(!empty($roles) && ($roles == 'employer' || $this->session->userdata('id') == $user_profile['overview']['id_users'])){ ?>
+						<li>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Phone Number</h5>
+                            <p class="mt-1 "><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ?  $user_profile['overview']['student_bios_contact_number'] : '-'; ?>
+                                <!--<span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>-->
+                            </p>
                         </li>
+                        <li>
+                            <h5 class="font-weight-700  mb-0 font-13-xs text-uppercase font-grey-gallery">EMAIL ADDRESS</h5>
+                            <p class="mt-1 "><?php echo !empty($user_profile['overview']['email']) ?  $user_profile['overview']['email'] : '-'; ?></p>
+                        </li>
+                        <li>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">ADDRESS</h5>
+                            
+                            <?php
+                                $full_address = !empty($user_profile['address']['address']) ? $user_profile['address']['address'].", ":"";
+                                $full_address .= !empty($user_profile['address']['city']) ? $user_profile['address']['city'].", ":"";
+                                $full_address .= !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'].", ":"";
+                                $full_address .= !empty($user_profile['address']['states']) ? $user_profile['address']['states'].", ":"";
+                                $full_address .= !empty($user_profile['address']['country']) ? $user_profile['address']['country'].", ":"";
+                                $full_address = $full_address != ""?substr($full_address, 0, -2):"-";
+                            ?>
+                            <p class="mt-1 "><?php echo $full_address;?></p>
+                        </li>
+                        <?php } ?>
                         <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Language </h5>
                             <ul class="list-unstyled mx-0">
@@ -650,7 +659,29 @@
                                 <li class="list-group-item noborder py-4">
                                     <h4 class="font-weight-700 text-uppercase font-blue-chambray mb-1 letter-space-xs">About Me</h4>
                                     <hr class="border-md-blue-grey mt-width-40-xs my-1">
-                                    <p class="mb-1"><?php echo !empty($user_profile['overview']['summary']) ?  $user_profile['overview']['summary'] : 'The best preparation for tomorrow is doing your best today.'; ?></p>
+                                    <?php if(!empty($user_profile['overview']['summary'])){?>
+                                        <p class="mb-1"><?php echo $user_profile['overview']['summary']?></p>
+                                    <?php }else{?>
+                                        <?php if(empty($roles) || $this->session->userdata('id') != $user_profile['overview']['id_users']){ ?>
+                                            <div class="portlet p-4 md-shadow-none bg-grey-cararra">
+                                                <div class="portlet-body text-center">
+                                                    <i class="icon-puzzle font-grey-mint font-40-xs mb-4"></i>
+                                                    <h4 class="text-center font-weight-500 font-grey-mint">Found Nothing</h4>
+                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none mb-1">The person have not updated their info yet. </h5>
+                                                </div>
+                                            </div>
+                                        <?php }?>
+                                        <?php if(!empty($roles) && $this->session->userdata('id') == $user_profile['overview']['id_users']){ ?>
+                                            <div class="portlet p-4 md-shadow-none bg-grey-cararra">
+                                                <div class="portlet-body text-center">
+                                                    <i class="icon-ghost font-grey-mint font-40-xs mb-4"></i>
+                                                    <h4 class="text-center font-weight-500 font-grey-mint">Something is missing...</h4>
+                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Add your info here to make your resume look great.</h5>
+                                                    <a href="<?=base_url()?>student/profile" class="btn btn-outline-md-indigo px-6">My Profile</a>
+                                                </div>
+                                            </div>
+                                        <?php }?>
+                                    <?php }?>
                                 </li>
                                 <hr>
                                 <!-- Education [Latest ]-->

@@ -24,10 +24,10 @@
                             <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
                         </li>
                         <li class="<?=$tab_student == "tab_non_education"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-trophy font-26-xs"></i>Non-Education</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-notebook font-26-xs"></i>Non Education</a>
                         </li>
                         <li class="<?=$tab_student == "tab_project"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Project</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Skills</a>
                         </li>
                         <!-- <li>
                                             <a href="#tab_privacy" data-toggle="tab"><i class="icon-lock font-26-xs"></i> Privacy</a>
@@ -462,9 +462,9 @@
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
-                                <!-- <i class="icon-graduation font-green-sharp"></i> -->
-                                <span class="caption-subject font-weight-500  roboto-font "> Non-Education</span>
-                                <span class="caption-helper"> list out all your previous non-educational activity (join any colleage event ... or whatsoever)</span>
+                                <i class="icon-notebook"></i>
+                                <span class="caption-subject font-weight-500  roboto-font "> Non Education</span>
+                                <span class="caption-helper"> list out all your previous non educational activity (join any colleage event ... or whatsoever)</span>
                             </div>
                             <div class="actions">
                                 <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
@@ -503,7 +503,7 @@
                                             <div class="modal-content portlet light">
                                                 <div class="modal-header portlet-title">
                                                     <div class="caption">
-                                                        <span class="caption-subject text-capitalize font-weight-500">Edit Non-Educational</span>
+                                                        <span class="caption-subject text-capitalize font-weight-500">Edit Non Educational</span>
                                                         <!-- <span class="caption-helper">add about your education info</span> -->
                                                     </div>
                                                     <div class="actions py-4">
@@ -538,11 +538,14 @@
                                                                 <div class="col-md-9  ">
                                                                     <div class="m-grid ">
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_start_date']) ? date('d-m-Y', strtotime($value['achievement_start_date'])) : date('d-m-Y') ;?>" name="start_date" id="StartDate2" placeholder="From year" required>
+                                                                            <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="<?php echo !empty($value['achievement_start_date']) ? date('d-m-Y', strtotime($value['achievement_start_date'])) : date('d-m-Y') ;?>" name="start_date" id="StartDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
+                                                                        <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                                            <span class="help-block"> to </span>
+                                                                        </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
-                                                                            <input class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
+                                                                            <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
                                                                             <!-- <span class="help-block"> Select date </span> -->
                                                                         </div>
                                                                     </div>
@@ -579,7 +582,7 @@
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
-                                <!-- <i class="icon-graduation font-green-sharp"></i> -->
+                                <i class="icon-briefcase"></i>
                                 <span class="caption-subject font-weight-500  roboto-font ">Experience</span>
                                 <span class="caption-helper"> list out all your previous working experience</span>
                             </div>
@@ -758,9 +761,9 @@
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
-                                <!-- <i class="icon-graduation font-green-sharp"></i> -->
-                                <span class="caption-subject font-weight-500  roboto-font ">Project</span>
-                                <span class="caption-helper"> list out all your previous working experience(part time, intern or whatsoever you do by earning money)</span>
+                                <i class="icon-badge"></i>
+                                <span class="caption-subject font-weight-500  roboto-font ">Skills</span>
+                                <span class="caption-helper"> list out all your skill based by project</span>
                             </div>
                             <div class="actions">
                                 <a href="#modal_add_project" data-toggle="modal" class="btn btn-md-indigo "><i class="fa fa-plus"></i> Add</a>
@@ -1325,7 +1328,7 @@
                     <div class="modal-content portlet light">
                         <div class="modal-header portlet-title">
                             <div class="caption">
-                                <span class="caption-subject text-capitalize font-weight-500">Add Non-Education</span>
+                                <span class="caption-subject text-capitalize font-weight-500">Add Non Education</span>
                                 <!-- <span class="caption-helper">add about your education info</span> -->
                             </div>
                             <div class="actions py-4">
@@ -1359,11 +1362,14 @@
                                         <div class="col-md-9  ">
                                             <div class="m-grid ">
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker-start input-medium" size="16" type="text" value="" placeholder="From year" name="start_date" required>
+                                                    <input id="achievement_time_from" class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
+                                                <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                    <span class="help-block"> to </span>
+                                                </div>
                                                 <div class="m-grid-col m-grid-col-xs-6">
-                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end input-medium" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
+                                                    <input id="achievement_time_until" class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
                                                     <!-- <span class="help-block"> Select date </span> -->
                                                 </div>
                                             </div>
