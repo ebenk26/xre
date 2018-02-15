@@ -225,7 +225,7 @@ class Employer_Model extends CI_Model{
 
         try {
             
-            if ($checkUserProfileHeaderExist) {
+            if ($checkUserHeaderPhotoExist) {
                 $this->db->where($userHeaderPhotoID);
                 $this->db->update('profile_uploads', $dataUploadsHeaderPhoto); 
             }else{
