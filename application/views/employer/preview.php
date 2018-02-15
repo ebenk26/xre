@@ -54,7 +54,7 @@ if (!empty($job->location)) {
     <meta property="og:url"           content="<?php echo current_url();?>" />
     <meta property="og:type"          content="website" />
     <meta property="og:title"         content="XREMO Job Posting | <?php echo $job->name; ?>" />
-    <meta property="og:description"   content="<?php echo $job->job_description; ?>" />
+    <meta property="og:description"   content="<?php echo strip_tags($job->job_description); ?>" />
     <meta property="og:image"         content="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" />
 
     <title>Employer - Job Preview</title>
@@ -656,7 +656,7 @@ if (!empty($job->location)) {
     <script>
       <?php if (!empty($job->location)) {?>
       function initMap() {
-        var latLang = {lat: parseInt(<?php echo $location_map->latitude; ?>), lng: parseInt(<?php echo $location_map->longitude; ?>)};
+        var latLang = {lat: <?php echo $location_map->latitude; ?>, lng: <?php echo $location_map->longitude; ?>};
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('gmapbg'), {
           center: latLang,

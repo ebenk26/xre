@@ -117,8 +117,9 @@
                             <tbody>
                                 <?php if (!empty($job_post)) {
                                     $i =1;
-                                  foreach ($job_post as $key => $value) { ?>
-                                    <tr class="odd gradeX">
+                                  foreach ($job_post as $key => $value) {
+                                  ?>
+                                    <tr class="odd gradeX <?php echo ($value['status'] == 'preview') ? 'hidden' : ''; ?>">
                                         <td class="text-center" ><?php echo $i; ?></td>
                                         <td> <?php echo $value['name']; ?></td>
                                         <td>
@@ -165,7 +166,7 @@
 
                                         </td>
                                     </tr>                                        
-                                <?php $i++;}} ?>
+                                <?php ($value['status'] != 'preview') ? $i++ : ''; }} ?>
                             </tbody>
                         </table>
                     </div>
@@ -539,8 +540,8 @@
                         </div>
                         <input type="hidden" id="job_status_add" name="status"></input>
                         <div class="modal-footer form-action ">
-                            <!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->
-                            <button type="submit" id="preview_button_add" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Draft</button>
+                            <button type="submit" id="preview_button_add" class="btn btn-md-green  mt-width-150-xs font-20-xs letter-space-xs">Preview</button>
+                            <button type="submit" id="draft_button_add" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Draft</button>
                             <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Post</button>
                             <a data-dismiss="modal" id="submit_button_add" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
                         </div>
