@@ -117,7 +117,7 @@
                                             <?php }?>
 
                                             <?php if ($roles =='employer') {?>
-                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.$this->session->userdata('img_profile') : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
                                             <?php }?>
                                             
                                             <?php if ($roles =='student') {?>
@@ -240,9 +240,9 @@
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <?php if($header_image['name'] != ""){?>
-		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1;">
+		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1; background-size:cover;">
 	<?php }else{?>
-		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1;">
+		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
 	<?php }?>
 	
     </div>
