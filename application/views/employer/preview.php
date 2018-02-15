@@ -295,7 +295,15 @@ if (!empty($job->location)) {
                             </h5>
                             <h6 class="roboto-font  font-14-xs">
                                 <?php if (!empty($location)): ?>
-                                    <i class="icon-pointer"></i> <?php echo $location['city']; ?> , <?php echo $location['state']; ?>
+                                    <?php
+                                        //$full_address = $location['address'] != ""?$location['address'].", ":"";
+                                        $full_address1 = $location['city'] != ""?$location['city'].", ":"";
+                                        //$full_address .= $location['postcode'] != ""?$location['postcode'].", ":"";
+                                        $full_address1 .= $location['state'] != ""?$location['state'].", ":"";
+                                        //$full_address .= $location['country'] != ""?$location['country'].", ":"";
+                                        $full_address1 = $full_address1 != ""?substr($full_address1, 0, -2):"";
+                                    ?>
+                                    <i class="icon-pointer"></i> <?php echo $full_address1;?>
                                 <?php endif ?>
                             </h6>
                             <h6>
@@ -411,8 +419,15 @@ if (!empty($job->location)) {
                     <h5 class="font-weight-600 md-indigo-text roboto-font  font-15-xs text-uppercase letter-space-xs">Location</h5>
                     <h6 class=" roboto-font  font-14-xs ">
                         <i class="icon-pointer mr-2"></i>
-
-                        <?php echo $location['address']; ?>, <?php echo !empty($location['postcode']) ? $location['postcode'] : '' ; ?> <?php echo $location['city']; ?>, <?php echo $location['state']; ?>, <?php echo $location['country']; ?>. </h6>
+                        <?php
+                            $full_address = $location['address'] != ""?$location['address'].", ":"";
+                            $full_address .= $location['city'] != ""?$location['city'].", ":"";
+                            $full_address .= $location['postcode'] != ""?$location['postcode'].", ":"";
+                            $full_address .= $location['state'] != ""?$location['state'].", ":"";
+                            $full_address .= $location['country'] != ""?$location['country'].", ":"";
+                            $full_address = $full_address != ""?substr($full_address, 0, -2):"";
+                        ?>
+                        <?php echo $full_address; ?>. </h6>
                     <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
                     <!-- <section class="s-google-map">
                         <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
