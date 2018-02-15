@@ -147,10 +147,18 @@ class Job_Search_Result extends CI_Controller {
         $search['emp_type']             = $employment_type;
         $search['pos_levels']           = $position_levels;
 
-        $paging = array('base_url'=>XREMO_URL.'job/search/'.$employment_type.$position_levels.$experiences.$company_industries.$country_names,'total_rows'=>$search['total_result'],'perPage'=>$perPage);
+        $queryString = $employment_type.$position_levels.$experiences.$company_industries.$country_names;
+        $paging = array('base_url'=>XREMO_URL.'job/search/'.$queryString,'total_rows'=>$search['total_result'],'perPage'=>$perPage);
         $search['pagination'] = xrPagination($paging);
-
-        $this->load->view('site/job_search', $search);
+// var_dump($search['total_result'],$perPage,urlencode($queryString));exit;
+        if($search['total_result'] <= $perPage && $offset != NULL) 
+        {
+            redirect('job/search?'.$queryString);
+        }
+        else
+        {
+            $this->load->view('site/job_search', $search);
+        }
 	}
 
     public function filter_get(){
