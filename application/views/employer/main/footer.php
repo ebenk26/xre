@@ -2,7 +2,6 @@
     <!-- END CONTAINER -->
 
 	<?php $this->load->view('main/footer_app');?>
-
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_EMPLOYER; ?>jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap.min.js" type="text/javascript"></script>
@@ -128,11 +127,16 @@
                 $('#radio1003').attr('checked', 'checked');
             });
             $('#preview_button_add').click(function(){
+                $('#job_status_add').val('preview');
+            });
+            $('#draft_button_add').click(function(){
                 $('#job_status_add').val('draft');
             });
             $('#submit_button_add').click(function(){
                 $('#job_status_add').val('post');
             });
+
+
 
             $('.user-btn').click(function(){
                 var id = $(this).attr('uid');
@@ -312,7 +316,9 @@
                             \
                         </div>');
                         $('#modal_view_summary').modal('show', {backdrop: 'static'});
+                        $('#modal_edit_jobpost_163').modal('show', {backdrop: 'static'});
                         
+
                         $('.shortlist-btn').click(function () {
                             var id = $(this).attr('app-id');
                                 $.ajax({

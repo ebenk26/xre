@@ -82,7 +82,7 @@ class Job_Board extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed post data');
         }
 
-        if ($this->input->post('status') == 'draft') {
+        if ($this->input->post('status') == 'draft' || $this->input->post('status') == 'preview') {
             redirect(base_url().'job/details/'.rtrim(base64_encode($postJob),'=') );
         }else{
             redirect(base_url().'employer/job_board/');
