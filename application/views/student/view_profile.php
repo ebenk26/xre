@@ -434,6 +434,7 @@
                         <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Language </h5>
                             <ul class="list-unstyled mx-0">
+                                <?php if(!empty($user_profile['language'])){?>
                                 <?php foreach($user_profile['language'] as $key => $value){?>
                                 <li>
                                     <p class="my-1 ">
@@ -443,7 +444,7 @@
                                     </p>
 
                                 </li>
-                                <?php } ?>
+                                <?php }}else{ echo "-";} ?>
                             </ul>
                         </li>
                     </ul>

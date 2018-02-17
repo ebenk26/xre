@@ -50,8 +50,9 @@ class User extends CI_Controller {
                 if ($login_result['verified'] == 0) {
                     
                     $this->session->set_flashdata('msg_failed', 'Please check your email to verify before you can login');
-                    $header['page_title'] = 'Login';
-                    $this->load->view('site/login', $header);
+                    /*$header['page_title'] = 'Login';
+                    $this->load->view('site/login', $header);*/
+                    redirect(base_url().'login');
                     
                 }else{
                     
@@ -71,7 +72,7 @@ class User extends CI_Controller {
                 }
             }else{
                 $this->session->set_flashdata('msg_failed', 'Wrong username or password please check again');
-                redirect(base_url().'site/user/login');                
+                redirect(base_url().'login');                
             }
         }
     }
@@ -249,6 +250,7 @@ class User extends CI_Controller {
         $data = array('verified' => 1);
         $this->db->where('md5(email)',$key);
         $this->db->update('users', $data);    //update status as 1 to make active user
+        $this->session->set_flashdata('msg_success', 'Successfully verified. Please login to your account.');
         redirect(base_url().'site/user/login');
     }
 

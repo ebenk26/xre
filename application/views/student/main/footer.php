@@ -560,6 +560,21 @@
                 }
             });
         }
+
+        // For Edit Profile
+        $('.nav.navProfile li a').click(function (e) {
+            //remove all pre-existing active classes
+            $('.nav.navProfile li.active').removeClass('active');
+
+            var $parent = $(this).parent();
+            $parent.addClass('active');
+            //Load the content
+            //e.g.
+            //load the page that the link was pointing to
+            $('.navProfile').load($(this).find(a).attr('href'));
+            //$('.navProfile').load($(this).attr('href'));
+            e.preventDefault();
+        });
     </script>
 
 
