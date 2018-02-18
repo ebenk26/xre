@@ -141,7 +141,7 @@
             $('.user-btn').click(function(){
                 var id = $(this).attr('uid');
                 var app_id = $(this).attr('app-id');
-                var image_directory = window.location.origin+'/xremo/assets/img/student/';
+                var image_directory = window.location.origin+'/assets/img/student/';
                 $.ajax({
                     url:"<?php echo base_url();?>employer/profile/detail_profile",
                     method:"POST",
@@ -154,6 +154,23 @@
                         var project = '';
                         var non_academics = '';
                         var experience = '';
+
+                        var profile_pic = 'profile-pic.png';
+                        if(student.user_profile.profile_photo == ""){
+                            profile_pic = student.user_profile.profile_photo;
+                        }
+
+                        var city_states = "-";
+                        if(student.user_profile.address.city != null){
+                            city_states = student.user_profile.address.city+' ,'+student.user_profile.address.states;
+                        }
+
+                        var summary = "-";
+                        if(student.user_profile.overview.summary != null){
+                            summary = student.user_profile.overview.summary;
+                        }
+
+                        
 
                         $.each(student.user_profile.academics,function(i,v){
                             var academic_date = new Date(v.start_date); 
@@ -198,7 +215,7 @@
                                 <div class="modal-header md-indigo">\
                                     <div class="media">\
                                         <div class="pull-left">\
-                                            <img src="'+image_directory+student.user_profile.profile_photo+'" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
+                                            <img src="'+image_directory+profile_pic+'" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
                                         </div>\
                                         <div class="pull-right">\
                                             <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">\
@@ -209,9 +226,9 @@
                                             <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">'+student.user_profile.overview.name+'</h3>\
                                             <ul class="list-inline list-unstyled md-white-text ">\
                                                 <li>\
-                                                    <i class="icon-pointer"></i>'+student.user_profile.address.city+' ,'+student.user_profile.address.states+'</li>\
+                                                    <i class="icon-pointer"></i> '+city_states+'</li>\
                                                 <li>\
-                                                    <i class="icon-envelope"></i>'+student.user_profile.overview.email+'</li>\
+                                                    <i class="icon-envelope"></i> '+student.user_profile.overview.email+'</li>\
                                             </ul>\
                                         </div>\
                                     </div>\
@@ -221,7 +238,7 @@
                                         <div class="row">\
                                             <div class="col-md-12 pr-0">\
                                                 <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
-                                                <p class="mt-0">'+student.user_profile.overview.summary+'</p>\
+                                                <p class="mt-0">'+summary+'</p>\
                                             </div>\
                                         </div>\
                                         <hr class="hidden-sm">\
@@ -693,8 +710,8 @@
                     { title: 'Test template 2', content: 'Test 2' }
                 ],
                 content_css: [
-                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                    '//www.tinymce.com/css/codepen.min.css'
+                    'https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    'https://www.tinymce.com/css/codepen.min.css'
                 ]
             });
 

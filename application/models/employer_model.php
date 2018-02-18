@@ -256,8 +256,8 @@ class Employer_Model extends CI_Model{
                             profile_uploads.name as img');
         $this->db->from('users');
         $this->db->join('applieds','users.id = applieds.user_id', 'left');
-        $this->db->join('profile_uploads','users.id = profile_uploads.user_id', 'left');
-        $this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->join('profile_uploads','users.id = profile_uploads.user_id AND profile_uploads.type = "profile_photo"', 'left');
+        //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $this->db->where(array('applieds.job_position_id' => $id)); //job position id
         $applicant = $this->db->get();
         $applicants = $applicant->result_array();
