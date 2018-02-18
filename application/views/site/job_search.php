@@ -65,31 +65,32 @@
 
                     <!-- Content -->
                     <div class="s-header-v2-navbar-col s-header-v2-navbar-col-right">
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <!-- guest -->
+                        <!-- Desktop Menu -->
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>about/" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>services/" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>article/" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
                                 </li>
 								<li class="s-header-v2-nav-item">
+                                    <!-- If Logged In -->
                                     <?php if ($this->session->userdata('name')){ ?>
                                         <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-nav-link">Welcome, <?php echo $this->session->userdata('name') ;?></a>
+                                    <!-- If Not Logged In -->
                                     <?php }else{ ?>
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
-                                    <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
+                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
                                     <?php } ?>
                                 </li>
                                 <!--<li class="s-header-v2-nav-item">
@@ -101,22 +102,21 @@
                                 </li>-->
                             </ul>
                         </div>
-                        <!--logged user -->
-                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
+                        <!--Mobile Menu -->
+                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse">
                             <ul class="s-header-v2-nav hidden">
                                 <!-- NOTE : Student got "Search Job " link meanwhile employer do not have -->
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link">Search Job</a>
                                 </li>
-                                <!-- ########################################################## -->
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>about/" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>services/" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contact/" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
+                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
@@ -151,7 +151,6 @@
                                         </li>
                                     </ul>
                                 </li>
-
                             </ul>
                         </div>
                         <!-- End Nav Menu -->
