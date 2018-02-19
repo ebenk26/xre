@@ -385,7 +385,7 @@ class Job_Board extends CI_Controller {
         $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
 
         if ($invite_user_interview == true) {
-            $this->session->set_flashdata('msg_success', 'Success invite this candidate'); 
+            $this->session->set_flashdata('msg_success', 'Success invite candidate for interview session'); 
 			
 			//BEGIN : set recent activities
 			$data = array(

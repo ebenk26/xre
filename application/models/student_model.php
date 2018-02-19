@@ -403,6 +403,7 @@ class Student_Model extends CI_Model{
 		$this->db->where('expiry_date >=', date('Y-m-d')); 
         $this->db->where('job_positions.status', 'post');
 		$this->db->where('profile_uploads.type', 'profile_photo');
+        $this->db->order_by('job_positions.id', 'DESC');
         $allJob = $this->db->get();
         return $allJob->result_array();
     }

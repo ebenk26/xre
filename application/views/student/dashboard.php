@@ -279,7 +279,7 @@
                                             <!-- <img class="widget-media-avatar img-responsive" src="../HTML/img/Xremo/all/xremo-logo-blue.png" alt=""> -->
                                             <!--<a class="md-grey-text text-darken-1 " href="<?=base_url()?>job/search" target="_blank">View Job Dashboard </a>-->
 											
-											<a href="<?=base_url()?>job/search" target="_blank" class="btn  btn-md-orange m-4 letter-space-xs">View Job Dashboard</a>
+											<a href="<?=base_url()?>job/search" target="_blank" class="btn  btn-md-orange m-4 letter-space-xs">View All Job Dashboard</a>
                                         </div>
 
                                     </div>
