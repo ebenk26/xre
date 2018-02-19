@@ -78,7 +78,7 @@
                                                     <!-- <li class="vertical-top md-grey-text text-darken-1"><i class="fa fa-circle font-10-xs "></i></li> -->
                                                     <!-- <li class="font-26-xs"><i class="icon-lock"></i>Public</li> -->
                                                     <li class="font-26-xs"><i class="icon-pointer"></i> <?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : $this->session->userdata['country'];?> , <?php echo ucfirst($user_profile['address']['country']);?></li>
-                                                    <li class="font-26-xs"><i class="icon-calendar"></i> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></li>
+                                                    <li class="font-26-xs"><i class="icon-calendar"></i> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : "DOB not set";?></li>
                                                     <!-- <li class="font-26-xs"><i class="fa fa-phone font-26-xs"></i> 0123456789</li> -->
                                                     <!-- <li class="font-26-xs"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
                                                 </ul>
