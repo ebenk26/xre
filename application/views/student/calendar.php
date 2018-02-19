@@ -5,7 +5,7 @@
                     <!-- BEGIN PAGE TITLE -->
                     <div class="page-title">
                         <h1>Calendar
-                            <small>calendar page</small>
+                            <!--<small>calendar page</small>-->
                         </h1>
                     </div>
                     <!-- END PAGE TITLE -->
@@ -18,7 +18,7 @@
                         <div class="portlet light portlet-fit bordered calendar">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class=" icon-layers font-green"></i>
+                                    <i class=" icon-calendar font-green"></i>
                                     <span class="caption-subject font-green sbold uppercase">Calendar</span>
                                 </div>
                             </div>
