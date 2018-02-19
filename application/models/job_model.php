@@ -116,9 +116,9 @@ class Job_Model extends CI_Model{
         $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
-		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id', 'left');
+		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id AND profile_uploads.type = "profile_photo"', 'left');
 		$this->db->where('applieds.user_id', $this->session->userdata('id'));
-		$this->db->where('profile_uploads.type', 'profile_photo');
+		//$this->db->where('profile_uploads.type', 'profile_photo');
 		$this->db->order_by('applieds.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result_array();
