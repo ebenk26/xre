@@ -383,6 +383,7 @@ class Employer_Model extends CI_Model{
         $this->db->join('users','users.id = student_bios.user_id', 'left' );
         $this->db->where('interview_schedule_user.employer_id', $id); 
         $this->db->where('interview_schedule.start_date >= '.date('Y-m-d'));
+        $this->db->where('interview_schedule_user.status', 'accept');
         $interview = $this->db->get();
 
         return $interview->result_array();
