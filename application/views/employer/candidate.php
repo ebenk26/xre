@@ -152,7 +152,7 @@
                                     <!-- <span class="caption-helper ">Internship in IT</span> -->
                                 </div>
                                 <div class="actions">
-                                    <div class="btn-group">
+                                    <div class="btn-group hidden">
                                         <a class="btn btn-circle btn-default " href="#modal_set_session" data-toggle="modal">
                                             <i class="fa fa-calendar"></i> Set Interview Session
                                         </a>
