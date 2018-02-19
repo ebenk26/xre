@@ -233,7 +233,7 @@
                                                                 <div class="modal-header">
                                                                     <h4>Rejection Letter</h4>
                                                                 </div>
-                                                                <form action="<?php echo base_url(); ?>student/applications_history/reject_invitation" class="form-horizontal" method="POST">
+                                                                <form action="<?php echo base_url(); ?>student/applications_history/reschedule_invitation" class="form-horizontal" method="POST">
                                                                 <input type="hidden" class="job-id" name="job_id"></input>
                                                                 <input type="hidden" class="session-id" name="session_id"></input>
                                                                 <input type="hidden" class="employer-id" name="employer_id"></input>
@@ -241,27 +241,32 @@
                                                                             <h5 class="form-section mx-0 col-md-12 mt-0">Letter Content</h5>
                                                                             <div class="form-group mx-0 col-md-12">
                                                                                 <label for="" class="control-label">Reply</label>
-                                                                                <textarea class="form-control" rows="10" name="candidate_reply" required>Hi Mark Adam ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
+                                                                                <textarea class="form-control" rows="10" name="candidate_reply">Hi Mark Adam ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
                                                                                         Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
                                                                                         Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
                                                                                         id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
                                                                                         Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
                                                                                         lobortis. </textarea>
                                                                             </div>
+                                                                            <div class="row mx-0">
+                                                                                <div class="col-md-6">
+                                                                                    
+                                                                                </div>
+                                                                                <div class="col-md-6 text-right">
+                                                                                    <button class="btn btn-md-red" type="submit"> Save</button>
+                                                                                    <a href="#" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-
-                                                                        <button class="btn btn-md-red" type="submit"> Save</button>
-                                                                        <a href="#" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
-
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
 
                                                     </div>
-                                                    <!-- END MODAL : Reject Form -->
+                                                    <!-- END MODAL : Rescheduled Form -->
+
+                                                    
 
                                                 </div>
                                             </div>
