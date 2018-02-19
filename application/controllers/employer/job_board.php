@@ -408,7 +408,7 @@ class Job_Board extends CI_Controller {
                                                                 'receiver_id'   =>  $candidate_id
                                                         )
                                             );
-
+                                            
             $MailContent = array(   
                             "sender_name"       => $userMail["sender_name"],
                             "receiver_name"     => $userMail["receiver_name"],
