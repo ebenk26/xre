@@ -156,8 +156,8 @@
                         var experience = '';
 
                         var profile_pic = 'profile-pic.png';
-                        if(student.user_profile.profile_photo == ""){
-                            profile_pic = student.user_profile.profile_photo;
+                        if(student.user_profile.overview.profile_photo != ""){
+                            profile_pic = student.user_profile.overview.profile_photo;
                         }
 
                         var city_states = "-";
