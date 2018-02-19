@@ -120,7 +120,7 @@ class Dashboard extends CI_Controller {
 			$subject 		= "[Job Applied] by ".$userMail["sender_name"];
 
 			$MailData = array(	
-							"sender_email"		=> $userMail["sender_email"],
+							"sender_email"		=> "system@xremo.com",
 							"receiver_email"	=> $userMail["receiver_email"],
 							'subject' 			=> $subject,
 							'message_html'		=> $messageHtml

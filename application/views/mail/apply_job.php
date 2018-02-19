@@ -225,7 +225,7 @@
                                     Hi <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    Your job has been applied by <?= $sender_name; ?> with position <?= $job_name; ?>.
+                                    Your job vacancy has been applied by <b><?= $sender_name; ?></b> for position <b><?= $job_name; ?></b>.
                                     <br/>
                                     Please login to view candidate profile or click button bellow.
                                     <br/>

@@ -260,7 +260,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[REJECTED] You've been rejected by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => "system@xremo.com",
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
@@ -324,7 +324,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[HIRED] You've been hired by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => "system@xremo.com",
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
@@ -385,7 +385,7 @@ class Job_Board extends CI_Controller {
         $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
 
         if ($invite_user_interview == true) {
-            $this->session->set_flashdata('msg_success', 'Success invite candidate for interview session'); 
+            $this->session->set_flashdata('msg_success', 'Success inviting candidate for interview session'); 
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -420,7 +420,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[Interview Invitation] from ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => "system@xremo.com",
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
@@ -439,17 +439,17 @@ class Job_Board extends CI_Controller {
             CreateNotif($NotifData,$MailData);
             //END : set create notification
 
-            $inboxData = array('sender_id' => $employer_id,
+            /*$inboxData = array('sender_id' => $employer_id,
                                 'receiver_id' => $candidate_id,
                                 'subject' => $subject,
                                 'message' => 'You have been invited to interview with position '.$getUserCompany['name'].'<br> to see the details please check your calendar',
                                 'status_sender' => 'SENT',
                                 'status_receiver' => 'NEW');
 
-            $this->global_model->create('inbox', $inboxData);
+            $this->global_model->create('inbox', $inboxData);*/
 
         }else{
-            $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
+            $this->session->set_flashdata('msg_error', 'Failed inviting candidate for interview session');
         }
 
         redirect(base_url().'job/candidate/'.base64_encode($job_id));

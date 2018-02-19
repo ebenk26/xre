@@ -225,7 +225,7 @@
                                     Congratulations <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    You have been invited to interview with position <?= $job_name; ?>.
+                                    You have been invited to interview for position <b><?= $job_name; ?></b>.
                                     <br/>
                                     To see the details please check your account in xremo.com or click button bellow.
                                     <br/>

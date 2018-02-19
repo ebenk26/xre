@@ -59,7 +59,6 @@
 
 <body>
     <?php $this->load->view('site/header_content');?>
-    
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <section class="s-promo-block-v4 g-bg-gradient-md-blue-grey mt-height-300-xs">
@@ -372,13 +371,13 @@
                                             <small class="">
                                                 <i class="icon-pointer"></i> <?php $country = $this->session->userdata('country'); echo !empty($country) ? $country : ''; ?></small>
                                         </h6>
-                                        <p class="roboto-font text-none">Applied for job
+                                        <p class="roboto-font text-none">Applied for position
                                             <strong class="text-capitallize"><?php echo $job->name; ?></strong>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="form-group text-left mx-0 mb-2">
-                                    <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe about yourself and why we should we hire you? Not more than 300 words"></textarea>
+                                    <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe yourself and why we should hire you? Not more than 300 words"></textarea>
                                     <input type="hidden" name="job_id" value="<?= $job_id; ?>">
                                 </div>
                             </div>
