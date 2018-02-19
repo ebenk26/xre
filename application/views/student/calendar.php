@@ -233,7 +233,7 @@
                                                                 <div class="modal-header">
                                                                     <h4>Rejection Letter</h4>
                                                                 </div>
-                                                                <form action="<?php echo base_url(); ?>student/applications_history/reschedule_invitation" class="form-horizontal" method="POST">
+                                                                <form action="<?php echo base_url(); ?>student/applications_history/reject_invitation" class="form-horizontal" method="POST">
                                                                 <input type="hidden" class="job-id" name="job_id"></input>
                                                                 <input type="hidden" class="session-id" name="session_id"></input>
                                                                 <input type="hidden" class="employer-id" name="employer_id"></input>

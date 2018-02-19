@@ -305,6 +305,7 @@
                                                             <div class="form-group mx-0 col-md-12">
                                                                 <label class="control-label font-weight-600">Replied By <?php echo $value['user_name'];?></label>
                                                                 <p class="form-control-static"><?php echo $value['candidate_reply']; ?></p>
+                                                                <br>
                                                                 <label class="control-label font-weight-600">Suggested date start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_start_date'] ));?></label>
                                                                 <br/>
                                                                 <label class="control-label font-weight-600">Suggested end start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_end_date'] ));?></label>
@@ -314,7 +315,7 @@
                                                             <label for="">Do you agree to rescheduled ?</label>
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes"> Yes
+                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes" selected> Yes
                                                                     <span></span>
                                                                 </label>
                                                                 <label class="mt-radio">
@@ -328,12 +329,7 @@
                                                             <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
                                                             <div class="form-group mx-0 col-md-12">
                                                                 <label for="" class="control-label">Reply</label>
-                                                                <textarea class="form-control" rows="10" name="reschedule_detail">Hi <?php echo $value['user_name'];?> ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
-                                                                    Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
-                                                                    Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
-                                                                    id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
-                                                                    Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
-                                                                    lobortis. </textarea>
+                                                                <textarea class="form-control" rows="10" placeholder="Your reply to candidate" name="reschedule_detail"></textarea>
                                                             </div>
                                                             <div class="row mx-0">
                                                                 <div class="col-md-6">
