@@ -105,7 +105,7 @@
                 <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
                 <!-- X<small>REMO</small>  -->
                 <!-- </a> -->
-                <a href="<?php echo base_url();?>home/">
+                <a href="<?php echo base_url();?>">
                     <img src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4" />
                 </a>
             </div>
