@@ -85,7 +85,7 @@ class Dashboard extends CI_Controller {
 		}
 		
         if ($apply_job == true) {
-            $this->session->set_flashdata('msg_success', 'Success apply dream job'); 
+            $this->session->set_flashdata('msg_success', 'Success apply job vacancy'); 
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -121,7 +121,7 @@ class Dashboard extends CI_Controller {
 
 			$MailData = array(	
 							"sender_email"		=> "system@xremo.com",
-							"receiver_email"	=> $userMail["receiver_email"],
+							"receiver_email"	=> $getUserCompany["email_pic"],
 							'subject' 			=> $subject,
 							'message_html'		=> $messageHtml
 						);
@@ -139,7 +139,7 @@ class Dashboard extends CI_Controller {
 			CreateNotif($NotifData,$MailData);
 			//END : set create notification
         }else{
-            $this->session->set_flashdata('msg_error', 'Failed apply your dream job');
+            $this->session->set_flashdata('msg_error', 'Failed apply job vacancy');
         }
         redirect(base_url().'job/details/'.$job_id_code);
     }

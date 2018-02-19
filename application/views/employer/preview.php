@@ -371,7 +371,7 @@
                                             <small class="">
                                                 <i class="icon-pointer"></i> <?php $country = $this->session->userdata('country'); echo !empty($country) ? $country : ''; ?></small>
                                         </h6>
-                                        <p class="roboto-font text-none">Applied for position
+                                        <p class="roboto-font text-none">Apply for position
                                             <strong class="text-capitallize"><?php echo $job->name; ?></strong>
                                         </p>
                                     </div>
@@ -466,6 +466,13 @@
                         }
                     );
             });
+
+            <?php if($this->session->flashdata('msg_success')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
         });
     </script>
 

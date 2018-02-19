@@ -187,9 +187,10 @@ class Job_Model extends CI_Model{
 
     function getJobById($id)
     {
-        $this->db->select('job_positions.user_id as user_job, job_positions.name, user_profiles.*');
+        $this->db->select('job_positions.user_id as user_job, job_positions.name, user_profiles.*, users.email as email_pic');
         $this->db->from('job_positions');        
         $this->db->join('user_profiles', 'job_positions.user_id = user_profiles.user_id', 'left');
+        $this->db->join('users', 'users.id = job_positions.user_id', 'left');
         $this->db->where('job_positions.id', $id);
         $query = $this->db->get();
 
