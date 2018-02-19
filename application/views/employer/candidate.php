@@ -73,7 +73,7 @@
                                                 <td class="col-xs-8">
                                                     <div class="media verticle-middle hidden-xs ">
                                                         <div class="pull-left">
-                                                            <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                            <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                         </div>
                                                         <div class="media-body">
                                                             <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>
@@ -179,7 +179,7 @@
                                                 <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
                                                 <td class="col-xs-8">
                                                     <div class="pull-left">
-                                                        <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
+                                                        <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="font-weight-500 font-26-xs"><?php echo $value['user_name']; ?></h4>

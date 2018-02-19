@@ -60,9 +60,9 @@
                     </div>
                     <div class="md-white">
                         <!--  Brief you whole profile -->
-                        <div class="m-grid m-grid-col m-grid-col-center">
+                        <div class="m-grid m-grid-col m-grid-col-center m-grid-responsive-xs">
                             <div class="m-grid-col m-grid-col-sm-3"></div>
-                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-6">
+                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-6 m-grid-col-xs-12">
                                 <!-- <h3 class="">Jennifer Lawrence</h3> -->
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
@@ -83,8 +83,8 @@
                                                     <!-- <li class="font-26-xs"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
                                                 </ul>
                                             <p></p>
-                                            <p class="mt-card-desc"> <i class="fa fa-quote-left font-14-xs vertical-top"></i> <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
-                                                <i class="fa fa-quote-right vertical-top font-14-xs"></i> </p>
+                                            <p class="mt-card-desc">  <?php echo !empty($user_profile['overview']['quote']) ? '<i class="fa fa-quote-left font-14-xs vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-14-xs"></i>' : '';?>
+                                                 </p>
                                             <p class="mt-card-desc text-justify hidden">
                                                 <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
                                             </p>
@@ -93,17 +93,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-5">
+                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-4 hidden-xs">
                                 <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
+                            </div>
+                            <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
+                                <div class="btn-group btn-group-justified">
+                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo">
+                                        <i class="icon-pencil"></i>Edit</a>
+                                    <a href="<?php echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-outline-md-indigo  letter-space-xs">View My resume</a>
+                                </div>
+
                             </div>
                         </div>
 
                         <hr class="mt-1">
                         <!-- About myself -->
                         <div class="m-grid m-grid-col m-grid-col-center">
-                            <div class="m-grid-col m-grid-col-sm-1"></div>
+                            <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
                             <!-- content -->
-                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-10">
+                            <div class="m-grid-col m-grid-col-center m-grid-col-sm-10 m-grid-col-xs-10">
                                 <div class="m-grid">
                                     <div class="m-grid-col">
                                         <ul class="list-unstyled">
@@ -118,17 +126,17 @@
                                 </div>
 
                             </div>
-                            <div class="m-grid-col m-grid-col-sm-1 "></div>
+                            <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1 "></div>
                         </div>
                         <!-- Profile Information -->
                         <div class="clearfix my-3"></div>
                         <div class="m-grid m-grid-col m-grid-col-center pb-5">
-                                    <div class="m-grid-col m-grid-col-sm-1"></div>
-                                    <div class="m-grid-col  m-grid-col-sm-10">
+                                    <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
+                                    <div class="m-grid-col  m-grid-col-sm-10 m-grid-col-xs-10">
                                         <h4 class="font-weight-700 text-uppercase ">Personal Information</h4>
                                         <hr class="mb-1">
-                                        <div class="m-grid">
-                                            <div class="m-grid-col m-grid-col-md-6  p-2">
+                                        <div class="m-grid m-grid-responsive-xs">
+                                            <div class="m-grid-col m-grid-col-sm-6  p-2 m-grid-col-xs-12">
                                                 <!-- preferences-name -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -219,7 +227,7 @@
                                                 </div>
                                                 
                                             </div>
-                                            <div class="m-grid-col m-grid-col-md-6 p-2">
+                                            <div class="m-grid-col m-grid-col-sm-6 p-2 m-grid-col-xs-12">
                                                 <!-- Salary Expectation -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -322,7 +330,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="m-grid-col m-grid-col-sm-1 ">
+                                    <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1">
                                         <!-- <a href="" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a> -->
                                     </div>
                                 </div>
@@ -911,6 +919,9 @@
                                     <li>
                                         <a href="#videoSection"> Video Resume </a>
                                     </li>
+                                    <li class="">
+                                        <a href="#referenceSection"> References </a>
+                                    </li>
                                     <li>
                                         <a href="#pictureSection"> Profile Picture </a>
                                     </li>
@@ -1170,6 +1181,92 @@
                                             <label class="control-label col-md-3">Upload Youtube link</label>
                                             <div class="col-md-9">
                                                 <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="link video" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
+                                            </div>
+                                        </div>
+
+                                        <!-- SECTION : Reference -->
+                                        <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="referenceSection"> Reference </h4>
+                                        <hr class="mt-2">
+                                        <div class="note note-md-blue">
+                                            <h5 class="my-0">Note : Put only 3 people as your reference</h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group mx-0">
+                                                    <div class="mt-repeater">
+                                                        <div data-repeater-list="group-r">
+                                                            <?php 
+                                                                if (!empty($user_profile['reference'])) {
+                                                                foreach ($user_profile['reference'] as $reference_key => $reference_value) {?>
+                                                                <div data-repeater-item class=" row mt-2 mx-0">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group mx-0">
+                                                                            <div class="input-icon">
+                                                                                <i class="icon-user"></i>
+                                                                                <input type="text" name="reference_name" placeholder="Name" class="form-control" value="<?=$reference_value['reference_name']?>">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group mx-0">
+                                                                            <div class="input-icon">
+                                                                                <i class="icon-envelope"></i>
+                                                                                <input type="text" name="reference_email" placeholder="Email address" class="form-control" value="<?=$reference_value['reference_email']?>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group mx-0">
+                                                                            <input type="text" name="reference_relationship" placeholder="Relationship" class="form-control" value="<?=$reference_value['reference_relationship']?>">
+                                                                        </div>
+                                                                        <div class="form-group mx-0">
+                                                                            <input type="text" name="reference_phone" placeholder="Phone Number" class="form-control" value="<?=$reference_value['reference_phone']?>">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 vertical-middle py-3">
+                                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
+                                                                            <i class="fa fa-close"></i> remove
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            <?php }}else{?>
+                                                                <div data-repeater-item class=" row mt-2 mx-0">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group mx-0">
+                                                                            <div class="input-icon">
+                                                                                <i class="icon-user"></i>
+                                                                                <input type="text" name="reference_name" placeholder="Name" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group mx-0">
+                                                                            <div class="input-icon">
+                                                                                <i class="icon-envelope"></i>
+                                                                                <input type="text" name="reference_email" placeholder="Email address" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group mx-0">
+                                                                            <input type="text" name="reference_relationship" placeholder="Relationship" class="form-control">
+                                                                        </div>
+                                                                        <div class="form-group mx-0">
+                                                                            <input type="text" name="reference_phone" placeholder="Phone Number" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-2 vertical-middle py-3">
+                                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm mt-4">
+                                                                            <i class="fa fa-close"></i> remove
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            <?php }?>
+                                                            
+                                                        </div>
+                                                        <hr>
+                                                        <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-sm mt-2 pull-right">
+                                                            <i class="fa fa-plus"></i> Add
+                                                        </a>
+
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 

@@ -13,7 +13,9 @@ class User_Model extends CI_Model{
         
         $this->db->insert('user_role',$user_role);
 
-        $this->db->insert('student_bios', array('user_id' => $user_id));
+        if($role == 5){
+            $this->db->insert('student_bios', array('user_id' => $user_id));
+        }
 
         return true;      
     }

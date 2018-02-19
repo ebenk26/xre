@@ -115,7 +115,8 @@ class Profile extends CI_Controller {
             'expected_salary' => $this->input->post('expected_salary'),
             'profile_photo' =>  $profile_photo,
             'header_photo' =>  $header_photo,
-            'language' => $this->input->post('group-b')
+            'language' => $this->input->post('group-b'),
+            'reference' => $this->input->post('group-r')
         );
         $this->student_model->profile_post($profile);
         $this->session->set_userdata('name', $this->input->post('fullname'));

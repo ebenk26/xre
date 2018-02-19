@@ -66,8 +66,11 @@ class Student_Model extends CI_Model{
 
         $language_set =$this->get_where_array('user_language_set', array('user_id'=>$this->session->userdata('id')), 'id', 'asc');
 
+        $reference_set =$this->get_where_array('user_reference', array('user_id'=>$this->session->userdata('id')), 'id', 'asc');
+
         try{
 
+            //language
             if (!empty($language_set)) {
                 foreach ($language_set as $key => $value) {
                         $this->db->where('id', $value['id']);
@@ -83,6 +86,25 @@ class Student_Model extends CI_Model{
                                             'spoken' => $value['spoken'] );
 
                     $this->db->insert('user_language_set', $userLanguage);                
+                }
+            }
+
+            //reference
+            if (!empty($reference_set)) {
+                $this->db->where('user_id', $this->session->userdata('id'));
+                $this->db->delete('user_reference');
+            }
+
+            if (!empty($profile['reference'])) {
+                foreach ($profile['reference'] as $key => $value) {
+                    $userReference = array( 'user_id' => $this->session->userdata('id'),
+                                            'reference_name' => $value['reference_name'],
+                                            'reference_email' => $value['reference_email'],
+                                            'reference_relationship' => $value['reference_relationship'],
+                                            'reference_phone' => $value['reference_phone'],
+                                            'created_at' => date('Y-m-d H:i:s') );
+
+                    $this->db->insert('user_reference', $userReference);                
                 }
             }
 
@@ -316,7 +338,18 @@ class Student_Model extends CI_Model{
             $result['language_percent'] = 0;
         }
 
-
+        //reference
+        $this->db->select('user_reference.*');
+        $this->db->from('users');
+        $this->db->join('user_reference', 'user_reference.user_id = users.id','left');
+        $this->db->where(array('user_reference.user_id' => $id));
+        $reference = $this->db->get();
+        $result['reference'] = $reference->result_array();
+        if ($reference->result_array()) {
+            $result['reference_percent'] = 0;
+        }else{
+            $result['reference_percent'] = 0;
+        }
 
         //project
         $this->db->select('*');
