@@ -216,6 +216,7 @@ class Job_Board extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }
+        redirect(base_url().'job/candidate/'.rtrim(base64_encode($id),'='));
     }
 
     public function reject(){
@@ -437,6 +438,16 @@ class Job_Board extends CI_Controller {
                     );
             CreateNotif($NotifData,$MailData);
             //END : set create notification
+
+            $inboxData = array('sender_id' => $employer_id,
+                                'receiver_id' => $candidate_id,
+                                'subject' => $subject,
+                                'message' => 'You have been invited to interview with position '.$getUserCompany['name'].'<br> to see the details please check your calendar',
+                                'status_sender' => 'SENT',
+                                'status_receiver' => 'NEW');
+
+            $this->global_model->create('inbox', $inboxData);
+
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to invite this candidate');
         }
