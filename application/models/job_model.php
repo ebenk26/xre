@@ -196,5 +196,15 @@ class Job_Model extends CI_Model{
 
         return $query->row_array();
     }
+
+    function getJobByAppliedsId($id)
+    {
+        $this->db->select('*');
+        $this->db->from('applieds');        
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+
+        return $query->row_array();
+    }
 }
 ?>

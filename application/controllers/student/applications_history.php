@@ -29,14 +29,17 @@ class Applications_history extends CI_Controller {
 	}
 
     public function withdraw(){
-        $job_id         = $this->input->post('job_id');
-        $job_id_code    = rtrim(base64_encode($job_id), '=');
-		
+        $applieds_id    = $this->input->post('job_id');
+
+        $job            = $this->job_model->getJobByAppliedsId($applieds_id);
+        $job_id         = $job['job_position_id'];
+		$job_id_code    = rtrim(base64_encode($job_id), '=');
+
 		$this->db->set('number_of_candidate', 'number_of_candidate-1', FALSE);
 		$this->db->where('id', $job_id);
 		$this->db->update('job_positions');
 		
-        $result = $this->job_model->withdraw_job($job_id);
+        $result = $this->job_model->withdraw_job($applieds_id);
         if ($result == true) {
             $this->session->set_flashdata('msg_success', 'Success withdraw from the job');
 
