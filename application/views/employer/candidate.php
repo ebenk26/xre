@@ -83,8 +83,8 @@
                                                         <?php echo $value['user_name']; ?>
                                                     </div>
                                                 </td>
-                                                <td class="text-center vertical-middle col-xs-1"> <?php echo $value['application_status']; ?> </td>
-                                                <td class="text-center vertical-middle col-xs-1"> <?php echo date('j F Y',strtotime($value['sent_at'])); ?> </td>
+                                                <td class="text-center vertical-middle col-xs-2"> <?php echo $value['application_status']; ?> </td>
+                                                <td class="text-center vertical-middle col-xs-3"> <?php echo date('j F Y',strtotime($value['sent_at'])); ?> </td>
                                                 <td class=" col-xs-2">
                                                     <div class="btn-group visible-xs">
                                                         <button class="btn green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
@@ -166,11 +166,11 @@
                                 <table class="table table-striped table-bordered " id="xremo_table">
                                     <thead>
                                         <tr>
-                                            <th class="text-center col-xs-1 col-md-1">#</th>
-                                            <th class="col-xs-8 col-md-8"> Candidates </th>
-                                            <th class="text-center col-md-1 "> Application Status </th>
-                                            <th class="text-center col-xs-2 col-md-2"> Invitation Status </th>
-                                            <th class="text-center col-xs-1 col-md-1"> Actions </th>
+                                            <th class="text-center col-xs-1">#</th>
+                                            <th class="col-xs-4"> Candidates </th>
+                                            <th class="text-center col-xs-2 "> Application Status </th>
+                                            <th class="text-center col-xs-4"> Invitation Status </th>
+                                            <th class="text-center col-xs-1"> Actions </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -189,11 +189,11 @@
                                                     <span class="label label-md-shades <?php if($value['application_status'] == 'SHORTLISTED'){echo 'label-warning';}elseif ($value['application_status'] == 'ACCEPTED'){ echo 'label-md-green';
                                                     }elseif ($value['application_status'] == 'REJECTED' || $value['application_status'] == 'WITHDRAW') {echo 'label-md-red';}elseif ($value['application_status'] == 'INTERVIEW') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                 </td>
-                                                <td class="text-center vertical-middle col-xs-2">
+                                                <td class="text-center vertical-middle col-xs-4">
                                                     <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
-                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?> - <?php echo $value['interview_title']; ?></span>
+                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?></span> - <?php echo $value['interview_title']; ?>
                                                 </td>
-                                                <td class="vertical-middle col-xs-2">
+                                                <td class="vertical-middle col-xs-1">
                                                     <div class="btn-group">
                                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                             <i class="fa fa-angle-down"></i>
