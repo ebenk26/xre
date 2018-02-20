@@ -196,9 +196,14 @@ class Job_Board extends CI_Controller {
     }
 
     public function shortlist(){
-        $id = base64_decode($this->input->post('post_id'));
-        $shorlist_job = $this->job_model->shortlist($id);
+        $applied_id     = base64_decode($this->input->post('post_id'));
+        $shorlist_job   = $this->job_model->shortlist($applied_id);
         
+        $job            = $this->job_model->getJobByAppliedsId($applied_id);
+        $id             = $job['job_position_id'];
+        $candidate_id   = $job['user_id'];
+        //$job_id_code    = rtrim(base64_encode($id), '=');
+
         if ($shorlist_job == true) {
             $this->session->set_flashdata('msg_success', 'Added to shortlist');   
 			
@@ -213,6 +218,46 @@ class Job_Board extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById($id);
+
+            $userMail = $this->user_model->getUserMail(
+                                                    array(
+                                                        'sender_id'     =>  $data["user_id"],
+                                                        'receiver_id'   =>  $candidate_id
+                                                    )
+                                                );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "student/applications_history"
+                        );
+
+            $messageHtml    = $this->load->view("mail/shortlisted",$MailContent,true);
+            $subject        = "[SHORTLISTED] You've been shortlisted by ".$userMail["sender_name"];
+
+            $MailData = array(  
+                            "sender_email"      => EMAIL_SYSTEM,
+                            "receiver_email"    => $userMail["receiver_email"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $data["user_id"],
+                        'user_id'       => $candidate_id,
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "shortlisted",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }

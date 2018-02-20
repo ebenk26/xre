@@ -206,6 +206,7 @@ class Job_Model extends CI_Model{
 
         return $query->row_array();
     }
+    
     function getCandidateByJobId($id){
         $this->db->select('interview_schedule.*, interview_schedule_user.status as interview_status, users.fullname as candidate_name, job_positions.name as job_name');
         $this->db->from('interview_schedule');
