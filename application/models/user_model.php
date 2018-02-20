@@ -44,8 +44,8 @@ class User_Model extends CI_Model{
     
     //send confirm mail
     public function sendEmail($receiver){
-        $from = "support@xremo.com";    //senders email address
-        $subject = 'Verify email address';  //email subject
+        $from = "system@xremo.com";    //senders email address
+        $subject = '[Xremo] Verify email address';  //email subject
         
         //sending confirmEmail($receiver) function calling link to the user, inside message body
 
