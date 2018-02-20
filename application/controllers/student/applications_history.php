@@ -146,8 +146,8 @@ class Applications_history extends CI_Controller {
         $subject        = "[INTERVIEW ACCEPTED] ".$userMail["sender_name"]." accept to attend the interview";
 
         $MailData = array(  
-                        "sender_email"      => "support@xremo.com",
-                        "receiver_email"    => $userMail["receiver_email"],
+                        "sender_email"      => EMAIL_SYSTEM,
+                        "receiver_email"    => $getUserCompany["email_pic"],
                         'subject'           => $subject,
                         'message_html'      => $messageHtml
                     );
@@ -217,8 +217,8 @@ class Applications_history extends CI_Controller {
         $subject        = "[INTERVIEW REJECTED] ".$userMail["sender_name"]." reject to attend the interview";
 
         $MailData = array(  
-                        "sender_email"      => "support@xremo.com",
-                        "receiver_email"    => $userMail["receiver_email"],
+                        "sender_email"      => EMAIL_SYSTEM,
+                        "receiver_email"    => $getUserCompany["email_pic"],
                         'subject'           => $subject,
                         'message_html'      => $messageHtml
                     );
@@ -229,7 +229,7 @@ class Applications_history extends CI_Controller {
                     'subject'       => $subject,
                     'message_html'  => $messageHtml,
                     'url'           => $MailContent["url"],
-                    'type'          => "reschedule_interview_by_employer",
+                    'type'          => "reject_interview_by_candidate",
                     'viewed'        => 0,
                     'created_at'    => date('Y-m-d H:i:s'),
                 );
@@ -300,8 +300,8 @@ class Applications_history extends CI_Controller {
         $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." request to reschedule the interview";
 
         $MailData = array(  
-                        "sender_email"      => "support@xremo.com",
-                        "receiver_email"    => $userMail["receiver_email"],
+                        "sender_email"      => EMAIL_SYSTEM,
+                        "receiver_email"    => $getUserCompany["email_pic"],
                         'subject'           => $subject,
                         'message_html'      => $messageHtml
                     );

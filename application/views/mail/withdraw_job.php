@@ -226,7 +226,7 @@
                                     <br/>
                                     <br/>
                                     <b><?= $sender_name; ?></b> withdraw his/her application for position <b><?= $job_name; ?></b>.
-                                    <br/>c
+                                    <br/>
                                     Please login to view the detail or click button bellow.
                                     <br/>
                                     <br/>
