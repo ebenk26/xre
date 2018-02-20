@@ -1,4 +1,4 @@
-BEGIN CONTENT -->
+<!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
                 <h1 class="page-title"> Calendar

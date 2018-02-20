@@ -55,6 +55,7 @@ define('USER_ROLE', '1');
 define('URI_SEGMENT_PAGE', '2');
 define('URI_SEGMENT_DETAIL', '3');
 define('URI_SEGMENT_FORGOT_PASSWORD', '4');
+define('EMAIL_SENDER', 'support@xremo.com');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
