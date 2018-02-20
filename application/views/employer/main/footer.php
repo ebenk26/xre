@@ -196,7 +196,7 @@
                         $.each(student.user_profile.achievement,function(i,v){
                             non_academics +=    '<li>\
                                                     <h5 class="font-weight-700">'+v.achievement_title+'\
-                                                        <small>'+v.achievement_end_date+'</small>\
+                                                        <small>'+v.achievement_start_date+' - '+v.achievement_end_date+'</small>\
                                                     </h5>\
                                                 </li>';
                         });
@@ -266,7 +266,7 @@
                                                     <div class="portlet-title ">\
                                                         <div class="caption">\
                                                             <i class="icon-trophy"></i>\
-                                                            <span class="caption-subject font-26-xs">Achievement</span>\
+                                                            <span class="caption-subject font-26-xs">Non Education</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
@@ -288,7 +288,7 @@
                                                     <div class="portlet-title">\
                                                         <div class="caption">\
                                                             <i class="icon-badge"></i>\
-                                                            <span class="caption-subject font-26-xs">Project</span>\
+                                                            <span class="caption-subject font-26-xs">Skill</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
