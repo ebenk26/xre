@@ -39,7 +39,8 @@
                     </div>
                     <div class="col-md-4 col-md-offset-2 col-sm-5 col-sm-offset-1  g-padding-y-50-xs g-padding-y-0-md">
                         <h3 class="g-font-size-18-xs g-color-white">Xremo </h3>
-                        <p class="g-color-white-opacity">We offers you an online career building experience, as Xciting as online dating.</p>
+                        <p class="g-color-white-opacity">Xremo, is your long-term partner in talent solutions and also an emerging, preferred career
+source provider in South East Asia.</p>
                         <ul class="list-unstyled g-ul-li-tb-5-xs g-margin-b-0-xs list-inline">
                             <li>
                                 <a class="fa fa-youtube-play font-24-xs social-yt" href="https://www.youtube.com/channel/UCMFZ8a2QlaWHhPrPf2CURSw" target="_blank"></a>
