@@ -339,6 +339,12 @@ class Profile extends CI_Controller {
     public function detail_profile(){
         $id = base64_decode($this->input->post('user_id'));
         $profile_detail = $this->student_model->get_user_profile($id);
+        
+        $experiences    = array();
+        $projects       = array();
+        $academics      = array();
+        $achievement    = array();
+        
         $i=0;
         foreach ($profile_detail['experiences'] as $key => $value) {
             $experiences[$i] = array(   'experiences_user_id'       =>  $value['experiences_user_id'],
