@@ -303,19 +303,23 @@
                                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
                                                         <div class="row mx-0">
                                                             <div class="form-group mx-0 col-md-12">
-                                                                <label class="control-label font-weight-600">Replied By <?php echo $value['user_name'];?></label>
+                                                                <label class="control-label font-weight-600">Requested By</label><br>
+                                                                <label class="control-label"><?php echo $value['user_name'];?></label>
+                                                                <br>
+                                                                <label class="control-label font-weight-600">Proposed Start Date</label> <br>
+                                                                <label class="control-label"><?php echo date('d M Y H:i:s', strtotime($value['suggested_start_date'] ));?></label>
+                                                                <br/>
+                                                                <label class="control-label font-weight-600">Proposed End Date</label> <br><label class="control-label"><?php echo date('d M Y H:i:s', strtotime($value['suggested_end_date'] ));?></label><br>
+                                                                <label class="control-label font-weight-600">Reschedule Reason</label><br>
                                                                 <p class="form-control-static"><?php echo $value['candidate_reply']; ?></p>
                                                                 <br>
-                                                                <label class="control-label font-weight-600">Suggested date start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_start_date'] ));?></label>
-                                                                <br/>
-                                                                <label class="control-label font-weight-600">Suggested end start:</label> <label><?php echo date('d M Y H:i:s', strtotime($value['suggested_end_date'] ));?></label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group mx-0 col-md-12">
                                                             <label for="">Do you agree to rescheduled ?</label>
                                                             <div class="mt-radio-inline">
                                                                 <label class="mt-radio">
-                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes" selected> Yes
+                                                                    <input type="radio" name="confirmation" class="agree-reschedule"  value="Yes"  checked="checked"> Yes
                                                                     <span></span>
                                                                 </label>
                                                                 <label class="mt-radio">
@@ -327,16 +331,12 @@
                                                         <!-- If Radio "Yes" -->
                                                         <div class="recreate-session">
                                                             <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
-                                                            <div class="form-group mx-0 col-md-12">
-                                                                <label for="" class="control-label">Reply</label>
-                                                                <textarea class="form-control" rows="10" placeholder="Your reply to candidate" name="reschedule_detail"></textarea>
-                                                            </div>
                                                             <div class="row mx-0">
                                                                 <div class="col-md-6">
                                                                     <div class="form-group mx-0">
                                                                         <label class="control-label">From</label>
                                                                         <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                            <input type="text" size="16" class="form-control" name="start_date">
+                                                                            <input type="text" size="16" class="form-control" name="start_date" value="<?php echo date('d F Y - H:i', strtotime($value['suggested_start_date'] ));?>">
                                                                             <span class="input-group-addon">
                                                                                 <button class="btn default date-set" type="button">
                                                                                     <i class="fa fa-calendar"></i>
@@ -350,7 +350,7 @@
                                                                     <div class="form-group">
                                                                         <label class="control-label">To</label>
                                                                         <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                            <input type="text" size="16" class="form-control">
+                                                                            <input type="text" size="16" class="form-control" name="end_date" value="<?php echo date('d F Y - H:i', strtotime($value['suggested_end_date'] ));?>">
                                                                             <span class="input-group-addon">
                                                                                 <button class="btn default date-set" type="button">
                                                                                     <i class="fa fa-calendar"></i>
@@ -360,6 +360,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group mx-0 col-md-12">
+                                                                <label for="" class="control-label">Reply</label>
+                                                                <textarea class="form-control" rows="10" placeholder="Your reply to candidate" name="reschedule_detail"></textarea>
+                                                            </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

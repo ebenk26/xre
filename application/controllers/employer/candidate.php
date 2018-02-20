@@ -159,7 +159,7 @@ class Candidate extends CI_Controller {
         $end_hour       = date('H:i:s', strtotime(end($end)));
         $end_date_hour  = implode(' ', array($end_date, $end_hour));
 
-        $title          = 'Reschedule Session on'. $this->input->post('start_date');
+        $title          = 'Reschedule Session on '. $this->input->post('start_date');
         $description    = $this->input->post('reschedule_detail');
 
         $reschedule_data = array(   'start_date' => $start_date_hour,
@@ -191,6 +191,8 @@ class Candidate extends CI_Controller {
 
         if($confirmation == 'Yes')
         {
+            $this->session->set_flashdata('msg_success', 'Success reschedule interview session');
+
             //BEGIN : set create notification
             $getUserCompany = $this->job_model->getJobById(base64_decode($page_id));
 
@@ -233,6 +235,8 @@ class Candidate extends CI_Controller {
         }
         else
         {
+            $this->session->set_flashdata('msg_success', 'Success reject reschedule interview session request');
+
             //BEGIN : set create notification
             $getUserCompany = $this->job_model->getJobById(base64_decode($page_id));
 
@@ -274,7 +278,7 @@ class Candidate extends CI_Controller {
             //END : set create notification
         }
 
-        redirect(base_url().'job/candidate/'.$page_id);   
+        redirect(base_url().'job/candidate/'.$page_id.'#tab_shortlisted_candidates');   
     }
 
 }

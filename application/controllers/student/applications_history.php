@@ -277,7 +277,7 @@ class Applications_history extends CI_Controller {
         setRecentActivities($data);
         //END : set recent activities
 
-        $this->session->set_flashdata('msg_success', 'Success propose reschedule interview invitation');
+        $this->session->set_flashdata('msg_success', 'Success propose reschedule interview session');
 
         //BEGIN : set create notification
         $getUserCompany = $this->job_model->getJobById($job_id);

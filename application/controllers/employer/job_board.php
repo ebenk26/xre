@@ -452,7 +452,7 @@ class Job_Board extends CI_Controller {
             $this->session->set_flashdata('msg_error', 'Failed inviting candidate for interview session');
         }
 
-        redirect(base_url().'job/candidate/'.base64_encode($job_id));
+        redirect(base_url().'job/candidate/'.base64_encode($job_id).'#tab_shortlisted_candidates');
     }
 
 }

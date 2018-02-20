@@ -168,49 +168,41 @@
                                                                 <input type="hidden" class="session-id" name="session_id"></input>
                                                                 <input type="hidden" class="employer-id" name="employer_id"></input>
                                                                     <div class="modal-body form-body">
-                                                                            <h5 class="form-section mx-0 col-md-12 mt-0">New Schedule</h5>
+                                                                        <h5 class="form-section mx-0 col-md-12 mt-0">Propose New Schedule</h5>              
+                                                                        <div class="row mx-0">
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group mx-0">
+                                                                                    <label class="control-label">From</label>
+                                                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                                                        <input type="text" size="16" class="form-control" name="start_date">
+                                                                                        <span class="input-group-addon">
+                                                                                            <button class="btn default date-set" type="button">
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="control-label">To</label>
+                                                                                    <div class="input-group date form_datetime form_datetime bs-datetime">
+                                                                                        <input type="text" size="16" class="form-control" name="end_date">
+                                                                                        <span class="input-group-addon">
+                                                                                            <button class="btn default date-set" type="button">
+                                                                                                <i class="fa fa-calendar"></i>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="row mx-0">
                                                                             <div class="form-group mx-0 col-md-12">
-                                                                                <label for="" class="control-label">Reply</label>
-                                                                                <textarea class="form-control" rows="10" name="candidate_reply">Hi Mark Adam ! We ,Company Name agree to let you rescheduled time ....Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ac auctor justo.
-                                                                                        Nullam euismod dictum elementum. Maecenas imperdiet orci augue, at bibendum leo convallis at. Aliquam dignissim nisi nec metus volutpat bibendum.
-                                                                                        Proin sit amet ligula vitae sem posuere auctor. Aenean ac lectus scelerisque, dictum turpis at, porttitor lacus. Fusce pellentesque ante
-                                                                                        id sem euismod, ut pulvinar orci porta. Nunc ut enim ac sem ultrices scelerisque eget et nunc. Sed aliquet fermentum elit vitae iaculis.
-                                                                                        Integer vel urna quis mi semper tempus. Vestibulum non congue velit. Morbi id nisl non neque convallis accumsan. Proin non quam at nunc dignissim
-                                                                                        lobortis. </textarea>
+                                                                                <label for="" class="control-label">Reschedule Reason</label>
+                                                                                <textarea class="form-control" rows="10" name="candidate_reply" placeholder="Reschedule Reason"></textarea>
                                                                             </div>
-                                                                            <div class="row mx-0">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group mx-0">
-                                                                                        <label class="control-label">From</label>
-                                                                                        <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                                            <input type="text" size="16" class="form-control" name="start_date">
-                                                                                            <span class="input-group-addon">
-                                                                                                <button class="btn default date-set" type="button">
-                                                                                                    <i class="fa fa-calendar"></i>
-                                                                                                </button>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-
-                                                                                    <div class="form-group">
-                                                                                        <label class="control-label">To</label>
-                                                                                        <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                                                            <input type="text" size="16" class="form-control" name="end_date">
-                                                                                            <span class="input-group-addon">
-                                                                                                <button class="btn default date-set" type="button">
-                                                                                                    <i class="fa fa-calendar"></i>
-                                                                                                </button>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
-
-
                                                                         </div>
                                                                     </div>
                                                                     <div class="modal-footer">
