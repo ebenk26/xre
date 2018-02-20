@@ -29,7 +29,8 @@ class Applications_history extends CI_Controller {
 	}
 
     public function withdraw(){
-        $job_id = $this->input->post('job_id');
+        $job_id         = $this->input->post('job_id');
+        $job_id_code    = rtrim(base64_encode($job_id), '=');
 		
 		$this->db->set('number_of_candidate', 'number_of_candidate-1', FALSE);
 		$this->db->where('id', $job_id);
@@ -50,6 +51,46 @@ class Applications_history extends CI_Controller {
 					);
 			setRecentActivities($data);
 			//END : set recent activities
+
+            //BEGIN : set create notification
+            $getUserCompany = $this->job_model->getJobById($job_id);
+
+            $userMail = $this->user_model->getUserMail(
+                                                        array(
+                                                                'sender_id'=>$this->session->userdata('id'),
+                                                                'receiver_id'=>$getUserCompany['user_job']
+                                                        )
+                                            );
+
+            $MailContent = array(   
+                            "sender_name"       => $userMail["sender_name"],
+                            "receiver_name"     => $userMail["receiver_name"],
+                            "job_name"          => $getUserCompany['name'],
+                            'url'               => "job/candidate/$job_id_code"
+                        );
+
+            $messageHtml    = $this->load->view("mail/withdraw_job",$MailContent,true);
+            $subject        = "[Withdraw Application] by ".$userMail["sender_name"];
+
+            $MailData = array(  
+                            "sender_email"      => "system@xremo.com",
+                            "receiver_email"    => $getUserCompany["email_pic"],
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+
+            $NotifData = array(
+                        'from_id'       => $this->session->userdata('id'),
+                        'user_id'       => $getUserCompany['user_job'],
+                        'subject'       => $subject,
+                        'message_html'  => $messageHtml,
+                        'url'           => $MailContent["url"],
+                        'type'          => "withdraw",
+                        'viewed'        => 0,
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            CreateNotif($NotifData,$MailData);
+            //END : set create notification
 			
         }else{
             $this->session->set_flashdata('msg_error', 'Failed withdraw from the job');
