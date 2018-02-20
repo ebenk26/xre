@@ -491,7 +491,22 @@
                             var invitation = <?php echo $invitation; ?>;
                             var invitation_calendar = [];
                             $.each(invitation, function(i,v){
-                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor('blue')})
+                                var color = '';
+                                
+                                if (v.status == 'accept') {
+                                    color = 'green';
+                                }else if(v.status == 'reject'){
+                                    color = 'red';
+                                }else if(v.status == 'pending'){
+                                    color = 'yellow';
+                                }else if(v.status == 'reschedule'){
+                                    color = 'blue';
+                                }else {
+                                    color = 'grey';
+                                }
+                                
+                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, 
+                                    backgroundColor: App.getBrandColor(color)})
 
                                 });
                             $('#fullcalendar').fullCalendar({ 

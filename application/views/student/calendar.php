@@ -76,6 +76,12 @@
                                                                         <i class="icon-clock mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
                                                                 </li>
                                                                 <li>
+                                                                    <h5 class="">
+                                                                        <span class="label label-md-shades <?php if($value['status'] == 'reschedule'){echo 'label-info';}elseif ($value['status'] == 'accept'){ echo 'label-md-green';
+                                                                            }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting on acceptence' : ucfirst($value['status']); ?></span>
+                                                                    </h5>
+                                                                </li>
+                                                                <li>
                                                                     <a href="#modal_info_<?php echo rtrim(base64_encode($value['id']), '='); ?>" data-toggle="modal" class="btn btn-xs btn-md-indigo vertical-middle">More Info</a>
                                                                 </li>
                                                             </ul>

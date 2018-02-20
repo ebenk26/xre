@@ -195,7 +195,6 @@
                                                 </td>
                                                 <td class="col-xs-1">
                                                     <div class="btn-group">
-                                                        <?php if ($value['interview_status']!='reject'): ?>
                                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                             <i class="fa fa-angle-down"></i>
                                                             </button>
@@ -233,11 +232,6 @@
                                                                     </a>
                                                                 </li>
                                                             </ul>
-                                                        <?php else: ?>
-                                                            <a href="#modal_view_reject_detail" class="btn btn-md-red btn-xs" data-toggle="modal">
-                                                                View
-                                                            </a>
-                                                        <?php endif ?>
                                                         
                                                     </div>
                                                 </td>

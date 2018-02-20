@@ -42,6 +42,10 @@
                                                             <h5 class="">
                                                                 <i class="icon-calendar mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('j F Y', strtotime($value['start_date'])); ?> </h5>
                                                             <h5 class="">
+                                                                <span class="label label-md-shades <?php if($value['status'] == 'reschedule'){echo 'label-info';}elseif ($value['status'] == 'accept'){ echo 'label-md-green';
+                                                                    }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting on acceptence' : ucfirst($value['status']); ?></span>
+                                                            </h5>
+                                                            <h5 class="">
                                                                 <i class="icon-clock mr-2"></i> <?php echo date('H:i A', strtotime($value['start_date'])); ?> - <?php echo date('H:i A', strtotime($value['end_date'])); ?>
                                                                 <a href="#modal_more_info_<?php echo rtrim(base64_encode($value['id']), '=');?>" class="btn btn-outline white btn-xs btn-circle pull-right " data-toggle="modal">More info</a>
                                                             </h5>
