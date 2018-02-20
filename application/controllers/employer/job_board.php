@@ -205,7 +205,7 @@ class Job_Board extends CI_Controller {
         //$job_id_code    = rtrim(base64_encode($id), '=');
 
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlist');   
+            $this->session->set_flashdata('msg_success', 'Added to shortlisted candidate');   
 			
 			//BEGIN : set recent activities
 			$data = array(

@@ -136,7 +136,12 @@
                 $('#job_status_add').val('post');
             });
 
-
+            <?php if($this->session->flashdata('msg_success')){ ?>
+                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+            <?php } ?>
+            <?php if($this->session->flashdata('msg_failed')){ ?>
+                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+            <?php } ?>
 
             $('.user-btn').click(function(){
                 var id = $(this).attr('uid');
@@ -343,18 +348,11 @@
                                     method:"POST",
                                     data: {
                                       post_id: id,
+                                    },
+                                    success:function() {
+                                       location.reload();
                                     }
                                 });
-                                
-
-                                <?php if($this->session->flashdata('msg_success')){ ?>
-                                    alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
-                                <?php } ?>
-                                <?php if($this->session->flashdata('msg_failed')){ ?>
-                                    alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
-                                <?php } ?>
-                                
-                            location.reload();
                         });
 
                         $('.reject-btn').click(function () {
@@ -428,18 +426,11 @@
                         method:"POST",
                         data: {
                           post_id: id,
+                        },
+                        success:function() {
+                           location.reload();
                         }
                     });
-                    
-
-                    <?php if($this->session->flashdata('msg_success')){ ?>
-                        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
-                    <?php } ?>
-                    <?php if($this->session->flashdata('msg_failed')){ ?>
-                        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
-                    <?php } ?>
-                    
-                location.reload();
             });
 
             $('.reject-btn').click(function () {
@@ -721,13 +712,6 @@
             $('.agree-reschedule').change(function(){
                 $('.recreate-session').removeClass('hidden');
             });
-
-            <?php if($this->session->flashdata('msg_success')){ ?>
-                alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
-            <?php } ?>
-            <?php if($this->session->flashdata('msg_failed')){ ?>
-                alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
-            <?php } ?>
 
             <?php if ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar') {?>
 

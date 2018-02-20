@@ -92,7 +92,7 @@ class User_Model extends CI_Model{
         $receiver = $mail->last_row('array');
 
         if ($receiver) {
-            $from = "Xremo team";    //senders email address
+            $from = "Xremo";    //senders email address
             $subject = 'Retrieve new password';  //email subject
             
             //sending confirmEmail($receiver) function calling link to the user, inside message body
@@ -108,9 +108,9 @@ class User_Model extends CI_Model{
             $this->load->library('email', $config);
             $this->email->initialize($config);
             //send email
-            $this->email->from('support@xremo.com');
+            $this->email->from('system@xremo.com');
             $this->email->to($email);
-            $this->email->subject('Forgot Password for your Xremo Account');
+            $this->email->subject('[Forgot Password] Xremo Account');
             $this->email->message($message);
             
             if($this->email->send()){

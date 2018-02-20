@@ -278,6 +278,8 @@ class User extends CI_Controller {
         $user_email = base64_decode($email);
         $user = $this->user_model->get_user($user_email);
         $this->session->set_userdata($user);
+
+        $this->session->set_flashdata('msg_success', 'Please change your password');
 		if($user['roles'] == "administrator"){
 			redirect(base_url().'administrator/dashboard/');
 		}

@@ -191,7 +191,7 @@
                                                 </td>
                                                 <td class="text-center vertical-middle col-xs-4">
                                                     <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
-                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?></span> - <?php echo $value['interview_title']; ?>
+                                                    }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?></span> <?php echo $value['interview_title']; ?>
                                                 </td>
                                                 <td class="vertical-middle col-xs-1">
                                                     <div class="btn-group">
