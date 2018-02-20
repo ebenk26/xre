@@ -33,7 +33,7 @@ class Candidate extends CI_Controller {
         $complement['job_id'] = $segment;
         $complement['interview'] = $this->global_model->get_by_id('interview_schedule', array('job_id' => $job_id));
         $complement['invitation'] = $this->employer_model->get_interview_invitation($id);
-        $complement['interview_session'] = $this->global_model->get_where('interview_schedule', array('job_id'=>$job_id));
+        $complement['interview_session'] = $this->job_model->getCandidateByJobId($job_id);
         $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/candidate',$complement);

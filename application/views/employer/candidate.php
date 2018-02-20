@@ -515,6 +515,8 @@
                                                             <tr>choose_session
                                                                 <th class="text-center">#</th>
                                                                 <th> Title </th>
+                                                                <th> Candidate Name </th>
+                                                                <th> Invitation Status </th>
                                                                 <th> From </th>
                                                                 <th> To </th>
                                                                 <th> Action </th>
@@ -527,6 +529,12 @@
                                                                     <td class="text-center" ><?=$no?></td>
                                                                     <td>
                                                                         <?=$session_value['title']?>                                                     
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=$session_value['candidate_name']?>                                                     
+                                                                    </td>
+                                                                    <td>
+                                                                        <?=$session_value['interview_status']?>                                                     
                                                                     </td>
                                                                     <td>
                                                                         <?=date('d M Y H:i:s', strtotime($session_value['start_date'] ));?>
