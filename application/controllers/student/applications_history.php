@@ -30,7 +30,6 @@ class Applications_history extends CI_Controller {
 
     public function withdraw(){
         $applieds_id    = $this->input->post('job_id');
-
         $job            = $this->job_model->getJobByAppliedsId($applieds_id);
         $job_id         = $job['job_position_id'];
 		$job_id_code    = rtrim(base64_encode($job_id), '=');
@@ -76,7 +75,7 @@ class Applications_history extends CI_Controller {
             $subject        = "[Withdraw Application] by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "system@xremo.com",
+                            "sender_email"      => "support@xremo.com",
                             "receiver_email"    => $getUserCompany["email_pic"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
