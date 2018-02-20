@@ -49,8 +49,9 @@ class User_Model extends CI_Model{
         
         //sending confirmEmail($receiver) function calling link to the user, inside message body
 
-        $message = 'Hello '.$receiver['fullname'].',<br><br> Thank you for registering with Xremo. To continue, please verify your email by clicking on the link below:<br><br>
-        <a href='. base_url() .'site/user/confirmEmail/'.md5($receiver['email']).'>'. base_url() .'site/user/confirmEmail/'.md5($receiver['email']).'</a><br><br>Thanks';
+        $receiver["url"] = base_url().'site/user/confirmEmail/'.md5($receiver['email']);
+        
+        $message = $this->load->view("mail/sign_up",$receiver,true);
 
         
         //config email settings
