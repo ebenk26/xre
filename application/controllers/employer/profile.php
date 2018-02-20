@@ -338,7 +338,64 @@ class Profile extends CI_Controller {
 
     public function detail_profile(){
         $id = base64_decode($this->input->post('user_id'));
-        $profile['user_profile'] = $this->student_model->get_user_profile($id);
+        $profile_detail = $this->student_model->get_user_profile($id);
+        $i=0;
+        foreach ($profile_detail['experiences'] as $key => $value) {
+            $experiences[$i] = array(   'experiences_user_id'       =>  $value['experiences_user_id'],
+                                        'experience_id'             =>  $value['experience_id'],
+                                        'experiences_start_date'    =>  date('j F Y', strtotime($value['experiences_start_date'])),
+                                        'experiences_end_date'      =>  $value['experiences_end_date'] == '0000-00-00' ? 'Now' : date('j F Y', strtotime($value['experiences_end_date'])),
+                                        'experiences_title'         =>  $value['experiences_title'],
+                                        'experiences_description'   =>  $value['experiences_description'],
+                                        'experiences_company_name'  =>  $value['experiences_company_name'],
+                                        'skills'                    =>  $value['skills'],
+                                        'industries_id'             =>  $value['industries_id'],
+                                        'employment_type_id'        =>  $value['employment_type_id'],
+                                        'employment_type'           =>  $value['employment_type'],
+                                        'industry_name'             =>  $value['industry_name']);
+
+            $i++;
+        }
+        foreach ($profile_detail['projects'] as $key => $value) {
+            $projects[$i] = array(   'id' => $value['id'],
+                                    'user_id' => $value['user_id'],
+                                    'start_date' => date('j F Y', strtotime($value['start_date'])),
+                                    'end_date' => $value['end_date'] == '0000-00-00' ? 'Now' : date('j F Y', strtotime($value['end_date'])),
+                                    'created_at' => $value['created_at'],
+                                    'edited_at' => $value['edited_at'],
+                                    'skills_acquired' => $value['skills_acquired'],
+                                    'name' => $value['name'],
+                                    'description' => $value['description']);
+
+            $i++;
+        }
+        foreach ($profile_detail['academics'] as $key => $value) {
+            $academics[$i] = array( 'academic_id' => $value['academic_id'],
+                                    'university_name' => $value['university_name'],
+                                    'start_date' => date('j F Y', strtotime($value['start_date'])),
+                                    'end_date' => $value['end_date'] == '0000-00-00' ? 'Now' : date('j F Y', strtotime($value['end_date'])),
+                                    'degree_name' => $value['degree_name'],
+                                    'degree_description' => $value['degree_description'],
+                                    'qualification_level' => $value['qualification_level']);
+
+            $i++;
+        }
+        foreach ($profile_detail['achievement'] as $key => $value) {
+            $achievement[$i] = array( 'achievement_user_id' => $value['achievement_user_id'],
+                                    'achievement_id' => $value['achievement_id'],
+                                    'achievement_start_date' => date('j F Y', strtotime($value['achievement_start_date'])),
+                                    'achievement_end_date' => $value['achievement_end_date'] == '0000-00-00' ? 'Now' : date('j F Y', strtotime($value['achievement_end_date'])),
+                                    'achievement_title' => $value['achievement_title'],
+                                    'achievement_description' => $value['achievement_description'],
+                                    'achievement_tag' => $value['achievement_tag']);
+
+            $i++;
+        }
+        $profile_detail['experiences'] = $experiences;
+        $profile_detail['projects'] = $projects;
+        $profile_detail['academics'] = $academics;
+        $profile_detail['achievement'] = $achievement;
+        $profile['user_profile'] = $profile_detail;
         print json_encode($profile);
     }
 }
