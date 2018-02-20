@@ -299,8 +299,8 @@ class User_Model extends CI_Model{
 
         if($checkUserRole["roles"] == "employer")
         {
-            $companyData    = $this->getUserById($params["sender_id"]);
-            $data["sender_name"]    = $companyData["fullname"];
+            $companyData    = $this->getCompany($params["sender_id"]);
+            $data["sender_name"]    = $companyData["company_name"];
             $data["sender_email"]   = $companyData["email"];
 
             $receiverData   = $this->getUserById($params['receiver_id']);
@@ -315,8 +315,8 @@ class User_Model extends CI_Model{
 
             if($receiverData["roles"] == "employer")
             {
-                $companyData    = $this->getUserById($params['receiver_id']);
-                $data["receiver_name"]  = $companyData["fullname"];
+                $companyData    = $this->getCompany($params["receiver_id"]);
+                $data["receiver_name"]  = $companyData["company_name"];
                 $data["receiver_email"] = $companyData["email"];
             }
             else
