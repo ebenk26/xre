@@ -200,7 +200,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu pull-right" role="menu">
                                                                 <li>
-                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>">
+                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>">
                                                                         <i class="icon-eye"></i>
                                                                         View Summary
                                                                     </a>

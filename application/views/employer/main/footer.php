@@ -265,7 +265,7 @@
                                                 <div class="portlet  ">\
                                                     <div class="portlet-title ">\
                                                         <div class="caption">\
-                                                            <i class="icon-trophy"></i>\
+                                                            <i class="icon-notebook"></i>\
                                                             <span class="caption-subject font-26-xs">Non Education</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
