@@ -57,8 +57,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center col-sm-1">#</th>
-                                            <th class="col-sm-7"> Candidates Info </th>
-                                            <th class="text-center col-sm-1 "> Applied Status </th>
+                                            <th class="col-sm-7"> Candidates </th>
+                                            <th class="text-center col-sm-1 "> Application Status </th>
                                             <th class="text-center col-sm-1 "> Applied Date </th>
                                             <th class="text-center col-sm-2"> Actions </th>
                                         </tr>
@@ -70,7 +70,7 @@
                                             ?>
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
-                                                <td class="col-xs-8">
+                                                <td class="col-xs-4">
                                                     <div class="media verticle-middle hidden-xs ">
                                                         <div class="pull-left">
                                                             <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
@@ -103,7 +103,7 @@
                                                             </li>
                                                             <li class="divider"> </li>
                                                             <li>
-                                                                <button type="button" data-id='<?php echo rtrim(base64_encode($value['application_id']),'=');?>' class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate?"
+                                                                <button type="button" data-id='<?php echo rtrim(base64_encode($value['application_id']),'=');?>' candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate?"
                                                                     data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger"
                                                                     data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
                                                                     <i class="icon-trash"></i>
@@ -123,7 +123,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?"
+                                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips my-2 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?"
                                                                 data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger"
                                                                 data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
                                                                 <i class="icon-trash"></i>
@@ -167,7 +167,7 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center col-xs-1 col-md-1">#</th>
-                                            <th class="col-xs-8 col-md-8"> Candidates Info </th>
+                                            <th class="col-xs-8 col-md-8"> Candidates </th>
                                             <th class="text-center col-md-1 "> Application Status </th>
                                             <th class="text-center col-xs-2 col-md-2"> Invitation Status </th>
                                             <th class="text-center col-xs-1 col-md-1"> Actions </th>
@@ -177,7 +177,7 @@
                                         <?php $i =1; foreach ($shortlisted as $key => $value) { ?>
                                             <tr class="odd gradeX ">
                                                 <td class="text-center vertical-middle col-xs-1"><?php echo $i; ?></td>
-                                                <td class="col-xs-8">
+                                                <td class="col-xs-4">
                                                     <div class="pull-left">
                                                         <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini avatar-border-sm  ">
                                                     </div>
@@ -193,7 +193,7 @@
                                                     <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
                                                     }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?> - <?php echo $value['interview_title']; ?></span>
                                                 </td>
-                                                <td class="col-xs-1">
+                                                <td class="vertical-middle col-xs-2">
                                                     <div class="btn-group">
                                                             <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                             <i class="fa fa-angle-down"></i>
@@ -502,7 +502,7 @@
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content form">
                                 <div class="modal-header">
-                                    <h4 class="font-weight-600">All available interview session
+                                    <h4 class="font-weight-600">All interview session
                                     </h4>
 
                                 </div>
@@ -512,11 +512,11 @@
                                             <div class="form-group mx-0 col-md-12">
                                                     <table class="table table-striped table-bordered table-hover  order-column">
                                                         <thead>
-                                                            <tr>choose_session
+                                                            <tr>
                                                                 <th class="text-center">#</th>
-                                                                <th> Title </th>
-                                                                <th> Candidate Name </th>
-                                                                <th> Invitation Status </th>
+                                                                <th> Session </th>
+                                                                <th> Candidate </th>
+                                                                <th> Status </th>
                                                                 <th> From </th>
                                                                 <th> To </th>
                                                                 <th> Action </th>
@@ -537,9 +537,9 @@
                                                                         <?=$session_value['interview_status']?>                                                     
                                                                     </td>
                                                                     <td>
-                                                                        <?=date('d M Y H:i:s', strtotime($session_value['start_date'] ));?>
+                                                                        <?=date('d M Y H:i', strtotime($session_value['start_date'] ));?>
                                                                     </td>
-                                                                    <td> <?=date('d M Y H:i:s', strtotime($session_value['end_date'] ));?></td>
+                                                                    <td> <?=date('d M Y H:i', strtotime($session_value['end_date'] ));?></td>
                                                                     <td> 
                                                                         <a href="#modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-eye"></i></a>
                                                                         <a href="#modal_edit_session_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-edit"></i></a>
