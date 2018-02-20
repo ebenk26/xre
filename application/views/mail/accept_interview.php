@@ -225,7 +225,7 @@
                                     Hi <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    Your candidate accept to attend the interview with position <?= $job_name; ?>.
+                                    <b><?= $sender_name; ?></b> accept to attend the interview for position <b><?= $job_name; ?></b>.
                                     <br/>
                                     To see the details please check your account in xremo.com or click button bellow.
                                     <br/>
