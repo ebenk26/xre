@@ -467,7 +467,7 @@
                 var candidate = $(this).attr('candidate-id');
                     swal({
                         title: "Do you want to reject this candidate?",
-                        text: "You will not be able to process this candidate",
+                        text: "",
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
@@ -502,7 +502,7 @@
                 var candidate = $(this).attr('candidate-id');
                     swal({
                         title: "Do you want to hire this candidate?",
-                        text: "You will not be able to process this candidate",
+                        text: "",
                         type: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",

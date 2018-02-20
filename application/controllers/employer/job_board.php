@@ -220,9 +220,14 @@ class Job_Board extends CI_Controller {
     }
 
     public function reject(){
-        $id             = base64_decode($this->input->post('post_id'));
+        $applied_id     = base64_decode($this->input->post('post_id'));
+
+        $job            = $this->job_model->getJobByAppliedsId($applied_id);
+        $id             = $job['job_position_id'];
+        $job_id_code    = rtrim(base64_encode($id), '=');
+
         $candidate_id   = base64_decode($this->input->post('candidate_id'));
-        $shorlist_job   = $this->job_model->rejected($id);
+        $shorlist_job   = $this->job_model->rejected($applied_id);
         
         if ($shorlist_job == true) {
             $this->session->set_flashdata('msg_success', 'Successfully reject candidate'); 
@@ -284,9 +289,14 @@ class Job_Board extends CI_Controller {
     }
 
     public function hire(){
-        $id             = base64_decode($this->input->post('post_id'));
+        $applied_id     = base64_decode($this->input->post('post_id'));
+
+        $job            = $this->job_model->getJobByAppliedsId($applied_id);
+        $id             = $job['job_position_id'];
+        $job_id_code    = rtrim(base64_encode($id), '=');
+
         $candidate_id   = base64_decode($this->input->post('candidate_id'));
-        $shorlist_job   = $this->job_model->hire($id);
+        $shorlist_job   = $this->job_model->hire($applied_id);
         
         if ($shorlist_job == true) {
             $this->session->set_flashdata('msg_success', 'Successfully hire candidate');        
