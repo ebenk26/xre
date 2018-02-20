@@ -30,7 +30,6 @@ class Applications_history extends CI_Controller {
 
     public function withdraw(){
         $applieds_id    = $this->input->post('job_id');
-
         $job            = $this->job_model->getJobByAppliedsId($applieds_id);
         $job_id         = $job['job_position_id'];
 		$job_id_code    = rtrim(base64_encode($job_id), '=');
