@@ -225,7 +225,7 @@
                                     Congratulations <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    You have been hired with position <?= $job_name; ?> by <?= $sender_name; ?>.
+                                    You have been hired by <b><?= $sender_name; ?></b> for position <b><?= $job_name; ?></b>.
                                     <br/>
                                     To see the details please check your account in xremo.com or click button bellow.
                                     <br/>

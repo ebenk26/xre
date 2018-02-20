@@ -43,7 +43,7 @@
                                                                 <i class="icon-calendar mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('j F Y', strtotime($value['start_date'])); ?> </h5>
                                                             <h5 class="">
                                                                 <span class="label label-md-shades <?php if($value['status'] == 'reschedule'){echo 'label-info';}elseif ($value['status'] == 'accept'){ echo 'label-md-green';
-                                                                    }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting on acceptence' : ucfirst($value['status']); ?></span>
+                                                                    }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting for acceptance' : ucfirst($value['status']); ?></span>
                                                             </h5>
                                                             <h5 class="">
                                                                 <i class="icon-clock mr-2"></i> <?php echo date('H:i A', strtotime($value['start_date'])); ?> - <?php echo date('H:i A', strtotime($value['end_date'])); ?>
@@ -74,7 +74,7 @@
                                                                             </li>
                                                                             <li>
                                                                                 <div class="col-md-3 text-right font-weight-700">
-                                                                                    User Name
+                                                                                    Candidate
                                                                                 </div>
                                                                                 <div class="col-md-9 text-uppercase ">
                                                                                     <?php echo $value['fullname'] ?>
@@ -82,7 +82,7 @@
                                                                             </li>
                                                                             <li>
                                                                                 <div class="col-md-3 text-right font-weight-700">
-                                                                                    Title
+                                                                                    Interview Session
                                                                                 </div>
                                                                                 <div class="col-md-9">
                                                                                     <?php echo $value['title'] ?>

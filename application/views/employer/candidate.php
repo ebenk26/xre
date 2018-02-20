@@ -168,8 +168,8 @@
                                         <tr>
                                             <th class="text-center col-xs-1 col-md-1">#</th>
                                             <th class="col-xs-8 col-md-8"> Candidates Info </th>
-                                            <th class="text-center col-md-1 "> Applied Status </th>
-                                            <th class="text-center col-xs-2 col-md-2"> Invitation   Status </th>
+                                            <th class="text-center col-md-1 "> Application Status </th>
+                                            <th class="text-center col-xs-2 col-md-2"> Invitation Status </th>
                                             <th class="text-center col-xs-1 col-md-1"> Actions </th>
                                         </tr>
                                     </thead>
@@ -214,7 +214,7 @@
                                                                     <?php else: ?>
                                                                         <a href="#modal_set_session_<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id))?>">
                                                                                 <i class="icon-paper-plane"></i>
-                                                                                Send Invitation Interview
+                                                                                Send Interview Invitation
                                                                             </a>
                                                                     <?php endif ?>
                                                                 </li>

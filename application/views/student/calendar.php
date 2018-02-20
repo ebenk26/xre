@@ -78,7 +78,7 @@
                                                                 <li>
                                                                     <h5 class="">
                                                                         <span class="label label-md-shades <?php if($value['status'] == 'reschedule'){echo 'label-info';}elseif ($value['status'] == 'accept'){ echo 'label-md-green';
-                                                                            }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting on acceptence' : ucfirst($value['status']); ?></span>
+                                                                            }elseif ($value['status'] == 'reject' ) {echo 'label-md-red';}elseif ($value['status'] == 'pending') { echo 'label-warning'; }else{ echo 'darkblue';} ?> label-sm"><?php echo ($value['status'] == 'pending') ? 'Waiting for acceptance' : ucfirst($value['status']); ?></span>
                                                                     </h5>
                                                                 </li>
                                                                 <li>
@@ -109,7 +109,7 @@
                                                                             </li>
                                                                             <li>
                                                                                 <div class="col-md-3 text-right font-weight-700">
-                                                                                    Title
+                                                                                    Interview Session
                                                                                 </div>
                                                                                 <div class="col-md-9">
                                                                                     <?php echo $value['title']; ?>

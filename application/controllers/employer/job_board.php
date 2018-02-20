@@ -225,7 +225,7 @@ class Job_Board extends CI_Controller {
         $shorlist_job   = $this->job_model->rejected($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Successfully reject this candidate'); 
+            $this->session->set_flashdata('msg_success', 'Successfully reject candidate'); 
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -260,7 +260,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[REJECTED] You've been rejected by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "system@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
@@ -289,7 +289,7 @@ class Job_Board extends CI_Controller {
         $shorlist_job   = $this->job_model->hire($id);
         
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Successfully hire this candidate');        
+            $this->session->set_flashdata('msg_success', 'Successfully hire candidate');        
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -324,7 +324,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[HIRED] You've been hired by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "system@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
