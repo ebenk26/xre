@@ -75,7 +75,7 @@ class Applications_history extends CI_Controller {
             $subject        = "[Withdraw Application] by ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $getUserCompany["email_pic"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml

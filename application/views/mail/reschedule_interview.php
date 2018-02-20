@@ -225,7 +225,7 @@
                                     Hi <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    Your candidate requested to reschedule an interview with position <?= $job_name; ?>.
+                                    <b><?= $sender_name; ?></b> requested to reschedule an interview for position <b><?= $job_name; ?></b>.
                                     <br/>
                                     To see the details please check your account in xremo.com or click button bellow.
                                     <br/>
