@@ -39,18 +39,24 @@ class Job_Model extends CI_Model{
         	$this->db->where("(countries.name LIKE '%$country_name%' OR states.name LIKE '%$country_name%')");
         }
 
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
+		
         if(!empty($latest))
         {
-        	$this->db->order_by("created_at DESC");
+            $this->db->order_by("job_positions.created_at", "DESC");
         }
 
         if(!empty($popular))
         {
-        	$this->db->order_by("number_of_candidate DESC");
+            $this->db->order_by("job_positions.number_of_candidate", "DESC");
         }
 
-		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
-		$this->db->limit($perPage,$offset);
+        if(empty($latest) || empty($popular))
+        {
+            $this->db->order_by("job_positions.created_at", "DESC");
+        }
+
+        $this->db->limit($perPage,$offset);
 		$query = $this->db->get();
 		// var_dump($this->db->last_query());exit();
 		return $query->result_array();
