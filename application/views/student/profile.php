@@ -137,19 +137,6 @@
                                         <hr class="mb-1">
                                         <div class="m-grid m-grid-responsive-xs">
                                             <div class="m-grid-col m-grid-col-sm-6  p-2 m-grid-col-xs-12">
-                                                <!-- preferences-name -->
-                                                <div class="m-grid">
-                                                    <div class="m-grid-col">
-                                                        <ul class="list-unstyled">
-                                                            <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Preferences Name</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
                                                 <!-- Full Name -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -159,6 +146,19 @@
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?></h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- preferences-name -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Preferences Name</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -189,29 +189,6 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                <!-- Language Preferences -->
-                                                <div class="m-grid">
-                                                    <div class="m-grid-col">
-                                                        <ul class="list-unstyled">
-                                                            <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Preferences</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5 class=" roboto-font">
-                                                                <?php if (!empty($user_profile['language'])) {?>
-                                                                    <?php foreach ($user_profile['language'] as $key => $lang) {?>
-                                                                        <b><?php echo !empty($lang['title']) ?  $lang['title'] : 'Please edit your profile';?></b>
-                                                                        [ Spoken : <?php echo $lang['spoken']; ?> Level , Written : <?php echo $lang['written']; ?> Level]
-                                                                        <br>
-                                                                    <?php } ?>
-                                                                <?php }else{ ?>
-                                                                    <h5>Please edit your profile</h5>
-                                                                <?php } ?>
-                                                                </h5>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
                                                 <!-- Video Link -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -225,9 +202,6 @@
                                                         </ul>
                                                     </div>
                                                 </div>
-                                                
-                                            </div>
-                                            <div class="m-grid-col m-grid-col-sm-6 p-2 m-grid-col-xs-12">
                                                 <!-- Salary Expectation -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -242,6 +216,34 @@
                                                     </div>
 
                                                 </div>
+                                                <!-- Language Preferences -->
+                                                <div class="m-grid">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Preferences</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5 class=" roboto-font">
+                                                                <?php if (!empty($user_profile['language'])) {?>
+                                                                    <?php foreach ($user_profile['language'] as $key => $lang) {?>
+                                                                        <b><?php echo !empty($lang['title']) ?  $lang['title'] : 'Please edit your profile';?></b>
+                                                                        [ Written : <?php echo $lang['written']; ?> Level, Spoken : <?php echo $lang['spoken']; ?> Level ]
+                                                                        <br>
+                                                                    <?php } ?>
+                                                                <?php }else{ ?>
+                                                                    <h5>Please edit your profile</h5>
+                                                                <?php } ?>
+                                                                </h5>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-sm-6 p-2 m-grid-col-xs-12">
+                                                
                                                 <!-- Email -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
@@ -324,6 +326,28 @@
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></h5>
                                                             </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Reference -->
+                                                <div class="m-grid ">
+                                                    <div class="m-grid-col">
+                                                        <ul class="list-unstyled">
+                                                            <li>
+                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">References</h5>
+                                                            </li>
+                                                            <?php foreach ($user_profile['reference'] as $reference_key => $reference_value) {
+                                                                if($reference_value['reference_name'] != ""){
+                                                                ?>
+                                                                    <li class="mb-4">
+                                                                        <h5 class=" roboto-font font-weight-600"><?=$reference_value['reference_name']?></h5>          
+                                                                        <h5 class=" roboto-font">Email : <?=$reference_value['reference_email'] != ""?$reference_value['reference_email']:"-"?></h5>
+                                                                        <h5 class=" roboto-font">Phone No. : <?=$reference_value['reference_phone'] != ""?$reference_value['reference_phone']:"-"?></h5>
+                                                                        <h5 class=" roboto-font">Relationships : <?=$reference_value['reference_relationship'] != ""?$reference_value['reference_relationship']:"-"?></h5>
+                                                                    </li>
+
+                                                            <?php }}?>                                                            
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -1083,19 +1107,19 @@
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Written</label>
                                                                         <select class="form-control" name="written">
-                                                                            <option disabled>Select level </option>
-                                                                            <option <?php echo $user_language_value['written'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
-                                                                            <option <?php echo $user_language_value['written'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
-                                                                            <option <?php echo $user_language_value['written'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                                            <option value="" disabled>Select level </option>
+                                                                            <option value="Beginner" <?php echo $user_language_value['written'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                                            <option value="Intermediate" <?php echo $user_language_value['written'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                                            <option value="Advanced" <?php echo $user_language_value['written'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Spoken</label>
                                                                         <select class="form-control" name="spoken">
-                                                                            <option disabled>Select level </option>
-                                                                            <option <?php echo $user_language_value['spoken'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
-                                                                            <option <?php echo $user_language_value['spoken'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
-                                                                            <option <?php echo $user_language_value['spoken'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
+                                                                            <option value="" disabled>Select level </option>
+                                                                            <option value="Beginner" <?php echo $user_language_value['spoken'] == 'Beginner' ? 'selected' : '' ?>>Beginner</option>
+                                                                            <option value="Intermediate" <?php echo $user_language_value['spoken'] == 'Intermediate' ? 'selected' : '' ?>>Intermediate</option>
+                                                                            <option value="Advanced" <?php echo $user_language_value['spoken'] == 'Advanced' ? 'selected' : '' ?>>Advanced</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-2 vertical-middle py-3">
@@ -1110,6 +1134,7 @@
                                                                     <div class="col-md-4">
                                                                         <label for="" class="control-label"> Language</label>
                                                                         <select class="form-control " name="name">
+                                                                            <option value="">Select language </option>
                                                                         <?php foreach ($language as $key => $value) { ?>
                                                                             <option><?php echo $value['name']; ?></option>
                                                                         <?php } ?>
@@ -1118,19 +1143,19 @@
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Written</label>
                                                                         <select class="form-control" name="written">
-                                                                            <option selected disabled>Select level </option>
-                                                                            <option>Beginner</option>
-                                                                            <option>Intermediate</option>
-                                                                            <option>Advanced</option>
+                                                                            <option value="">Select level </option>
+                                                                            <option value="Beginner">Beginner</option>
+                                                                            <option value="Intermediate">Intermediate</option>
+                                                                            <option value="Advanced">Advanced</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label for="" class="control-label"> Spoken</label>
                                                                         <select class="form-control" name="spoken">
-                                                                            <option selected disabled>Select level </option>
-                                                                            <option>Beginner</option>
-                                                                            <option>Intermediate</option>
-                                                                            <option>Advanced</option>
+                                                                            <option value="">Select level </option>
+                                                                            <option value="Beginner">Beginner</option>
+                                                                            <option value="Intermediate">Intermediate</option>
+                                                                            <option value="Advanced">Advanced</option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="col-md-2 vertical-middle py-3">
