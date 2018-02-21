@@ -125,9 +125,9 @@
 														<div class="col-md-12">
 															<?php if($row->profile_photo != ""){?>
 																<?php if($row->replier_roles == "employer"){?>
-																	<img src="<?=IMG_EMPLOYERS.$row->profile_photo?>" class="inbox-author img-circle" style="height:50px;">
+																	<img src="<?=IMG_EMPLOYERS.$row->profile_photo?>" class="avatar avatar-xtramini avatar-circle">
 																<?php }else{?>
-																	<img src="<?=IMG_STUDENTS.$row->profile_photo?>" class="inbox-author img-circle" style="height:50px;">
+																	<img src="<?=IMG_STUDENTS.$row->profile_photo?>" class="avatar avatar-xtramini avatar-circle">
 																<?php }?>
 															<?php }?>													
 															<b><span class="sbold"><?=$row->replier_roles == "employer"?$row->company_name:$row->fullname?> </span></b>
@@ -194,7 +194,11 @@
 												<div class="row">
 													<div class="col-md-12">
 														<?php if($message->profile_photo != ""){?>
-															<img src="<?=IMG_STUDENTS.$message->profile_photo?>" class="inbox-author img-circle" style="height:50px;">
+															<?php if($message->sender_role == "employer"){?>
+																<img src="<?=IMG_EMPLOYERS.$message->profile_photo?>" class="avatar avatar-xtramini avatar-circle">
+															<?php }else{?>
+																<img src="<?=IMG_STUDENTS.$message->profile_photo?>" class="avatar avatar-xtramini avatar-circle">
+															<?php }?>
 														<?php }?>													
 														<b><span class="sbold"><?=$message->sender_role == "employer"?$message->sender_company_name:$message->sender_name?> </span></b>
 														<!--<span>&lt;support@go.com&gt; </span> to
