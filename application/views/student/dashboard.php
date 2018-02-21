@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     </div>
-					<?php $new_job = 0;foreach ($job_positions as $key => $value) {$new_job++;}?>
+					<?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="dashboard-stat2 p-4">
                             <div class="display my-0">
@@ -235,7 +235,7 @@
                             </div>
                             <div class="portlet-body">
                                 <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                    <?php $no_new = 0;foreach ($job_positions as $key => $value) { if($no_new == 5){break;} $no_new++;?>
+                                    <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 5){break;} $no_new++;?>
                                         <div class="widget-media">
                                             <div class="widget-media-elements text-center">
                                                 <!--<img class="widget-media-avatar img-responsive" src="<?php echo IMG_STUDENTS ?>xremo-logo-blue.png" alt="">-->

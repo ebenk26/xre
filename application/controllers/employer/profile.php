@@ -337,8 +337,10 @@ class Profile extends CI_Controller {
 	}
 
     public function detail_profile(){
-        $id = base64_decode($this->input->post('user_id'));
+        $id             = base64_decode($this->input->post('user_id'));
+        $applieds_id    = base64_decode($this->input->post('applieds_id'));
         $profile_detail = $this->student_model->get_user_profile($id);
+        $applieds_detail= $this->student_model->get_applieds($applieds_id);
         
         $experiences    = array();
         $projects       = array();
@@ -402,6 +404,7 @@ class Profile extends CI_Controller {
         $profile_detail['academics'] = $academics;
         $profile_detail['achievement'] = $achievement;
         $profile['user_profile'] = $profile_detail;
+        $profile['applieds'] = $applieds_detail;
         print json_encode($profile);
     }
 }

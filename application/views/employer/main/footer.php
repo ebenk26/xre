@@ -152,6 +152,7 @@
                     method:"POST",
                     data: {
                       user_id: id,
+                      applieds_id: app_id,
                     },
                     success:function(response) {
                         var student = JSON.parse(response);
@@ -171,8 +172,8 @@
                         }
 
                         var summary = "-";
-                        if(student.user_profile.overview.summary != null){
-                            summary = student.user_profile.overview.summary;
+                        if(student.applieds.coverletter != null){
+                            summary = student.applieds.coverletter;
                         }
 
                         
@@ -656,7 +657,8 @@
                     swal('Info', 'Interview session not found');
 
                 }else{
-
+                    $('#modal_interview_session_list').modal('hide');
+                    
                     swal({
                             title: "Do you want to remove this interview session?",
                             type: "warning",

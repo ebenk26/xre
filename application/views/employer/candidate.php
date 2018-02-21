@@ -92,7 +92,7 @@
                                                         </button>
                                                         <ul class="dropdown-menu pull-left" role="menu">
                                                             <li>
-                                                                <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" data-original-title="View Summary">
+                                                                <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-original-title="View Summary">
                                                                     <i class="icon-eye"></i>
                                                                 </a>
                                                             </li>
@@ -200,7 +200,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu pull-right" role="menu">
                                                                 <li>
-                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>">
+                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>">
                                                                         <i class="icon-eye"></i>
                                                                         View Summary
                                                                     </a>
@@ -543,7 +543,7 @@
                                                                     <td> 
                                                                         <a href="#modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-eye"></i></a>
                                                                         <a href="#modal_edit_session_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-edit"></i></a>
-                                                                        <a href="#" class="remove-interview-session" session-id="<?php echo rtrim(base64_encode($session_value['id']), '=');?>"><i class="fa fa-trash"></i></a>
+                                                                        <a href="#" class="remove-interview-session <?php echo ($session_value['interview_status'] == 'accept') ? 'hidden' : ''; ?>" session-id="<?php echo rtrim(base64_encode($session_value['id']), '=');?>"><i class="fa fa-trash"></i></a>
                                                                     </td>
                                                                 </tr>         
                                                                                            

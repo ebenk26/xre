@@ -191,9 +191,9 @@
                 <!-- Benefits -->
                 <div class="row mb-5 mx-0">
                     <h5 class="font-weight-600 md-indigo-text roboto-font font-15-xs text-uppercase letter-space-xs">Benefits</h5>
-                    <p class="roboto-font font-grey-gallery "><?php echo $user_profile['benefits'] != ""?$user_profile['benefits']:"Not Provided";?>
+                    <p class="font-grey-gallery "><?php echo $user_profile['benefits'] != ""?$user_profile['benefits']:"Not Provided";?>
                     </p>
-
+                    
                 </div>
                 <!-- Additional Info -->
                 <div class="row mb-5 mx-0">
