@@ -375,7 +375,7 @@ class Inbox extends CI_Controller {
 							);
 		}
 		$this->db->where('id', $id);
-		$post_status = $this->db->update('inbox', $data);
+		$delete_status = $this->db->update('inbox', $data);
 		
         if ($delete_status == true) {
             $this->session->set_flashdata('msg_success', 'Success');            

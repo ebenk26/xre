@@ -80,12 +80,14 @@ class Student_Model extends CI_Model{
 
             if (!empty($profile['language'])) {
                 foreach ($profile['language'] as $key => $value) {
-                    $userLanguage = array(  'user_id' => $this->session->userdata('id'),
-                                            'language' => $value['name'],
-                                            'written' => $value['written'],
-                                            'spoken' => $value['spoken'] );
+                    if($value['name'] != "" && $value['written'] != "" && $value['spoken'] != ""){
+                        $userLanguage = array(  'user_id' => $this->session->userdata('id'),
+                                                'language' => $value['name'],
+                                                'written' => $value['written'],
+                                                'spoken' => $value['spoken'] );
 
-                    $this->db->insert('user_language_set', $userLanguage);                
+                        $this->db->insert('user_language_set', $userLanguage);
+                    }                
                 }
             }
 

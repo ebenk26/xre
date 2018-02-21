@@ -587,37 +587,36 @@
                         </div>
                     </div>
                 </li> -->
+                <?php 
+                    $data_arr['roles'] = $roles;
+                    $data_arr['user_profile'] = $user_profile;
+                ?>
+
+                <?php if(!empty($roles)){ ?>
                 <!-- Reference (Limit PUT 3 ONLY)-->
-                <!-- <li class="list-group-item noborder md-grey lighten-5 pt-4">
+                <li class="list-group-item noborder md-grey lighten-5 pt-4">
                     <h4 class="text-center text-uppercase  md-orange-text text-darken-1 font-weight-700"> References</h4>
                     <hr class="border-mdo-orange-light mt-width-300-xs center-block">
                     <ul class="list-unstyled text-center ">
-                        <li>
-                            <dl>
-                                <dt>Reference Name #1</dt>
-                                <dd class="font-14-xs">(999) 999 999 </dd>
-                                <dd class="font-14-xs">reference_name#1@email.com </dd>
-                                <dd class="font-14-xs">Relationship to reference </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>Reference Name #1</dt>
-                                <dd class="font-14-xs">(999) 999 999 </dd>
-                                <dd class="font-14-xs">reference_name#1@email.com </dd>
-                                <dd class="font-14-xs">Relationship to reference </dd>
-                            </dl>
-                        </li>
-                        <li>
-                            <dl>
-                                <dt>Reference Name #1</dt>
-                                <dd class="font-14-xs">(999) 999 999 </dd>
-                                <dd class="font-14-xs">reference_name#1@email.com </dd>
-                                <dd class="font-14-xs">Relationship to reference </dd>
-                            </dl>
-                        </li>
+                        <?php if(!empty($user_profile['reference'])) {
+                            foreach ($user_profile['reference'] as $reference_key => $reference_value) {
+                            if($reference_value['reference_name'] != ""){
+                            ?>
+                                <li>
+                                    <dl>
+                                        <dt><?=$reference_value['reference_name']?></dt>
+                                        <dd class="font-14-xs"><?=$reference_value['reference_phone'] != ""?$reference_value['reference_phone']:"-"?> </dd>
+                                        <dd class="font-14-xs"><?=$reference_value['reference_email'] != ""?$reference_value['reference_email']:"-"?> </dd>
+                                        <dd class="font-14-xs"><?=$reference_value['reference_relationship'] != ""?$reference_value['reference_relationship']:"-"?> </dd>
+                                    </dl>
+                                </li>
+                        <?php }}?>
+                        <?php }else{?>
+                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                        <?php }?>
                     </ul>
-                </li> -->
+                </li> 
+                <?php }?>
             </ul>
         </div>
 
@@ -650,10 +649,6 @@
                     </ul>
                 </div>
 
-                <?php 
-                    $data_arr['roles'] = $roles;
-                    $data_arr['user_profile'] = $user_profile;
-                ?>
                 <!-- Tab Content -->
                 <div class="portlet-body">
                     <div class="tab-content">
