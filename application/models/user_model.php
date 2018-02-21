@@ -58,12 +58,10 @@ class User_Model extends CI_Model{
         /*$config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.gmail.com';
         $config['smtp_port'] = '465';
-        $config['smtp_user'] = $from;
-        $config['smtp_pass'] = 'Rico061289!';  //sender's password
-        $config['mailtype'] = 'html';
+        $config['smtp_user'] = 'kartaterazu27@gmail.com';
+        $config['smtp_pass'] = 'darethord140614';  //sender's password
         $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = 'TRUE';
-        $config['newline'] = "\r\n"; */
+        $config['newline'] = "\r\n";*/ 
 
         $config['mailtype'] = 'html';
         $config['priority'] = 2;

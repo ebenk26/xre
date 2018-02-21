@@ -223,8 +223,8 @@ class Inbox extends CI_Controller {
 
 			$userMail = $this->user_model->getUserMail(
 														array(
-																'sender_id'=>$this->input->post('sender_id'),
-																'receiver_id'=>$this->input->post('receiver_id')
+																'sender_id'		=> $this->input->post('sender_id'),
+																'receiver_id'	=> $this->input->post('receiver_id')
 														)
 											);
 
@@ -238,7 +238,7 @@ class Inbox extends CI_Controller {
 			$subject 		= "You have new message from ".$userMail["sender_name"];
 
 			$MailData = array(	
-							"sender_email"		=> $userMail["sender_email"],
+							"sender_email"		=> EMAIL_SYSTEM,
 							"receiver_email"	=> $userMail["receiver_email"],
 							'subject' 			=> $subject,
 							'message_html'		=> $messageHtml
@@ -273,8 +273,10 @@ class Inbox extends CI_Controller {
 			$id = $this->db->insert_id();
 			
 			//update status message
-			$user_id = $this->input->post('user_id');
-			$sender_id = $this->input->post('sender_id');
+			$user_id 		= $this->input->post('user_id');
+			$sender_id 		= $this->input->post('sender_id');
+			$receiver_id 	= $this->input->post('receiver_id');
+			
 			//if sender reply
 			if($user_id == $sender_id){
 				$data 	= array('status_receiver' 		=> 'REPLIED',
@@ -291,6 +293,9 @@ class Inbox extends CI_Controller {
 				
 				$this->db->where('id', $this->input->post('inbox_id'));
 				$post_status = $this->db->update('inbox', $data);
+
+				$sender_id 		= $this->session->userdata('id');
+				$receiver_id 	= $this->input->post('sender_id');
 			}
 			
 			if ($post_status == true) {
@@ -316,8 +321,8 @@ class Inbox extends CI_Controller {
 
 			$userMail = $this->user_model->getUserMail(
 														array(
-																'sender_id'=>$this->input->post('user_id'),
-																'receiver_id'=>$this->input->post('receiver_id')
+																'sender_id'		=> $sender_id,
+																'receiver_id'	=> $receiver_id
 														)
 											);
 
@@ -331,15 +336,15 @@ class Inbox extends CI_Controller {
 			$subject 		= "You have new message from ".$userMail["sender_name"];
 
 			$MailData = array(	
-							"sender_email"		=> $userMail["sender_email"],
+							"sender_email"		=> EMAIL_SYSTEM,
 							"receiver_email"	=> $userMail["receiver_email"],
 							'subject' 			=> $subject,
 							'message_html'		=> $messageHtml
 						);
 
 			$NotifData = array(
-						'from_id' 		=> $this->session->userdata('id'),
-						'user_id' 		=> $this->input->post('receiver_id'),
+						'from_id' 		=> $sender_id,
+						'user_id' 		=> $receiver_id,
 						'subject' 		=> $subject,
 						'message_html'	=> $messageHtml,
 						'url' 			=> $MailContent["url"],
