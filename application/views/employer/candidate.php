@@ -543,7 +543,7 @@
                                                                     <td> 
                                                                         <a href="#modal_view_detail_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-eye"></i></a>
                                                                         <a href="#modal_edit_session_<?php echo rtrim(base64_encode($session_value['id']), '=');?>" data-toggle="modal"><i class="fa fa-edit"></i></a>
-                                                                        <a href="#" class="remove-interview-session <?php echo ($session_value['interview_status'] == 'accept') ? 'hidden' : ''; ?>" session-id="<?php echo rtrim(base64_encode($session_value['id']), '=');?>"><i class="fa fa-trash"></i></a>
+                                                                        <a href="#" class="remove-interview-session <?php echo ($session_value['interview_status'] == 'accept') ? 'hidden' : ''; ?>" session-id="<?php echo rtrim(base64_encode($session_value['id']), '=');?>" application-id="<?php echo rtrim(base64_encode($session_value['application_id']), '=');?>"><i class="fa fa-trash"></i></a>
                                                                     </td>
                                                                 </tr>         
                                                                                            

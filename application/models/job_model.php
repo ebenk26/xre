@@ -214,12 +214,14 @@ class Job_Model extends CI_Model{
     }
     
     function getCandidateByJobId($id){
-        $this->db->select('interview_schedule.*, interview_schedule_user.status as interview_status, users.fullname as candidate_name, job_positions.name as job_name');
+        $this->db->select('interview_schedule.*, interview_schedule_user.status as interview_status, users.fullname as candidate_name, job_positions.name as job_name, applieds.id as application_id');
         $this->db->from('interview_schedule');
         $this->db->join('interview_schedule_user', 'interview_schedule_user.session_id = interview_schedule.id', 'left');
         $this->db->join('job_positions', 'job_positions.id = interview_schedule.job_id');
         $this->db->join('users', 'users.id = interview_schedule_user.user_id');
+        $this->db->join('applieds', 'applieds.user_id = users.id');
         $this->db->where('interview_schedule.job_id', $id);
+        $this->db->where('applieds.job_position_id', $id);
         $query = $this->db->get();
         return $query->result_array();
     }

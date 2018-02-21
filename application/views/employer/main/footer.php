@@ -650,6 +650,7 @@
 
             $('.remove-interview-session').click(function(){
                 var id = $(this).attr('session-id');
+                var applicationId = $(this).attr('application-id');
 
                 if (id == null) {
                     
@@ -657,7 +658,7 @@
 
                 }else{
                     $('#modal_interview_session_list').modal('hide');
-                    
+
                     swal({
                             title: "Do you want to remove this interview session?",
                             type: "warning",
@@ -674,6 +675,7 @@
                                         method:"POST",
                                         data: {
                                               session_id: id,
+                                              application_id: applicationId,
                                             },
                                             success:function(response) {
                                                swal("Success", "Interview Schedule has been remove", "success");
@@ -683,6 +685,7 @@
                                 } else {
                                     swal("Cancelled", "Interview session still exist", "error");
                                 }
+                                location.reload();
                             }
                         );
                 }

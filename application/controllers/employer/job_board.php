@@ -437,7 +437,18 @@ class Job_Board extends CI_Controller {
                     'job_id' => $job_id,
                     'status' => 'pending');
 
-        $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
+        $checkUserInterviewSchedule = $this->global_model->get_by_id('interview_schedule_user', array('job_id'=>$job_id, 'employer_id'=>$employer_id, 'user_id'=>$candidate_id));
+
+        if (!empty($checkUserInterviewSchedule)) {
+            
+            $this->global_model->remove('interview_schedule', array('id' => $checkUserInterviewSchedule->session_id));
+            $this->global_model->remove('interview_schedule_user', array('id' => $checkUserInterviewSchedule->id));
+
+            $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
+        }else{
+            $invite_user_interview = $this->global_model->create('interview_schedule_user', $invite);
+        }
+
 
         if ($invite_user_interview == true) {
             $this->session->set_flashdata('msg_success', 'Success inviting candidate for interview session'); 

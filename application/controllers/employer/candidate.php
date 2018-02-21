@@ -124,8 +124,19 @@ class Candidate extends CI_Controller {
 
     function remove_interview_session(){
         $session_id = base64_decode($this->input->post('session_id'));
+        $application_id = base64_decode($this->input->post('application_id'));
         $page_id = $this->uri->segment(URI_SEGMENT_DETAIL);
-        $this->global_model->remove('interview_schedule', array('id' => $session_id));
+        
+        try {
+
+            $this->global_model->remove('interview_schedule', array('id' => $session_id));
+            $this->global_model->remove('interview_schedule_user', array('session_id' => $session_id));
+            $this->global_model->update('applieds', array('id'=>$application_id), array('status'=>'SHORTLISTED'));
+            $this->session->set_flashdata('msg_success', 'Success remove candidate interview schedule');
+        } catch (Exception $e) {
+            $this->session->set_flashdata('msg_failed', 'Failed remove candidate interview schedule');
+            return false;
+        }
 		
 		//BEGIN : set recent activities
 		$data = array(
@@ -139,6 +150,10 @@ class Candidate extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+        header("Content-Type: application/xml; charset=utf-8");
+
         redirect(base_url().'job/candidate/'.rtrim(base64_encode($page_id),'='));   
     }
 
