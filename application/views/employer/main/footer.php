@@ -656,7 +656,8 @@
                     swal('Info', 'Interview session not found');
 
                 }else{
-
+                    $('#modal_interview_session_list').modal('hide');
+                    
                     swal({
                             title: "Do you want to remove this interview session?",
                             type: "warning",
