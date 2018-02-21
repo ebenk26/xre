@@ -73,7 +73,7 @@
                                                                 </li>
                                                                 <li class="">
                                                                     <h5 class="">
-                                                                        <i class="icon-clock mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
+                                                                        <i class="icon-clock mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h:i', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h:i', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
                                                                 </li>
                                                                 <li>
                                                                     <h5 class="">
@@ -100,45 +100,45 @@
                                                                     <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                                                         <ul class="list-unstyled">
                                                                             <li>
-                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                <div class="col-md-4 text-right font-weight-700">
                                                                                     Job Position
                                                                                 </div>
-                                                                                <div class="col-md-9 text-uppercase font-weight-600">
+                                                                                <div class="col-md-8 text-uppercase font-weight-600">
                                                                                     <?php echo $value['job_name'] ?>
                                                                                 </div>
                                                                             </li>
                                                                             <li>
-                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                <div class="col-md-4 text-right font-weight-700">
                                                                                     Interview Session
                                                                                 </div>
-                                                                                <div class="col-md-9">
+                                                                                <div class="col-md-8">
                                                                                     <?php echo $value['title']; ?>
                                                                                 </div>
                                                                             </li>
                                                                             <!-- From -->
                                                                             <li>
-                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                <div class="col-md-4 text-right font-weight-700">
                                                                                     From
                                                                                 </div>
-                                                                                <div class="col-md-9">
+                                                                                <div class="col-md-8">
                                                                                     <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['start_date'])); ?> - <?php echo date('H:i', strtotime($value['start_date'])); ?>
                                                                                 </div>
                                                                             </li>
                                                                             <!-- To -->
                                                                             <li>
-                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                <div class="col-md-4 text-right font-weight-700">
                                                                                     To
                                                                                 </div>
-                                                                                <div class="col-md-9">
+                                                                                <div class="col-md-8">
                                                                                     <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['end_date'])); ?> - <?php echo date('H:i', strtotime($value['end_date'])); ?>
                                                                                 </div>
                                                                             </li>
                                                                             <!-- Details -->
                                                                             <li>
-                                                                                <div class="col-md-3 text-right font-weight-700">
+                                                                                <div class="col-md-4 text-right font-weight-700">
                                                                                     Details
                                                                                 </div>
-                                                                                <div class="col-md-9">
+                                                                                <div class="col-md-8">
                                                                                     <?php echo $value['description']; ?>
                                                                                 </div>
                                                                             </li>
