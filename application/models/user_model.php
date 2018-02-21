@@ -218,15 +218,17 @@ class User_Model extends CI_Model{
 			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
 		}elseif($type == "sent"){
 			$this->db->where('inbox.sender_id = '.$id.' AND inbox.status_sender != "TRASH"');
+
 		}elseif($type == "trash"){
 			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver = "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.status_sender = "TRASH")');
 			$this->db->order_by('inbox.updated_at', 'DESC');
 		}else{
 			$this->db->where('inbox.id', 0);
 		}
-		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
-		$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');
+		
 		$this->db->order_by('inbox.created_at', 'DESC');
+        $this->db->order_by('inbox.last_reply_at_sender', 'DESC');
+        $this->db->order_by('inbox.last_reply_at_receiver', 'DESC');
 		$query = $this->db->get();
 		$data['message'] = $query->result();
 		

@@ -258,7 +258,7 @@ class Inbox extends CI_Controller {
 			//END : set create notification
 			
 			$roles = $this->session->userdata('roles');
-			redirect(base_url().$roles.'/inbox');
+			redirect(base_url().$roles.'/sent');
 		//reply
 		}else{
 			
