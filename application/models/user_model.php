@@ -58,12 +58,10 @@ class User_Model extends CI_Model{
         /*$config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.gmail.com';
         $config['smtp_port'] = '465';
-        $config['smtp_user'] = $from;
-        $config['smtp_pass'] = 'Rico061289!';  //sender's password
-        $config['mailtype'] = 'html';
+        $config['smtp_user'] = 'kartaterazu27@gmail.com';
+        $config['smtp_pass'] = 'darethord140614';  //sender's password
         $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = 'TRUE';
-        $config['newline'] = "\r\n"; */
+        $config['newline'] = "\r\n";*/ 
 
         $config['mailtype'] = 'html';
         $config['priority'] = 2;
@@ -220,15 +218,17 @@ class User_Model extends CI_Model{
 			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver != "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.last_reply_at_receiver != "0000-00-00 00:00:00" AND inbox.status_sender != "TRASH")');
 		}elseif($type == "sent"){
 			$this->db->where('inbox.sender_id = '.$id.' AND inbox.status_sender != "TRASH"');
+
 		}elseif($type == "trash"){
 			$this->db->where('(inbox.receiver_id = '.$id.' AND inbox.status_receiver = "TRASH") OR (inbox.sender_id = '.$id.' AND inbox.status_sender = "TRASH")');
 			$this->db->order_by('inbox.updated_at', 'DESC');
 		}else{
 			$this->db->where('inbox.id', 0);
 		}
-		$this->db->order_by('inbox.last_reply_at_sender', 'DESC');
-		$this->db->order_by('inbox.last_reply_at_receiver', 'DESC');
+		
 		$this->db->order_by('inbox.created_at', 'DESC');
+        $this->db->order_by('inbox.last_reply_at_sender', 'DESC');
+        $this->db->order_by('inbox.last_reply_at_receiver', 'DESC');
 		$query = $this->db->get();
 		$data['message'] = $query->result();
 		
@@ -318,7 +318,7 @@ class User_Model extends CI_Model{
             {
                 $companyData    = $this->getCompany($params["receiver_id"]);
                 $data["receiver_name"]  = $companyData["company_name"];
-                $data["receiver_email"] = $companyData["email"];
+                $data["receiver_email"] = $receiverData["email"];
             }
             else
             {

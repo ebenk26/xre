@@ -80,12 +80,14 @@ class Student_Model extends CI_Model{
 
             if (!empty($profile['language'])) {
                 foreach ($profile['language'] as $key => $value) {
-                    $userLanguage = array(  'user_id' => $this->session->userdata('id'),
-                                            'language' => $value['name'],
-                                            'written' => $value['written'],
-                                            'spoken' => $value['spoken'] );
+                    if($value['name'] != "" && $value['written'] != "" && $value['spoken'] != ""){
+                        $userLanguage = array(  'user_id' => $this->session->userdata('id'),
+                                                'language' => $value['name'],
+                                                'written' => $value['written'],
+                                                'spoken' => $value['spoken'] );
 
-                    $this->db->insert('user_language_set', $userLanguage);                
+                        $this->db->insert('user_language_set', $userLanguage);
+                    }                
                 }
             }
 
@@ -418,7 +420,7 @@ class Student_Model extends CI_Model{
         $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
         $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
         $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
-        $this->db->where('job_positions.created_at >=', $last_login);
+        //$this->db->where('job_positions.created_at >=', $last_login);
 		$this->db->where('job_positions.expiry_date >=', date('Y-m-d'));		
         $this->db->where('job_positions.status', 'post');
 		$this->db->order_by('job_positions.id', 'DESC');
@@ -553,6 +555,14 @@ class Student_Model extends CI_Model{
 		//, 'profile_uploads.type' => 'profile_photo'
 		return $result;
 	}
+
+    function get_applieds($id){
+        $this->db->select('*');
+        $this->db->from('applieds');
+        $this->db->where(array('id' => $id));
+        $query = $this->db->get();
+        return $query->last_row('array');
+    }
 	
 }
 

@@ -225,7 +225,7 @@
                                     Hi <?= $receiver_name; ?>,
                                     <br/>
                                     <br/>
-                                    You have new message from <?= $sender_name; ?>.
+                                    You have new message from <b><?= $sender_name; ?></b>.
                                     <br/>
                                     Please login to read a message or click button bellow.
                                     <br/>
