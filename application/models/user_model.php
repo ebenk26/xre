@@ -316,7 +316,7 @@ class User_Model extends CI_Model{
             {
                 $companyData    = $this->getCompany($params["receiver_id"]);
                 $data["receiver_name"]  = $companyData["company_name"];
-                $data["receiver_email"] = $companyData["email"];
+                $data["receiver_email"] = $receiverData["email"];
             }
             else
             {
