@@ -92,7 +92,7 @@
                                                         </button>
                                                         <ul class="dropdown-menu pull-left" role="menu">
                                                             <li>
-                                                                <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" data-original-title="View Summary">
+                                                                <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only  tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-original-title="View Summary">
                                                                     <i class="icon-eye"></i>
                                                                 </a>
                                                             </li>
@@ -200,7 +200,7 @@
                                                             </button>
                                                             <ul class="dropdown-menu pull-right" role="menu">
                                                                 <li>
-                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>">
+                                                                    <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>">
                                                                         <i class="icon-eye"></i>
                                                                         View Summary
                                                                     </a>
