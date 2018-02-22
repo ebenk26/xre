@@ -68,7 +68,7 @@
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
                                             <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
-                                            <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
+                                            <!-- <a href="" class="btn btn-icon-only  btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
                                             <h3 class="mt-card-name mt-3 md-indigo-text"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?> <span class="label label-primary vertical-middle hidden"> Public</span> </h3>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-4 hidden-xs">
-                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
+                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a>
                             </div>
                             <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
                                 <div class="btn-group btn-group-justified">
@@ -372,7 +372,7 @@
                             </div>
                             <!-- Modal Add education -->
                             <div class="actions">
-                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-edu"><i class="fa fa-plus  "></i> Add </a>
+                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo  btn-add-edu"><i class="fa fa-plus  "></i> Add </a>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -514,7 +514,7 @@
                                 <span class="caption-helper"> list out all your previous non educational activity (join any colleage event ... or whatsoever)</span>
                             </div>
                             <div class="actions">
-                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo "><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -648,7 +648,7 @@
                                 <span class="caption-helper"> list out all your previous working experience</span>
                             </div>
                             <div class="actions">
-                                <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-exp"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo  btn-add-exp"><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
