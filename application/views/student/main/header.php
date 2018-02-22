@@ -6,7 +6,6 @@
 <html lang="en">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
-
 <head>
     <meta charset="utf-8" />
     <title><?=$page_title?> | Student </title>
@@ -20,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
     
-	
+    <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
 	<link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -75,9 +74,7 @@
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo CSS_STUDENTS; ?>components.css" rel="stylesheet" id="style_components" type="text/css">
     <link href="<?php echo ASSETS; ?>css/components-rounded.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="<?php echo CSS_STUDENTS; ?>components-md.css" rel="stylesheet" id="style_components" type="text/css">
     <link href="<?php echo ASSETS; ?>css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <link href="<?php echo ASSETS; ?>css/image-crop.min.css" rel="stylesheet" type="text/css" />
