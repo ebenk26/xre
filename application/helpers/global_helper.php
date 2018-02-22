@@ -119,9 +119,14 @@ function Notification($status='0')
     $CI =& get_instance();
     $CI->load->model('notification_model');
 
-    $user_id = $CI->session->userdata('id');
+    $user_id            = $CI->session->userdata('id');
+    $last_seen_notif    = $CI->session->userdata('last_seen_notif');
 
-    $notif = $CI->notification_model->get_where('notifications','created_at','DESC',"user_id = $user_id AND viewed IN($status)");
+    if($status == '2'){
+        $notif = $CI->notification_model->get_where('notifications','created_at','DESC',"user_id = $user_id AND viewed IN('0') AND created_at >= '$last_seen_notif'");
+    }else{
+        $notif = $CI->notification_model->get_where('notifications','created_at','DESC',"user_id = $user_id AND viewed IN($status)");
+    }    
 
     return $notif;
 }

@@ -119,6 +119,7 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
+            var last_seen_notif = "<?=$this->session->userdata('last_seen_notif')?>";
             var e = $("#xremo_table");
 			e.dataTable({
 				language: {
@@ -535,6 +536,18 @@
             showNotif();
 
             setInterval(function(){showNotif()},<?= GetInterval(); ?>);
+
+            $("#count_notif").on( "click", function() {
+                $.ajax({
+                    url:"<?php echo base_url();?>setLastSeenNotif",
+                    method:"POST",
+                    success:function(response)
+                    {
+                        var data = JSON.parse(response);
+                        last_seen_notif = data.last_seen_notif;
+                    }
+                });
+            });
         });
 
         function showNotif()

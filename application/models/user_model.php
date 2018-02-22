@@ -21,7 +21,7 @@ class User_Model extends CI_Model{
     }
 
     public function loginUser($email, $password){
-        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, roles.slug as roles, profile_uploads.name as img_profile, profile_uploads.type as img_type');
+        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, users.last_seen_notif, roles.slug as roles, profile_uploads.name as img_profile, profile_uploads.type as img_type');
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');

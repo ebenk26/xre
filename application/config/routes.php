@@ -80,6 +80,8 @@ $route['student/trash'] 						= 'administrator/inbox/view_list/trash';
 
 $route['notif'] 								= 'notifications/notifications/notifList';
 $route['clear-notif'] 							= 'notifications/notifications/clearNotif';
+$route['setLastSeenNotif'] 						= 'notifications/notifications/setLastSeenNotif';
+
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

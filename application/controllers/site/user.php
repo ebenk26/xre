@@ -42,6 +42,7 @@ class User extends CI_Controller {
                                     'status' => $login_result['status'],
                                     'remember_token' => $login_result['remember_token'],
                                     'roles' => $login_result['roles'],
+                                    'last_seen_notif' => $login_result['last_seen_notif'],
                                     'img_profile' => base64_encode($login_result['img_profile']),
                                     'img_type' => $login_result['img_type']);
             if (!empty($login_result)) {

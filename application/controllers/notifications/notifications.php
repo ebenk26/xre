@@ -12,21 +12,22 @@ class notifications extends CI_Controller
     
     public function notifList()
     {
-        $get_notif      = Notification('0,1');
-        $unread_notif   = Notification('0');
+        $get_notif                  = Notification('0,1');
+        $unread_notif               = Notification('0');
+        $unread_notif_by_last_seen  = Notification('2');
 
         if(!empty($get_notif))
         {
             $data["notif"]      = $this->load->view('notification/list',array("data"=>$get_notif),true);
-            $data["total"]      = '<i class="icon-bell"></i><span class="badge badge-default">'.count($unread_notif).'</span>';
-            $data["total_in"]   = (count($unread_notif)>0) ? '<span class="bold">'.count($unread_notif).' pending</span> notifications' : '<span class="bold">There are no pending</span> notifications';
+            $data["total"]      = '<i class="icon-bell"></i><span class="badge badge-default">'.count($unread_notif_by_last_seen).'</span>';
+            $data["total_in"]   = (count($unread_notif)>0) ? '<span class="bold">'.count($unread_notif).' unread</span> notifications' : '<span class="bold">There are no unread</span> notifications';
             $data["message"]    = "success";
         }
         else
         {
             $data["notif"]      = '';
             $data["total"]      = '<i class="icon-bell"></i>';
-            $data["total_in"]   = '<span class="bold">There are no pending</span> notifications';
+            $data["total_in"]   = '<span class="bold">There are no unread</span> notifications';
             $data["message"]    = "success";
         }
 
@@ -61,6 +62,20 @@ class notifications extends CI_Controller
         {
             $data["message"]    = 'error';
         }
+
+        $result = json_encode($data);
+
+        echo $result;
+    }
+
+    public function setLastSeenNotif()
+    {
+        $data['last_seen_notif'] = date('Y-m-d H:i:s');
+
+        $this->db->where('id', $this->session->userdata('id'));
+        $this->db->update('users', array('last_seen_notif' => $data['last_seen_notif']));
+
+        $this->session->set_userdata('last_seen_notif', $data['last_seen_notif']);
 
         $result = json_encode($data);
 
