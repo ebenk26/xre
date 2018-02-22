@@ -543,8 +543,8 @@
                     method:"POST",
                     success:function(response)
                     {
-                        var data = JSON.parse(response);
-                        last_seen_notif = data.last_seen_notif;
+                        //var data = JSON.parse(response);
+                        //last_seen_notif = data.last_seen_notif;
                     }
                 });
             });
