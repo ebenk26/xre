@@ -205,9 +205,7 @@ class Job_Board extends CI_Controller {
         //$job_id_code    = rtrim(base64_encode($id), '=');
 
         if ($shorlist_job == true) {
-            $this->session->set_flashdata('msg_success', 'Added to shortlisted candidate');   
-			
-			//BEGIN : set recent activities
+            //BEGIN : set recent activities
 			$data = array(
 						'user_id' 		=> $this->session->userdata('id'),
 						'ip_address' 	=> $this->input->ip_address(),
@@ -258,10 +256,11 @@ class Job_Board extends CI_Controller {
                     );
             CreateNotif($NotifData,$MailData);
             //END : set create notification
+            $this->session->set_flashdata('msg_success', 'Added to shortlisted candidate');  
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
         }
-        redirect(base_url().'job/candidate/'.rtrim(base64_encode($id),'='));
+        // redirect(base_url().'job/candidate/'.rtrim(base64_encode($id),'='));
     }
 
     public function reject(){

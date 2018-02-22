@@ -341,40 +341,6 @@
                         $('#modal_view_summary').modal('show', {backdrop: 'static'});
                         $('#modal_edit_jobpost_163').modal('show', {backdrop: 'static'});
                         
-
-                        $('.shortlist-btn').click(function () {
-                            var id = $(this).attr('app-id');
-                                $.ajax({
-                                    url:"<?php echo base_url();?>employer/job_board/shortlist",
-                                    method:"POST",
-                                    data: {
-                                      post_id: id,
-                                    },
-                                    success:function() {
-                                       location.reload();
-                                    }
-                                });
-                        });
-
-                        $('.reject-btn').click(function () {
-                            var id = $(this).attr('app-id');
-                                $.ajax({
-                                    url:"<?php echo base_url();?>employer/job_board/reject",
-                                    method:"POST",
-                                    data: {
-                                      post_id: id,
-                                    }
-                                });
-                                
-                                <?php if($this->session->flashdata('msg_success')){ ?>
-                                    alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
-                                <?php } ?>
-                                <?php if($this->session->flashdata('msg_failed')){ ?>
-                                    alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
-                                <?php } ?>
-                                
-                            location.reload();
-                        });
                     }
                 })
             });
@@ -422,16 +388,22 @@
 
             $('.shortlist-btn').click(function () {
                 var id = $(this).attr('app-id');
+                alertify.success('Added to shortlisted candidate', 'success', 5);
                     $.ajax({
                         url:"<?php echo base_url();?>employer/job_board/shortlist",
                         method:"POST",
                         data: {
                           post_id: id,
-                        },
-                        success:function() {
-                           location.reload();
                         }
                     });
+
+                    <?php if($this->session->flashdata('msg_success')){ ?>
+                        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+                    <?php } ?>
+                    <?php if($this->session->flashdata('msg_failed')){ ?>
+                        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+                    <?php } ?>
+                    location.reload();
             });
 
             $('.reject-btn').click(function () {
@@ -444,6 +416,7 @@
                         }
                     });
                     
+                    alert('alert');
                     <?php if($this->session->flashdata('msg_success')){ ?>
                         alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
                     <?php } ?>
