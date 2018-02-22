@@ -256,9 +256,15 @@ class Job_Board extends CI_Controller {
                     );
             CreateNotif($NotifData,$MailData);
             //END : set create notification
-            $this->session->set_flashdata('msg_success', 'Added to shortlisted candidate');  
+            // $this->session->set_flashdata('msg_success', 'Added to shortlisted candidate');
+            $data["message"] = "success";
+
+            echo json_encode($data);  
         }else{
             $this->session->set_flashdata('msg_error', 'Failed to add to shortlist');
+            $data["message"] = "failed";
+
+            echo json_encode($data);
         }
         // redirect(base_url().'job/candidate/'.rtrim(base64_encode($id),'='));
     }

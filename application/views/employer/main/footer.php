@@ -388,22 +388,32 @@
 
             $('.shortlist-btn').click(function () {
                 var id = $(this).attr('app-id');
-                alertify.success('Added to shortlisted candidate', 'success', 5);
                     $.ajax({
                         url:"<?php echo base_url();?>employer/job_board/shortlist",
                         method:"POST",
+                        beforeSend:function()
+                        {
+                            $(".loading").show('slow');
+                        },
                         data: {
                           post_id: id,
+                        },
+                        success:function(response)
+                        {
+                            $(".loading").hide('slow');
+
+                            var data = JSON.parse(response);
+
+                            if(data.message = 'success')
+                            {
+                                alertify.success('Added to shortlisted candidate','success',5);
+                            }
+                            else
+                            {
+                                alertify.error('Failed to add to shortlist','error',5);
+                            }
                         }
                     });
-
-                    <?php if($this->session->flashdata('msg_success')){ ?>
-                        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
-                    <?php } ?>
-                    <?php if($this->session->flashdata('msg_failed')){ ?>
-                        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
-                    <?php } ?>
-                    location.reload();
             });
 
             $('.reject-btn').click(function () {

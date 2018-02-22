@@ -70,7 +70,9 @@
 <!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
-
+<div class="loading">
+    <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
+</div>
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
