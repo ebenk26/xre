@@ -68,7 +68,7 @@
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
                                             <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
-                                            <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
+                                            <!-- <a href="" class="btn btn-icon-only  btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
                                             <h3 class="mt-card-name mt-3 md-indigo-text"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?> <span class="label label-primary vertical-middle hidden"> Public</span> </h3>
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-4 hidden-xs">
-                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo btn-circle"><i class="icon-pencil"></i>Edit</a>
+                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a>
                             </div>
                             <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
                                 <div class="btn-group btn-group-justified">
@@ -372,27 +372,30 @@
                             </div>
                             <!-- Modal Add education -->
                             <div class="actions">
-                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-edu"><i class="fa fa-plus  "></i> Add </a>
+                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo  btn-add-edu"><i class="fa fa-plus  "></i> Add </a>
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <?php $i=1; foreach($user_profile['academics'] as $value){ ?>
-                            <div class="media p-0">
-                                <div class="pull-right my-4 ">
-                                    <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
-                                    <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
+                            <?php if (!empty($user_profile['academics'])): ?>
+                                
+                                <?php $i=1; foreach($user_profile['academics'] as $value){ ?>
+                                <div class="media p-0">
+                                    <div class="pull-right my-4 ">
+                                        <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
+                                        <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
+                                        <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
+                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
+                                        <p class="roboto-font mb-0 multiline-truncate"> 
+                                            <?//=strip_tags($value['degree_description']); ?>
+                                            <?=ucfirst($value['degree_description']);?>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="media-body">
-                                    <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
-                                    <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
-                                    <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
-                                    <p class="roboto-font mb-0 multiline-truncate"> 
-                                        <?//=strip_tags($value['degree_description']); ?>
-                                        <?=ucfirst($value['degree_description']);?>
-                                    </p>
-                                </div>
-                            </div>
-                            <hr>
+                                <hr>
+
                         <!-- Modal : Add / Edit Education -->
                             <div class="modal fade in" id="modal_edit_education_<?php echo $value['academic_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -484,6 +487,18 @@
                                 </div>
                             </div>
                             <?php $i++; }  ?>
+                            <?php else: ?>
+                                <div class="portlet-body">
+                                    <div class="portlet md-shadow-none p-6">
+                                        <div class="portlet-body">
+                                            <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
+                                            <h5 class="font-grey-cascade mt-5 text-center">Click
+                                                <b>'
+                                                    <i class="fa fa-plus"></i> ADD '</b> button to add new information.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                             <!-- End Example 1 -->
                         </div>
 
@@ -499,10 +514,12 @@
                                 <span class="caption-helper"> list out all your previous non educational activity (join any colleage event ... or whatsoever)</span>
                             </div>
                             <div class="actions">
-                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo btn-circle"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo "><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
+                            <?php if (!empty($user_profile['achievement'])): ?>
+
                             <!-- Example 1 -->
                             <?php foreach($user_profile['achievement'] as $value){ ?>
                                 <div class="media">
@@ -605,6 +622,18 @@
                                         </div>
                                     </div>
                             <?php } ?>
+                            <?php else: ?>
+                                <div class="portlet-body">
+                                    <div class="portlet md-shadow-none p-6">
+                                        <div class="portlet-body">
+                                            <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
+                                            <h5 class="font-grey-cascade mt-5 text-center">Click
+                                                <b>'
+                                                    <i class="fa fa-plus"></i> ADD '</b> button to add new information.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                         </div>
 
                     </div>
@@ -619,10 +648,12 @@
                                 <span class="caption-helper"> list out all your previous working experience</span>
                             </div>
                             <div class="actions">
-                                <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo btn-circle btn-add-exp"><i class="fa fa-plus"></i> Add</a>
+                                <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo  btn-add-exp"><i class="fa fa-plus"></i> Add</a>
                             </div>
                         </div>
                         <div class="portlet-body">
+                            <?php if (!empty($user_profile['experiences'])): ?>
+                            
                             <?php $i=1; foreach($user_profile['experiences'] as $value){  
                                 $description = $value['experiences_description'];
                                 $company_name = $value['experiences_company_name'];?>
@@ -785,6 +816,18 @@
                                         </div>
                                     </div>
                             <?php $i++; } ?>
+                            <?php else: ?>
+                                <div class="portlet-body">
+                                    <div class="portlet md-shadow-none p-6">
+                                        <div class="portlet-body">
+                                            <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
+                                            <h5 class="font-grey-cascade mt-5 text-center">Click
+                                                <b>'
+                                                    <i class="fa fa-plus"></i> ADD '</b> button to add new information.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                         </div>
                     </div>
                 </div>
@@ -802,6 +845,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
+                            <?php if (!empty($user_profile['projects'])): ?>
                             <?php $i=1; foreach($user_profile['projects'] as $value){?>
                                 <div class="media">
                                     <div class="pull-right my-4 ">
@@ -914,6 +958,18 @@
                     </div>
                 </div>
                             <?php $i++;} ?>
+                            <?php else: ?>
+                                <div class="portlet-body">
+                                    <div class="portlet md-shadow-none p-6">
+                                        <div class="portlet-body">
+                                            <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
+                                            <h5 class="font-grey-cascade mt-5 text-center">Click
+                                                <b>'
+                                                    <i class="fa fa-plus"></i> ADD '</b> button to add new information.</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
                         </div>
                     </div>
                 </div>
