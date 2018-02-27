@@ -82,6 +82,8 @@ $route['notif'] 								= 'notifications/notifications/notifList';
 $route['clear-notif'] 							= 'notifications/notifications/clearNotif';
 $route['setLastSeenNotif'] 						= 'notifications/notifications/setLastSeenNotif';
 
+$route['confirm_email/(:any)'] 					= 'site/confirm_email/confirmEmail/$1';
+
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

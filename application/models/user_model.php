@@ -49,7 +49,8 @@ class User_Model extends CI_Model{
         
         //sending confirmEmail($receiver) function calling link to the user, inside message body
 
-        $receiver["url"] = base_url().'site/user/confirmEmail/'.md5($receiver['email']);
+        //$receiver["url"] = base_url().'site/confirm_email/confirmEmail/'.md5($receiver['email']);
+        $receiver["url"] = base_url().'confirm_email/'.md5($receiver['email']);
         
         $message = $this->load->view("mail/sign_up",$receiver,true);
 
