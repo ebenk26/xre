@@ -67,7 +67,7 @@
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar-circle avatar-large avatar-border border-md-indigo lighten-5 mt-margin-t-o-150-xs">
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-margin-t-o-150-xs">
                                             <!-- <a href="" class="btn btn-icon-only  btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
