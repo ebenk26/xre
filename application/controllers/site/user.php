@@ -8,6 +8,11 @@ class User extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
         $this->load->model('global_model');
+
+        //if(empty($countryCheck)){
+        //    redirect(base_url());
+        //}
+
     }
     
     public function login(){
@@ -231,7 +236,17 @@ class User extends CI_Controller {
         }
     }
 
+    //function confirmEmail($key, $country_code ,$country, $forex){
     function confirmEmail($key){
+       /* $session = array(
+                'country_code' => $country_code,
+                'country' => $country,
+                'forex' => $forex                
+            );
+        $this->session->set_userdata('country', $country);
+        isset($_COOKIE['xremo_token']) ? $token_cookie = $this->user_model->get_token($_COOKIE['xremo_cookie']) : $token_cookie = false;
+        $_COOKIE['country'] = $country;*/
+
         $data = array('verified' => 1);
         $this->db->where('md5(email)',$key);
         $this->db->update('users', $data);    //update status as 1 to make active user

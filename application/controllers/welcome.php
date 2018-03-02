@@ -30,7 +30,18 @@ class Welcome extends CI_Controller {
 		if (isset($_COOKIE['country'])) {
 			redirect(base_url().'site/country/'.$_COOKIE['country']);
 		}else{
-			$this->load->view('welcome_message');			
+			$refer =  "";
+			$this->load->library('user_agent');
+			if ($this->agent->is_referral())
+			{
+			    $refer =  $this->agent->referrer();
+			}
+			if(strpos($refer, 'confirm_email') !== false){
+				$this->session->set_flashdata('msg_success', 'Successfully verified. Please login to your account.');
+        		redirect(base_url().'site/user/login');
+			}else{
+				$this->load->view('welcome_message');
+			}			
 		}
 	}
 }
