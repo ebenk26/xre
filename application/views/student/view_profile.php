@@ -816,7 +816,7 @@
                                     <li class="list-group-item  ">
                                         <div class="media">
                                             <!-- Overall Rate and Total Review -->
-                                            <!-- <div class="pull-right">
+                                            <div class="pull-right">
                                                 <div class="btn-group">
                                                     <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                         4.5
@@ -826,7 +826,7 @@
                                                         <i class="icon-note"></i>
                                                     </a>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <div class="media-body">
                                                 <h5 class="font-weight-600 font-14-xs font-16-xs mb-1"><?php echo $value['qualification_level'];?> in <?php echo $value['degree_name'];?>
                                                 </h5>
@@ -877,7 +877,7 @@
                                             <div class="pull-right">
                                                 <!-- <h4 class="font-weight-700 text-uppercase font-13-xs text-center mb-1 font-grey-gallery">Overall</h4> -->
                                                 <!-- <hr class="my-1">  -->
-                                                <!-- <div class="btn-group">
+                                                <div class="btn-group">
                                                     <a href="#modal_readonlyrate" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                         4.5
                                                         <i class="icon-star text-center"></i>
@@ -885,7 +885,7 @@
                                                     <a href="#modal_readonlyreview" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
                                                         <i class="icon-note"></i>
                                                     </a>
-                                                </div> -->
+                                                </div>
                                             </div>
                                             <div class="media-body">
                                                 <h5 class="font-weight-600 font-16-xs"> <?php echo $value['experiences_title'];?>
@@ -947,14 +947,18 @@
                                         <li class="list-group-item  ">
                                             <div class="media">
                                                 <!-- Overall Rate and Total Review -->
-                                                <!-- <div class="pull-right">
+                                                <div class="pull-right">
                                                     <div class="btn-group">
-                                                        <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
-                                                            <i class="icon-users"></i>
-                                                            3 endorser
+                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                            <i class="icon-check"></i>
+                                                            Endorse Me
+                                                        </button>
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
                                                         </a>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <div class="media-body">
                                                     <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['achievement_title']?>
                                                     </h5>
@@ -1004,14 +1008,18 @@
                                         <li class="list-group-item  ">
                                             <div class="media">
                                                 <!-- Overall Rate and Total Review -->
-                                                <!-- <div class="pull-right">
+                                                <div class="pull-right">
                                                     <div class="btn-group">
-                                                        <a href="#modal_endorser" data-toggle="modal" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who endorsed me ">
-                                                            <i class="icon-users"></i>
-                                                            3 endorser
+                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                            <i class="icon-check"></i>
+                                                            Endorse Me
+                                                        </button>
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
                                                         </a>
                                                     </div>
-                                                </div> -->
+                                                </div>
                                                 <div class="media-body">
                                                     <h5 class="font-weight-600 font-16-xs mb-1"> <?php echo $value['name']?>
                                                     </h5>
@@ -1332,61 +1340,64 @@
                 <!-- Modal Readonly Rating -->
                 <div class="modal fade modal-open-noscroll " id="modal_readonlyrate" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content ">
+                        <div class="modal-content">
                             <div class="modal-header">
                                 <!-- [Change Title to it job position/ Field of study title] -->
                                 <h4 class="modal-title font-weight-500"> Rating -
-                                    <small class="font-15-xs">Bachelor Degree In Software Engineering </small>
+                                    <small class="font-15-xs">[Qualifications Level] , [Field of study] </small>
                                     <button data-dismiss="modal" class="close"></button>
 
                                 </h4>
                             </div>
-                            <div class="modal-body  ">
+                            <div class="modal-body">
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <ul class="list-group list-borderless">
-                                        <li class="list-group-item ">
+                                    <!-- @if empty -->
+                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
+                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
+                                            <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                        </div>
+                                    </div>
+                                    <!-- @else -->
+                                    <ul class="list-group list-borderless ">
+                                        <li class="list-group-item">
                                             <div class="media">
-                                                <div class="pull-left">
+                                                <div class="media-left">
                                                     <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
                                                 </div>
-                                                <div class="media-body">
-                                                    <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                        <small class="text-none font-13-xs ">give you 3.5 / 5
-                                                            <i class="icon-star"></i>
-                                                        </small>
-                                                    </h4>
-                                                    <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
+                                                <div class="media-body media-middle">
+                                                    <h5 class="mb-0">
+                                                        <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
+                                                    </h5>
+                                                    <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
+                                                        <i class="icon-star"></i>
+                                                    </small>
+
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="list-group-item ">
+                                        <li class="list-group-item">
                                             <div class="media">
-                                                <div class="pull-left">
+                                                <div class="media-left">
                                                     <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
                                                 </div>
-                                                <div class="media-body">
-                                                    <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                        <small class="text-none font-13-xs ">give you 3.5 / 5
-                                                            <i class="icon-star"></i>
-                                                        </small>
-                                                    </h4>
-                                                    <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
+                                                <div class="media-body media-middle">
+                                                    <h5 class="mb-0">
+                                                        <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
+                                                    </h5>
+                                                    <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
+                                                        <i class="icon-star"></i>
+                                                    </small>
+
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class="list-group-item ">
-                                            <div class="media">
-                                                <div class="pull-left">
-                                                    <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                        <small class="text-none font-13-xs ">give you 3.5 / 5
-                                                            <i class="icon-star"></i>
-                                                        </small>
-                                                    </h4>
-                                                    <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
-                                                </div>
+                                        <!-- Load More.. [Limit to show by default 6 people] -->
+                                        <li class="list-group-item">
+                                            <div class="text-center">
+                                                <a href="" class="btn btn-default">Load More</a>
                                             </div>
                                         </li>
                                     </ul>
