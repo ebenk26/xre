@@ -88,9 +88,8 @@ function ProfileCompletion($params)
     $Additional   += !empty($params['benefits']) ? 5 : 0;
     
     //Contact Information 20%
-    $addr = json_decode($params['address']);
+    $addr = !empty(json_decode($params['address'])) ? json_decode($params['address']) : '';
     $Contact = 0;
-
     if(!empty($addr))
     {
         $addr = $addr[0];
@@ -112,6 +111,16 @@ function ProfileCompletion($params)
     $total  = round($sum);
     
     return $total;
+}
+
+function StudentProfileCompletion($params)
+{
+    $CI =& get_instance();
+    $CI->load->model('student_model');
+    $id = $CI->session->userdata('id');
+    $get_user_profile = $CI->student_model->get_user_profile($id);
+    $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
+    return $profile;
 }
 
 function Notification($status='0')
@@ -208,5 +217,24 @@ function sendEmail($params)
     }else{
         return false;
     }
+}
+
+function EndorseReviewRating($params)
+{
+    $CI =& get_instance();
+    $CI->load->model('global_model');
+    $endorseData = array('endorser_user_id'=> $params['endorser'],
+                'endorsed_user_id'=> $params['endorsed']);
+    $profile['endorse']= $CI->global_model->get_where('endorse', $endorseData);
+
+    $reviewData = array('endorser_id'=> $params['endorser'],
+                'user_id'=> $params['endorsed']);
+    $profile['review']= $CI->global_model->get_where('reviews', $reviewData);
+
+    $rateData = array('user_id_rater'=> $params['endorser'],
+                'user_id'=> $params['endorsed']);
+    $profile['rate']= $CI->global_model->get_where('user_rate', $rateData);
+
+    return $profile;
 }
 ?>

@@ -7,6 +7,7 @@ class Profile extends CI_Controller {
         parent::__construct();
         //date_default_timezone_set('Asia/Jakarta');
 		$this->load->model('student_model');
+        $this->load->model('employer_model');
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
@@ -551,6 +552,9 @@ class Profile extends CI_Controller {
     public function view_my_profile(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
 		$profile['user_profile'] = $this->student_model->get_user_profile($id);
+        if ($this->session->userdata('roles') == 'employer') {
+            $profile['employer_profile'] = $this->employer_model->get_user_profile($this->session->userdata('id'));
+        }
 		$profile['student_id'] = $id;
 		
 		//increase number of seen

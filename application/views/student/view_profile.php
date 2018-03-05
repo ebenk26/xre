@@ -1,5 +1,9 @@
 <?php   $id = $this->session->userdata('id'); 
         $roles= $this->session->userdata('roles');
+        $segmented_uri = $this->uri->segment(3);
+        $percentage_completion = ($roles == 'employer') ? (ProfileCompletion($employer_profile) > 90) : (studentProfileCompletion($id) > 70);
+        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
+                                    'endorsed'=> base64_decode($segmented_uri)));
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -949,14 +953,40 @@
                                                 <!-- Overall Rate and Total Review -->
                                                 <div class="pull-right">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
-                                                            <i class="icon-check"></i>
-                                                            Endorse Me
+                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) ): ?>
+                                                        
+                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                        <i class="icon-close"></i>
+                                                        Unendorse
                                                         </button>
+
                                                         <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
                                                             <i class="icon-user"></i>
                                                             3 Endorser
                                                         </a>
+
+                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'])) ): ?>
+                                                        
+                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                        <i class="icon-check"></i>
+                                                        Endorse Me
+                                                        </button>
+
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
+                                                        </a>
+
+                                                    <?php elseif (base64_decode($segmented_uri) == $id): ?>
+                                                        
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
+                                                        </a>
+
+                                                    <?php else: ?>
+                                                        <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <?php endif ?>
                                                     </div>
                                                 </div>
                                                 <div class="media-body">
@@ -1010,14 +1040,40 @@
                                                 <!-- Overall Rate and Total Review -->
                                                 <div class="pull-right">
                                                     <div class="btn-group">
-                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
-                                                            <i class="icon-check"></i>
-                                                            Endorse Me
+                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) ): ?>
+                                                        
+                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                        <i class="icon-close"></i>
+                                                        Unendorse
                                                         </button>
+
                                                         <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
                                                             <i class="icon-user"></i>
                                                             3 Endorser
                                                         </a>
+
+                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'])) ): ?>
+                                                        
+                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Endorse this user">
+                                                        <i class="icon-check"></i>
+                                                        Endorse Me
+                                                        </button>
+
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
+                                                        </a>
+
+                                                    <?php elseif (base64_decode($segmented_uri) == $id): ?>
+                                                        
+                                                        <a data-toggle="modal" href="#modal_endorser" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            3 Endorser
+                                                        </a>
+
+                                                    <?php else: ?>
+                                                        <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <?php endif ?>
                                                     </div>
                                                 </div>
                                                 <div class="media-body">
@@ -1443,6 +1499,9 @@
                                         </li>
                                         <li class="media media-middle">
                                             <div class="pull-left">
+
+
+
                                                 <img src="../assets/pages/img/avatars/team1.jpg" alt="" class="avatar avatar-xtramini avatar-circle">
                                             </div>
                                             <div class="media-body">
