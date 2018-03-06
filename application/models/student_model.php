@@ -177,6 +177,7 @@ class Student_Model extends CI_Model{
         $this->db->from('users');
         $this->db->join('achievement', 'achievement.user_id = users.id','left');
         $this->db->where(array('achievement.user_id' => $id));
+        $this->db->order_by('achievement_id','asc');
         $achievement = $this->db->get();
         $result['achievement'] = $achievement->result_array();
         if ($experiences->result_array()) {
