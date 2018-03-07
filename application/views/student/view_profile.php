@@ -818,28 +818,39 @@
                         <div class="tab-pane" id="tab_education">
                             <ul class="list-group list-border">
                                 <?php if(!empty($user_profile['academics'])){?>
-                                    <?php foreach($user_profile['academics'] as $key => $value){?>
+                                    <?php foreach($user_profile['academics'] as $key => $value){
+                                        $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
+                                        $keyRatingEdu = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
+                                    ?>
                                     <!-- User View -->
                                     <li class="list-group-item  ">
                                         <div class="media">
                                             <!-- Overall Rate and Total Review -->
                                             <div class="pull-right">
                                                 <div class="btn-group">
-                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['rating'])) ): ?>
-                                                    <a href="#modal_readonlyrate_academic_<?php echo $value['academic_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['academic_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                        4.5
-                                                        <i class="icon-star text-center"></i>
-                                                    </a>
-                                                    <a href="#modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                        <i class="icon-note"></i>
-                                                    </a>
-                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['rating'])) ): ?>
-                                                    <a href="#modal_readonlyrate_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                        <i class="icon-star text-center"></i>
-                                                    </a>
-                                                    <a href="#modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                        <i class="icon-note"></i>
-                                                    </a>
+                                                    <?php 
+                                                    if (!empty($id)) :
+                                                        
+                                                            if (!empty($keyRatingEdu)) : ?>
+                                                            <a href="#modal_readonlyrate_academic_<?php echo $value['academic_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['academic_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                4.5
+                                                                <i class="icon-star text-center"></i>
+                                                            </a>
+                                                            <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
+                                                            <a href="#modal_readonlyrate_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <i class="icon-star text-center"></i>
+                                                            </a>
+                                                            <?php endif; ?>
+
+                                                            <?php if(!empty($keyReviewEdu)): ?>
+                                                            <a href="#modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                                <i class="icon-note"></i>
+                                                            </a>
+                                                            <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
+                                                            <a href="#modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                            <i class="icon-note"></i>
+                                                            </a>
+                                                            <?php endif; ?>  
                                                 <?php else: ?>
                                                         <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                 <?php endif ?>
@@ -875,352 +886,7 @@
                                         <hr class="border-mdo-orange-strong my-2 mt-width-200-xs">
                                         <p class="font-15-xs"><?php echo $value['degree_description']; ?></p>
                                     </li>
-                                    <!-- Modal Review [CAn be used by Other User to review current user]-->
-                                    <div class="modal fade modal-open-noscroll " id="modal_review_academic_<?php echo $value['academic_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content ">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title font-weight-500"> Review -
-                                                        <small class="font-15-xs">Bachelor Degree In Software Engineering </small>
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body  ">
-                                                    <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <div class="mt-comments-v2">
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar1.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Michael Baker</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">26 Feb, 10:30AM</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar6.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Larisa Maskalyova</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">1 years ago</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar8.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a class="" href="#">
-                                                                            <span class="mt-comment-author">Natasha Kim</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date"> 3 minute ago</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar1.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Michael Baker</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">Just Now</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="text-center">
-                                                                <a href="" class="btn btn-default">Load More</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer md-grey lighten-4">
-                                                    <form action="" class="form form-horizontal">
-                                                        <div class="form-group text-left mx-0 mb-2">
-                                                            <textarea name="" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>
-                                                            <span class="help-block">Please put genuine statement !</span>
-                                                        </div>
-                                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>
-
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                    <!-- Modal Rate -->
-                                    <div class="modal fade modal-open-noscroll " id="modal_rate_academic_<?php echo $value['academic_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content ">
-                                                <div class="modal-header">
-                                                    <!-- [Change Title to it job position/ Field of study title] -->
-                                                    <h4 class="modal-title font-weight-500"> Rating -
-                                                        <small class="font-15-xs">Bachelor Degree In Software Engineering </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body  ">
-                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <ul class="list-group list-borderless">
-                                                            <li class="list-group-item ">
-                                                                <div class="media">
-                                                                    <div class="pull-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                                            <small class="text-none font-13-xs ">give rating 3.5 / 5
-                                                                                <i class="icon-star"></i>
-                                                                            </small>
-                                                                        </h4>
-                                                                        <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-group-item ">
-                                                                <div class="media">
-                                                                    <div class="pull-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                                            <small class="text-none font-13-xs ">give you 3.5 / 5
-                                                                                <i class="icon-star"></i>
-                                                                            </small>
-                                                                        </h4>
-                                                                        <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-group-item ">
-                                                                <div class="media">
-                                                                    <div class="pull-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body">
-                                                                        <h4 class="font-weight-600 font-15-xs  mb-1">Avril Lavigne
-                                                                            <small class="text-none font-13-xs ">give you 3.5 / 5
-                                                                                <i class="icon-star"></i>
-                                                                            </small>
-                                                                        </h4>
-                                                                        <a href="" class="btn blue-ebonyclay btn-xs">View Profile</a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer md-grey lighten-4 g-text-left-xs  ">
-                                                    <form action="">
-                                                        <input type="hidden" id="backing1Education" value="4.5">
-                                                        <div id="rateit1Education" data-size="50"></div>
-                                                        <h5 class="text-none" id="value1Education">Rate this user</h5>
-
-                                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-
-                                    <!-- Modal Readonly Review -->
-                                    <div class="modal fade modal-open-noscroll " id="modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content ">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title font-weight-500"> Review -
-                                                        <small class="font-15-xs">Bachelor Degree In Software Engineering </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body  ">
-                                                    <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <div class="mt-comments-v2">
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar1.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Michael Baker</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">26 Feb, 10:30AM</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar6.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Larisa Maskalyova</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">1 years ago</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar8.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a class="" href="#">
-                                                                            <span class="mt-comment-author">Natasha Kim</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date"> 3 minute ago</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar1.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Michael Baker</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">Just Now</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="text-center">
-                                                                <a href="" class="btn btn-default">Load More</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-
-                                    <!-- Modal Readonly Rating -->
-                                    <div class="modal fade modal-open-noscroll " id="modal_readonlyrate_academic_<?php echo $value['academic_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <!-- [Change Title to it job position/ Field of study title] -->
-                                                    <h4 class="modal-title font-weight-500"> Rating -
-                                                        <small class="font-15-xs">[Qualifications Level] , [Field of study] </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <!-- @if empty -->
-                                                        <div class="portlet px-4 py-8 md-shadow-none">
-                                                            <div class="portlet-body text-center">
-                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
-                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
-                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
-                                                            </div>
-                                                        </div>
-                                                        <!-- @else -->
-                                                        <ul class="list-group list-borderless ">
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- Load More.. [Limit to show by default 6 people] -->
-                                                            <li class="list-group-item">
-                                                                <div class="text-center">
-                                                                    <a href="" class="btn btn-default">Load More</a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
+                                    
                                     <?php } ?>
                                 <?php }else{?>
                                     <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -1234,7 +900,11 @@
                             <ul class="list-group list-border">
                                 <!-- User View : User can only VIEW people who rate and review -->
                                 <?php if(!empty($user_profile['experiences'])){?>
-                                    <?php foreach($user_profile['experiences'] as $key => $value){?>
+
+                                    <?php foreach($user_profile['experiences'] as $key => $value){
+                                        $keyReviewExp = array_search($value['experience_id'], array_column($endorseReviewRating['review'],'exp_id'));
+                                        $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
+                                        ?>
                                     <li class="list-group-item  ">
                                         <div class="media">
                                             <!-- Overall Rate and Total Review -->
@@ -1242,21 +912,34 @@
                                                 <!-- <h4 class="font-weight-700 text-uppercase font-13-xs text-center mb-1 font-grey-gallery">Overall</h4> -->
                                                 <!-- <hr class="my-1">  -->
                                                 <div class="btn-group">
-                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['rating'])) ): ?>
-                                                    <a href="#modal_readonlyrate_experience_<?php echo $value['experience_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                        4.5
-                                                        <i class="icon-star text-center"></i>
-                                                    </a>
-                                                    <a href="#modal_readonlyreview_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                        <i class="icon-note"></i>
-                                                    </a>
-                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'])) ): ?>
-                                                    <a href="#modal_readonlyrate_experience_<?php echo $value['experience_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                        <i class="icon-star text-center"></i>
-                                                    </a>
-                                                    <a href="#modal_readonlyreview_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
-                                                        <i class="icon-note"></i>
-                                                    </a>
+                                                    <?php 
+                                                    if (!empty($id)):
+                                                        if (!empty($keyReviewExp)) :?>
+                                                            <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && ($endorseReviewRating['rate'][$keyReviewExp]['exp_id'] == $value['experience_id']) ): ?>
+                                                            <a href="#modal_readonlyrate_experience_<?php echo $value['experience_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                4.5
+                                                                <i class="icon-star text-center"></i>
+                                                            </a>
+                                                            <a href="#modal_readonlyreview_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                                <i class="icon-note"></i>
+                                                            </a>
+                                                            <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && ($endorseReviewRating['rate'][$keyReviewExp]['exp_id'] != $value['experience_id']) ): ?>
+                                                            <a href="#modal_readonlyrate_experience_<?php echo $value['experience_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <i class="icon-star text-center"></i>
+                                                            </a>
+                                                            <a href="#modal_readonlyreview_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                                <i class="icon-note"></i>
+                                                            </a>
+                                                            <?php endif; ?>
+                                                    <?php else: ?>
+                                                            <a href="#modal_readonlyrate_experience_<?php echo $value['experience_id']?>" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                4.5
+                                                                <i class="icon-star text-center"></i>
+                                                            </a>
+                                                            <a href="#modal_readonlyreview_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                                <i class="icon-note"></i>
+                                                            </a>
+                                                    <?php endif; ?>
                                                 <?php else: ?>
                                                         <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                 <?php endif ?>
