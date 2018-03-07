@@ -1,9 +1,11 @@
+<!-- <pre> -->
 <?php   $id = $this->session->userdata('id'); 
         $roles= $this->session->userdata('roles');
         $segmented_uri = $this->uri->segment(3);
         $percentage_completion = ($roles == 'employer') ? (ProfileCompletion($employer_profile) > 90) : (studentProfileCompletion($id) > 70);
         $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
                                     'endorsed'=> base64_decode($segmented_uri)));
+        // var_dump($endorseReviewRating);
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -831,7 +833,7 @@
                                                     <a href="#modal_readonlyreview_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
                                                         <i class="icon-note"></i>
                                                     </a>
-                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'])) ): ?>
+                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['rating'])) ): ?>
                                                     <a href="#modal_readonlyrate_academic_<?php echo $value['academic_id'];?>" data-toggle="modal" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                         <i class="icon-star text-center"></i>
                                                     </a>
@@ -1662,15 +1664,19 @@
                                 <ul class="list-group list-border">
                                     <!-- User View : User can onlyview endorser-->
                                     <?php if(!empty($user_profile['achievement'])){?>
-                                        <?php $i=0; foreach($user_profile['achievement'] as $key => $value){?>
+                                        <?php foreach($user_profile['achievement'] as $key => $value){
+                                            $keyAchievement = array_search($value['achievement_id'], array_column($endorseReviewRating['endorse'],'achievement_id'));
+                                            ?>
                                         <li class="list-group-item  ">
                                             <div class="media">
                                                 <!-- Overall Rate and Total Review -->
                                                 <div class="pull-right">
                                                     <div class="btn-group">
-                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) && ($value['achievement_id'] == $endorseReviewRating['endorse'][$i]['achievement_id']) ): ?>
+                                                    <?php 
+                                                    if (!empty($id)):
+                                                        if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) && ($value['achievement_id'] == $endorseReviewRating['endorse'][$keyAchievement]['achievement_id']) ): ?>
                                                         
-                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" endorse-type="achievement" data-id="<?php echo $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user">
+                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" endorse-type="achievement" data-id="<?php echo $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user">
                                                         <i class="icon-close"></i>
                                                         Unendorse
                                                         </button>
@@ -1680,7 +1686,7 @@
                                                             3 Endorser
                                                         </a>
 
-                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'])) && ($value['achievement_id'] != $endorseReviewRating['achievement_id']) ): ?>
+                                                    <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && ($value['achievement_id'] != $endorseReviewRating['endorse'][$keyAchievement]['achievement_id']) ): ?>
                                                         
                                                         <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" endorse-type="achievement" data-id="<?php echo $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user">
                                                         <i class="icon-check"></i>
@@ -1698,10 +1704,11 @@
                                                             <i class="icon-user"></i>
                                                             3 Endorser
                                                         </a>
-
-                                                    <?php else: ?>
-                                                        <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                     <?php endif ?>
+
+                                            <?php   else: ?>
+                                                <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                            <?php   endif ?>
                                                     </div>
                                                 </div>
                                                 <div class="media-body">
@@ -1736,7 +1743,7 @@
                                             <?php } ?>
                                             </ul>
                                         </li>
-                                        <?php $i++;} ?>
+                                        <?php } ?>
                                     <?php }else{?>
                                         <?php $this->load->view('student/main/profile_missing', $data_arr);?>
                                     <?php }?>
@@ -1749,15 +1756,19 @@
                                 <ul class="list-group list-border">
                                     <!-- User View : User can onlyview endorser-->
                                     <?php if(!empty($user_profile['projects'])){?>
-                                        <?php $i=0; foreach($user_profile['projects'] as $key => $value){?>
+                                        <?php $i=0; foreach($user_profile['projects'] as $key => $value){
+                                            $keyAchievement = array_search($value['id'], array_column($endorseReviewRating['endorse'],'user_project_id'));
+                                            ?>
                                         <li class="list-group-item  ">
                                             <div class="media">
                                                 <!-- Overall Rate and Total Review -->
                                                 <div class="pull-right">
                                                     <div class="btn-group">
-                                                    <?php if (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) ): ?>
+                                                    <?php 
+                                                    if (!empty($id)):
+                                                        if ( ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) && ($value['id'] == $endorseReviewRating['endorse'][$keyAchievement]['user_project_id']) ): ?>
                                                         
-                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project">
+                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project">
                                                         <i class="icon-close"></i>
                                                         Unendorse
                                                         </button>
@@ -1767,7 +1778,7 @@
                                                             3 Endorser
                                                         </a>
 
-                                                    <?php elseif (!empty($id) && ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) ): ?>
+                                                        <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && ($value['id'] != $endorseReviewRating['endorse'][$keyAchievement]['user_project_id']) ): ?>
                                                         
                                                         <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?php echo $id; ?>" endorsed-id="<?php echo $segmented_uri; ?>" data-id="<?php echo $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project">
                                                         <i class="icon-check"></i>
@@ -1779,13 +1790,13 @@
                                                             3 Endorser
                                                         </a>
 
-                                                    <?php elseif (base64_decode($segmented_uri) == $id): ?>
+                                                        <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                         
                                                         <a data-toggle="modal" href="#modal_endorser_project_<?php echo $value['id'];?>" class="btn btn-md-indigo font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="view endorser">
                                                             <i class="icon-user"></i>
                                                             3 Endorser
                                                         </a>
-
+                                                        <?php endif; ?>
                                                     <?php else: ?>
                                                         <a href="<?php echo base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                     <?php endif ?>
@@ -1894,9 +1905,28 @@
                 alertify.confirm('Endorse user', 'Are you sure you want to endorse?', function(){ 
                     $.post("<?php echo base_url(); ?>site/endorsment/endorse", {dataId : dataId, endorserId : endorserId, endorsedId: endorsedId, endorsedType : endorsedType}, function(data) {
                         if(data == "false") {
-                            alertify.error('Failed to endorse user');
+                            alertify.error('Endorse user Failed');
                         } else {
                             alertify.success('Endorse user success.');
+                            location.reload();
+                        }
+                    });
+                }, function(data){
+                     alertify.error('Cancel');
+                });
+            });
+
+            $(".unendorse-btn").click( function () {
+                var dataId = $(this).attr('data-id');
+                var endorserId = $(this).attr('endorser-id');
+                var endorsedId = $(this).attr('endorsed-id');
+                var endorsedType = $(this).attr('endorse-type');
+                alertify.confirm('Endorse user', 'Are you sure you want to unendorse?', function(){ 
+                    $.post("<?php echo base_url(); ?>site/endorsment/unendorse", {dataId : dataId, endorserId : endorserId, endorsedId: endorsedId, endorsedType : endorsedType}, function(data) {
+                        if(data == "false") {
+                            alertify.error('Unendorse user Failed');
+                        } else {
+                            alertify.success('Unendorse user success.');
                             location.reload();
                         }
                     });
