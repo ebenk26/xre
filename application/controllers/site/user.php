@@ -8,9 +8,11 @@ class User extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
         $this->load->model('global_model');
+
         //if(empty($countryCheck)){
         //    redirect(base_url());
         //}
+
     }
     
     public function login(){

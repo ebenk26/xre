@@ -177,6 +177,7 @@ class Student_Model extends CI_Model{
         $this->db->from('users');
         $this->db->join('achievement', 'achievement.user_id = users.id','left');
         $this->db->where(array('achievement.user_id' => $id));
+        $this->db->order_by('achievement_id','asc');
         $achievement = $this->db->get();
         $result['achievement'] = $achievement->result_array();
         if ($experiences->result_array()) {
@@ -194,7 +195,7 @@ class Student_Model extends CI_Model{
         $overview = $this->db->get();
         $result['overview'] = $overview->last_row('array');
         // var_dump($result['overview']['name']);exit;
-        $overviews['name'] = $result['overview']['name'] ? 0.03 : 0;
+        $overviews['name'] = !empty($result['overview']['name']) ? 0.03 : 0;
         $overviews['preference_name'] = !empty($result['overview']['preference_name']) ? 0.03 : 0;
         $overviews['youtubelink'] = !empty($result['overview']['youtubelink']) ? 0.03 : 0;
         $overviews['student_bios_gender'] = !empty($result['overview']['student_bios_gender']) ? 0.03 : 0;
