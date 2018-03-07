@@ -19,6 +19,17 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
     
+    <!-- IMAGE CROP GALLERY -->
+    <!--<link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/prism.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/croppie.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/demo.css" rel="stylesheet" type="text/css" />-->
+
+    <!--<link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.css" rel="stylesheet" type="text/css" />-->
+    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css" rel="stylesheet" type="text/css" />
+    
+    <!-- IMAGE CROP GALLERY -->
+    
+    
     <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
 	<link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
@@ -85,6 +96,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
     <link href="<?php echo ASSETS; ?>css/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
+
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 
@@ -260,6 +272,14 @@
                             <i class="icon-user"></i>
                             <span class="title">Profile</span>
 							<span class="selected"></span>
+                        </a>
+                    </li>
+                    <!-- Sidebar Menu Gallery -->
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?>">
+                        <a href="<?php echo base_url(); ?>student/gallery/" class="nav-link">
+                            <i class="icon-picture"></i>
+                            <span class="title">Gallery</span>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu Job Application History -->

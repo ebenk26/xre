@@ -102,6 +102,16 @@
 	
 	<!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
+
+    <!-- IMAGE CROP GALLERY -->    
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/prism.js"></script>
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/croppie.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/demo.js"></script>
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/exif.js"></script>
+
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
+    <!-- IMAGE CROP GALLERY -->
+
     <!-- END PASSWORD STRENGTH SCRIPTS -->
 	
 	
@@ -119,6 +129,88 @@
     <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
+            var cropperOptions = {
+                //uploadUrl:'<?=base_url()?>assets/global/plugins/Croppic/croppic/img_save_to_file.php',
+                uploadUrl:'<?=base_url()?>student/gallery/img_save_to_file',
+                cropUrl:'<?=base_url()?>student/gallery/img_crop_to_file',
+                //cropUrl:'<?=base_url()?>assets/global/plugins/Croppic/croppic/img_crop_to_file.php',
+                outputUrlId:'myOutputId',
+                imgEyecandy:false,
+                imgEyecandyOpacity:0.2,
+                uploadData:{
+                    "dummyData":1,
+                    "dummyData2":"text"
+                },
+                cropData:{
+                    "dummyData":1,
+                    "dummyData2":"text"
+                },
+                rotateControls:false,
+            };
+
+            var cropperOptionsEdit = {
+                uploadUrl:'<?=base_url()?>student/gallery/img_save_to_file',
+                cropUrl:'<?=base_url()?>student/gallery/img_crop_to_file',
+                outputUrlId:'myOutputIdEdit',
+                imgEyecandy:false,
+                imgEyecandyOpacity:0.2,
+                uploadData:{
+                    "dummyData":1,
+                    "dummyData2":"text"
+                },
+                cropData:{
+                    "dummyData":1,
+                    "dummyData2":"text"
+                },
+                rotateControls:false,
+            };       
+            
+            var cropper = new Croppic('yourId', cropperOptions);
+
+            var cropper_edit = new Croppic('yourIdEdit', cropperOptionsEdit);
+
+            //cropper.destroy()   // no need explaining here :) 
+            //cropper.reset()
+            /*
+                onBeforeImgUpload:  function(){ console.log('onBeforeImgUpload') },
+                onAfterImgUpload:   function(){ console.log('onAfterImgUpload') },
+                onImgDrag:      function(){ console.log('onImgDrag') },
+                onImgZoom:      function(){ console.log('onImgZoom') },
+                onBeforeImgCrop:    function(){ console.log('onBeforeImgCrop') },
+                onAfterImgCrop:     function(){ console.log('onAfterImgCrop') },
+                onReset:        function(){ console.log('onReset') },
+                onError:        function(errormsg){ console.log('onError:'+errormsg)
+                */
+
+            //EDIT ARTICLE
+            $( ".edit_button_gallery" ).on( "click", function() {
+                //$('#featured_image_article').hide();
+                cropper_edit.reset();
+                var row_id = this.id;
+                var res = row_id.split("_");
+                
+                row_id = res[1];
+                $.ajax({
+                    url:"<?=base_url();?>student/gallery/get_data_array/"+row_id,
+                    method:"POST",
+                    success:function(response) {
+                        var data = JSON.parse(response);
+                        $('#title_gallery').val(data.title);
+                        $('#description_gallery').val(data.description);
+                        $('#myOutputIdEdit').val("/"+data.photo);
+                        $('#id_gallery').val(data.id);
+                    }
+                });
+            });
+
+            //EDIT ARTICLE
+            $( "#button_save_gallery" ).on( "click", function() {
+                if($("#myOutputId").val() == ""){
+                    alert("You have not upload any photo yet!");
+                    return false;
+                }
+            });
+
             var last_seen_notif = "<?=$this->session->userdata('last_seen_notif')?>";
             var e = $("#xremo_table");
 			e.dataTable({
