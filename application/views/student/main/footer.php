@@ -104,11 +104,6 @@
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
 
     <!-- IMAGE CROP GALLERY -->    
-    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/prism.js"></script>
-    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/croppie.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/demo.js"></script>
-    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/exif.js"></script>
-
     <script src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
     <!-- IMAGE CROP GALLERY -->
 

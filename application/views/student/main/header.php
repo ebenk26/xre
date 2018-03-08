@@ -20,13 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
     
     <!-- IMAGE CROP GALLERY -->
-    <!--<link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/prism.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/croppie.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppie-2.6.1/demo/demo.css" rel="stylesheet" type="text/css" />-->
-
-    <!--<link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.css" rel="stylesheet" type="text/css" />-->
     <link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css" rel="stylesheet" type="text/css" />
-    
     <!-- IMAGE CROP GALLERY -->
     
     
