@@ -12,8 +12,11 @@ class notifications extends CI_Controller
     
     public function notifList()
     {
+        //get all notif read and unread
         $get_notif                  = Notification('0,1');
+        //get all notif unread
         $unread_notif               = Notification('0');
+        //get all notif unread by last seen
         $unread_notif_by_last_seen  = Notification('2');
 
         if(!empty($get_notif))

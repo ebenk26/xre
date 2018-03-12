@@ -102,15 +102,17 @@
 	
 	<!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
-
-    <!-- IMAGE CROP GALLERY -->    
-    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
-    <!-- IMAGE CROP GALLERY -->
-
     <!-- END PASSWORD STRENGTH SCRIPTS -->
-	
-	
-	
+
+    <!-- BEGIN IMAGE CROP GALLERY -->    
+    <script src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
+    <!-- END IMAGE CROP GALLERY -->
+
+    <!--<script type="text/javascript" src="../HTML/js/components/portfolio-3-col.min.js"></script>
+    <script type="text/javascript" src="../HTML/js/components/wow.min.js"></script>-->
+	<!-- BEGIN PORTOFOLIO -->
+    <!--<script type="text/javascript" src="../assets/pages/scripts/portfolio-3-gallery.js"></script>-->
+	<!-- END PORTOFOLIO -->
     
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -177,10 +179,9 @@
                 onError:        function(errormsg){ console.log('onError:'+errormsg)
                 */
 
-            //EDIT ARTICLE
+            //EDIT PHOTO GALLERY
             $( ".edit_button_gallery" ).on( "click", function() {
                 //$('#featured_image_article').hide();
-                cropper_edit.reset();
                 var row_id = this.id;
                 var res = row_id.split("_");
                 
@@ -193,12 +194,28 @@
                         $('#title_gallery').val(data.title);
                         $('#description_gallery').val(data.description);
                         $('#myOutputIdEdit').val("/"+data.photo);
+                        $('#myOutputIdEditOld').val("/"+data.photo);
                         $('#id_gallery').val(data.id);
+                        $('#curr_photo').attr("src", "<?=base_url();?>assets/img/gallery/"+data.photo);
+
+                        /*cropper_edit.destroy();                        
+                        cropperOptionsEdit = {
+                            uploadUrl:'<?=base_url()?>student/gallery/img_save_to_file',
+                            cropUrl:'<?=base_url()?>student/gallery/img_crop_to_file',
+                            outputUrlId:'myOutputIdEdit',
+                            loadPicture:'<?=base_url();?>assets/img/gallery/'+data.photo,
+                            imgEyecandy:false,
+                            imgEyecandyOpacity:0.2,
+                            rotateControls:false,
+                        };
+                        cropper_edit = new Croppic('yourIdEdit', cropperOptionsEdit);*/
+                        cropper_edit.reset();
+                
                     }
                 });
             });
 
-            //EDIT ARTICLE
+            //SAVE PHOTO GALLERY
             $( "#button_save_gallery" ).on( "click", function() {
                 if($("#myOutputId").val() == ""){
                     alert("You have not upload any photo yet!");

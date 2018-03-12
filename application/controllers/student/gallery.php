@@ -37,6 +37,7 @@ class Gallery extends CI_Controller {
 	}
 
     public function post(){
+        $arr_old = explode("/", $this->input->post('photo_old'));$last_old = count($arr_old) - 1;
         $arr = explode("/", $this->input->post('photo'));$last = count($arr) - 1;
         //EDIT
         if ($this->input->post('id') != 0) {
@@ -49,6 +50,11 @@ class Gallery extends CI_Controller {
 
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('gallery', $data);
+
+            //if edit dengan photo baru maka hapus photo lama
+            if($arr[$last] != $arr_old[$last_old]){
+                unlink("assets/img/gallery/".$arr_old[$last_old]);
+            }
 
             //BEGIN : set recent activities
             $data = array(

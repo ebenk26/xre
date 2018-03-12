@@ -142,10 +142,19 @@
 
                                 <!-- Photo Upload -->
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Photo</label>
+                                    <label class="control-label col-md-3">Current Photo</label>
+                                    <div class="col-md-9">
+                                        <img src="" width="250px" id="curr_photo"/>
+                                    </div>
+                                </div>
+
+                                <!-- Photo Upload -->
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">New Photo</label>
                                     <div class="col-md-9">
                                         <div id="yourIdEdit" class="form-control"></div>
-                                        <input type="hidden" name="photo" name="photo_gallery" id="myOutputIdEdit">
+                                        <input type="hidden" name="photo" id="myOutputIdEdit">
+                                        <input type="hidden" name="photo_old" id="myOutputIdEditOld">
                                         <input type="hidden" name="id" id="id_gallery" value="">
                                     </div>
                                 </div>
