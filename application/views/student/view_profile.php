@@ -6,6 +6,10 @@
         $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
                                     'endorsed'=> base64_decode($segmented_uri)));
         // var_dump($endorseReviewRating);
+
+        $data_arr['roles'] = $roles;
+        $data_arr['user_profile'] = $user_profile;
+        
 ?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -49,6 +53,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Student - My Profile</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-115543574-1');
+    </script>
 </head>
 
 <body>
@@ -465,6 +479,72 @@
                     </div>
                 </li>
                 <!-- Gallery -->
+                <li class="list-group-item noborder md-grey lighten-5 pt-4">
+                    <h4 class="text-center text-uppercase  md-orange-text text-darken-1 font-weight-700"> Gallery</h4>
+                    <hr class="border-mdo-orange-light mt-width-300-xs center-block">
+                    <?php if(!empty($gallery)) {?>
+                        <div class="portfolio-content portfolio-3">
+                            <div id="js-grid-lightbox-gallery" class="cbp">
+                        <?php $gall_no = 1;foreach ($gallery as $gallery_key => $gallery_value) {?>
+                                <div class="cbp-item" id="gall_<?=$gall_no?>" <?=$gall_no > 12?'style="display:none;"':''?>>
+                                    <a href="<?php echo base_url()."assets/img/gallery/".$gallery_value['photo']; ?>" class="cbp-caption cbp-lightbox" data-title="<?=$gallery_value['title'];?><br><?=$gallery_value['description'];?>">
+                                        <div class="cbp-caption-defaultWrap">
+                                            <img src="<?php echo base_url()."assets/img/gallery/".$gallery_value['photo']; ?>" alt=""> </div>
+                                        <div class="cbp-caption-activeWrap">
+                                            <div class="cbp-l-caption-alignLeft">
+                                                <div class="cbp-l-caption-body">
+                                                    <div class="cbp-l-caption-title"><?=$gallery_value['title'];?></div>
+                                                    <div class="cbp-l-caption-desc"><?=$gallery_value['description'];?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!--<div class="cbp-item identity logos">
+                                    <a href="../assets/global/img/portfolio/1200x900/01.jpg" class="cbp-caption cbp-lightbox" data-title="Dashboard<br>by Paul Flavius Nechita">
+                                        <div class="cbp-caption-defaultWrap">
+                                            <img src="../assets/global/img/portfolio/600x600/21.jpg" alt=""> </div>
+                                        <div class="cbp-caption-activeWrap">
+                                            <div class="cbp-l-caption-alignLeft">
+                                                <div class="cbp-l-caption-body">
+                                                    <div class="cbp-l-caption-title">Dashboard</div>
+                                                    <div class="cbp-l-caption-desc">by Paul Flavius Nechita</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>-->                                
+                    <?php $gall_no++;}?>
+                    </div>
+                        <?php if($gall_no > 12){?>
+                            <div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">
+                                <a href="#" class="cbp-l-loadMore-link btn grey-mint m-4 letter-space-xs" id="gall_more">LOAD MORE</a>
+                            </div>
+                        <?php }?>                   
+
+                        <!--<div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">-->
+                        <!--<div class="cbp-l-loadMore-button">
+                            <a href="#" class="cbp-l-loadMore-link btn grey-mint btn-outline" rel="nofollow">
+                                <span class="cbp-l-loadMore-defaultText">LOAD MORE</span>
+                                <span class="cbp-l-loadMore-loadingText">LOADING...</span>
+                                <span class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span>
+                            </a>
+                        </div>-->
+                    </div>                    
+                    <?php }else{?>
+                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                    <?php }?>
+
+                    <!-- @if empty -->
+                    <!--<div class="portlet p-4 md-shadow-none">
+                        <div class="portlet-body text-center">
+                            <i class="icon-cup font-grey-mint font-40-xs mb-4"></i>
+                            <h4 class="text-center font-weight-500 font-grey-mint">Coming Soon...</h4>
+                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Stay Tuned ! Thie feature will be released soon.</h5>
+                        </div>
+                    </div>-->
+                </li>
+                <!-- Gallery -->
                 <!-- <li class="list-group-item noborder md-grey lighten-5 pt-4">
                     <h4 class="text-center text-uppercase  md-orange-text text-darken-1 font-weight-700"> Project Gallery</h4>
                     <hr class="border-mdo-orange-light mt-width-300-xs center-block">
@@ -594,10 +674,6 @@
                         </div>
                     </div>
                 </li> -->
-                <?php 
-                    $data_arr['roles'] = $roles;
-                    $data_arr['user_profile'] = $user_profile;
-                ?>
 
                 <?php if(!empty($roles)){ ?>
                 <!-- Reference (Limit PUT 3 ONLY)-->
@@ -1611,7 +1687,43 @@
     view doc on http://gjunge.github.io/rateit.js/examples/-->
     <script type="text/javascript">
         $(document).ready(function () {
+            //GALLERY LOAD MORE
+            var max_gall = <?=$gall_no?>;
+            var load_more = 13;
+            var gall_height = 400;
+            $( "#gall_more" ).on( "click", function(e) {
+                e.preventDefault();
 
+                //get total new item
+                var load_more_temp = load_more;
+                var total_tambahan = 0;
+                for(var i=0;i<12;i++){
+                    if(load_more_temp < max_gall){
+                        load_more_temp++;
+                        total_tambahan++;
+                    }                    
+                }
+                //set new height of gallery container
+                var total_tambahan_row = Math.ceil(total_tambahan/4);
+                gall_height += total_tambahan_row*90;
+                $( "#js-grid-lightbox-gallery" ).css( "height", gall_height );
+
+                //show 12 hidden more item
+                for(var i=0;i<12;i++){
+                    if(load_more < max_gall){
+                        var row_pos = Math.ceil(load_more/4);
+                        $( "#gall_"+load_more ).css( "top", (row_pos-1)*109 );
+                        $( "#gall_"+load_more ).show();
+                        load_more++;
+                    }                    
+                }
+                
+                //hide button load more if nothing more
+                if(load_more >= max_gall){
+                    $( "#gall_more" ).hide();
+                }
+                
+            });
     
             $(".endorse-btn").click( function () {
                 var dataId = $(this).attr('data-id');

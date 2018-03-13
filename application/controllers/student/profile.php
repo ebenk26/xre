@@ -582,6 +582,16 @@ class Profile extends CI_Controller {
 				$this->db->update('users');
 			}
 		}
+
+        //GALLERY
+        $this->db->select('*');
+        $this->db->from('gallery');
+        $this->db->where('user_id', $this->session->userdata('id'));
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        $gallery = $query->result_array();
+
+        $profile['gallery'] = $gallery;
 		
         $this->load->view('student/view_profile',$profile);
     }
