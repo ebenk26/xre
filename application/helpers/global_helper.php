@@ -237,4 +237,8 @@ function EndorseReviewRating($params)
 
     return $profile;
 }
+
+function countEndorser($id){
+    echo 'test';
+}
 ?>

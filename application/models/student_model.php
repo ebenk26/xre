@@ -565,6 +565,18 @@ class Student_Model extends CI_Model{
         return $query->last_row('array');
     }
 	
+
+    function get_endorser($data){
+
+        $this->db->select('endorse.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, profile_uploads.type');
+        $this->db->from('endorse');
+        $this->db->join('users', 'endorse.endorser_user_id = users.id','left');
+        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
 ?>
