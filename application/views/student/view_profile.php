@@ -1434,6 +1434,13 @@
                                                 $checkEndorseNotSame = true;
                                                 $countEndorser = 0;
                                             }
+                                            if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
+                                                $modal_endorse = 'modal_endorsed_empty';
+                                            }else if(($countEndorser == 0) && $id != base64_decode($segmented_uri)){
+                                                $modal_endorse = 'modal_endorser_empty';
+                                            }else{
+                                                $modal_endorse = 'modal_endorser_list';
+                                            }
                                             ?>
                                         <li class="list-group-item  ">
                                             <div class="media">
@@ -1449,7 +1456,7 @@
                                                         Unendorse
                                                         </button>
 
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
@@ -1461,14 +1468,14 @@
                                                         Endorse Me
                                                         </button>
 
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
 
                                                     <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                         
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" user-id="<?php echo base64_decode($segmented_uri); ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
@@ -1540,6 +1547,13 @@
                                                 $checkEndorseNotSame = true;
                                                 $countEndorser = 0;
                                             }
+                                            if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
+                                                $modal_endorse = 'modal_endorsed_empty';
+                                            }else if(($countEndorser == 0) && $id != base64_decode($segmented_uri)){
+                                                $modal_endorse = 'modal_endorser_empty';
+                                            }else{
+                                                $modal_endorse = 'modal_endorser_list';
+                                            }
                                             ?>
                                         <li class="list-group-item  ">
                                             <div class="media">
@@ -1555,7 +1569,7 @@
                                                         Unendorse
                                                         </button>
 
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" endorse-type="project" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" endorse-type="project" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
@@ -1567,14 +1581,14 @@
                                                         Endorse Me
                                                         </button>
 
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" endorse-type="project" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" endorse-type="project" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
 
                                                         <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                         
-                                                        <a data-toggle="modal" href="#modal_endorser_list" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                        <a data-toggle="modal" href="#<?php echo $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?php echo $value['id']; ?>" user-id="<?php echo base64_decode($segmented_uri); ?>" data-name="<?php echo $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?php echo $countEndorser; ?> Endorser
                                                         </a>
@@ -1634,7 +1648,63 @@
                 <div class="modal fade modal-open-noscroll " id="modal_endorser_list" tabindex="-1" role="dialog" aria-hidden="true">
                     
                 </div>
-
+                <!-- Modal Endorser -->
+                <div class="modal fade modal-open-noscroll " id="modal_endorsed_empty" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- [Change Title to it job position/ Field of study title] -->
+                                <h4 class="modal-title font-weight-500"> Endorse
+                                    <button data-dismiss="modal" class="close"></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <!-- @if empty (User View)-->
+                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
+                                            <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- Modal Endorser -->
+                <div class="modal fade modal-open-noscroll " id="modal_endorser_empty" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- [Change Title to it job position/ Field of study title] -->
+                                <h4 class="modal-title font-weight-500"> Endorse
+                                    <button data-dismiss="modal" class="close"></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <!-- @if empty (User View)-->
+                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
             </div>
         </div>
     </div>
@@ -1724,7 +1794,7 @@
                 }
                 
             });
-    
+
             $(".endorse-btn").click( function () {
                 var dataId = $(this).attr('data-id');
                 var endorserId = $(this).attr('endorser-id');
@@ -1809,15 +1879,6 @@
                             </div>\
                             <div class="modal-body">\
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">\
-                                    <!-- @if empty (User View)-->\
-                                    <div class="portlet px-4 py-8 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
-                                            <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
                                     <ul class="list-unstyled">\
                                     '+endorser+'\
                                     </ul>\
