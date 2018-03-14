@@ -234,7 +234,6 @@ function EndorseReviewRating($params)
     $rateData = array('user_id_rater'=> $params['endorser'],
                 'user_id'=> $params['endorsed']);
     $profile['rate']= $CI->global_model->get_where('user_rate', $rateData);
-
     return $profile;
 }
 
