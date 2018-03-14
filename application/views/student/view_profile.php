@@ -1435,9 +1435,9 @@
                                                 $countEndorser = 0;
                                             }
                                             if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
-                                                $modal_endorse = 'modal_endorsed_empty';
+                                                $modal_endorse = 'modal_endorsed_empty_achievement_'.$value['achievement_id'];
                                             }else if(($countEndorser == 0) && $id != base64_decode($segmented_uri)){
-                                                $modal_endorse = 'modal_endorser_empty';
+                                                $modal_endorse = 'modal_endorser_empty_achievement_'.$value['achievement_id'];
                                             }else{
                                                 $modal_endorse = 'modal_endorser_list';
                                             }
@@ -1523,6 +1523,65 @@
                                             <?php } ?>
                                             </ul>
                                         </li>
+                                        <!-- Modal Endorser -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_endorsed_empty_achievement_<?php echo $value['achievement_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <!-- [Change Title to it job position/ Field of study title] -->
+                                                        <h4 class="modal-title font-weight-500"> Endorse - 
+                                                            <small class="font-15-xs"><?php echo $value['achievement_title'] ?> </small>
+                                                            <button data-dismiss="modal" class="close"></button>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- @if empty (User View)-->
+                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet-body text-center">
+                                                                    <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                                                    <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
+                                                                    <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- Modal Endorser -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_endorser_empty_achievement_<?php echo $value['achievement_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <!-- [Change Title to it job position/ Field of study title] -->
+                                                        <h4 class="modal-title font-weight-500"> Endorse - 
+                                                            <small class="font-15-xs"><?php echo $value['achievement_title'] ?> </small>
+                                                            <button data-dismiss="modal" class="close"></button>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- @if empty (User View)-->
+                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet-body text-center">
+                                                                    <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                                                    <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
                                         <?php } ?>
                                     <?php }else{?>
                                         <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -1548,9 +1607,9 @@
                                                 $countEndorser = 0;
                                             }
                                             if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
-                                                $modal_endorse = 'modal_endorsed_empty';
+                                                $modal_endorse = 'modal_endorsed_empty_project_'.$value['id'];
                                             }else if(($countEndorser == 0) && $id != base64_decode($segmented_uri)){
-                                                $modal_endorse = 'modal_endorser_empty';
+                                                $modal_endorse = 'modal_endorser_empty_project_'.$value['id'];
                                             }else{
                                                 $modal_endorse = 'modal_endorser_list';
                                             }
@@ -1635,6 +1694,65 @@
                                             <?php } ?>
                                             </ul>
                                         </li>
+                                        <!-- Modal Endorser -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_endorsed_empty_project_<?php echo $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <!-- [Change Title to it job position/ Field of study title] -->
+                                                        <h4 class="modal-title font-weight-500"> Endorse -
+                                                            <small class="font-15-xs"><?php echo $value['name'] ?> </small>
+                                                            <button data-dismiss="modal" class="close"></button>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- @if empty (User View)-->
+                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet-body text-center">
+                                                                    <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                                                    <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
+                                                                    <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- Modal Endorser -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_endorser_empty_project_<?php echo $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <!-- [Change Title to it job position/ Field of study title] -->
+                                                        <h4 class="modal-title font-weight-500"> Endorse - 
+                                                            <small class="font-15-xs"><?php echo $value['name'] ?> </small>
+                                                            <button data-dismiss="modal" class="close"></button>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <!-- @if empty (User View)-->
+                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet-body text-center">
+                                                                    <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                                                    <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
                                         <?php } ?>
                                     <?php }else{?>
                                         <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -1648,63 +1766,7 @@
                 <div class="modal fade modal-open-noscroll " id="modal_endorser_list" tabindex="-1" role="dialog" aria-hidden="true">
                     
                 </div>
-                <!-- Modal Endorser -->
-                <div class="modal fade modal-open-noscroll " id="modal_endorsed_empty" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <!-- [Change Title to it job position/ Field of study title] -->
-                                <h4 class="modal-title font-weight-500"> Endorse
-                                    <button data-dismiss="modal" class="close"></button>
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <!-- @if empty (User View)-->
-                                    <div class="portlet px-4 py-8 md-shadow-none">
-                                        <div class="portlet-body text-center">
-                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
-                                            <a href="" class="btn btn-md-indigo">Invite My Friends</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- Modal Endorser -->
-                <div class="modal fade modal-open-noscroll " id="modal_endorser_empty" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <!-- [Change Title to it job position/ Field of study title] -->
-                                <h4 class="modal-title font-weight-500"> Endorse
-                                    <button data-dismiss="modal" class="close"></button>
-                                </h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <!-- @if empty (User View)-->
-                                    <div class="portlet px-4 py-8 md-shadow-none">
-                                        <div class="portlet px-4 py-8 md-shadow-none">
-                                        <div class="portlet-body text-center">
-                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
+                
             </div>
         </div>
     </div>
