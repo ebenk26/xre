@@ -923,7 +923,7 @@
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#modal_readonlyreview_academic_<?= $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                            <a href="#modal_readonlyreview_academic_<?= $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips review-list" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
                                                             <i class="icon-note"></i>
                                                             </a>
                                                             <?php endif; ?>  
@@ -978,10 +978,9 @@
                                 <?php if(!empty($user_profile['experiences'])){?>
 
                                     <?php $i=1; foreach($user_profile['experiences'] as $key => $value){
+                                        
                                         $keyReviewExp = array_search($value['experience_id'], array_column($endorseReviewRating['review'],'exp_id'));
-                                        // var_dump($value['experience_id']);
-                                        // var_dump(array_column($endorseReviewRating['review'],'exp_id'));exit;
-                                        $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
+                                        
                                         if (isset($keyReviewExp)) {
                                             $checkReviewSame = $value['experience_id'] == $endorseReviewRating['review'][$keyReviewExp]['exp_id'];
                                             $checkReviewNotSame = $value['experience_id'] != $endorseReviewRating['review'][$keyReviewExp]['exp_id'];
@@ -998,6 +997,28 @@
                                             $modal_review = 'modal_reviewer_empty_experiences_'.$value['experience_id'];
                                         }else{
                                             $modal_review = 'modal_review_experience_list';
+                                        }
+                                        /*end review*/
+                                        /*start rating*/
+
+                                        $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
+
+                                        if (isset($keyRatingExp)) {
+                                            $checkRatingSame = $value['experience_id'] == $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
+                                            $checkRatingNotSame = $value['experience_id'] != $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
+                                            $countRater = count($keyRatingExp);
+                                        }else{
+                                            $checkRatingSame = false;
+                                            $checkRatingNotSame = true;
+                                            $countRatinger = 0;
+                                        }
+
+                                        if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
+                                            $modal_rate = 'modal_rated_empty_experiences_'.$value['experience_id'];
+                                        }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
+                                            $modal_rate = 'modal_rater_empty_experiences_'.$value['experience_id'];
+                                        }else{
+                                            $modal_rate = 'modal_rate_experience_list';
                                         }
 
                                         ?>
