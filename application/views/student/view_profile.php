@@ -896,51 +896,61 @@
                             <ul class="list-group list-border">
                                 <?php if(!empty($user_profile['academics'])){?>
                                     <?php foreach($user_profile['academics'] as $key => $value){
-                                        $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
-                                        $keyRatingEdu = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
 
-                                        $review_counter = countReviewerExp($value['academic_id']);
-                                        if (!is_bool($keyReviewExp)) {
-                                            $checkReviewSame = $value['academic_id'] == $endorseReviewRating['review'][$keyReviewExp]['skill_id'];
-                                            $checkReviewNotSame = $value['academic_id'] != $endorseReviewRating['review'][$keyReviewExp]['skill_id'];
-                                            $countReviewer = count($review_counter['experience']);
+                                        $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
+
+                                        $review_counter = countReviewerEducation($value['academic_id']);
+                                        if (!is_bool($keyReviewEdu)) {
+                                            $checkReviewSame = $value['academic_id'] == $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
+                                            $checkReviewNotSame = $value['academic_id'] != $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
+                                            $countReviewer = count($review_counter['education']);
                                         }else{
                                             $checkReviewSame = false;
                                             $checkReviewNotSame = true;
-                                            $countReviewer = count($review_counter['experience']);
+                                            $countReviewer = count($review_counter['education']);
                                         }
 
-                                        $checkIdExist = array_search($id, array_column($review_counter['experience'],'endorser_id'));
+                                        $review_counter = countReviewerEducation($value['academic_id']);
+                                        $checkIdExistEducation = array_search($id, array_column($review_counter['education'],'endorser_id'));
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
-                                            $modal_review = 'modal_reviewed_empty_experiences_'.$value['academic_id'];
+                                            $modal_review = 'modal_reviewed_empty_educations_'.$value['academic_id'];
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
-                                            $modal_review = 'modal_reviewer_empty_experiences_'.$value['academic_id'];
-                                        }else if($countReviewer > 0 && !is_bool($checkIdExist)){
-                                            $modal_review = 'modal_review_experience_list';
+                                            $modal_review = 'modal_reviewer_empty_educations_'.$value['academic_id'];
+                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducation)){
+                                            $modal_review = 'modal_review_education_list';
                                         }else{
                                             $modal_review = 'modal_list_reviewer_input';
                                         }
                                         /*end review*/
                                         /*start rating*/
+                                        $rate_education = countRateEducation($value['academic_id']);
+                                        $total_rating = 0;
+                                        foreach ($rate_education['education'] as $key => $rating) {
+                                            // var_dump($value[$i+1]['rating']);
+                                                $total_rating += $rating['rating'];
+                                        }
 
-                                        $keyRatingExp = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
-                                        $review_counter = countRateExp($value['academic_id']);
-                                        if (!is_bool($keyRatingExp)) {
+                                        $keyRatingEdu = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
+                                        $rating_counter = countRateEducation($value['academic_id']);
+                                        if (!is_bool($keyRatingEdu)) {
                                             $checkRatingSame = $value['academic_id'] == $endorseReviewRating['rate'][$keyRatingExp]['skill_id'];
                                             $checkRatingNotSame = $value['academic_id'] != $endorseReviewRating['rate'][$keyRatingExp]['skill_id'];
-                                            $countRater = count($keyRatingExp);
+                                            $countRater = count($rating_counter['education']);
                                         }else{
                                             $checkRatingSame = false;
                                             $checkRatingNotSame = true;
-                                            $countRater = 0;
+                                            $countRater = count($rating_counter['education']);
                                         }
 
+
                                         if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
-                                            $modal_rate = 'modal_rated_empty_experiences_'.$value['academic_id'];
+                                            $modal_rate = 'modal_rated_empty_educations_'.$value['academic_id'];
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
-                                            $modal_rate = 'modal_rater_empty_experiences_'.$value['academic_id'];
+                                            $modal_rate = 'modal_rater_empty_educations_'.$value['academic_id'];
+                                        }else if($countRater > 0 && !is_bool($checkIdExistEducation)){
+                                            $modal_rate = 'modal_rate_education_list';
                                         }else{
-                                            $modal_rate = 'modal_rate_experience_list';
+                                            $modal_rate = 'modal_list_rater_input';
                                         }
                                     ?>
                                     <!-- User View -->
@@ -953,22 +963,23 @@
                                                     if (!empty($id)) :
                                                         
                                                             if (!empty($keyRatingEdu)) : ?>
-                                                            <a href="#modal_readonlyrate_academic_<?= $value['academic_id']?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                4.5
+                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <?= $total_rating/count($rate_education['education']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#modal_readonlyrate_academic_<?= $value['academic_id'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <?= $total_rating/count($rate_education['education']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php endif; ?>
 
                                                             <?php if(!empty($keyReviewEdu)): ?>
-                                                            <a href="#modal_readonlyreview_academic_<?= $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#modal_readonlyreview_academic_<?= $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips review-list" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
                                                             <i class="icon-note"></i>
                                                             </a>
                                                             <?php endif; ?>  
@@ -1008,6 +1019,134 @@
                                         <p class="font-15-xs"><?= $value['degree_description']; ?></p>
                                     </li>
                                     
+                                    <div class="modal fade modal-open-noscroll " id="modal_rater_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <!-- [Change Title to it job position/ Field of study title] -->
+                                                    <h4 class="modal-title font-weight-500"> Rating -
+                                                        <!-- <small class="font-15-xs">Bachelor Degree In Software Engineering </small> -->
+                                                        <small class="font-15-xs"><?= $value['degree_name'];?> </small>
+                                                        <button data-dismiss="modal" class="close"></button>
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <!-- @if empty -->
+                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet-body text-center">
+                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
+                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h4>
+                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine rating about his/her information.</h5>
+                                                            </div>
+                                                        </div>
+                                                        <!-- @else -->
+                                                        <ul class="list-group list-borderless ">
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
+                                                                    </div>
+                                                                    <div class="media-body media-middle">
+                                                                        <h5 class="mb-0">
+                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
+                                                                        </h5>
+                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
+                                                                            <i class="icon-star"></i>
+                                                                        </small>
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                <div class="media">
+                                                                    <div class="media-left">
+                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
+                                                                    </div>
+                                                                    <div class="media-body media-middle">
+                                                                        <h5 class="mb-0">
+                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
+                                                                        </h5>
+                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
+                                                                            <i class="icon-star"></i>
+                                                                        </small>
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <!-- Load More.. [Limit to show by default 6 people] -->
+                                                            <li class="list-group-item">
+                                                                <div class="text-center">
+                                                                    <a href="" class="btn btn-default">Load More</a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal Footer -->
+                                                <div class="modal-footer md-grey lighten-4 g-text-left-xs">
+                                                    <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
+                                                        <div class="media-body media-middle">
+                                                            <input type="hidden" id="backing1Education" value="4.5" name="ratings">
+                                                            <input type="hidden" value="<?= $value['academic_id'];?>" name="skill_id">
+                                                            <input type="hidden" value="<?= $id;?>" name="endorser_id">
+                                                            <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
+                                                            <div id="rateit1Education" data-size="50"></div>
+                                                            <h5 class="text-none" id="value1Education">Rate this user</h5>
+                                                        </div>
+                                                        <div class="media-right media-middle">
+                                                            <button type="submit" class="btn btn-md-indigo">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+
+                                    <!-- Modal Reviewer -->
+                                        <div class="modal fade modal-open-noscroll " id="modal_reviewer_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <!-- [Change Title to it job position/ Field of study title] -->
+                                                        <h4 class="modal-title font-weight-500"> Review - 
+                                                            <small class="font-15-xs"><?= $value['degree_name'] ?> </small>
+                                                            <button data-dismiss="modal" class="close"></button>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                                <div class="portlet-body text-center">
+                                                                    <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                                                    <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer md-grey lighten-4">
+                                                        <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">
+                                                            <div class="form-group text-left mx-0 mb-2">
+                                                                <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>
+                                                                <input type="hidden" value="<?= $value['academic_id'];?>" name="skill_id">
+                                                                <input type="hidden" value="<?= $id;?>" name="endorser_id">
+                                                                <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
+                                                            </div>
+                                                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
+                                                            <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+
                                     <?php } ?>
                                 <?php }else{?>
                                     <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -1171,7 +1310,7 @@
                                 <!-- [Change Title to it job position/ Field of study title] -->
                                 <h4 class="modal-title font-weight-500"> Rating -
                                     <!-- <small class="font-15-xs">Bachelor Degree In Software Engineering </small> -->
-                                    <small class="font-15-xs">[Qualifications Level] , [Field of study] </small>
+                                    <small class="font-15-xs"><?= $value['experiences_title'];?> </small>
                                     <button data-dismiss="modal" class="close"></button>
                                 </h4>
                             </div>
@@ -1232,11 +1371,11 @@
                             <div class="modal-footer md-grey lighten-4 g-text-left-xs">
                                 <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
                                     <div class="media-body media-middle">
-                                        <input type="hidden" id="backing1Education" value="4.5" name="ratings">
+                                        <input type="hidden" id="backing1Experience" value="4.5" name="ratings">
                                         <input type="hidden" value="<?= $value['experience_id'];?>" name="exp_id">
                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                         <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
-                                        <div id="rateit1Education" data-size="50"></div>
+                                        <div id="rateit1Experience" data-size="50"></div>
                                         <h5 class="text-none" id="value1Education">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
@@ -1250,121 +1389,52 @@
                     <!-- /.modal-dialog -->
                 </div>
 
-                                    <!-- Modal Readonly Review -->
-                                    <div class="modal fade modal-open-noscroll " id="modal_review_experience_list_<?= $value['experience_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content ">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title font-weight-500"> Review -
-                                                        <small class="font-15-xs"><?= $value['experiences_title'];  ?> </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body  ">
-                                                    <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <div class="mt-comments-v2">
-                                                            <div class="mt-comment">
-                                                                <div class="mt-comment-img">
-                                                                    <img src="../assets/pages/media/users/avatar1.jpg"> </div>
-                                                                <div class="mt-comment-body">
-                                                                    <div class="mt-comment-info">
-                                                                        <a>
-                                                                            <span class="mt-comment-author">Michael Baker</span>
-                                                                        </a>
-                                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>
-                                                                        <span class="mt-comment-date">26 Feb, 10:30AM</span>
-                                                                    </div>
-                                                                    <div class="mt-comment-text ">Lorem iorem ipsum dolor sit amet consectetur adipisicing elit. Velit ratione doloribus distinctio dolorem, omnis praesentium eius explicabo ut natus beatae
-                                                                        ipsam incidunt tempora repellat iste sapiente, aperiam quae deserunt nostrum?
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="text-center">
-                                                                <a href="" class="btn btn-default">Load More</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
+                <!-- Modal Reviewer -->
+                <div class="modal fade modal-open-noscroll " id="modal_reviewer_empty_experiences_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- [Change Title to it job position/ Field of study title] -->
+                                <h4 class="modal-title font-weight-500"> Endorse - 
+                                    <small class="font-15-xs"><?= $value['experiences_title'] ?> </small>
+                                    <button data-dismiss="modal" class="close"></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
+                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
                                         </div>
-                                        <!-- /.modal-dialog -->
                                     </div>
-
-                                    <!-- Modal Readonly Rating -->
-                                    <div class="modal fade modal-open-noscroll " id="modal_readonlyrate_experience_<?= $value['experience_id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <!-- [Change Title to it job position/ Field of study title] -->
-                                                    <h4 class="modal-title font-weight-500"> Rating -
-                                                        <small class="font-15-xs">[Qualifications Level] , [Field of study] </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <!-- @if empty -->
-                                                        <div class="portlet px-4 py-8 md-shadow-none">
-                                                            <div class="portlet-body text-center">
-                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
-                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
-                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
-                                                            </div>
-                                                        </div>
-                                                        <!-- @else -->
-                                                        <ul class="list-group list-borderless ">
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- Load More.. [Limit to show by default 6 people] -->
-                                                            <li class="list-group-item">
-                                                                <div class="text-center">
-                                                                    <a href="" class="btn btn-default">Load More</a>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
                                     </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer md-grey lighten-4">
+                                <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">
+                                    <div class="form-group text-left mx-0 mb-2">
+                                        <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>
+                                        <input type="hidden" value="<?= $value['experience_id'];?>" name="exp_id">
+                                        <input type="hidden" value="<?= $id;?>" name="endorser_id">
+                                        <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
+                                        <span class="help-block">Please put genuine statement !</span>
+                                    </div>
+                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
+                                    <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+                                    
+
+                                    
                                     <?php } ?>
                                 <?php }else{?>
                                     <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -1730,9 +1800,34 @@
                 </div>
                 
                 <!-- Modal Review [CAn be used by Other User to review current user]-->
-                                    <div class="modal fade modal-open-noscroll " id="modal_list_reviewer_input" tabindex="-1" role="dialog" aria-hidden="true">
-                                        
-                                    </div>
+                <div class="modal fade modal-open-noscroll " id="modal_list_reviewer_input" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
+                <!-- Modal Rating -->
+                <div class="modal fade modal-open-noscroll " id="modal_list_rater_input" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
+                <!-- Modal review -->
+                <div class="modal fade modal-open-noscroll " id="modal_review_education_list" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
+                <!-- Modal review -->
+                <div class="modal fade modal-open-noscroll " id="modal_review_education_input" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
+                <!-- Modal rate -->
+                <div class="modal fade modal-open-noscroll " id="modal_rate_education_list" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
+                <!-- Modal rate -->
+                <div class="modal fade modal-open-noscroll " id="modal_rate_education_input" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
 
             </div>
         </div>
@@ -2042,6 +2137,300 @@
                             <div class="modal-content">\
                                 <div class="modal-header">\
                                     <h4 class="modal-title font-weight-500"> Review -\
+                                        <small class="font-15-xs">'+dataName+' </small>\
+                                    </h4>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="mt-comments-v2">\
+                                            '+reviews+'\
+                                            <div class="text-center">\
+                                                <a href="" class="btn btn-default">Load More</a>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer md-grey lighten-4">\
+                                </div>\
+                            </div>\
+                        </div>');
+                        
+                    }
+                })
+            });
+
+
+            $('.review-education-input').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('user-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/assets/img/student/';
+                var endorserId = $(this).attr('endorser-id');
+            
+                $.ajax({
+                    url:"<?= base_url();?>site/endorsment/getReview",
+                    method:"GET",
+                    data: {
+                      data_id: dataId,
+                      user_id: dataUserId,
+                      endorsedType: endorsedType,
+                    },
+
+                    success:function(response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student,function(i,v){
+                            reviews += '<div class="mt-comment">\
+                                                <div class="mt-comment-img">\
+                                                    <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                                <div class="mt-comment-body">\
+                                                    <div class="mt-comment-info">\
+                                                        <a>\
+                                                            <span class="mt-comment-author">'+v.fullname+'</span>\
+                                                        </a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <span class="mt-comment-date">'+v.created_at+'</span>\
+                                                    </div>\
+                                                    <div class="mt-comment-text">'+v.rating+'\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                        });
+ 
+                        $('#modal_review_education_input').html('<div class="modal-dialog modal-lg">\
+                            <div class="modal-content">\
+                                <div class="modal-header">\
+                                    <h4 class="modal-title font-weight-500"> Review -\
+                                        <small class="font-15-xs">'+dataName+' </small>\
+                                    </h4>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="mt-comments-v2">\
+                                            '+reviews+'\
+                                            <div class="text-center">\
+                                                <a href="" class="btn btn-default">Load More</a>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer md-grey lighten-4">\
+                                    <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
+                                        <div class="form-group text-left mx-0 mb-2">\
+                                            <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
+                                            <input type="hidden" name="exp_id" value="'+dataId+'"></input>\
+                                            <input type="hidden" name="endorser_id" value="'+endorserId+'"></input>\
+                                            <input type="hidden" name="user_id" value="'+dataUserId+'"></input>\
+                                            <span class="help-block">Please put genuine statement !</span>\
+                                        </div>\
+                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
+                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>\
+                                    </form>\
+                                </div\
+                            </div>\
+                        </div>');
+                        
+                    }
+                })
+            });
+
+            $('.review-education-list').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('user-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/xremo/assets/img/student/';
+
+            
+                $.ajax({
+                    url:"<?= base_url();?>site/endorsment/getReview",
+                    method:"GET",
+                    data: {
+                      data_id: dataId,
+                      user_id: dataUserId,
+                      endorsedType: endorsedType,
+                    },
+
+                    success:function(response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student,function(i,v){
+                            reviews += '<div class="mt-comment">\
+                                        <div class="mt-comment-img">\
+                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                        <div class="mt-comment-body">\
+                                            <div class="mt-comment-info">\
+                                                <a>\
+                                                    <span class="mt-comment-author">'+v.fullname+'</span>\
+                                                </a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <span class="mt-comment-date">'+v.created_at+'</span>\
+                                            </div>\
+                                            <div class="mt-comment-text">'+v.rating+'\
+                                            </div>\
+                                        </div>\
+                                    </div>';
+                        });
+
+                        $('#modal_review_education_list').html('<div class="modal-dialog modal-lg">\
+                            <div class="modal-content">\
+                                <div class="modal-header">\
+                                    <h4 class="modal-title font-weight-500"> Review -\
+                                        <small class="font-15-xs">'+dataName+' </small>\
+                                    </h4>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="mt-comments-v2">\
+                                            '+reviews+'\
+                                            <div class="text-center">\
+                                                <a href="" class="btn btn-default">Load More</a>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer md-grey lighten-4">\
+                                </div>\
+                            </div>\
+                        </div>');
+                        
+                    }
+                })
+            });
+
+
+/*Rate*/
+            $('.rate-education-input').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('endorsed-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/assets/img/student/';
+                var endorserId = $(this).attr('endorser-id');
+            
+                $.ajax({
+                    url:"<?= base_url();?>site/endorsment/getRate",
+                    method:"GET",
+                    data: {
+                      data_id: dataId,
+                      user_id: dataUserId,
+                      endorsedType: endorsedType,
+                    },
+
+                    success:function(response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student,function(i,v){
+                            reviews += '<div class="mt-comment">\
+                                                <div class="mt-comment-img">\
+                                                    <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                                <div class="mt-comment-body">\
+                                                    <div class="mt-comment-info">\
+                                                        <a>\
+                                                            <span class="mt-comment-author">'+v.fullname+'</span>\
+                                                        </a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <span class="mt-comment-date">'+v.created_at+'</span>\
+                                                    </div>\
+                                                    <div class="mt-comment-text">'+v.rating+'\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                        });
+ 
+                        $('#modal_rate_education_input').html('<div class="modal-dialog modal-lg">\
+                            <div class="modal-content">\
+                                <div class="modal-header">\
+                                    <h4 class="modal-title font-weight-500"> Rate -\
+                                        <small class="font-15-xs">'+dataName+' </small>\
+                                    </h4>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="mt-comments-v2">\
+                                            '+reviews+'\
+                                            <div class="text-center">\
+                                                <a href="" class="btn btn-default">Load More</a>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer md-grey lighten-4">\
+                                    <form action="<?= base_url(); ?>site/endorsment/rate" class="form form-horizontal" method="POST">\
+                                        <div class="form-group text-left mx-0 mb-2">\
+                                            <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
+                                            <input type="hidden" name="exp_id" value="'+dataId+'"></input>\
+                                            <input type="hidden" name="endorser_id" value="'+endorserId+'"></input>\
+                                            <input type="hidden" name="user_id" value="'+dataUserId+'"></input>\
+                                            <span class="help-block">Please put genuine statement !</span>\
+                                        </div>\
+                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
+                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>\
+                                    </form>\
+                                </div\
+                            </div>\
+                        </div>');
+                        
+                    }
+                })
+            });
+
+            $('.rate-education-list').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('endorsed-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/xremo/assets/img/student/';
+
+            
+                $.ajax({
+                    url:"<?= base_url();?>site/endorsment/getRate",
+                    method:"GET",
+                    data: {
+                      data_id: dataId,
+                      user_id: dataUserId,
+                      endorsedType: endorsedType,
+                    },
+
+                    success:function(response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student,function(i,v){
+                            reviews += '<div class="mt-comment">\
+                                        <div class="mt-comment-img">\
+                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                        <div class="mt-comment-body">\
+                                            <div class="mt-comment-info">\
+                                                <a>\
+                                                    <span class="mt-comment-author">'+v.fullname+'</span>\
+                                                </a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <span class="mt-comment-date">'+v.created_at+'</span>\
+                                            </div>\
+                                            <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
+                                                <i class="icon-star"></i>\
+                                            </small>\
+                                        </div>\
+                                    </div>';
+                        });
+
+                        $('#modal_rate_education_list').html('<div class="modal-dialog modal-lg">\
+                            <div class="modal-content">\
+                                <div class="modal-header">\
+                                    <h4 class="modal-title font-weight-500"> Rate -\
                                         <small class="font-15-xs">'+dataName+' </small>\
                                     </h4>\
                                 </div>\

@@ -296,7 +296,7 @@ function countRateExp($params){
 function countRateEducation($params){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $reviewDataEducation = array('exp_id'=> $params);
+    $reviewDataEducation = array('skill_id'=> $params);
     $review['education']= $CI->global_model->get_where('ratings', $reviewDataEducation);
     return $review;
 }

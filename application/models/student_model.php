@@ -589,6 +589,18 @@ class Student_Model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    function get_ratings($data){
+
+        $this->db->select('ratings.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, profile_uploads.type');
+        $this->db->from('ratings');
+        $this->db->join('users', 'ratings.user_id = users.id','left');
+        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
+        $this->db->where($data);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
 ?>
