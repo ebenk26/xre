@@ -1175,6 +1175,7 @@
                                             $countReviewer = count($review_counter['experience']);
                                         }
 
+
                                         $checkIdExist = array_search($id, array_column($review_counter['experience'],'endorser_id'));
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_review = 'modal_reviewed_empty_experiences_'.$value['experience_id'];
@@ -1188,24 +1189,35 @@
                                         /*end review*/
                                         /*start rating*/
 
+                                        $rate_experience = countRateExp($value['experience_id']);
+
+                                        $total_rating = 0;
+                                        foreach ($rate_experience['experience'] as $key => $rating) {
+                                            // var_dump($value[$i+1]['rating']);
+                                                $total_rating += $rating['rating'];
+                                        }
+
                                         $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
-                                        $review_counter = countRateExp($value['experience_id']);
+                                        $rating_counter = countRateExp($value['experience_id']);
                                         if (!is_bool($keyRatingExp)) {
                                             $checkRatingSame = $value['experience_id'] == $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
                                             $checkRatingNotSame = $value['experience_id'] != $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
-                                            $countRater = count($keyRatingExp);
+                                            $countRater = count($rating_counter['experience']);
                                         }else{
                                             $checkRatingSame = false;
                                             $checkRatingNotSame = true;
-                                            $countRater = 0;
+                                            $countRater = count($rating_counter['experience']);
                                         }
 
+
                                         if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
-                                            $modal_rate = 'modal_rated_empty_experiences_'.$value['experience_id'];
+                                            $modal_rate = 'modal_rated_empty_experience_'.$value['experience_id'];
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
-                                            $modal_rate = 'modal_rater_empty_experiences_'.$value['experience_id'];
-                                        }else{
+                                            $modal_rate = 'modal_rater_empty_experience_'.$value['experience_id'];
+                                        }else if($countRater > 0 && !is_bool($checkIdExist)){
                                             $modal_rate = 'modal_rate_experience_list';
+                                        }else{
+                                            $modal_rate = 'modal_list_rater_input';
                                         }
 
                                         ?>
@@ -1220,35 +1232,36 @@
                                                     if (!empty($id)):
                                                         if (!empty($keyReviewExp)) :?>
                                                             <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
-                                                            <a href="#modal_rate_experience_<?= $value['experience_id']?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                4.5
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <?= $total_rating/count($rate_experience['experience']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me ">5
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
-                                                            <a href="#modal_rate_experience_<?= $value['experience_id']?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <?= $total_rating/count($rate_experience['experience']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php else: ?>
-                                                            <a href="#modal_rate_experience_<?= $value['experience_id']?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                4.5
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <?= $total_rating/count($rate_experience['experience']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php endif; ?>
                                                     <?php else: ?>
-                                                            <a href="#modal_rate_experience_<?= $value['experience_id']?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center " data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                4.5
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <?= $total_rating/count($rate_experience['experience']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                     <?php endif; ?>
@@ -1303,7 +1316,7 @@
                                     
 
                                     <!-- Modal Rate -->
-                <div class="modal fade modal-open-noscroll " id="modal_rate_experience_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal fade modal-open-noscroll " id="modal_rater_empty_experience_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -1324,47 +1337,6 @@
                                             <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine rating about his/her information.</h5>
                                         </div>
                                     </div>
-                                    <!-- @else -->
-                                    <ul class="list-group list-borderless ">
-                                        <li class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                </div>
-                                                <div class="media-body media-middle">
-                                                    <h5 class="mb-0">
-                                                        <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                    </h5>
-                                                    <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                        <i class="icon-star"></i>
-                                                    </small>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                </div>
-                                                <div class="media-body media-middle">
-                                                    <h5 class="mb-0">
-                                                        <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                    </h5>
-                                                    <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                        <i class="icon-star"></i>
-                                                    </small>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!-- Load More.. [Limit to show by default 6 people] -->
-                                        <li class="list-group-item">
-                                            <div class="text-center">
-                                                <a href="" class="btn btn-default">Load More</a>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                             <!-- Modal Footer -->
@@ -1376,7 +1348,7 @@
                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                         <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
                                         <div id="rateit1Experience" data-size="50"></div>
-                                        <h5 class="text-none" id="value1Education">Rate this user</h5>
+                                        <h5 class="text-none" id="value1Experience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
                                         <button type="submit" class="btn btn-md-indigo">Submit</button>
@@ -1794,6 +1766,11 @@
                     
                 </div>
 
+                <!-- Modal rate -->
+                <div class="modal fade modal-open-noscroll " id="modal_rate_experience_list" tabindex="-1" role="dialog" aria-hidden="true">
+                    
+                </div>
+
                 <!-- Modal review -->
                 <div class="modal fade modal-open-noscroll " id="modal_review_experience_list" tabindex="-1" role="dialog" aria-hidden="true">
                     
@@ -2092,7 +2069,7 @@
                 })
             });
 
-            $('.review-list').click(function(){
+            $('.review-experience-list').click(function(){
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('user-id');
                 var dataName = $(this).attr('data-name');
@@ -2453,6 +2430,74 @@
                 })
             });
         });
+
+        $('.rate-experience-list').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('endorsed-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/xremo/assets/img/student/';
+
+            
+                $.ajax({
+                    url:"<?= base_url();?>site/endorsment/getRate",
+                    method:"GET",
+                    data: {
+                      data_id: dataId,
+                      user_id: dataUserId,
+                      endorsedType: endorsedType,
+                    },
+
+                    success:function(response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student,function(i,v){
+                            reviews += '<div class="mt-comment">\
+                                        <div class="mt-comment-img">\
+                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                        <div class="mt-comment-body">\
+                                            <div class="mt-comment-info">\
+                                                <a>\
+                                                    <span class="mt-comment-author">'+v.fullname+'</span>\
+                                                </a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <span class="mt-comment-date">'+v.created_at+'</span>\
+                                            </div>\
+                                            <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
+                                                <i class="icon-star"></i>\
+                                            </small>\
+                                        </div>\
+                                    </div>';
+                        });
+
+                        $('#modal_rate_experience_list').html('<div class="modal-dialog modal-lg">\
+                            <div class="modal-content">\
+                                <div class="modal-header">\
+                                    <h4 class="modal-title font-weight-500"> Rate -\
+                                        <small class="font-15-xs">'+dataName+' </small>\
+                                    </h4>\
+                                </div>\
+                                <div class="modal-body">\
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="mt-comments-v2">\
+                                            '+reviews+'\
+                                            <div class="text-center">\
+                                                <a href="" class="btn btn-default">Load More</a>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="modal-footer md-grey lighten-4">\
+                                </div>\
+                            </div>\
+                        </div>');
+                        
+                    }
+                })
+            });
 
         $(function () {
             $('#rateit7').rateit({
