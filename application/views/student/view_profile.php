@@ -1069,47 +1069,6 @@
                                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine rating about his/her information.</h5>
                                                             </div>
                                                         </div>
-                                                        <!-- @else -->
-                                                        <ul class="list-group list-borderless ">
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="list-group-item">
-                                                                <div class="media">
-                                                                    <div class="media-left">
-                                                                        <img src="../assets/pages/img/avatars/team11.jpg" alt="" class="avatar avatar-mini avatar-circle avatar-border-sm">
-                                                                    </div>
-                                                                    <div class="media-body media-middle">
-                                                                        <h5 class="mb-0">
-                                                                            <a href="student-view-profile.html" class="font-weight-600"> Avril Lavigne</a>
-                                                                        </h5>
-                                                                        <small class="text-none font-13-xs mt-1">give rating 3.5 out of 5
-                                                                            <i class="icon-star"></i>
-                                                                        </small>
-
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <!-- Load More.. [Limit to show by default 6 people] -->
-                                                            <!-- <li class="list-group-item">
-                                                                <div class="text-center">
-                                                                    <a href="" class="btn btn-default">Load More</a>
-                                                                </div>
-                                                            </li> -->
-                                                        </ul>
                                                     </div>
                                                 </div>
                                                 <!-- Modal Footer -->
@@ -1133,6 +1092,38 @@
                                         </div>
                                         <!-- /.modal-dialog -->
                                     </div>
+
+
+                                    <div class="modal fade modal-open-noscroll " id="modal_rated_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <!-- [Change Title to it job position/ Field of study title] -->
+                                                    <h4 class="modal-title font-weight-500"> Rating -
+                                                        <!-- <small class="font-15-xs">Bachelor Degree In Software Engineering </small> -->
+                                                        <small class="font-15-xs"><?= $value['degree_name'];?> </small>
+                                                        <button data-dismiss="modal" class="close"></button>
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <!-- @if empty -->
+                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet-body text-center">
+                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
+                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
+                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
+                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+
 
                                     <!-- Modal Reviewer -->
                                         <div class="modal fade modal-open-noscroll " id="modal_reviewer_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1362,6 +1353,35 @@
                                         </ul>
                                     </li>
                                     
+                                    <div class="modal fade modal-open-noscroll " id="modal_rated_empty_experience_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <!-- [Change Title to it job position/ Field of study title] -->
+                                                    <h4 class="modal-title font-weight-500"> Rating -
+                                                        <!-- <small class="font-15-xs">Bachelor Degree In Software Engineering </small> -->
+                                                        <small class="font-15-xs"><?= $value['experiences_title'];?> </small>
+                                                        <button data-dismiss="modal" class="close"></button>
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <!-- @if empty -->
+                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet-body text-center">
+                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
+                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
+                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
+                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
 
                                     <!-- Modal Rate -->
                 <div class="modal fade modal-open-noscroll " id="modal_rater_empty_experience_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
@@ -2027,6 +2047,14 @@
                             </div>\
                             <div class="modal-body">\
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">\
+                                    <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                     <ul class="list-unstyled">\
                                     '+endorser+'\
                                     </ul>\
@@ -2089,6 +2117,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2164,6 +2200,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2229,6 +2273,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2304,6 +2356,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2370,6 +2430,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2446,6 +2514,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2512,6 +2588,14 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
+                                        <div class="portlet px-4 py-8 md-shadow-none">\
+                                            <div class="portlet-body text-center">\
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                            </div>\
+                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
