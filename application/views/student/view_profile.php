@@ -933,7 +933,7 @@
                                         }else if($countReviewer > 0 && !is_bool($checkIdExistEducationReview)){
                                             $modal_review = 'modal_review_education_list';
                                         }else{
-                                            $modal_review = 'modal_list_reviewer_input';
+                                            $modal_review = 'modal_review_education_input';
                                         }
 
                                         /*end review*/
@@ -983,17 +983,17 @@
                                                     <?php 
                                                     if (!empty($id)) :
                                                             if (!empty($keyRatingEdu)) : ?>
-                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                                 <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                             <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php else: ?>
-                                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                                 <?= $totalRating; ?>
                                                                     <i class="icon-star text-center"></i>
                                                                 </a>
@@ -1104,11 +1104,11 @@
                                                                 </div>
                                                             </li>
                                                             <!-- Load More.. [Limit to show by default 6 people] -->
-                                                            <li class="list-group-item">
+                                                            <!-- <li class="list-group-item">
                                                                 <div class="text-center">
                                                                     <a href="" class="btn btn-default">Load More</a>
                                                                 </div>
-                                                            </li>
+                                                            </li> -->
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -2091,9 +2091,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2169,9 +2166,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2190,7 +2184,7 @@
                 var dataUserId = $(this).attr('user-id');
                 var dataName = $(this).attr('data-name');
                 var endorsedType = $(this).attr('endorse-type');
-                var image_directory = window.location.origin+'/assets/img/student/';
+                var image_directory = window.location.origin+'/xremo/assets/img/student/';
                 var endorserId = $(this).attr('endorser-id');
             
                 $.ajax({
@@ -2237,9 +2231,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2315,9 +2306,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2384,9 +2372,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2463,9 +2448,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
@@ -2532,9 +2514,6 @@
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
-                                            <div class="text-center">\
-                                                <a href="" class="btn btn-default">Load More</a>\
-                                            </div>\
                                         </div>\
                                     </div>\
                                 </div>\
