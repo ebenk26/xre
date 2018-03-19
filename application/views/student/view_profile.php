@@ -967,6 +967,12 @@
                                         }else{
                                             $modal_rate = 'modal_list_rater_input';
                                         }
+
+                                        if ($total_rating > 0 && !empty($rate_education['education'])) {
+                                            $totalRating = $total_rating/count($rate_education['education']);
+                                        }else{
+                                            $totalRating = $total_rating;      
+                                        }
                                     ?>
                                     <!-- User View -->
                                     <li class="list-group-item  ">
@@ -978,17 +984,17 @@
                                                     if (!empty($id)) :
                                                             if (!empty($keyRatingEdu)) : ?>
                                                             <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                <?= $total_rating/count($rate_education['education']); ?>
+                                                                <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
                                                             <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                            <?= $total_rating/count($rate_education['education']); ?>
+                                                            <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php else: ?>
                                                                 <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                <?= $total_rating/count($rate_education['education']); ?>
+                                                                <?= $totalRating; ?>
                                                                     <i class="icon-star text-center"></i>
                                                                 </a>
                                                             <?php endif; ?>
@@ -1256,6 +1262,12 @@
                                             $modal_rate = 'modal_list_rater_input';
                                         }
 
+                                        if ($total_rating > 0 && !empty($rate_experience['experience'])) {
+                                            $totalRating = $total_rating/count($rate_experience['experience']);
+                                        }else{
+                                            $totalRating = $total_rating;      
+                                        }
+                                        
                                         ?>
                                     <li class="list-group-item  ">
                                         <div class="media">
@@ -1269,7 +1281,7 @@
                                                         if (!empty($keyReviewExp)) :?>
                                                             <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
                                                             <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                            <?= $total_rating/count($rate_experience['experience']); ?>
+                                                            <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer ;?>
@@ -1277,7 +1289,7 @@
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
                                                             <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                            <?= $total_rating/count($rate_experience['experience']); ?>
+                                                            <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer ;?>
@@ -1285,7 +1297,7 @@
                                                             </a>
                                                             <?php else: ?>
                                                             <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                <?= $total_rating/count($rate_experience['experience']); ?>
+                                                                <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
@@ -1294,7 +1306,7 @@
                                                             <?php endif; ?>
                                                     <?php else: ?>
                                                             <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
-                                                                <?= $total_rating/count($rate_experience['experience']); ?>
+                                                                <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>"><?= $countReviewer ;?>
