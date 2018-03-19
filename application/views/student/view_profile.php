@@ -969,9 +969,9 @@
                                         }
 
                                         if ($total_rating > 0 && !empty($rate_education['education'])) {
-                                            $totalRating = $total_rating/count($rate_education['education']);
+                                            $totalRating = round($total_rating/count($rate_education['education']),1);
                                         }else{
-                                            $totalRating = $total_rating;      
+                                            $totalRating = round($total_rating,1);      
                                         }
                                     ?>
                                     <!-- User View -->
@@ -1263,9 +1263,9 @@
                                         }
 
                                         if ($total_rating > 0 && !empty($rate_experience['experience'])) {
-                                            $totalRating = $total_rating/count($rate_experience['experience']);
+                                            $totalRating = round($total_rating/count($rate_experience['experience']),1);
                                         }else{
-                                            $totalRating = $total_rating;      
+                                            $totalRating = round($total_rating,1);      
                                         }
                                         
                                         ?>
