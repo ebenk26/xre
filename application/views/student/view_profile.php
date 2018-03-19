@@ -165,12 +165,12 @@
                                             <a href="<?= base_url(); ?><?= $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-home mr-3"></i>Dashboard</a>
                                         </li>
-										<?php if ($roles !='administrator') {?>
+                                        <?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?= base_url(); ?><?= $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-note mr-3"></i>Edit Profile</a>
                                         </li>
-										<?php } ?>
+                                        <?php } ?>
                                         <?php if ($roles !='employer' && $roles !='administrator') {?>
                                             <li>
                                                 <a href="<?= base_url(); ?>profile/user/<?= rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
@@ -184,12 +184,12 @@
                                             </a>
                                         </li>
                                         <?php }?>
-										<?php if ($roles !='administrator') {?>
+                                        <?php if ($roles !='administrator') {?>
                                         <li>
                                             <a href="<?= base_url(); ?><?= $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
                                                 <i class="icon-calendar mr-3"></i>My Calendar</a>
                                         </li>
-										<?php } ?>
+                                        <?php } ?>
                                         <li class="divider"></li>
                                         <li>
                                             <a href="<?= base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
@@ -279,13 +279,13 @@
                                         <i class="fa fa-twitter g-font-size-20-xs social-tw"></i>
                                     </a>
                                 </li>
-								
+                                
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-3  col-xs-12 text-center">
-					<img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
+                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle ">
                     <li hidden>
                         <!-- <h5 class="md-white-text font-weight-700 text-uppercase letter-space-xs">
                             Share:
@@ -398,10 +398,10 @@
 
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
-                            <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>									
-								<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-4" target="_blank">
-											<i class="icon-envelope mr-2 "></i>Send Message</a>
-							<?php }?>                                        
+                            <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>                                    
+                                <a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-4" target="_blank">
+                                            <i class="icon-envelope mr-2 "></i>Send Message</a>
+                            <?php }?>                                        
                         </li>
                         <li>
                             <h5 class="font-weight-700 font-grey-gallery mb-0 font-13-xs text-uppercase">Gender</h5>
@@ -432,7 +432,7 @@
                         </li>
                         <?php } ?>
                         <?php if(!empty($roles) && ($roles == 'employer' || $this->session->userdata('id') == $user_profile['overview']['id_users'])){ ?>
-						<li>
+                        <li>
                             <h5 class="font-weight-700  font-grey-gallery mb-0 font-13-xs text-uppercase">Phone Number</h5>
                             <p class="mt-1 "><?= !empty($user_profile['overview']['student_bios_contact_number']) ?  $user_profile['overview']['student_bios_contact_number'] : '-'; ?>
                                 <!--<span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>-->
@@ -1000,7 +1000,7 @@
                                                             <?php endif; ?>
 
                                                             <?php if(!empty($keyReviewEdu)): ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
+                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
@@ -2216,14 +2216,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2354,7 +2346,6 @@
                                         </div>\
                                     </div>';
                         });
-
                         $('#modal_review_education_list').html('<div class="modal-dialog modal-lg">\
                             <div class="modal-content">\
                                 <div class="modal-header">\
@@ -2364,14 +2355,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2514,14 +2497,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2588,14 +2563,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
