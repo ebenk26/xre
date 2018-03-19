@@ -1113,7 +1113,7 @@
                                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
                                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1372,7 +1372,7 @@
                                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
                                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1608,7 +1608,7 @@
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
                                                                     <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
-                                                                    <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                    <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1780,7 +1780,7 @@
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
                                                                     <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>
-                                                                    <a href="" class="btn btn-md-indigo">Invite My Friends</a>
+                                                                    <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1872,6 +1872,38 @@
                 <!-- Modal rate -->
                 <div class="modal fade modal-open-noscroll " id="modal_rate_education_input" tabindex="-1" role="dialog" aria-hidden="true">
                     
+                </div>
+
+                <!-- Modal Endorser -->
+                <div class="modal fade modal-open-noscroll " id="invite_friends" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <!-- [Change Title to it job position/ Field of study title] -->
+                                <h4 class="modal-title font-weight-500"> Invite Friends
+                                    <button data-dismiss="modal" class="close"></button>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                        <form action="<?= base_url(); ?>site/endorsment/invite" class="form form-horizontal" method="POST">
+                                            <div class="form-group text-left mx-0 mb-2">
+                                                <textarea name="email_address" id="" class="form-control" rows="5" placeholder="Invite your friends email with comma as separated key e.g abcd@email.com, efgh@email.com"></textarea>
+                                            </div>
+                                            <input type="hidden" name="username" value="<?= $this->session->userdata('name');?>"></input>
+                                            <input type="hidden" name="user_id" value="<?= $segmented_uri;?>"></input>
+                                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
+                                            <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
                 </div>
 
             </div>
@@ -2052,7 +2084,7 @@
                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                             </div>\
                                         </div>\
                                     <ul class="list-unstyled">\
@@ -2117,14 +2149,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2205,7 +2229,7 @@
                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                             </div>\
                                         </div>\
                                         <div class="mt-comments-v2">\
@@ -2273,14 +2297,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2361,7 +2377,7 @@
                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                             </div>\
                                         </div>\
                                         <div class="mt-comments-v2">\
@@ -2430,14 +2446,6 @@
                                 </div>\
                                 <div class="modal-body">\
                                     <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                         <div class="mt-comments-v2">\
                                             '+reviews+'\
                                         </div>\
@@ -2519,7 +2527,7 @@
                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                             </div>\
                                         </div>\
                                         <div class="mt-comments-v2">\
@@ -2593,7 +2601,7 @@
                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
                                                 <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a href="" class="btn btn-md-indigo">Invite My Friends</a>\
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                             </div>\
                                         </div>\
                                         <div class="mt-comments-v2">\

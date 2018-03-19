@@ -193,4 +193,27 @@ class Endorsment extends CI_Controller {
         redirect(base_url().'profile/user/'.base64_encode($this->input->post('endorsed_id')));
     }
 
+    public function invite(){
+        $email      = explode(',', trim($this->input->post('email_address')));
+        $user_name  = $this->input->post('username');
+        $user_id    = $this->input->post('user_id');
+        foreach ($email as $key => $userMail) {
+            $MailContent = array(   
+                                "sender_name"       => $user_name,
+                                'url'               => "profile/user/$user_id"
+                            );
+            $subject        = "You have new message from ".$user_name;
+            $messageHtml    = $this->load->view("mail/invite_endorse",$MailContent,true);
+            $MailData = array(  
+                            "sender_email"      => EMAIL_SYSTEM,
+                            "receiver_email"    => trim($userMail),
+                            'subject'           => $subject,
+                            'message_html'      => $messageHtml
+                        );
+            sendEmail($MailData);
+        }
+
+        redirect(base_url().'profile/user/'.$user_id);
+    }
+
 }
