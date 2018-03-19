@@ -66,7 +66,6 @@ class Endorsment extends CI_Controller {
             $data = array(  'endorsed_user_id'  => $this->input->get('user_id'),
                             'user_project_id'    => $this->input->get('data_id') );
         }
-
         $endorsed_user = $this->student_model->get_endorser($data);
         $i=0;
         foreach ($endorsed_user as $key => $value) {

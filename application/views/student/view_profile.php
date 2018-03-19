@@ -3,10 +3,13 @@
         $roles= $this->session->userdata('roles');
         $segmented_uri = $this->uri->segment(3);
         $percentage_completion = ($roles == 'employer') ? (ProfileCompletion($employer_profile) >= 90) : (studentProfileCompletion($id) >= 70);
-        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
-                                    'endorsed'=> base64_decode($segmented_uri)));
+        if ($id != base64_decode($segmented_uri)) {
+            $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
+                                        'endorsed'=> base64_decode($segmented_uri)));
+        }else{
+            $endorseReviewRating = EndorseReviewRating(array('endorsed'=> base64_decode($segmented_uri)));
+        }
         $reviewerUser = AllUserReviewer(array('endorsed'=> base64_decode($segmented_uri)));
-        // var_dump($endorseReviewRating);exit;
 
         $data_arr['roles'] = $roles;
         $data_arr['user_profile'] = $user_profile;
@@ -1176,7 +1179,12 @@
                                         }
 
 
-                                        $checkIdExist = array_search($id, array_column($review_counter['experience'],'endorser_id'));
+
+                                        if ($id != base64_decode($segmented_uri)) {
+                                            $checkIdExist = array_search($id, array_column($review_counter['experience'],'endorser_id'));
+                                        }else{
+                                            $checkIdExist = array_search($id, array_column($review_counter['experience'],'user_id'));
+                                        }  
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_review = 'modal_reviewed_empty_experiences_'.$value['experience_id'];
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
@@ -1199,6 +1207,14 @@
 
                                         $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
                                         $rating_counter = countRateExp($value['experience_id']);
+                                        
+
+                                        if ($id != base64_decode($segmented_uri)) {
+                                            $checkIdRatingExist = array_search($id, array_column($rating_counter['experience'],'endorser_id'));
+                                        }else{
+                                            $checkIdRatingExist = array_search($id, array_column($rating_counter['experience'],'user_id'));
+                                        }                                        
+
                                         if (!is_bool($keyRatingExp)) {
                                             $checkRatingSame = $value['experience_id'] == $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
                                             $checkRatingNotSame = $value['experience_id'] != $endorseReviewRating['rate'][$keyRatingExp]['exp_id'];
@@ -1214,7 +1230,7 @@
                                             $modal_rate = 'modal_rated_empty_experience_'.$value['experience_id'];
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_rate = 'modal_rater_empty_experience_'.$value['experience_id'];
-                                        }else if($countRater > 0 && !is_bool($checkIdExist)){
+                                        }else if($countRater > 0 && !is_bool($checkIdRatingExist)){
                                             $modal_rate = 'modal_rate_experience_list';
                                         }else{
                                             $modal_rate = 'modal_list_rater_input';
@@ -1473,7 +1489,7 @@
 
                                                     <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                         
-                                                        <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
+                                                        <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" data-name="<?= $value['achievement_title']; ?>" data-id="<?= $value['achievement_id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
                                                             <i class="icon-user"></i>
                                                             <?= $countEndorser; ?> Endorser
                                                         </a>

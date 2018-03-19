@@ -223,16 +223,28 @@ function EndorseReviewRating($params)
 {
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $endorseData = array('endorser_user_id'=> $params['endorser'],
-                'endorsed_user_id'=> $params['endorsed']);
+    if (!empty($params['endorser'])) {
+        $endorseData = array('endorser_user_id'=> $params['endorser'],
+                    'endorsed_user_id'=> $params['endorsed']);
+    }else{
+        $endorseData = array('endorsed_user_id'=> $params['endorsed']);
+    }
     $profile['endorse']= $CI->global_model->get_where('endorse', $endorseData);
 
-    $reviewData = array('endorser_id'=> $params['endorser'],
-                'user_id'=> $params['endorsed']);
+    if (!empty($params['endorser'])) {
+        $reviewData = array('endorser_id'=> $params['endorser'],
+                    'user_id'=> $params['endorsed']);
+    }else{
+        $reviewData = array('user_id'=> $params['endorsed']);
+    }
     $profile['review']= $CI->global_model->get_where('reviews', $reviewData);
 
-    $rateData = array('user_id_rater'=> $params['endorser'],
+    if (!empty($params['endorser'])) {
+        $rateData = array('user_id_rater'=> $params['endorser'],
                 'user_id'=> $params['endorsed']);
+    }else{
+        $rateData = array('user_id'=> $params['endorsed']);
+    }
     $profile['rate']= $CI->global_model->get_where('user_rate', $rateData);
     return $profile;
 }
