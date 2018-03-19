@@ -914,16 +914,28 @@
                                         }
 
                                         $review_counter = countReviewerEducation($value['academic_id']);
-                                        $checkIdExistEducation = array_search($id, array_column($review_counter['education'],'endorser_id'));
+                                        if ($id != base64_decode($segmented_uri)) {
+                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'endorser_id'));
+                                        }else{
+                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'user_id'));
+                                        }
+
+                                        if ($id != base64_decode($segmented_uri)) {
+                                            $checkIdExistEducationRate = array_search($id, array_column($review_counter['education'],'endorser_id'));
+                                        }else{
+                                            $checkIdExistEducationRate = array_search($id, array_column($review_counter['education'],'user_id'));
+                                        }
+
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_review = 'modal_reviewed_empty_educations_'.$value['academic_id'];
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_review = 'modal_reviewer_empty_educations_'.$value['academic_id'];
-                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducation)){
+                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducationReview)){
                                             $modal_review = 'modal_review_education_list';
                                         }else{
                                             $modal_review = 'modal_list_reviewer_input';
                                         }
+
                                         /*end review*/
                                         /*start rating*/
                                         $rate_education = countRateEducation($value['academic_id']);
@@ -950,7 +962,7 @@
                                             $modal_rate = 'modal_rated_empty_educations_'.$value['academic_id'];
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_rate = 'modal_rater_empty_educations_'.$value['academic_id'];
-                                        }else if($countRater > 0 && !is_bool($checkIdExistEducation)){
+                                        }else if($countRater > 0 && !is_bool($checkIdExistEducationRate)){
                                             $modal_rate = 'modal_rate_education_list';
                                         }else{
                                             $modal_rate = 'modal_list_rater_input';
@@ -964,7 +976,6 @@
                                                 <div class="btn-group">
                                                     <?php 
                                                     if (!empty($id)) :
-                                                        
                                                             if (!empty($keyRatingEdu)) : ?>
                                                             <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
                                                                 <?= $total_rating/count($rate_education['education']); ?>
@@ -975,6 +986,11 @@
                                                             <?= $total_rating/count($rate_education['education']); ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
+                                                            <?php else: ?>
+                                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_reviewer_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me ">
+                                                                <?= $total_rating/count($rate_education['education']); ?>
+                                                                    <i class="icon-star text-center"></i>
+                                                                </a>
                                                             <?php endif; ?>
 
                                                             <?php if(!empty($keyReviewEdu)): ?>
@@ -985,6 +1001,10 @@
                                                             <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
                                                             <i class="icon-note"></i>
                                                             </a>
+                                                            <?php else: ?>
+                                                                <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "><?= $countReviewer?>
+                                                                <i class="icon-note"></i>
+                                                                </a>
                                                             <?php endif; ?>  
                                                 <?php else: ?>
                                                         <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
