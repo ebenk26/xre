@@ -2079,14 +2079,6 @@
                             </div>\
                             <div class="modal-body">\
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">\
-                                    <div class="portlet px-4 py-8 md-shadow-none">\
-                                            <div class="portlet-body text-center">\
-                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                            </div>\
-                                        </div>\
                                     <ul class="list-unstyled">\
                                     '+endorser+'\
                                     </ul>\
