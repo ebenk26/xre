@@ -88,10 +88,10 @@ class Endorsment extends CI_Controller {
     public function getReview(){
         $type = $this->input->get('endorsedType');
          if ($type == 'experience') {
-            $data = array(  'reviews.user_id'  => base64_decode($this->input->get('user_id')),
+            $data = array(  'reviews.user_id'  => $this->input->get('user_id'),
                             'reviews.exp_id'    => $this->input->get('data_id') );
         }else{
-            $data = array(  'reviews.user_id'  => base64_decode($this->input->get('user_id')),
+            $data = array(  'reviews.user_id'  => $this->input->get('user_id'),
                             'reviews.skill_id'    => $this->input->get('data_id') );
         }
         $reviewed_user = $this->student_model->get_review($data);
@@ -112,10 +112,10 @@ class Endorsment extends CI_Controller {
     public function getRate(){
         $type = $this->input->get('endorsedType');
          if ($type == 'experience') {
-            $data = array(  'ratings.user_id'  => base64_decode($this->input->get('user_id')),
+            $data = array(  'ratings.user_id'  => $this->input->get('user_id'),
                             'ratings.exp_id'    => $this->input->get('data_id') );
         }else{
-            $data = array(  'ratings.user_id'  => base64_decode($this->input->get('user_id')),
+            $data = array(  'ratings.user_id'  => $this->input->get('user_id'),
                             'ratings.skill_id'    => $this->input->get('data_id') );
         }
         $rating_user = $this->student_model->get_ratings($data);

@@ -103,7 +103,7 @@
                                                                                 <div class="col-md-4 text-right font-weight-700">
                                                                                     Job Position
                                                                                 </div>
-                                                                                <div class="col-md-8 text-uppercase font-weight-600">
+                                                                                <div class="col-md-8 text-uppercase font-weight-600" style="height: 19px;">
                                                                                     <?php echo $value['job_name'] ?>
                                                                                 </div>
                                                                             </li>
