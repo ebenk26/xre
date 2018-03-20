@@ -1063,7 +1063,7 @@
                                                 <div class="modal-body">
                                                     <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty -->
-                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                        <div class="portlet px-4 py-5 md-shadow-none">
                                                             <div class="portlet-body text-center">
                                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h4>
@@ -1109,7 +1109,7 @@
                                                 <div class="modal-body">
                                                     <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty -->
-                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                        <div class="portlet px-4 py-5 md-shadow-none">
                                                             <div class="portlet-body text-center">
                                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
@@ -1138,7 +1138,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>
@@ -1167,8 +1167,8 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
-                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
+                                                                <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to review </h4>
@@ -1300,36 +1300,36 @@
                                                     if (!empty($id)):
                                                         if (!empty($keyReviewExp)) :?>
                                                             <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                             <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user = "<?= $checkUser?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user = "<?= $checkUser?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-name="<?= $value['experiences_title']; ?>"  data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-name="<?= $value['experiences_title']; ?>"  data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                             <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user = "<?= $checkUser?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user = "<?= $checkUser?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php else: ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>"  endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>"  endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                                 <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user = "<?= $checkUser?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user = "<?= $checkUser?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                             <?php endif; ?>
                                                     <?php else: ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-name="<?= $value['experiences_title']; ?>"  data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input';?>" data-name="<?= $value['experiences_title']; ?>"  data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                                 <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= $segmented_uri; ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user = "<?= $checkUser?>"><?= $countReviewer ;?>
+                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "  endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user = "<?= $checkUser?>"><?= $countReviewer ;?>
                                                                 <i class="icon-note"></i>
                                                             </a>
                                                     <?php endif; ?>
@@ -1396,7 +1396,7 @@
                                                 <div class="modal-body">
                                                     <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty -->
-                                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                                        <div class="portlet px-4 py-5 md-shadow-none">
                                                             <div class="portlet-body text-center">
                                                                 <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                                                 <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
@@ -1427,7 +1427,7 @@
                             <div class="modal-body">
                                 <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
                                     <!-- @if empty -->
-                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                    <div class="portlet px-4 py-5 md-shadow-none">
                                         <div class="portlet-body text-center">
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h4>
@@ -1471,8 +1471,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <div class="portlet px-4 py-8 md-shadow-none">
-                                        <div class="portlet px-4 py-8 md-shadow-none">
+                                    <div class="portlet px-4 py-5 md-shadow-none">
+                                        <div class="portlet px-4 py-5 md-shadow-none">
                                         <div class="portlet-body text-center">
                                             <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to review </h4>
@@ -1632,7 +1632,7 @@
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- @if empty (User View)-->
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
@@ -1661,8 +1661,8 @@
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- @if empty (User View)-->
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
-                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
+                                                                <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
@@ -1804,7 +1804,7 @@
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- @if empty (User View)-->
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h4>
@@ -1833,8 +1833,8 @@
                                                     <div class="modal-body">
                                                         <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- @if empty (User View)-->
-                                                            <div class="portlet px-4 py-8 md-shadow-none">
-                                                                <div class="portlet px-4 py-8 md-shadow-none">
+                                                            <div class="portlet px-4 py-5 md-shadow-none">
+                                                                <div class="portlet px-4 py-5 md-shadow-none">
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h4>
@@ -1945,7 +1945,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="scroller mt-height-400-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <div class="portlet px-4 py-8 md-shadow-none">
+                                    <div class="portlet px-4 py-5 md-shadow-none">
                                         <form action="<?= base_url(); ?>site/endorsment/invite" class="form form-horizontal" method="POST">
                                             <div class="form-group text-left mx-0 mb-2">
                                                 <textarea name="email_address" id="" class="form-control" rows="5" placeholder="Invite your friends email with comma as separated key e.g abcd@email.com, efgh@email.com"></textarea>
@@ -2101,7 +2101,7 @@
                 var user = $(this).attr('user');
 
                 if (user == 'same_user') {
-                    invitation =    '<div class="portlet px-4 py-8 md-shadow-none">\
+                    invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
@@ -2249,7 +2249,7 @@
                 var user = $(this).attr('user');
 
                 if (user == 'same_user') {
-                    invitation =    '<div class="portlet px-4 py-8 md-shadow-none">\
+                    invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
@@ -2404,7 +2404,7 @@
                 var user = $(this).attr('user');
 
                 if (user == 'same_user') {
-                    invitation =    '<div class="portlet px-4 py-8 md-shadow-none">\
+                    invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
@@ -2449,6 +2449,7 @@
                                         </div>\
                                     </div>';
                         });
+
                         $('#modal_review_education_list').html('<div class="modal-dialog modal-lg">\
                             <div class="modal-content">\
                                 <div class="modal-header">\
@@ -2588,7 +2589,7 @@
                 var user = $(this).attr('user');
 
                 if (user == 'same_user') {
-                    invitation =    '<div class="portlet px-4 py-8 md-shadow-none">\
+                    invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
@@ -2669,7 +2670,7 @@
                 var user = $(this).attr('user');
 
                 if (user == 'same_user') {
-                    invitation =    '<div class="portlet px-4 py-8 md-shadow-none">\
+                    invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
