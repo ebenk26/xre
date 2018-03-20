@@ -2075,7 +2075,7 @@
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
                                             <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                         </div>\
                                     </div>\
@@ -2223,7 +2223,7 @@
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
                                             <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                         </div>\
                                     </div>\
@@ -2378,7 +2378,7 @@
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                            <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
                                             <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                         </div>\
                                     </div>\
