@@ -568,11 +568,13 @@ class Student_Model extends CI_Model{
 
     function get_endorser($data){
 
-        $this->db->select('endorse.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, profile_uploads.type');
+        $this->db->select('endorse.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, roles.slug as roles, profile_uploads.type');
         $this->db->from('endorse');
         $this->db->join('users', 'endorse.endorser_user_id = users.id','left');
         $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
         $query = $this->db->get();
         return $query->result_array();
@@ -580,11 +582,13 @@ class Student_Model extends CI_Model{
 
     function get_review($data){
 
-        $this->db->select('reviews.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, profile_uploads.type');
+        $this->db->select('reviews.*, users.id, users.fullname, user_profiles.company_name as company_name, profile_uploads.name as profile_photo, roles.slug as roles, profile_uploads.type');
         $this->db->from('reviews');
-        $this->db->join('users', 'reviews.user_id = users.id','left');
-        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('users', 'reviews.endorser_id = users.id','left');
+        $this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
         $query = $this->db->get();
         return $query->result_array();
@@ -592,11 +596,13 @@ class Student_Model extends CI_Model{
 
     function get_ratings($data){
 
-        $this->db->select('ratings.*, users.id, users.fullname, user_profiles.company_name, profile_uploads.name as profile_photo, profile_uploads.type');
+        $this->db->select('ratings.*, users.id, users.fullname, user_profiles.company_name as company_name, profile_uploads.name as profile_photo, roles.slug as roles, profile_uploads.type');
         $this->db->from('ratings');
-        $this->db->join('users', 'ratings.user_id = users.id','left');
-        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('users', 'ratings.endorser_id = users.id','left');
+        $this->db->join('user_profiles', 'user_profiles.user_id = users.id', 'left');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
+        $this->db->join('user_role', 'user_role.user_id = users.id');
+        $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
         $query = $this->db->get();
         return $query->result_array();
