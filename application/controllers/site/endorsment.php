@@ -78,6 +78,7 @@ class Endorsment extends CI_Controller {
                                         'fullname'              =>  $value['fullname'],
                                         'company_name'          =>  $value['company_name'],
                                         'profile_photo'         =>  $value['profile_photo'],
+                                        'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;
@@ -99,9 +100,10 @@ class Endorsment extends CI_Controller {
         foreach ($reviewed_user as $key => $value) {
             $reviewed[$i] = array(      'id'                    =>  $value['id'],
                                         'created_at'            =>  time_elapsed_string($value['created_at']),
-                                        'fullname'              =>  $value['fullname'],
+                                        'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
                                         'profile_photo'         =>  $value['profile_photo'],
                                         'rating'                =>  $value['rating'],
+                                        'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;
@@ -121,11 +123,12 @@ class Endorsment extends CI_Controller {
         $rating_user = $this->student_model->get_ratings($data);
         $i=0;
         foreach ($rating_user as $key => $value) {
-            $rating[$i] = array(      'id'                    =>  $value['id'],
+            $rating[$i] = array(        'id'                    =>  $value['id'],
                                         'created_at'            =>  time_elapsed_string($value['created_at']),
-                                        'fullname'              =>  $value['fullname'],
+                                        'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
                                         'profile_photo'         =>  $value['profile_photo'],
                                         'rating'                =>  $value['rating'],
+                                        'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;

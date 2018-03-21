@@ -914,7 +914,7 @@
                                             $countReviewer = count($review_counter['education']);
                                         }
 
-                                        $review_counter = countReviewerEducation($value['academic_id']);
+                                        $review_counter = countRateEducation($value['academic_id']);
                                         if ($id != base64_decode($segmented_uri)) {
                                             $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'endorser_id'));
                                         }else{
@@ -961,12 +961,16 @@
 
                                         if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_rate = 'modal_rated_empty_educations_'.$value['academic_id'];
+                                            $class = 'rate-education-list';
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
-                                            $modal_rate = 'modal_rater_empty_educations_'.$value['academic_id'];
+                                            $modal_rate = 'modal_rater_empty_educations';
+                                            $class = 'rate-education-input-empty';
                                         }else if($countRater > 0 && !is_bool($checkIdExistEducationRate)){
                                             $modal_rate = 'modal_rate_education_list';
+                                            $class = 'rate-education-list';
                                         }else{
                                             $modal_rate = 'modal_list_rater_input';
+                                            $class = 'rate-education-input';
                                         }
 
                                         if ($total_rating > 0 && !empty($rate_education['education'])) {
@@ -984,17 +988,17 @@
                                                     <?php 
                                                     if (!empty($id)) :
                                                             if (!empty($keyRatingEdu)) : ?>
-                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>"  >
+                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>"  >
                                                                 <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                             <?= $totalRating; ?>
                                                                 <i class="icon-star text-center"></i>
                                                             </a>
                                                             <?php else: ?>
-                                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_list_rater_input') ? 'rate-education-input' : 'rate-education-list';?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
+                                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user = "<?= $checkUser?>">
                                                                 <?= $totalRating; ?>
                                                                     <i class="icon-star text-center"></i>
                                                                 </a>
@@ -1049,52 +1053,7 @@
                                         <p class="font-15-xs"><?= $value['degree_description']; ?></p>
                                     </li>
                                     
-                                    <div class="modal fade modal-open-noscroll " id="modal_rater_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <!-- [Change Title to it job position/ Field of study title] -->
-                                                    <h4 class="modal-title font-weight-500"> Rating -
-                                                        <!-- <small class="font-15-xs">Bachelor Degree In Software Engineering </small> -->
-                                                        <small class="font-15-xs"><?= $value['degree_name'];?> </small>
-                                                        <button data-dismiss="modal" class="close"></button>
-                                                    </h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
-                                                        <!-- @if empty -->
-                                                        <div class="portlet px-4 py-5 md-shadow-none">
-                                                            <div class="portlet-body text-center">
-                                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
-                                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h4>
-                                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine rating about his/her information.</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Modal Footer -->
-                                                <div class="modal-footer md-grey lighten-4 g-text-left-xs">
-                                                    <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
-                                                        <div class="media-body media-middle">
-                                                            <input type="hidden" id="backing1Education" value="4.5" name="ratings">
-                                                            <input type="hidden" value="<?= $value['academic_id'];?>" name="skill_id">
-                                                            <input type="hidden" value="<?= $id;?>" name="endorser_id">
-                                                            <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
-                                                            <div id="rateit1Education" data-size="50"></div>
-                                                            <h5 class="text-none" id="value1Education">Rate this user</h5>
-                                                        </div>
-                                                        <div class="media-right media-middle">
-                                                            <button type="submit" class="btn btn-md-indigo">Submit</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-
-
+                                    
                                     <div class="modal fade modal-open-noscroll " id="modal_rated_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -1939,6 +1898,46 @@
                                 </div>
                             </div>
                         </div>
+                </div>   
+
+                <!-- Modal Rating -->
+                <div class="modal fade modal-open-noscroll " id="modal_rater_empty_educations" tabindex="-1" role="dialog" aria-hidden="true">
+                   <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title font-weight-500"> Rate -
+                                        <small class="font-15-xs" id="dataNameExp">Experience </small>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="scroller mt-height-250-xs mt-height-400-md" data-always-visible="1" data-rail-visible1="1">
+                                        <div class="portlet px-4 py-5 md-shadow-none">
+                                            <div class="portlet-body text-center">
+                                                <i class="icon-star font-grey-mint font-40-xs mb-4"></i>
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
+                                                <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
+                                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                            </div>\
+                                        </div>\
+                                    </div>
+                                </div>
+                                <div class="modal-footer md-grey lighten-4 g-text-left-xs">
+                                    <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
+                                        <div class="media-body media-middle">
+                                            <input type="hidden" id="backing3inputExperience" value="4.5" name="ratings">
+                                            <input type="hidden" id="dataIdExp" name="skill_id">
+                                            <input type="hidden" id="endorserIdExp" name="endorser_id">
+                                            <input type="hidden" id="dataUserIdExp" name="endorsed_id">
+                                            <div id="rateit3inputExperience" data-size="50"></div>
+                                            <h5 class="text-none" id="value3inputExperience">Rate this user</h5>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <button type="submit" class="btn btn-md-indigo">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                 </div>                
 
                 <!-- Modal review -->
@@ -2132,7 +2131,7 @@
                     invitation =    '<div class="portlet px-4 py-5 md-shadow-none">\
                                         <div class="portlet-body text-center">\
                                             <i class="icon-star font-grey-mint font-40-xs mb-4"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to endorse you! </h4>\
                                             <h5 class="text-center  font-grey-cascade mt-1 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
                                             <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                                         </div>\
@@ -2225,7 +2224,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2314,7 +2313,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2380,7 +2379,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2469,7 +2468,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <div class="mt-comment-text">'+v.rating+'\
@@ -2536,7 +2535,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2588,7 +2587,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2606,6 +2605,22 @@
                         
                     }
                 })
+            });
+
+            $('.rate-education-input-empty').click(function(){
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('endorsed-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin+'/assets/img/student/';
+                var endorserId = $(this).attr('endorser-id');
+
+                $('#modal_rater_empty_educations #dataNameExp').text(dataName);
+                $('#modal_rater_empty_educations #reviews').html(reviews);
+                $('#modal_rater_empty_educations #dataIdExp').val(dataId);
+                $('#modal_rater_empty_educations #dataUserIdExp').val(dataUserId);
+                $('#modal_rater_empty_educations #endorserIdExp').val(endorserId);
+                
             });
             
             $('.rate-education-list').click(function(){
@@ -2654,7 +2669,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
@@ -2735,7 +2750,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="#">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
@@ -2816,6 +2831,19 @@
 
             $("#rateit2inputExperience").bind('rated', function (event, value) {
                 $('#value2inputExperience').text('Are you sure give  this user rating : ' + value + ' out of 5');
+            });
+        });
+
+        $(function () {
+            $('#rateit3inputExperience').rateit({
+                max: 5,
+                step: 0.25,
+                backingfld: '#backing3inputExperience',
+                resetable: false
+            });    
+
+            $("#rateit3inputExperience").bind('rated', function (event, value) {
+                $('#value3inputExperience').text('Are you sure give  this user rating : ' + value + ' out of 5');
             });
         });
     </script>
