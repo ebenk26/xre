@@ -586,7 +586,7 @@ class Profile extends CI_Controller {
         //GALLERY
         $this->db->select('*');
         $this->db->from('gallery');
-        $this->db->where('user_id', $this->session->userdata('id'));
+        $this->db->where('user_id', $id);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         $gallery = $query->result_array();
