@@ -536,12 +536,13 @@
                                             <?php $tag = explode(',', $value['achievement_tag']);
                                             $label = array("label-primary","label-md-indigo","label-md-blue-grey","label-md-orange","label-md-green");
                                             shuffle($label);
+                                            $i = 0;
                                             foreach ($tag as $tag_key => $tag_value) { 
-
+                                                    ($tag_key >= 5) ? $tag_key = 0: $tag_key = $tag_key;
                                                 ?>
                                                 <span class="label <?php echo $label[$tag_key]; ?> mx-1"><?php echo $tag_value; ?></span>
 
-                                             <?php } ?>
+                                             <?php $tag_key++; } ?>
                                         </h4>
                                     </div>
                                 </div>
@@ -863,11 +864,11 @@
                                             $label = array("label-primary","label-md-indigo","label-md-blue-grey","label-md-orange","label-md-green");
                                             shuffle($label);
                                             foreach ($tag as $tag_key => $tag_value) { 
-                                                    ($tag_key == 5) ? $tag_key = 0: $tag_key = $tag_key;
+                                                    ($tag_key >= 5) ? $tag_key = 0: $tag_key = $tag_key;
                                                 ?>
                                                 <span class="label <?php echo $label[$tag_key]; ?> mx-1"><?php echo $tag_value; ?></span>
 
-                                             <?php } ?>
+                                             <?php $tag_key ++;} ?>
                                         </h5>
                                     </div>
                                 </div>
