@@ -25,7 +25,8 @@
 		{
 			 $response = array(
 				"status" => 'error',
-				"message" => 'ERROR Return Code: '. $_FILES["img"]["error"],
+				//"message" => 'ERROR Return Code: '. $_FILES["img"]["error"],
+				"message" => 'something went wrong, most likely file is to large for upload.'
 			);			
 		}
 	  else

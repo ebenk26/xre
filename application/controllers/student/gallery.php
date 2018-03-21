@@ -186,7 +186,8 @@ class Gallery extends CI_Controller {
             {
                  $response = array(
                     "status" => 'error',
-                    "message" => 'ERROR Return Code: '. $_FILES["img"]["error"],
+                    //"message" => 'ERROR Return Code: '. $_FILES["img"]["error"],
+                    "message" => 'something went wrong, most likely file is too large for upload.'
                 );          
             }
           else
@@ -195,8 +196,11 @@ class Gallery extends CI_Controller {
               $filename = $_FILES["img"]["tmp_name"];
               list($width, $height) = getimagesize( $filename );
 
+              $new_name = preg_replace('/\s+/', '', $_FILES["img"]["name"]);
+
               //.'_'.md5($this->input->post('student_name'))
-              $profile_photo = $this->session->userdata('id').'_'.date('YmdHi').'_'.$_FILES["img"]["name"];
+              //$profile_photo = $this->session->userdata('id').'_'.date('YmdHi').'_'.$_FILES["img"]["name"];
+              $profile_photo = $this->session->userdata('id').'_'.date('YmdHi').'_'.$new_name;
               $targetFile =  $imagePath . $profile_photo;
 
               //move_uploaded_file($filename,  $imagePath . $_FILES["img"]["name"]);
@@ -263,6 +267,12 @@ class Gallery extends CI_Controller {
                 $type = '.png';
                 break;
             case 'image/jpeg':
+                $img_r = imagecreatefromjpeg($imgUrl);
+                $source_image = imagecreatefromjpeg($imgUrl);
+                error_log("jpg");
+                $type = '.jpeg';
+                break;
+            case 'image/jpg':
                 $img_r = imagecreatefromjpeg($imgUrl);
                 $source_image = imagecreatefromjpeg($imgUrl);
                 error_log("jpg");

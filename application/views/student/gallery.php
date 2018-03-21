@@ -102,6 +102,7 @@
             </div>
         <?php } ?>
 
+        <!-- EDIT -->
         <div class="modal fade in" id="modal_edit" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content portlet light">
@@ -174,7 +175,7 @@
             </div>
         </div>
 
-        <!-- Modal : Add / Edit Education -->
+        <!-- Modal : Add  -->
             <div class="modal fade in" id="modal_add" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content portlet light">
@@ -223,6 +224,15 @@
                                         <div class="form-group">
                                             <label class="control-label col-md-3">Photo</label>
                                             <div class="col-md-9">
+                                                <div class="note note-warning">
+                                                    <h4 class="block">Note!</h4>
+                                                    <ul>
+                                                        <li>File type : JPG, PNG</li>
+                                                        <li>Max size : 1 MB</li>
+                                                        <li>After choosing image, you can drag the image before cropping to get the best part to be shown</li>
+                                                        <li>At the end don't forget to click the Crop Button <img src="<?=base_url()?>assets/img/gallery_nav.jpg"/></li>
+                                                    </ul>
+                                                </div>
                                                 <div id="yourId" class="form-control"></div>
                                                 <input type="hidden" name="photo" id="myOutputId">
                                                 <input type="hidden" name="id" value="0">
