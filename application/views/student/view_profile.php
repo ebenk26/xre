@@ -1131,7 +1131,7 @@
                                                                 <div class="portlet-body text-center">
                                                                     <i class="icon-users font-grey-mint font-40-xs mb-4"></i>
                                                                     <h4 class="text-center font-weight-500 font-grey-mint text-none">Be the first to review </h4>
-                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine endorsement about his/her information.</h5>
+                                                                    <h5 class="text-center  font-grey-cascade mt-1 text-none">Give a genuine review about his/her information.</h5>
                                                                 </div>
                                                             </div>
                                                             </div>
