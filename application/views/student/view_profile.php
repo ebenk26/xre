@@ -2219,7 +2219,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2302,13 +2302,13 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img src="'+v.profile_photo+'"> </div>\
+                                                    <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'" > </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2374,7 +2374,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2463,7 +2463,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <div class="mt-comment-text">'+v.rating+'\
@@ -2530,7 +2530,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2582,7 +2582,7 @@
                                                         <a>\
                                                             <span class="mt-comment-author">'+v.fullname+'</span>\
                                                         </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                         <span class="mt-comment-date">'+v.created_at+'</span>\
                                                     </div>\
                                                     <div class="mt-comment-text">'+v.rating+'\
@@ -2681,7 +2681,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
@@ -2762,7 +2762,7 @@
                                                 <a>\
                                                     <span class="mt-comment-author">'+v.fullname+'</span>\
                                                 </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="https://xremo.com/'+v.link+'">View Profile</a>\
+                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="'+v.link+'">View Profile</a>\
                                                 <span class="mt-comment-date">'+v.created_at+'</span>\
                                             </div>\
                                             <small class="text-none font-13-xs mt-1">give rating '+v.rating+' out of 5\
