@@ -77,7 +77,7 @@ class Endorsment extends CI_Controller {
                                         'user_project_id'       =>  $value['user_project_id'],
                                         'fullname'              =>  $value['fullname'],
                                         'company_name'          =>  $value['company_name'],
-                                        'profile_photo'         =>  $value['profile_photo'],
+                                        'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : (($value['roles']=='employer') ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'),
                                         'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
@@ -101,7 +101,7 @@ class Endorsment extends CI_Controller {
             $reviewed[$i] = array(      'id'                    =>  $value['id'],
                                         'created_at'            =>  time_elapsed_string($value['created_at']),
                                         'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
-                                        'profile_photo'         =>  $value['profile_photo'],
+                                        'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
                                         'rating'                =>  $value['rating'],
                                         'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
@@ -126,7 +126,7 @@ class Endorsment extends CI_Controller {
             $rating[$i] = array(        'id'                    =>  $value['id'],
                                         'created_at'            =>  time_elapsed_string($value['created_at']),
                                         'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
-                                        'profile_photo'         =>  $value['profile_photo'],
+                                        'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
                                         'rating'                =>  $value['rating'],
                                         'link'                  =>  ($value['roles'] == 'employer') ? 'profile/company/'.rtrim(base64_encode($value['id']),'=') : 'profile/student/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);

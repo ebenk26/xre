@@ -2154,7 +2154,7 @@
                         $.each(student,function(i,v){
                             endorser +=    '<li class="media media-middle">\
                                                 <div class="pull-left">\
-                                                    <img src="'+image_directory+v.profile_photo+'" alt="" class="avatar avatar-xtramini avatar-circle">\
+                                                    <img src="'+v.profile_photo+'" alt="" class="avatar avatar-xtramini avatar-circle">\
                                                 </div>\
                                                 <div class="media-body">\
                                                     <div class="media-heading small font-weight-600 text-uppercase mb-1">'+v.fullname+'</div>\
@@ -2213,7 +2213,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img src="'+image_directory+v.profile_photo+'"> </div>\
+                                                    <img src="'+v.profile_photo+'" class="avatar avatar-xtramini avatar-circle"> </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
@@ -2302,7 +2302,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img src="'+image_directory+v.profile_photo+'"> </div>\
+                                                    <img src="'+v.profile_photo+'"> </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
@@ -2368,7 +2368,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                                    <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
@@ -2457,7 +2457,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                         <div class="mt-comment-img">\
-                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                            <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                         <div class="mt-comment-body">\
                                             <div class="mt-comment-info">\
                                                 <a>\
@@ -2524,7 +2524,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                                    <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
@@ -2576,7 +2576,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                                 <div class="mt-comment-img">\
-                                                    <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                                    <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                                 <div class="mt-comment-body">\
                                                     <div class="mt-comment-info">\
                                                         <a>\
@@ -2675,7 +2675,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                         <div class="mt-comment-img">\
-                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                            <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                         <div class="mt-comment-body">\
                                             <div class="mt-comment-info">\
                                                 <a>\
@@ -2756,7 +2756,7 @@
                         $.each(student,function(i,v){
                             reviews += '<div class="mt-comment">\
                                         <div class="mt-comment-img">\
-                                            <img style="width:40px;" src="'+image_directory+v.profile_photo+'"> </div>\
+                                            <img class="avatar avatar-xtramini avatar-circle" src="'+v.profile_photo+'"> </div>\
                                         <div class="mt-comment-body">\
                                             <div class="mt-comment-info">\
                                                 <a>\
