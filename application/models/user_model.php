@@ -54,24 +54,15 @@ class User_Model extends CI_Model{
         
         $message = $this->load->view("mail/sign_up",$receiver,true);
 
-        
-        //config email settings
-        /*$config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.gmail.com';
-        $config['smtp_port'] = '465';
-        $config['smtp_user'] = 'kartaterazu27@gmail.com';
-        $config['smtp_pass'] = 'darethord140614';  //sender's password
-        $config['charset'] = 'iso-8859-1';
-        $config['newline'] = "\r\n";*/ 
-
         $config['mailtype'] = 'html';
         $config['priority'] = 2;
         $config['wordwrap'] = TRUE;
         
         $this->load->library('email', $config);
-        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        //$this->email->initialize($config);
         //send email
-        $this->email->from($from);
+        $this->email->from('system@xremo.com');
         $this->email->to($receiver['email']);
         $this->email->subject($subject);
         $this->email->message($message);
@@ -82,7 +73,14 @@ class User_Model extends CI_Model{
             return false;
         }
         
-       
+        //config email settings
+        /*$config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = 'kartaterazu27@gmail.com';
+        $config['smtp_pass'] = 'darethord140614';  //sender's password
+        $config['charset'] = 'iso-8859-1';
+        $config['newline'] = "\r\n";*/ 
     }
 
     function forgotPassword($email){
@@ -105,7 +103,8 @@ class User_Model extends CI_Model{
             $config['wordwrap'] = TRUE;
             
             $this->load->library('email', $config);
-            $this->email->initialize($config);
+            $this->email->set_mailtype("html");
+            //$this->email->initialize($config);
             //send email
             $this->email->from('system@xremo.com');
             $this->email->to($email);

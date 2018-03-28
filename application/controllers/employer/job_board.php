@@ -491,7 +491,7 @@ class Job_Board extends CI_Controller {
             $subject        = "[Interview Invitation] from ".$userMail["sender_name"];
 
             $MailData = array(  
-                            "sender_email"      => "system@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml

@@ -229,7 +229,7 @@ class Candidate extends CI_Controller {
             $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." accept to reschedule the interview";
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml
@@ -273,7 +273,7 @@ class Candidate extends CI_Controller {
             $subject        = "[RESCHEDULE INTERVIEW] ".$userMail["sender_name"]." rejected to reschedule the interview";
 
             $MailData = array(  
-                            "sender_email"      => "support@xremo.com",
+                            "sender_email"      => EMAIL_SYSTEM,
                             "receiver_email"    => $userMail["receiver_email"],
                             'subject'           => $subject,
                             'message_html'      => $messageHtml

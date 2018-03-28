@@ -204,7 +204,8 @@ function sendEmail($params)
     $CI =& get_instance();
     
     $CI->load->library('email', $config);
-    $CI->email->initialize($config);
+    $CI->email->set_mailtype("html");
+    //$CI->email->initialize($config);
 
     //send email
     $CI->email->from($from);
