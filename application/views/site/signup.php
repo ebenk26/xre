@@ -84,7 +84,7 @@
     <div class="user-login-5">
         <div class="row bs-reset ">
             <!-- col-form -->
-            <div class="col-md-6 login-container bs-reset">
+            <div class="col-md-6 login-container bs-reset" style="min-height: 102vh;">
                 <div class="m-grid ">
                     <div class="m-grid-col  m-grid-col-center ">
                         <a href="<?=base_url()?>"><img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:68px;"></a>
@@ -92,22 +92,53 @@
                 </div>
                 <div class="login-content portlet">
                     <div class="portlet portlet-body text-center">
-                        <h4 class="font-weight-500 md-grey-text text-darken-2 mb-2 text-uppercase">Signup </h4>
-                        <p class="lead mb-2 font-20-xs">Select your user account to proceed</p>
+                        <!-- <h4 class="font-weight-500 md-grey-text text-darken-2 mb-2 text-uppercase">Student </h4> -->
+                        <!-- <p class="lead mb-2 font-20-xs">Select your user account to proceed</p> -->
                         <div class="clearfix"></div>
                         <!-- Button Toggle : Select User -->
                         <div class="btn-group mb-3" data-toggle="buttons">
-                            <a class="btn btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
-                                <input type="radio"> Student</a>
+                            <!-- <a class="btn btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
+                                <input type="radio"> Student</a> -->
                             <!--<a class="btn btn-circle btn-outline-md-indigo px-4" href="<?php echo base_url(); ?>site/user/signup#jobseekerUser" data-toggle="tab" id="jobseekerRadio">
                                 <input type="radio"> Jobseeker</a>-->
-                            <a class="btn btn-outline-md-indigo px-4 " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio"> 
-                                <input type="radio"> Employer </a>
+                            <!-- <a class="btn btn-outline-md-indigo px-4 " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio"> 
+                                <input type="radio"> Employer </a> -->
                         </div>
                         <!-- Tab Content : Form Signup User  -->
                         <div class="tab-content">
+                        	<div class="m-grid " id="studentContent">
+		                        <div class="m-grid-col m-grid-col-middle  ">
+		                            <div class="portlet portlet-body px-7">
+		                                <h1 class="font-weight-500 display-3">Student Feature </h1>
+		                                <p class="font-18"> Xremo empowers students in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
+		                                <ul class="list-unstyled">
+		                                    <li>
+		                                        <p class="font-weight-600">Feature</p>
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                            <div class="portlet portlet-body px-7" style="text-align: center">
+			                       	<a class="btn btn-outline-md-indigo px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio"><i class="fa fa-user"></i><br/> Sign up as Student</a>
+			                       	</div>
+		                        </div>
+		                    </div>
                             <!-- Form User : Student -->
-                            <div class="tab-pane active" id="studentUser">
+                            <div class="tab-pane" id="studentUser">
                                 <form method="POST" action="<?php echo base_url(); ?>site/user/student_signup_post" class="form-horizontal" id="studentUserForm">
                                     <div class="form-body">
                                         <!-- Input : Fullname -->
@@ -177,79 +208,74 @@
                                     </div>
                                 </form>
                             </div>
-                            <!-- Form User : Jobseeker -->
-                            <div class="tab-pane " id="jobseekerUser">
-                                <form method="POST" action="<?php echo base_url(); ?>site/user/jobseeker_signup_post" class="form-horizontal" id="jobseekerUserForm">
-                                    <div class="form-body">
-                                        <!-- Input : Fullname -->
-                                        <div class="form-group form-md-line-input  mb-1 ">
-                                            <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="fullname" id="fullname_jobseeker" type="text" class="form-control " placeholder="FullName">
-                                                <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('fullname'); ?></span>
-                                            </div>
-                                        </div>
-                                        <!-- Input : Email -->
-                                        <div class="form-group form-md-line-input mb-1 ">
-                                            <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="email" id="email_jobseeker" type="email" class="form-control " placeholder="Email Address">
-                                                <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('email'); ?></span>
-                                            </div>
-                                        </div>
-                                        <!-- Input : Password -->
-                                        <div class="form-group form-md-line-input  mb-1">
-                                            <div class="col-md-8 col-md-offset-2  ">
-                                                <input name="password" id="password_jobseeker" type="password" class="pass-strength-jobseeker form-control " placeholder="Password">
-                                                <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('password'); ?></span>
-                                            </div>
-                                        </div>
-                                        <!-- Input : Password -->
-                                        <div class="form-group form-md-line-input  mb-1 password-strength-bar-jobseeker" style="display:none;">
-                                            <div class="col-md-8 col-md-offset-2  ">
-                                                <div class="progress progress-striped active mb-0">
-                                                  <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
-                                                    <span class="sr-only">0% CompletePoor</span>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Input : Confirm Password -->
-                                        <div class="form-group form-md-line-input  mb-1">
-                                            <div class="col-md-8 col-md-offset-2 ">
-                                                <input name="confirm_password" id="confirm_password_jobseeker" type="password" class="form-control " placeholder="Confirm Password">
-                                                <div class="form-control-focus"> </div>
-                                                <span class="text-danger"><?php echo form_error('confirm_password'); ?></span>
-                                            </div>
-                                        </div>
-                                        <!-- Checkbox : I Agree -->
-                                        <div class="form-group form-md-line-input  my-3">
-                                            <div class="col-md-8 col-md-offset-2 ">
-												<div class="md-checkbox-list md-checkbox md-indigo-box">
-                                                    <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
-													<input type="checkbox" name="terms" id="checkboxregisterjobseeker" class="md-check" required>
-                                                    <label for="checkboxregisterjobseeker" class="ml-1">
-                                                        <span></span>
-                                                        <span class="check"></span>
-                                                        <span class="box"></span> I agree with all the
-                                                        <a href="<?=base_url()?>terms-of-use" target="_blank">terms of use </a> and
-                                                        <a href="<?=base_url()?>privacy" target="_blank"> privacy policy</a>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Button : Submit -->
-                                        <div class="form-group mt-3 ">
-                                            <div class="col-md-offset-2 col-md-8 ">
-                                                <button type="submit" class="btn btn-block btn-md-indigo">Submit</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="login-footer">
+                    <div class="row bs-reset">
+                        <div class="m-grid">
+                            <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
+                                Already have an account ?<a href="<?php echo base_url(); ?>login"> Sign In </a>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- col-bg-color-indigo  -->
+            <div class="col-md-6 login-container bs-reset m-grid-full-height md-indigo" style="min-height: 102vh;">
+                <div class="m-grid ">
+                    <div class="m-grid-col  m-grid-col-center ">
+                        <a href="<?=base_url()?>"><img class="login-logo" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-white.png" style="height:68px;"></a>
+                    </div>
+                </div>
+                <div class="login-content portlet">
+                    <div class="portlet portlet-body text-center">
+                        <!-- <h4 class="font-weight-500 font-white mb-2 text-uppercase">Employer </h4> -->
+                        <!-- <p class="lead mb-2 font-20-xs">Select your user account to proceed</p> -->
+                        <div class="clearfix"></div>
+                        <!-- Button Toggle : Select User -->
+                        <div class="btn-group mb-3" data-toggle="buttons">
+                            <!-- <a class="btn btn-outline-md-indigo active px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" data-toggle="tab" id="studentRadio">
+                                <input type="radio"> Student</a> -->
+                            <!--<a class="btn btn-circle btn-outline-md-indigo px-4" href="<?php echo base_url(); ?>site/user/signup#jobseekerUser" data-toggle="tab" id="jobseekerRadio">
+                                <input type="radio"> Jobseeker</a>-->
+                            <!-- <a class="btn px-4 active " href="<?php echo base_url(); ?>site/user/signup#employerUser" data-toggle="tab" id="employerRadio" style="border-color: #fff;    color: #000 !important;background-color: #fff;"> 
+                                <input type="radio"> Employer </a> -->
+                        </div>
+                        <!-- Tab Content : Form Signup User  -->
+                        <div class="tab-content">
+                        	<div class="m-grid m-grid-full-height md-indigo " id="employerContent">
+		                        <div class="m-grid-col m-grid-col-middle  font-white">
+		                            <div class="portlet portlet-body px-7">
+		                                <h1 class="font-weight-500 display-3">Employer Feature </h1>
+		                                <p class="md-white-text font-18">Xremo is one of the first few, if not first to use the Video Resume at such a wide scale. Xremo prides itself in being dynamic and cutting edge by providing you the newest tools at an arm's length and we will continue on providing new ways in solving the problem of Internship, Career Seeking and Talent Recruitment. </p>
+		                                <ul class="list-unstyled">
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Easy to access digital resume
+		                                    </li>
+
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Candidates video resume
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Interview arrangement & schedule systems
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> Resume Search
+		                                    </li>
+		                                    <li>
+		                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
+		                                    </li>
+		                                </ul>
+		                            </div>
+		                            <div class="portlet portlet-body px-7" style="text-align: center">
+			                       	<a class="btn btn-outline-md-white px-4 " id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser"><i class="fa fa-user"></i><br/> Sign up as Employer</a>
+			                       	</div>
+		                        </div>
+		                    </div>
                             <!-- Form User : Employer -->
-                            <div class="tab-pane " id="employerUser">
+                            <div class="tab-pane" id="employerUser">
                                 <form method="POST" action="<?php echo base_url(); ?>site/user/employer_signup_post" class="form-horizontal" id="employerUserForm">
                                     <div class="form-body">
                                         <!-- Input : Company Name -->
@@ -308,12 +334,12 @@
 												<div class="md-checkbox-list md-checkbox md-indigo-box">
                                                     <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
 													<input type="checkbox" name="terms" id="checkboxemployer" class="md-check" required>
-                                                    <label for="checkboxemployer" class="ml-1">
+                                                    <label for="checkboxemployer" class="ml-1 font-white">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> I agree with all the
-                                                        <a href="<?=base_url()?>terms-of-use" target="_blank">terms of use </a> and
-                                                        <a href="<?=base_url()?>privacy" target="_blank"> privacy policy</a>
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank" class="font-black"> privacy policy</a>
                                                     </label>
                                                 </div>
                                             </div>
@@ -334,103 +360,12 @@
                 <div class="login-footer">
                     <div class="row bs-reset">
                         <div class="m-grid">
-                            <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
+                            <div class="m-grid-col m-grid-col-middle m-grid-col-center font-white">
                                 Already have an account ?<a href="<?php echo base_url(); ?>login"> Sign In </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- col-bg-color-indigo  -->
-            <div class="col-md-6 bs-reset">
-                <div class="tab-content">
-                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="studentContent">
-                        <div class="m-grid-col m-grid-col-middle  font-white">
-                            <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3">Student Feature </h1>
-                                <p class="md-white-text font-18"> Xremo empowers students in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <p class="font-weight-600">Feature</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="jobseekerContent">
-                        <div class="m-grid-col m-grid-col-middle  font-white">
-                            <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3">Jobseeker Feature </h1>
-                                <p class="md-white-text font-18">Xremo empowers jobseekers in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <p class="font-weight-600">Feature</p>
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="m-grid m-grid-full-height md-indigo login-bg" id="employerContent">
-                        <div class="m-grid-col m-grid-col-middle  font-white">
-                            <div class="portlet portlet-body px-7">
-                                <h1 class="font-weight-500 display-3">Employer Feature </h1>
-                                <p class="md-white-text font-18">Xremo is one of the first few, if not first to use the Video Resume at such a wide scale. Xremo prides itself in being dynamic and cutting edge by providing you the newest tools at an arm's length and we will continue on providing new ways in solving the problem of Internship, Career Seeking and Talent Recruitment. </p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Easy to access digital resume
-                                    </li>
-
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Candidates video resume
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Interview arrangement & schedule systems
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> Resume Search
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
             </div>
         </div>
     </div>
@@ -472,19 +407,28 @@
 
             // by default
             $("#studentContent").show();
-            $("#jobseekerContent").hide();
-            $("#employerContent").hide();
+            // $("#jobseekerContent").hide();
+            // $("#employerContent").hide();
 
             // Student
-            $("#studentRadio").click(function () {
-                $("#studentContent").show();
-                $("#jobseekerContent").hide();
-                $("#employerContent").hide();
+            // $("#studentRadio").click(function () {
+            //     $("#studentContent").show();
+            //     $("#jobseekerContent").hide();
+            //     $("#employerContent").hide();
 
-                $("#studentUserForm")[0].reset();
-                $(".password-strength-bar-student").hide();
-                $(".password-strength-bar-employer").hide();
-                $(".password-strength-bar-jobseeker").hide();
+            //     $("#studentUserForm")[0].reset();
+            //     $(".password-strength-bar-student").hide();
+            //     $(".password-strength-bar-employer").hide();
+            //     $(".password-strength-bar-jobseeker").hide();
+            // });
+            $("#studentRadio").click(function(){
+            	$("#studentContent").hide();
+            	$("#studentUser").show();
+            });
+
+            $("#employerRadio").click(function(){
+            	$("#employerContent").hide();
+            	$("#employerUser").show();
             });
 
             $("#studentUser button").click(function(argument)
@@ -570,9 +514,6 @@
             
             // Employer
             $("#employerRadio").click(function () {
-                $("#employerContent").show();
-                $("#studentContent").hide();
-                $("#jobseekerContent").hide();
 
                 $("#employerUserForm")[0].reset();
                 $(".password-strength-bar-student").hide();
