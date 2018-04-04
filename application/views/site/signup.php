@@ -109,28 +109,8 @@
                         	<div class="m-grid " id="studentContent">
 		                        <div class="m-grid-col m-grid-col-middle  ">
 		                            <div class="portlet portlet-body px-7">
-		                                <h1 class="font-weight-500 display-3">Student Feature </h1>
-		                                <p class="font-18"> Xremo empowers students in pitching and exploring themselves with convenient digital resume & video CVs to enhance the career matching to the correct one. It boosts the relevancy and generates sensational values to both students. </p>
-		                                <ul class="list-unstyled">
-		                                    <li>
-		                                        <p class="font-weight-600">Feature</p>
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Digital Resume
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Video Resume
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Rating , Endorsement & Review
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Gallery
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
-		                                    </li>
-		                                </ul>
+		                                <h1 class="font-weight-500 display-3">Are you a Student? </h1>
+		                                
 		                            </div>
 		                            <div class="portlet portlet-body px-7" style="text-align: center">
 			                       	<a class="btn btn-outline-md-indigo px-4 " href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio"><i class="fa fa-user"></i><br/> Sign up as Student</a>
@@ -248,26 +228,7 @@
                         	<div class="m-grid m-grid-full-height md-indigo " id="employerContent">
 		                        <div class="m-grid-col m-grid-col-middle  font-white">
 		                            <div class="portlet portlet-body px-7">
-		                                <h1 class="font-weight-500 display-3">Employer Feature </h1>
-		                                <p class="md-white-text font-18">Xremo is one of the first few, if not first to use the Video Resume at such a wide scale. Xremo prides itself in being dynamic and cutting edge by providing you the newest tools at an arm's length and we will continue on providing new ways in solving the problem of Internship, Career Seeking and Talent Recruitment. </p>
-		                                <ul class="list-unstyled">
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Easy to access digital resume
-		                                    </li>
-
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Candidates video resume
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Interview arrangement & schedule systems
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> Resume Search
-		                                    </li>
-		                                    <li>
-		                                        <i class="fa fa-caret-right md-orange-text"></i> And many more ...
-		                                    </li>
-		                                </ul>
+		                                <h1 class="font-weight-500 display-3">Are you a Employer? </h1>
 		                            </div>
 		                            <div class="portlet portlet-body px-7" style="text-align: center">
 			                       	<a class="btn btn-outline-md-white px-4 " id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser"><i class="fa fa-user"></i><br/> Sign up as Employer</a>
@@ -338,8 +299,8 @@
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> I agree with all the
-                                                        <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black">terms of use </a> and
-                                                        <a href="<?=base_url()?>privacy" target="_blank" class="font-black"> privacy policy</a>
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black" style="color:#000;">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank" class="font-black" style="color:#000;"> privacy policy</a>
                                                     </label>
                                                 </div>
                                             </div>
@@ -347,7 +308,7 @@
                                         <!-- Button : Submit -->
                                         <div class="form-group mt-3 ">
                                             <div class="col-md-offset-2 col-md-8 ">
-                                                <button type="submit" class="btn btn-block btn-md-indigo">Submit</button>
+                                                <button type="submit" class="btn btn-block btn-md-outline-white">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -361,7 +322,7 @@
                     <div class="row bs-reset">
                         <div class="m-grid">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center font-white">
-                                Already have an account ?<a href="<?php echo base_url(); ?>login"> Sign In </a>
+                                Already have an account ?<a href="<?php echo base_url(); ?>login" style="color:#000;"> Sign In </a>
                             </div>
                         </div>
                     </div>
@@ -424,11 +385,15 @@
             $("#studentRadio").click(function(){
             	$("#studentContent").hide();
             	$("#studentUser").show();
+            	$("#employerContent").show();
+            	$("#employerUser").hide();
             });
 
             $("#employerRadio").click(function(){
             	$("#employerContent").hide();
             	$("#employerUser").show();
+            	$("#studentContent").show();
+            	$("#studentUser").hide();
             });
 
             $("#studentUser button").click(function(argument)
