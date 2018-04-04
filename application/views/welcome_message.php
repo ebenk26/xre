@@ -4,7 +4,10 @@
     <!-- Basic -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Welcome</title>
+    <meta name="description" content="Discover your Xciting internship and career in Xremo">
+    <meta name="keywords" content="Xremo, Job Portal, Internship, Career Portal, Indonesia, Malaysia, Philipines">
+    <meta name="author" content="Xremo">
+    <title>Xremo Career Portal, Job Portal</title>
 
     
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
