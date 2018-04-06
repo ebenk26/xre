@@ -130,7 +130,7 @@
                                                         <td>
                                                             <i class="icon-users"></i> <?=$value['number_of_candidate']?></td>
                                                         <td>
-                                                            <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm  btn-circle">View</a>
+                                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm  btn-circle">View</a>
                                                         </td>
                                                     </tr>
                                                 <?php $i++; } ?>
