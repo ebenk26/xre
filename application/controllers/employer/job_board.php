@@ -39,9 +39,7 @@ class Job_Board extends CI_Controller {
                         'city' => $this->input->post('city'),
                         'state' => $this->input->post('state'),
                         'postcode' => $this->input->post('postcode'),
-                        'country' => $this->input->post('country'),
-                        'latitude' => $this->input->post('latitude'),
-                        'longitude' => $this->input->post('longitude')
+                        'country' => $this->input->post('country')
                         );
         $status = $this->input->post('status');
         $jobPost = array('name' => $this->input->post('job_position_name'),
@@ -65,7 +63,9 @@ class Job_Board extends CI_Controller {
         $postJob = $this->employer_model->job_post($jobPost);
 
         if ($postJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success post job');
+            if ($status == 'post') {
+                $this->session->set_flashdata('msg_success', 'Success post job');
+            }
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -118,7 +118,9 @@ class Job_Board extends CI_Controller {
                          );
         $editJob = $this->employer_model->job_edit($jobPost);
         if ($editJob == true) {
-            $this->session->set_flashdata('msg_success', 'Success edit job');    
+            if ($status == 'post') {
+                $this->session->set_flashdata('msg_success', 'Success edit job');
+            }   
 			
 			//BEGIN : set recent activities
 			$data = array(
@@ -134,7 +136,12 @@ class Job_Board extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed edit job');
         }
-        redirect(base_url().'employer/job_board/');
+
+        if ($this->input->post('status') == 'preview') {
+            redirect(base_url().'job/details/'.rtrim(base64_encode($jobPost['id']),'=') );
+        }else{
+            redirect(base_url().'employer/job_board/');
+        }
     }
 
     public function delete(){
