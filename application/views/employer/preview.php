@@ -469,7 +469,7 @@
                                     },
                                     success:function(response) {
                                        swal("Success", "Job Has been posted.", "success");
-                                       location.reload();
+                                       window.location.replace('<?php echo base_url();?>employer/dashboard/');
                                     }
                                   })
                             } else {
