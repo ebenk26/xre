@@ -748,7 +748,7 @@
                                         left: 'title, prev, next',
                                         center: '',
                                         // right: 'today,month,agendaWeek,agendaDay'
-                                        right: 'month,agendaWeek'
+                                        right: 'month'
                                     };
                                 } else {
                                     $('#fullcalendar').removeClass("mobile");
@@ -756,7 +756,7 @@
                                         left: 'title',
                                         center: '',
                                         // right: 'prev,next,today,month,agendaWeek,agendaDay'
-                                        right: 'prev,next,month,agendaWeek'
+                                        right: 'prev,next,month'
                                     };
                                 }
                             }
@@ -765,6 +765,7 @@
                             var invitation = <?php echo $invitation; ?>;
                             var invitation_calendar = [];
                             $.each(invitation, function(i,v){
+                                console.log(v);
                                 var color = '';
                                 
                                 if (v.status == 'accept') {
@@ -779,16 +780,20 @@
                                     color = 'grey';
                                 }
 
-                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor(color)})
+                                invitation_calendar.push ({id: v.id, title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor(color)})
 
                                 });
+                            console.log(invitation_calendar);
                             $('#fullcalendar').fullCalendar({ 
                                 header: h,
                                 defaultView: 'month', 
                                 slotMinutes: 15,
                                 editable: false, 
                                 droppable: false, 
-                                events: invitation_calendar
+                                events: invitation_calendar,
+                                eventClick:  function(invitation_calendar, jsEvent, view) {
+                                    $('#modal_more_info_'+invitation_calendar.id).modal();
+                                },
                             });
                         }
                     };
