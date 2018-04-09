@@ -170,6 +170,7 @@
                                                 <th class="text-center col-xs-1">#</th>
                                                 <th class="col-xs-4"> Candidates </th>
                                                 <th class="text-center col-xs-2 "> Application Status </th>
+                                                <th class="text-center col-xs-2"> Applied Date </th>
                                                 <th class="text-center col-xs-4"> Invitation Status </th>
                                                 <th class="text-center col-xs-1"> Actions </th>
                                             </tr>
@@ -190,6 +191,7 @@
                                                         <span class="label label-md-shades <?php if($value['application_status'] == 'SHORTLISTED'){echo 'label-warning';}elseif ($value['application_status'] == 'ACCEPTED'){ echo 'label-md-green';
                                                         }elseif ($value['application_status'] == 'REJECTED' || $value['application_status'] == 'WITHDRAW') {echo 'label-md-red';}elseif ($value['application_status'] == 'INTERVIEW') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['application_status']) ? $value['application_status'] : 'Shortlisted' ?></span>
                                                     </td>
+                                                    <td class="text-center vertical-middle col-xs-1"><?php echo date('d M Y', strtotime($value['sent_at'] ));?></td>
                                                     <td class="text-center vertical-middle col-xs-4">
                                                         <span class="label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
                                                         }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm"><?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?></span> <?php echo $value['interview_title']; ?>
