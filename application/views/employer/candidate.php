@@ -564,7 +564,7 @@
                                                     </table>
                                                     <?php else: ?>
                                                         <div class="portlet-body text-center">
-                                                            <h4 class="text-center font-weight-500 font-grey-mint">Sorry , We did not find any Interview session at the moment.</h4>
+                                                            <h4 class="text-center font-weight-500 font-grey-mint">Sorry , We did not find any Interview session for <b><?php echo $job->name; ?></b> at the moment.</h4>
                                                         </div>   
                                                     <?php endif; ?>
                                             </div>
