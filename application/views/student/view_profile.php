@@ -251,8 +251,8 @@
                                 
                             </p>
                         </li>
+                        <?php if ($id == $segmented_uri) {?>
                         <li>
-
                             <ul class="list-inline list-unstyled mx-0 ">
                                 <li>
                                     <h5 class="md-white-text font-weight-700 text-uppercase letter-space-xs">
@@ -282,6 +282,7 @@
 								
                             </ul>
                         </li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="col-md-3  col-xs-12 text-center">
