@@ -252,7 +252,7 @@
                                 
                             </p>
                         </li>
-                        <?php if ($id == $segmented_uri) {?>
+                        <?php if ($id == base64_decode($segmented_uri)) {?>
                         <li>
                             <ul class="list-inline list-unstyled mx-0 ">
                                 <li>

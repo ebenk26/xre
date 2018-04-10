@@ -521,6 +521,7 @@
                                     <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">
                                         <div class="row mx-0">
                                             <div class="form-group mx-0 col-md-12">
+                                                    <?php if(!empty($interview_session)): ?>
                                                     <table class="table table-striped table-bordered table-hover  order-column">
                                                         <thead>
                                                             <tr>
@@ -561,6 +562,11 @@
                                                             <?php $no++;} ?>
                                                         </tbody>
                                                     </table>
+                                                    <?php else: ?>
+                                                        <div class="portlet-body text-center">
+                                                            <h4 class="text-center font-weight-500 font-grey-mint">Sorry , We did not find any Interview session for <b><?php echo $job->name; ?></b> at the moment.</h4>
+                                                        </div>   
+                                                    <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>

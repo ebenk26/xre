@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller {
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
 		$complement['invitation'] = $this->employer_model->get_interview_invitation_more_than_today($id);
+        $complement['dashboardInvitationCalendar'] = $this->employer_model->get_interview_invitation($id);
         $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));
 		//get 5 latest article
 		$this->db->select('*');
