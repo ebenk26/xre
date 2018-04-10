@@ -495,7 +495,7 @@
                                       candidate_id: candidate,
                                     },
                                     success:function(response) {
-                                       swal("Success", "Candidate has been rejected.", "success");
+                                       swal("Success", "Candidate has been hired.", "success");
                                        location.reload();
                                     }
                                   })

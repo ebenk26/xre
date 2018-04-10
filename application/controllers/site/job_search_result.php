@@ -135,7 +135,7 @@ class Job_Search_Result extends CI_Controller {
         //}
 
         $keyword = $this->session->userdata('keyword');
-
+        // $search['forex']                = $this->session->userdata('forex');
         $search['keyword']              = $keyword;
         $search['search_result']        = $this->job_model->get_job($keyword,$offset,$perPage,$emp_type,$pos_levels,$exp,$company_industry,$country_name,$latest,$popular);
         $search['total_result']         = $this->job_model->get_total_job($keyword,$emp_type,$pos_levels,$exp,$company_industry,$country_name,$popular);
