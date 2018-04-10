@@ -64,7 +64,7 @@ class Profile extends CI_Controller {
                          'company_registration_number'  => $this->input->post('company_registration_number'),
                          'company_industry_id'          => $this->input->post('industry'),
                          'company_description'          => $this->input->post('about_company'),
-                         'country_id' => $getCountryId['id'],
+                         'country_id' => $getCountryId[0]['id'],
                          'user_id' => $id,
                          'url' => $this->input->post('corporate_website'));
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);
