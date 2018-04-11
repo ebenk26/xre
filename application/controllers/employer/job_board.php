@@ -59,6 +59,8 @@ class Job_Board extends CI_Controller {
                          'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
                          'created_at'=> date('Y-m-d H:i:s'),
                          'updated_at' => date('Y-m-d H:i:s'),
+                         'latitude' => $this->input->post('latitude'),
+                         'longitude' => $this->input->post('longitude')
                          );
         $postJob = $this->employer_model->job_post($jobPost);
 

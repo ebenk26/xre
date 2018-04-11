@@ -80,6 +80,146 @@
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
     <!-- END PASSWORD STRENGTH SCRIPTS -->
     <script>
+
+    $(document).ready(function(){
+        $('.edit_jobpost').click(function(){
+            var idJobPost   = $(this).attr('data-id');
+            // console.log(idMap);
+
+            var map = new google.maps.Map(document.getElementById('map'+idJobPost), {
+              center: {lat: -33.8688, lng: 151.2195},
+              zoom: 13
+            });
+
+            var input = document.getElementById('pac-input'+idJobPost);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+              map: map
+            });
+            marker.addListener('click', function() {
+              infowindow.open(map, marker);
+            });
+
+            autocomplete.addListener('place_changed', function() {
+              infowindow.close();
+              var place = autocomplete.getPlace();
+              if (!place.geometry) {
+                return;
+              }
+
+              if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+              } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+              }
+
+              // Set the position of the marker using the place ID and location.
+              marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+              });
+              marker.setVisible(true);
+              var element   = document.getElementById('map-window'+idJobPost);
+              var InfoWindow= document.createElement('div');
+              var title     = document.createElement('span');
+              var addr      = document.createElement('span');
+              var br        = document.createElement('br');
+
+              element.appendChild(InfoWindow);
+              InfoWindow.setAttribute('id', 'infowindow-content'+idJobPost);
+              InfoWindow.setAttribute('style', 'display: inline');
+
+              InfoWindow.appendChild(title);
+              title.setAttribute('id', 'place-name'+idJobPost);
+              title.setAttribute('style', 'font-weight: bold');
+              InfoWindow.appendChild(br);
+              InfoWindow.appendChild(addr);
+              addr.setAttribute('id', 'place-address'+idJobPost);
+              document.getElementById('place-name'+idJobPost).textContent = place.name;
+              document.getElementById('place-address'+idJobPost).textContent =
+                  place.formatted_address;
+              infowindow.setContent(document.getElementById('infowindow-content'+idJobPost));
+              infowindow.open(map, marker);
+              document.getElementById('latitude'+idJobPost).value=place.geometry.location.lat();
+              document.getElementById('longitude'+idJobPost).value=place.geometry.location.lng();
+            });
+        })
+    });
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+          var element   = document.getElementById('map-window');
+          var InfoWindow= document.createElement('div');
+          var title     = document.createElement('span');
+          var addr      = document.createElement('span');
+
+          element.appendChild(InfoWindow);
+          InfoWindow.setAttribute('id', 'infowindow-content');
+
+          InfoWindow.appendChild(title);
+          title.setAttribute('id', 'place-name');
+          document.createElement('br');
+          InfoWindow.appendChild(addr);
+          addr.setAttribute('id', 'place-address');
+          document.getElementById('place-name').textContent = place.name;
+          document.getElementById('place-address').textContent =
+              place.formatted_address;
+          infowindow.setContent(document.getElementById('infowindow-content'));
+          infowindow.open(map, marker);
+          document.getElementById('addLatitude').value=place.geometry.location.lat();
+          document.getElementById('addLongitude').value=place.geometry.location.lng();
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
+        async defer></script>
+    <script>
         $(document).ready(function () {
             var e = $("#xremo_table");
 			e.dataTable({
