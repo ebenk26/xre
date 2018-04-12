@@ -388,6 +388,8 @@
                                                 <span class="label label-md-red label-sm"><?= $job_result["state_name"]; ?></span>
                                                 <span class="label label-md-blue label-sm"><?= $job_result["job_type"]; ?></span>
                                                 <span class="label label-md-purple label-sm"><?= $job_result["position_level"]; ?></span>
+                                                <span class="label label-md-yellow label-sm"><i class="fa fa-map-marker"></i><?= json_decode($job_result["location"])->country; ?></span>
+                                                <span class="label label-md-green label-sm"><?= $job_result['forex'];?> <?= str_replace(',', '.', number_format($job_result["budget_min"]));?> - <?= $job_result['forex'];?> <?= str_replace(',', '.', number_format($job_result["budget_max"]));?></span>
                                             </p>
                                             <p class="multiline-truncate roboto-font font-weight-300 mb-3">
                                                 <?//= substr($job_result["job_description"],0,250); ?>
