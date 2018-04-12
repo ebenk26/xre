@@ -79,32 +79,69 @@
     <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
     <!-- END PASSWORD STRENGTH SCRIPTS -->
+    <?php if ($this->uri->segment(2) == 'job_board') :?>
     <script>
 
     $(document).ready(function(){
+        
         $('.edit_jobpost').click(function(){
             var idJobPost   = $(this).attr('data-id');
             // console.log(idMap);
 
-            var map = new google.maps.Map(document.getElementById('map'+idJobPost), {
-              center: {lat: -33.8688, lng: 151.2195},
-              zoom: 13
-            });
+            var lat = document.getElementById('latitude'+idJobPost).value;
+            var lng = document.getElementById('longitude'+idJobPost).value;
 
             var input = document.getElementById('pac-input'+idJobPost);
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.bindTo('bounds', map);
+            if(lat.length > 0 && lng.length > 0)
+            {
+                var mapLatitude     = document.getElementById('latitude'+idJobPost).value;
+                var mapLongitude    = document.getElementById('longitude'+idJobPost).value;
+                var title           = document.getElementById('addMapTitle'+idJobPost).value;
+                var description     = document.getElementById('addMapDescription'+idJobPost).value;
 
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                var map = new google.maps.Map(document.getElementById('map'+idJobPost), {
+                  center: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
+                  // center: {lat: -33.8688, lng: 151.2195},
+                  zoom: 13
+                });
 
-            var infowindow = new google.maps.InfoWindow();
-            var marker = new google.maps.Marker({
-              map: map
-            });
-            marker.addListener('click', function() {
-              infowindow.open(map, marker);
-            });
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>'+title+
+                '</b></span><br/>'+description+'</span></div>';
+                console.log(contentString);
+
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+
+                var marker = new google.maps.Marker({
+                  position: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
+                  map: map,
+                  title: title,
+                });
+
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+            }
+            else
+            {
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker({
+                  map: map
+                });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+            }            
 
             autocomplete.addListener('place_changed', function() {
               infowindow.close();
@@ -214,11 +251,14 @@
           infowindow.open(map, marker);
           document.getElementById('addLatitude').value=place.geometry.location.lat();
           document.getElementById('addLongitude').value=place.geometry.location.lng();
+          document.getElementById('addMapTitle').value= place.name;
+          document.getElementById('addMapDescription').value= place.formatted_address;
         });
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
         async defer></script>
+    <?php endif; ?>
     <script>
         $(document).ready(function () {
             var e = $("#xremo_table");
@@ -905,7 +945,6 @@
                             var invitation = <?php echo $invitation; ?>;
                             var invitation_calendar = [];
                             $.each(invitation, function(i,v){
-                                console.log(v);
                                 var color = '';
                                 
                                 if (v.status == 'accept') {
@@ -923,7 +962,6 @@
                                 invitation_calendar.push ({id: v.id, title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor(color)})
 
                                 });
-                            console.log(invitation_calendar);
                             $('#fullcalendar').fullCalendar({ 
                                 header: h,
                                 defaultView: 'month', 

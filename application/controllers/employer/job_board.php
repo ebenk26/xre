@@ -35,32 +35,34 @@ class Job_Board extends CI_Controller {
 	}
 
     public function post(){
-        $address= array('address' => $this->input->post('address'),
-                        'city' => $this->input->post('city'),
-                        'state' => $this->input->post('state'),
-                        'postcode' => $this->input->post('postcode'),
-                        'country' => $this->input->post('country')
+        $address= array('address'           => $this->input->post('address'),
+                        'city'              => $this->input->post('city'),
+                        'state'             => $this->input->post('state'),
+                        'postcode'          => $this->input->post('postcode'),
+                        'country'           => $this->input->post('country'),
+                        'latitude'          => $this->input->post('latitude'),
+                        'longitude'         => $this->input->post('longitude'),
+                        'map_title'         => $this->input->post('mapTitle'),
+                        'map_description'   => $this->input->post('mapDescription'),
                         );
         $status = $this->input->post('status');
-        $jobPost = array('name' => $this->input->post('job_position_name'),
-                         'user_id' => $this->session->userdata('id'),
-                         'position_level_id' => $this->input->post('employmentLevel'),
-                         'employment_type_id' => $this->input->post('employmentType'),
-                         'years_of_experience' => $this->input->post('yearOfExperience'),
-                         'job_description' => $this->input->post('jobDescription'),
-                         'qualifications' => $this->input->post('jobRequirement'),
-                         'other_requirements' => $this->input->post('niceToHave'),
-                         'additional_info'=> $this->input->post('additionalInfo'),
-                         'status'=> !empty($status) ? $status : 'post',
-                         'location'=> json_encode($address),
-                         'forex' => $this->input->post('currency'),
-                         'budget_min' => $this->input->post('budget_min'),
-                         'budget_max' => $this->input->post('budget_max'),
-                         'expiry_date'=> date('Y-m-d', strtotime("+30 days")),
-                         'created_at'=> date('Y-m-d H:i:s'),
-                         'updated_at' => date('Y-m-d H:i:s'),
-                         'latitude' => $this->input->post('latitude'),
-                         'longitude' => $this->input->post('longitude')
+        $jobPost = array('name'                     => $this->input->post('job_position_name'),
+                         'user_id'                  => $this->session->userdata('id'),
+                         'position_level_id'        => $this->input->post('employmentLevel'),
+                         'employment_type_id'       => $this->input->post('employmentType'),
+                         'years_of_experience'      => $this->input->post('yearOfExperience'),
+                         'job_description'          => $this->input->post('jobDescription'),
+                         'qualifications'           => $this->input->post('jobRequirement'),
+                         'other_requirements'       => $this->input->post('niceToHave'),
+                         'additional_info'          => $this->input->post('additionalInfo'),
+                         'status'                   => !empty($status) ? $status : 'post',
+                         'location'                 => json_encode($address),
+                         'forex'                    => $this->input->post('currency'),
+                         'budget_min'               => $this->input->post('budget_min'),
+                         'budget_max'               => $this->input->post('budget_max'),
+                         'expiry_date'              => date('Y-m-d', strtotime("+30 days")),
+                         'created_at'               => date('Y-m-d H:i:s'),
+                         'updated_at'               => date('Y-m-d H:i:s')
                          );
         $postJob = $this->employer_model->job_post($jobPost);
 

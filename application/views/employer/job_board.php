@@ -384,6 +384,8 @@
                                             </div>
                                             <!--/span-->
                                         </div>
+                                        <input type="hidden" id="addMapTitle<?= $value['id']?>" name="mapTitle" value="<?= !empty($location->map_title) ? $location->map_title : 'Map Title';?>"></input>
+                                        <input type="hidden" id="addMapDescription<?= $value['id']?>" name="mapDescription" value="<?= !empty($location->map_description) ? $location->map_description : 'Map Description';?>"></input>
                                         <div class="row mx-0">
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
@@ -594,6 +596,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" id="addMapTitle" name="mapTitle"></input>
+                                <input type="hidden" id="addMapDescription" name="mapDescription"></input>
                                 <div class="row mx-0">
                                     <div class="col-md-12">
                                         <div style="height: 300px;" id="map-window">
