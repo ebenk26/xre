@@ -107,7 +107,7 @@
                 <div class="login-content ">
 
                     <div class="portlet " id="studentContent">
-                        <h1 class="font-weight-500 display-4 text-center mb-5">Are you student? </h1>
+                        <h1 class="font-weight-500 display-4 text-center mb-5">Are you Student? </h1>
                         <a class="btn btn-outline-md-indigo px-4 btn-lg " href="<?php echo base_url(); ?>signup#studentUser" id="studentRadio">
                             <i class="fa fa-user"></i> Sign up as Student</a>
                     </div>
@@ -216,7 +216,7 @@
                 <div class="login-content ">
                     <div class="portlet" id="employerContent">
                         <div class="portlet-body">
-                            <h1 class="font-weight-500 display-4 md-white-text text-center mb-5">Are you a Employer? </h1>
+                            <h1 class="font-weight-500 display-4 md-white-text text-center mb-5">Are you Employer? </h1>
                             <a class="btn btn-outline white btn-lg px-4" id="employerRadio" href="<?php echo base_url(); ?>signup#employerUser">
                                 <i class="fa fa-user"></i>
                                 Sign up as Employer</a>
