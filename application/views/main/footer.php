@@ -5,6 +5,7 @@
     <!-- Vendor -->
 	
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-v1-11.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
@@ -18,7 +19,7 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
 	
-	<!--
+	<!--//REMOVE
 	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/swiper/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/jquery.masonry.pkgd.min.js"></script>
@@ -33,13 +34,13 @@
 
     <!-- General Components and Settings -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/masonry.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <!--========== END JAVASCRIPTS ==========-->
     
     <script type="text/javascript">
@@ -63,5 +64,7 @@
                 }
             });
         }
+
     </script>
+
 </body></html>
