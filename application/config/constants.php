@@ -38,9 +38,10 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 define('SALT', 'dRk_612!');
 define('ASSETS', 'http://localhost/xremo/assets/');
-define('CSS', ASSETS.'css');
-define('JS', ASSETS.'js');
-define('IMG', ASSETS.'img');
+define('CSS', ASSETS.'css/');
+define('JS', ASSETS.'js/');
+define('IMG', ASSETS.'img/');
+define('PLUGIN', ASSETS.'plugin/');
 
 define('ASSETS_STUDENTS', ASSETS.'students/');
 define('CSS_STUDENTS', ASSETS.'students/css/');

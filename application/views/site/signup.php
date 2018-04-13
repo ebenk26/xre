@@ -15,26 +15,26 @@
     />
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css"> -->
+    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<?php echo base_url(); ?>assets/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>vendor/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>vendor/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/plugins.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
 
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/login-5.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>vendor/login-5.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>vendor/alertify.min.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         .progress-bar {
@@ -95,21 +95,20 @@
 </head>
 
 <body class="login">
+
     <div class="user-login-5 m-grid m-grid-full-height-xs">
         <div class="bs-reset m-grid-row m-grid-full-height-xs">
             <!-- col-form -->
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  ">
                 <div class="m-grid ">
                     <a href="<?=base_url()?>">
-                        <img class="ml-4 mb-7" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-blue.png" style="height:58px;">
+                        <img class=" mb-10 height-100" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
                     </a>
                 </div>
                 <div class="login-content ">
-
                     <div class="portlet " id="studentContent">
-                        <h1 class="font-weight-500 display-4 text-center mb-5">Are you student? </h1>
-                        <a class="btn btn-outline-md-indigo px-4 btn-lg " href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio">
-                            <i class="fa fa-user"></i> Sign up as Student</a>
+                        <h1 class="font-weight-500 display-4 text-center mb-80">Are you a student? </h1>
+                        <a class="btn btn-md-darkblue btn-outline px-10 btn-lg " href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio">Sign up as Student</a>
                     </div>
 
                     <div class="portlet" id="studentUser">
@@ -117,7 +116,7 @@
                             <form method="POST" action="<?php echo base_url(); ?>site/user/student_signup_post" class="form-horizontal" id="studentUserForm">
                                 <div class="form-body">
                                     <!-- Input : Fullname -->
-                                    <div class="form-group form-md-line-input  mb-1 ">
+                                    <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input type="text" name="fullname" id="fullname_student" class="form-control " placeholder="Full Name" required>
                                             <div class="form-control-focus"> </div>
@@ -127,7 +126,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Email -->
-                                    <div class="form-group form-md-line-input mb-1 ">
+                                    <div class="form-group form-md-line-input mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input type="email" name="email" id="email_student" class="form-control " placeholder="Email Address" required>
                                             <div class="form-control-focus"> </div>
@@ -137,7 +136,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
-                                    <div class="form-group form-md-line-input  mb-1">
+                                    <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2  ">
                                             <input type="password" name="password" id="password_student" class="pass-strength-student form-control" placeholder="Password"
                                                 required>
@@ -148,7 +147,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
-                                    <div class="form-group form-md-line-input  mb-1 password-strength-bar-student" id="password-strength-bar" style="display:none;">
+                                    <div class="form-group form-md-line-input  mb-5 password-strength-bar-student" id="password-strength-bar" style="display:none;">
                                         <div class="col-md-8 col-md-offset-2  ">
                                             <div class="progress progress-striped active mb-0">
                                                 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
@@ -158,7 +157,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Confirm Password -->
-                                    <div class="form-group form-md-line-input  mb-1">
+                                    <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input type="password" name="confirm_password" id="confirm_password_student" class="form-control" placeholder="Confirm Password"
                                                 required>
@@ -187,7 +186,7 @@
                                     <!-- Button : Submit -->
                                     <div class="form-group mt-3 ">
                                         <div class="col-md-offset-2 col-md-8 ">
-                                            <button type="submit" class="btn btn-block btn-md-indigo">Submit</button>
+                                            <button type="submit" class="btn btn-block btn-md-orange">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -197,28 +196,19 @@
                     </div>
 
                 </div>
-                <div class="login-footer">
-                    <div class="row bs-reset">
-                        <div class="m-grid">
-                            <div class="m-grid-col m-grid-col-middle m-grid-col-center ">Already have an account ?
-                                <a href="<?php echo base_url(); ?>login">Sign In </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
-            <!-- col-bg-color-indigo  -->
-            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-indigo">
+            <!-- MD-DARK BLUE -->
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue">
 
                 <a href="<?=base_url()?>">
-                    <img class="ml-4 mb-7" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-white.png" style="height:58px;">
+                    <img class="mb-10 height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg" >
                 </a>
                 <div class="login-content ">
                     <div class="portlet" id="employerContent">
                         <div class="portlet-body">
-                            <h1 class="font-weight-500 display-4 md-white-text text-center mb-5">Are you a Employer? </h1>
-                            <a class="btn btn-outline white btn-lg px-4" id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser">
-                                <i class="fa fa-user"></i>
+                            <h1 class="font-weight-500 display-4 md-white-text text-center mb-80">Are you a employer? </h1>
+                            <a class="btn btn-md-white btn-outline btn-lg px-4" id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser">     
                                 Sign up as Employer</a>
                         </div>
 
@@ -229,7 +219,7 @@
                             <form method="POST" action="<?php echo base_url(); ?>site/user/employer_signup_post" class="form-horizontal" id="employerUserForm">
                                 <div class="form-body">
                                     <!-- Input : Company Name -->
-                                    <div class="form-group form-md-line-input  mb-1 ">
+                                    <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input type="text" name="company_name" id="company_name_employer" class="form-control md-white-text " placeholder="Company Name">
                                             <div class="form-control-focus"> </div>
@@ -239,7 +229,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Fullname -->
-                                    <div class="form-group form-md-line-input  mb-1 ">
+                                    <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input name="fullname" id="fullname_employer" type="text" class="form-control md-white-text " placeholder="Full Name">
                                             <div class="form-control-focus"> </div>
@@ -249,7 +239,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Email -->
-                                    <div class="form-group form-md-line-input mb-1 ">
+                                    <div class="form-group form-md-line-input mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input name="email" id="email_employer" type="email" class="form-control md-white-text " placeholder="Email Address">
                                             <div class="form-control-focus"> </div>
@@ -259,7 +249,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
-                                    <div class="form-group form-md-line-input  mb-1">
+                                    <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2  ">
                                             <input name="password" id="password_employer" type="password" class="pass-strength-employer form-control  md-white-text" placeholder="Password">
                                             <div class="form-control-focus"> </div>
@@ -269,7 +259,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
-                                    <div class="form-group form-md-line-input  mb-1 password-strength-bar-employer" style="display:none;">
+                                    <div class="form-group form-md-line-input  mb-5 password-strength-bar-employer" style="display:none;">
                                         <div class="col-md-8 col-md-offset-2  ">
                                             <div class="progress progress-striped active mb-0">
                                                 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
@@ -279,7 +269,7 @@
                                         </div>
                                     </div>
                                     <!-- Input : Confirm Password -->
-                                    <div class="form-group form-md-line-input  mb-1">
+                                    <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <input name="confirm_password" id="confirm_password_employer" type="password" class="form-control md-white-text" placeholder="Confirm Password">
                                             <div class="form-control-focus"> </div>
@@ -291,15 +281,15 @@
                                     <!-- Checkbox : I Agree -->
                                     <div class="form-group form-md-line-input  my-2">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <div class="md-checkbox-list md-checkbox md-indigo-box md-white-text">
+                                            <div class="md-checkbox-list md-checkbox md-orange-checkbox md-white-text">
                                                 <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
                                                 <input type="checkbox" name="terms" id="checkboxemployer" class="md-check" required>
-                                                <label for="checkboxemployer" class="ml-1 font-white">
+                                                <label for="checkboxemployer" class="ml-1 md-white-text">
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> I agree with all the
-                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black" style="color:#000;">terms of use </a> and
-                                                    <a href="<?=base_url()?>privacy" target="_blank" class="font-black" style="color:#000;"> privacy policy</a>
+                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="md-white-text" >terms of use </a> and
+                                                    <a href="<?=base_url()?>privacy" target="_blank" class="md-white-text" > privacy policy</a>
                                                 </label>
                                             </div>
                                         </div>
@@ -307,29 +297,26 @@
                                     <!-- Button : Submit -->
                                     <div class="form-group mt-3 ">
                                         <div class="col-md-offset-2 col-md-8 ">
-                                            <button type="submit" class="btn btn-block btn-outline white">Submit</button>
+                                            <button type="submit" class="btn btn-block  btn-md-orange">Submit</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-
                 </div>
-                <div class="login-footer">
+                <div class="login-footer ">
                     <div class="row bs-reset">
-                        <div class="m-grid">
+                        <div class="m-grid ">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center font-white">
                                 Already have an account ?
-                                <a href="<?php echo base_url(); ?>login" style="color:#000;"> Sign In </a>
+                                <a href="<?php echo base_url(); ?>login" class="md-orange-text"> Sign In </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 
@@ -373,20 +360,7 @@
             $("#studentContent").show();
             $("#studentUser").hide();
             $("#employerUser").hide();
-            // $("#jobseekerContent").hide();
-            // $("#employerContent").hide();
 
-            // Student
-            // $("#studentRadio").click(function () {
-            //     $("#studentContent").show();
-            //     $("#jobseekerContent").hide();
-            //     $("#employerContent").hide();
-
-            //     $("#studentUserForm")[0].reset();
-            //     $(".password-strength-bar-student").hide();
-            //     $(".password-strength-bar-employer").hide();
-            //     $(".password-strength-bar-jobseeker").hide();
-            // });
             $("#studentRadio").click(function () {
                 $("#studentContent").hide();
                 $("#studentUser").show();

@@ -255,7 +255,7 @@ body {
 
 
 
-.md-shadow-z-1, .md-shadow-z-1-hover, .btn.btn-outline.btn-md-red, .btn.btn-md-red-stripe, .btn.btn-mdo-red, .btn.btn-outline.btn-md-pink, .btn.btn-md-pink-stripe, .btn.btn-mdo-pink, .btn.btn-outline.btn-md-purple, .btn.btn-md-purple-stripe, .btn.btn-mdo-purple, .btn.btn-outline.btn-md-deep-purple, .btn.btn-md-deep-purple-stripe, .btn.btn-mdo-deep-purple, .btn.btn-outline.btn-md-indigo, .btn.btn-md-indigo-stripe, .btn.btn-mdo-indigo, .btn.btn-outline.btn-md-blue, .btn.btn-md-blue-stripe, .btn.btn-mdo-blue, .btn.btn-outline.btn-md-light-blue, .btn.btn-md-light-blue-stripe, .btn.btn-mdo-light-blue, .btn.btn-outline.btn-md-cyan, .btn.btn-md-cyan-stripe, .btn.btn-mdo-cyan, .btn.btn-outline.btn-md-teal, .btn.btn-md-teal-stripe, .btn.btn-mdo-teal, .btn.btn-outline.btn-md-green, .btn.btn-md-green-stripe, .btn.btn-mdo-green, .btn.btn-outline.btn-md-light-green, .btn.btn-md-light-green-stripe, .btn.btn-mdo-light-green, .btn.btn-outline.btn-md-lime, .btn.btn-md-lime-stripe, .btn.btn-mdo-lime, .btn.btn-outline.btn-md-yellow, .btn.btn-md-yellow-stripe, .btn.btn-mdo-yellow, .btn.btn-outline.btn-md-amber, .btn.btn-md-amber-stripe, .btn.btn-mdo-amber, .btn.btn-outline.btn-md-orange, .btn.btn-md-orange-stripe, .btn.btn-mdo-orange, .btn.btn-outline.btn-md-deep-orange, .btn.btn-md-deep-orange-stripe, .btn.btn-mdo-deep-orange, .btn.btn-outline.btn-md-brown, .btn.btn-md-brown-stripe, .btn.btn-mdo-brown, .btn.btn-outline.btn-md-blue-grey, .btn.btn-md-blue-grey-stripe, .btn.btn-mdo-blue-grey, .btn.btn-outline.btn-md-grey, .btn.btn-md-grey-stripe, .btn.btn-mdo-grey {
+.md-shadow-z-1, .md-shadow-z-1-hover, .btn.btn-outline.btn-md-red, .btn.btn-md-red-stripe, .btn.btn-mdo-red, .btn.btn-outline.btn-md-pink, .btn.btn-md-pink-stripe, .btn.btn-mdo-pink, .btn.btn-outline.btn-md-purple, .btn.btn-md-purple-stripe, .btn.btn-mdo-purple, .btn.btn-outline.btn-md-deep-purple, .btn.btn-md-deep-purple-stripe, .btn.btn-mdo-deep-purple, .btn.btn-outline.btn-md-indigo, .btn.btn-md-indigo-stripe, .btn.btn-mdo-indigo, .btn.btn-outline.btn-md-blue, .btn.btn-md-blue-stripe, .btn.btn-mdo-blue, .btn.btn-outline.btn-md-light-blue, .btn.btn-md-light-blue-stripe, .btn.btn-mdo-light-blue, .btn.btn-outline.btn-md-cyan, .btn.btn-md-cyan-stripe, .btn.btn-mdo-cyan, .btn.btn-outline.btn-md-teal, .btn.btn-md-teal-stripe, .btn.btn-mdo-teal, .btn.btn-outline.btn-md-green, .btn.btn-md-green-stripe, .btn.btn-mdo-green, .btn.btn-outline.btn-md-light-green, .btn.btn-md-light-green-stripe, .btn.btn-mdo-light-green, .btn.btn-outline.btn-md-lime, .btn.btn-md-lime-stripe, .btn.btn-mdo-lime, .btn.btn-outline.btn-md-yellow, .btn.btn-md-yellow-stripe, .btn.btn-mdo-yellow, .btn.btn-outline.btn-md-amber, .btn.btn-md-amber-stripe, .btn.btn-mdo-amber, .btn.btn-outline.btn-md-orange, .btn.btn-md-orange-stripe, .btn.btn-mdo-orange, .btn.btn-outline.btn-md-deep-orange, .btn.btn-md-deep-orange-stripe, .btn.btn-mdo-deep-orange, .btn.btn-outline.btn-md-brown, .btn.btn-md-brown-stripe, .btn.btn-mdo-brown, .btn.btn-outline.btn-md-blue-grey, .btn.btn-md-blue-grey-stripe, .btn.btn-mdo-blue-grey, .btn.btn-outline.btn-md-grey, .btn.btn-md-grey-stripe, .btn.btn-mdo-grey, .btn.btn-outline.btn-md-black, .btn.btn-md-black-stripe, .btn.btn-mdo-black, .btn.btn-outline.btn-md-white, .btn.btn-md-white-stripe, .btn.btn-mdo-white, .btn.btn-outline.btn-md-transparent, .btn.btn-md-transparent-stripe, .btn.btn-mdo-transparent, .btn.btn-outline.btn-md-darkblue, .btn.btn-md-darkblue-stripe, .btn.btn-mdo-darkblue {
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18) ;
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18) ;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.18) ; }
@@ -24815,6 +24815,122 @@ body.stop-scrolling {
     color: #FFF;
     border-color: rgba(158, 158, 158, 0.8);
     background: rgba(158, 158, 158, 0.8); }
+
+.btn.btn-md-black:not(.btn-outline) {
+  color: #FFF;
+  border-color: #000;
+  background: #000; }
+
+.btn.btn-outline.btn-md-black {
+  color: #000;
+  border-color: #000;
+  background: none; }
+  .btn.btn-outline.btn-md-black:hover, .btn.btn-outline.btn-md-black:active, .btn.btn-outline.btn-md-black:active:hover, .btn.btn-outline.btn-md-black:active:focus, .btn.btn-outline.btn-md-black:focus, .btn.btn-outline.btn-md-black.active {
+    color: #FFF !important;
+    border-color: #000;
+    background: #000; }
+
+.btn.btn-md-black-stripe {
+  border-left: 4px solid #000 !important; }
+
+.btn.btn-md-black.btn-no-border:not(.active) {
+  border-color: transparent; }
+
+.btn.btn-mdo-black {
+  color: black;
+  border-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); }
+  .btn.btn-mdo-black:hover, .btn.btn-mdo-black:active, .btn.btn-mdo-black:active:hover, .btn.btn-mdo-black:active:focus, .btn.btn-mdo-black:focus, .btn.btn-mdo-black.active {
+    color: #FFF;
+    border-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8); }
+
+.btn.btn-md-white:not(.btn-outline) {
+  color: #000;
+  border-color: #FFF;
+  background: #FFF; }
+
+.btn.btn-outline.btn-md-white {
+  color: #FFF;
+  border-color: #FFF;
+  background: none; }
+  .btn.btn-outline.btn-md-white:hover, .btn.btn-outline.btn-md-white:active, .btn.btn-outline.btn-md-white:active:hover, .btn.btn-outline.btn-md-white:active:focus, .btn.btn-outline.btn-md-white:focus, .btn.btn-outline.btn-md-white.active {
+    color: #000 !important;
+    border-color: #FFF;
+    background: #FFF; }
+
+.btn.btn-md-white-stripe {
+  border-left: 4px solid #FFF !important; }
+
+.btn.btn-md-white.btn-no-border:not(.active) {
+  border-color: transparent; }
+
+.btn.btn-mdo-white {
+  color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5); }
+  .btn.btn-mdo-white:hover, .btn.btn-mdo-white:active, .btn.btn-mdo-white:active:hover, .btn.btn-mdo-white:active:focus, .btn.btn-mdo-white:focus, .btn.btn-mdo-white.active {
+    color: #000;
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8); }
+
+.btn.btn-md-transparent:not(.btn-outline) {
+  color: #FFF;
+  border-color: transparent;
+  background: transparent; }
+
+.btn.btn-outline.btn-md-transparent {
+  color: transparent;
+  border-color: transparent;
+  background: none; }
+  .btn.btn-outline.btn-md-transparent:hover, .btn.btn-outline.btn-md-transparent:active, .btn.btn-outline.btn-md-transparent:active:hover, .btn.btn-outline.btn-md-transparent:active:focus, .btn.btn-outline.btn-md-transparent:focus, .btn.btn-outline.btn-md-transparent.active {
+    color: #FFF !important;
+    border-color: transparent;
+    background: transparent; }
+
+.btn.btn-md-transparent-stripe {
+  border-left: 4px solid transparent !important; }
+
+.btn.btn-md-transparent.btn-no-border:not(.active) {
+  border-color: transparent; }
+
+.btn.btn-mdo-transparent {
+  color: black;
+  border-color: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); }
+  .btn.btn-mdo-transparent:hover, .btn.btn-mdo-transparent:active, .btn.btn-mdo-transparent:active:hover, .btn.btn-mdo-transparent:active:focus, .btn.btn-mdo-transparent:focus, .btn.btn-mdo-transparent.active {
+    color: #FFF;
+    border-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8); }
+
+.btn.btn-md-darkblue:not(.btn-outline) {
+  color: #FFF;
+  border-color: #2B3643;
+  background: #2B3643; }
+
+.btn.btn-outline.btn-md-darkblue {
+  color: #2B3643;
+  border-color: #2B3643;
+  background: none; }
+  .btn.btn-outline.btn-md-darkblue:hover, .btn.btn-outline.btn-md-darkblue:active, .btn.btn-outline.btn-md-darkblue:active:hover, .btn.btn-outline.btn-md-darkblue:active:focus, .btn.btn-outline.btn-md-darkblue:focus, .btn.btn-outline.btn-md-darkblue.active {
+    color: #FFF !important;
+    border-color: #2B3643;
+    background: #2B3643; }
+
+.btn.btn-md-darkblue-stripe {
+  border-left: 4px solid #2B3643 !important; }
+
+.btn.btn-md-darkblue.btn-no-border:not(.active) {
+  border-color: transparent; }
+
+.btn.btn-mdo-darkblue {
+  color: #2b3643;
+  border-color: rgba(43, 54, 67, 0.5);
+  background: rgba(43, 54, 67, 0.5); }
+  .btn.btn-mdo-darkblue:hover, .btn.btn-mdo-darkblue:active, .btn.btn-mdo-darkblue:active:hover, .btn.btn-mdo-darkblue:active:focus, .btn.btn-mdo-darkblue:focus, .btn.btn-mdo-darkblue.active {
+    color: #FFF;
+    border-color: rgba(43, 54, 67, 0.8);
+    background: rgba(43, 54, 67, 0.8); }
 
 
 

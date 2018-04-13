@@ -79,17 +79,17 @@
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/components-rounded.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css/global/components.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css/global/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/image-crop.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/portfolio.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css/vendor/image-crop.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css//vendor/portfolio.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="<?php echo ASSETS; ?>css/layout.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo CSS_EMPLOYER; ?>blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="<?php echo ASSETS; ?>css/custom.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS ?>css/layout2/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="<?php echo ASSETS; ?>css/layout2/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
 
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">

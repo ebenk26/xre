@@ -1,0 +1,231 @@
+/*=============================================
+                    Variables 
+============================================ = */
+/*----------  Bootstrap  ----------*/
+/*----------  Typhography  ----------*/
+/*----------  Z-index Master List  ----------*/
+/*----------  Media Queries Breakpoint  ----------*/
+/*----------  Image Paths  ----------*/
+/*----------  Metronic Grid System  ----------*/
+/*----------  Grid Systems  ----------*/
+/*----------  Font Display  ----------*/
+/* =============================================
+    Bootstrap Overide
+=============================================*/
+/*----------  Color  ----------*/
+/*----------  Forms  ----------*/
+/*----------  Dropdowns  ----------*/
+/*----------  Wells  ----------*/
+/*----------  Tables  ----------*/
+/*----------  Form States and Alert  ----------*/
+/*----------  Buttons  ----------*/
+/*----------  Alerts  ----------*/
+/*----------  Progress Bars  ----------*/
+/*----------  Panels  ----------*/
+/*----------  List Group  ----------*/
+/*=============================================
+    # Mixins
+=============================================*/
+/*=============================================
+    # Mixin : Animation
+=============================================*/
+/*=====  End of Mixin : Animation  ======*/
+/*=============================================
+    # Mixin : Backface Visibility
+=============================================*/
+/*=====  End of # Mixin : Backface Visibility  ======*/
+/*=============================================
+	# Mixin : Background Size
+=============================================*/
+/*=====  End of # Mixin : Background Size  ======*/
+/*=============================================
+	# Mixin : Badge
+=============================================*/
+/*=====  End of Mixin : Badge   ======*/
+/*=============================================
+	# Mixin : Border
+=============================================*/
+/* Note : By DEFAULT , all border colors started with #000 */
+/*=====  End of # Mixin : Border  ======*/
+/*=============================================
+	# Mixin : Border Radius
+=============================================*/
+/*=====  End of # Mixin : Border Radius  ======*/
+/*=============================================
+	# Mixin : Box Shadow
+=============================================*/
+/*=====  End of # Mixin : Box Shadow  ======*/
+/*=============================================
+	# Mixin : Breakpoints
+=============================================*/
+/*=====  End of # Mixin : Breakpoints  ======*/
+/*=============================================
+=            Mixin : Buttons            =
+=============================================*/
+/*=============================================
+	# Mixin : Button
+=============================================*/
+/*=====  End of # Mixin : Button ======*/
+/*=============================================
+	# Mixin : Checkbox
+=============================================*/
+/*=====  End of # Mixin : Checkbox  ======*/
+/*=============================================
+	# Mixin : Clearfix
+=============================================*/
+/*=====  End of # Mixin : Clearfix  ======*/
+/*=============================================
+=            Mixin : Color            =
+=============================================*/
+/*----------  Font Color  ----------*/
+/*----------  Background Color  ----------*/
+/*----------  Ribbon  ----------*/
+/*----------  List  ----------*/
+/*----------  Note  ----------*/
+/*----------  Progress Bar  ----------*/
+/*----------  Dashboard Stat  ----------*/
+/*----------  Tab Variant  ----------*/
+/*=====  End of Color Mixin  ======*/
+/*=============================================
+	# Mixin : Filter
+=============================================*/
+/*=====  End of # Mixin : Filter  ======*/
+/*=============================================
+	# Mixin : Gradient
+=============================================*/
+/*=====  End of # Mixin : Gradient  ======*/
+/*=============================================
+	# Mixin : Metronic Grid
+=============================================*/
+/*=====  End of # Mixin : Metronic Grid  ======*/
+/*=============================================
+    # Mixin : Helper
+=============================================*/
+/*----------  Opacity  ----------*/
+/*----------  Background Opacity ----------*/
+/*=====  End of # Mixin : Helper  ======*/
+/*=============================================
+	# Mixin : Icon
+=============================================*/
+/*----------  Burger Icon  ----------*/
+/*----------  Close Icon ----------*/
+/*=====  End of # Mixin : Icon  ======*/
+/*=============================================
+	# Mixin : Input
+=============================================*/
+/*=====  End of # Mixin : Input   ======*/
+/*=============================================
+	# Mixin : Portlet
+=============================================*/
+/*----------  Portlet Background Colors  ----------*/
+/*----------  Portlet-Solid  ----------*/
+/*----------  Portlet-Box  ----------*/
+/*=====  End of # Mixin : Portlet  ======*/
+/*=============================================
+	# Mixin : Position
+=============================================*/
+/*=====  End of # Mixin : Position  ======*/
+/*=============================================
+	# Mixin : Radio
+=============================================*/
+/*=====  End of # Mixin : Radio  ======*/
+/*=============================================
+	# Mixin : Transform 
+=============================================*/
+/*=====  End of # Mixin : Transform  ======*/
+/*=============================================
+	# Mixin : Transition
+=============================================*/
+/*=====  End of # Mixin : Transition  ======*/
+/*=============================================
+    # Mixin : Vendor Prefixes
+=============================================*/
+/*=====  End of # Mixin : Vendor Prefixes  ======*/
+/*----------  Vertical Align ----------*/
+/*=====  End of # Mixins  ======*/
+/***
+Coming Soon Page
+***/
+body {
+  background-color: #ddd;
+  padding: 0;
+  margin: 0; }
+
+.coming-soon-header {
+  padding: 20px;
+  margin-top: 80px; }
+
+.coming-soon-content {
+  padding: 20px;
+  margin-top: 10px; }
+
+.coming-soon-countdown {
+  padding: 20px; }
+
+.coming-soon-content h1,
+.coming-soon-content p {
+  color: #fff; }
+
+.coming-soon-content h1 {
+  font-size: 42px;
+  line-height: 50px;
+  margin-bottom: 15px;
+  font-weight: 300; }
+
+.coming-soon-content p {
+  font-size: 14px; }
+
+.coming-soon-footer {
+  text-align: left !important;
+  font-size: 13px;
+  color: #fefefe;
+  padding: 30px; }
+
+/*Countdown*/
+#defaultCountdown {
+  width: 100%;
+  margin: 60px 0;
+  overflow: hidden; }
+
+#defaultCountdown span.countdown_row {
+  overflow: hidden; }
+
+#defaultCountdown span.countdown_row span {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-right: 2px; }
+
+#defaultCountdown span.countdown_row > span {
+  float: left; }
+
+#defaultCountdown span.countdown_section {
+  color: #fff;
+  padding: 7px 15px !important;
+  margin-bottom: 2px;
+  font-weight: 300;
+  background: url(../img/bg-white.png) repeat;
+  text-align: center; }
+
+#defaultCountdown span.countdown_amount {
+  display: inline-block;
+  font-size: 38px !important;
+  padding: 15px !important;
+  font-weight: 300; }
+
+/*Responsive*/
+@media (max-width: 1024px) {
+  #defaultCountdown span.countdown_amount {
+    padding: 10px; } }
+
+@media (max-width: 767px) {
+  .coming-soon-header,
+  .coming-soon-countdown,
+  .coming-soon-content,
+  .coming-soon-footer {
+    margin-top: 0px;
+    padding: 10px; } }
+
+@media (max-width: 320px) {
+  .coming-soon-content .btn-subscribe span {
+    display: none; } }
