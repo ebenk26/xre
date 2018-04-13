@@ -298,8 +298,8 @@
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> I agree with all the
-                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black" style="color:#000;">terms of use </a> and
-                                                    <a href="<?=base_url()?>privacy" target="_blank" class="font-black" style="color:#000;"> privacy policy</a>
+                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="font-black" style="color:orange;">terms of use </a> and
+                                                    <a href="<?=base_url()?>privacy" target="_blank" class="font-black" style="color:orange;"> privacy policy</a>
                                                 </label>
                                             </div>
                                         </div>
@@ -321,7 +321,7 @@
                         <div class="m-grid">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center font-white">
                                 Already have an account ?
-                                <a href="<?php echo base_url(); ?>login" style="color:#000;"> Sign In </a>
+                                <a href="<?php echo base_url(); ?>login" style="color:orange;"> Sign In </a>
                             </div>
                         </div>
                     </div>
