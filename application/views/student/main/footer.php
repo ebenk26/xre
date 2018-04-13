@@ -4,7 +4,7 @@
     <?php $this->load->view('main/footer_app');?>
 
     <!-- BEGIN CORE PLUGINS -->
-    <script src="<?php echo JS_STUDENTS; ?>jquery.min.js" type="text/javascript"></script>
+    <script src="<?php echo PLUGIN; ?>jquery-v1-12-4.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>js.cookie.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.slimscroll.min.js" type="text/javascript"></script>
