@@ -79,6 +79,186 @@
     <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
     <!-- END PASSWORD STRENGTH SCRIPTS -->
+    <?php if ($this->uri->segment(2) == 'job_board') :?>
+    <script>
+
+    $(document).ready(function(){
+        
+        $('.edit_jobpost').click(function(){
+            var idJobPost   = $(this).attr('data-id');
+            // console.log(idMap);
+
+            var lat = document.getElementById('latitude'+idJobPost).value;
+            var lng = document.getElementById('longitude'+idJobPost).value;
+
+            var input = document.getElementById('pac-input'+idJobPost);
+
+            if(lat.length > 0 && lng.length > 0)
+            {
+                var mapLatitude     = document.getElementById('latitude'+idJobPost).value;
+                var mapLongitude    = document.getElementById('longitude'+idJobPost).value;
+                var title           = document.getElementById('addMapTitle'+idJobPost).value;
+                var description     = document.getElementById('addMapDescription'+idJobPost).value;
+
+                var map = new google.maps.Map(document.getElementById('map'+idJobPost), {
+                  center: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
+                  // center: {lat: -33.8688, lng: 151.2195},
+                  zoom: 13
+                });
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>'+title+
+                '</b></span><br/>'+description+'</span></div>';
+                console.log(contentString);
+
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+
+                var marker = new google.maps.Marker({
+                  position: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
+                  map: map,
+                  title: title,
+                });
+
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+            }
+            else
+            {
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker({
+                  map: map
+                });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
+            }            
+
+            autocomplete.addListener('place_changed', function() {
+              infowindow.close();
+              var place = autocomplete.getPlace();
+              if (!place.geometry) {
+                return;
+              }
+
+              if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+              } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+              }
+
+              // Set the position of the marker using the place ID and location.
+              marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+              });
+              marker.setVisible(true);
+              var element   = document.getElementById('map-window'+idJobPost);
+              var InfoWindow= document.createElement('div');
+              var title     = document.createElement('span');
+              var addr      = document.createElement('span');
+              var br        = document.createElement('br');
+
+              element.appendChild(InfoWindow);
+              InfoWindow.setAttribute('id', 'infowindow-content'+idJobPost);
+              InfoWindow.setAttribute('style', 'display: inline');
+
+              InfoWindow.appendChild(title);
+              title.setAttribute('id', 'place-name'+idJobPost);
+              title.setAttribute('style', 'font-weight: bold');
+              InfoWindow.appendChild(br);
+              InfoWindow.appendChild(addr);
+              addr.setAttribute('id', 'place-address'+idJobPost);
+              document.getElementById('place-name'+idJobPost).textContent = place.name;
+              document.getElementById('place-address'+idJobPost).textContent =
+                  place.formatted_address;
+              infowindow.setContent(document.getElementById('infowindow-content'+idJobPost));
+              infowindow.open(map, marker);
+              document.getElementById('latitude'+idJobPost).value=place.geometry.location.lat();
+              document.getElementById('longitude'+idJobPost).value=place.geometry.location.lng();
+            });
+        })
+    });
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+          var element   = document.getElementById('map-window');
+          var InfoWindow= document.createElement('div');
+          var title     = document.createElement('span');
+          var addr      = document.createElement('span');
+
+          element.appendChild(InfoWindow);
+          InfoWindow.setAttribute('id', 'infowindow-content');
+
+          InfoWindow.appendChild(title);
+          title.setAttribute('id', 'place-name');
+          document.createElement('br');
+          InfoWindow.appendChild(addr);
+          addr.setAttribute('id', 'place-address');
+          document.getElementById('place-name').textContent = place.name;
+          document.getElementById('place-address').textContent =
+              place.formatted_address;
+          infowindow.setContent(document.getElementById('infowindow-content'));
+          infowindow.open(map, marker);
+          document.getElementById('addLatitude').value=place.geometry.location.lat();
+          document.getElementById('addLongitude').value=place.geometry.location.lng();
+          document.getElementById('addMapTitle').value= place.name;
+          document.getElementById('addMapDescription').value= place.formatted_address;
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
+        async defer></script>
+    <?php endif; ?>
     <script>
         $(document).ready(function () {
             var e = $("#xremo_table");
@@ -495,7 +675,7 @@
                                       candidate_id: candidate,
                                     },
                                     success:function(response) {
-                                       swal("Success", "Candidate has been rejected.", "success");
+                                       swal("Success", "Candidate has been hired.", "success");
                                        location.reload();
                                     }
                                   })
@@ -765,7 +945,6 @@
                             var invitation = <?php echo $invitation; ?>;
                             var invitation_calendar = [];
                             $.each(invitation, function(i,v){
-                                console.log(v);
                                 var color = '';
                                 
                                 if (v.status == 'accept') {
@@ -783,7 +962,6 @@
                                 invitation_calendar.push ({id: v.id, title: v.title, start: v.start_date, end: v.end_date, backgroundColor: App.getBrandColor(color)})
 
                                 });
-                            console.log(invitation_calendar);
                             $('#fullcalendar').fullCalendar({ 
                                 header: h,
                                 defaultView: 'month', 

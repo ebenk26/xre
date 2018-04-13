@@ -8,6 +8,7 @@ class Profile extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
         $this->load->model('student_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if(empty($countryCheck)){
@@ -53,6 +54,9 @@ class Profile extends CI_Controller {
             $this->employer_model->delete_social($id);
         }
 
+        $countryCode     = $this->session->userdata('country_code');
+        $getCountryId    = $this->global_model->get_where('countries', array('country_code'=>$countryCode));
+
         $profile = array('company_name'                 => $this->input->post('company_name'),
                          'shipping_name'                => $this->input->post('company_name'),
                          'billing_name'                 => $this->input->post('company_name'),
@@ -60,7 +64,7 @@ class Profile extends CI_Controller {
                          'company_registration_number'  => $this->input->post('company_registration_number'),
                          'company_industry_id'          => $this->input->post('industry'),
                          'company_description'          => $this->input->post('about_company'),
-                         //'spoken_language' => $this->input->post('language'),
+                         'country_id' => $getCountryId[0]['id'],
                          'user_id' => $id,
                          'url' => $this->input->post('corporate_website'));
         $checkAvailabilityProfile = $this->employer_model->check_availability_profile($id);

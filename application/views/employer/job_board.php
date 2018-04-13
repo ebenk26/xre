@@ -7,6 +7,54 @@
         $preview++;
     }
 } ?>       
+        <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        margin-left: 17px;
+        margin-top: 10px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      .pac-container{
+        z-index: 99999 !important;
+      }
+
+      .controls:focus {
+        border-color: #4d90fe;
+      }
+      .title {
+        font-weight: bold;
+      }
+      #infowindow-content {
+        display: none;
+      }
+      #map #infowindow-content {
+        display: inline;
+      }
+
+    </style>
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -21,7 +69,7 @@
                         <ul class="page-breadcrumb">
                             <li>
                                 <i class="icon-home"></i>
-                                <a href="index.html">Home</a>
+                                <a href="<?php echo base_url();?>employer/dashboard">Home</a>
                                 <i class="fa fa-angle-right"></i>
                             </li>
                             <li>
@@ -145,7 +193,7 @@
                                                 <ul class="dropdown-menu pull-right" role="menu">
                                                     <?php if ( (date('Y-m-d') <= date('Y-m-d', strtotime($value['expiry_date']))) && $value['status'] != 'expired') {?>
                                                     <li>
-                                                        <a href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
+                                                        <a class="edit_jobpost" data-id="<?=  $value['id']; ?>" href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
                                                             <i class="icon-pencil"></i> Edit </a>
                                                     </li>
                                                     <?php } ?>
@@ -327,8 +375,8 @@
                                                     <label class="control-label ">Country</label>
 
                                                     <select class="form-control" name="country">
-                                                        <?php foreach ($countries as $key => $value) {?>
-                                                            <option <?php echo $location->country == $value['name'] ? 'selected' : '' ?>><?php echo $value['name']; ?></option>
+                                                        <?php foreach ($countries as $key => $country_value) {?>
+                                                            <option <?php echo $location->country == $country_value['name'] ? 'selected' : '' ?>><?php echo $country_value['name']; ?></option>
                                                         <?php } ?>
                                                     </select>
 
@@ -336,18 +384,29 @@
                                             </div>
                                             <!--/span-->
                                         </div>
+                                        <input type="hidden" id="addMapTitle<?= $value['id']?>" name="mapTitle" value="<?= !empty($location->map_title) ? $location->map_title : 'Map Title';?>"></input>
+                                        <input type="hidden" id="addMapDescription<?= $value['id']?>" name="mapDescription" value="<?= !empty($location->map_description) ? $location->map_description : 'Map Description';?>"></input>
                                         <div class="row mx-0">
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Latitude</label>
-                                                    <input type="text" class="form-control" placeholder="1.643604 " name="latitude" value="<?php echo !empty($location->latitude) ? $location->latitude : ''; ?>">
+                                                    <input id="latitude<?= $value['id']?>" type="text" class="form-control" placeholder="1.643604 " name="latitude" value="<?php echo !empty($location->latitude) ? $location->latitude : ''; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Longititude</label>
-                                                    <input type="text" class="form-control" placeholder="1.955566" name="longitude" value="<?php echo !empty($location->longitude) ? $location->longitude : ''; ?>">
+                                                    <input id="longitude<?= $value['id']?>" type="text" class="form-control" placeholder="1.955566" name="longitude" value="<?php echo !empty($location->longitude) ? $location->longitude : ''; ?>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mx-0">
+                                            <div class="col-md-12">
+                                                <div style="height: 400px;" id="map-window<?= $value['id'];?>">
+                                                    <input id="pac-input<?= $value['id'];?>" class="controls" type="text" placeholder="Enter a location">
+                                                    <div id="map<?= $value['id'];?>" style="height: 100%; z-index: 9999 !important"></div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -526,18 +585,28 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Latitude</label>
-                                            <input type="text" class="form-control" placeholder="1.643604 " name="latitude" value="<?=$user_profile['latitude']?>" required>
+                                            <input type="text" class="form-control" placeholder="1.643604 " id="addLatitude" name="latitude" value="<?=$user_profile['latitude']?>" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Longititude</label>
-                                            <input type="text" class="form-control" placeholder="1.955566" name="longitude" value="<?=$user_profile['longitude']?>" required>
+                                            <input type="text" class="form-control" placeholder="1.955566" id="addLongitude" name="longitude" value="<?=$user_profile['longitude']?>" required>
                                         </div>
                                     </div>
                                 </div>
-
+                                <input type="hidden" id="addMapTitle" name="mapTitle"></input>
+                                <input type="hidden" id="addMapDescription" name="mapDescription"></input>
+                                <div class="row mx-0">
+                                    <div class="col-md-12">
+                                        <div style="height: 300px;" id="map-window">
+                                            <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+                                            <div id="map" style="z-index: 9999 !important"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" id="job_status_add" name="status"></input>
