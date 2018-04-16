@@ -1,5 +1,5 @@
         <div class="page-content-wrapper">
-            <div class="page-content" style="min-height: 598px;">
+            <div class="page-content">
                 <!-- BEGIN PAGE HEAD-->
                 <div class="page-head">
                     <!-- BEGIN PAGE TITLE -->
