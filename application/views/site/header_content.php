@@ -70,43 +70,43 @@
                                         " ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                     <?php }?>
 
-                                    <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
+                                    <span class="font-10 ml-5 ti-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-home mr-3"></i>Dashboard</a>
+                                            <i class="icon-home mr-10"></i>Dashboard</a>
                                     </li>
                                     <?php if ($roles !='administrator') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-note mr-3"></i>Edit Profile</a>
+                                            <i class="icon-note mr-10"></i>Edit Profile</a>
                                     </li>
                                     <?php } ?>
                                     <?php if ($roles !='employer' && $roles !='administrator') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-book-open mr-3"></i>My Resume</a>
+                                            <i class="icon-book-open mr-10"></i>My Resume</a>
                                     </li>
                                     <?php } ?>
                                     <?php if ($roles =='employer') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>"
                                             class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-book-open mr-3"></i>View My Profile
+                                            <i class="icon-book-open mr-10"></i>View My Profile
                                         </a>
                                     </li>
                                     <?php }?>
                                     <?php if ($roles !='administrator') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-calendar mr-3"></i>My Calendar</a>
+                                            <i class="icon-calendar mr-10"></i>My Calendar</a>
                                     </li>
                                     <?php } ?>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
-                                            <i class="icon-key mr-3"></i>Log Out</a>
+                                            <i class="icon-key mr-10"></i>Log Out</a>
                                     </li>
                                 </ul>
                             </li>

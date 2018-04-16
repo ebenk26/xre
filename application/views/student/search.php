@@ -43,7 +43,7 @@
                                                             </div>
                                                             <div class="media-body">
                                                                 <ul class="list-unstyled">
-                                                                    <li class="font-24-xs font-weight-600"><?php echo $value['name'] ?></li>
+                                                                    <li class="font-24 font-weight-600"><?php echo $value['name'] ?></li>
                                                                     <li><a><?php echo $value['company_name'] ?></a></li>
                                                                 </ul>
                                                             </div>

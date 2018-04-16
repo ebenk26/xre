@@ -83,7 +83,7 @@
     <link href="<?php echo ASSETS; ?>css/global/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <link href="<?php echo ASSETS; ?>css/vendor/image-crop.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css//vendor/portfolio.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css/vendor/portfolio.min.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
@@ -119,8 +119,11 @@
                 <!-- X<small>REMO</small>  -->
                 <!-- </a> -->
                 <a href="<?php echo base_url();?>">
-                    <img src="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4" />
+                    <img src="<?php echo IMG; ?>/site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom" />
                 </a>
+                <div class="menu-toggler sidebar-toggler">
+                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+                </div>
             </div>
             <!-- END LOGO -->
 
@@ -133,7 +136,7 @@
 
                 <!-- BEGIN HEADER SEARCH BOX -->
 
-                <!--<form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
+                <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search..." name="query">
                         <span class="input-group-btn">
@@ -142,7 +145,7 @@
                             </a>
                         </span>
                     </div>
-                </form>-->
+                </form>
                 <!-- END HEADER SEARCH BOX -->
 
                 <!-- BEGIN TOP NAVIGATION MENU -->
@@ -152,12 +155,12 @@
                         <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-						
+<!-- 						
 						<li class="">
                             <a href="<?=base_url()?>job/search" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left" target="_blank">Search Job</a>
-                        </li>
+                        </li> -->
 						
-						<!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->
+						<!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->  
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="count_notif">
                                 <i class="icon-bell"></i>
@@ -249,17 +252,33 @@
                 <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu page-sidebar-menu-compact" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
                     <!-- Profile Progress -->
-                    <li class="nav-item px-2 py-4 hidden-sm">
+                    <!-- <li class="nav-item px-2 py-4 hidden-sm">
                         <div class="m-grid mb-2 mt-4">
                             <div class="m-grid-row md-white-text font-20-xs">
                                 <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?php echo $percent; ?>%</div>
+                                <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"></div>
                             </div>
                         </div>
                         <div class="progress progress-lg ">
                             <div class="progress-bar progress-bar-warning " role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent; ?>%">
                                 <span class="sr-only"> <?php echo $percent; ?>% Complete (warning) </span>
                             </div>
+                        </div>
+                    </li> -->
+
+                    <li class="nav-progress">
+                        
+                        <div class="progress-info">
+                            <div class="status">
+                                <div class="status-title"> Profile Completion </div>
+                                <div class="status-number"><?php echo $percent; ?>%</div>
+                            </div>
+                            <div class="progress">
+                                <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">
+                                    <span class="sr-only"><?php echo $percent; ?>% Complete</span>
+                                </span>
+                            </div>
+
                         </div>
                     </li>
                     <!-- Sidebar Menu : Dashboard -->

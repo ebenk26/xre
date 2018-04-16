@@ -181,7 +181,7 @@
                                     <?php echo $value['employment_name'] ;?>
                                 </a>
                                 <?php if (!empty($value['position_name'])) {?>
-                                <a href="" class="badge badge-md-darkblue badge-roundless mb-5">
+                                <a href="" class="badge badge-md-blue-grey badge-roundless mb-5">
                                     <?php echo $value['position_name'] ?>
                                 </a>
                                 <?php } ?>

@@ -10,29 +10,27 @@
 
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css"
+    />
 
+    <!-- Bootstrap  -->
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+   
     <!-- Vendor Styles -->
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/themify/themify.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/scrollbar/scrollbar.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/swiper/swiper.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-    <!-- Metronic -->
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/rateit/rateit.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/vendor/animate.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/scrollbar.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/swiper.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
+   
+    <!-- Icon -->
+    <link href="<?php echo base_url(); ?>assets/css/icon/themify.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Megakit Styles -->
-    <!-- Metronic Styles -->
-    <link href="<?php echo ASSETS; ?>css/components.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/style.css" rel="stylesheet" type="text/css" />
+    <!-- Global -->
+    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
+    <!-- Layout 8 -->
+    <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 
@@ -51,10 +49,10 @@
     <?php $this->load->view('site/header_content');?>
 
     <!--========== PROMO : VIEW ==========-->
-    <div class="s-promo-block-v2 g-bg-gradient-black-strong mt-height-250-xs" style="background: url(<?php echo base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed;">
-        <div class="container  ">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-250" style="background: url(<?php echo base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed;">
+        <div class="container g-ver-bottom-90  ">
             <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
-                <div class="row pt-18">
+                <div class="row ">
                     <div class="col-md-12">
                         <div class="form-group mx-0">
                             <div class="input-group input-group-lg">
@@ -71,7 +69,7 @@
         </div>
     </div>
 
-    <div class="container-fluid g-bg-color-sky-light pt-5">
+    <div class="container-fluid bg-sky-light pt-30">
         <div class="row">
             <!--COL : Filter -->
             <div class="col-md-3 ">
@@ -79,14 +77,14 @@
                     <div class="pull-right  ">
                         <form id="clear_all_form" action="<?= current_url(); ?>" method="POST">
                             <input type="submit" name="clear_all_filter" class="hidden">
-                            <a href="#" class="md-indigo-text mb-1">Clear all filter</a>
+                            <a href="#" class="md-indigo-text mb-5">Clear all filter</a>
                         </form>
                     </div>
                     <div class="media-body">
-                        <h5 class="my-1 text-uppercase font-weight-600  font-16-xs roboto-font"> Filters</h5>
+                        <h5 class="my-5 text-uppercase font-weight-600  font-16 roboto-font"> Filters</h5>
                     </div>
                 </div>
-                <hr class="border-grey-mint my-2">
+                <hr class="border-grey-mint my-10">
                 <?php
                     $params = $_GET;
 
@@ -209,17 +207,17 @@
                         }
                     }
                 ?>
-                <ul class="list-group list-border md-transparent p-0">
+                <ul class="list-group border-none md-transparent p-0">
                     <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="GET" id="job_search_form">
                         <input type="hidden" name="query" value="<?php echo $keyword; ?>">
                         <!-- Location -->
-                        <li class="list-group-item md-transparent p-2">
+                        <li class="list-group-item md-transparent p-2 border-none">
                             <div class="media">
                                 <div class="pull-right  ">
                                     <a href="<?= $clear_location; ?>" class="md-indigo-text">Clear </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Location
+                                    <h4 class="my-10 text-uppercase font-weight-600 font-16 roboto-font"> Location
                                         <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="type location you desired"></i>
                                     </h4>
                                 </div>
@@ -229,7 +227,7 @@
                             </div>
                         </li>
                         <!-- Job Type -->
-                        <li class="list-group-item md-transparent p-2">
+                        <li class="list-group-item md-transparent p-2 border-none">
                             <div class="media">
                                 <div class="pull-right  ">
                                     <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
@@ -237,7 +235,7 @@
                                 </div>
                                 <div class="media-body">
                                     <div class="media-body">
-                                        <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Job Type
+                                        <h4 class="my-10 text-uppercase font-weight-600 font-16 roboto-font"> Job Type
                                             <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select job type you desired"></i>
                                         </h4>
                                     </div>
@@ -247,7 +245,7 @@
                                 <?php foreach ($employment_type as $key => $value) { ?>
                                     <div class="md-checkbox">
                                         <input type="checkbox" name="employment_type[]" id="checkbox<?php echo $value['name'];?>" value="<?php echo $value['id'] ?>" class="md-check" <?php echo (isset($_GET["employment_type"]) && in_array($value['id'],$_GET["employment_type"])) ? 'checked="checked"' : ''; ?>>
-                                        <label for="checkbox<?php echo $value['name'];?>">
+                                        <label class="font-weight-400 font-15" for="checkbox<?php echo $value['name'];?>">
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> <?php echo $value['name'];?> </label>
@@ -256,19 +254,19 @@
                             </div>
                         </li>
                         <!-- Industry -->
-                        <li class="list-group-item md-transparent p-2">
+                        <li class="list-group-item md-transparent border-none">
                             <div class="media">
                                 <div class="pull-right  ">
                                     <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
                                     <a href="<?= $clear_company_industry; ?>" class="md-indigo-text">Clear </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs"> Company Industry
+                                    <h4 class="my-10 text-uppercase font-weight-600 font-16"> Company Industry
                                         <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select company industry you desired"></i>
                                     </h4>
                                 </div>
                             </div>
-                            <div class="form-group mt-1">
+                            <div class="form-group mt-5">
                                 <select class="bs-select form-control" name="company_industry" id="company_industry">
                                     <option value="" selected disabled>Company Industry </option>
                                     <?php foreach ($industry as $key => $value) {?>
@@ -278,14 +276,14 @@
                             </div>
                         </li>
                         <!-- Position Level-->
-                        <li class="list-group-item md-transparent p-2">
+                        <li class="list-group-item md-transparent border-none">
                             <div class="media">
                                 <div class="pull-right  ">
                                     <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
                                     <a href="<?= $clear_position_levels; ?>" class="md-indigo-text">Clear </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 font-14-xs roboto-font"> Position Level
+                                    <h4 class="my-10 text-uppercase font-weight-600 font-16 roboto-font"> Position Level
                                         <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select position level you desired"></i>
                                     </h4>
                                 </div>
@@ -296,7 +294,7 @@
                                 <?php foreach ($position_levels as $key => $value) {?>
                                     <div class="md-checkbox">
                                         <input type="checkbox" name="position_levels[]" id="checkbox<?php echo $value['name']?>" class="md-check" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET["position_levels"]) && in_array($value['id'],$_GET["position_levels"])) ? 'checked="checked"' : ''; ?>>
-                                        <label for="checkbox<?php echo $value['name']?>">
+                                        <label class="font-weight-400 font-15" for="checkbox<?php echo $value['name']?>">
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> <?php echo $value['name']?> </label>
@@ -305,14 +303,14 @@
                             </div>
                         </li>
                         <!-- Experience Level-->
-                        <li class="list-group-item md-transparent p-2">
+                        <li class="list-group-item border-none md-transparent">
                             <div class="media">
                                 <div class="pull-right  ">
                                     <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
                                     <a href="<?= $clear_experiences; ?>" class="md-indigo-text">Clear </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="my-2 text-uppercase font-weight-600 roboto-font font-14-xs"> Experience
+                                    <h4 class="my-10 text-uppercase font-weight-600 roboto-font font-16"> Experience
                                         <i class="fa fa-info-circle tooltips" data-container="body" data-placement="top" data-original-title="select experience you desired"></i>
                                     </h4>
                                 </div>
@@ -322,7 +320,7 @@
                                 <?php foreach ($year_of_experiences as $key => $value) { ?>
                                     <div class="md-checkbox">
                                         <input type="checkbox" name="experiences[]" id="checkbox<?php echo str_replace(' ', '', $value['name']);?>" class="md-check" table="year_of_experience" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET["experiences"]) && in_array($value['id'],$_GET["experiences"])) ? 'checked="checked"' : ''; ?>>
-                                        <label for="checkbox<?php echo str_replace(' ', '', $value['name']);?>">
+                                        <label class="font-weight-400 font-15" for="checkbox<?php echo str_replace(' ', '', $value['name']);?>">
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> <?php echo $value['name'];?> </label>
@@ -336,7 +334,7 @@
             </div>
 
             <!-- COL : Job Search Content -->
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="portlet light">
                     <div class="portlet-title mb-0">
                         <div class="caption">
@@ -364,7 +362,7 @@
                                         $company_url    = base_url().'profile/company/'.rtrim(base64_encode($job_result['user_id']), '=');
                             ?>
                                         <li class="list-group-item px-0">
-                                            <div class="widget-media">
+                                            <div class="widget-media border-none">
                                                 <!-- <div class="pull-right ">
                                                    <a href="#" class="btn btn-md-indigo btn-sm letter-space-xs ">Apply</a>
                                                 </div> -->
@@ -374,25 +372,26 @@
                                                 </div>
 												<?php }?>
                                                 <div class="media-body ">
-                                                    <h6 class="my-1 font-weight-700 roboto-font">
+                                                    <h6 class="my-5 font-weight-700 roboto-font">
                                                         <a href="<?= $url_detail; ?>" target="_blank" style="color:coral;"><?= $job_result["name"]; ?></a>
                                                     </h6>
-                                                    <h6 class=" my-1 roboto-font">
+                                                    <h6 class=" my-5 roboto-font">
                                                         <a href="<?= $company_url; ?>" target="_blank"><?= $job_result["company_name"]; ?></a>
                                                     </h6>
-                                                </div>
-                                            </div>
-                                            <p class="my-1 roboto-font">
+                                                    <p class="my-5 roboto-font">
                                                 <!-- <span class="label label-md-green label-sm">Salary</span> -->
                                                 <span class="label label-md-blue-grey label-sm"><?= $job_result["industry_name"]; ?></span>
                                                 <span class="label label-md-red label-sm"><?= $job_result["state_name"]; ?></span>
                                                 <span class="label label-md-blue label-sm"><?= $job_result["job_type"]; ?></span>
                                                 <span class="label label-md-purple label-sm"><?= $job_result["position_level"]; ?></span>
                                             </p>
-                                            <p class="multiline-truncate roboto-font font-weight-300 mb-3">
+                                            <p class="multiline-truncate roboto-font font-weight-300 mb-5">
                                                 <?//= substr($job_result["job_description"],0,250); ?>
 												<?= strip_tags($job_result["job_description"]); ?>
                                             </p>
+                                                </div>
+                                            </div>
+                                            
                                         </li>
                             <?php
                                     }
@@ -401,7 +400,7 @@
 
                             <!-- Pagination-->
                             <li class="list-group-item px-0 ">
-                                <ul class="pagination pagination-lg">
+                                <ul class="pagination">
                                     <?= $pagination; ?>
                                 </ul>
                             </li>
@@ -422,41 +421,45 @@
 	<?php $this->load->view('main/footer_content');?>
     
 
-    <!-- BEGIN CORE PLUGINS -->
-    <!-- Metronic -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.migrate.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/js.cookie.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.blockui.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-    <!-- Megakit -->
+	
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/jquery-v1-12-4.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.back-to-top.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.equal-height.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+	
+	<!--//REMOVE
+	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/swiper/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/jquery.masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/imagesloaded.pkgd.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/rateit/jquery.rateit.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+	-->
 
     <!-- General Components and Settings -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>scripts/app.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>global.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/masonry.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/equal-height.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>components-bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>header-sticky.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>swiper.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>masonry.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
     <link href="<?php echo ASSETS; ?>plugins/select2/js/select2.min.js" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
