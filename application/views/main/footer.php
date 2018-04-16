@@ -4,8 +4,8 @@
     <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
     <!-- Vendor -->
 	
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-v1-11.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugin/jquery-v1-12-4.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
