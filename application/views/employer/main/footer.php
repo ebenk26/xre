@@ -83,7 +83,24 @@
     <script>
 
     $(document).ready(function(){
-        
+        $('.addBudgetMax').focusout(function(){
+            $this   =   $('#addBudgetMin').val();
+            $that   =   $('#addBudgetMax').val();
+            if ($this.length > 0) {
+                if (parseInt($this) >= parseInt($that)) {
+                    console.log($this);
+                    console.log($that);
+                    $('#addBudgetMin').css('border-color', 'red');
+                    $('#preview_button_add').attr("disabled", 'disabled');
+                }else{
+                    console.log($this);
+                    console.log($that);
+                    $('#addBudgetMin').css('border-color', 'rgb(194, 202, 216)');
+                    $('#preview_button_add').removeAttr("disabled");
+                }
+            }
+        });
+
         $('.edit_jobpost').click(function(){
             var idJobPost   = $(this).attr('data-id');
             // console.log(idMap);

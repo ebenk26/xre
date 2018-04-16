@@ -234,7 +234,7 @@
                             </div>
 
                             <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal form-row-seperated ">
-                                <input type="hidden" id="job_status_edit" name="status" value="<?php echo ($value['status'] == 'post') ? 'post' : 'preview'; ?>"></input>
+                                <input type="hidden" id="job_status_edit" name="status" value="preview"></input>
                                 <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                                     <div class="modal-body form-body pr-0">
                                         <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
@@ -261,9 +261,9 @@
                                                                 <option <?php echo $value['forex'] == $currency['name'] ? 'selected' : ''; ?>><?php echo $currency['name']; ?></option>
                                                             <?php endforeach ?>
                                                         </select>
-                                                        <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min">
+                                                        <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min" min="0" max="999999999">
                                                         <span class="mx-2">to</span>
-                                                        <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max">
+                                                        <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max" min="0" max="999999999">
                                                     </div>
 
                                                     <!-- <span class="help-block small">Internship in IT department</span> -->
@@ -458,9 +458,9 @@
                                                         <option><?php echo $value['name']; ?></option>
                                                     <?php endforeach ?>
                                                 </select>
-                                                <input type="number" class="form-control " placeholder="0.00" name="budget_min">
+                                                <input type="number" class="form-control addBudgetMin" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
                                                 <span class="mx-2">to</span>
-                                                <input type="number" class="form-control  " placeholder="0.00" name="budget_max">
+                                                <input type="number" class="form-control addBudgetMax" id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
                                             </div>
 
                                             <!-- <span class="help-block small">Internship in IT department</span> -->

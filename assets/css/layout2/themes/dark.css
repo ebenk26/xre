@@ -1,0 +1,479 @@
+/*=============================================
+                    Variables 
+============================================ = */
+/*----------  Bootstrap  ----------*/
+/*----------  Typhography  ----------*/
+/*----------  Z-index Master List  ----------*/
+/*----------  Media Queries Breakpoint  ----------*/
+/*----------  Image Paths  ----------*/
+/*----------  Metronic Grid System  ----------*/
+/*----------  Grid Systems  ----------*/
+/*----------  Font Display  ----------*/
+/* =============================================
+    Bootstrap Overide
+=============================================*/
+/*----------  Color  ----------*/
+/*----------  Forms  ----------*/
+/*----------  Dropdowns  ----------*/
+/*----------  Wells  ----------*/
+/*----------  Tables  ----------*/
+/*----------  Form States and Alert  ----------*/
+/*----------  Buttons  ----------*/
+/*----------  Alerts  ----------*/
+/*----------  Progress Bars  ----------*/
+/*----------  Panels  ----------*/
+/*----------  List Group  ----------*/
+/*=============================================
+    # Mixins
+=============================================*/
+/*=============================================
+    # Mixin : Animation
+=============================================*/
+/*=====  End of Mixin : Animation  ======*/
+/*=============================================
+    # Mixin : Backface Visibility
+=============================================*/
+/*=====  End of # Mixin : Backface Visibility  ======*/
+/*=============================================
+	# Mixin : Background Size
+=============================================*/
+/*=====  End of # Mixin : Background Size  ======*/
+/*=============================================
+	# Mixin : Badge
+=============================================*/
+/*=====  End of Mixin : Badge   ======*/
+/*=============================================
+	# Mixin : Border
+=============================================*/
+/* Note : By DEFAULT , all border colors started with #000 */
+/*=====  End of # Mixin : Border  ======*/
+/*=============================================
+	# Mixin : Border Radius
+=============================================*/
+/*=====  End of # Mixin : Border Radius  ======*/
+/*=============================================
+	# Mixin : Box Shadow
+=============================================*/
+/*=====  End of # Mixin : Box Shadow  ======*/
+/*=============================================
+	# Mixin : Breakpoints
+=============================================*/
+/*=====  End of # Mixin : Breakpoints  ======*/
+/*=============================================
+=            Mixin : Buttons            =
+=============================================*/
+/*=============================================
+	# Mixin : Button
+=============================================*/
+/*=====  End of # Mixin : Button ======*/
+/*=============================================
+	# Mixin : Checkbox
+=============================================*/
+/*=====  End of # Mixin : Checkbox  ======*/
+/*=============================================
+	# Mixin : Clearfix
+=============================================*/
+/*=====  End of # Mixin : Clearfix  ======*/
+/*=============================================
+=            Mixin : Color            =
+=============================================*/
+/*----------  Font Color  ----------*/
+/*----------  Background Color  ----------*/
+/*----------  Ribbon  ----------*/
+/*----------  List  ----------*/
+/*----------  Note  ----------*/
+/*----------  Progress Bar  ----------*/
+/*----------  Dashboard Stat  ----------*/
+/*----------  Tab Variant  ----------*/
+/*=====  End of Color Mixin  ======*/
+/*=============================================
+	# Mixin : Filter
+=============================================*/
+/*=====  End of # Mixin : Filter  ======*/
+/*=============================================
+	# Mixin : Gradient
+=============================================*/
+/*=====  End of # Mixin : Gradient  ======*/
+/*=============================================
+	# Mixin : Metronic Grid
+=============================================*/
+/*=====  End of # Mixin : Metronic Grid  ======*/
+/*=============================================
+    # Mixin : Helper
+=============================================*/
+/*----------  Opacity  ----------*/
+/*----------  Background Opacity ----------*/
+/*=====  End of # Mixin : Helper  ======*/
+/*=============================================
+	# Mixin : Icon
+=============================================*/
+/*----------  Burger Icon  ----------*/
+/*----------  Close Icon ----------*/
+/*=====  End of # Mixin : Icon  ======*/
+/*=============================================
+	# Mixin : Input
+=============================================*/
+/*=====  End of # Mixin : Input   ======*/
+/*=============================================
+	# Mixin : Portlet
+=============================================*/
+/*----------  Portlet Background Colors  ----------*/
+/*----------  Portlet-Solid  ----------*/
+/*----------  Portlet-Box  ----------*/
+/*=====  End of # Mixin : Portlet  ======*/
+/*=============================================
+	# Mixin : Position
+=============================================*/
+/*=====  End of # Mixin : Position  ======*/
+/*=============================================
+	# Mixin : Radio
+=============================================*/
+/*=====  End of # Mixin : Radio  ======*/
+/*=============================================
+	# Mixin : Transform 
+=============================================*/
+/*=====  End of # Mixin : Transform  ======*/
+/*=============================================
+	# Mixin : Transition
+=============================================*/
+/*=====  End of # Mixin : Transition  ======*/
+/*=============================================
+    # Mixin : Vendor Prefixes
+=============================================*/
+/*=====  End of # Mixin : Vendor Prefixes  ======*/
+/*----------  Vertical Align ----------*/
+/*=====  End of # Mixins  ======*/
+/***********
+    Page Header
+    ***********/
+/* Header search bar, toggler button & top menu */
+.page-header.navbar {
+  /* Top notification menu/bar */
+  /* Header seaech box */ }
+  .page-header.navbar .page-logo {
+    background: #EF3F3F; }
+  .page-header.navbar .page-top {
+    background: #ffffff;
+    box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.2); }
+  .page-header.navbar .top-menu .navbar-nav {
+    /* Extended Dropdowns */
+    /* Notification */
+    /* Inbox */
+    /* Tasks */
+    /* User */
+    /* Language */
+    /* Dark version */ }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle:hover {
+      background-color: #f9fafc; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle > i {
+      color: #C0CDDC; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle .badge.badge-default {
+      color: #ffffff;
+      background-color: #EF3F3F; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown.open .dropdown-toggle {
+      background-color: #f9fafc; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-menu:before {
+      border-bottom-color: #e4e8ee; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu {
+      border: 1px solid #e4e8ee; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu:before {
+        border-bottom-color: #d4dae4; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu:after {
+        border-bottom-color: #eaedf2; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external {
+        background: #eaedf2; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external > h3 {
+          color: #62878f; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external > a {
+          color: #337ab7; }
+          .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu > li.external > a:hover {
+            text-decoration: none;
+            color: #23527c; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu .dropdown-menu-list > li > a {
+        color: #888888;
+        border-bottom: 1px solid #EFF2F6 !important; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-extended .dropdown-menu .dropdown-menu-list > li > a:hover {
+          background: #f8f9fa; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification .dropdown-menu .dropdown-menu-list > li > a .time {
+      background: #f1f1f1; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification .dropdown-menu .dropdown-menu-list > li > a:hover .time {
+      background: #e4e4e4; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox > .dropdown-toggle > .circle {
+      color: #ffffff;
+      background-color: #EF3F3F; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox > .dropdown-toggle > .corner {
+      border-color: transparent transparent transparent #EF3F3F; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-inbox .dropdown-menu .dropdown-menu-list .subject .from {
+      color: #5b9bd1; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-tasks .dropdown-menu .dropdown-menu-list .progress {
+      background-color: #dfe2e9; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > .username {
+      color: #7f96ac; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-toggle > i {
+      color: #7f96ac; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-user > .dropdown-menu {
+      width: 195px; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-language > .dropdown-toggle > .langname {
+      color: #7f96ac; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu {
+      border: 0;
+      background: #575757; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu:after {
+        border-bottom-color: #575757; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu > li.external {
+        background: #424242; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu > li.external > h3 {
+          color: #c2c2c2; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu > li.external > a:hover {
+          color: #5496cf; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a,
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a {
+        color: #cecece;
+        border-bottom: 1px solid #666666 !important; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a > i,
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a > i {
+          color: #b5b5b5; }
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a:hover,
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu .dropdown-menu-list > li a:hover {
+          background: #616161; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li a {
+        border-bottom: 0 !important; }
+      .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu.dropdown-menu-default > li.divider {
+        background: #666666; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a .time {
+      background: #4a4a4a; }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown-notification.dropdown-dark .dropdown-menu .dropdown-menu-list > li > a:hover .time {
+      background: #3d3d3d; }
+  .page-header.navbar .search-form {
+    background: #ffffff; }
+    .page-header.navbar .search-form .input-group .form-control {
+      color: #7f96ac; }
+      .page-header.navbar .search-form .input-group .form-control::-moz-placeholder {
+        opacity: 1;
+        color: #7c94aa; }
+      .page-header.navbar .search-form .input-group .form-control:-ms-input-placeholder {
+        color: #7c94aa; }
+      .page-header.navbar .search-form .input-group .form-control::-webkit-input-placeholder {
+        color: #7c94aa; }
+    .page-header.navbar .search-form .input-group .input-group-btn .btn.submit > i {
+      color: #7f96ac; }
+
+/* Page sidebar */
+.page-sidebar,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover {
+  background-color: #3D3D3D;
+  /* Default sidebar */ }
+  .page-sidebar .page-sidebar-menu,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu {
+    /* 1st level links */
+    /* All links */ }
+    .page-sidebar .page-sidebar-menu > li.nav-progress .progress-info .status,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.nav-progress .progress-info .status {
+      color: #aab5bc; }
+    .page-sidebar .page-sidebar-menu > li > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a {
+      color: #d6d6d6;
+      border-top: 1px solid #454545; }
+      @media (max-width: 991px) {
+        .page-sidebar .page-sidebar-menu > li > a,
+        .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a {
+          /* 991px */
+          border-top: 1px solid #515151; } }
+      .page-sidebar .page-sidebar-menu > li > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i {
+        color: #8a8a8a; }
+      .page-sidebar .page-sidebar-menu > li > a > i[class^='icon-'],
+      .page-sidebar .page-sidebar-menu > li > a > i[class*='icon-'],
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class^='icon-'],
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > i[class*='icon-'] {
+        color: #969696; }
+      .page-sidebar .page-sidebar-menu > li > a > .arrow.open:before, .page-sidebar .page-sidebar-menu > li > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a > .arrow:before {
+        color: #5c5c5c; }
+    .page-sidebar .page-sidebar-menu > li.open.nav-progress, .page-sidebar .page-sidebar-menu > li:hover.nav-progress,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open.nav-progress,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover.nav-progress {
+      background: #353535; }
+    .page-sidebar .page-sidebar-menu > li.open > a, .page-sidebar .page-sidebar-menu > li:hover > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a {
+      color: #f0f0f0;
+      background: #353535; }
+      .page-sidebar .page-sidebar-menu > li.open > a > i, .page-sidebar .page-sidebar-menu > li:hover > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > i {
+        color: #969696; }
+      .page-sidebar .page-sidebar-menu > li.open > a > .arrow.open:before, .page-sidebar .page-sidebar-menu > li.open > a > .arrow:before, .page-sidebar .page-sidebar-menu > li:hover > a > .arrow.open:before, .page-sidebar .page-sidebar-menu > li:hover > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a > .arrow:before {
+        color: #969696; }
+    .page-sidebar .page-sidebar-menu > li.active > a, .page-sidebar .page-sidebar-menu > li.active.open > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a {
+      color: white;
+      background: #333333; }
+      .page-sidebar .page-sidebar-menu > li.active > a:hover, .page-sidebar .page-sidebar-menu > li.active.open > a:hover,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a:hover,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a:hover {
+        background: #383838; }
+      .page-sidebar .page-sidebar-menu > li.active > a > i, .page-sidebar .page-sidebar-menu > li.active.open > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a > i {
+        color: #f04848; }
+      .page-sidebar .page-sidebar-menu > li.active > a > .arrow.open:before, .page-sidebar .page-sidebar-menu > li.active > a > .arrow:before, .page-sidebar .page-sidebar-menu > li.active.open > a > .arrow.open:before, .page-sidebar .page-sidebar-menu > li.active.open > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a > .arrow:before {
+        color: whitesmoke; }
+    .page-sidebar .page-sidebar-menu > li:last-child > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:last-child > a {
+      border-bottom: 1px solid transparent !important; }
+    .page-sidebar .page-sidebar-menu li > a > .arrow.open:before, .page-sidebar .page-sidebar-menu li > a > .arrow:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow.open:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li > a > .arrow:before {
+      color: #5c5c5c; }
+    .page-sidebar .page-sidebar-menu li:hover > a > .arrow.open:before, .page-sidebar .page-sidebar-menu li:hover > a > .arrow:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li:hover > a > .arrow.open:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li:hover > a > .arrow:before {
+      color: #969696; }
+    .page-sidebar .page-sidebar-menu li.active > a > .arrow.open:before, .page-sidebar .page-sidebar-menu li.active > a > .arrow:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li.active > a > .arrow.open:before,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li.active > a > .arrow:before {
+      color: whitesmoke; }
+    .page-sidebar-closed .page-sidebar .page-sidebar-menu:hover .sub-menu, .page-sidebar-closed
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu:hover .sub-menu {
+      background: #2e2e2e; }
+    .page-sidebar-closed .page-sidebar .page-sidebar-menu > li.nav-progress .progress-info .status, .page-sidebar-closed
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.nav-progress .progress-info .status {
+      color: #EF3F3F; }
+    .page-sidebar .page-sidebar-menu .sub-menu > li > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a {
+      color: #c9c9c9; }
+      .page-sidebar .page-sidebar-menu .sub-menu > li > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a > i {
+        color: #7d7d7d; }
+      .page-sidebar .page-sidebar-menu .sub-menu > li > a > i[class^='icon-'],
+      .page-sidebar .page-sidebar-menu .sub-menu > li > a > i[class*='icon-'],
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a > i[class^='icon-'],
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a > i[class*='icon-'] {
+        color: #8a8a8a; }
+      .page-sidebar .page-sidebar-menu .sub-menu > li > a > .arrow.open:before, .page-sidebar .page-sidebar-menu .sub-menu > li > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a > .arrow:before {
+        color: #5c5c5c; }
+    .page-sidebar .page-sidebar-menu .sub-menu > li.active > a, .page-sidebar .page-sidebar-menu .sub-menu > li.open > a, .page-sidebar .page-sidebar-menu .sub-menu > li:hover > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.active > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.open > a,
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li:hover > a {
+      background: #353535 !important; }
+      .page-sidebar .page-sidebar-menu .sub-menu > li.active > a > i, .page-sidebar .page-sidebar-menu .sub-menu > li.open > a > i, .page-sidebar .page-sidebar-menu .sub-menu > li:hover > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.active > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.open > a > i,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li:hover > a > i {
+        color: #969696;
+        color: #b0b0b0; }
+      .page-sidebar .page-sidebar-menu .sub-menu > li.active > a > .arrow.open:before, .page-sidebar .page-sidebar-menu .sub-menu > li.active > a > .arrow:before, .page-sidebar .page-sidebar-menu .sub-menu > li.open > a > .arrow.open:before, .page-sidebar .page-sidebar-menu .sub-menu > li.open > a > .arrow:before, .page-sidebar .page-sidebar-menu .sub-menu > li:hover > a > .arrow.open:before, .page-sidebar .page-sidebar-menu .sub-menu > li:hover > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.active > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.active > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.open > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.open > a > .arrow:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li:hover > a > .arrow.open:before,
+      .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li:hover > a > .arrow:before {
+        color: #969696; }
+
+/* *****
+    Page Footer
+    ***** */
+.page-footer .page-footer-inner {
+  color: #bdbdbd; }
+
+.page-footer-fixed .page-footer {
+  background-color: #a5aea8; }
+  .page-footer-fixed .page-footer .page-footer-inner {
+    color: #121618; }
+
+.page-boxed .page-footer .page-footer-inner {
+  color: #121618; }
+
+.page-footer-fixed .page-boxed .page-footer {
+  background-color: #a5aea8; }
+
+@media (min-width: 992px) {
+  /* 992px */
+  /* Sidebar menu closed */
+  .page-sidebar-menu.page-sidebar-menu-hover-submenu li:hover > .sub-menu {
+    box-shadow: 5px 5px rgba(48, 48, 48, 0.2); }
+  .page-sidebar-menu.page-sidebar-menu-closed > li:hover {
+    box-shadow: 5px 5px rgba(48, 48, 48, 0.2); }
+    .page-sidebar-menu.page-sidebar-menu-closed > li:hover > .sub-menu {
+      box-shadow: 5px 5px rgba(48, 48, 48, 0.2); }
+  /* Fixed Sidebar */
+  .page-sidebar-fixed:not(.page-footer-fixed) .page-content {
+    border-bottom: 0; }
+  .page-sidebar-fixed:not(.page-footer-fixed) .page-footer {
+    background-color: #eef1f5; }
+    .page-sidebar-fixed:not(.page-footer-fixed) .page-footer .page-footer-inner {
+      color: #333333; }
+  /* Boxed Layout */
+  .page-boxed {
+    background-color: #b8bfba !important;
+    /* Page container */ }
+    .page-boxed .page-container {
+      background-color: #3D3D3D; }
+    .page-boxed.page-sidebar-reversed .page-container {
+      border-left: 0; }
+    .page-boxed.page-sidebar-fixed .page-container {
+      border-bottom: 0;
+      border-left: 0; }
+    .page-boxed.page-sidebar-reversed.page-sidebar-fixed .page-container {
+      border-right: 0;
+      border-bottom: 0;
+      border-left: 0; }
+  /* Sidebar Menu Wirh Hoverable Submenu */
+  .page-sidebar-menu-hover-submenu li:hover a > .arrow {
+    border-right: 8px solid #2e2e2e; }
+    .page-sidebar-reversed .page-sidebar-menu-hover-submenu li:hover a > .arrow {
+      border-left: 8px solid #2e2e2e; }
+  .page-sidebar-menu-hover-submenu li:hover > .sub-menu {
+    background: #2e2e2e !important; } }
+
+@media (max-width: 991px) {
+  /* 991px */
+  .page-container {
+    background: #eef1f5; }
+  .page-header.navbar {
+    padding: 0;
+    box-shadow: 0px 1px 10px 0px rgba(50, 50, 50, 0.2);
+    /* Top menu */ }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle:hover {
+      background-color: #f6f7fa; }
+    .page-header.navbar .page-top {
+      box-shadow: none; } }
+
+@media (max-width: 767px) {
+  /* 767px */
+  .page-header.navbar {
+    background: #EF3F3F;
+    /* Top menu */ }
+    .page-header.navbar .top-menu .navbar-nav > li.dropdown > .dropdown-toggle:hover {
+      background-color: #eff1f6; } }
+
+/* ***
+ CSS3 Spinner Bar
+*** */
+.block-spinner-bar > div,
+.page-spinner-bar > div {
+  background: #f15757; }
+
+/* ***
+    Boby
+    *** */
+body {
+  background-color: #3D3D3D; }
+
+body.page-boxed {
+  background-color: #C0C6C2; }

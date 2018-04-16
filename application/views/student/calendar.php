@@ -1,5 +1,5 @@
         <div class="page-content-wrapper">
-            <div class="page-content" style="min-height: 598px;">
+            <div class="page-content">
                 <!-- BEGIN PAGE HEAD-->
                 <div class="page-head">
                     <!-- BEGIN PAGE TITLE -->
@@ -19,7 +19,7 @@
                             <div class="portlet-title">
                                 <div class="caption">
                                     <i class=" icon-calendar font-green"></i>
-                                    <span class="caption-subject font-green sbold uppercase">Calendar</span>
+                                    <span class="caption-subject font-green font-weight-600 text-uppercase">Calendar</span>
                                 </div>
                             </div>
                             <div class="portlet-body">
@@ -35,7 +35,7 @@
                                             <div class="portlet-title">
                                                 <div class="caption">
                                                     <i class="icon-notebook font-grey-gallery"></i>
-                                                    <span class="caption-subject bold font-grey-gallery font-24-xs"> Event </span>
+                                                    <span class="caption-subject bold font-grey-gallery font-24"> Event </span>
                                                     <!-- <span class="caption-helper">more samples...</span> -->
                                                 </div>
                                                 <div class="tools">
@@ -57,23 +57,23 @@
 
                                             <!-- @else -->
                                             <div class="portlet-body">
-                                                <div class="scroller mt-height-550-xs " data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-550 " data-always-visible="1" data-rail-visible1="1">
 
                                                 <?php foreach ($invitation as $key => $value): ?>
                                                     <!-- List 1 -->
                                                     <div class="m-grid">
-                                                        <div class="m-grid-col m-grid-col-xs-2 md-yellow accent-1 m-grid-col-center m-grid-col-middle">
+                                                        <div class="m-grid-col m-grid-col-xs-2 md-yellow-accent-1 m-grid-col-center m-grid-col-middle">
                                                             <h3 class="mt-3 font-weight-700"><?php echo date('d', strtotime($value['start_date'])); ?></h3>
-                                                            <h5 class="font-26-xs mb-3 roboto-font"><?php echo date('M', strtotime($value['start_date'])); ?></h5>
+                                                            <h5 class="font-26 mb-3 roboto-font"><?php echo date('M', strtotime($value['start_date'])); ?></h5>
                                                         </div>
                                                         <div class="m-grid-col m-grid-col-xs-10">
-                                                            <ul class="list-unstyled ml-3">
+                                                            <ul class="list-unstyled ml-15">
                                                                 <li>
                                                                     <h4 class="font-weight-600"><?php echo $value['job_name'] ?> </h4>
                                                                 </li>
                                                                 <li class="">
                                                                     <h5 class="">
-                                                                        <i class="icon-clock mr-2"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h:i', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h:i', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
+                                                                        <i class="icon-clock mr-5"></i><?php echo date('l', strtotime($value['start_date'])); ?> , <?php echo date('h:i', strtotime($value['start_date'])); ?> <?php echo date('A', strtotime($value['start_date'])); ?> - <?php echo date('h:i', strtotime($value['end_date'])); ?> <?php echo date('A', strtotime($value['end_date'])); ?></h5>
                                                                 </li>
                                                                 <li>
                                                                     <h5 class="">
@@ -94,10 +94,10 @@
                                                                 <div class="modal-header">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                                                                     <h4 class="modal-title">
-                                                                        <i class="icon-briefcase mr-2"></i><?php echo $value['job_name'] ?> (<?php echo $value['company_name']; ?>)</h4>
+                                                                        <i class="icon-briefcase mr-5"></i><?php echo $value['job_name'] ?> (<?php echo $value['company_name']; ?>)</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="scroller mt-height-300-xs" data-always-visible="1" data-rail-visible1="1">
+                                                                    <div class="scroller height-300" data-always-visible="1" data-rail-visible1="1">
                                                                         <ul class="list-unstyled">
                                                                             <li>
                                                                                 <div class="col-md-4 text-right font-weight-700">
@@ -121,7 +121,7 @@
                                                                                     From
                                                                                 </div>
                                                                                 <div class="col-md-8">
-                                                                                    <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['start_date'])); ?> - <?php echo date('H:i', strtotime($value['start_date'])); ?>
+                                                                                    <i class="icon-calendar mr-5"></i> <?php echo date('j F Y', strtotime($value['start_date'])); ?> - <?php echo date('H:i', strtotime($value['start_date'])); ?>
                                                                                 </div>
                                                                             </li>
                                                                             <!-- To -->
@@ -130,7 +130,7 @@
                                                                                     To
                                                                                 </div>
                                                                                 <div class="col-md-8">
-                                                                                    <i class="icon-calendar mr-2"></i> <?php echo date('j F Y', strtotime($value['end_date'])); ?> - <?php echo date('H:i', strtotime($value['end_date'])); ?>
+                                                                                    <i class="icon-calendar mr-5"></i> <?php echo date('j F Y', strtotime($value['end_date'])); ?> - <?php echo date('H:i', strtotime($value['end_date'])); ?>
                                                                                 </div>
                                                                             </li>
                                                                             <!-- Details -->
@@ -214,7 +214,7 @@
                                                                     <div class="modal-footer">
 
                                                                         <button class="btn btn-md-red" type="submit"> Save</button>
-                                                                        <a href="#" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                                                        <a href="#" class="btn btn-outline btn-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
 
                                                                     </div>
                                                                 </form>
@@ -247,7 +247,7 @@
                                                                                 </div>
                                                                                 <div class="col-md-6 text-right">
                                                                                     <button class="btn btn-md-red" type="submit"> Save</button>
-                                                                                    <a href="#" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
+                                                                                    <a href="#" class="btn btn-outline btn-md-red" data-dismiss="modal" aria-hidden="true">Cancel</a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

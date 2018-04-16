@@ -41,6 +41,8 @@ define('ASSETS', 'http://localhost/xremo/assets/');
 define('CSS', ASSETS.'css');
 define('JS', ASSETS.'js');
 define('IMG', ASSETS.'img');
+
+
 define('ASSETS_STUDENTS', ASSETS.'students/');
 define('CSS_STUDENTS', ASSETS.'students/css/');
 define('JS_STUDENTS', ASSETS.'students/js/');
@@ -51,6 +53,7 @@ define('CSS_EMPLOYER', ASSETS.'employer/css/');
 define('JS_EMPLOYER', ASSETS.'employer/js/');
 define('IMG_EMPLOYER', ASSETS.'employer/img/');
 define('IMG_EMPLOYERS', ASSETS.'img/employer/');
+
 define('USER_ROLE', '1');
 define('URI_SEGMENT_PAGE', '2');
 define('URI_SEGMENT_DETAIL', '3');

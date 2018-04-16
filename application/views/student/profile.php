@@ -7,7 +7,7 @@
                 <div class="portlet-title tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
                     <div class="caption">
                         <!-- <i class="icon-user font-44-xs "></i> -->
-                        <span class="caption-subject font-weight-300 text-capitalize primary-font font-44-xs">User Profile</span>
+                        <span class="caption-subject font-weight-300 text-capitalize opensans-font font-44">User Profile</span>
                     </div>
 					<ul class="nav nav-tabs  mb-0 pb-0">
                         <?php
@@ -15,22 +15,22 @@
 						?>						
 						
 						<li class="<?=$tab_student == "tab_overview" || $tab_student == ""?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab"><i class="icon-user font-26-xs"></i> Overview</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab"><i class="icon-user font-26"></i> Overview</a>
                         </li>
                         <li class="<?=$tab_student == "tab_education"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab"> <i class="icon-graduation font-26-xs"></i>Education </a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab"> <i class="icon-graduation font-26"></i>Education </a>
                         </li>
                         <li class="<?=$tab_student == "tab_experience"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26-xs"></i>Experience</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab"> <i class="icon-briefcase font-26"></i>Experience</a>
                         </li>
                         <li class="<?=$tab_student == "tab_non_education"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-notebook font-26-xs"></i>Non Education</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab"> <i class="icon-notebook font-26"></i>Non Education</a>
                         </li>
                         <li class="<?=$tab_student == "tab_project"?"active":""?>">
-                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26-xs"></i>Skills</a>
+                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab"> <i class="icon-badge font-26"></i>Skills</a>
                         </li>
                         <!-- <li>
-                                            <a href="#tab_privacy" data-toggle="tab"><i class="icon-lock font-26-xs"></i> Privacy</a>
+                                            <a href="#tab_privacy" data-toggle="tab"><i class="icon-lock font-26"></i> Privacy</a>
                                         </li> -->
                     </ul>
                 </div>
@@ -42,9 +42,9 @@
                 <!-- Tab Content : Overview -->
                 <div class="tab-pane <?=$tab_student == "tab_overview" || $tab_student == ""?"active":""?> " id="tab_overview">
                     <div class="m-grid">
-                        <div class=" view mt-height-250-xs hm-black-slight" style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
+                        <div class=" view height-250 " style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                             <!-- <img src="../assets/global/img/portfolio/1200x900/03.jpg" class="img-fluid" alt=""> -->
-                            <div class="mask ">
+                            <div class="mask hm-black-v7 ">
                                 <!-- <a href="" class="btn btn-sm btn-opacity-white  pull-right m-4 ">
                                     <i class="icon-pencil"></i>
                                     Edit
@@ -52,7 +52,7 @@
                                 <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
-                                 echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-md-indigo pull-right m-4 letter-space-xs">
+                                 echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-md-indigo pull-right m-20 letter-space-xs">
                                     View My Resume </a>
 
                             </div>
@@ -67,23 +67,23 @@
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-margin-t-o-150-xs">
-                                            <!-- <a href="" class="btn btn-icon-only  btn-outline-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-150">
+                                            <!-- <a href="" class="btn btn-icon-only  btn-outline btn-md-indigo mt-margin-l-o-60-xs"><i class="icon-pencil"></i></a> -->
                                         </div>
                                         <div class="mt-card-content  ">
-                                            <h3 class="mt-card-name mt-3 md-indigo-text"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?> <span class="label label-primary vertical-middle hidden"> Public</span> </h3>
+                                            <h3 class="mt-card-name mt-15 md-indigo-text"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?> <span class="label label-primary vertical-middle hidden"> Public</span> </h3>
                                             <p class="mt-card-desc md-grey-text text-lighten-1">
                                                 </p><ul class="list-inline list-unstyled">
-                                                    <li class="font-26-xs"><i class="icon-briefcase mr-2"></i><?php echo  !empty($user_profile['overview']['student_bios_occupation']) ?  ucfirst($user_profile['overview']['student_bios_occupation']) : 'Student';?></li>
+                                                    <li class="font-26"><i class="icon-briefcase mr-5"></i><?php echo  !empty($user_profile['overview']['student_bios_occupation']) ?  ucfirst($user_profile['overview']['student_bios_occupation']) : 'Student';?></li>
                                                     <!-- <li class="vertical-top md-grey-text text-darken-1"><i class="fa fa-circle font-10-xs "></i></li> -->
-                                                    <!-- <li class="font-26-xs"><i class="icon-lock"></i>Public</li> -->
-                                                    <li class="font-26-xs"><i class="icon-pointer"></i> <?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : $this->session->userdata['country'];?> , <?php echo ucfirst($user_profile['address']['country']);?></li>
-                                                    <li class="font-26-xs"><i class="icon-calendar"></i> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : "DOB not set";?></li>
-                                                    <!-- <li class="font-26-xs"><i class="fa fa-phone font-26-xs"></i> 0123456789</li> -->
-                                                    <!-- <li class="font-26-xs"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
+                                                    <!-- <li class="font-26"><i class="icon-lock"></i>Public</li> -->
+                                                    <li class="font-26"><i class="icon-pointer"></i> <?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : $this->session->userdata['country'];?> , <?php echo ucfirst($user_profile['address']['country']);?></li>
+                                                    <li class="font-26"><i class="icon-calendar"></i> <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : "DOB not set";?></li>
+                                                    <!-- <li class="font-26"><i class="fa fa-phone font-26"></i> 0123456789</li> -->
+                                                    <!-- <li class="font-26"><i class="icon-envelope "></i> jennifer_lawrence@email.com</li> -->
                                                 </ul>
                                             <p></p>
-                                            <p class="mt-card-desc">  <?php echo !empty($user_profile['overview']['quote']) ? '<i class="fa fa-quote-left font-14-xs vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-14-xs"></i>' : '';?>
+                                            <p class="mt-card-desc">  <?php echo !empty($user_profile['overview']['quote']) ? '<i class="fa fa-quote-left font-14 vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-14"></i>' : '';?>
                                                  </p>
                                             <p class="mt-card-desc text-justify hidden">
                                                 <?php echo !empty($user_profile['overview']['quote']) ? $user_profile['overview']['quote'] : 'Xremo your career portal';?>
@@ -93,20 +93,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-4 hidden-xs">
-                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a>
+                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-20 hidden-xs">
+                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo "><i class="icon-pencil"></i>Edit</a>
                             </div>
                             <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
                                 <div class="btn-group btn-group-justified">
-                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline-md-indigo">
+                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo">
                                         <i class="icon-pencil"></i>Edit</a>
-                                    <a href="<?php echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-outline-md-indigo  letter-space-xs">View My resume</a>
+                                    <a href="<?php echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn  btn-outline btn-md-indigo  letter-space-xs">View My resume</a>
                                 </div>
 
                             </div>
                         </div>
 
-                        <hr class="mt-1">
+                        <hr class="mt-5">
                         <!-- About myself -->
                         <div class="m-grid m-grid-col m-grid-col-center">
                             <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
@@ -116,7 +116,7 @@
                                     <div class="m-grid-col">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <h5 class="font-weight-700 text-uppercase mb-2">About Myself</h5>
+                                                <h5 class="font-weight-700 text-uppercase mb-10">About Myself</h5>
                                             </li>
                                             <li><?php echo !empty($user_profile['overview']['summary']) ? $user_profile['overview']['summary'] : 'I am a good candidate';?>
                                             </li>
@@ -129,20 +129,20 @@
                             <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1 "></div>
                         </div>
                         <!-- Profile Information -->
-                        <div class="clearfix my-3"></div>
+                        <div class="clearfix my-15"></div>
                         <div class="m-grid m-grid-col m-grid-col-center pb-5">
                                     <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
                                     <div class="m-grid-col  m-grid-col-sm-10 m-grid-col-xs-10">
                                         <h4 class="font-weight-700 text-uppercase ">Personal Information</h4>
-                                        <hr class="mb-1">
+                                        <hr class="mb-5">
                                         <div class="m-grid m-grid-responsive-xs">
-                                            <div class="m-grid-col m-grid-col-sm-6  p-2 m-grid-col-xs-12">
+                                            <div class="m-grid-col m-grid-col-sm-6  p-10 m-grid-col-xs-12">
                                                 <!-- Full Name -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Full Name</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Full Name</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?></h5>
@@ -155,7 +155,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Preferences Name</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Preferences Name</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?></h5>
@@ -168,7 +168,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Gender</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Gender</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_gender']) ? $user_profile['overview']['student_bios_gender'] : 'I prefer not to say';?></h5>
@@ -181,7 +181,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Date Of Birth</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Date Of Birth</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_DOB']) ?  date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d F Y');?></h5>
@@ -194,7 +194,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Video Resume</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Video Resume</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?></h5>
@@ -207,7 +207,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Salary Expectation</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Salary Expectation</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo $this->session->userdata('forex'); ?> <?php echo !empty($user_profile['overview']['expected_salary']) ? $user_profile['overview']['expected_salary'] : '000';?>.00</h5>
@@ -221,7 +221,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Language Preferences</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Language Preferences</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font">
@@ -242,14 +242,14 @@
                                                 
                                                 
                                             </div>
-                                            <div class="m-grid-col m-grid-col-sm-6 p-2 m-grid-col-xs-12">
+                                            <div class="m-grid-col m-grid-col-sm-6 p-10 m-grid-col-xs-12">
                                                 
                                                 <!-- Email -->
                                                 <div class="m-grid">
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Email</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Email</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo $this->session->userdata('email');?></h5>
@@ -262,7 +262,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Contact Number</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Contact Number</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class=" roboto-font"><?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? $user_profile['overview']['student_bios_contact_number'] : 'None';?></h5>
@@ -276,7 +276,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Address</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Address</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : 'None';?></h5>
@@ -289,7 +289,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">Postcode</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Postcode</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : 'None';?></h5>
@@ -299,7 +299,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text"> City</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text"> City</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : 'None';?></h5>
@@ -311,7 +311,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">State</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">State</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : 'None' ;?></h5>
@@ -321,7 +321,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text"> Country</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text"> Country</h5>
                                                             </li>
                                                             <li>
                                                                 <h5 class="roboto-font"><?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : 'None';?></h5>
@@ -335,7 +335,7 @@
                                                     <div class="m-grid-col">
                                                         <ul class="list-unstyled">
                                                             <li>
-                                                                <h5 class="mb-2 font-weight-600 md-indigo-text">References</h5>
+                                                                <h5 class="mb-10 font-weight-600 md-indigo-text">References</h5>
                                                             </li>
                                                             <?php foreach ($user_profile['reference'] as $reference_key => $reference_value) {
                                                                 if($reference_value['reference_name'] != ""){
@@ -355,7 +355,7 @@
                                         </div>
                                     </div>
                                     <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1">
-                                        <!-- <a href="" class="btn btn-outline-md-indigo "><i class="icon-pencil"></i>Edit</a> -->
+                                        <!-- <a href="" class="btn btn-outline btn-md-indigo "><i class="icon-pencil"></i>Edit</a> -->
                                     </div>
                                 </div>
                     </div>
@@ -380,14 +380,14 @@
                                 
                                 <?php $i=1; foreach($user_profile['academics'] as $value){ ?>
                                 <div class="media p-0">
-                                    <div class="pull-right my-4 ">
+                                    <div class="pull-right my-20 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>"><i class="icon-pencil" data-toggle="tooltip" title="edit"></i></a>
                                         <a href="javascript:;" data-toggle="modal" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>"><i class="icon-trash" data-toggle="tooltip" title="delete"></i></a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 font-26-xs"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
-                                        <h5 class="font-weight-500 font-20-xs font-22-md my-2 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
-                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
+                                        <h4 class="font-weight-700 letter-space-xs mb-5 font-26"> <?php echo ucfirst($value['qualification_level']); ?> in <?php echo ucfirst($value['degree_name']);?></h4>
+                                        <h5 class="font-weight-500 font-20 font-22-md my-10 roboto-font"> <i class="fa fa-institution"></i> <?php echo ucfirst($value['university_name']); ?></h5>
+                                        <h6 class="font-weight-400 roboto-font md-grey-darken-2-text font-20 my-10"><i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['start_date']));?> - <?php echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));?></h6>
                                         <p class="roboto-font mb-0 multiline-truncate"> 
                                             <?//=strip_tags($value['degree_description']); ?>
                                             <?=ucfirst($value['degree_description']);?>
@@ -405,7 +405,7 @@
                                                 <span class="caption-subject text-capitalize font-weight-500">Edit Education</span>
                                                 <!-- <span class="caption-helper">add about your education info</span> -->
                                             </div>
-                                            <div class="actions py-4">
+                                            <div class="actions py-20">
                                                 <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                             </div>
 
@@ -413,7 +413,7 @@
                                         <form action="<?php echo base_url();?>student/profile/edit_education" method="POST" class="form form-horizontal">
                                         <input type="hidden" name="academic_id" value="<?php echo $value['academic_id'];?>"></input>
                                             <div class="modal-body portlet-body ">
-                                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
+                                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller height-550" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
                                                     <!-- Institution Name -->
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Institution Name</label>
@@ -479,7 +479,7 @@
 
                                                 </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                                 <div class="modal-footer form-actions ">
-                                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                                 </div>
                                         
                                         </div></form>
@@ -489,7 +489,7 @@
                             <?php $i++; }  ?>
                             <?php else: ?>
                                 <div class="portlet-body">
-                                    <div class="portlet md-shadow-none p-6">
+                                    <div class="portlet md-shadow-none p-25">
                                         <div class="portlet-body">
                                             <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                             <h5 class="font-grey-cascade mt-5 text-center">Click
@@ -523,13 +523,13 @@
                             <!-- Example 1 -->
                             <?php foreach($user_profile['achievement'] as $value){ ?>
                                 <div class="media">
-                                    <div class="pull-right my-4 ">
+                                    <div class="pull-right my-20 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only" data-toggle="modal"><i class="icon-pencil"></i></a>
                                         <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete"><i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['achievement_title']);?> </h4>
-                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y', strtotime($value['achievement_start_date']));?> - <?php echo date('d F Y', strtotime($value['achievement_end_date']));?></h6>
+                                        <h4 class="font-weight-700 letter-space-xs mb-5 "> <?php echo ucfirst($value['achievement_title']);?> </h4>
+                                        <h6 class="font-weight-400 roboto-font md-grey-darken-2-text font-20 my-10"> <?php echo date('d F Y', strtotime($value['achievement_start_date']));?> - <?php echo date('d F Y', strtotime($value['achievement_end_date']));?></h6>
                                         <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['achievement_description']);?>
                                         </p>
                                         <h4 class="">
@@ -556,7 +556,7 @@
                                                         <span class="caption-subject text-capitalize font-weight-500">Edit Non Educational</span>
                                                         <!-- <span class="caption-helper">add about your education info</span> -->
                                                     </div>
-                                                    <div class="actions py-4">
+                                                    <div class="actions py-20">
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
 
@@ -564,7 +564,7 @@
                                                 <form action="<?php echo base_url();?>student/profile/edit_achievement" class="form form-horizontal" method="POST">
                                                     <input type="hidden" name="achievement_id" value="<?php echo $value['achievement_id'];?>"></input>
                                                     <div class="modal-body portlet-body ">
-                                                        <div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <div class="scroller height-550" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- Institution Name -->
                                                             <div class="form-group">
                                                                 <label class="control-label col-md-3">Name</label>
@@ -613,7 +613,7 @@
 
                                                         </div>
                                                         <div class="modal-footer form-actions ">
-                                                            <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                            <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                                         </div>
                                                 </form>
                                                 </div>
@@ -625,7 +625,7 @@
                             <?php } ?>
                             <?php else: ?>
                                 <div class="portlet-body">
-                                    <div class="portlet md-shadow-none p-6">
+                                    <div class="portlet md-shadow-none p-25">
                                         <div class="portlet-body">
                                             <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                             <h5 class="font-grey-cascade mt-5 text-center">Click
@@ -659,7 +659,7 @@
                                 $description = $value['experiences_description'];
                                 $company_name = $value['experiences_company_name'];?>
                                 <div class="media">
-                                    <div class="pull-right my-4 ">
+                                    <div class="pull-right my-20 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only ">
                                             <i class="icon-pencil"></i>
                                         </a>
@@ -668,26 +668,26 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-weight-600 letter-space-xs mb-1 "> <?php echo ucfirst($value['experiences_title']);?>
+                                        <h4 class="font-weight-600 letter-space-xs mb-5 "> <?php echo ucfirst($value['experiences_title']);?>
                                             <!-- <small>[ September 2016 - Feb 2017]</small> -->
                                         </h4>
-                                        <h5 class="font-weight-400 font-26-xs  mb-1 roboto-font">
-                                            <i class="fa fa-building-o mr-2 "></i><?php echo ucfirst($value['experiences_company_name']);?></h5>
-                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs mb-1">
+                                        <h5 class="font-weight-400 font-26  mb-5 roboto-font">
+                                            <i class="fa fa-building-o mr-5 "></i><?php echo ucfirst($value['experiences_company_name']);?></h5>
+                                        <h6 class="font-weight-400 roboto-font md-grey-darken-2-text font-20 mb-5">
                                             <i class="fa fa-calendar"></i> <?php echo date('d F Y', strtotime($value['experiences_start_date']));?> - <?php echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['experiences_end_date']));?></h6>
                                         <h6>
                                             <span class="badge badge-roundless badge-md-teal letter-space-sm font-weight-500"> <?php echo !empty($value['employment_type']) ? $value['employment_type'] : 'Please Choose from the form'; ?></span>
                                             <span class="badge badge-roundless badge-important letter-space-sm font-weight-500"> <?php echo !empty($value['industry_name']) ? $value['industry_name'] : 'Please Choose from the form'; ?></span>
                                         </h6>
-                                        <p class="roboto-font mb-1 multiline-truncate"> <?php echo ucfirst($value['experiences_description']);?>
+                                        <p class="roboto-font mb-5 multiline-truncate"> <?php echo ucfirst($value['experiences_description']);?>
                                         </p>
-                                        <p class="font-weight-600 text-uppercase mb-1">Skill Earned</p>
+                                        <p class="font-weight-600 text-uppercase mb-5">Skill Earned</p>
                                         <ul class="list-unstyled list-inline ml-0">
                                             <?php 
                                             if ($value['skills']) {
                                                 $skill = explode(',', $value['skills']);
                                                 foreach ($skill as $key => $skill_value) {?>
-                                                <li class="label label-md-shades darkblue font-18-xs"> <?php echo $skill_value; ?> </li>
+                                                <li class="label label-md-blue-grey "> <?php echo $skill_value; ?> </li>
                                             <?php }}else{echo '';} ?>
                                         </ul>
 
@@ -703,7 +703,7 @@
                                                         <span class="caption-subject text-capitalize font-weight-500">Edit Experience</span>
                                                         <!-- <span class="caption-helper">add about your education info</span> -->
                                                     </div>
-                                                    <div class="actions py-4">
+                                                    <div class="actions py-20">
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
 
@@ -711,7 +711,7 @@
                                                 <form action="<?php echo base_url();?>student/profile/edit_experience" method="POST" class="form form-horizontal">
                                                 <input type="hidden" name="experience_id" value="<?php echo $value['experience_id']?>"></input>
                                                     <div class="modal-body portlet-body ">
-                                                        <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                                        <div class="scroller height-500" data-always-visible="1" data-rail-visible1="1">
                                                             <!-- Job Post & Time Period -->
                                                             <div class="row ">
                                                                 <div class="col-md-6">
@@ -810,7 +810,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer form-actions ">
-                                                        <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                                        <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -819,7 +819,7 @@
                             <?php $i++; } ?>
                             <?php else: ?>
                                 <div class="portlet-body">
-                                    <div class="portlet md-shadow-none p-6">
+                                    <div class="portlet md-shadow-none p-25">
                                         <div class="portlet-body">
                                             <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                             <h5 class="font-grey-cascade mt-5 text-center">Click
@@ -849,16 +849,16 @@
                             <?php if (!empty($user_profile['projects'])): ?>
                             <?php $i=1; foreach($user_profile['projects'] as $value){?>
                                 <div class="media">
-                                    <div class="pull-right my-4 ">
+                                    <div class="pull-right my-20 ">
                                         <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only"><i class="icon-pencil"></i></a>
                                         <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['id'];?>" tb-val="user_projects"> <i class="icon-trash"></i></a>
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="font-weight-700 letter-space-xs mb-1 "> <?php echo ucfirst($value['name']);?> </h4>
-                                        <h6 class="font-weight-400 roboto-font md-grey-text text-darken-2 font-20-xs my-2"> <?php echo date('d F Y',strtotime($value['start_date'])); ?> - <?php echo ($value['end_date'] != '0000-00-00') ? date('d F Y',strtotime($value['start_date'])) : 'Now'; ?></h6>
+                                        <h4 class="font-weight-700 letter-space-xs mb-5 "> <?php echo ucfirst($value['name']);?> </h4>
+                                        <h6 class="font-weight-400 roboto-font md-grey-darken-2-text font-20 my-10"> <?php echo date('d F Y',strtotime($value['start_date'])); ?> - <?php echo ($value['end_date'] != '0000-00-00') ? date('d F Y',strtotime($value['start_date'])) : 'Now'; ?></h6>
                                         <p class="roboto-font mb-0 multiline-truncate"> <?php echo ucfirst($value['description']);?>
                                         </p>
-                                        <h5 class="font-weight-500 font-20-xs font-22-md mt-3 mb-0 roboto-font">Skills Earned :</h5>
+                                        <h5 class="font-weight-500 font-20 font-22-md mt-15 mb-0 roboto-font">Skills Earned :</h5>
                                         <h5 class="">
                                             <?php $tag = explode(',', $value['skills_acquired']);
                                             $label = array("label-primary","label-md-indigo","label-md-blue-grey","label-md-orange","label-md-green");
@@ -882,7 +882,7 @@
                                     <span class="caption-subject text-capitalize font-weight-500">Edit Project </span>
                                     <span class="caption-helper">add about your skill info based by project you involved</span>
                                 </div>
-                                <div class="actions py-4">
+                                <div class="actions py-20">
                                     <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                 </div>
 
@@ -890,7 +890,7 @@
                             <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
                                 <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
                                 <div class="modal-body portlet-body ">
-                                    <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="scroller height-500" data-always-visible="1" data-rail-visible1="1">
                                         <!-- Job Post & Time Period -->
                                         <div class="row ">
                                             <div class="col-md-6">
@@ -930,6 +930,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="row ">
                                             <div class="col-md-6">
                                                 <!-- Description -->
@@ -947,12 +948,10 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 </div>
                                 <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -961,7 +960,7 @@
                             <?php $i++;} ?>
                             <?php else: ?>
                                 <div class="portlet-body">
-                                    <div class="portlet md-shadow-none p-6">
+                                    <div class="portlet md-shadow-none p-25">
                                         <div class="portlet-body">
                                             <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                             <h5 class="font-grey-cascade mt-5 text-center">Click
@@ -1012,7 +1011,7 @@
                             <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
 
                                 <div class="modal-body portlet-body form-horizontal">
-                                    <div class="scroller mt-height-600-xs " data-always-visible="1" data-rail-visible="1" id="scrollerProfile" data-spy="scroll" data-target="#navProfile">
+                                    <div class="scroller height-600 " data-always-visible="1" data-rail-visible="1" id="scrollerProfile" data-spy="scroll" data-target="#navProfile">
                                         <!-- SECTION : Basic Info -->
                                         <h4 class="form-section mb-0 font-weight-600 text-uppercase md-indigo-text" id="basicinfoSection"> Basic Info </h4>
                                         <hr class="mt-2">
@@ -1401,7 +1400,7 @@
                                     </div>
                                 </div>
                                 <div class="form-actions modal-footer ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs pull-right">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs pull-right">Save</button>
                                 </div>
 
                             </form>
@@ -1419,7 +1418,7 @@
                                 <span class="caption-subject text-capitalize font-weight-500">Add Education</span>
                                 <!-- <span class="caption-helper">add about your education info</span> -->
                             </div>
-                            <div class="actions py-4">
+                            <div class="actions py-20">
                                 <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                             </div>
 
@@ -1427,7 +1426,7 @@
                         <form action="<?php echo base_url();?>student/profile/add_education" method="POST" class="form form-horizontal">
                         <input type="hidden" name="academic_id" ></input>
                             <div class="modal-body portlet-body ">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller height-550" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
                                     <!-- Institution Name -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Institution Name</label>
@@ -1493,7 +1492,7 @@
 
                                 </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                 </div>
                         
                         </div></form>
@@ -1510,14 +1509,14 @@
                                 <span class="caption-subject text-capitalize font-weight-500">Add Non Education</span>
                                 <!-- <span class="caption-helper">add about your education info</span> -->
                             </div>
-                            <div class="actions py-4">
+                            <div class="actions py-20">
                                 <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                             </div>
 
                         </div>
                         <form method="POST" id="achievement" class="form form-horizontal" action="<?php echo base_url()?>student/profile/add_achievement">
                             <div class="modal-body portlet-body ">
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 343.75px;"><div class="scroller height-550" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: 343.75px;">
                                     <!-- Institution Name -->
                                     <div class="form-group">
                                         <label class="control-label col-md-3">Name</label>
@@ -1566,7 +1565,7 @@
 
                                 </div><div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                                 <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                 </div>
                         
                         </div></form>
@@ -1585,14 +1584,14 @@
                                 <span class="caption-subject text-capitalize font-weight-500">Add Experience</span>
                                 <!-- <span class="caption-helper">add about your education info</span> -->
                             </div>
-                            <div class="actions py-4">
+                            <div class="actions py-20">
                                 <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                             </div>
 
                         </div>
                         <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
                             <div class="modal-body portlet-body ">
-                                <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                <div class="scroller height-500" data-always-visible="1" data-rail-visible1="1">
                                     <!-- Job Post & Time Period -->
                                     <div class="row ">
                                         <div class="col-md-6">
@@ -1691,7 +1690,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer form-actions ">
-                                <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                             </div>
                         </form>
                     </div>
@@ -1707,14 +1706,14 @@
                                     <span class="caption-subject text-capitalize font-weight-500">New Project </span>
                                     <span class="caption-helper">add about your skill info based by project you involved</span>
                                 </div>
-                                <div class="actions py-4">
+                                <div class="actions py-20">
                                     <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                 </div>
 
                             </div>
                             <form class="form form-horizontal" action="<?php echo base_url();?>student/profile/add_project" method="POST">
                                 <div class="modal-body portlet-body ">
-                                    <div class="scroller mt-height-500-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="scroller height-500" data-always-visible="1" data-rail-visible1="1">
                                         <!-- Job Post & Time Period -->
                                         <div class="row ">
                                             <div class="col-md-6">
@@ -1776,7 +1775,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer form-actions ">
-                                    <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                    <button type="submit" class="btn btn-md-indigo  width-150 font-20 letter-space-xs">Save</button>
                                 </div>
                             </form>
                         </div>

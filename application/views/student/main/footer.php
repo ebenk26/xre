@@ -5,6 +5,7 @@
 
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_STUDENTS; ?>jquery.min.js" type="text/javascript"></script>
+    <script src="<?php echo JS_STUDENTS; ?>b.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>js.cookie.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>jquery.slimscroll.min.js" type="text/javascript"></script>
