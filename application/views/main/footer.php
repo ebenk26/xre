@@ -4,7 +4,7 @@
     <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
     <!-- Vendor -->
 	
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugin/jquery-v1-12-4.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/jquery-v1-12-4.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
@@ -35,8 +35,8 @@
     <!-- General Components and Settings -->
     
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>    
+    
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>

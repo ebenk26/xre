@@ -11,30 +11,30 @@
 
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <!-- <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css"> -->
-    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<?php echo CSS; ?>vendor/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>vendor/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/global/plugins.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
 
+    <!-- <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css"> -->
     <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo CSS; ?>vendor/login-5.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>vendor/alertify.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/login-5.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         .progress-bar {
@@ -96,19 +96,19 @@
 
 <body class="login">
 
-    <div class="user-login-5 m-grid m-grid-full-height-xs">
-        <div class="bs-reset m-grid-row m-grid-full-height-xs">
+    <div class="user-login-5 m-grid  m-grid-responsive-xs m-grid-responsive-sm">
+        <div class="bs-reset m-grid-row ">
             <!-- col-form -->
-            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  ">
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm">
                 <div class="m-grid ">
                     <a href="<?=base_url()?>">
-                        <img class=" mb-10 height-100" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
+                        <img class=" mt-70 my-10-md height-100" src="<?php echo IMG; ?>/site/xremo-logo-blue.svg">
                     </a>
                 </div>
                 <div class="login-content ">
                     <div class="portlet " id="studentContent">
-                        <h1 class="font-weight-500 display-4 text-center mb-80">Are you a student? </h1>
-                        <a class="btn btn-md-darkblue btn-outline px-10 btn-lg " href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio">Sign up as Student</a>
+                        <h1 class="font-weight-500 display-4 text-center mt-0 mb-70">Are you a student? </h1>
+                        <a class="btn btn-md-darkblue btn-outline  btn-lg mb-60 mb-0-md" href="<?php echo base_url(); ?>site/user/signup#studentUser" id="studentRadio">Sign up as Student</a>
                     </div>
 
                     <div class="portlet" id="studentUser">
@@ -118,32 +118,40 @@
                                     <!-- Input : Fullname -->
                                     <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input type="text" name="fullname" id="fullname_student" class="form-control " placeholder="Full Name" required>
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('fullname'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-user"></i>
+                                                <input type="text" name="fullname" id="fullname_student" class="form-control " placeholder="Full Name" required>
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('fullname'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Email -->
                                     <div class="form-group form-md-line-input mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input type="email" name="email" id="email_student" class="form-control " placeholder="Email Address" required>
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <input type="email" name="email" id="email_student" class="form-control " placeholder="Email Address" required>
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
                                     <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2  ">
-                                            <input type="password" name="password" id="password_student" class="pass-strength-student form-control" placeholder="Password"
-                                                required>
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('password'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-key"></i>
+                                                <input type="password" name="password" id="password_student" class="pass-strength-student form-control" placeholder="Password" required>
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('password'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
@@ -159,16 +167,18 @@
                                     <!-- Input : Confirm Password -->
                                     <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input type="password" name="confirm_password" id="confirm_password_student" class="form-control" placeholder="Confirm Password"
-                                                required>
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-key"></i>
+                                                <input type="password" name="confirm_password" id="confirm_password_student" class="form-control" placeholder="Confirm Password" required>
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Checkbox : I Agree -->
-                                    <div class="form-group form-md-line-input  my-3">
+                                    <div class="form-group form-md-line-input  my-15">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <div class="md-checkbox-list md-checkbox md-indigo-box">
                                                 <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
@@ -196,19 +206,19 @@
                     </div>
 
                 </div>
-               
+
             </div>
             <!-- MD-DARK BLUE -->
-            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue">
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue m-grid-col-12-sm">
 
                 <a href="<?=base_url()?>">
-                    <img class="mb-10 height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg" >
+                    <img class="mt-70 my-10-md height-100" src="<?php echo IMG; ?>/site/xremo-logo-white.svg">
                 </a>
                 <div class="login-content ">
                     <div class="portlet" id="employerContent">
                         <div class="portlet-body">
-                            <h1 class="font-weight-500 display-4 md-white-text text-center mb-80">Are you a employer? </h1>
-                            <a class="btn btn-md-white btn-outline btn-lg px-4" id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser">     
+                            <h1 class="font-weight-500 display-4 md-white-text mt-0 text-center mb-70">Are you a employer? </h1>
+                            <a class="btn btn-md-white btn-outline btn-lg" id="employerRadio" href="<?php echo base_url(); ?>site/user/signup#employerUser">
                                 Sign up as Employer</a>
                         </div>
 
@@ -221,65 +231,82 @@
                                     <!-- Input : Company Name -->
                                     <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input type="text" name="company_name" id="company_name_employer" class="form-control md-white-text " placeholder="Company Name">
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('company_name'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-building-o"></i>
+                                                <input type="text" name="company_name" id="company_name_employer" class="form-control md-white-text " placeholder="Company Name">
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('company_name'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Fullname -->
                                     <div class="form-group form-md-line-input  mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input name="fullname" id="fullname_employer" type="text" class="form-control md-white-text " placeholder="Full Name">
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('fullname'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-user"></i>
+                                                <input name="fullname" id="fullname_employer" type="text" class="form-control md-white-text " placeholder="Full Name">
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('fullname'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Email -->
                                     <div class="form-group form-md-line-input mb-5 ">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input name="email" id="email_employer" type="email" class="form-control md-white-text " placeholder="Email Address">
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <input name="email" id="email_employer" type="email" class="form-control md-white-text " placeholder="Email Address">
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
                                     <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2  ">
-                                            <input name="password" id="password_employer" type="password" class="pass-strength-employer form-control  md-white-text" placeholder="Password">
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('password'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-key"></i>
+                                                <input name="password" id="password_employer" type="password" class="pass-strength-employer form-control  md-white-text" placeholder="Password">
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('password'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Input : Password -->
                                     <div class="form-group form-md-line-input  mb-5 password-strength-bar-employer" style="display:none;">
                                         <div class="col-md-8 col-md-offset-2  ">
+
                                             <div class="progress progress-striped active mb-0">
                                                 <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
                                                     <span class="sr-only">0% CompletePoor</span>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                     <!-- Input : Confirm Password -->
                                     <div class="form-group form-md-line-input  mb-5">
                                         <div class="col-md-8 col-md-offset-2 ">
-                                            <input name="confirm_password" id="confirm_password_employer" type="password" class="form-control md-white-text" placeholder="Confirm Password">
-                                            <div class="form-control-focus"> </div>
-                                            <span class="text-danger">
-                                                <?php echo form_error('confirm_password'); ?>
-                                            </span>
+                                            <div class="input-icon">
+                                                <i class="fa fa-key"></i>
+                                                <input name="confirm_password" id="confirm_password_employer" type="password" class="form-control md-white-text" placeholder="Confirm Password">
+                                                <div class="form-control-focus"> </div>
+                                                <span class="text-danger">
+                                                    <?php echo form_error('confirm_password'); ?>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Checkbox : I Agree -->
-                                    <div class="form-group form-md-line-input  my-2">
+                                    <div class="form-group form-md-line-input  my-10">
                                         <div class="col-md-8 col-md-offset-2 ">
                                             <div class="md-checkbox-list md-checkbox md-orange-checkbox md-white-text">
                                                 <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
@@ -288,8 +315,8 @@
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span> I agree with all the
-                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="md-white-text" >terms of use </a> and
-                                                    <a href="<?=base_url()?>privacy" target="_blank" class="md-white-text" > privacy policy</a>
+                                                    <a href="<?=base_url()?>terms-of-use" target="_blank" class="md-white-text">terms of use </a> and
+                                                    <a href="<?=base_url()?>privacy" target="_blank" class="md-white-text"> privacy policy</a>
                                                 </label>
                                             </div>
                                         </div>
@@ -320,25 +347,28 @@
     </div>
 
 
-    <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/js.cookie.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.blockui.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js" type="text/javascript"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.blockui.min.js" type="text/javascript"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>assets/js/bootstrap-switch.min.js" type="text/javascript"></script> -->
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/select2.full.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END PAGE LEVEL PLUGINS -->
+
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
+
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
     <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->

@@ -1823,7 +1823,8 @@
 
     <!-- General Components and Settings -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>    
+    
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>

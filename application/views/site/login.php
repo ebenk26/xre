@@ -33,7 +33,7 @@
     <link href="<?php echo base_url(); ?>assets/css/global/plugins.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME GLOBAL STYLES -->
 
-    <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css">
+    <!-- <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css"> -->
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo base_url(); ?>assets/css/vendor/login-5.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
@@ -58,6 +58,7 @@
 <!-- END HEAD -->
 
 <body class="login">
+
     <!-- BEGIN : LOGIN PAGE 5-1 -->
     <div class=" user-login-5">
         <div class="row bs-reset ">
@@ -69,9 +70,9 @@
                         <div class="m-grid m-grid-full-height ">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center md-white-text">
                                 <blockquote class="blockquote mx-5">
-                                    <p class="md-white-text font-18">Your Career is like garden it can hold an assortement of life's energy yields a bounty
+                                    <h4 class="md-white-text ">Your Career is like garden it can hold an assortement of life's energy yields a bounty
                                         for you. You do not need to grow just one thing in your garden. You do not need to
-                                        do just one thing in your career.</p>
+                                        do just one thing in your career.</h4>
                                     <footer class="blockquote-footer md-orange-text ">Quote of the day</footer>
                                 </blockquote>
                             </div>
@@ -94,7 +95,7 @@
                     <div class="portlet portlet-body text-center">
                         <!-- Form Login -->
                         <form class="form-horizontal login-form " action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
-                            <h4 class="font-weight-600 md-grey-darken-2-text font-18 mb-40">Login to your account</h4>
+                            <h4 class="font-weight-600 md-grey-darken-2-text  mb-40">Login to your account</h4>
                             <!--  Alert Display -->
                             <div class="alert alert-danger display-hide mt-20">
                                 <button class="close" data-close="alert"></button>
@@ -132,7 +133,7 @@
                                             <div class="m-grid-col m-grid-col-middle m-grid-col-left">
                                                 <div class="md-checkbox md-indigo-box">
                                                     <input type="checkbox" id="checkbox16" name="remember" class="md-check">
-                                                    <label for="checkbox16" class="font-weight-400 font-15">
+                                                    <label for="checkbox16" class="font-weight-400 ">
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span> Remember Me
@@ -141,7 +142,7 @@
                                             </div>
                                             <div class="m-grid-col m-grid-col-middle m-grid-col-right">
                                                 <a href="javascript:;" id="forget-password" class="forget-password ">
-                                                    <label class="font-weight-400 font-15">Forgot Password? </label>
+                                                    <label class="font-weight-400 ">Forgot Password? </label>
                                                 </a>
                                             </div>
                                         </div>

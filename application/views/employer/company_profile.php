@@ -26,33 +26,34 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Company | Description</title>
 
+
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap  -->
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
 
     <!-- Vendor Styles -->
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/animate/animate.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/themify/themify.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/scrollbar/scrollbar.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/swiper/swiper.min.css" rel="stylesheet" type="text/css" />
-    <!-- Metronic -->
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/rateit/rateit.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/vendor/animate.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/scrollbar.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/swiper.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Megakit Styles -->
-    <!-- Metronic Styles -->
-    <link href="<?php echo ASSETS; ?>css/components.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
+    <!-- Icon -->
+    <link href="<?php echo base_url(); ?>assets/css/icon/themify.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Global -->
+    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
+    <!-- Layout 8 -->
+    <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css">
     <!-- BEGIN PAGE LEVEL STYLES -->
     <link href="<?php echo ASSETS; ?>css/portfolio.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>css/contact.min.css" rel="stylesheet" type="text/css" />
 
-    <link href="<?php echo ASSETS; ?>css/style.css" rel="stylesheet" type="text/css" />
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
     <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
@@ -63,286 +64,120 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-115543574-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-115543574-1');
+
     </script>
 </head>
 
-<body class="g-bg-color-sky-light">
-    <!--========== HEADER  ==========-->
-    <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
-        <!-- Navbar -->
-        <nav class="s-header-v2-navbar">
-            <div class="container g-display-table-lg">
-                <!-- Navbar Row -->
-                <div class="s-header-v2-navbar-row">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="s-header-v2-navbar-col">
-                        <button type="button" class="collapsed s-header-v2-toggle" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
-                            <span class="s-header-v2-toggle-icon-bar"></span>
-                        </button>
-                    </div>
+<body class="bg-sky-light">
 
-                    <!-- Logo -->
-                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
-                        <div class="s-header-v2-logo ">
-                            <a href="<?php echo base_url(); ?>" class="s-header-v2-logo-link ">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" alt="Dublin Logo" style="height:47px">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink" src="<?php echo IMG_STUDENTS; ?>xremo-logo-blue.png" style="height:47px" alt="Dublin Logo">
-                            </a>
-                        </div>
-                    </div>
-                    <!-- End Logo -->
+    <?php $this->load->view('site/header_content');?>
 
-                    <!-- Content -->
-                    <div class="s-header-v2-navbar-col s-header-v2-navbar-col-right">
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <!-- guest -->
-                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
-                            <ul class="s-header-v2-nav">
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
-                                </li>
-                                <?php if (!empty($login)): ?>
-                                    <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                        <a href="<?=base_url()?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <?php if ($roles =='administrator') {?>
-                                                <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
-                                            <?php }?>
-
-                                            <?php if ($roles =='employer') {?>
-                                                <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
-                                            <?php }?>
-                                            
-                                            <?php if ($roles =='student') {?>
-                                                <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "" ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
-                                            <?php }?>
-
-                                            <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
-                                        </a>
-                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right" style="margin-top:-20px;">
-                                            <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-home mr-3"></i>Dashboard</a>
-                                            </li>
-											<?php if ($roles !='administrator') {?>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-note mr-3"></i>Edit Profile</a>
-                                            </li>
-											<?php }?>
-                                            <?php  if ($roles == 'student') {?>
-                                                <li>
-                                                    <a href="<?=base_url()?>profile/user/<?=rtrim(base64_encode($this->session->userdata('id')), '='); ?>" class="s-header-v2-dropdown-menu-link">
-                                                        <i class="icon-book-open mr-3"></i>My Resume</a>
-                                                </li>
-                                            <?php } ?>
-                                            <?php if ($roles =='employer') {?>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-book-open mr-3"></i>View My Profile
-                                                </a>
-                                            </li>
-                                            <?php }?>
-											<?php if ($roles !='administrator') {?>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-calendar mr-3"></i>My Calendar</a>
-                                            </li>
-											<?php }?>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-key mr-3"></i>Log Out</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <?php else: ?>
-                                    <li class="s-header-v2-nav-item">
-                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
-                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
-                                    </li>
-                                <?php endif ?>
-                            </ul>
-                        </div>
-                        <!--logged user -->
-                        <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
-                            <ul class="s-header-v2-nav hidden">
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>job_search" class="s-header-v2-nav-link">Search Job</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link s-header-v2-nav-link-dark">Contacts</a>
-                                </li>
-                                <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>article" class="s-header-v2-nav-link">Article</a>
-                                </li>
-
-                                <?php if (!empty($login)): ?>
-                                    <li class="dropdown s-header-v2-nav-item s-header-v2-dropdown-on-hover">
-                                        <a href="<?php echo base_url(); ?>" class="dropdown-toggle s-header-v2-nav-link -is-active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img src="../assets/pages/img/avatars/team10.jpg" class="avatar avatar-xtramini avatar-circle" alt="">
-                                            <span class="g-font-size-10-xs g-margin-l-5-xs ti-angle-down"></span>
-                                        </a>
-                                        <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right">
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>student/dashboard" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-home mr-3"></i>Dashboard</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>student/profile" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-note mr-3"></i>Edit Profile</a>
-                                            </li>
-                                            <li>
-                                                <a href="student-view-profile.html" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-book-open mr-3"></i>My Resume</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>student/calendar" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-calendar mr-3"></i>My Calendar</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
-                                                    <i class="icon-key mr-3"></i>Log Out</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                <?php else: ?>
-                                    <li class="s-header-v2-nav-item">
-                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-bg s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-shrink">Login</a>
-                                        <a href="<?php echo base_url(); ?>login" class=" g-letter-spacing-1 g-radius-50 g-font-size-16-xs s-btn s-btn-md-orange-brd s-btn-xs g-margin-t-20-xs g-margin-b-20-xs s-header-v2-logo-img-default">Login</a>
-                                    </li>
-                                <?php endif ?>
-                            </ul>
-                        </div>
-                        <!-- End Nav Menu -->
-                    </div>
-                </div>
-                <!-- End Navbar Row -->
-            </div>
-        </nav>
-        <!-- End Navbar -->
-    </header>
-    <!--========== END HEADER ==========-->
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <?php if($header_image['name'] != ""){?>
-		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1; background-size:cover;">
-	<?php }else{?>
-		<div class="s-promo-block-v2 g-bg-gradient-darkblue-strong mt-height-300-xs" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
-	<?php }?>
-	
-    </div>
-    <div class="container mt-margin-t-o-120-xs ">
-        <div class="row mx-0">
-            <div class="s-mockup-v3 md-transparent ">
-                <div class="media py-4 ">
-                    <div class="pull-left mr-3">
-                        <?php if($profile_image['name'] != ""){?>
-							<img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large avatar-border-sm  p-2 md-white border-mdo-bluegrey-slight g-box-shadow-dark-lightest-v3">
-						<?php }else{?>
-							<img src="<?=base_url()?>assets/img/site/xremo-logo-blue.png" alt="" class="avatar avatar-large avatar-border-sm  p-2 md-white border-mdo-bluegrey-slight g-box-shadow-dark-lightest-v3">
-						<?php }?>
-						
-                    </div>
-                    <div class="media-body ">
-                        <h1 class="roboto-font mt-2 font-weight-500 md-white-text "><?php echo $detail['company_name']; ?></h1>
-                        <h6 class="mb-1 roboto-font mdo-white-strong-text font-weight-300">
-                            <i class="fa fa-building-o mr-2 hidden"></i> <?php echo $detail['industry'] ?></h6>
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1; background-size:cover;">
+        <?php }else{?>
+        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
+            <?php }?>
+        </div>
+        <div class="container mt-o-120 ">
+            <div class="row mx-0">
+                <div class="s-mockup-v3 md-transparent ">
+                    <div class="media py-20 ">
+                        <div class="pull-left mr-10">
+                            <?php if($profile_image['name'] != ""){?>
+                            <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large  p-10 md-white  shadow-v4 avatar-border-md border-mdo-white-v8">
+                            <?php }else{?>
+                            <img src="<?=base_url()?>assets/img/site/xremo-logo-blue.svg" alt="" class="avatar avatar-large avatar-border-md p-10 md-white shadow-v4 border-mdo-white-v8">
+                            <?php }?>
+
+                        </div>
+                        <div class="media-body ">
+                            <h2 class="mt-10  md-white-text "><?php echo $detail['company_name']; ?></h2>
+                            <h6 class="mb-5  mdo-white-v8-text font-weight-300">
+                                <i class="fa fa-industry mr-5 font-17 ml-5"></i>
+                                <?php echo $detail['industry'] ?>
+                            </h6>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--========== END PROMO : VIEW JOB TITLE==========-->
+        <!--========== END PROMO : VIEW JOB TITLE==========-->
 
-    <!--========== CONTENT ==========-->
+        <!--========== CONTENT ==========-->
+        <div class="container ">
 
-    <div class="container ">
-		<!-- Send Message Button -->
-		<?php if($this->session->userdata('id') && ($this->session->userdata('id') != $detail['id_users'])){?>
-			<div class="row  mx-0 mt-2">
-				<!-- About Company / Job Post -->
-				<div class="col-md-9 mt-height-100-percent-xs ">
-					<a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($detail['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font" target="_blank">
-						<i class="icon-envelope mr-2 "></i>Send Message</a>
-				</div>
-			</div>
-		<?php }?>
-        <div class="row  mx-0 mt-2">
-            <!-- About Company / Job Post -->
-            <div class="col-md-9 mt-height-100-percent-xs ">
-                <div class="portlet light  ">
-                    <div class="portlet-title tabbable-line tab-border-md-orange">
-                        <ul class="nav nav-tabs pull-left">
-                            <li class="active">
-                                <a href="#tab_about_info" data-toggle="tab" class="font-14-xs roboto-font">
-                                    <i class="icon-notebook mr-2"></i>About Company</a>
-                            </li>
-                            <li>
-                                <a href="#tab_job_info" data-toggle="tab" class="font-14-xs roboto-font">
-                                    <i class="icon-briefcase mr-2"></i>Job Post</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="portlet-body">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tab_about_info">
-                                <!-- About Company -->
-                                <div class="row mt-3 mb-5 mx-0">
-                                    <h5 class="font-weight-600 md-grey-text text-darken-3 primary-font font-20-xs text-uppercase letter-space-xs">About <?php echo $detail['company_name']; ?></h5>
-                                    <hr class="g-hor-border-1-solid-md-orange my-2 mt-width-60-xs">
-									<?php if($detail['company_description'] == ""){?>
-										<div class="portlet p-4 md-shadow-none">
-											<div class="portlet-body text-center">
-												<i class="icon-ghost font-grey-mint font-40-xs mb-4"></i>
-												<h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-												<!--<h6 class="text-center  font-grey-cascade mt-1 text-none">Add your info in here to make your company look great.</h6>
+            <div class="row  mx-0 mt-10">
+                <!-- About Company / Job Post -->
+                <div class="col-md-9 height-100-percent  pl-0">
+                    <div class="portlet light  ">
+                        <div class="portlet-title tabbable-line tab-md-orange">
+                            <ul class="nav nav-tabs pull-left">
+                                <li class="active">
+                                    <a href="#tab_about_info" data-toggle="tab" class="font-15">
+                                        <i class="icon-notebook mr-5"></i>About Company</a>
+                                </li>
+                                <li>
+                                    <a href="#tab_job_info" data-toggle="tab" class="font-15">
+                                        <i class="icon-briefcase mr-5"></i>Job Post</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_about_info">
+                                    <!-- About Company -->
+                                    <div class="row my-20 mx-0">
+                                        <h5 class="font-weight-600 md-grey-darken-3-text  font-16 text-uppercase letter-space-xs">About
+                                            <?php echo $detail['company_name']; ?>
+                                        </h5>
+                                        <hr class="hor-divider-solid-medium border-md-orange my-10 width-30">
+                                        <?php if($detail['company_description'] == ""){?>
+                                        <!-- Empty States -->
+                                        <div class="portlet p-20 md-shadow-none">
+                                            <div class="portlet-body text-center">
+                                                <i class="icon-ghost font-grey-mint font-40 mb-35"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
+                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">Add your info in here to make your company look great.</h6>
 												<a href="employer-profile.html" class="btn btn-outline-md-indigo px-6">My Profile</a>-->
-											</div>
-										</div>
-									<?php }else{?>
-										<p class="roboto-font font-grey-gallery "><?php echo $detail['company_description']; ?></p>
-									<?php }?>
-                                </div>
+                                            </div>
+                                        </div>
+                                        <?php }else{?>
+                                        <p class="font-grey-gallery  text-justify">
+                                            <?php echo $detail['company_description']; ?>
+                                        </p>
+                                        <?php }?>
+                                    </div>
 
-                                <!-- Location -->
-                                <div class="row mb-5 mx-0">
-                                    <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-17-xs text-uppercase letter-space-xs">Location</h5>
-                                    <hr class="g-hor-border-1-solid-md-orange my-2 mt-width-60-xs">
-                                    	<?php 
+                                    <!-- Location -->
+                                    <div class="row my-20 mx-0">
+                                        <h5 class="font-weight-600 md-grey-darken-3-text font-16 text-uppercase letter-space-xs">Location</h5>
+                                        <hr class="hor-divider-solid-medium border-md-orange my-10 width-30">
+                                        <?php 
                                         if(!empty($company_location)){?>
-                                        <div id="gmapbg" class="s-google-map mt-height-auto-xs mt-height-300-xs my-4"></div>
-										<ul class="list-unstyled">
-										<?php foreach ($company_location as $key => $value) {
-											$lat = -6;$long = 100;
-										?>
-                                    		<li>
-	                                            <h5 class="font-weight-600 md-grey-text text-darken-3 roboto-font  font-15-xs text-uppercase letter-space-xs"><?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?></h5>
-												
-												<?php
+                                        <div id="gmapbg" class="s-google-map height-auto height-300 my-20"></div>
+                                        <ul class="list-unstyled">
+                                            <?php                                        
+                                            foreach ($company_location as $key => $value) { 
+                                                $lat = -6;
+                                                $long = 100;
+										    ?>
+                                            <li>
+                                                <!-- BRANCH / HQ -->
+                                                <h5 class="font-weight-600 md-grey-darken-3-text font-15 text-uppercase letter-space-xs">
+                                                    <?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?>
+                                                </h5>
+                                                <?php
 													$full_address = $value->building_address != ""?$value->building_address.", ":"";
 													$full_address .= $value->building_city != ""?$value->building_city.", ":"";
 													$full_address .= $value->building_postcode != ""?$value->building_postcode.", ":"";
@@ -350,83 +185,107 @@
 													$full_address .= $value->building_country != ""?$value->building_country.", ":"";
 													$full_address = $full_address != ""?substr($full_address, 0, -2):"";
 												?>
-	                                            <?php if($full_address != ""){?>
-													<h6 class=" roboto-font  font-14-xs mb-1" style="text-transform:none;">
-	                                                <i class="icon-pointer mr-2"></i><?php echo $full_address; ?> </h6>
-												<?php }?>
-	                                            <ul class="list-inline list-unstyled mx-0">
-	                                                <?php if($value->building_email != ""){?>
-														<li>
-															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
-																<i class="fa fa-envelope mr-2"></i><?php echo $value->building_email; ?> </h6>
-														</li>
-													<?php }?>
-													<?php if($value->building_phone != ""){?>
-														<li>
-															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
-																<i class="fa fa-phone mr-2"></i><?php echo $value->building_phone; ?> </h6>
-														</li>
-													<?php }?>
-													<?php if($value->building_fax != ""){?>
-														<li>
-															<h6 class=" roboto-font  font-14-xs " style="text-transform:none;">
-																<i class="fa fa-fax mr-2"></i><?php echo $value->building_fax; ?> </h6>
-														</li>
-													<?php }?>
-	                                            </ul>
-	                                        </li>
-                                    	<?php }?>
-											</ul>
-										<?php }else{ ?>
-											<!--<p class="roboto-font font-grey-gallery font-14-xs ">
+                                                    <!-- FULL ADDRESS OF BRANCH / HQ -->
+                                                    <?php if($full_address != ""){?>
+                                                    <p class="mb-5 ">
+                                                        <i class="fa fa-map-marker mr-5"></i>
+                                                        <?php echo $full_address; ?>
+                                                    </p>
+                                                    <?php }?>
+                                                    <!-- EMAIL / PHONE / FAX -->
+                                                    <ul class="list-inline list-unstyled mx-0">
+                                                        <!-- EMAIL -->
+                                                        <?php if($value->building_email != ""){?>
+                                                        <li>
+                                                            <p class="text-none">
+                                                                <i class="fa fa-envelope mr-5"></i>
+                                                                <?php echo $value->building_email; ?>
+                                                            </p>
+                                                        </li>
+                                                        <?php }?>
+                                                        <!-- PHONE -->
+                                                        <?php if($value->building_phone != ""){?>
+                                                        <li>
+                                                            <p class="text-none">
+                                                                <i class="fa fa-phone mr-5"></i>
+                                                                <?php echo $value->building_phone; ?>
+                                                            </p>
+                                                        </li>
+                                                        <?php }?>
+                                                        <!-- FAX NUMBER -->
+                                                        <?php if($value->building_fax != ""){?>
+                                                        <li>
+                                                            <p class=" text-none">
+                                                                <i class="fa fa-fax mr-5"></i>
+                                                                <?php echo $value->building_fax; ?> </p>
+                                                        </li>
+                                                        <?php }?>
+                                                    </ul>
+                                            </li>
+
+                                            <?php }?>
+                                        </ul>
+                                        <?php }else{ ?>
+                                        <!--<p class=" font-grey-gallery  ">
 												Not Provided
 											</p>-->
-											<div class="portlet p-4 md-shadow-none">
-												<div class="portlet-body text-center">
-													<i class="icon-puzzle font-grey-mint font-40-xs mb-4"></i>
-													<h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-													<!--<h6 class="text-center  font-grey-cascade mt-1 text-none">It's seem like this company forgot to update his/her info. </h6>-->
-												</div>
-											</div>
-										<?php }?>
-                                    
+                                        <div class="portlet p-20 md-shadow-none">
+                                            <div class="portlet-body text-center">
+                                                <i class="icon-puzzle font-grey-mint font-40 mb-30"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
+                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">It's seem like this company forgot to update his/her info. </h6>-->
+                                            </div>
+                                        </div>
+                                        <?php }?>
+
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane" id="tab_job_info">
-                                <ul class="list-group list-border pt-0">
-                                    <!-- Content -->
-                                    <?php 
-										$article_page 	= $this->session->userdata('article_page');
-										$no = 1;
-										foreach ($job as $key => $value) {
-											if(($no < $article_page*5-4) || ($no > $article_page*5)){$no++;continue;} 
-											$no++; 
-									?>
+
+                                <div class="tab-pane" id="tab_job_info">
+                                    <ul class="list-group list-border pt-0">
+                                        <!-- Content -->
+                                        <?php 
+                                            $article_page 	= $this->session->userdata('article_page');
+                                            $no = 1;
+                                            foreach ($job as $key => $value) {
+                                                if(($no < $article_page*5-4) || ($no > $article_page*5)){$no++;continue;} 
+                                                
+                                                $no++; 
+									    ?>
                                         <li class="list-group-item ">
                                             <div class="media">
                                                 <!--<div class="pull-right ">
                                                     <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs " target="_blank">Apply</a>
                                                 </div>-->
                                                 <div class="media-body ">
-                                                    <h6 class="my-1 font-weight-700 roboto-font">
-                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" target="_blank"><?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
+                                                    <h6 class="my-10 font-weight-600 font-17 ">
+                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" target="_blank">
+                                                            <?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <p class="my-1 roboto-font">
+                                            <p class="my-5 ">
                                                 <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                                <span class="label label-md-red label-sm"><i class="icon-pointer"></i> <?php echo $this->session->userdata('country')?></span>
-                                                <span class="label label-md-blue label-sm"><?php echo $value['employment_name'] ;?></span>
-                                                <span class="label label-md-purple label-sm"><?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?></span>
+                                                <span class="label label-md-red mr-5 label-sm">
+                                                    <i class="fa fa-map-marker"></i>
+                                                    <?php echo $this->session->userdata('country')?>
+                                                </span>
+                                                <span class="label label-md-blue mr-5 label-sm">
+                                                    <?php echo $value['employment_name'] ;?>
+                                                </span>
+                                                <span class="label label-md-purple mr-5 label-sm">
+                                                    <?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?>
+                                                </span>
                                             </p>
-                                            <p class="multiline-truncate roboto-font font-weight-300 mb-3"><?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
+                                            <p class="multiline-truncate font-weight-400 mb-15 font-14 ">
+                                                <?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
                                             </p>
                                         </li>
-                                    <?php } ?>
-                                    <!-- Pagination -->
-                                    <li class="list-group-item px-0 ">
-                                        <ul class="pagination pagination-lg">
-                                            <?php
+                                        <?php } ?>
+                                        <!-- Pagination -->
+                                        <li class="list-group-item px-0 ">
+                                            <ul class="pagination ">
+                                                <?php
 												$article_total = 0;
 												foreach($job as $row){
 													$article_total++;
@@ -444,233 +303,223 @@
 												$prev 			= $article_page - 1;
 												$next 			= $article_page + 1;
 											?>
-											<li>
-												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info'?>"> First </a>
-											</li>
-											<li>
-												<a href="<?=$article_page == 1?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'page/'.$prev.'#tab_job_info'?>">
-													<i class="fa fa-angle-left"></i>
-												</a>
-											</li>
-											<?php if($article_page-2 > 0){ $other_page = $article_page-2;?>
-												<li>
-													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page-2?> </a>
-												</li>
-											<?php }?>
-											<?php if($article_page-1 > 0){ $other_page = $article_page-1;?>
-											<li>
-												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page-1?> </a>
-											</li>
-											<?php }?>
-											<li class="active">
-												<a href="javascript:;"> <?=$article_page?> </a>
-											</li>
-											<?php if($article_total > $article_page+$article_page*4){ $other_page = $article_page+1;?>
-												<li>
-													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page+1?> </a>
-												</li>
-											<?php }?>
-											<?php if($article_total > $article_page+$article_page*4+5){ $other_page = $article_page+2;?>
-												<li>
-													<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>"> <?=$article_page+2?> </a>
-												</li>
-											<?php }?>
-											<li>
-												<a href="<?=$article_page == $max_page || $article_page > $max_page?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$next.'#tab_job_info'?>">
-													<i class="fa fa-angle-right"></i>
-												</a>
-											</li>
-											<li>
-												<a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info'?>"> Last </a>
-											</li>
-											
-											
-											<!--<li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-angle-left"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 1 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 2 </a>
-                                            </li>
-                                            <li class="active">
-                                                <a href="javascript:;"> 3 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 4 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 5 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;"> 6 </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </li>-->
-                                        </ul>
-                                    </li>
-                                </ul>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info'?>"> First </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?=$article_page == 1?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'page/'.$prev.'#tab_job_info'?>">
+                                                            <i class="fa fa-angle-left"></i>
+                                                        </a>
+                                                    </li>
+                                                    <?php if($article_page-2 > 0){ $other_page = $article_page-2;?>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>">
+                                                            <?=$article_page-2?>
+                                                        </a>
+                                                    </li>
+                                                    <?php }?>
+                                                    <?php if($article_page-1 > 0){ $other_page = $article_page-1;?>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>">
+                                                            <?=$article_page-1?>
+                                                        </a>
+                                                    </li>
+                                                    <?php }?>
+                                                    <li class="active">
+                                                        <a href="javascript:;">
+                                                            <?=$article_page?>
+                                                        </a>
+                                                    </li>
+                                                    <?php if($article_total > $article_page+$article_page*4){ $other_page = $article_page+1;?>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>">
+                                                            <?=$article_page+1?>
+                                                        </a>
+                                                    </li>
+                                                    <?php }?>
+                                                    <?php if($article_total > $article_page+$article_page*4+5){ $other_page = $article_page+2;?>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$other_page.'#tab_job_info'?>">
+                                                            <?=$article_page+2?>
+                                                        </a>
+                                                    </li>
+                                                    <?php }?>
+                                                    <li>
+                                                        <a href="<?=$article_page == $max_page || $article_page > $max_page?base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info':base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$next.'#tab_job_info'?>">
+                                                            <i class="fa fa-angle-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="<?=base_url().'profile/company/'.$this->uri->segment(URI_SEGMENT_DETAIL).'/page/'.$max_page.'#tab_job_info'?>"> Last </a>
+                                                    </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-md-3">
+                <div class="col-md-3 pr-0">
+                    <!-- Send Message Button -->
+                    <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $detail['id_users'])){?>
+                    <div class="row  mx-0 mb-30">
+                        <a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($detail['id_users']), '='); ?>/new" class=" btn btn-md-orange btn-block " target="_blank">
+                            <i class="icon-envelope mr-5 "></i>Send Message</a>
 
-                <!-- Company Short Info -->
-                <div class="row mb-3   mx-0 ">
-                    <ul class="list-unstyled ">
-                        <!-- Company Industry -->
-                        <?php //if (!empty($detail['industry'])): ?>    
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="fa fa-industry mr-1"></i>Industry</h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['industry'] != ""?$detail['industry']:"Not Provided"; ?>
-                            </p>
-                        </li>
-                        <?php //endif ?>
-
-                        <!-- Company Size -->
-                        <?php //if (!empty($detail['total_staff'])): ?>
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="fa fa-building-o mr-1"></i>Company Size</h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['total_staff'] != ""?$detail['total_staff']." People":"Not Provided"; ?>
-                            </p>
-                        </li>                            
-                        <?php //endif ?>
-
-                        <!-- Working Day -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-calendar mr-1"></i>Working Day</h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):"Not Provided"; ?>
-                            </p>
-                        </li>
-						
-						<!-- Working Hour -->
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="icon-clock mr-1"></i>Working Hour</h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):"Not Provided"; ?>
-                            </p>
-                        </li>
-
-                        <!-- Dress Code -->
-                        <?php //if (!empty($detail['dress_code'])): ?>
+                    </div>
+                    <?php }?>
+                    <!-- Company Short Info -->
+                    <div class="row mb-30  mx-0 ">
+                        <ul class="list-unstyled ">
+                            <!-- Company Industry -->
+                            <?php //if (!empty($detail['industry'])): ?>
                             <li>
-                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                    <i class="icon-users mr-1"></i>Dress Code </h5>
-                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="fa fa-industry mr-5"></i>Industry</h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
+                                    <?php echo $detail['industry'] != ""?$detail['industry']:"Not Provided"; ?>
+                                </p>
+                            </li>
+                            <?php //endif ?>
+
+                            <!-- Company Size -->
+                            <?php //if (!empty($detail['total_staff'])): ?>
+                            <li>
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="fa fa-building-o mr-5"></i>Company Size</h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
+                                    <?php echo $detail['total_staff'] != ""?$detail['total_staff']." People":"Not Provided"; ?>
+                                </p>
+                            </li>
+                            <?php //endif ?>
+
+                            <!-- Working Day -->
+                            <li>
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="icon-calendar mr-5"></i>Working Day</h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
+                                    <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):"Not Provided"; ?>
+                                </p>
+                            </li>
+
+                            <!-- Working Hour -->
+                            <li>
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="icon-clock mr-5"></i>Working Hour</h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
+                                    <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):"Not Provided"; ?>
+                                </p>
+                            </li>
+
+                            <!-- Dress Code -->
+                            <?php //if (!empty($detail['dress_code'])): ?>
+                            <li>
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="icon-users mr-5"></i>Dress Code </h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $dresscode != ""?ucwords($dresscode):"Not Provided"; ?>
                                 </p>
                             </li>
-                        <?php //endif ?>
+                            <?php //endif ?>
 
-                        <!-- Website -->
-                        <?php //if (!empty($detail['url'])): ?>
+                            <!-- Website -->
+                            <?php //if (!empty($detail['url'])): ?>
                             <li>
-                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                    <i class="icon-screen-desktop mr-1"></i>Website </h5>
-                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="icon-screen-desktop mr-5"></i>Website </h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php if($detail['url'] != ""){?>
-										<a href="<?=$detail['url']?>" target="_blank"><?=$detail['url']?></a>
-									<?php }else{?>
-										Not Provided
-									<?php }?>
+                                    <a href="<?=$detail['url']?>" target="_blank">
+                                        <?=$detail['url']?>
+                                    </a>
+                                    <?php }else{?> Not Provided
+                                    <?php }?>
                                 </p>
                             </li>
-                        <?php //endif ?>
+                            <?php //endif ?>
 
-                        <!-- Spoken Language -->
-                        <?php //if (!empty($detail['spoken_language'])): ?>
+                            <!-- Spoken Language -->
+                            <?php //if (!empty($detail['spoken_language'])): ?>
                             <li>
-                                <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                    <i class="fa fa-language mr-1"></i>Spoken Language </h5>
-                                <p class="roboto-font font-grey-gallery font-14-xs ">
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="fa fa-language mr-5"></i>Spoken Language </h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:"Not Provided"; ?>
                                 </p>
                             </li>
-                        <?php //endif ?>
+                            <?php //endif ?>
 
-                        <!-- Benefit -->
-                        <?php if (!empty($detail['benefits'])): ?>   
-                        <li>
-                            <h5 class="font-weight-500 font-grey-gallery roboto-font font-14-xs text-capitalize letter-space-xs mb-1">
-                                <i class="fa fa-diamond mr-1"></i>Benefit </h5>
-                            <p class="roboto-font font-grey-gallery font-14-xs ">
-                                <?php echo $detail['benefits'] != ""?$detail['benefits']:"Not Provided"; ?>
-                            </p>
-                        </li>
-                        <?php endif ?>
+                            <!-- Benefit -->
+                            <?php if (!empty($detail['benefits'])): ?>
+                            <li>
+                                <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
+                                    <i class="fa fa-diamond mr-5"></i>Benefit </h6>
+                                <p class="font-weight-400 font-grey-gallery font-15 ">
+                                    <?php echo $detail['benefits'] != ""?$detail['benefits']:"Not Provided"; ?>
+                                </p>
+                            </li>
+                            <?php endif ?>
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
-                <!-- Follow Me Social Icons -->
-                <div class="row mb-5 mx-0 ">
-                    <h5 class="font-weight-600 md-orange-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Follow Me </h5>
-                    <ul class="social-icons social-icons-color">
-                    	<?php $followme = 0;foreach ($social as $key => $value) { 
+                    <!-- Follow Me Social Icons -->
+                    <div class="row mb-30 mx-0 ">
+                        <h6 class="font-weight-600 md-orange-text  mb-10 text-uppercase letter-space-xs font-16">Follow Me </h6>
+                        <ul class="social-icons social-icons-color">
+                            <?php $followme = 0;foreach ($social as $key => $value) { 
                             switch ($value['name']) {
                                 case 'facebook':
                                     ?>
-                                <li>
-		                            <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Facebook" class="facebook" target="_blank"> </a>
-		                        </li>
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Facebook" class="facebook" target="_blank"> </a>
+                            </li>
                             <?php $followme++;break;
                                 case 'twitter': ?>
-                                <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Twitter"  class="twitter" target="_blank"></a>
-                                </li>        
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Twitter" class="twitter" target="_blank"></a>
+                            </li>
                             <?php $followme++;break;
                                 case 'linkedin': ?>
-                                <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Linked In"  class="linkedin" target="_blank"></a>
-                                </li>        
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" data-original-title="Linked In" class="linkedin" target="_blank"></a>
+                            </li>
                             <?php $followme++;break;
                                 case 'gplus': ?>
-                                <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="googleplus" data-original-title="Google Plus" target="_blank"></a>
-                                </li>
-							<?php $followme++;break;
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="googleplus" data-original-title="Google Plus" target="_blank"></a>
+                            </li>
+                            <?php $followme++;break;
                                 case 'instagram': ?>
-                                <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="instagram" data-original-title="Instagram" target="_blank"></a>
-                                </li>
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="instagram" data-original-title="Instagram" target="_blank"></a>
+                            </li>
                             <?php $followme++;break;
                                 case 'youtube': ?>
-                                <li>
-                                    <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="youtube" data-original-title="Youtube" target="_blank"></a>
-                                </li>
+                            <li>
+                                <a href="<?php echo !empty($value['link']) ? $value['link'] : '#' ?>" class="youtube" data-original-title="Youtube" target="_blank"></a>
+                            </li>
                             <?php break; default:?>
-                                <li>
-                                    
-                                </li>
+                            <li>
+
+                            </li>
                             <?php break; } ?>
-                            
-                        <?php } if($followme == 0){?>
-							<p class="roboto-font font-grey-gallery font-14-xs ">
+
+                            <?php } if($followme == 0){?>
+                            <p class=" font-grey-gallery  ">
                                 Not Provided
                             </p>
-						<?php }?>						
-                    </ul>
-                </div>
-                <!-- Ad -->
-                <!--<div class="row mb-5 mx-0">
-                    <h5 class="font-weight-600 md-orange-text roboto-font mb-2 font-15-xs text-uppercase letter-space-xs">Recent view
+                            <?php }?>
+                        </ul>
+                    </div>
+
+
+                    <!-- Ad -->
+                    <!--<div class="row mb-5 mx-0">
+                    <h5 class="font-weight-600 md-orange-text  mb-2 font-15-xs text-uppercase letter-space-xs">Recent view
                         <a href="" class="md-orange-text">Company #1</a>
                     </h5>
                     <div class="g-fullheight-xs md-yellow col-md-12">
@@ -694,135 +543,137 @@
                         </li>
                     </ul>
                 </div>-->
+                </div>
             </div>
-        </div>
 
-        <!-- Modal Job Apply-->
-        <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content ">
-                    <div class="modal-header">
-                        <h5 class="roboto-font mb-0">Short Description About Yourself</h5>
-                        <!-- <div class="media ">
+            <!-- Modal Job Apply-->
+            <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h5 class="mb-0">Short Description About Yourself</h5>
+                            <!-- <div class="media ">
                             <div class="pull-left">
                                 <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-tiny avatar-circle">
                             </div>
                             <div class="media-body">
-                                <h5 class="mt-3 mb-1">Nick Jonas</h5>
-                                <p class="roboto-font">Student </p  >
+                                <h5 class="mt-3 mb-5">Nick Jonas</h5>
+                                <p class="">Student </p  >
                             </div>
                         </div> -->
-                    </div>
-                    <form action="" class="form form-horizontal">
-                        <div class="modal-body  ">
-                            <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                <div class="media ">
-                                    <div class="pull-left">
-                                        <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-mini avatar-circle">
+                        </div>
+                        <form action="" class="form form-horizontal">
+                            <div class="modal-body  ">
+                                <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
+                                    <div class="media ">
+                                        <div class="pull-left">
+                                            <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-mini avatar-circle">
+                                        </div>
+                                        <div class="media-body">
+                                            <h6 class="mt-1 mb-5 md-orange-text font-weight-500 ">Nick Jonas
+                                                <small class="">
+                                                    <i class="icon-pointer"></i> Kuala Lumpur</small>
+                                            </h6>
+                                            <p class=" text-none">Applied for job
+                                                <strong class="text-capitallize">Web Developer</strong>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <h6 class="mt-1 mb-1 md-orange-text font-weight-500 roboto-font">Nick Jonas
-                                            <small class="">
-                                                <i class="icon-pointer"></i> Kuala Lumpur</small>
-                                        </h6>
-                                        <p class="roboto-font text-none">Applied for job
-                                            <strong class="text-capitallize">Web Developer</strong>
-                                        </p>
+                                    <div class="form-group text-left mx-0 mb-2">
+                                        <textarea name="" id="" class="form-control " rows="7" placeholder="Tell me more about yourself and sell out your creativity in here to this company! Not more than 300 words"></textarea>
                                     </div>
-                                </div>
-                                <div class="form-group text-left mx-0 mb-2">
-                                    <textarea name="" id="" class="form-control " rows="7" placeholder="Tell me more about yourself and sell out your creativity in here to this company! Not more than 300 words"></textarea>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer md-grey lighten-4">
-                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                            <button type="submit" class="btn btn-md-orange ">Submit</button>
-                        </div>
-                    </form>
+                            <div class="modal-footer md-grey lighten-4">
+                                <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
+                                <button type="submit" class="btn btn-md-orange ">Submit</button>
+                            </div>
+                        </form>
 
+                    </div>
+                    <!-- /.modal-content -->
                 </div>
-                <!-- /.modal-content -->
+                <!-- /.modal-dialog -->
             </div>
-            <!-- /.modal-dialog -->
         </div>
-    </div>
-    <!--========== END CONTENT ==========-->
+        <!--========== END CONTENT ==========-->
 
-	<?php $this->load->view('main/footer_content');?>
+        <?php $this->load->view('main/footer_content');?>
 
-    <!-- BEGIN CORE PLUGINS -->
-    <!-- Metronic -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.migrate.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/js.cookie.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.blockui.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-    <!-- Megakit -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.back-to-top.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
+        <!-- BEGIN CORE PLUGINS -->
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/jquery-v1-12-4.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
+        <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.back-to-top.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollbar.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.equal-height.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+
+        <!--//REMOVE
+	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/swiper/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/jquery.masonry.pkgd.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/imagesloaded.pkgd.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/rateit/jquery.rateit.min.js"></script>
     <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+	-->
 
-    <!-- General Components and Settings -->
+        <!-- General Components and Settings -->
 
-    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false" ></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script> -->
-    <!-- <script type="text/javascript" src="https://www.google.com/maps/embed/v1/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U" type="text/javascript"></script> -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U"></script> -->
-    <!-- <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/gmaps/gmaps.min.js"></script> -->
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/clipboardjs/clipboard.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>global.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>app.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/masonry.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/equal-height.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
+        <script>
+            function initMap() {
+                var address = <?php echo $detail['address']; ?>;
+                var company_name = '<?php echo $detail['
+                company_name ']; ?>';
+                var latLang = {
+                    lat: 0,
+                    lng: 120
+                };
+                // Create a map object and specify the DOM element for display.
+                var map = new google.maps.Map(document.getElementById('gmapbg'), {
+                    center: latLang,
+                    zoom: 4
+                });
 
+                $.each(address, function (i, v) {
+                    if (v.optionsRadios == 'HQ') {
+                        var lat = parseInt(v.building_latitude);
+                        var longi = parseInt(v.building_longitude);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: {
+                                lat: lat,
+                                lng: longi
+                            },
+                            title: company_name
+                        });
+                    }
+                });
+            }
 
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>components-clipboard.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>components-bootstrap-select.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>header-sticky.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>swiper.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>masonry.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
-    <script>
-        function initMap() {
-            var address = <?php echo $detail['address']; ?>;
-            var company_name = '<?php echo $detail['company_name']; ?>';
-            var latLang = {lat: 0, lng: 120};
-            // Create a map object and specify the DOM element for display.
-            var map = new google.maps.Map(document.getElementById('gmapbg'), {
-              center: latLang,
-              zoom: 4
-            });
-
-            $.each(address,function(i,v){
-                if(v.optionsRadios == 'HQ'){
-					var lat = parseInt(v.building_latitude);
-					var longi = parseInt(v.building_longitude);
-					 var marker = new google.maps.Marker({
-					  map: map,
-					  position: {lat: lat, lng: longi},
-					  title: company_name
-					});
-				}
-            });
-        }
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap"
-    async defer></script>
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXUGTFS09pLVdsYEE9YrO2y4IAncAO2U&callback=initMap" async defer></script>
 </body>
 
 </html>
