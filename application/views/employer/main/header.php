@@ -6,19 +6,21 @@
 <html lang="en">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
+
 <head>
     <meta charset="utf-8" />
-    <title><?=$page_title?> | Employer</title>
+    <title>
+        <?=$page_title?> | Employer</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description">
 
     <meta content="" name="author">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-	<!-- Web Fonts -->
+    <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
-	
+
     <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +45,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>morris.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
@@ -52,49 +54,50 @@
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo CSS_EMPLOYER; ?>components-rounded.css" rel="stylesheet" id="style_components" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>plugins.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo ASSETS; ?>css/global/components.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="<?php echo ASSETS; ?>css/global/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <link href="<?php echo CSS_EMPLOYER; ?>image-crop.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>portfolio.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="<?php echo CSS_EMPLOYER; ?>layout.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>blue.min.css" rel="stylesheet" type="text/css" id="style_color">
-    <link href="<?php echo CSS_EMPLOYER; ?>custom.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS ?>css/layout2/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="<?php echo ASSETS; ?>css/layout2/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
-	<!-- END THEME LAYOUT STYLES -->
+    <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-115543574-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-115543574-1');
+
     </script>
 </head>
 <!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
-<div class="loading">
-    <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
-</div>
+    <!-- <div class="loading">
+        <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
+    </div> -->
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <!-- <a href="index.html" class="text-logo font-40-xs md-white-text mt-2 letter-space-md font-weight-400"> -->
-                <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
-                <!-- X<small>REMO</small>  -->
-                <!-- </a> -->
                 <a href="<?php echo base_url(); ?>home/">
-                    <img src="<?php echo IMG_EMPLOYER; ?>xremo-logo-white.svg" alt="logo" class="logo-default mt-height-70-xs mx-4 my-4">
+                    <img src="<?php echo IMG; ?>/site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom">
                 </a>
+                <div class="menu-toggler sidebar-toggler"> </div>
             </div>
             <!-- END LOGO -->
 
@@ -123,14 +126,6 @@
                 <div class="top-menu">
 
                     <ul class="nav navbar-nav pull-right">
-                        <!-- BEGIN NOTIFICATION DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
-                        <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
-                        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-
-                        <!--<li class="">
-                            <a href="<?=base_url()?>job/search" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left" target="_blank">Search Job</a>
-                        </li>-->
 
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="count_notif">
@@ -154,11 +149,11 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
-								
-								<span class="username username-hide-on-mobile"> <?php echo ucfirst($user_profile['name']); ?> </span>
+                                <span class="username username-hide-on-mobile">
+                                    <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
-							
+
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/dashboard/">
@@ -200,16 +195,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- END USER LOGIN DROPDOWN -->
-                        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <!--<li class="dropdown dropdown-extended quick-sidebar-toggler">
-                            <a href="<?php echo base_url(); ?>site/user/logout" style="padding: 0px 15px;">
-                                <span class="sr-only">Toggle Quick Sidebar</span>
-                                <i class="icon-logout"></i>                                
-                            </a>
-                        </li>-->
-                        <!-- END QUICK SIDEBAR TOGGLER -->
                     </ul>
                 </div>
                 <!-- END TOP NAVIGATION MENU -->
@@ -230,35 +215,39 @@
         <div class="page-sidebar-wrapper">
             <div class="page-sidebar navbar-collapse collapse ">
                 <ul class="page-sidebar-menu  page-header-fixed  page-sidebar-menu-compact" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                    <li class="nav-item start px-2 py-4 ">
-                        <div class="nav-link">
-                            <div class="m-grid mb-2 mt-4">
-                                <div class="m-grid-row md-white-text font-20-xs">
-                                    <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                    <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"><?= ProfileCompletion($user_profile); ?>%</div>
-                                </div>
+                    <!-- PROFILE COMPLETION -->
+                    <li class="nav-progress">
+                        <div class="progress-info">
+                            <div class="status">
+                                <div class="status-title"> Profile Completion </div>
+                                <div class="status-number">
+                                    <?= ProfileCompletion($user_profile); ?>%</div>
                             </div>
-                            <div class="progress progress-lg ">
-                                <span class="sr-only"> <?= ProfileCompletion($user_profile); ?>% Complete (warning) </span>
-                                <div class="progress-bar bar-md-amber " role="progressbar" aria-valuenow="<?= ProfileCompletion($user_profile); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= ProfileCompletion($user_profile); ?>%">
-                                </div>
+                            <div class="progress">
+                                <span style="width:<?= ProfileCompletion($user_profile); ?>%;" class="progress-bar progress-bar-warning">
+                                    <span class="sr-only">
+                                        <?= ProfileCompletion($user_profile); ?>% Complete</span>
+                                </span>
                             </div>
                         </div>
                     </li>
+                    <!-- DASHBOARD -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
                             <i class="icon-home"></i>
                             <span class="title">Dashboard</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- COMPANY PROFILE  -->
                     <li class="nav-item  <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle ">
                             <i class="icon-diamond"></i>
                             <span class="title">Company Profile</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- JOB BOARD -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/job_board/" class="nav-link ">
                             <i class="icon-briefcase"></i>
@@ -266,26 +255,31 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- CALENDAR -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/calendar/" class="nav-link ">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- INBOX -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
-							<?php 
+                            <?php 
 								$data_message = getDataMessage("general");
 								if($data_message['new'] > 0){
 							?>
-								<span class="badge badge-md-cyan"><?=$data_message['new']?></span>
-							<?php }?>
-							<span class="selected"></span>
+                            <span class="badge badge-md-cyan">
+                                <?=$data_message['new']?>
+                            </span>
+                            <?php }?>
+                            <span class="selected"></span>
                         </a>
                     </li>
+                    <!-- PURCHASE PACKAGE -->
                     <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'purchase_package'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/purchase_package/" class="nav-link ">
                             <i class="icon-wallet"></i>

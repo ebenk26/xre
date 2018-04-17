@@ -26,10 +26,10 @@
                     <div class="col-md-3">
 
                         <!-- BEGIN WIDGET THUMB  : Job Post (Active)-->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                        <div class="widget-thumb md-white text-uppercase mb-20">
                             <h4 class="widget-thumb-heading"> Job Post</h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-green icon-briefcase"></i>
+                                <i class="widget-thumb-icon md-green icon-briefcase"></i>
                                 <div class="widget-thumb-body">
                                     <?php 
 										$active = 0; 
@@ -48,10 +48,10 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Profile Seen -->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                        <div class="widget-thumb md-white text-uppercase mb-20">
                             <h4 class="widget-thumb-heading">Profile </h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-red icon-eye"></i>
+                                <i class="widget-thumb-icon md-red icon-eye"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Seen</span>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$user_profile['number_of_seen']?>">0</span>
@@ -62,10 +62,10 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Upcoming Interview-->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                        <div class="widget-thumb md-white text-uppercase mb-20">
                             <h4 class="widget-thumb-heading"> Interview</h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-purple icon-calendar"></i>
+                                <i class="widget-thumb-icon md-purple icon-calendar"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Upcoming </span>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo count($invitation); ?>"><?php echo count($invitation); ?></span>
@@ -76,10 +76,10 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Inbox-->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                        <div class="widget-thumb md-white text-uppercase mb-20">
                             <h4 class="widget-thumb-heading">Inbox</h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-blue icon-envelope"></i>
+                                <i class="widget-thumb-icon md-blue icon-envelope"></i>
                                 <div class="widget-thumb-body">
                                     <?php $message = getDataMessage("general");?>
 									<span class="widget-thumb-subtitle">Unread Message</span>
@@ -98,7 +98,7 @@
                             <div class="portlet-title tabbable-line">
                                 <div class="caption">
                                     <i class="icon-share font-dark"></i>
-                                    <span class="caption-subject font-dark bold uppercase">Recent Job Post </span>
+                                    <span class="caption-subject font-dark font-weight-600 text-uppercase">Recent Job Post </span>
                                 </div>
                             </div>
                             <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
@@ -106,7 +106,7 @@
                                     <div class="table-scrollable table-scrollable-borderless">
                                         <table class="table table-hover ">
                                             <thead>
-                                                <tr class="uppercase ">
+                                                <tr class="text-uppercase ">
                                                     <th> # </th>
                                                     <th class="col-sm-7"> Job </th>
                                                     <!-- <th> Last Update</th> -->
@@ -176,7 +176,6 @@
 
                     </div>
 
-
                 </div>
 
                 <div class="row">
@@ -186,27 +185,8 @@
                             <div class="portlet-title">
                                 <div class="caption caption-md font-blue">
                                     <i class="icon-share font-blue"></i>
-                                    <span class="caption-subject theme-font bold uppercase">Recent Activities</span>
+                                    <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">Recent Activities</span>
                                 </div>
-                                <!--<div class="actions">
-                                    <div class="btn-group">
-                                        <a class="btn btn-sm btn-default dropdown-toggle" href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Filter By
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <div class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
-                                            <label>
-                                                <input type="checkbox" /> Finance</label>
-                                            <label>
-                                                <input type="checkbox" checked="" /> Membership</label>
-                                            <label>
-                                                <input type="checkbox" /> Customer Support</label>
-                                            <label>
-                                                <input type="checkbox" checked="" /> HR</label>
-                                            <label>
-                                                <input type="checkbox" /> System</label>
-                                        </div>
-                                    </div>
-                                </div>-->
                             </div>
                             <div class="portlet-body">
                                 <div class="scroller mt-height-850-xs" data-always-visible="1" data-rail-visible="0">
@@ -243,17 +223,7 @@
                         </div>
                     </div>
                     <!-- Ads -->
-                    <div class="col-lg-6 col-sm-12">
-                        <!-- <div class="widget-blog text-center margin-bottom-20 clearfix" style="height: 442px; padding-top: 120px; background-image: url(../assets/layouts/layout7/img/07.jpg">
-                            <div class="widget-blog-heading text-uppercase">
-                                <h3 class="widget-blog-title">San Francisco</h3>
-                                <span class="widget-blog-subtitle">At dawn</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat commodo consequat.
-                            </p>
-                            <br/>
-                            <a class="btn btn-danger text-uppercase" href="#">Read More</a>
-                        </div> -->
+                    <div class="col-lg-6 col-sm-12">                        
                         <div class="portlet light calendar bordered">
                             <div class="portlet-title ">
                                 <div class="caption">

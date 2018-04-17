@@ -6,9 +6,11 @@
 <html lang="en">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
+
 <head>
     <meta charset="utf-8" />
-    <title><?=$page_title?> | Student </title>
+    <title>
+        <?=$page_title?> | Student </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description" />
@@ -18,27 +20,27 @@
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
-    
+
     <!-- IMAGE CROP GALLERY -->
     <link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css" rel="stylesheet" type="text/css" />
     <!-- IMAGE CROP GALLERY -->
-    
-    
+
+
     <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
-	<link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-switch.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-	
-	<link href="<?php echo CSS_EMPLOYER; ?>datatables.min.css" rel="stylesheet" type="text/css">
+
+    <link href="<?php echo CSS_EMPLOYER; ?>datatables.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>datatables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>socicon.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-select.css" rel="stylesheet" type="text/css">
-	
-    
-	<link href="<?php echo CSS_EMPLOYER; ?>daterangepicker.min.css" rel="stylesheet" type="text/css">
+
+
+    <link href="<?php echo CSS_EMPLOYER; ?>daterangepicker.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
@@ -48,15 +50,15 @@
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>morris.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>pricing.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">
-	
-	
-	
+
+
+
     <!--<link href="<?php echo ASSETS; ?>plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
@@ -73,9 +75,9 @@
     <!-- <link href="<?php echo ASSETS; ?>plugins/morris/morris.css" rel="stylesheet" type="text/css" /> 
     <link href="<?php echo ASSETS; ?>plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />-->
-	<!--<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
+    <!--<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">-->
-    
+
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
@@ -84,7 +86,7 @@
     <!-- END THEME GLOBAL STYLES -->
     <link href="<?php echo ASSETS; ?>css/vendor/image-crop.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS; ?>css/vendor/portfolio.min.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS ?>css/layout2/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
@@ -97,11 +99,15 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
 
-      gtag('config', 'UA-115543574-1');
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-115543574-1');
+
     </script>
 
 </head>
@@ -113,17 +119,11 @@
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
-            <div class="page-logo">
-                <!-- <a href="index.html" class="text-logo font-40-xs md-white-text mt-2 letter-space-md font-weight-400"> -->
-                <!-- <img src="../assets/layouts/layout2/img/logo-default.png" alt="logo" class="logo-default" /> -->
-                <!-- X<small>REMO</small>  -->
-                <!-- </a> -->
+            <div class="page-logo">            
                 <a href="<?php echo base_url();?>">
                     <img src="<?php echo IMG; ?>/site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom" />
                 </a>
-                <div class="menu-toggler sidebar-toggler">
-                    <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
-                </div>
+                <div class="menu-toggler sidebar-toggler"> </div>
             </div>
             <!-- END LOGO -->
 
@@ -155,12 +155,12 @@
                         <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-<!-- 						
+                        <!-- 						
 						<li class="">
                             <a href="<?=base_url()?>job/search" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left" target="_blank">Search Job</a>
                         </li> -->
-						
-						<!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->  
+
+                        <!-- DISINI NOTIFICATION PRIMARY. SILAHKAN DI UPDATE NANTI -->
                         <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" id="count_notif">
                                 <i class="icon-bell"></i>
@@ -183,13 +183,13 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
-                                <span class="username username-hide-on-mobile"> 
+                                <span class="username username-hide-on-mobile">
                                     <?php
                                         $fullname = $this->session->userdata('name');
                                         $arr = explode(' ',trim($fullname));
                                         $fullname_short = $arr[0];
                                     ?>
-                                    <?php echo $user_profile['overview']['preference_name'] != ""?$user_profile['overview']['preference_name']:$fullname_short; ?> </span>
+                                        <?php echo $user_profile['overview']['preference_name'] != ""?$user_profile['overview']['preference_name']:$fullname_short; ?> </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -197,11 +197,11 @@
                                     <a href="<?php echo base_url().'student/dashboard/'; ?>">
                                         <i class="icon-home"></i> Dashboard </a>
                                 </li>
-								<li>
+                                <li>
                                     <a href="<?php echo base_url().'student/profile/'; ?>">
                                         <i class="icon-user"></i> Edit Profile </a>
                                 </li>
-								<li>
+                                <li>
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
@@ -267,18 +267,18 @@
                     </li> -->
 
                     <li class="nav-progress">
-                        
                         <div class="progress-info">
                             <div class="status">
                                 <div class="status-title"> Profile Completion </div>
-                                <div class="status-number"><?php echo $percent; ?>%</div>
+                                <div class="status-number">
+                                    <?php echo $percent; ?>%</div>
                             </div>
                             <div class="progress">
                                 <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">
-                                    <span class="sr-only"><?php echo $percent; ?>% Complete</span>
+                                    <span class="sr-only">
+                                        <?php echo $percent; ?>% Complete</span>
                                 </span>
                             </div>
-
                         </div>
                     </li>
                     <!-- Sidebar Menu : Dashboard -->
@@ -294,7 +294,7 @@
                         <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">Profile</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu Gallery -->
@@ -310,7 +310,7 @@
                         <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title">Application History</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Inbox -->
@@ -318,13 +318,15 @@
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title">Inbox</span>
-							<?php 
+                            <?php 
 								$data_message = getDataMessage("general");
 								if($data_message['new'] > 0){
 							?>
-								<span class="badge badge-md-cyan"><?=$data_message['new']?></span>
-							<?php }?>
-							<span class="selected"></span>
+                            <span class="badge badge-md-cyan">
+                                <?=$data_message['new']?>
+                            </span>
+                            <?php }?>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Calendar  -->
@@ -332,7 +334,7 @@
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
                             <span class="title">Calendar</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Wishlist-->
@@ -348,7 +350,7 @@
                         <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
                             <span class="title">Settings</span>
-							<span class="selected"></span>
+                            <span class="selected"></span>
                         </a>
                     </li>
 
