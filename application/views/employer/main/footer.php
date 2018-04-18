@@ -45,12 +45,18 @@
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-markdown.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
+
+
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/tinymce/tinymce.min.js"></script>
 
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
     <script src="<?php echo JS_EMPLOYER; ?>app.min.js" type="text/javascript"></script>
     <!-- END THEME GLOBAL SCRIPTS -->
+
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
+
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="<?php echo JS_EMPLOYER; ?>calendar.js" type="text/javascript"></script>
     <!-- <script src="../assets/pages/scripts/portfolio-1.min.js" type="text/javascript"></script> -->

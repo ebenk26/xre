@@ -94,10 +94,10 @@
             </div>
             <!-- END WIDGET THUMB : Inbox-->
         </div>
-        
+
         <!-- Section : Recent Job Post -->
-        <div class="row">            
-            <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="portlet light tasks-widget">
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
@@ -153,9 +153,13 @@
                 </div>
                 <!-- END PORTLET-->
             </div>
-            
-            <div class="col-md-6 col-sm-12">
-                <div class="portlet light calendar bordered">
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet light calendar">
                     <div class="portlet-title ">
                         <div class="caption">
                             <i class="icon-calendar font-dark"></i>
@@ -250,10 +254,8 @@
                 </div>
                 <?php endforeach; ?>
             </div>
-
-
         </div>
-                                            
+
         <!-- Section : Recent Activities Feed  / Article -->
         <div class="row">
             <div class="col-lg-6 col-sm-12">
