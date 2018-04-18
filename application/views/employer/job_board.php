@@ -235,7 +235,7 @@
 
                             <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal form-row-seperated ">
                                 <input type="hidden" id="job_status_edit" name="status" value="preview"></input>
-                                <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
+                                <div class="scroller " data-always-visible="1" data-rail-visible1="1">
                                     <div class="modal-body form-body pr-0">
                                         <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
                                         <!-- Job Position Title & Salary Range-->
@@ -432,7 +432,7 @@
                         <h4 class="modal-title">New Job Post Info</h4>
                     </div>
                     <form action="<?php echo base_url(); ?>employer/job_board/post" id="post_job" method="POST" class="form-horizontal form-row-seperated ">
-                        <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
+                        <div class="scroller " data-always-visible="1" data-rail-visible1="1">
                             <div class="modal-body form-body pr-0">
 
                                 <!-- Job Position Title & Salary Range-->
