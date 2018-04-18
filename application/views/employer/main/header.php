@@ -51,6 +51,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>pricing.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
 
     <!-- BEGIN THEME GLOBAL STYLES -->
@@ -59,7 +60,6 @@
     <!-- END THEME GLOBAL STYLES -->
     <link href="<?php echo CSS_EMPLOYER; ?>image-crop.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>portfolio.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo ASSETS ?>css/layout2/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
