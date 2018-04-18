@@ -164,20 +164,6 @@
 
 
                         </ul>
-                        <!-- <ul class="list-unstyled list-inline mx-0  ">
-                                <li>
-                                    <small >
-                                        <i class="icon-pointer  "></i> Ipoh , Perak</small>
-                                </li>
-                                <li>
-                                    <small >
-                                        <i class="fa fa-phone "></i> (+60) 12345678</small>
-                                </li>
-                                <li>
-                                    <small >
-                                        <i class="icon-envelope"></i> jennifer_lawrence@gmail.com</small>
-                                </li>
-                            </ul> -->
                     </p>
                 </div>
 
@@ -191,6 +177,7 @@
         <!-- Col-md-4 -->
         <div class="m-grid-col m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12  md-grey-lighten-5  ">
             <ul class="list-group ">
+                <?php if($checkUser == 'same_user'): ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20 ">
                     <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20 "> SHARE</h4>
                     <hr class="border-mdo-orange-v3 width-300 center-block">
@@ -215,6 +202,7 @@
                     </ul>
 
                 </li>
+                <?php endif; ?>
                 <!-- Personal Info -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20 ">
                     <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20"> Personal Information</h4>

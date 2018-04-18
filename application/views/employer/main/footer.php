@@ -41,14 +41,13 @@
     <script src="<?php echo JS_EMPLOYER; ?>portfolio-3.js" type="text/javascript"></script>
     <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
     <script src="<?php echo JS_EMPLOYER; ?>markdown.js" type="text/javascript"></script>
-	<script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="<?php echo JS_EMPLOYER; ?>wysihtml5-0.3.0.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-wysihtml5.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap-markdown.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>fullcalendar.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
 
 
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/tinymce/tinymce.min.js"></script>
 
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -911,24 +910,6 @@
                 }
             })
 
-            tinymce.init({
-                selector: '.textarea_editor',
-                height: 400,
-                theme: 'modern',
-                plugins: 'code advlist autolink lists link image hr anchor pagebreak searchreplace wordcount visualblocks visualchars fullscreen insertdatetime media nonbreaking table contextmenu directionality paste textcolor imagetools toc',
-                toolbar1: 'code undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                toolbar2: ' media | fontsizeselect forecolor backcolor emoticons',
-                fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-                image_advtab: true,
-                templates: [
-                    { title: 'Test template 1', content: 'Test 1' },
-                    { title: 'Test template 2', content: 'Test 2' }
-                ],
-                content_css: [
-                    'https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                    'https://www.tinymce.com/css/codepen.min.css'
-                ]
-            });
 
             $('.disagree-reschedule').change(function(){
                 $('.recreate-session').addClass('hidden');

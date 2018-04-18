@@ -82,13 +82,13 @@
                                                                     </h5>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#modal_info_<?php echo rtrim(base64_encode($value['id']), '='); ?>" data-toggle="modal" class="btn btn-xs btn-md-indigo vertical-middle">More Info</a>
+                                                                    <a href="#modal_info_<?php echo $value['id']; ?>" data-toggle="modal" class="btn btn-xs btn-md-indigo vertical-middle">More Info</a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
                                                     <hr>                                                    
-                                                    <div class="modal fade modal_detail_interview" id="modal_info_<?php echo rtrim(base64_encode($value['id']), '='); ?>" tabindex="-1" role="dialog" aria-hidden="false">
+                                                    <div class="modal fade modal_detail_interview" id="modal_info_<?php echo $value['id']; ?>" tabindex="-1" role="dialog" aria-hidden="false">
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
