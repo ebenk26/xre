@@ -234,7 +234,7 @@
                             </div>
 
                             <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal form-row-seperated ">
-                                <input type="hidden" id="job_status_edit" name="status" value="<?php echo ($value['status'] == 'post') ? 'post' : 'preview'; ?>"></input>
+                                <input type="hidden" id="job_status_edit" name="status" value="preview"></input>
                                 <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                                     <div class="modal-body form-body pr-0">
                                         <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
@@ -261,9 +261,9 @@
                                                                 <option <?php echo $value['forex'] == $currency['name'] ? 'selected' : ''; ?>><?php echo $currency['name']; ?></option>
                                                             <?php endforeach ?>
                                                         </select>
-                                                        <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min">
+                                                        <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min" min="0" max="999999999">
                                                         <span class="mx-2">to</span>
-                                                        <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max">
+                                                        <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max" min="0" max="999999999">
                                                     </div>
 
                                                     <!-- <span class="help-block small">Internship in IT department</span> -->
@@ -338,7 +338,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Address</label>
-                                                    <input type="text" name="address" value="<?php echo !empty($location->address) ? $location->address : ''; ?>" class="form-control" placeholder="Unit / Lot , Road ,">
+                                                    <input type="text" name="address" value="<?php echo !empty($location->address) ? $location->address : ''; ?>" class="form-control" placeholder="Unit / Lot , Road ," id="addAddress<?= $value['id'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -348,13 +348,13 @@
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">City</label>
-                                                    <input type="text" class="form-control" name="city" value="<?php echo !empty($location->city) ? $location->city : ''; ?>" >
+                                                    <input type="text" class="form-control" name="city" value="<?php echo !empty($location->city) ? $location->city : ''; ?>" id="addCity<?= $value['id'];?>" >
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0 ">
                                                     <label class="control-label">State</label>
-                                                    <input type="text" class="form-control" name="state" value="<?php echo !empty($location->state) ? $location->state : ''; ?>">
+                                                    <input type="text" class="form-control" name="state" value="<?php echo !empty($location->state) ? $location->state : ''; ?>" id="addState<?= $value['id'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -364,7 +364,7 @@
                                                 <div class="form-group mx-0">
                                                     <label class="control-label">Postcode</label>
 
-                                                    <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?php echo !empty($location->postcode) ? $location->postcode : ''; ?>">
+                                                    <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?php echo !empty($location->postcode) ? $location->postcode : ''; ?>" id="addPostcode<?= $value['id'];?>">
 
                                                 </div>
                                             </div>
@@ -374,7 +374,7 @@
                                                     <!-- <label class="control-label">Country</label> -->
                                                     <label class="control-label ">Country</label>
 
-                                                    <select class="form-control" name="country">
+                                                    <select class="form-control" name="country" id="addCountry<?= $value['id'];?>">
                                                         <?php foreach ($countries as $key => $country_value) {?>
                                                             <option <?php echo $location->country == $country_value['name'] ? 'selected' : '' ?>><?php echo $country_value['name']; ?></option>
                                                         <?php } ?>
@@ -458,9 +458,9 @@
                                                         <option><?php echo $value['name']; ?></option>
                                                     <?php endforeach ?>
                                                 </select>
-                                                <input type="number" class="form-control " placeholder="0.00" name="budget_min">
+                                                <input type="number" class="form-control addBudgetMin" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
                                                 <span class="mx-2">to</span>
-                                                <input type="number" class="form-control  " placeholder="0.00" name="budget_max">
+                                                <input type="number" class="form-control addBudgetMax" id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
                                             </div>
 
                                             <!-- <span class="help-block small">Internship in IT department</span> -->
@@ -535,7 +535,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group mx-0">
                                             <label class="control-label">Address</label>
-                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" required>
+                                            <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" id="addAddress" required>
                                         </div>
                                     </div>
                                 </div>
@@ -545,13 +545,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label class="control-label">City</label>
-                                            <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" required>
+                                            <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" id="addCity" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mx-0 ">
                                             <label class="control-label">State</label>
-                                            <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" required>
+                                            <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" id="addState" required>
                                         </div>
                                     </div>
                                 </div>
@@ -561,7 +561,7 @@
                                         <div class="form-group mx-0">
                                             <label class="control-label">Postcode</label>
 
-                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" required>
+                                            <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" id="addPostcode" required>
 
                                         </div>
                                     </div>
@@ -571,7 +571,7 @@
                                             <!-- <label class="control-label">Country</label> -->
                                             <label class="control-label ">Country</label>
 
-                                            <select class="form-control" name="country" required>
+                                            <select class="form-control" name="country" id="addCountry" required>
                                                 <?php foreach ($countries as $key => $value) {?>
                                                     <option value="<?=$value['name']?>" <?php if($value['name'] == $user_profile['shipping_country']){echo "selected";}?>><?php echo $value['name']; ?></option>
                                                 <?php } ?>

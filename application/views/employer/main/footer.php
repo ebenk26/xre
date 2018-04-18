@@ -83,7 +83,24 @@
     <script>
 
     $(document).ready(function(){
-        
+        $('.addBudgetMax').focusout(function(){
+            $this   =   $('#addBudgetMin').val();
+            $that   =   $('#addBudgetMax').val();
+            if ($this.length > 0) {
+                if (parseInt($this) >= parseInt($that)) {
+                    console.log($this);
+                    console.log($that);
+                    $('#addBudgetMin').css('border-color', 'red');
+                    $('#preview_button_add').attr("disabled", 'disabled');
+                }else{
+                    console.log($this);
+                    console.log($that);
+                    $('#addBudgetMin').css('border-color', 'rgb(194, 202, 216)');
+                    $('#preview_button_add').removeAttr("disabled");
+                }
+            }
+        });
+
         $('.edit_jobpost').click(function(){
             var idJobPost   = $(this).attr('data-id');
             // console.log(idMap);
@@ -186,6 +203,24 @@
               infowindow.open(map, marker);
               document.getElementById('latitude'+idJobPost).value=place.geometry.location.lat();
               document.getElementById('longitude'+idJobPost).value=place.geometry.location.lng();
+              document.getElementById('addAddress'+idJobPost).value= place.formatted_address;
+              for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                  var val = place.address_components[i];
+                  if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('addState'+idJobPost).value= val.long_name;
+                  }
+                  if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('addCity'+idJobPost).value= val.long_name; 
+                  }
+                  if (addressType == 'country') {
+                    document.getElementById('addCountry'+idJobPost).value= val.long_name;
+                  }
+                  if (addressType == 'postal_code') {
+                    document.getElementById('addPostcode'+idJobPost).value= val.long_name;
+                  }
+              }
+
             });
         })
     });
@@ -238,7 +273,6 @@
 
           element.appendChild(InfoWindow);
           InfoWindow.setAttribute('id', 'infowindow-content');
-
           InfoWindow.appendChild(title);
           title.setAttribute('id', 'place-name');
           document.createElement('br');
@@ -253,6 +287,24 @@
           document.getElementById('addLongitude').value=place.geometry.location.lng();
           document.getElementById('addMapTitle').value= place.name;
           document.getElementById('addMapDescription').value= place.formatted_address;
+          document.getElementById('addAddress').value= place.formatted_address;
+          for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];;
+              var val = place.address_components[i];
+
+              if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                document.getElementById('addState').value= val.long_name;
+              }
+              if (addressType == 'administrative_area_level_1') {
+                document.getElementById('addCity').value= val.long_name; 
+              }
+              if (addressType == 'country') {
+                document.getElementById('addCountry').value= val.long_name;
+              }
+              if (addressType == 'postal_code') {
+                document.getElementById('addPostcode').value= val.long_name;
+              }
+          }
         });
       }
     </script>

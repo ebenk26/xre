@@ -1,0 +1,63 @@
+## EMPLOYER
+1. Dashboard
+    - Component "Recent Job Post " 
+        - Change job post link in "view" button to candidate list link (DONE)
+
+2. Calendar
+    - Change AM/ PM to 24 hour system 
+    - Remove "Week" (DONE)
+    - Tweak Design (If you had a time)
+
+3. Job Post
+    - Reduce number of zero in IDR 
+    - Flow of Job Posting
+        - In "Create Job Post" modal , show only button "Preview" and "Cancel" 
+        - Once , User click "Preview" button , Preview Job Post Page shall show up on the SAME TAB and inside the page only have "Post Job" and "Edit" button. 
+        - IF user click "Post Job" button -> user shall return to "Dashboard"
+        - IF user click "Edit" button -> user shall return to "Edit Job Post" modal 
+            - In this modal , user shall have same button in "Create Job Post" modal and same function for "Preview" button which will redirect back to "Preview Job Post Page" 
+        - "Post Job" button -> (Live/ Active status) | "Preview" -> (Draft status) (DONE)
+    - Remove data attributes/input " Latitude" / "Longititude"
+        - SUGGESTION :Change to Drag and Drop 
+
+4. Candidate
+    - Add latest date applied for candidate in "Lis of candidate" (DONE)
+    - Change page title to Job Title and subtitle as list of candidate (DONE)
+    - In 'all interview sessions' buttons  need to put empty states "at the moment there is no interview session for this position" . (DONE)
+
+5. Other 
+    - All modal component will change to full screen if needed
+    - Logo bar need to change color 
+    - Tutorial / Guide Start up 
+    - Notifications in header had to put Job Title when student applied.
+    - In Account Settings : Person in charge == Main User (name , department , email)
+
+6. New Feature
+    - Create a multiple user to use account which we have:
+        - 1 Main User ( with all permission access)
+        - 2 Normal user ( with restricted permission access)
+            - ONLY CAN ACCESS ( Job Post , Calendar , Dashboard , Create Interview )
+
+are you student (wording signup) (DONE)
+signup color terms and policy diganti biar lebih noticeable (DONE)
+simplify editor
+
+
+Due Date : 23 April
+
+Student Side
+1. Improve Dashboard
+2. Shorten Text Description on Homepage
+3. Video Resume Frame on Dashboard
+4. Improve Share Resume Button
+5. Improve Email Verification Process
+6. Improve Loading Speed
+7. Change Background Image on Homepage
+8. Improve Salary & Job Location Info
+
+Employer Side
+9. Improve Sign Up Process (DONE)
+10. Improve Job Board Info on Dashboard 
+11. Improve Calendar Time and Position (DONE)
+12. Improve Job Post (DONE)
+13. Improve Location Input (DONE)

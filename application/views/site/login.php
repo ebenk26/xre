@@ -58,7 +58,10 @@
 <!-- END HEAD -->
 
 <body class="login">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f1d737b6c53733c332f7e448ebfbca0bbd789c5
     <!-- BEGIN : LOGIN PAGE 5-1 -->
     <div class=" user-login-5">
         <div class="row bs-reset ">
