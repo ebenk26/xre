@@ -591,7 +591,6 @@
                                     };
                                 }
                             }
-                            <?php if (($this->session->userdata('roles') == "employer" && ($this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == 'calendar')) || ($this->session->userdata('roles') == "student" && $this->uri->segment(2) == 'calendar')) {?>
 
         					$('#fullcalendar').fullCalendar('destroy'); 
                             var invitation = <?php echo $invitation; ?>;
@@ -611,19 +610,21 @@
                                     color = 'grey';
                                 }
                                 
-                                invitation_calendar.push ({title: v.title, start: v.start_date, end: v.end_date, 
+                                invitation_calendar.push ({id: v.id, title: v.title, start: v.start_date, end: v.end_date, 
                                     backgroundColor: App.getBrandColor(color)})
-
                                 });
+
                             $('#fullcalendar').fullCalendar({ 
                                 header: h,
                                 defaultView: 'month', 
                                 slotMinutes: 15,
                                 editable: false, 
                                 droppable: false, 
-                                events: invitation_calendar
+                                events: invitation_calendar,
+                                eventClick:  function(invitation_calendar, jsEvent, view) {
+                                    $('#modal_info_'+invitation_calendar.id).modal();
+                                },
                             });
-                            <?php } ?>
 
                         }
 
