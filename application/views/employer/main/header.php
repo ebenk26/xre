@@ -81,6 +81,19 @@
         gtag('config', 'UA-115543574-1');
 
     </script>
+    <style>
+        html,
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        html {
+            overflow-x: hidden !important;
+        }
+
+    </style>
 </head>
 <!-- END HEAD -->
 

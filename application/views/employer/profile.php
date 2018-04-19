@@ -332,7 +332,7 @@
 
 
 <!-- BEGIN MODAL : Edit Company Info -->
-<div class="modal fade modal-open-noscroll px-30 " id="modal_edit_company" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="modal_edit_company" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-full ">
         <div class="modal-content portlet light ">
             <!--  Nav Tab  -->
@@ -359,120 +359,120 @@
                 <div class="tab-pane active form" id="tab_edit_about">
                     <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_profile" class="form-horizontal ">
                         <div class="modal-body form-body ">
-                            <div class="scroller height-640-sm height-300" data-always-visible="1" data-rail-visible1="1">
-                                <div class="row">
-                                    <div class="col-md-7 col-sm-12">
-                                        <!-- Company Name -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Name</label>
-                                            <input type="text" class="form-control " name="company_name" placeholder="Your company name" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : ''; ?>" required>
-                                            <!--<span class="help-block small">Company Full Name </span>-->
-                                        </div>
+                            <!-- <div class="scroller height-640-sm height-300" data-always-visible="1" data-rail-visible1="1"> -->
+                            <div class="row">
+                                <div class="col-md-7 col-sm-12">
+                                    <!-- Company Name -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Name</label>
+                                        <input type="text" class="form-control " name="company_name" placeholder="Your company name" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : ''; ?>" required>
+                                        <!--<span class="help-block small">Company Full Name </span>-->
+                                    </div>
 
-                                        <!--About Company  -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">About Company</label>
-                                            <textarea class="form-control autosizeme" name="about_company" rows="5" placeholder="Summarize about your company.">
-                                                <?php echo !empty($detail['company_description']) ? $detail['company_description'] : ''; ?>
-                                            </textarea>
-                                            <!-- <input type="text" class="form-control " placeholder="Summarize about your company"> -->
-                                            <!-- <span class="help-block small">Company Full Name </span> -->
-                                        </div>
+                                    <!--About Company  -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">About Company</label>
+                                        <textarea class="form-control autosizeme" name="about_company" rows="5" placeholder="Summarize about your company.">
+                                            <?php echo !empty($detail['company_description']) ? $detail['company_description'] : ''; ?>
+                                        </textarea>
+                                        <!-- <input type="text" class="form-control " placeholder="Summarize about your company"> -->
+                                        <!-- <span class="help-block small">Company Full Name </span> -->
+                                    </div>
 
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Social Account</label>
-                                            <div class="mt-repeater">
-                                                <div data-repeater-list="group-b">
-                                                    <?php if (!empty($social)) {
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Social Account</label>
+                                        <div class="mt-repeater">
+                                            <div data-repeater-list="group-b">
+                                                <?php if (!empty($social)) {
                                                     foreach ($social as $key => $value) {?>
-                                                    <div data-repeater-item class="row mt-10">
-                                                        <div class="col-md-6 col-xs-6 col-sm-6">
-                                                            <input type="text" placeholder="Add link to here" class="form-control" name="link" value="<?php echo $value['link']; ?>" /> </div>
-                                                        <div class="col-md-4 col-xs-4 col-sm-4">
-                                                            <select class="form-control" name="name">
-                                                                <option value="" selected disabled>Select account type </option>
-                                                                <option value="facebook" <?php echo ($value[ 'name']=='facebook' ) ? 'selected' : '' ?>>Facebook</option>
-                                                                <option value="twitter" <?php echo ($value[ 'name']=='twitter' ) ? 'selected' : '' ?>>Twitter</option>
-                                                                <option value="gplus" <?php echo ($value[ 'name']=='gplus' ) ? 'selected' : '' ?>>Google Plus</option>
-                                                                <option value="linkedin" <?php echo ($value[ 'name']=='linkedin' ) ? 'selected' : '' ?>>LinkedIn</option>
-                                                                <option value="instagram" <?php echo ($value[ 'name']=='instagram' ) ? 'selected' : '' ?>>Instagram</option>
-                                                                <option value="youtube" <?php echo ($value[ 'name']=='youtube' ) ? 'selected' : '' ?>>Youtube</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-2 col-xs-2 col-sm-2">
-                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top ">
-                                                                <i class="fa fa-close"></i>
-                                                            </a>
-                                                        </div>
+                                                <div data-repeater-item class="row mt-10">
+                                                    <div class="col-md-6 col-xs-6 col-sm-6">
+                                                        <input type="text" placeholder="Add link to here" class="form-control" name="link" value="<?php echo $value['link']; ?>" /> </div>
+                                                    <div class="col-md-4 col-xs-4 col-sm-4">
+                                                        <select class="form-control" name="name">
+                                                            <option value="" selected disabled>Select account type </option>
+                                                            <option value="facebook" <?php echo ($value[ 'name']=='facebook' ) ? 'selected' : '' ?>>Facebook</option>
+                                                            <option value="twitter" <?php echo ($value[ 'name']=='twitter' ) ? 'selected' : '' ?>>Twitter</option>
+                                                            <option value="gplus" <?php echo ($value[ 'name']=='gplus' ) ? 'selected' : '' ?>>Google Plus</option>
+                                                            <option value="linkedin" <?php echo ($value[ 'name']=='linkedin' ) ? 'selected' : '' ?>>LinkedIn</option>
+                                                            <option value="instagram" <?php echo ($value[ 'name']=='instagram' ) ? 'selected' : '' ?>>Instagram</option>
+                                                            <option value="youtube" <?php echo ($value[ 'name']=='youtube' ) ? 'selected' : '' ?>>Youtube</option>
+                                                        </select>
                                                     </div>
-                                                    <?php } }else{ ?>
-                                                    <div data-repeater-item class="row mt-10">
-                                                        <div class="col-md-6 col-xs-6 col-sm-6">
-                                                            <input type="text" placeholder="Add link to here" class="form-control" name="link" /> </div>
-                                                        <div class="col-md-4 col-sm-4 col-xs-4">
-                                                            <select class="form-control" name="name">
-                                                                <option value="" selected disabled>Select account type </option>
-                                                                <option value="facebook">Facebook</option>
-                                                                <option value="twitter">Twitter</option>
-                                                                <option value="gplus">Google Plus</option>
-                                                                <option value="linkedin">LinkedIn</option>
-                                                                <option value="instagram">Instagram</option>
-                                                                <option value="youtube">Youtube</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-2 col-xs-2 col-sm-2">
-                                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top">
-                                                                <i class="fa fa-close"></i>
-                                                            </a>
-                                                        </div>
+                                                    <div class="col-md-2 col-xs-2 col-sm-2">
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top ">
+                                                            <i class="fa fa-close"></i>
+                                                        </a>
                                                     </div>
-                                                    <?php } ?>
                                                 </div>
-                                                <hr>
-                                                <a href="javascript:;" data-repeater-create class="btn btn-info btn-sm mt-repeater-add">
-                                                    <i class="fa fa-plus"></i> Add another account</a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-5 col-sm-12">
-                                        <!-- Company Registration Number -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Registration Number</label>
-                                            <input type="text" class="form-control " name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : ''; ?>">
-                                        </div>
-
-                                        <!-- Company Email -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Email</label>
-                                            <input type="text" class="form-control " name="email" placeholder="your@company.com" value="<?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>" required>
-                                        </div>
-
-                                        <!-- Industry -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Industry</label>
-                                            <select class="bs-select form-control" name="industry">
-                                                <option value="" selected disabled>Select one </option>
-                                                <?php foreach($industries as $value){?>
-                                                <option value="<?php echo $value['id'];?>" <?php echo ($value[ 'id']==$detail[ 'company_industry_id']) ? 'selected' : '' ?>>
-                                                    <?php echo $value['name'];?>
-                                                </option>
+                                                <?php } }else{ ?>
+                                                <div data-repeater-item class="row mt-10">
+                                                    <div class="col-md-6 col-xs-6 col-sm-6">
+                                                        <input type="text" placeholder="Add link to here" class="form-control" name="link" /> </div>
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <select class="form-control" name="name">
+                                                            <option value="" selected disabled>Select account type </option>
+                                                            <option value="facebook">Facebook</option>
+                                                            <option value="twitter">Twitter</option>
+                                                            <option value="gplus">Google Plus</option>
+                                                            <option value="linkedin">LinkedIn</option>
+                                                            <option value="instagram">Instagram</option>
+                                                            <option value="youtube">Youtube</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-2 col-sm-2">
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm vertical-top">
+                                                            <i class="fa fa-close"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
                                                 <?php } ?>
-                                            </select>
-
+                                            </div>
+                                            <hr>
+                                            <a href="javascript:;" data-repeater-create class="btn btn-info btn-sm mt-repeater-add">
+                                                <i class="fa fa-plus"></i> Add another account</a>
                                         </div>
+                                    </div>
 
-                                        <!-- Corporate Website -->
-                                        <div class="form-group mx-0">
-                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Corporate Websites</label>
+                                </div>
 
-                                            <input type="text" class="form-control" name="corporate_website" placeholder="Add link here" value="<?php echo !empty($detail['url']) ? $detail['url'] : ''; ?>">
-                                        </div>
+                                <div class="col-md-5 col-sm-12">
+                                    <!-- Company Registration Number -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Registration Number</label>
+                                        <input type="text" class="form-control " name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : ''; ?>">
+                                    </div>
+
+                                    <!-- Company Email -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Email</label>
+                                        <input type="text" class="form-control " name="email" placeholder="your@company.com" value="<?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>" required>
+                                    </div>
+
+                                    <!-- Industry -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Industry</label>
+                                        <select class="bs-select form-control" name="industry">
+                                            <option value="" selected disabled>Select one </option>
+                                            <?php foreach($industries as $value){?>
+                                            <option value="<?php echo $value['id'];?>" <?php echo ($value[ 'id']==$detail[ 'company_industry_id']) ? 'selected' : '' ?>>
+                                                <?php echo $value['name'];?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
 
                                     </div>
+
+                                    <!-- Corporate Website -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Corporate Websites</label>
+
+                                        <input type="text" class="form-control" name="corporate_website" placeholder="Add link here" value="<?php echo !empty($detail['url']) ? $detail['url'] : ''; ?>">
+                                    </div>
+
                                 </div>
                             </div>
+                            <!-- </div> -->
                         </div>
                         <div class="modal-footer form-action ">
                             <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
@@ -485,7 +485,7 @@
                 <div class="tab-pane form" id="tab_edit_add_info">
                     <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_additional_info" class="form-horizontal ">
                         <div class="modal-body form-body ">
-                            <div class="scroller height-600-sm height-300" data-always-visible="1" data-rail-visible1="1">
+                            <!-- <div class="scroller height-600-sm height-300" data-always-visible="1" data-rail-visible1="1"> -->
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-12">
                                         <!-- Company Size -->
@@ -621,7 +621,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </div> -->
                         </div>
                         <div class="modal-footer form-actions ">
                             <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
@@ -634,7 +634,7 @@
                 <div class="tab-pane form " id="tab_edit_contact_info">
                     <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_contact_info" class="form-horizontal">
                         <div class="modal-body form-body">
-                            <div class="scroller height-600-sm height-300" data-always-visible="1" data-rail-visible1="1">
+                            <!-- <div class="scroller height-600-sm height-300" data-always-visible="1" data-rail-visible1="1"> -->
                                 <div class="mt-repeater">
                                     <div data-repeater-list="contact_info">
                                         <?php if (!empty($company_address)) {
@@ -872,12 +872,12 @@
                                         </div>
                                         <?php } ?>
                                     </div>
-                                    <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add">
+                                    <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add mb-30">
                                         <i class="fa fa-plus"></i> Add new office</a>
                                 </div>
 
 
-                            </div>
+                            <!-- </div> -->
 
                             <div class="modal-footer form-actions">
                                 <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
@@ -894,7 +894,7 @@
 <!-- END MODAL : Edit Company Info -->
 
 <!-- BEGIN MODAL : Edit Default Picture -->
-<div class="modal fade modal-open-noscroll " id="modal_edit_default_picture" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade " id="modal_edit_default_picture" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-header">
@@ -938,7 +938,7 @@
 <!-- END MODAL : Edit Default Picture -->
 
 <!-- BEGIN MODAL : Edit Header Picture -->
-<div class="modal fade modal-open-noscroll " id="modal_edit_header_picture" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade  " id="modal_edit_header_picture" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-header">
