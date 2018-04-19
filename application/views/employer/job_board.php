@@ -168,6 +168,7 @@
                 </div>
             </div>
             <!-- CONTENT -->
+            <!-- ADD : EMPTY STATES -->
             <div class="portlet-body">
                 <table class="table table-striped table-bordered table-hover order-column " id="xremo_table">
                     <thead>
@@ -276,6 +277,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-5">
+                        
                             <div class="form-group mx-0 ">
                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
                                 <div class="form-inline">
@@ -290,8 +292,7 @@
                                     <span class="mx-5">to</span>
                                     <input type="number" class="form-control addBudgetMax input-small " id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
                                 </div>
-
-                                <!-- <span class="help-block small">Internship in IT department</span> -->
+                                <span class="help-block">Internship in IT department</span>
                             </div>
                         </div>
                     </div>

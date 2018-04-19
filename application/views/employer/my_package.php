@@ -22,10 +22,10 @@
                 <div class="row widget-row">
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Active-->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3 ">
+                        <div class="widget-thumb md-white text-uppercase mb-30 ">
                             <h4 class="widget-thumb-heading"> Job Post</h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-green icon-bulb"></i>
+                                <i class="widget-thumb-icon md-green icon-bulb"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Remaining</span>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="10">0</span>
@@ -36,10 +36,10 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB  : Expired-->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3">
+                        <div class="widget-thumb md-white text-uppercase mb-30">
                             <h4 class="widget-thumb-heading">Job Ad </h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-red icon-layers"></i>
+                                <i class="widget-thumb-icon md-red icon-layers"></i>
                                 <div class="widget-thumb-body">
                                     <span class="widget-thumb-subtitle">Remaining</span>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7">7</span>
@@ -50,11 +50,11 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Advertisement -->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3 ">
+                        <div class="widget-thumb md-white text-uppercase mb-30 ">
 
                             <h4 class="widget-thumb-heading">Talent Search</h4>
                             <div class="widget-thumb-wrap">
-                                <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
+                                <i class="widget-thumb-icon md-purple icon-screen-desktop"></i>
                                 <div class="widget-thumb-body">
                                     <div class="widget-thumb-subtitle mb-2">Remaining</div>
                                     <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7">7</span>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-3">
                         <!-- BEGIN WIDGET THUMB : Advertisement -->
-                        <div class="widget-thumb widget-bg-color-white text-uppercase mb-3 ">
+                        <div class="widget-thumb md-white text-uppercase mb-30 ">
 
                             <h4 class="widget-thumb-heading">Choose New Package!</h4>
                             <div class="widget-thumb-wrap">

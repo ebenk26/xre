@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
-
+    
 <head>
+    <!-- META -->
     <meta charset="utf-8" />
-    <title>
-        <?=$page_title?> | Employer</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description">
-
+    <meta content="Employer" name="description">
     <meta content="" name="author">
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    
+    <!-- TITLE -->
+    <title><?=$page_title?> | Employer</title>
+
+    <!-- CSS STYLE -->
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
@@ -28,7 +24,6 @@
     <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-switch.min.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-
     <link href="<?php echo CSS_EMPLOYER; ?>datatables.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>datatables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>socicon.css" rel="stylesheet" type="text/css">
@@ -66,6 +61,8 @@
     <link href="<?php echo ASSETS; ?>css/layout2/custom.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT STYLES -->
+
+    <!-- FAVICON -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -80,22 +77,8 @@
 
         gtag('config', 'UA-115543574-1');
 
-    </script>
-    <style>
-        html,
-        body {
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-
-        html {
-            overflow-x: hidden !important;
-        }
-
-    </style>
+    </script>    
 </head>
-<!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
     <!-- <div class="loading">
@@ -105,6 +88,7 @@
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner ">
+
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="<?php echo base_url(); ?>home/">
@@ -157,11 +141,11 @@
                             </ul>
                         </li>
                         <!-- END NOTIFICATION DROPDOWN -->
+
                         <!-- BEGIN USER LOGIN DROPDOWN -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'?>">
+                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/xremo-logo-blue.svg'?>">
                                 <span class="username username-hide-on-mobile">
                                     <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>

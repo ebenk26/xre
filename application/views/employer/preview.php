@@ -226,12 +226,12 @@
                 <!-- Button -->
                 <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                 <div class="row mb-30 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true"
-                        data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
-                        <i class="icon-note mr-5 "></i>Post</button>
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?"
+                        data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
+                        <i class="icon-book-open mr-5 "></i>Post</button>
 
-                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" btn btn-block btn-md-darkblue ">
-                        <i class="fa fa-building-o mr-5 "></i>Edit</a>
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs">
+                        <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>
                 <?php endif ?>
 
@@ -264,10 +264,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
+                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>"
+                                target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook" class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook"
+                                class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
                         </li>
                         <li>
                             <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="linkedin" class="social-icon social-icon-color linkedin share-tw"></a>
@@ -307,10 +309,11 @@
                         <li class="list-group-item px-0 py-1">
                             <a class="md-orange-text-hover" href="<?php echo base_url(); ?>job/details/<?= rtrim(base64_encode($value['id']), '='); ?>" target="_blank">
                                 <p class=" my-0 font-15 font-weight-500 md-orange-text-hover ">
-                                    <?php echo $value['name']; ?> 
-                                    <small class="font-weight-400">[<?php echo $value['employment_name'] ?>]</small>
+                                    <?php echo $value['name']; ?>
+                                    <small class="font-weight-400">[
+                                        <?php echo $value['employment_name'] ?>]</small>
                                 </p>
-                                
+
                             </a>
                         </li>
                         <?php endforeach ?>
@@ -332,52 +335,41 @@
 
 
         <!-- Modal Job Apply-->
-        <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content ">
                     <div class="modal-header">
                         <h5 class=" mb-0">Short Description About Yourself</h5>
-                        <!-- <div class="media ">
-                            <div class="pull-left">
-                                <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-tiny avatar-circle">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-3 mb-1">Nick Jonas</h5>
-                                <p class="">Student </p  >
-                            </div>
-                        </div> -->
                     </div>
                     <form action="<?php echo base_url(); ?>student/dashboard/applied" method="POST" class="form form-horizontal">
                         <div class="modal-body  ">
-                            <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                <div class="media ">
-                                    <div class="pull-left">
-                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mt-1 mb-1 md-darkblue-text font-weight-500 ">
-                                            <?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
-                                            <small class="">
+                            <div class="media ">
+                                <div class="pull-left">
+                                    <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="my-5 md-darkblue-text font-weight-500 ">
+                                        <?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
+                                        <!-- <small class="">
                                                 <i class="icon-pointer"></i>
                                                 <?php $country = $this->session->userdata('country'); echo !empty($country) ? $country : ''; ?>
-                                            </small>
-                                        </h6>
-                                        <p class=" text-none">Apply for position
-                                            <strong class="text-capitallize">
-                                                <?php echo $job->name; ?>
-                                            </strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group text-left mx-0 mb-2">
-                                    <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe yourself and why we should hire you? Not more than 300 words"></textarea>
-                                    <input type="hidden" name="job_id" value="<?= $job_id; ?>">
+                                            </small> -->
+                                    </h6>
+                                    <p class="text-none">Apply for position
+                                        <strong class="text-capitallize">
+                                            <?php echo $job->name; ?>
+                                        </strong>
+                                    </p>
                                 </div>
                             </div>
+                            <div class="form-group text-left mx-0 mb-10">
+                                <textarea name="coverletter" id="" class="form-control " rows="10" placeholder="Describe yourself and why we should hire you? Not more than 300 words"></textarea>
+                                <input type="hidden" name="job_id" value="<?= $job_id; ?>">
+                            </div>
                         </div>
-                        <div class="modal-footer md-grey lighten-4">
-                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                            <button type="submit" class="btn btn-md-darkblue ">Submit</button>
+                        <div class="modal-footer ">
+                            <a href="" data-dismiss="modal" class="btn btn-outline btn-md-indigo">Cancel</a>
+                            <button type="submit" class="btn btn-md-indigo ">Submit</button>
                         </div>
                     </form>
 

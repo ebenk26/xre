@@ -1,73 +1,78 @@
+<?php $this->load->view('main/footer_content');?>
 
-    <?php $this->load->view('main/footer_content');?>
-	
-    <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
-    <!-- Vendor -->
-	
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/jquery-v1-12-4.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.back-to-top.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-	
-	<!--//REMOVE
-	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/swiper/swiper.jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/jquery.masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.wow.min.js"></script>
-	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/rateit/jquery.rateit.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-	-->
+<!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
 
-    <!-- General Components and Settings -->
-    
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>    
-    
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/masonry.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
-    <!--========== END JAVASCRIPTS ==========-->
-    
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-            setTimeout(function(){
-                getArticle();
-            }, 1000);
-        })
+<!-- CORE -->
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-v1-12-4.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-        function getArticle()
-        {
-            $.ajax({
-                type    : "POST",
-                url     : "<?php echo base_url();?>home-article",
-                success:function(response)
-                {
-                    var data = JSON.parse(response);
+<!-- VENDOR -->
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.smooth-scroll.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.back-to-top.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.equal-height.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.parallax.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.wow.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/counterup.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/scrollbar/jquery.scrollbar.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/swiper/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/masonry/jquery.masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/masonry/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/rateit/jquery.rateit.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 
-                    $("#latest_article").html(data.article);
-                }
-            });
-        }
+<!-- Custom-->
+<script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
 
-    </script>
+<!-- Global-->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
+<!-- Layout 8 -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>
 
-</body></html>
+<!-- Component Page -->
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/header-sticky.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/scrollbar.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/magnific-popup.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/swiper.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
+
+<script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3-gallery.js"></script>
+
+
+<!--========== END JAVASCRIPTS ==========-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        setTimeout(function () {
+            getArticle();
+        }, 1000);
+    })
+
+    function getArticle() {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url();?>home-article",
+            success: function (response) {
+                var data = JSON.parse(response);
+
+                $("#latest_article").html(data.article);
+            }
+        });
+    }
+
+</script>
+
+</body>
+
+</html>
