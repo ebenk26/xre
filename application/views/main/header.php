@@ -28,9 +28,9 @@
     <link href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom -->
     <link href="<?php echo CSS; ?>vendor/alertify.min.css" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css">
+    <link href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo JS; ?>plugins/rateit/rateit.css" rel="stylesheet" type="text/css"
+    >
     <!-- Icon -->
     <link href="<?php echo CSS; ?>icon/themify.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">

@@ -4,38 +4,35 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <title>Xremo - Login</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="author">
 
+    <title>Xremo - Login</title>
+
+    <!-- CSS STYLES -->
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <!-- <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css"> -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- Bootstrap -->
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
 
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- Icon -->
+    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
 
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/global/plugins.min.css" rel="stylesheet" type="text/css">
-    <!-- END THEME GLOBAL STYLES -->
+    <!-- Plugin -->
+    <link href="<?php echo JS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo JS; ?>plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css"> -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/vendor/login-5.css" rel="stylesheet" type="text/css">
+    <!-- Global -->
+    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page Layout -->
+    <link href="<?php echo CSS; ?>pages/login-5.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL STYLES -->
 
@@ -58,7 +55,7 @@
 <!-- END HEAD -->
 
 <body class="login">
-    <!-- BEGIN : LOGIN PAGE 5-1 -->
+
     <div class=" user-login-5">
         <div class="row bs-reset ">
             <!-- col-bg-color-indigo  -->
@@ -69,9 +66,8 @@
                         <div class="m-grid m-grid-full-height ">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center md-white-text">
                                 <blockquote class="blockquote mx-5">
-                                    <h4 class="md-white-text ">Your Career is like garden it can hold an assortement of life's energy yields a bounty
-                                        for you. You do not need to grow just one thing in your garden. You do not need to
-                                        do just one thing in your career.</h4>
+                                    <h4 class="md-white-text ">Your Career is like garden it can hold an assortement of life's energy yields a bounty for you. You do not need to grow just one thing in your garden. You do not need
+                                        to do just one thing in your career.</h4>
                                     <footer class="blockquote-footer md-orange-text ">Quote of the day</footer>
                                 </blockquote>
                             </div>
@@ -200,34 +196,34 @@
 
         </div>
     </div>
-    <!-- END : LOGIN PAGE 5-1 -->
 
-    <!-- BEGIN CORE PLUGINS -->
-    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/js.cookie.min.js" type="text/javascript"></script>
-    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js" type="text/javascript"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.blockui.min.js" type="text/javascript"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/js/bootstrap-switch.min.js" type="text/javascript"></script> -->
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/select2.full.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+
+    <!-- JAVASCRIPT -->
+    <!-- CORE -->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-v1-12-4.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
+
+    <!-- VENDOR @ PLUGINS-->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS ?>plugins/backstretch/jquery.backstretch.min.js"></script>
+    <!-- Custom -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
 
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <!-- Global -->
     <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-    
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+    <!-- Page Layout -->
     <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    
-    <!-- BEGIN THEME LAYOUT SCRIPTS -->
-    <!-- END THEME LAYOUT SCRIPTS -->
     <script>
         $(document).ready(function () {
             $('#clickmewow').click(function () {
