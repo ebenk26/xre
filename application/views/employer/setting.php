@@ -44,13 +44,13 @@
                     <div class="tab-content">
                         <!-- tab Account -->
                         <div class="tab-pane active" id="tab_account">
-                            <div class="panel  panel-borderless panel-transparent" style="background-color: transparent;">
-                                <div class="panel-heading" style="background-color: transparent;">
-                                    <h4 class="panel-title font-40-xs">
+                            <div class="panel  panel-borderless panel-transparent" >
+                                <div class="panel-heading md-transparent" >
+                                    <h4 class="panel-title font-40">
                                         My Account
                                     </h4>
                                 </div>
-                                <hr class="border-grey-silver my-2  ">
+                                <hr class="border-grey-silver my-10 ">
                                 <div class="panel-body">
                                     <!-- Company Name -->
                                     <div class="media">
@@ -58,8 +58,8 @@
                                             <a href="#modal_edit_company_name" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-600 roboto-font font-20-xs mt-0 md-indigo-text">Company Name</h5>
-                                            <h4 class="mt-1 font-weight-400 roboto-font"><?php echo !empty($settings) ? $settings->company_name : 'Xremo Sdn Bhd'; ?> </h4>
+                                            <h5 class="text-uppercase font-weight-600 roboto-font  mt-0 md-indigo-text">Company Name</h5>
+                                            <h4 class=" font-weight-400 roboto-font"><?php echo !empty($settings) ? $settings->company_name : 'Xremo Sdn Bhd'; ?> </h4>
                                         </div>
 
                                     </div>
@@ -69,7 +69,7 @@
                                             <a href="" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text"> Email Address</h5>
+                                            <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text"> Email Address</h5>
                                             <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings) ? $settings->email : 'info@xremo.com'; ?> </h4>
 
                                         </div>
@@ -81,16 +81,16 @@
                                             <a href="#modal_edit_person_in_charge" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Person In Charge</h5>
+                                            <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Person In Charge</h5>
                                             <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($pic->pic_name) ? $pic->pic_name: 'Xremo Sdn Bhd'; ?> </h4>
-
-                                            <h4>
-                                                <small>
-                                                    <i class="icon-briefcase mr-2"></i><?php echo !empty($pic->pic_position) ? $pic->pic_position: 'HR Department'; ?></small>
-                                                <i class="fa fa-circle font-10-xs vertical-middle font-grey-gallery"></i>
-                                                <small>
-                                                    <i class="icon-envelope mr-2"></i><?php echo !empty($pic->pic_email) ? $pic->pic_email: 'cs@xremo.com'; ?></small>
-                                            </h4>
+                                            <ul class="list-inline list-unstyled">
+                                                <li>
+                                                <i class="icon-briefcase mr-5"></i><?php echo !empty($pic->pic_position) ? $pic->pic_position: 'HR Department'; ?></small>
+                                                </li>
+                                                <li>
+                                                <i class="icon-envelope mr-5"></i><?php echo !empty($pic->pic_email) ? $pic->pic_email: 'cs@xremo.com'; ?></small>
+                                                </li>
+                                            </ul>                                            
                                         </div>
 
                                     </div>
@@ -100,7 +100,7 @@
                                             <a href="#modal_edit_password" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Change Password</h5>
+                                            <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Change Password</h5>
                                             <!-- <h4 class="mt-1  roboto-font font-weight-400">Nick Aaron </h4> -->
 
                                             <h4 hidden>
@@ -217,7 +217,7 @@
                                             <a href="#modal_edit_payment_address" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Shipping Address</h5>
+                                            <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Shipping Address</h5>
                                             <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings->shipping_name) ? $settings->shipping_name : 'Please edit your shipping company name'; ?> </h4>
                                             <h4>
                                                 <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
@@ -247,7 +247,7 @@
                                             <a href="#modal_edit_payment_address" data-toggle="modal" class="font-grey-gallery">Change</a>
                                         </div>
                                         <div class="media-body">
-                                            <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Billing Address</h5>
+                                            <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Billing Address</h5>
                                             <h4 class="mt-1  roboto-font font-weight-400"><?php echo !empty($settings->billing_name) ? $settings->billing_name : 'Please edit your billing company name'; ?> </h4>
                                             <h4>
                                                 <small>GST No : <?php echo !empty($settings->gst_account_number) ? $settings->gst_account_number : 'Please Edit your profile'; ?></small>
@@ -293,7 +293,7 @@
                                                 <input type="checkbox" id="searchable" <?php echo ($settings->searchable == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to public</h5>
+                                                <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Set your company profile to public</h5>
                                                 <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
                                                 <h4>
                                                     <small>
@@ -307,7 +307,7 @@
                                                 <input type="checkbox" id="searchable_detail" <?php echo ($settings->searchable_detail == 1) ? 'checked=checked' : ''; ?>>
                                             </div>
                                             <div class="media-body">
-                                                <h5 class="text-uppercase font-weight-700 roboto-font font-20-xs mt-0 md-indigo-text">Set your company profile to registered users</h5>
+                                                <h5 class="text-uppercase font-weight-700 roboto-font  mt-0 md-indigo-text">Set your company profile to registered users</h5>
                                                 <!-- <h4 class="mt-1  roboto-font font-weight-400">Xremo Sdn Bhd </h4> -->
                                                 <h4>
                                                     <small>
@@ -597,8 +597,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer form-actions">
-                                <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
-                                <button type="submit" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                                <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs  letter-space-xs">Cancel</a>
+                                <button type="submit" class="btn btn-md-indigo  mt-width-150-xs  letter-space-xs">Save</button>
                             </div>
                         </form>
                     </div>

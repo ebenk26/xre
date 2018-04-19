@@ -2,7 +2,8 @@
     <!-- END CONTAINER -->
 
 	<?php $this->load->view('main/footer_app');?>
-    <!-- BEGIN CORE PLUGINS -->
+    <!-- BEGIN CORE PLUGINS -->    
+
     <script src="<?php echo JS_EMPLOYER; ?>jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>js.cookie.min.js" type="text/javascript"></script>
