@@ -481,7 +481,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xs-12">
-                            <div class="form-group mx-0 ">
+                            <div class="form-group mx-0 " id="salaryBlock<?=$value['id']?>">
                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
                                 <div class="form-inline">
                                     <select name="currency" class="form-control ">
@@ -491,10 +491,11 @@
                                         </option>
                                         <?php endforeach ?>
                                     </select>
-                                    <input type="number" class="form-control " placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min" min="0" max="999999999">
+                                    <input type="number" class="form-control" id="editBudgetMin<?=$value['id']?>" placeholder="0.00" value="<?php echo $value['budget_min'] ?>" name="budget_min" min="0" max="999999999">
                                     <span class="mx-2">to</span>
-                                    <input type="number" class="form-control  " placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max" min="0" max="999999999">
+                                    <input type="number" class="form-control" id="editBudgetMax<?=$value['id']?>" placeholder="0.00" value="<?php echo $value['budget_max'] ?>" name="budget_max" min="0" max="999999999">
                                 </div>
+                                <span class="help-block has-error hidden" id="salaryBlockError<?=$value['id']?>">Minimum salary should be lower.</span>
                             </div>
                         </div>
                     </div>
