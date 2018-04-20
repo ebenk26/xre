@@ -266,8 +266,8 @@
                             <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">Recent Activities</span>
                         </div>
                     </div>
-                    <div class="portlet-body height-380">
-                        <div class="scroller " data-always-visible="1" data-rail-visible="0">
+                    <div class="scroller height-380"  data-always-visible="1" data-rail-visible="0">
+                        <div class="portlet-body ">
                             <ul class="feeds">
                                 <?php foreach($recent_activities as $row){?>
                                 <li>

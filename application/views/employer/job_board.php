@@ -276,7 +276,7 @@
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-5">
-                            <div class="form-group mx-0 ">
+                            <div class="form-group mx-0 " id="salaryBlock">
                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
                                 <div class="form-inline">
                                     <select name="currency" class="form-control ">
@@ -289,9 +289,8 @@
                                     <input type="number" class="form-control addBudgetMin input-small" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
                                     <span class="mx-5">to</span>
                                     <input type="number" class="form-control addBudgetMax input-small " id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
-                                </div>
-
-                                <!-- <span class="help-block small">Internship in IT department</span> -->
+                                </div>                            
+                                <span class="help-block has-error hidden" id="salaryBlockError">Minimum salary should be lower.</span>
                             </div>
                         </div>
                     </div>
