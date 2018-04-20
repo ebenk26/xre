@@ -1,4 +1,3 @@
-<!-- <pre> -->
 <?php   $id = $this->session->userdata('id'); 
         $roles= $this->session->userdata('roles');
         $segmented_uri = $this->uri->segment(3);
@@ -16,21 +15,25 @@
         
         $checkUser = ($id == base64_decode($segmented_uri))?'same_user':'different_user';
 ?>
+
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 
 <head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- META -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- TITLE -->
     <title>Student | View Profile</title>
 
+    <!-- ======= CSS STYLES ======= -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
 
     <!-- Icon -->
@@ -61,11 +64,8 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?= base_url(); ?>assets/favicon.ico">
-    <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student - My Profile</title>
+
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
@@ -83,135 +83,107 @@
 </head>
 
 <body>
-
+    <!-- HEADER -->
     <?php $this->load->view('site/header_content');?>
 
-
-
-    <!--========== PROMO : VIEW ==========-->
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>');">
+    <!-- VIEW -->
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center  hidden-xs hidden-sm" style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
         <div class="container g-ver-bottom-80 ">
             <div class="col-md-9 col-xs-12">
                 <ul class="list-unstyled mx-0 mt-50">
+                    <!-- Full Name -->
                     <li>
                         <h3 class="font-40-md font-30 md-orange-lighten-1-text font-weight-500   ">
                             <?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?>
                         </h3>
                     </li>
                     <hr class="border-mdo-white-v3 width-200">
-
+                    <!-- Quote -->
                     <li>
                         <p class=" font-17 font-weight-500 md-white-text">
                             <?= !empty($user_profile['overview']['quote']) ?  '<i class="fa fa-quote-left font-10 vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-10"></i>' : ''; ?>
 
                         </p>
                     </li>
-                    <?php if ($id == base64_decode($segmented_uri)) {?>
-                    <li hidden>
-
-                    </li>
-                    <?php } ?>
                 </ul>
             </div>
+            <!--  Profile IMAGE -->
             <div class="col-md-3  col-xs-12 text-center">
                 <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle ">
             </div>
         </div>
     </div>
-
-
-
-
     <!-- Visible when 768px to below  -->
     <div class="visible-sm visible-xs">
-        <div class="view  height-250 " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>');">
+        <div class="view  height-300 g-bg-position-center " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>');">
             <div class="mask hm-darkblue-v7"></div>
         </div>
         <div class="mt-element-card-v2 text-center  ">
             <div class="mt-card-item p-0">
-                <div class="mt-card-avatar  mt-o-70-xs">
-                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'xremo-logo-blue.png'; ?>" class="avatar avatar-circle avatar-medium ">
-                    <!-- <a href="" class="btn btn-icon-only btn-circle btn-outline-md-indigo ml-o-60-xs"><i class="icon-pencil"></i></a> -->
+                <div class="mt-card-avatar  mt-o-70">
+                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-large ">
                 </div>
                 <div class="mt-card-content px-15  ">
                     <h3 class="mt-card-name my-55 md-orange-text ">
                         <?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?>
                     </h3>
-                    <!-- <hr class="border-mdo-darkblue-light width-150-xs center-block"> -->
 
                     <p class="mt-card-desc font-14 font-weight-500">
-                        <i class="fa fa-quote-left font-10-xs vertical-top"></i>
+                        <i class="fa fa-quote-left font-10 vertical-top"></i>
                         <?= !empty($user_profile['overview']['quote']) ?  $user_profile['overview']['quote'] : 'The best preparation for tomorrow is doing your best today.'; ?>
-                            <i class="fa fa-quote-right vertical-top font-10-xs"></i>
+                            <i class="fa fa-quote-right vertical-top font-10"></i>
                     </p>
-                    <!-- <hr>    -->
-                    <hr class="border-mdo-darkblue-light width-150-xs center-block">
+                    <hr class="border-mdo-darkblue-v5 width-100 center-block">
 
                     <p class="mt-card-desc ">
                         <?= !empty($user_profile['overview']['quote']) ?  $user_profile['overview']['quote'] : 'The best preparation for tomorrow is doing your best today.'; ?>
                     </p>
-                    <p class="mt-card-desc md-grey-text text-lighten-1 mt-4">
-                        <h5 class="text-uppercase font-12-xs font-weight-700 ">Share to</h5>
-                        <ul class="list-inline list-unstyled mx-0">
-
-                            <li>
-                                <i class="fa fa-facebook g-font-size-20-xs social-fb"></i>
-                            </li>
-                            <li>
-                                <i class="fa fa-google-plus g-font-size-20-xs social-gplus"></i>
-                            </li>
-                            <li>
-                                <i class="fa fa-linkedin g-font-size-20-xs social-li"></i>
-                            </li>
-                            <li>
-                                <i class="fa fa-twitter g-font-size-20-xs social-tw"></i>
-                            </li>
-
-
-                        </ul>
-                    </p>
                 </div>
-
             </div>
         </div>
     </div>
-    <!--========== END PROMO : VIEW ==========-->
+    <!-- END VIEW -->
 
+    <!-- Content -->
     <div class="m-grid m-grid-full-height m-grid-responsive-xs m-grid-responsive-sm">
-        <!-- <div class="m-grid-row"> -->
-        <!-- Col-md-4 -->
-        <div class="m-grid-col m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12  md-grey-lighten-5  ">
-            <ul class="list-group ">
+        <!-- Share /Personal Info /  Video Resume /Gallery / References -->
+        <div class="m-grid-col m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12  md-grey-lighten-5  py-20 ">
+            <ul class="list-group">
+                <!-- Share button -->
                 <?php if($checkUser == 'same_user'): ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20 ">
-                    <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20 "> SHARE</h4>
-                    <hr class="border-mdo-orange-v3 width-300 center-block">
-                    <ul class="list-inline list-unstyled mx-0 text-center " <li>
-                        <a href="https://plus.google.com/share?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="googleplus" class="social-icon social-icon-color googleplus share-gplus"></a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/intent/tweet?text=<?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank"
-                        data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
-                </li>
-                <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-href="umroh-bersama-ustadz-subhan-bawazier" data-layout="button" data-size="small"
-                        data-mobile-iframe="false" target="_blank" data-original-title="facebook" class="social-icon social-icon-color facebook fb-share-button share-fb">
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="linkedin" class="share-tw social-icon social-icon-color linkedin">
-                    </a>
-                </li>
+                    <h6 class="text-center  text-uppercase  md-darkblue-text font-weight-600 letter-space-sm  "> SHARE </h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
+                    <ul class="list-inline list-unstyled mx-0 text-center ">
+                        <!-- G+ -->
+                        <li>
+                            <a href="https://plus.google.com/share?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="googleplus" class="social-icon social-icon-color googleplus share-gplus"></a>
+                        </li>
+                        <!-- Twitter -->
+                        <li>
+                            <a href="https://twitter.com/intent/tweet?text=<?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank"
+                                data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
+                        </li>
+                        <!-- Facebook -->
+                        <li>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-href="umroh-bersama-ustadz-subhan-bawazier" data-layout="button" data-size="small"
+                                data-mobile-iframe="false" target="_blank" data-original-title="facebook" class="social-icon social-icon-color facebook fb-share-button share-fb">
+                            </a>
+                        </li>
+                        <!-- Linked In -->
+                        <li>
+                            <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="linkedin" class="share-tw social-icon social-icon-color linkedin">
+                            </a>
+                        </li>
 
-                </ul>
+                    </ul>
 
                 </li>
                 <?php endif; ?>
                 <!-- Personal Info -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20 ">
-                    <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20"> Personal Information</h4>
-                    <hr class="border-mdo-orange-v3 width-300 center-block">
-
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "> Personal Information</h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
                             <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>
@@ -303,8 +275,8 @@
                 </li>
                 <!-- CV Video -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20">
-                    <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20"> Video Resume</h4>
-                    <hr class="border-mdo-orange-v3 width-300 center-block">
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">Video Resume</h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe width="560" height="315" src="<?= !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>" frameborder="0"
                             allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -312,16 +284,16 @@
                 </li>
                 <!-- Gallery -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20">
-                    <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20"> Gallery</h4>
-                    <hr class="border-mdo-orange-v3 width-300 center-block">
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">Gallery</h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <?php if(!empty($gallery)) {?>
                     <div class="portfolio-content portfolio-3">
                         <div id="js-grid-lightbox-gallery" class="cbp">
                             <?php $gall_no = 1;foreach ($gallery as $gallery_key => $gallery_value) {?>
                             <div class="cbp-item" id="gall_<?=$gall_no?>" <?=$gall_no> 12?'style="display:none;"':''?>>
-                                <a href="<?= base_url()." assets/img/gallery/ ".$gallery_value['photo']; ?>" class="cbp-caption cbp-lightbox" data-title="<?=$gallery_value['title'];?><br><?=$gallery_value['description'];?>">
+                                <a href="<?= IMG.'gallery/'.$gallery_value['photo']; ?>" class="cbp-caption cbp-lightbox" data-title="<?=$gallery_value['title'];?><br><?=$gallery_value['description'];?>">
                                     <div class="cbp-caption-defaultWrap">
-                                        <img src="<?= base_url()." assets/img/gallery/ ".$gallery_value['photo']; ?>" alt=""> </div>
+                                        <img src="<?= IMG.'gallery/'.$gallery_value['photo']; ?>" alt=""> </div>
                                     <div class="cbp-caption-activeWrap">
                                         <div class="cbp-l-caption-alignLeft">
                                             <div class="cbp-l-caption-body">
@@ -340,7 +312,7 @@
                         </div>
                         <?php if($gall_no > 12){?>
                         <div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">
-                            <a href="#" class="cbp-l-loadMore-link btn grey-mint m-4 letter-space-xs" id="gall_more">LOAD MORE</a>
+                            <a href="#" class="cbp-l-loadMore-link btn btn-md-grey btn-outline m-20 letter-space-xs" id="gall_more">LOAD MORE</a>
                         </div>
                         <?php }?>
 
@@ -367,11 +339,11 @@
                     </div>-->
                 </li>
 
-                <?php if(!empty($roles)){ ?>
                 <!-- Reference (Limit PUT 3 ONLY)-->
+                <?php if(!empty($roles)){ ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20">
-                    <h4 class="text-center text-uppercase  md-orange-darken-1-text font-weight-700 font-20"> References</h4>
-                    <hr class="border-mdo-orange-v3 width-300 center-block">
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">References</h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <ul class="list-unstyled text-center ">
                         <?php if(!empty($user_profile['reference'])) {
                             foreach ($user_profile['reference'] as $reference_key => $reference_value) {
@@ -403,31 +375,31 @@
             </ul>
         </div>
 
-        <!-- Content  col-md-8-->
-        <div class="m-grid-col m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12  ">
+        <!-- Content-->
+        <div class="m-grid-col m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12 p-20 ">
             <div class="portlet light">
                 <!-- Nav Tabs -->
-                <div class="portlet-title tabbable-line tab-md-orange py-0 mb-0 ">
+                <div class="portlet-title tabbable-line tab-md-orange  ">
                     <ul class="nav nav-tabs pull-left">
                         <li class="active">
-                            <a href="#tab_summary" data-toggle="tab">
-                                <i class="icon-user font-26"></i> Summary</a>
+                            <a href="#tab_summary" data-toggle="tab" class="font-16">
+                                <i class="icon-user"></i> Summary</a>
                         </li>
                         <li>
-                            <a href="#tab_education" data-toggle="tab">
-                                <i class="icon-graduation font-26"></i>Education </a>
+                            <a href="#tab_education" data-toggle="tab" class="font-16">
+                                <i class="icon-graduation"></i>Education </a>
                         </li>
                         <li>
-                            <a href="#tab_experience" data-toggle="tab">
-                                <i class="icon-briefcase font-26"></i>Experience</a>
+                            <a href="#tab_experience" data-toggle="tab" class="font-16">
+                                <i class="icon-briefcase"></i>Experience</a>
                         </li>
                         <li>
-                            <a href="#tab_noneducation" data-toggle="tab">
-                                <i class="icon-notebook font-26"></i>Non Education</a>
+                            <a href="#tab_noneducation" data-toggle="tab" class="font-16">
+                                <i class="icon-notebook"></i>Non Education</a>
                         </li>
                         <li>
-                            <a href="#tab_skills" data-toggle="tab">
-                                <i class="icon-badge font-26"></i>Skills</a>
+                            <a href="#tab_skills" data-toggle="tab" class="font-16">
+                                <i class="icon-badge"></i>Skills</a>
                         </li>
                     </ul>
                 </div>
@@ -440,10 +412,10 @@
                             <ul class="list-group">
                                 <!-- About Me -->
                                 <li class="list-group-item border-none py-20">
-                                    <h5 class="font-weight-700 text-uppercase font-blue-chambray mb-5 letter-space-xs">About Me</h5>
-                                    <hr class="border-md-blue-grey width-40 my-5">
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">About Me</h6>
+                                    <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <?php if(!empty($user_profile['overview']['summary'])){?>
-                                    <p class="mb-5">
+                                    <p class="mb-5 font-weight-400">
                                         <?= $user_profile['overview']['summary']?>
                                     </p>
                                     <?php }else{?>
@@ -453,36 +425,34 @@
                                 <hr>
                                 <!-- Education [Latest ]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h5 class="font-weight-700 text-uppercase font-blue-chambray mb-5 letter-space-xs">Education</h5>
-                                    <hr class="border-md-blue-grey width-40 mt-5 mb-15">
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Education</h6>
+                                    <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <?php if(!empty($user_profile['academics'])){?>
                                     <?php foreach($user_profile['academics'] as $key => $value){?>
-                                    <ul class="list-unstyled ">
-                                        <li class="font-weight-500 font-16-xs text-capitalize roboto-font">
+                                    <ul class="list-unstyled my-15">
+                                        <li class="font-weight-500 font-17 text-capitalize roboto-font">
                                             <?= $value['degree_name']?>
                                                 <small class="font-weight-400 font-14 pull-right">
                                                     <?php 
-                                                        if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
-                                                        {
-                                                            echo 'Not Provided';
-                                                        }
-                                                        else
-                                                        {
-                                                            echo date('d F Y', strtotime($value['start_date']));
-                                                    ?> -
+                                                                if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
+                                                                {
+                                                                    echo 'Not Provided';
+                                                                }
+                                                                else
+                                                                {
+                                                                    echo date('d F Y', strtotime($value['start_date']));
+                                                            ?> -
                                                     <?php 
-                                                            echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));
-                                                        }
-                                                    ?>
+                                                                    echo ($value['end_date'] == '0000-00-00') ? 'Now' : date('d F Y', strtotime($value['end_date']));
+                                                                }
+                                                            ?>
                                                 </small>
                                         </li>
-                                        <hr class="my-5 width-100">
                                         <li class="font-weight-400 font-16">
                                             <i class="fa fa-university"></i>
                                             <?= $value['university_name']?>
                                         </li>
                                     </ul>
-                                    <br>
                                     <?php } ?>
                                     <?php }else{?>
                                     <?php $this->load->view('student/main/profile_missing', $data_arr);?>
@@ -491,34 +461,35 @@
                                 <hr>
                                 <!-- Experience [All] -->
                                 <li class="list-group-item border-none py-20">
-                                    <h5 class="font-weight-700 text-uppercase font-blue-chambray mb-5 letter-space-xs">Experience</h5>
-                                    <hr class="border-md-blue-grey width-40 mt-5 mb-15">
-                                    <ul class="list-unstyled ">
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Experience</h6>
+                                    <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
+                                    <ul class="list-unstyled mt-20 ">
                                         <?php if(!empty($user_profile['experiences'])){?>
                                         <?php foreach($user_profile['experiences'] as $key => $value){?>
-                                        <li class="mb-15">
-                                            <h5 class="font-weight-500 font-16 text-capitalize roboto-font mb-5">
+                                        <li class="my-15">
+                                            <h5 class="font-weight-500 font-16 text-capitalize roboto-font ">
                                                 <?= $value['experiences_title'];?>
-                                                    <span class="badge badge-roundless badge-md-blue-grey">
+                                                    -
+                                                    <span class="md-blue-text ml-5">
+                                                        <i class="icon-briefcase "></i>
                                                         <?= $value['employment_type'];?>
                                                     </span>
                                                     <small class="font-weight-400 font-14 pull-right">
                                                         <?php 
-                                                            if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
-                                                            {
-                                                                echo 'Not Provided';
-                                                            }
-                                                            else
-                                                            {
-                                                                echo date('F Y', strtotime($value['experiences_start_date']));
-                                                        ?> -
+                                                                    if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
+                                                                    {
+                                                                        echo 'Not Provided';
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        echo date('F Y', strtotime($value['experiences_start_date']));
+                                                                ?> -
                                                         <?php 
-                                                                echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
-                                                            }
-                                                        ?>
+                                                                        echo ($value['experiences_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['experiences_end_date']));
+                                                                    }
+                                                                ?>
                                                     </small>
                                             </h5>
-                                            <hr class="my-5 width-100">
                                             <h5 class=" font-weight-400 font-16">
                                                 <i class="fa fa-building-o"></i>
                                                 <?= $value['experiences_company_name'];?>
@@ -533,15 +504,15 @@
                                 <hr>
                                 <!-- Non Education [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h5 class="font-weight-700 text-uppercase font-blue-chambray mb-5 letter-space-xs">Non Education </h5>
-                                    <hr class="border-md-blue-grey width-40 mt-5 mb-15">
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Non Education </h6>
+                                    <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <ul class="list-unstyled">
                                         <?php if(!empty($user_profile['achievement'])){?>
                                         <?php foreach($user_profile['achievement'] as $key => $value){?>
-                                        <li class="font-weight-500 font-17 text-capitalize roboto-font">
+                                        <li class="font-weight-400 font-17 text-capitalize roboto-font">
                                             <i class="icon-notebook"></i>
                                             <?= $value['achievement_title']; ?>
-                                                <small class="font-weight-400 font-14 pull-right">
+                                                <small class="font-weight-400 font-14 pull-right ">
                                                     <?php 
                                                         if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01')
                                                         {
@@ -566,8 +537,8 @@
                                 <hr>
                                 <!-- Skill [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h5 class="font-weight-700 text-uppercase font-blue-chambray mb-5 letter-space-xs">Skill </h5>
-                                    <hr class="border-md-blue-grey width-40 mt-5 mb-15">
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Skill </h6>
+                                    <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <ul class="list-unstyled">
                                         <?php if(!empty($user_profile['achievement'])){?>
                                         <?php foreach($user_profile['projects'] as $key => $value){?>
@@ -598,14 +569,13 @@
                                 </li>
                             </ul>
                         </div>
+
                         <!-- Tab Education [Rate & Review]-->
                         <div class="tab-pane" id="tab_education">
                             <ul class="list-group list-border">
                                 <?php if(!empty($user_profile['academics'])){?>
                                 <?php foreach($user_profile['academics'] as $key => $value){
-
                                         $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
-
                                         $review_counter = countReviewerEducation($value['academic_id']);
                                         if (!is_bool($keyReviewEdu)) {
                                             $checkReviewSame = $value['academic_id'] == $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
@@ -740,6 +710,7 @@
                                                 <?php endif ?>
                                             </div>
                                         </div>
+
                                         <div class="media-body">
                                             <h5 class="font-weight-600  font-16 mb-5">
                                                 <?= $value['qualification_level'];?> in
@@ -790,7 +761,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="scroller height-300-xs" data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-300" data-always-visible="1" data-rail-visible1="1">
                                                     <!-- @if empty -->
                                                     <div class="portlet p-50 md-shadow-none">
                                                         <div class="portlet-body text-center">
@@ -822,7 +793,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                     <div class="portlet p-50 md-shadow-none">
                                                         <div class="portlet-body text-center">
                                                             <i class="icon-star font-grey-mint font-40 mb-20"></i>
@@ -853,7 +824,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                     <div class="portlet p-50 md-shadow-none">
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet-body text-center">
@@ -891,7 +862,7 @@
 
                         </div>
 
-                        <!-- Experience [Rate & Review]-->
+                        <!-- Tab Experience [Rate & Review]-->
                         <div class="tab-pane" id="tab_experience">
                             <ul class="list-group list-border">
                                 <!-- User View : User can only VIEW people who rate and review -->
@@ -1071,10 +1042,12 @@
                                                 <?= $value['experiences_company_name']; ?>
                                             </h6>
                                             <h6 class="mb-5">
-                                                <span class="badge badge-roundless badge-md-teal letter-space-sm font-weight-500">
+                                                <span class="label label-md-blue letter-space-sm font-weight-500 mr-5">
+                                                    <i class="icon-briefcase"></i>
                                                     <?= $value['employment_type']; ?>
                                                 </span>
-                                                <span class="badge badge-roundless badge-important letter-space-sm font-weight-500">
+                                                <span class="label  badge-important label-md-blue-grey letter-space-sm font-weight-500">
+                                                    <i class="fa fa-industry"></i>
                                                     <?= $value['industry_name']; ?>
                                                 </span>
                                             </h6>
@@ -1084,12 +1057,14 @@
                                     <p class="font-16 ">
                                         <?= $value['experiences_description']; ?>
                                     </p>
-                                    <p class="font-weight-500 font-14 text-uppercase mb-5">Skill Earned</p>
+                                    <p class="font-weight-600 font-14 text-uppercase mb-5">Skill Earned</p>
                                     <ul class="list-unstyled list-inline ml-0">
                                         <?php $skill = explode(',', $value['skills']);?>
                                         <?php foreach($skill as $key => $skill_value){?>
-                                        <li class="label label-md-blue-grey font-14">
+                                        <li class="px-0 mx-0 ">
+                                            <span class="label label-md-green mx-0 label-sm ">
                                             <?= !empty($skill_value) ? strtoupper($skill_value) : 'NONE'; ?>
+                                            </span>
                                         </li>
                                         <?php } ?>
                                     </ul>
@@ -1141,7 +1116,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                     <div class="portlet p-50 md-shadow-none">
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet-body text-center">
@@ -1186,7 +1161,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                     <div class="portlet p-50 md-shadow-none">
                                                         <div class="portlet-body text-center">
                                                             <i class="icon-star font-grey-mint font-40 mb-20"></i>
@@ -1212,7 +1187,7 @@
                             </ul>
                         </div>
 
-                        <!-- Non Education [Endorse]-->
+                        <!-- Tab Non Education [Endorse]-->
                         <div class="tab-pane" id="tab_noneducation">
                             <ul class="list-group list-border">
                                 <ul class="list-group list-border">
@@ -1319,11 +1294,11 @@
                                         <p class="font-16 ">
                                             <?= $value['achievement_description']?>
                                         </p>
-                                        <p class="font-weight-500 font-14 text-uppercase mb-5">Skill Earned</p>
+                                        <p class="font-weight-600 font-14 text-uppercase mb-5">Skill Earned</p>
                                         <ul class="list-unstyled list-inline ml-0">
                                             <?php $non_edu = explode(',', $value['achievement_tag']);?>
                                             <?php foreach($non_edu as $key => $non_edu_value){?>
-                                            <li class="label label-md-blue-grey font-14">
+                                            <li class="label label-md-green font-14">
                                                 <?= !empty($non_edu_value) ? strtoupper($non_edu_value) : 'NONE'; ?>
                                             </li>
                                             <?php } ?>
@@ -1343,7 +1318,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                    <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty (User View)-->
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet-body text-center">
@@ -1374,7 +1349,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                    <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty (User View)-->
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet p-50 md-shadow-none">
@@ -1399,7 +1374,8 @@
                                 </ul>
                             </ul>
                         </div>
-                        <!-- Skill -->
+
+                        <!-- Tab Skill -->
                         <div class="tab-pane" id="tab_skills">
                             <ul class="list-group list-border">
                                 <ul class="list-group list-border">
@@ -1505,11 +1481,11 @@
                                         <p class="font-16 ">
                                             <?= $value['description']?>
                                         </p>
-                                        <p class="font-weight-500 font-14 text-uppercase mb-5">Skill Earned</p>
+                                        <p class="font-weight-600 font-14 text-uppercase mb-5">Skill Earned</p>
                                         <ul class="list-unstyled list-inline ml-0">
                                             <?php $project = explode(',', $value['skills_acquired']);?>
                                             <?php foreach($project as $key => $project_value){?>
-                                            <li class="label label-md-blue-grey font-14">
+                                            <li class="label label-md-green font-14">
                                                 <?= !empty($project_value) ? strtoupper($project_value) : 'NONE'; ?>
                                             </li>
                                             <?php } ?>
@@ -1529,7 +1505,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                    <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty (User View)-->
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet-body text-center">
@@ -1560,7 +1536,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                                    <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                                         <!-- @if empty (User View)-->
                                                         <div class="portlet p-50 md-shadow-none">
                                                             <div class="portlet p-50 md-shadow-none">
@@ -1585,8 +1561,11 @@
                                 </ul>
                             </ul>
                         </div>
+
                     </div>
                 </div>
+
+
                 <!-- Modal Endorser -->
                 <div class="modal fade modal-open-noscroll " id="modal_endorser_list" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -1754,7 +1733,7 @@
                                 </h4>
                             </div>
                             <div class="modal-body">
-                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">
+                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">
                                     <div class="portlet p-50 md-shadow-none">
                                         <form action="<?= base_url(); ?>site/endorsment/invite" class="form form-horizontal" method="POST">
                                             <div class="form-group text-left mx-0 mb-10">
@@ -1776,14 +1755,12 @@
             </div>
 
         </div>
-    </div>
+
     </div>
 
+    <!-- Footer -->
     <?php $this->load->view('main/footer_content');?>
 
-    <!-- BEGIN CORE PLUGINS -->
-    <!-- Metronic -->
-    <!-- <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script> -->
 
     <!-- CORE -->
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
@@ -1993,7 +1970,7 @@
                                 </h4>\
                             </div>\
                             <div class="modal-body">\
-                                <div class="scroller height-400-xs" data-always-visible="1" data-rail-visible1="1">\
+                                <div class="scroller height-400" data-always-visible="1" data-rail-visible1="1">\
                                     ' +
                             invitation + '\
                                     <ul class="list-unstyled">\
