@@ -693,7 +693,7 @@
                                         <?php if (!empty($company_address)) {
                                         foreach ($company_address as $key => $value) { ?>
                                         <div data-repeater-item class="mt-repeater-item">
-                                            <div class="row">
+                                            <!-- <div class="row">
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <input type="hidden" id="addMapTitle" name="mapTitle"></input>
                                                     <input type="hidden" id="addMapDescription" name="mapDescription"></input>
@@ -707,7 +707,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Address -->
                                             <div class="row mx-0">
                                                 <div class="form-group mx-0">
