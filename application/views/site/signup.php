@@ -2,40 +2,41 @@
 <html lang="en">
 
 <head>
+    <!-- META  -->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <title>Xremo - Sign Up</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <meta content="" name="author">
 
+    <!-- TITLE -->
+    <title>Xremo - Sign Up</title>
+
+    <!-- CSS STYLES -->
     <!-- Web Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <!-- <link href="<?php echo base_url(); ?>assets/css/main-font-css" rel="stylesheet" type="text/css"> -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- Bootstrap -->
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
 
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <link href="<?php echo base_url(); ?>assets/css/vendor/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- Icon -->
+    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
 
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/global/plugins.min.css" rel="stylesheet" type="text/css">
-    <!-- END THEME GLOBAL STYLES -->
+    <!-- Plugin -->
+    <link href="<?php echo JS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo JS; ?>plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css"> -->
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo base_url(); ?>assets/css/vendor/login-5.css" rel="stylesheet" type="text/css">
+    <!-- Global -->
+    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page Layout -->
+    <link href="<?php echo CSS; ?>pages/login-5.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom -->
     <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
-
     <style type="text/css">
         .progress-bar {
             text-align: center;
@@ -76,7 +77,8 @@
         }
 
     </style>
-    <!-- END PAGE LEVEL STYLES -->
+
+    <!-- FAVICON -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -98,11 +100,11 @@
 
     <div class="user-login-5 m-grid  m-grid-responsive-xs m-grid-responsive-sm">
         <div class="bs-reset m-grid-row ">
-            <!-- col-form -->
+            <!-- Student Form -->
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm">
                 <div class="m-grid ">
                     <a href="<?=base_url()?>">
-                        <img class=" mt-70 my-10-md height-100" src="<?php echo IMG; ?>/site/xremo-logo-blue.svg">
+                        <img class=" mt-70 my-10-md height-100" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
                     </a>
                 </div>
                 <div class="login-content ">
@@ -208,11 +210,10 @@
                 </div>
 
             </div>
-            <!-- MD-DARK BLUE -->
+            <!-- Employer Form -->
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue m-grid-col-12-sm">
-
                 <a href="<?=base_url()?>">
-                    <img class="mt-70 my-10-md height-100" src="<?php echo IMG; ?>/site/xremo-logo-white.svg">
+                    <img class="mt-70 my-10-md height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
                 </a>
                 <div class="login-content ">
                     <div class="portlet" id="employerContent">
@@ -346,34 +347,33 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT -->
+    <!-- CORE -->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-    <script src="<?php echo base_url(); ?>assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/js.cookie.min.js" type="text/javascript"></script>
-    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.min.js" type="text/javascript"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/js/jquery.blockui.min.js" type="text/javascript"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/js/bootstrap-switch.min.js" type="text/javascript"></script> -->
-    <!-- END CORE PLUGINS -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-    <script src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/additional-methods.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/select2.full.min.js" type="text/javascript"></script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.backstretch.min.js" type="text/javascript"></script>
+
+    <!-- VENDOR @ PLUGINS-->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS ?>plugins/backstretch/jquery.backstretch.min.js"></script>
+    <!-- Custom -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME GLOBAL SCRIPTS -->
-    <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>
-    <!-- END THEME GLOBAL SCRIPTS -->
-
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <!-- END PAGE LEVEL SCRIPTS -->
-    <!-- BEGIN PASSWORD STRENGTH SCRIPTS -->
     <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
-    <!-- END PASSWORD STRENGTH SCRIPTS -->
+
+    <!-- Global -->
+    <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>
+
+    <!-- Page Layout -->
+    <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
+
     <script>
         $(document).ready(function () {
             $('#clickmewow').click(function () {

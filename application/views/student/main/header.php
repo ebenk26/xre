@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
 
 <head>
     <meta charset="utf-8" />
@@ -16,84 +11,77 @@
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description" />
 
     <meta content="" name="author" />
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <!-- ======== CSS STYLE ======== -->
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all">
 
-    <!-- IMAGE CROP GALLERY -->
-    <link href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css" rel="stylesheet" type="text/css" />
-    <!-- IMAGE CROP GALLERY -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
 
+    <!-- Icon -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
 
-    <link href="<?php echo CSS_EMPLOYER; ?>css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>simple-line-icons.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-    <!-- END GLOBAL MANDATORY STYLES -->
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <!-- Plugins @ Vendor -->
+    <!-- Note : all plugin folder in JS folder . so it need to redirect there -->
+    <!-- # Social Icon -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/socicon/socicon.css">
+    <!-- # Datatables -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/datatables/plugins/bootstrap/datatables.bootstrap.css">
+    <!-- # Forms -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-fileinput/bootstrap-fileinput.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css">
+    <!-- # Data / Time -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-daterangepicker/daterangepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-daterangepicker/daterangepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/clockface/css/clockface.css">
+    <!-- # Calendar -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/fullcalendar/fullcalendar.min.css">
+    <!-- # Text Editor -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-summernote/summernote.css">
+    <!-- # Image Crop -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jcrop/css/jquery.Jcrop.min.css">
+    <!-- # Chart -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/morris/morris.css">
+    <!-- # Notification -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.css">
+    <!-- # Map -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jqvmap/jqvmap/jqvmap.css">
+    <!-- # Portfolio @ Light Gallery -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/cubeportfolio/css/cubeportfolio.css">
 
-    <link href="<?php echo CSS_EMPLOYER; ?>datatables.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>datatables.bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>socicon.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-select.css" rel="stylesheet" type="text/css">
+    <!-- GLOBAL -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
 
+    <!-- APPS -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>apps/inbox.min.css">
 
-    <link href="<?php echo CSS_EMPLOYER; ?>daterangepicker.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>clockface.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-fileinput.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>jquery.Jcrop.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>morris.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo CSS_EMPLOYER; ?>bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS_EMPLOYER; ?>pricing.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">
+    <!-- PAGE -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/pricing.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/image-crop.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/invoice-2.min.css"> -->
 
+    <!-- PAGE LAYOUT -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout2/layout.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout2/themes/blue.css" id="style_color" />
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout2/custom.min.css">
 
-
-    <!--<link href="<?php echo ASSETS; ?>plugins/bootstrap-daterangepicker/daterangepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/clockface/css/clockface.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/jcrop/css/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css" rel="stylesheet" type="text/css" />-->
-    <link href="<?php echo ASSETS; ?>plugins/typeahead/typeahead.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
-    <!-- <link href="<?php echo ASSETS; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css" /> -->
-
-    <!-- <link href="<?php echo ASSETS; ?>plugins/morris/morris.css" rel="stylesheet" type="text/css" /> 
-    <link href="<?php echo ASSETS; ?>plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css" />-->
-    <!--<link href="<?php echo CSS_EMPLOYER; ?>bootstrap-wysihtml5.css" rel="stylesheet" type="text/css" />
-	<link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">-->
-
-    <!-- END PAGE LEVEL PLUGINS -->
-
-    <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/global/components.css" rel="stylesheet" id="style_components" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/global/plugins.css" rel="stylesheet" type="text/css" />
-    <!-- END THEME GLOBAL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/vendor/image-crop.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/vendor/portfolio.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS_EMPLOYER; ?>plugins/cubeportfolio/css/cubeportfolio.css" rel="stylesheet" type="text/css">
-    <!-- BEGIN THEME LAYOUT STYLES -->
-    <link href="<?php echo ASSETS; ?>css/layout2/layout.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS ?>css/layout2/themes/blue.css" rel="stylesheet" type="text/css" id="style_color" />
-    <link href="<?php echo ASSETS; ?>css/layout2/custom.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
-
-    <!-- END THEME LAYOUT STYLES -->
+    <!-- CUSTOM -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/alertify.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css">
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -111,7 +99,6 @@
     </script>
 
 </head>
-<!-- END HEAD -->
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
     <!-- BEGIN HEADER -->
@@ -119,9 +106,9 @@
         <!-- BEGIN HEADER INNER -->
         <div class="page-header-inner ">
             <!-- BEGIN LOGO -->
-            <div class="page-logo">            
+            <div class="page-logo">
                 <a href="<?php echo base_url();?>">
-                    <img src="<?php echo IMG; ?>/site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom" />
+                    <img src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom" />
                 </a>
                 <div class="menu-toggler sidebar-toggler"> </div>
             </div>

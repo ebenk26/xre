@@ -71,7 +71,7 @@
         <div class="row my-5">
             <div class="col-xs-6">
                 <a href="<?=base_url()?>">
-                    <img class="height-40" src="<?php echo base_url(); ?>assets/img/site/xremo-logo-white.svg" alt=" Xremo Logo">
+                    <img class="height-40" src="<?php echo IMG;?>site/xremo-logo-white.svg" alt="Xremo Logo">
                 </a>
             </div>
             <div class="col-xs-6 text-right">

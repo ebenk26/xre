@@ -14,31 +14,40 @@
 
 <head>
 
+    <!-- ========== CSS STYLE ========== -->
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all">
 
-    <!-- Bootstrap  -->
-    <link href="<?php echo base_url(); ?>assets/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Vendor Styles -->
-    <link href="<?php echo base_url(); ?>assets/css/vendor/animate.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/scrollbar.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/swiper.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
 
     <!-- Icon -->
-    <link href="<?php echo base_url(); ?>assets/css/icon/themify.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/themify.css">
+
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/scrollbar/scrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/swiper/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
     <!-- Global -->
-    <link href="<?php echo base_url(); ?>assets/css/global/components.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css">
+
     <!-- Layout 8 -->
-    <link href="<?php echo base_url(); ?>assets/css/layout8/layout8.css" rel="stylesheet" type="text/css">
-    <!-- BEGIN PAGE LEVEL STYLES -->
-    <link href="<?php echo ASSETS; ?>css/portfolio.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo ASSETS; ?>css/contact.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+
+    <!-- PAGES -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
@@ -226,12 +235,12 @@
                 <!-- Button -->
                 <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                 <div class="row mb-30 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  mt-sweetalert" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true"
-                        data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
-                        <i class="icon-note mr-5 "></i>Post</button>
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?"
+                        data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
+                        <i class="icon-book-open mr-5 "></i>Post</button>
 
-                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" btn btn-block btn-md-darkblue ">
-                        <i class="fa fa-building-o mr-5 "></i>Edit</a>
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs">
+                        <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>
                 <?php endif ?>
 
@@ -264,10 +273,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
+                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>"
+                                target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook" class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook"
+                                class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
                         </li>
                         <li>
                             <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="linkedin" class="social-icon social-icon-color linkedin share-tw"></a>
@@ -307,10 +318,11 @@
                         <li class="list-group-item px-0 py-1">
                             <a class="md-orange-text-hover" href="<?php echo base_url(); ?>job/details/<?= rtrim(base64_encode($value['id']), '='); ?>" target="_blank">
                                 <p class=" my-0 font-15 font-weight-500 md-orange-text-hover ">
-                                    <?php echo $value['name']; ?> 
-                                    <small class="font-weight-400">[<?php echo $value['employment_name'] ?>]</small>
+                                    <?php echo $value['name']; ?>
+                                    <small class="font-weight-400">[
+                                        <?php echo $value['employment_name'] ?>]</small>
                                 </p>
-                                
+
                             </a>
                         </li>
                         <?php endforeach ?>
@@ -332,52 +344,41 @@
 
 
         <!-- Modal Job Apply-->
-        <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content ">
                     <div class="modal-header">
                         <h5 class=" mb-0">Short Description About Yourself</h5>
-                        <!-- <div class="media ">
-                            <div class="pull-left">
-                                <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-tiny avatar-circle">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-3 mb-1">Nick Jonas</h5>
-                                <p class="">Student </p  >
-                            </div>
-                        </div> -->
                     </div>
                     <form action="<?php echo base_url(); ?>student/dashboard/applied" method="POST" class="form form-horizontal">
                         <div class="modal-body  ">
-                            <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                <div class="media ">
-                                    <div class="pull-left">
-                                        <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="mt-1 mb-1 md-darkblue-text font-weight-500 ">
-                                            <?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
-                                            <small class="">
+                            <div class="media ">
+                                <div class="pull-left">
+                                    <img src="<?php echo !empty($applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="my-5 md-darkblue-text font-weight-500 ">
+                                        <?php $student = $this->session->userdata('name'); echo !empty($student) ? $student : ''; ?>
+                                        <!-- <small class="">
                                                 <i class="icon-pointer"></i>
                                                 <?php $country = $this->session->userdata('country'); echo !empty($country) ? $country : ''; ?>
-                                            </small>
-                                        </h6>
-                                        <p class=" text-none">Apply for position
-                                            <strong class="text-capitallize">
-                                                <?php echo $job->name; ?>
-                                            </strong>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group text-left mx-0 mb-2">
-                                    <textarea name="coverletter" id="" class="form-control " rows="7" placeholder="Describe yourself and why we should hire you? Not more than 300 words"></textarea>
-                                    <input type="hidden" name="job_id" value="<?= $job_id; ?>">
+                                            </small> -->
+                                    </h6>
+                                    <p class="text-none">Apply for position
+                                        <strong class="text-capitallize">
+                                            <?php echo $job->name; ?>
+                                        </strong>
+                                    </p>
                                 </div>
                             </div>
+                            <div class="form-group text-left mx-0 mb-10">
+                                <textarea name="coverletter" id="" class="form-control " rows="10" placeholder="Describe yourself and why we should hire you? Not more than 300 words"></textarea>
+                                <input type="hidden" name="job_id" value="<?= $job_id; ?>">
+                            </div>
                         </div>
-                        <div class="modal-footer md-grey lighten-4">
-                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                            <button type="submit" class="btn btn-md-darkblue ">Submit</button>
+                        <div class="modal-footer ">
+                            <a href="" data-dismiss="modal" class="btn btn-outline btn-md-indigo">Cancel</a>
+                            <button type="submit" class="btn btn-md-indigo ">Submit</button>
                         </div>
                     </form>
 
@@ -391,57 +392,59 @@
 
     <?php $this->load->view('main/footer_content');?>
 
-    <!-- BEGIN CORE PLUGINS -->
-    <!-- Metronic -->
+    <!-- CORE -->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-    <!-- BEGIN CORE PLUGINS -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/plugins/jquery-v1-12-4.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/vendor/jquery-v1-11.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.migrate.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.smooth-scroll.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.back-to-top.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+    <!-- VENDOR -->
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.smooth-scroll.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.back-to-top.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.equal-height.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.parallax.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/counterup.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/swiper/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/masonry/jquery.masonry.pkgd.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/masonry/imagesloaded.pkgd.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/rateit/jquery.rateit.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/clipboardjs/clipboard.min.js"></script>
 
-    <!--//REMOVE
-	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/swiper/swiper.jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/jquery.masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/masonry/imagesloaded.pkgd.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.parallax.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/jquery.wow.min.js"></script>
-	<script type="text/javascript" src="<?php echo ASSETS; ?>plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/rateit/jquery.rateit.min.js"></script>
-    <script type="text/javascript" src="<?php echo ASSETS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-	-->
+    <!-- Custom-->
+    <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
 
-    <!-- General Components and Settings -->
+    <!-- Global-->
+    <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
+    <!-- Layout 8 -->
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/layout8.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>
+    <!-- Component Page -->
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/header-sticky.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/scrollbar.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/magnific-popup.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/swiper.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header-sticky.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swiper.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/masonry.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/equal-height.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/parallax.min.js"></script>
-    <!-- <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>portfolio-3-col.min.js"></script> -->
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>clipboard.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS_STUDENTS; ?>components-clipboard.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <script src="<?php echo JS_EMPLOYER; ?>sweetalert.min.js" type="text/javascript"></script>
-    <link href="<?php echo CSS_EMPLOYER; ?>sweetalert.css" rel="stylesheet" type="text/css">
+    <!-- Page -->
+    <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3-gallery.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>pages/components-clipboard.min.js"></script>
+
+
+
+
 
     <script>
         $(document).ready(function () {

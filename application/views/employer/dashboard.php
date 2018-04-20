@@ -101,12 +101,14 @@
                 <div class="portlet light tasks-widget">
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
-                            <i class="icon-share font-dark"></i>
+                            <i class="icon-notebook font-dark"></i>
                             <span class="caption-subject font-dark font-weight-600 text-uppercase">Recent Job Post </span>
                         </div>
                     </div>
                     <div class="scroller height-500" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                         <div class="portlet-body">
+                                
+                            <!-- ADD : EMPTY STATES -->
                             <div class="table-scrollable table-scrollable-borderless">
                                 <table class="table table-hover ">
                                     <thead>
@@ -114,9 +116,9 @@
                                             <th> # </th>
                                             <th class="col-sm-7"> Job </th>
                                             <!-- <th> Last Update</th> -->
-                                            <th class="col-sm-2"> Status </th>
-                                            <th class="col-sm-2"> Candidate</th>
-                                            <th class="col-sm-1"></th>
+                                            <th class="col-sm-2 text-center"> Status </th>
+                                            <th class="col-sm-2 text-center"> Candidate</th>
+                                            <th class="col-sm-1 text-center"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -126,7 +128,7 @@
                                                 <?php echo $i; ?> </td>
                                             <td>
                                                 <?php echo $value['name'] ?> </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <?php if(strtotime(date('Y-m-d')) >= strtotime($value['expiry_date'])){?>
                                                 <span class="label label-sm label-danger"> Expired </span>
                                                 <?php }else{?>
@@ -134,19 +136,18 @@
                                                     <?php echo ucfirst($value['status'] == 'post'?"Active":$value['status']) ?> </span>
                                                 <?php }?>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <i class="icon-users"></i>
                                                 <?=$value['number_of_candidate']?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm  btn-circle">View</a>
+                                                <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">View Candidates</a>
                                             </td>
                                         </tr>
                                         <?php $i++; } ?>
                                     </tbody>
-                                </table>
-                                <br>
-                                <a href="<?=base_url()?>employer/job_board" class="btn btn-danger text-uppercase pull-right">View All</a>
+                                </table>                            
+                                <a href="<?=base_url()?>employer/job_board" class="btn btn-danger text-uppercase pull-right px-100 mt-50">View All</a>
                             </div>
                         </div>
                     </div>
@@ -261,13 +262,13 @@
             <div class="col-lg-6 col-sm-12">
                 <div class="portlet light">
                     <div class="portlet-title">
-                        <div class="caption caption-md font-blue">
-                            <i class="icon-share font-blue"></i>
+                        <div class="caption caption-md md-darkblue-text">
+                            <i class="icon-list md-darkblue-text"></i>
                             <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">Recent Activities</span>
                         </div>
                     </div>
-                    <div class="scroller height-380"  data-always-visible="1" data-rail-visible="0">
-                        <div class="portlet-body ">
+                    <div class="portlet-body ">
+                        <div class="scroller height-370 " data-always-visible="1" data-rail-visible="1">
                             <ul class="feeds">
                                 <?php foreach($recent_activities as $row){?>
                                 <li>
@@ -294,13 +295,7 @@
                                 <?php }?>
 
                             </ul>
-                        </div>
-                        <!-- <div class="scroller-footer">
-                            <div class="btn-arrow-link pull-right">
-                                <a href="#" class="">See All Records</a>
-                                <i class="icon-arrow-right"></i>
-                            </div>
-                        </div> -->
+                        </div>                        
                     </div>
                 </div>
             </div>

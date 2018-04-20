@@ -223,6 +223,15 @@ li {
 
 
 
+html,
+body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important; }
+
+html {
+  overflow-x: hidden !important; }
+
 body {
   color: #333333;
   font-family: "Open Sans", sans-serif;
@@ -231,12 +240,6 @@ body {
   direction: "ltr";
   font-size: 14px; }
 
-
-@-webkit-viewport {
-  width: device-width; }
-
-@-moz-viewport {
-  width: device-width; }
 
 @-ms-viewport {
   width: device-width; }
@@ -14937,7 +14940,8 @@ code {
 
 .parallax {
   position: relative;
-  min-height: 60vh; }
+  min-height: 30vh;
+  height: 50vh; }
   .parallax.parallax-position-center {
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -14952,7 +14956,7 @@ code {
     background-position: center 95%; }
   @media (max-width: 768px) {
     .parallax {
-      min-height: 60vh; } }
+      min-height: 30vh; } }
 
 .hm-red-v1 {
   background-color: rgba(244, 67, 54, 0.1); }
@@ -15326,6 +15330,21 @@ code {
     text-align: center; }
     .flex-center ul li {
       margin-bottom: 1rem; }
+
+.bg-position-center {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%; }
+
+.bg-position-top {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 15%; }
+
+.bg-position-bottom {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 95%; }
 
 
 .scrollspy-example {
@@ -21735,6 +21754,12 @@ body.stop-scrolling {
 .bg-default-opacity {
   background: rgba(225, 229, 236, 0.8) !important; }
 
+.default-hover:hover {
+  background: rgba(225, 229, 236, 0.7) !important; }
+
+.font-default {
+  color: #E1E5EC !important; }
+
 .bg-font-default {
   color: #666 !important; }
 
@@ -22433,6 +22458,12 @@ body.stop-scrolling {
   background: rgba(208, 84, 84, 0.8) !important; }
 
 .red-soft-hover:hover {
+  background: rgba(208, 84, 84, 0.7) !important; }
+
+.font-red-soft {
+  color: #D05454 !important; }
+
+.bg-font-red-soft {
   color: #FFF !important; }
 
 .bg-before-red-soft:before,
@@ -45227,7 +45258,11 @@ a.md-grey-text-hover:hover {
 
 .portlet.light > .portlet-title.tab-md-purple > .nav-tabs > li.active > a,
 .portlet.light > .portlet-title.tab-md-purple > .nav-tabs > li:hover > a {
-  background: none; 
+  border-color: #9C27B0;
+  background: none; }
+
+.portlet > .portlet-body.portlet-md-deep-purple,
+.portlet.portlet-md-deep-purple {
   background-color: #673AB7; }
 
 .portlet.solid.portlet-md-deep-purple > .portlet-body,
@@ -48961,3 +48996,5 @@ a.md-grey-text-hover:hover {
       width: 100%; }
       .mt-content-row .mt-content-col-fixed .mt-content-sidebar {
         margin-left: 0; } }
+
+
