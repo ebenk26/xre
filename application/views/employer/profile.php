@@ -20,6 +20,59 @@
     }*/
 
 ?>
+<style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #gmap {
+        height: 100%;
+        width: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        height: 29px;
+        margin-left: 17px;
+        margin-top: 10px;
+        outline: none;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      .pac-container{
+        z-index: 99999 !important;
+      }
+
+      .controls:focus {
+        border-color: #4d90fe;
+      }
+      .title {
+        font-weight: bold;
+      }
+      #infowindow-content {
+        display: none;
+      }
+      #gmap #infowindow-content {
+        display: inline;
+      }
+      #pac-input{
+        position: absolute;
+        z-index: 99999;
+      }
+
+    </style>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -136,7 +189,7 @@
                     </div>
 
                     <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right p-20 hidden-xs">
-                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo btn-circle">
+                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo btn-circle" id="btnEditProfile">
                             <i class="icon-pencil mr-5"></i>Edit Profile</a>
 
                     </div>
@@ -640,6 +693,21 @@
                                         <?php if (!empty($company_address)) {
                                         foreach ($company_address as $key => $value) { ?>
                                         <div data-repeater-item class="mt-repeater-item">
+                                            <!-- <div class="row">
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <input type="hidden" id="addMapTitle" name="mapTitle"></input>
+                                                    <input type="hidden" id="addMapDescription" name="mapDescription"></input>
+                                                    <div class="row mx-0">
+                                                        <div class="col-md-12">
+                                                            <div style="height: 300px;" id="map-window">
+                                                                <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+                                                                <div class="profileMap" id="gmap" style="z-index: 9999 !important;"></div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
                                             <!-- Address -->
                                             <div class="row mx-0">
                                                 <div class="form-group mx-0">
@@ -752,6 +820,21 @@
                                         </div>
                                         <?php } }else{ ?>
                                         <div data-repeater-item class="mt-repeater-item">
+                                            <div class="row">
+                                                <div class="col-md-12 col-xs-12 col-sm-12">
+                                                    <input type="hidden" id="addMapTitle" name="mapTitle"></input>
+                                                    <input type="hidden" id="addMapDescription" name="mapDescription"></input>
+                                                    <div class="row mx-0">
+                                                        <div class="col-md-12">
+                                                            <div style="height: 300px;" id="map-window">
+                                                                <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+                                                                <div class="profileMap" id="gmap" style="z-index: 9999 !important;"></div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- Address -->
                                             <div class="row mx-0 ">
                                                 <div class="form-group mx-0">
