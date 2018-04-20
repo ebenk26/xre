@@ -16,30 +16,35 @@
 
     <!-- ========== CSS STYLE ========== -->
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
-    <!-- Bootstrap  -->
-    <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- Vendor Styles -->
-    <link href="<?php echo JS; ?>plugins/animate/animate.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo JS; ?>layout8/vendor/scrollbar/scrollbar.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo JS; ?>layout8/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo JS; ?>layout8/vendor/swiper/swiper.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css" rel="stylesheet" type="text/css" />
-    <!-- Custom -->
-    <link href="<?php echo CSS; ?>vendor/alertify.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo JS; ?>plugins/rateit/rateit.css" rel="stylesheet" type="text/css"
-    >
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" >
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" >
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
+
     <!-- Icon -->
-    <link href="<?php echo CSS; ?>icon/themify.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/themify.css" >
+    
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/scrollbar/scrollbar.min.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/magnific-popup/magnific-popup.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/swiper/swiper.min.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css" >
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css" >
 
     <!-- Global -->
-    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" >
+    
     <!-- Layout 8 -->
-    <link href="<?php echo CSS; ?>layout8/layout8.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">

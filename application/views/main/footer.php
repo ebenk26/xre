@@ -3,7 +3,7 @@
 <!--========== JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) ==========-->
 
 <!-- CORE -->
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-v1-12-4.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
@@ -32,9 +32,9 @@
 <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
 
 <!-- Global-->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/global/app.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
 <!-- Layout 8 -->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/layout8/layout8.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>layout8/layout8.min.js"></script>
 
 <!-- Component Page -->
 <script type="text/javascript" src="<?php echo JS; ?>layout8/components/header-sticky.min.js"></script>
@@ -47,10 +47,12 @@
 <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
 
+<!-- Page -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3-gallery.js"></script>
 
 
 <!--========== END JAVASCRIPTS ==========-->
+
 
 <script type="text/javascript">
     $(document).ready(function () {

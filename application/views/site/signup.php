@@ -349,7 +349,7 @@
 
     <!-- JAVASCRIPT -->
     <!-- CORE -->
-    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-v1-12-4.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
