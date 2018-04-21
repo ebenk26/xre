@@ -106,6 +106,7 @@ class Employer_Model extends CI_Model{
 		$this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
 		$this->db->where('user_id', $id);
         $this->db->order_by('job_positions.created_at', 'desc');
+        $this->db->limit(6);
         $query = $this->db->get('job_positions');
         return $query->result_array();
     }

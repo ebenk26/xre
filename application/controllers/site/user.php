@@ -314,4 +314,16 @@ class User extends CI_Controller {
         redirect(base_url().$roles.'/settings');
     }
 
+    function change_password(){
+        $this->load->view('site/change_password');
+    }
+
+    function expired_password(){
+        $this->load->view('site/expired_password');
+    }
+
+    function success_change_password(){
+        $this->load->view('site/expired_password');
+    }
+
 }

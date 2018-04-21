@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<?= ASSETS; ?>plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="<?= ASSETS; ?>css/components.css">
 
-    <link rel="stylesheet" type="text/css" href="<?= ASSETS; ?>style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>style.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../custom_pages/favicon.ico" type="image/x-icon">
 </head>
@@ -41,7 +41,7 @@
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
                             <a href="index.html" class="s-header-v2-logo-link">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?= ASSETS; ?>img/xremo/xremo.png" alt="Dublin Logo" style="height:47px">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
                                 <!-- <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?= ASSETS; ?>img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo"> -->
                             </a>
                         </div>
