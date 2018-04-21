@@ -7,7 +7,7 @@
 <!-- ========== Javascript ========== -->
 <!-- CORE  -->
 <!-- Jquery in Plugin Folder v1.12.4  -->
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script> 
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
@@ -105,10 +105,14 @@
             $this = $('#addBudgetMin').val();
             $that = $('#addBudgetMax').val();
             if ($this.length > 0) {
+<<<<<<< HEAD
+                if (parseInt($this) >= parseInt($that)) {
+=======
                 if (parseInt($this) > parseInt($that)) {
+>>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
                     $('#salaryBlock').addClass('has-error');
                     $('#salaryBlockError').removeClass('hidden');
-                }else{
+                } else {
                     $('#salaryBlock').removeClass('has-error');
                     $('#salaryBlockError').addClass('hidden');
                 }
@@ -255,10 +259,304 @@
             });
         })
     });
+<<<<<<< HEAD
+
+
+
+    function initMap() {
+
+=======
 
     // GMap
     function initMap() {
+>>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
         var map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: -33.8688,
+                lng: 151.2195
+            },
+            zoom: 13
+        });
+
+        var input = document.getElementById('pac-input');
+
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+            map: map
+        });
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+
+<<<<<<< HEAD
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            // Set the position of the marker using the place ID and location.
+            marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+            marker.setVisible(true);
+            var element = document.getElementById('map-window');
+            var InfoWindow = document.createElement('div');
+            var title = document.createElement('span');
+            var addr = document.createElement('span');
+
+            element.appendChild(InfoWindow);
+            InfoWindow.setAttribute('id', 'infowindow-content');
+            InfoWindow.appendChild(title);
+            title.setAttribute('id', 'place-name');
+            document.createElement('br');
+            InfoWindow.appendChild(addr);
+            addr.setAttribute('id', 'place-address');
+            document.getElementById('place-name').textContent = place.name;
+            document.getElementById('place-address').textContent =
+                place.formatted_address;
+            infowindow.setContent(document.getElementById('infowindow-content'));
+            infowindow.open(map, marker);
+            document.getElementById('addLatitude').value = place.geometry.location.lat();
+            document.getElementById('addLongitude').value = place.geometry.location.lng();
+            document.getElementById('addMapTitle').value = place.name;
+            document.getElementById('addMapDescription').value = place.formatted_address;
+            document.getElementById('addAddress').value = place.formatted_address;
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];;
+                var val = place.address_components[i];
+
+                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('addState').value = val.long_name;
+                }
+                if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('addCity').value = val.long_name;
+                }
+                if (addressType == 'country') {
+                    document.getElementById('addCountry').value = val.long_name;
+                }
+                if (addressType == 'postal_code') {
+                    document.getElementById('addPostcode').value = val.long_name;
+                }
+            }
+=======
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            return;
+          }
+
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+          }
+
+          // Set the position of the marker using the place ID and location.
+          marker.setPlace({
+            placeId: place.place_id,
+            location: place.geometry.location
+          });
+          marker.setVisible(true);
+          var element   = document.getElementById('map-window');
+          var InfoWindow= document.createElement('div');
+          var title     = document.createElement('span');
+          var addr      = document.createElement('span');
+
+          element.appendChild(InfoWindow);
+          InfoWindow.setAttribute('id', 'infowindow-content');
+          InfoWindow.appendChild(title);
+          title.setAttribute('id', 'place-name');
+          document.createElement('br');
+          InfoWindow.appendChild(addr);
+          addr.setAttribute('id', 'place-address');
+          document.getElementById('place-name').textContent = place.name;
+          document.getElementById('place-address').textContent =
+              place.formatted_address;
+          infowindow.setContent(document.getElementById('infowindow-content'));
+          infowindow.open(map, marker);
+          document.getElementById('addLatitude').value=place.geometry.location.lat();
+          document.getElementById('addLongitude').value=place.geometry.location.lng();
+          document.getElementById('addMapTitle').value= place.name;
+          document.getElementById('addMapDescription').value= place.formatted_address;
+          document.getElementById('addAddress').value= place.formatted_address;
+          for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];;
+              var val = place.address_components[i];
+
+              if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                document.getElementById('addState').value= val.long_name;
+              }
+              if (addressType == 'administrative_area_level_1') {
+                document.getElementById('addCity').value= val.long_name; 
+              }
+              if (addressType == 'country') {
+                document.getElementById('addCountry').value= val.long_name;
+              }
+              if (addressType == 'postal_code') {
+                document.getElementById('addPostcode').value= val.long_name;
+              }
+          }
+>>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap" async defer></script>
+<?php endif; ?>
+
+<?php if ($this->uri->segment(2) == 'profile') :?>
+<script>
+    $(document).ready(function () {
+
+        $('.btnEditProfile').click(function () {
+            var idJobPost = $(this).attr('data-id');
+            // console.log(idMap);
+
+            var lat = document.getElementById('latitude' + idJobPost).value;
+            var lng = document.getElementById('longitude' + idJobPost).value;
+
+            var input = document.getElementById('pac-input' + idJobPost);
+
+            if (lat.length > 0 && lng.length > 0) {
+                var mapLatitude = document.getElementById('latitude' + idJobPost).value;
+                var mapLongitude = document.getElementById('longitude' + idJobPost).value;
+                var title = document.getElementById('addMapTitle' + idJobPost).value;
+                var description = document.getElementById('addMapDescription' + idJobPost).value;
+
+                var map = new google.maps.Map(document.getElementById('gmap' + idJobPost), {
+                    center: {
+                        lat: parseFloat(mapLatitude),
+                        lng: parseFloat(mapLongitude)
+                    },
+                    // center: {lat: -33.8688, lng: 151.2195},
+                    zoom: 13
+                });
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>' + title +
+                    '</b></span><br/>' + description + '</span></div>';
+                console.log(contentString);
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                var marker = new google.maps.Marker({
+                    position: {
+                        lat: parseFloat(mapLatitude),
+                        lng: parseFloat(mapLongitude)
+                    },
+                    map: map,
+                    title: title,
+                });
+
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            } else {
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                autocomplete.bindTo('bounds', map);
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker = new google.maps.Marker({
+                    map: map
+                });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    return;
+                }
+
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);
+                }
+
+                // Set the position of the marker using the place ID and location.
+                marker.setPlace({
+                    placeId: place.place_id,
+                    location: place.geometry.location
+                });
+                marker.setVisible(true);
+                var element = document.getElementById('map-window' + idJobPost);
+                var InfoWindow = document.createElement('div');
+                var title = document.createElement('span');
+                var addr = document.createElement('span');
+                var br = document.createElement('br');
+
+                element.appendChild(InfoWindow);
+                InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
+                InfoWindow.setAttribute('style', 'display: inline');
+
+                InfoWindow.appendChild(title);
+                title.setAttribute('id', 'place-name' + idJobPost);
+                title.setAttribute('style', 'font-weight: bold');
+                InfoWindow.appendChild(br);
+                InfoWindow.appendChild(addr);
+                addr.setAttribute('id', 'place-address' + idJobPost);
+                document.getElementById('place-name' + idJobPost).textContent = place.name;
+                document.getElementById('place-address' + idJobPost).textContent =
+                    place.formatted_address;
+                infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
+                infowindow.open(map, marker);
+                document.getElementById('latitude' + idJobPost).value = place.geometry.location.lat();
+                document.getElementById('longitude' + idJobPost).value = place.geometry.location.lng();
+                document.getElementById('addAddress' + idJobPost).value = place.formatted_address;
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    var val = place.address_components[i];
+                    if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                        document.getElementById('addState' + idJobPost).value = val.long_name;
+                    }
+                    if (addressType == 'administrative_area_level_1') {
+                        document.getElementById('addCity' + idJobPost).value = val.long_name;
+                    }
+                    if (addressType == 'country') {
+                        document.getElementById('addCountry' + idJobPost).value = val.long_name;
+                    }
+                    if (addressType == 'postal_code') {
+                        document.getElementById('addPostcode' + idJobPost).value = val.long_name;
+                    }
+                }
+
+            });
+        })
+    });
+
+
+
+    function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('gmap'), {
             center: {
                 lat: -33.8688,
                 lng: 151.2195
@@ -347,229 +645,10 @@
         async defer></script>
     <?php endif; ?>
 
-    <?php if ($this->uri->segment(2) == 'profile') :?>
-    <script>
-
-    $(document).ready(function(){
-
-        $('.btnEditProfile').click(function(){
-            var idJobPost   = $(this).attr('data-id');
-            // console.log(idMap);
-
-            var lat = document.getElementById('latitude'+idJobPost).value;
-            var lng = document.getElementById('longitude'+idJobPost).value;
-
-            var input = document.getElementById('pac-input'+idJobPost);
-
-            if(lat.length > 0 && lng.length > 0)
-            {
-                var mapLatitude     = document.getElementById('latitude'+idJobPost).value;
-                var mapLongitude    = document.getElementById('longitude'+idJobPost).value;
-                var title           = document.getElementById('addMapTitle'+idJobPost).value;
-                var description     = document.getElementById('addMapDescription'+idJobPost).value;
-
-                var map = new google.maps.Map(document.getElementById('gmap'+idJobPost), {
-                  center: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
-                  // center: {lat: -33.8688, lng: 151.2195},
-                  zoom: 13
-                });
-
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
-
-                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>'+title+
-                '</b></span><br/>'+description+'</span></div>';
-                console.log(contentString);
-
-                var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-                });
-
-                var marker = new google.maps.Marker({
-                  position: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
-                  map: map,
-                  title: title,
-                });
-
-                marker.addListener('click', function() {
-                  infowindow.open(map, marker);
-                });
-            }
-            else
-            {
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
-
-                var infowindow = new google.maps.InfoWindow();
-                var marker = new google.maps.Marker({
-                  map: map
-                });
-                marker.addListener('click', function() {
-                  infowindow.open(map, marker);
-                });
-            }            
-
-            autocomplete.addListener('place_changed', function() {
-              infowindow.close();
-              var place = autocomplete.getPlace();
-              if (!place.geometry) {
-                return;
-              }
-
-              if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-              } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-              }
-
-              // Set the position of the marker using the place ID and location.
-              marker.setPlace({
-                placeId: place.place_id,
-                location: place.geometry.location
-              });
-              marker.setVisible(true);
-              var element   = document.getElementById('map-window'+idJobPost);
-              var InfoWindow= document.createElement('div');
-              var title     = document.createElement('span');
-              var addr      = document.createElement('span');
-              var br        = document.createElement('br');
-
-              element.appendChild(InfoWindow);
-              InfoWindow.setAttribute('id', 'infowindow-content'+idJobPost);
-              InfoWindow.setAttribute('style', 'display: inline');
-
-              InfoWindow.appendChild(title);
-              title.setAttribute('id', 'place-name'+idJobPost);
-              title.setAttribute('style', 'font-weight: bold');
-              InfoWindow.appendChild(br);
-              InfoWindow.appendChild(addr);
-              addr.setAttribute('id', 'place-address'+idJobPost);
-              document.getElementById('place-name'+idJobPost).textContent = place.name;
-              document.getElementById('place-address'+idJobPost).textContent =
-                  place.formatted_address;
-              infowindow.setContent(document.getElementById('infowindow-content'+idJobPost));
-              infowindow.open(map, marker);
-              document.getElementById('latitude'+idJobPost).value=place.geometry.location.lat();
-              document.getElementById('longitude'+idJobPost).value=place.geometry.location.lng();
-              document.getElementById('addAddress'+idJobPost).value= place.formatted_address;
-              for (var i = 0; i < place.address_components.length; i++) {
-                var addressType = place.address_components[i].types[0];
-                  var val = place.address_components[i];
-                  if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                    document.getElementById('addState'+idJobPost).value= val.long_name;
-                  }
-                  if (addressType == 'administrative_area_level_1') {
-                    document.getElementById('addCity'+idJobPost).value= val.long_name; 
-                  }
-                  if (addressType == 'country') {
-                    document.getElementById('addCountry'+idJobPost).value= val.long_name;
-                  }
-                  if (addressType == 'postal_code') {
-                    document.getElementById('addPostcode'+idJobPost).value= val.long_name;
-                  }
-              }
-
-            });
-        })
-    });
-
-
-
-      function initMap() {
-
-        var map = new google.maps.Map(document.getElementById('gmap'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
-        });
-
-        var input = document.getElementById('pac-input');
-
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo('bounds', map);
-
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        var infowindow = new google.maps.InfoWindow();
-        var marker = new google.maps.Marker({
-          map: map
-        });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-
-        autocomplete.addListener('place_changed', function() {
-          infowindow.close();
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            return;
-          }
-
-          if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-          }
-
-          // Set the position of the marker using the place ID and location.
-          marker.setPlace({
-            placeId: place.place_id,
-            location: place.geometry.location
-          });
-          marker.setVisible(true);
-          var element   = document.getElementById('map-window');
-          var InfoWindow= document.createElement('div');
-          var title     = document.createElement('span');
-          var addr      = document.createElement('span');
-
-          element.appendChild(InfoWindow);
-          InfoWindow.setAttribute('id', 'infowindow-content');
-          InfoWindow.appendChild(title);
-          title.setAttribute('id', 'place-name');
-          document.createElement('br');
-          InfoWindow.appendChild(addr);
-          addr.setAttribute('id', 'place-address');
-          document.getElementById('place-name').textContent = place.name;
-          document.getElementById('place-address').textContent =
-              place.formatted_address;
-          infowindow.setContent(document.getElementById('infowindow-content'));
-          infowindow.open(map, marker);
-          document.getElementById('addLatitude').value=place.geometry.location.lat();
-          document.getElementById('addLongitude').value=place.geometry.location.lng();
-          document.getElementById('addMapTitle').value= place.name;
-          document.getElementById('addMapDescription').value= place.formatted_address;
-          document.getElementById('addAddress').value= place.formatted_address;
-          for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];;
-              var val = place.address_components[i];
-
-              if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                document.getElementById('addState').value= val.long_name;
-              }
-              if (addressType == 'administrative_area_level_1') {
-                document.getElementById('addCity').value= val.long_name; 
-              }
-              if (addressType == 'country') {
-                document.getElementById('addCountry').value= val.long_name;
-              }
-              if (addressType == 'postal_code') {
-                document.getElementById('addPostcode').value= val.long_name;
-              }
-          }
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
-        async defer></script>
-    <?php endif; ?>
-
  
 <script>
     $(document).ready(function () {
-        
+
         var e = $("#xremo_table");
         e.dataTable({
             language: {
@@ -676,50 +755,40 @@
                         var academic_date = new Date(v.start_date);
                         academics +=
                             '<ul class="list-unstyled">\
-                                                <li>\
-                                                    <h5 class="font-weight-700">\
-                                                        <small>' +
-                            v.start_date + ' - ' + v.end_date +
-                            '</small>\
-                                                    </h5>\
-                                                    <h6 class="font-weight-600 text-uppercase ">' +
-                            v.university_name + '</h6>\
-                                                </li>\
-                                            </ul>';
+                                <li>\
+                                    <h6 class="font-weight-600 text-uppercase ">' +v.university_name + '</h6>\
+                                    <small> <i class="fa fa-calendar"></i>' +v.start_date + ' - ' + v.end_date +'</small>\
+                                </li>\
+                            </ul>';
                     });
 
                     $.each(student.user_profile.projects, function (i, v) {
                         project +=
                             '<ul class="list-unstyled">\
-                                        <li>\
-                                            <h5 class="font-weight-700"> ' +
-                            v.name + ' </h5>\
-                                            <h6>' + v.skills_acquired +
-                            '</h6>\
-                                        </li>\
-                                    </ul>';
+                                <li>\
+                                    <h5 class="font-weight-700"> ' +v.name + ' </h5>\
+                                    <h6>' + v.skills_acquired +'</h6>\
+                                </li>\
+                            </ul>';
                     });
 
                     $.each(student.user_profile.achievement, function (i, v) {
-                        non_academics += '<li>\
-                                                    <h5 class="font-weight-700">' + v.achievement_title +
-                            '\
-                                                        <small>' + v.achievement_start_date + ' - ' + v.achievement_end_date +
-                            '</small>\
-                                                    </h5>\
-                                                </li>';
+                        non_academics += 
+                        '<li>\
+                            <h5 class="font-weight-700">' + v.achievement_title +'\
+                                <small>' + v.achievement_start_date + ' - ' + v.achievement_end_date +'</small>\
+                            </h5>\
+                        </li>';
                     });
 
                     $.each(student.user_profile.experiences, function (i, v) {
-                        experience += '<li>\
-                                                <h5 class="font-weight-700">' + v.experiences_title +
-                            '\
-                                                    <small>' + v.experiences_start_date + ' - ' + v.experiences_end_date +
-                            '</small>\
-                                                </h5>\
-                                                <h6 class="font-weight-600 text-uppercase ">' +
-                            v.experiences_company_name + '</h6>\
-                                            </li>';
+                        experience += 
+                        '<li>\
+                            <h5 class="font-weight-700">' + v.experiences_title +'\
+                                <small class="font-15">' + v.experiences_start_date + ' - ' + v.experiences_end_date +'</small>\
+                            </h5>\
+                            <h6 class="font-weight-600 text-uppercase ">' +v.experiences_company_name + '</h6>\
+                        </li>';
                     });
 
                     $('#modal_view_summary').html(
@@ -728,40 +797,27 @@
                                 <div class="modal-header md-indigo">\
                                     <div class="media">\
                                         <div class="pull-left">\
-                                            <img src="' +
-                        image_directory + profile_pic +
-                        '" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
+                                            <img src="' +image_directory + profile_pic +'" alt="" class="avatar avatar-circle avatar-small ">\
                                         </div>\
                                         <div class="pull-right">\
-                                            <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">\
+                                            <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28">\
                                                 <i class="fa fa-close"></i>\
                                             </a>\
                                         </div>\
                                         <div class="media-body">\
-                                            <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">' +
-                        student.user_profile.overview.name +
-                        '</h3>\
+                                            <h3 class="md-white-text font-weight-500 letter-space-xs mt-5">' +student.user_profile.overview.name +'</h3>\
                                             <ul class="list-inline list-unstyled md-white-text ">\
-                                                <li>\
-                                                    <i class="icon-pointer"></i> ' +
-                        city_states +
-                        '</li>\
-                                                <li>\
-                                                    <i class="icon-envelope"></i> ' +
-                        student.user_profile.overview.email +
-                        '</li>\
+                                                <li>\<i class="icon-pointer"></i> ' +city_states +'</li>\
+                                                <li>\<i class="icon-envelope"></i> ' +student.user_profile.overview.email +'</li>\
                                             </ul>\
                                         </div>\
                                     </div>\
                                 </div>\
                                 <div class="modal-body">\
-                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">\
                                         <div class="row">\
                                             <div class="col-md-12 pr-0">\
                                                 <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
-                                                <p class="mt-0">' +
-                        summary +
-                        '</p>\
+                                                <p class="mt-0">' +summary +'</p>\
                                             </div>\
                                         </div>\
                                         <hr class="hidden-sm">\
@@ -772,7 +828,7 @@
                                                     <div class="portlet-title ">\
                                                         <div class="caption">\
                                                             <i class="icon-graduation"></i>\
-                                                            <span class="caption-subject font-26-xs"> Education</span>\
+                                                            <span class="caption-subject "> Education</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
@@ -780,18 +836,16 @@
                                                         </div>\
                                                     </div>\
                                                     <div class="portlet-body ">\
-                                                    ' +
-                        academics +
-                        '\
+                                                    ' + academics + '\
                                                     </div>\
                                                 </div>\
                                             </div>\
                                             <div class="col-md-6">\
                                                 <div class="portlet  ">\
                                                     <div class="portlet-title ">\
-                                                        <div class="caption">\
+                                                        <div class="caption ">\
                                                             <i class="icon-notebook"></i>\
-                                                            <span class="caption-subject font-26-xs">Non Education</span>\
+                                                            <span class="caption-subject ">Non Education</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
@@ -800,9 +854,7 @@
                                                     </div>\
                                                     <div class="portlet-body">\
                                                         <ul class="list-unstyled">\
-                                                            ' +
-                        non_academics +
-                        '\
+                                                            ' +non_academics +'\
                                                         </ul>\
                                                     </div>\
                                                 </div>\
@@ -813,9 +865,9 @@
                                                 \
                                                 <div class="portlet">\
                                                     <div class="portlet-title">\
-                                                        <div class="caption">\
+                                                        <div class="caption ">\
                                                             <i class="icon-badge"></i>\
-                                                            <span class="caption-subject font-26-xs">Skill</span>\
+                                                            <span class="caption-subject ">Skill</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
@@ -823,9 +875,7 @@
                                                         </div>\
                                                     </div>\
                                                     <div class="portlet-body  ">\
-                                                        ' +
-                        project +
-                        '\
+                                                        ' +project +'\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -835,7 +885,7 @@
                                                     <div class="portlet-title">\
                                                         <div class="caption">\
                                                             <i class="icon-briefcase"></i>\
-                                                            <span class="caption-subject font-26-xs"> Experience</span>\
+                                                            <span class="caption-subject "> Experience</span>\
                                                             <span class="caption-helper">Summary</span>\
                                                         </div>\
                                                         <div class="tools">\
@@ -844,20 +894,15 @@
                                                     </div>\
                                                     <div class="portlet-body ">\
                                                         <ul class="list-unstyled">\
-                                                            ' +
-                        experience +
-                        '\
+                                                            ' +experience +'\
                                                         </ul>\
                                                     </div>\
                                                 </div>\
                                             </div>\
                                         </div>\
                                     </div>\
-                                </div>\
                                 <div class="modal-footer ">\
-                                    <a href="<?php echo base_url();?>profile/user/' +
-                        id +
-                        '" target="_blank" class="btn btn-md-cyan">\
+                                    <a href="<?php echo base_url();?>profile/user/' +id +'" target="_blank" class="btn btn-md-cyan">\
                                         <i class="icon-users"></i> View Resume\
                                     </a>\
                                 </div>\

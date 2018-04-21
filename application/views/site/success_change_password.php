@@ -16,7 +16,23 @@
     <!-- Bootstrap -->
     <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>style.css">
+
+    <!-- Icon -->
+    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin -->
+    <link href="<?php echo JS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo JS; ?>plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Global -->
+    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page Layout -->
+    <link href="<?php echo CSS; ?>pages/login-5.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
+    <!-- END PAGE LEVEL STYLES -->
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../custom_pages/favicon.ico" type="image/x-icon">
 </head>
@@ -26,7 +42,7 @@
     <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
         <!-- Navbar -->
         <nav class="s-header-v2-navbar">
-            <div class="container mt-display-table-lg">                
+            <div class="container mt-display-table-lg">
                 <div class="s-header-v2-navbar-row">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="s-header-v2-navbar-col">
@@ -39,7 +55,7 @@
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
                             <a href="index.html" class="s-header-v2-logo-link">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default height-50" src="<?= IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo">
                             </a>
                         </div>
                     </div>
@@ -57,40 +73,20 @@
 
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
-        <div class="container g-ver-center  ">
-            <div class="portlet light p-100">
-                <div class="portlet-body ">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h2 class="md-indigo-text font-weight-500 my-20 ">Reset Your Password</h2>
-                            <p class="mb-2">You have requested to reset password for:</p>
-                            <h6 class="font-weight-600 text-none">student12@gmail.com</h6>
-                        </div>
-                        <div class="col-sm-6 bg-sky-light p-20">
-                            <form action="" class="form-horizontal">
-                                <!-- New Password -->
-                                <div class="form-group mx-0 ">
-                                    <label class="control-label ">New Password</label>
-                                    <input type="password" class="form-control " placeholder="">
-                                    <!-- <span class="help-block small">pass </span -->
-
-                                </div>
-                                <div class="form-group mx-0">
-                                    <label class="control-label ">Confirm New Password</label>
-                                    <input type="password" class="form-control " placeholder="">
-                                    <!-- <span class="help-block small">pass </span -->
-                                </div>
-                                <button type="submit" class="btn btn-md-indigo">Submit</button>
-                            </form>
-                        </div>
-                    </div>
+        <div class="container g-ver-center width-700">
+            <div class="portlet light  md-shadow-z-3 text-center">
+                <div class="portlet-body px-0 py-100">
+                    <i class="icon-check display-3 md-green-text "></i>
+                    <h4 class="mt-40">Your password has been reset</h4>
+                    <p class="font-16">Login to your account by using new password.</p>
+                    <a href="login.html" class="btn btn-md-indigo mt-15">Login to my account</a>
                 </div>
             </div>
         </div>
     </section>
     <!--========== END CONTENT ==========-->
 
-    
+
 
     <!-- CORE -->
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
