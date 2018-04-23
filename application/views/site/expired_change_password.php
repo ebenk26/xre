@@ -10,31 +10,17 @@
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&amp;subset=all">
 
     <!-- Bootstrap -->
     <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Icon -->
-    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Plugin -->
-    <link href="<?php echo JS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo JS; ?>plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Global -->
-    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Page Layout -->
-    <link href="<?php echo CSS; ?>pages/login-5.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
-    <!-- END PAGE LEVEL STYLES -->
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../custom_pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -42,7 +28,8 @@
     <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
         <!-- Navbar -->
         <nav class="s-header-v2-navbar">
-            <div class="container mt-display-table-lg">
+            <div class="container g-display-table-lg">
+                <!-- Navbar Row -->
                 <div class="s-header-v2-navbar-row">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="s-header-v2-navbar-col">
@@ -54,8 +41,9 @@
                     <!-- Logo -->
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
-                            <a href="index.html" class="s-header-v2-logo-link">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default height-50" src="<?= IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo">
+                            <a href="<?= base_url(); ?>" class="s-header-v2-logo-link">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
+                                <!-- <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="../../assets/global/img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -72,23 +60,23 @@
     <!--========== END HEADER ==========-->
 
     <!--========== CONTENT ==========-->
-    <section class="s-promo-block-v4 gradient-indigo g-fullheight">
-        <div class="container g-ver-center width-700">
-            <div class="portlet light p-100 md-shadow-z-3 text-center">
+    <section class="s-promo-block-v4 g-bg-gradient-md-indigo g-fullheight-xs">
+        <div class="container g-ver-center-xs pt-4 text-center mt-width-600-xs">
+            <div class="portlet light pt-4 pb-5 pr-5 pl-5 md-shadow-z-3">
                 <div class="portlet-body ">
                     <i class="icon-close display-3 md-red-text "></i>
-                    <h4 class="mt-40">Your reset password link already expired.</h4>
-                    <p class="font-16 mx-30 mb-40">Hey there! Your Xremo password has expired after 24 hour or has already been used! To reset your password , enter your email.</p>
-                    <form action="">
-                        <div class="form-group mx-0 mt-20">
+                    <h4 class="mt-4" style="font-family: Montserrat, sans-serif; font-size: 24px; font-weight: 400;line-height: 28.8px;">Your reset password link already expired.</h4>
+                    <p class="font-16-xs" style="font-family: Lato, sans-serif;">Hey there! Your Xremo password has expired after 24 hour or has already been used! To reset your password , enter your email.</p>
+                    <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
+                        <div class="form-group mx-0 mt-4">
                             <div class="input-icon">
                                 <i class="icon-envelope"></i>
-                                <input type="email" class="form-control " placeholder="Email Address">
+                                <input type="email" class="form-control" placeholder="Email Address">
                             </div>
 
                         </div>
                         <div class="text-right ">
-                            <a href="welcome.html" class="btn btn-outline btn-md-indigo">Cancel</a>
+                            <a href="welcome.html" class="btn btn-outline-md-indigo">Cancel</a>
                             <button class="btn btn-md-indigo" type="submit">Submit</button>
                         </div>
                     </form>

@@ -16,9 +16,10 @@
     <!-- Bootstrap -->
     <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" >
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../custom_pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -38,7 +39,7 @@
                     <!-- Logo -->
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
-                            <a href="index.html" class="s-header-v2-logo-link">
+                            <a href="<?= base_url(); ?>" class="s-header-v2-logo-link">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
                             </a>
                         </div>
@@ -64,20 +65,21 @@
                         <div class="col-sm-6">
                             <h2 class="md-indigo-text font-weight-500 my-20 ">Reset Your Password</h2>
                             <p class="mb-2">You have requested to reset password for:</p>
-                            <h6 class="font-weight-600 text-none">student12@gmail.com</h6>
+                            <h6 class="font-weight-600 text-none"><?= $this->uri->segment(2);  ?></h6>
                         </div>
                         <div class="col-sm-6 bg-sky-light p-20">
-                            <form action="" class="form-horizontal">
+                            <form action="<?= base_url();  ?>site/user/forgotPassword" method="POST" class="form-horizontal">
+                                <input type="hidden" value="<?= $this->uri->segment(2);  ?>"></input>
                                 <!-- New Password -->
                                 <div class="form-group mx-0 ">
                                     <label class="control-label ">New Password</label>
-                                    <input type="password" class="form-control " placeholder="">
+                                    <input type="password" class="form-control " name="password" placeholder="">
                                     <!-- <span class="help-block small">pass </span -->
 
                                 </div>
                                 <div class="form-group mx-0">
                                     <label class="control-label ">Confirm New Password</label>
-                                    <input type="password" class="form-control " placeholder="">
+                                    <input type="password" class="form-control " name="conf_password" placeholder="">
                                     <!-- <span class="help-block small">pass </span -->
                                 </div>
                                 <button type="submit" class="btn btn-md-indigo">Submit</button>

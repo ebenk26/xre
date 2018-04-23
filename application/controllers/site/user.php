@@ -294,9 +294,14 @@ class User extends CI_Controller {
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('msg_failed', 'Password and confirm password not match.');
         }else{            
+            $email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $id = $this->session->userdata('id');
-            $this->user_model->change_password($id ,$password);
+            if (!empty($id)) {
+                $this->user_model->change_password($id ,$password);
+            }else{
+                $this->global_model->update('users', array('email'=> $email), array('password'=> $password));
+            }
             $this->session->set_flashdata('msg_success', 'Password has been changed.');
 			
 			//BEGIN : set recent activities
@@ -311,19 +316,34 @@ class User extends CI_Controller {
 			setRecentActivities($data);
 			//END : set recent activities
         }
-        redirect(base_url().$roles.'/settings');
+        if (!empty($roles)) {
+            redirect(base_url().$roles.'/settings');
+        }else{
+            redirect(base_url());
+        }
     }
 
     function change_password(){
-        $this->load->view('site/change_password');
+        $email = $this->uri->segment(2);
+        $checkForgotPasswordTime = $this->global_model->get_where('users', array('email' => $email));
+        $checkExpiryTime = strtotime($checkForgotPasswordTime['forgot_password_time']) < strtotime(date('Y-m-d H:i:s'));
+        if ($checkExpiryTime) {
+            $this->load->view('site/change_password');
+        }else{
+            redirect(base_url().'expired_password');
+        }
     }
 
     function expired_password(){
-        $this->load->view('site/expired_password');
+        $this->load->view('site/expired_change_password');
     }
 
     function success_change_password(){
-        $this->load->view('site/expired_password');
+        $this->load->view('site/success_change_password');
+    }
+
+    function instructions_change_password(){
+        $this->load->view('site/instructions_change_password');
     }
 
 }

@@ -94,26 +94,39 @@ class User_Model extends CI_Model{
             
             //sending confirmEmail($receiver) function calling link to the user, inside message body
 
-            $receiver["url"] = 'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=');
+            // $receiver["url"] = 'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=');
+            $receiver["url"] = 'change_password/'.rtrim(base64_encode($email),'=');
 
             $message = $this->load->view("mail/forgot_password",$receiver,true);
 
             $config['mailtype'] = 'html';
             $config['priority'] = 2;
             $config['wordwrap'] = TRUE;
+
+            /*$config['mailtype'] = 'html';
+            $config['priority'] = 2;
+            $config['wordwrap'] = TRUE;
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+            $config['smtp_port'] = 465;
+            $config['smtp_user'] = 'dearico612@gmail.com';
+            $config['smtp_pass'] = 'Rico061289!';*/
             
-            $this->load->library('email', $config);
-            $this->email->set_mailtype("html");
-            //$this->email->initialize($config);
+            $CI =& get_instance();
+               $CI->load->library('email', $config);
+               $CI->email->set_mailtype("html");
             //send email
-            $this->email->from('system@xremo.com');
-            $this->email->to($email);
-            $this->email->subject('[Forgot Password] Xremo Account');
-            $this->email->message($message);
+            $CI->email->from('system@xremo.com');
+            $CI->email->to($email);
+            $CI->email->subject('[Forgot Password] Xremo Account');
+            $CI->email->message($message);
             
             if($this->email->send()){
-                return true;
+                $this->db->where('email', $email);
+                $this->db->update('users', array('forgot_password_time'=> date('Y-m-d H:i:s')));
+                redirect(base_url().'instructions_change_password');
             }else{
+                // $this->email->print_debugger();
                 return false;
             }
 

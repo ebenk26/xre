@@ -199,7 +199,7 @@ function sendEmail($params)
     $config['smtp_host'] = 'ssl://smtp.googlemail.com';
     $config['smtp_port'] = 465;
     $config['smtp_user'] = 'dearico612@gmail.com';
-    $config['smtp_pass'] = 'Rico061289';*/
+    $config['smtp_pass'] = 'Rico061289!';*/
 
     $CI =& get_instance();
     

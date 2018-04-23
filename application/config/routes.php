@@ -83,7 +83,10 @@ $route['clear-notif'] 							= 'notifications/notifications/clearNotif';
 $route['setLastSeenNotif'] 						= 'notifications/notifications/setLastSeenNotif';
 
 $route['confirm_email/(:any)'] 					= 'site/confirm_email/confirmEmail/$1';
-
+$route['instructions_change_password']			= 'site/user/instructions_change_password';
+$route['change_password/(:any)']				= 'site/user/change_password/$1';
+$route['expired_password']						= 'site/user/expired_password';
+$route['success_change_password']				= 'site/user/success_change_password';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
