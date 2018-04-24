@@ -65,11 +65,11 @@
                         <div class="col-sm-6">
                             <h2 class="md-indigo-text font-weight-500 my-20 ">Reset Your Password</h2>
                             <p class="mb-2">You have requested to reset password for:</p>
-                            <h6 class="font-weight-600 text-none"><?= $this->uri->segment(2);  ?></h6>
+                            <h6 class="font-weight-600 text-none"><?= base64_decode($this->uri->segment(2));  ?></h6>
                         </div>
                         <div class="col-sm-6 bg-sky-light p-20">
                             <form action="<?= base_url();  ?>site/user/forgotPassword" method="POST" class="form-horizontal">
-                                <input type="hidden" value="<?= $this->uri->segment(2);  ?>"></input>
+                                <input type="hidden" value="<?= base64_decode($this->uri->segment(2));  ?>"></input>
                                 <!-- New Password -->
                                 <div class="form-group mx-0 ">
                                     <label class="control-label ">New Password</label>

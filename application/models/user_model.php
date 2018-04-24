@@ -99,34 +99,21 @@ class User_Model extends CI_Model{
 
             $message = $this->load->view("mail/forgot_password",$receiver,true);
 
-            $config['mailtype'] = 'html';
-            $config['priority'] = 2;
-            $config['wordwrap'] = TRUE;
 
-            /*$config['mailtype'] = 'html';
-            $config['priority'] = 2;
-            $config['wordwrap'] = TRUE;
-            $config['protocol'] = 'smtp';
-            $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-            $config['smtp_port'] = 465;
-            $config['smtp_user'] = 'dearico612@gmail.com';
-            $config['smtp_pass'] = 'Rico061289!';*/
+            $MailData = array(  
+                            "sender_email"      => EMAIL_SYSTEM,
+                            "receiver_email"    => trim($email),
+                            'subject'           => $subject,
+                            'message_html'      => $message
+                        );
             
-            $CI =& get_instance();
-               $CI->load->library('email', $config);
-               $CI->email->set_mailtype("html");
-            //send email
-            $CI->email->from('system@xremo.com');
-            $CI->email->to($email);
-            $CI->email->subject('[Forgot Password] Xremo Account');
-            $CI->email->message($message);
-            
-            if($this->email->send()){
+            try {
+                
+                sendEmail($MailData);
                 $this->db->where('email', $email);
                 $this->db->update('users', array('forgot_password_time'=> date('Y-m-d H:i:s')));
                 redirect(base_url().'instructions_change_password');
-            }else{
-                // $this->email->print_debugger();
+            } catch (Exception $e) {
                 return false;
             }
 
