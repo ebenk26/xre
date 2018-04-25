@@ -47,6 +47,17 @@ class Dashboard extends CI_Controller {
 		
 		//get recent activities
 		$job['recent_activities'] 	= $this->user_model->get_recent_activities();
+
+
+		//get 5 latest article
+		$this->db->select('*');
+		$this->db->from('blogs');
+		//$this->db->order_by('number_of_view', 'DESC');
+		$this->db->order_by('created_at', 'DESC');
+		$this->db->limit(5);
+		$query = $this->db->get();
+		$job['article'] = $query->result();
+		
 		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);

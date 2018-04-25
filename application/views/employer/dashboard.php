@@ -313,7 +313,7 @@
                         <?php $i = 1;foreach ($article as $row) { ?>
                         <div class="item <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?php echo IMG; ?>/site/dawn.jpg'">
+                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG."/article/".$row->featured_image : IMG."/site/dawn.jpg"; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
                                     <h3 class="widget-blog-title md-white-text">
                                         <?=$row->title?>

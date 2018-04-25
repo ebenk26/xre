@@ -122,14 +122,23 @@
                 </div>
             </div>
 
-            <hr class="border-mdo-darkblue-v3">
-            <div class="row ">
-                <?php $no_new = 0;
-                foreach ($job_positions_new as $key => $value) { 
-                    if($no_new == 5)
-                    {break;}
-                     $no_new++;
-                ?>
+            <hr class="border-mdo-darkblue-v1 ">
+
+            <!-- CONTENT -->
+            <!-- NOTE :  Only extract latest 1 week job have been posted and based user preferences or put limit only latest 10 job been posted will be show-->
+            <!-- @IF empty / No Info -->
+            <!-- <div class="portlet mt-height-50-percent  md-shadow-none"> -->
+            <!-- <div class="portlet-body px-18 py-10">
+                    <h2 class="text-center font-weight-500 md-indigo-text"> Set up your job preferences! </h2>
+                    <h5 class="text-center font-26-xs font-grey-cascade mt-4">Tired for waiting your job preference? Why not set up your job preferences by click
+                        <b> '
+                            <i class="icon-settings mr-2"></i>Job Preferences ' </b> and we will search and automatically notify your preferences!!</h5>
+                </div> -->
+            <!-- </div> -->
+
+            <!-- @ ELSE IF CONTENT less than and equal to 6  : button load do not have to appear -->
+            <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 6){break;} $no_new++;?>
+            <?= ($no_new %3 == 0) ? '<div class="row ">' : '' ?>
                 <div class="col-md-4">
                     <div class="portlet light">
                         <div class="media">
@@ -217,8 +226,8 @@
                         </div>
                     </div>
                 </div>
+            <?= ($no_new %3 == 0) ? '</div>' : '' ?>
                 <?php } ?>
-            </div>
         </div>
 
         <!-- Widget : Feed & Article -->
@@ -402,7 +411,7 @@
                         <?php $i = 1;foreach ($article as $row) { ?>
                         <div class="item <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?php echo IMG; ?>/site/dawn.jpg'">
+                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG.'/article/'.$row->featured_image : IMG."/site/dawn.jpg"; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
                                     <h3 class="widget-blog-title md-white-text">
                                         <?=$row->title?>
