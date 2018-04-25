@@ -57,7 +57,7 @@
     <!--========== END HEADER ==========-->
 
     <!--========== CONTENT ==========-->
-    <section class="s-promo-block-v4 gradient-indigo g-fullheight">
+    <section class="s-promo-block-v4 g-bg-gradient-md-indigo g-fullheight-xs">
         <div class="container g-ver-center  ">
             <div class="portlet light p-100">
                 <div class="portlet-body ">
@@ -68,8 +68,8 @@
                             <h6 class="font-weight-600 text-none"><?= base64_decode($this->uri->segment(2));  ?></h6>
                         </div>
                         <div class="col-sm-6 bg-sky-light p-20">
-                            <form action="<?= base_url();  ?>site/user/forgotPassword" method="POST" class="form-horizontal">
-                                <input type="hidden" value="<?= base64_decode($this->uri->segment(2));  ?>"></input>
+                            <form action="<?= base_url();  ?>site/user/changePassword" method="POST" class="form-horizontal">
+                                <input type="hidden" value="<?= base64_decode($this->uri->segment(2));  ?>" name="email"></input>
                                 <!-- New Password -->
                                 <div class="form-group mx-0 ">
                                     <label class="control-label ">New Password</label>

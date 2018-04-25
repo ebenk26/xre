@@ -301,20 +301,21 @@ class User extends CI_Controller {
                 $this->user_model->change_password($id ,$password);
             }else{
                 $this->global_model->update('users', array('email'=> $email), array('password'=> $password));
+                redirect(base_url().'/success_change_password');
             }
             $this->session->set_flashdata('msg_success', 'Password has been changed.');
-			
-			//BEGIN : set recent activities
-			$data = array(
-						'user_id' 		=> $this->session->userdata('id'),
-						'ip_address' 	=> $this->input->ip_address(),
-						'activity' 		=> "Change Password",
-						'icon' 			=> "fa-lock",
-						'label' 		=> "success",
-						'created_at' 	=> date('Y-m-d H:i:s'),
-					);
-			setRecentActivities($data);
-			//END : set recent activities
+            
+            //BEGIN : set recent activities
+            $data = array(
+                        'user_id'       => $this->session->userdata('id'),
+                        'ip_address'    => $this->input->ip_address(),
+                        'activity'      => "Change Password",
+                        'icon'          => "fa-lock",
+                        'label'         => "success",
+                        'created_at'    => date('Y-m-d H:i:s'),
+                    );
+            setRecentActivities($data);
+            //END : set recent activities
         }
         if (!empty($roles)) {
             redirect(base_url().$roles.'/settings');
@@ -327,7 +328,7 @@ class User extends CI_Controller {
         $email = base64_decode($this->uri->segment(2));
         $checkForgotPasswordTime = $this->global_model->get_where('users', array('email' => $email));
         $forgotTime = current($checkForgotPasswordTime);
-        $checkExpiryTime = strtotime($forgotTime['forgot_password_time']) < strtotime(date('Y-m-d H:i:s'));
+        $checkExpiryTime = strtotime($forgotTime['forgot_password_time']) <= (strtotime($forgotTime['forgot_password_time'])+strtotime("+1 day"));
         if ($checkExpiryTime) {
             $this->load->view('site/change_password');
         }else{

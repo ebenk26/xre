@@ -9,6 +9,7 @@
     }
     $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,6 +49,7 @@
 
     <!-- PAGES -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
@@ -239,7 +241,7 @@
                         data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
                         <i class="icon-book-open mr-5 "></i>Post</button>
 
-                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs">
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs edit_jobpost">
                         <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>
                 <?php endif ?>
@@ -437,6 +439,8 @@
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
     <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script>
 
     <!-- Page -->
     <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3-gallery.js"></script>
@@ -505,8 +509,7 @@
             var marker = new google.maps.Marker({
                 map: map,
                 position: latLang,
-                title: '<?php echo $user_profile['
-                company_name '];?>'
+                title: '<?php echo $user_profile['company_name'];?>'
             });
         }
         <?php }?>
