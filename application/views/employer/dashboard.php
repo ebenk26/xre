@@ -123,7 +123,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; foreach ($job_post as $key => $value) { if($i == 6){break;}?>
-                                        <tr>
+                                        <tr class="<?php echo ($value['status'] == 'preview') ? 'hidden' : '';  ?>">
                                             <td>
                                                 <?php echo $i; ?> </td>
                                             <td>
@@ -144,7 +144,7 @@
                                                 <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">View Candidates</a>
                                             </td>
                                         </tr>
-                                        <?php $i++; } ?>
+                                        <?php ($value['status'] != 'preview') ? $i++ : ''; } ?>
                                     </tbody>
                                 </table>                            
                                 <a href="<?=base_url()?>employer/job_board" class="btn btn-danger text-uppercase pull-right px-100 mt-50">View All</a>
