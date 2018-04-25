@@ -8,7 +8,8 @@
                 if(isset($articles["featured_image"]) && !empty($articles["featured_image"]))
                 {
             ?>
-                <div class="view height-230 " style="background: url('<?= base_url(); ?>assets/img/article/<?= $articles[" featured_image "]; ?>') no-repeat fixed center ;">
+                <div class="view">
+                    <img src=" <?= base_url(); ?>assets/img/article/<?= $articles['featured_image']; ?>" class="img-fluid" alt="">
                     <div class="mask hm-darkblue-v3"></div>
                 </div>
                 <?php

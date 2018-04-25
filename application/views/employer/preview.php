@@ -36,7 +36,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css">
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css">
-
+    <!-- # Notification -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.css">
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
@@ -235,8 +236,8 @@
                 <!-- Button -->
                 <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                 <div class="row mb-30 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?"
-                        data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree" data-confirm-button-class="btn-info">
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
+                        data-confirm-button-class="btn-info">
                         <i class="icon-book-open mr-5 "></i>Post</button>
 
                     <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs">
@@ -273,12 +274,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>"
-                                target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw"> </a>
+                            <a href="https://twitter.com/intent/tweet?text=<?php echo !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?> Profile on Xremo <?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="twitter" class="social-icon social-icon-color twitter share-tw">
+                            </a>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook"
-                                class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<?= XREMO_URL; ?><?= uri_string(); ?>&amp;src=sdkpreparse" data-layout="button" data-size="small" data-mobile-iframe="false" target="_blank" data-original-title="facebook" class="social-icon social-icon-color facebook share-fb fb-share-button "></a>
                         </li>
                         <li>
                             <a href="http://www.linkedin.com/shareArticle?url=<?= XREMO_URL; ?><?= uri_string(); ?>" target="_blank" data-original-title="linkedin" class="social-icon social-icon-color linkedin share-tw"></a>
@@ -403,7 +403,7 @@
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
     <!-- VENDOR -->
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.smooth-scroll.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.smooth-scroll.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.back-to-top.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.parallax.min.js"></script>
@@ -418,7 +418,8 @@
     <script type="text/javascript" src="<?php echo JS; ?>plugins/rateit/jquery.rateit.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/clipboardjs/clipboard.min.js"></script>
-
+    <!-- # Notifications -->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
     <!-- Custom-->
     <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
 
@@ -441,8 +442,6 @@
     <!-- Page -->
     <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3-gallery.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>pages/components-clipboard.min.js"></script>
-
-
 
 
 

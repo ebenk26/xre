@@ -75,7 +75,7 @@
 
 <!-- PAGE -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-wizard-employer.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>pages/dashboard.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/dashboard.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/table-datatables-managed.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-repeater.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-date-time-pickers.min.js"></script>

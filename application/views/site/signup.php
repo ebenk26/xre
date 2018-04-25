@@ -350,7 +350,7 @@
     <!-- JAVASCRIPT -->
     <!-- CORE -->
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
@@ -358,21 +358,21 @@
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
-
-    <!-- VENDOR @ PLUGINS-->
+    <!-- Vendor -->
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/select2/js/select2.full.min.js"></script>
     <script type="text/javascript" src="<?php echo JS ?>plugins/backstretch/jquery.backstretch.min.js"></script>
-    <!-- Custom -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/pass-strength.js" type="text/javascript"></script>
 
-    <!-- Global -->
-    <script src="<?php echo base_url(); ?>assets/js/app.min.js" type="text/javascript"></script>
+    <!-- Custom-->
+    <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>pass-strength.js"></script>
+
+    <!-- Global-->
+    <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
 
     <!-- Page Layout -->
-    <script src="<?php echo base_url(); ?>assets/js/login-5.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>pages/login-5.js"></script>
 
     <script>
         $(document).ready(function () {

@@ -609,7 +609,7 @@
 
         <!-- CORE -->
         <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
+        <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script> -->
         <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
@@ -649,7 +649,7 @@
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
-        <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
+        <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
 
         <!-- Page -->

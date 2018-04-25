@@ -65,6 +65,9 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- # Google Map -->
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+<!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/gmaps/gmaps.min.js"></script> -->
 
 <!-- GLOBAL -->
 <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
@@ -105,11 +108,7 @@
             $this = $('#addBudgetMin').val();
             $that = $('#addBudgetMax').val();
             if ($this.length > 0) {
-<<<<<<< HEAD
-                if (parseInt($this) >= parseInt($that)) {
-=======
                 if (parseInt($this) > parseInt($that)) {
->>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
                     $('#salaryBlock').addClass('has-error');
                     $('#salaryBlockError').removeClass('hidden');
                 } else {
@@ -259,17 +258,8 @@
             });
         })
     });
-<<<<<<< HEAD
-
-
-
-    function initMap() {
-
-=======
-
     // GMap
     function initMap() {
->>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {
                 lat: -33.8688,
@@ -293,67 +283,6 @@
             infowindow.open(map, marker);
         });
 
-<<<<<<< HEAD
-        autocomplete.addListener('place_changed', function () {
-            infowindow.close();
-            var place = autocomplete.getPlace();
-            if (!place.geometry) {
-                return;
-            }
-
-            if (place.geometry.viewport) {
-                map.fitBounds(place.geometry.viewport);
-            } else {
-                map.setCenter(place.geometry.location);
-                map.setZoom(17);
-            }
-
-            // Set the position of the marker using the place ID and location.
-            marker.setPlace({
-                placeId: place.place_id,
-                location: place.geometry.location
-            });
-            marker.setVisible(true);
-            var element = document.getElementById('map-window');
-            var InfoWindow = document.createElement('div');
-            var title = document.createElement('span');
-            var addr = document.createElement('span');
-
-            element.appendChild(InfoWindow);
-            InfoWindow.setAttribute('id', 'infowindow-content');
-            InfoWindow.appendChild(title);
-            title.setAttribute('id', 'place-name');
-            document.createElement('br');
-            InfoWindow.appendChild(addr);
-            addr.setAttribute('id', 'place-address');
-            document.getElementById('place-name').textContent = place.name;
-            document.getElementById('place-address').textContent =
-                place.formatted_address;
-            infowindow.setContent(document.getElementById('infowindow-content'));
-            infowindow.open(map, marker);
-            document.getElementById('addLatitude').value = place.geometry.location.lat();
-            document.getElementById('addLongitude').value = place.geometry.location.lng();
-            document.getElementById('addMapTitle').value = place.name;
-            document.getElementById('addMapDescription').value = place.formatted_address;
-            document.getElementById('addAddress').value = place.formatted_address;
-            for (var i = 0; i < place.address_components.length; i++) {
-                var addressType = place.address_components[i].types[0];;
-                var val = place.address_components[i];
-
-                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                    document.getElementById('addState').value = val.long_name;
-                }
-                if (addressType == 'administrative_area_level_1') {
-                    document.getElementById('addCity').value = val.long_name;
-                }
-                if (addressType == 'country') {
-                    document.getElementById('addCountry').value = val.long_name;
-                }
-                if (addressType == 'postal_code') {
-                    document.getElementById('addPostcode').value = val.long_name;
-                }
-            }
-=======
         autocomplete.addListener('place_changed', function() {
           infowindow.close();
           var place = autocomplete.getPlace();
@@ -413,7 +342,6 @@
                 document.getElementById('addPostcode').value= val.long_name;
               }
           }
->>>>>>> 362bac4afe655afd87add97baeb498bfd7dccb4e
         });
     }
 
