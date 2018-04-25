@@ -262,10 +262,6 @@
             });
         })
     });
-<<<<<<< HEAD
-=======
-
->>>>>>> b4af5763243375e070043761e28e8f346dc0a00a
     // GMap
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
