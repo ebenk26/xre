@@ -136,8 +136,8 @@
             <!-- </div> -->
 
             <!-- @ ELSE IF CONTENT less than and equal to 6  : button load do not have to appear -->
-            <div class="row ">
-                <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 5){break;} $no_new++;?>
+            <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 6){break;} $no_new++;?>
+            <?= ($no_new %3 == 0) ? '<div class="row ">' : '' ?>
                 <div class="col-md-4">
                     <div class="portlet light">
                         <div class="media">
@@ -198,14 +198,8 @@
 
                     </div>
                 </div>
+            <?= ($no_new %3 == 0) ? '</div>' : '' ?>
                 <?php } ?>
-            </div>
-            <!-- @elseif content more than 6 : button load more will be appear -->
-            <!-- <div class="row ">
-                <div class="col-md-offset-4 col-md-4">
-                    <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-grey btn-block">View All Job Dashboard</a>
-                </div>
-            </div> -->
 
         </div>
 
@@ -369,43 +363,37 @@
             </div>
 
             <!-- FIX :Article  -->
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel" data-ride="carousel">
+            <div class="col-md-6">
+                <div id="carousel-example-generic-v2" class="carousel  slide widget-carousel" data-ride="carousel">
                     <!-- Indicators -->
-                    <ol class="carousel-indicators carousel-indicators-red">
+                    <ol class="carousel-indicators carousel-indicators-red mb-30">
                         <li data-target="#carousel-example-generic-v2" data-slide-to="0" class="circle active"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="1" class="circle"></li>
+                        <li data-target="#carousel-example-generic-v2" data-slide-to="2" class="circle"></li>
                     </ol>
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
+                    <div class="carousel-inner " role="listbox">
+                        <?php $i = 1;foreach ($article as $row) { ?>
+                        <div class="item <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog text-center margin-bottom-20 clearfix" style="height: 442px; padding-top: 120px; background-image: url(../../assets/layouts/layout7/img/07.jpg">
+                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG."/article/".$row->featured_image : IMG."/site/dawn.jpg"; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
-                                    <h3 class="widget-blog-title">San Francisco</h3>
-                                    <span class="widget-blog-subtitle">At dawn</span>
+                                    <h3 class="widget-blog-title md-white-text">
+                                        <?=$row->title?>
+                                    </h3>
+                                    <span class="widget-blog-subtitle mdo-white-v7-text">
+                                        <?=date('j F Y', strtotime($row->created_at))?>
+                                    </span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat commodo consequat.
+                                <p class="mdo-white-v7-text">
+                                    <?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?>
                                 </p>
-                                <br>
-                                <a class="btn btn-danger text-uppercase" href="#">Read More</a>
+                                <br/>
+                                <a class="btn btn-danger text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
                             </div>
                             <!-- END WIDGET BLOG -->
                         </div>
-                        <div class="item">
-                            <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog text-center margin-bottom-20 clearfix" style="height: 442px; padding-top: 120px; background-image: url(../../assets/layouts/layout7/img/06.jpg">
-                                <div class="widget-blog-heading text-uppercase">
-                                    <h3 class="widget-blog-title md-white-text">San Francisco</h3>
-                                    <span class="widget-blog-subtitle md-white-text">At dawn</span>
-                                </div>
-                                <p class="md-white-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat commodo consequat.
-                                </p>
-                                <br>
-                                <a class="btn btn-danger text-uppercase" href="#">Read More</a>
-                            </div>
-                            <!-- END WIDGET BLOG -->
-                        </div>
+                        <?php $i++;}?>
                     </div>
                 </div>
 
