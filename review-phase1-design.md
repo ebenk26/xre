@@ -18,6 +18,8 @@
         - Need to add backend code in article.
         - update design new join and empty state
         - add empty state if no activity
+        - sync color of job and change badge into label 
+        
     - Profile
         - Edit profile need to clear up
         - modal need to be full width

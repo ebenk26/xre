@@ -3,7 +3,6 @@
     <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
-
         <h1 class="page-title"> Welcome back ,
             <?php echo ucfirst($this->session->userdata('name'));?>!
             <small>last login on
@@ -21,12 +20,12 @@
                 </li>
             </ul>
         </div>
-
         <!-- END PAGE HEADER-->
-        <!-- Widget-Dashboard / Video Resume -->
 
+        <!-- Widget-Dashboard / Video Resume -->
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <!-- # Widget : Profile Seen -->
                 <div class="dashboard-stat2  ">
                     <div class="display my-0">
                         <div class="number">
@@ -40,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- # Widget : Profile Rating -->
                 <div class="dashboard-stat2 ">
                     <div class="display my-0">
                         <div class="number">
@@ -56,6 +56,7 @@
             </div>
             <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <!-- # Widget : Upcoming Interview -->
                 <div class="dashboard-stat2 ">
                     <div class="display my-0">
                         <div class="number">
@@ -69,6 +70,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- # Widget : Latest Job Vacancy -->
                 <div class="dashboard-stat2 ">
                     <div class="display my-0">
                         <div class="number">
@@ -94,10 +96,10 @@
                     </div>
                     <div class="col-md-5">
                         <!-- <div class=""> -->
-                            <!-- <i class="icon-control-play font-26"></i> -->
-                            <div class="embed-responsive embed-responsive-4by3 my-45 ">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xbmAA6eslqU"></iframe>
-                            </div>
+                        <!-- <i class="icon-control-play font-26"></i> -->
+                        <div class="embed-responsive embed-responsive-4by3 my-45 ">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xbmAA6eslqU"></iframe>
+                        </div>
                         <!-- </div> -->
                     </div>
                 </div>
@@ -105,8 +107,7 @@
         </div>
 
         <!-- Section: Find Job-->
-        <div class="portlet md-shadow-none">
-
+        <div class="portlet ">
             <!-- TITLE  -->
             <div class="media">
                 <div class="media-body">
@@ -115,128 +116,144 @@
                     </h2>
                 </div>
                 <div class="media-right media-bottom">
-                    <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-grey mb-0">View All Job Dashboard</a>
+                    <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0">View All Job Dashboard</a>
                     <!-- <a href="student-settings.html" class="btn btn-outline btn-md-indigo mt-4">
                         <i class="icon-settings"></i>Job Preferences</a> -->
                 </div>
             </div>
 
-            <hr class="border-mdo-darkblue-v1 ">
-
-            <!-- CONTENT -->
-            <!-- NOTE :  Only extract latest 1 week job have been posted and based user preferences or put limit only latest 10 job been posted will be show-->
-            <!-- @IF empty / No Info -->
-            <!-- <div class="portlet mt-height-50-percent  md-shadow-none"> -->
-            <!-- <div class="portlet-body px-18 py-10">
-                    <h2 class="text-center font-weight-500 md-indigo-text"> Set up your job preferences! </h2>
-                    <h5 class="text-center font-26-xs font-grey-cascade mt-4">Tired for waiting your job preference? Why not set up your job preferences by click
-                        <b> '
-                            <i class="icon-settings mr-2"></i>Job Preferences ' </b> and we will search and automatically notify your preferences!!</h5>
-                </div> -->
-            <!-- </div> -->
-
-            <!-- @ ELSE IF CONTENT less than and equal to 6  : button load do not have to appear -->
+            <hr class="border-mdo-darkblue-v3">
             <div class="row ">
-                <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 5){break;} $no_new++;?>
+                <?php $no_new = 0;
+                foreach ($job_positions_new as $key => $value) { 
+                    if($no_new == 5)
+                    {break;}
+                     $no_new++;
+                ?>
                 <div class="col-md-4">
                     <div class="portlet light">
                         <div class="media">
+                            <!-- # Post Title / Company Name / Time posted -->
                             <div class="media-body media-middle">
-                                <!-- Post Title -->
+                                <!-- # Post Title -->
                                 <h4 class="font-weight-600 font-26">
                                     <a class="md-black-text md-indigo-text-hover" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">
                                         <?php echo $value['job_post'] ?>
                                     </a>
                                 </h4>
-                                <!-- Company Name -->
+                                <!-- # Company Name -->
                                 <h5 class="font-weight-400 text-capitalize">
-                                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>"  target="_blank">
+                                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank">
                                         <?php echo $value['company_name'] ?>
                                     </a>
                                 </h5>
-                                <!-- Post date released -->
+                                <!-- # Post Date Released -->
                                 <small class="font-grey-salsa mb-0">
                                     <i class="icon-calendar mr-5"></i>
                                     <?php echo time_elapsed_string($value['job_created_time']); ?>
                                 </small>
-
                             </div>
+                            <!-- # Company Profile Picture -->
                             <div class="media-right">
-                                <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/xremo-logo-blue.svg'; ?>" alt="" class="avatar avatar-tiny mr-10">
+                                <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/profile-pic.png'; ?>" alt="<?php echo $value['company_name'] ?>" class="avatar avatar-tiny avatar-circle mr-10">
                             </div>
-                            <hr class="my-5">
-                            <h5>
+                            <hr class="my-20">
+                            <!-- # Label -->
+                            <!-- [Done] Fix : All label will be hidden if empty  -->
+                            <ul class="list-unstyled list-inline mt-ul-li-lr-1 ml-0">
+
+                                <!-- Location -->
                                 <?php if (!empty($value['state_name'])) {?>
-                                <a href="" class="badge badge-primary badge-roundless mb-5">
-                                    <?php echo $value['state_name'] ?>
-                                </a>
+                                <li class="mb-10 px-0">
+                                    <p class="label label-md-cyan label-sm">
+                                        <i class="fa fa-map-marker"></i>
+                                        <?php echo $value['state_name'] ?>
+                                    </p>
+                                </li>
                                 <?php } ?>
-                                <a href="" class="badge badge-md-green badge-roundless mb-5">
-                                    <?php echo $this->session->userdata('forex') ?>
-                                    <?php echo $value['min_budget']; ?> -
-                                    <?php echo $this->session->userdata('forex') ?>
-                                    <?php echo $value['max_budget']; ?>
-                                </a>
-                                <a href="" class="badge badge-md-deep-orange badge-roundless mb-5">
-                                    <?php echo $value['employment_name'] ;?>
-                                </a>
+
+                                <!-- Employment Type -->
+                                <?php if (!empty($value['employment_name'])) {?>
+                                <li class=" mb-10 px-0 ">
+                                    <p class="label label-primary  label-sm">
+                                        <i class="fa fa-briefcase"></i>
+                                        <?php echo $value['employment_name'] ;?>
+                                    </p>
+                                </li>
+                                <?php } ?>
+
+                                <!-- Position -->
                                 <?php if (!empty($value['position_name'])) {?>
-                                <a href="" class="badge badge-md-blue-grey badge-roundless mb-5">
-                                    <?php echo $value['position_name'] ?>
-                                </a>
+                                <li class=" mb-10">
+                                    <p class="label label-md-purple label-sm ">
+                                        <i class="fa fa-sitemap"></i>
+                                        <?php echo $value['position_name'] ?>
+                                    </p>
+                                </li>
                                 <?php } ?>
+
+                                <!-- Industry -->
                                 <?php if (!empty($value['industry_name'])) {?>
-                                <a href="" class="badge badge-md-purple badge-roundless mb-5">
-                                    <?php echo $value['industry_name'] ?>
-                                </a>
+                                <li class=" mb-10">
+                                    <p class="label label-md-blue-grey label-sm ">
+                                        <i class="fa fa-industry"></i>
+                                        <?php echo $value['industry_name'] ?>
+                                    </p>
+                                </li>
                                 <?php } ?>
-                            </h5>
+                                <!-- Salary -->
+                                <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
+                                <li class=" mb-10">
+                                    <p class="label label-md-green  label-sm">
+                                        <i class="fa fa-usd"></i>
+                                        <?php echo $this->session->userdata('forex') ?>
+                                        <?php echo $value['min_budget']; ?> -
+                                        <?php echo $this->session->userdata('forex') ?>
+                                        <?php echo $value['max_budget']; ?>
+                                    </p>
+                                </li>
+                                <?php } ?>
+                            </ul>
                         </div>
-
-
-
-
                     </div>
                 </div>
                 <?php } ?>
             </div>
-            <!-- @elseif content more than 6 : button load more will be appear -->
-            <!-- <div class="row ">
-                <div class="col-md-offset-4 col-md-4">
-                    <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-grey btn-block">View All Job Dashboard</a>
-                </div>
-            </div> -->
-
         </div>
 
         <!-- Widget : Feed & Article -->
         <div class="row">
+            <!-- # Tab : New join /  Interview / Recent Activities -->
             <div class="col-md-6 col-sm-12 col-xs-12">
-                <!-- BEGIN PORTLET-->
                 <div class="portlet light tasks-widget">
+                    <!-- Tab  -->
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
-                            <i class="icon-share font-dark"></i>
-                            <span class="caption-subject font-dark bold uppercase">Informations</span>
+                            <i class="icon-directions font-dark"></i>
+                            <span class="caption-subject font-dark font-weight-600  text-uppercase">Info</span>
                         </div>
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a href="#portlet_tab1" data-toggle="tab"> New Join </a>
+                                <a href="#tab_join" data-toggle="tab">
+                                    <i class="icon-users"></i> New Join </a>
                             </li>
                             <li>
-                                <a href="#portlet_tab2" data-toggle="tab"> Upcoming Interview </a>
+                                <a href="#tab_interview" data-toggle="tab">
+                                    <i class="icon-calendar"></i> Interview </a>
                             </li>
                             <li>
-                                <a href="#portlet_tab3" data-toggle="tab"> Recent Activities </a>
+                                <a href="#tab_activity" data-toggle="tab">
+                                    <i class="icon-rocket"></i> Recent Activities </a>
                             </li>
                         </ul>
                     </div>
                     <div class="portlet-body">
                         <div class="tab-content">
-                            <!-- TAB BEGIN : Review , Rate , Endorse  -->
-                            <div class="tab-pane active" id="portlet_tab1">
-                                <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                            <!-- Tab : New Join User -->
+                            <div class="tab-pane active" id="tab_join">
+                                <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="1" data-handle-color="#D7DCE2">
                                     <div class="mt-comments-v2">
+                                        <!-- IF (!empty) -->
                                         <?php $shown_new = 0;foreach($new_join as $row){$shown_new++;?>
                                         <div class="mt-comment">
                                             <div class="mt-comment-img">
@@ -246,15 +263,11 @@
                                             </div>
                                             <div class="mt-comment-body">
                                                 <div class="mt-comment-info">
-                                                    <a>
+                                                    <a href="<?=base_url()?>profile/user/<?=rtrim(base64_encode($row->id), '=');?>" target="_blank">
                                                         <span class="mt-comment-author">
                                                             <?=$row->fullname?>
                                                         </span>
                                                     </a>
-                                                    <!-- <span class="mt-comment-action"> -->
-                                                    <!--<a class="mt-comment-action btn btn-xs btn-outline blue-ebonyclay btn-circle" href="#">View Profile</a>-->
-                                                    <a class="btn btn-xs btn-outline btn-md-indigo btn-circle ml-2" href="<?=base_url()?>profile/user/<?=rtrim(base64_encode($row->id), '=');?>" target="_blank">View Profile</a>
-                                                    <!-- </span> -->
                                                     <span class="mt-comment-date">
                                                         <?=date('j M Y H:i A', strtotime($row->created_at))?>
                                                     </span>
@@ -267,29 +280,31 @@
                                         </div>
                                         <?php }?>
 
+                                        <!-- ELSE -->
                                         <?php if($shown_new == 0){?>
-                                        <!-- @IF empty / No Info -->
-                                        <div class="portlet light md-shadow-none">
-                                            <div class="portlet-body p-2">
+                                        <div class="portlet light md-grey-lighten-5">
+                                            <div class="portlet-body p-80 text-center">
+                                                <i class="icon-users font-50 md-indigo-text"></i>
                                                 <h3 class="text-center font-weight-500 md-indigo-text"> No new join student.</h3>
-                                                <h5 class="text-center font-grey-cascade mt-4">New registered student since your last logged in</h5>
+                                                <h5 class="text-center font-grey-cascade mt-20">New registered student since your last logged in</h5>
                                             </div>
                                         </div>
                                         <?php }?>
                                     </div>
                                 </div>
                             </div>
-                            <!-- TAB END : Review , Rate , Endorse  -->
 
-                            <!-- TAB BEGIN : Interview Session -->
-                            <div class="tab-pane " id="portlet_tab2">
+                            <!-- TAB  : Interview Session -->
+                            <!-- [Done] Add EMPTY STATE -->
+                            <div class="tab-pane " id="tab_interview">
                                 <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                    <!-- IF (!empty) -->
                                     <div class="general-item-list">
                                         <?php $shown_interview = 0;foreach($upcoming_interview['upcoming_interview'] as $row){ $shown_interview++;?>
                                         <div class="item">
                                             <div class="item-head">
                                                 <div class="item-details">
-                                                    <img class="item-pic rounded" src="<?=$row->profile_photo != " "?IMG_EMPLOYERS.$row->profile_photo:IMG_STUDENTS.'xremo-logo-blue.png'; ?>">
+                                                    <img class="item-pic rounded" src="<?=$row->profile_photo != " "?IMG_EMPLOYERS.$row->profile_photo:IMG.'/site/profile-pic.png'; ?>">
                                                     <a href="<?=base_url()?>profile/company/<?=rtrim(base64_encode($row->employer_id),'=') ?>" target="_blank" class="item-name primary-link">
                                                         <?=$row->company_name?>
                                                     </a>
@@ -298,10 +313,7 @@
                                                     </span>
                                                 </div>
                                                 <span class="item-status">
-                                                    <!--<span class="badge badge-empty badge-success mr-2"></span>Ongoing
-																<span class="badge badge-empty badge-warning mr-2"></span>Pending</span>
-																<span class="badge badge-empty badge-primary mr-2"></span>Closed</span>-->
-                                                    <span class="badge badge-empty badge-danger mr-2"></span>Upcoming</span>
+                                                    <span class="badge badge-empty badge-danger mr-10"></span>Upcoming</span>
                                                 </span>
                                             </div>
                                             <div class="item-body">
@@ -313,28 +325,28 @@
                                             </div>
                                         </div>
                                         <?php }?>
-
-                                        <?php if($shown_interview == 0){?>
-                                        <!-- @IF empty / No Info -->
-                                        <div class="portlet light md-shadow-none">
-                                            <div class="portlet-body p-2">
-                                                <h3 class="text-center font-weight-500 md-indigo-text"> You have no Interview invitation yet.</h3>
-                                                <h5 class="text-center font-grey-cascade mt-4">Search job that suitable to built your career ! If not , update your profile</h5>
-                                                <div class="col-xs-offset-4 col-xs-4 mt-4">
-                                                    <a href="<?=base_url()?>student/profile" class="btn btn-outline btn-md-indigo">Update Profile ! </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php }?>
                                     </div>
+                                    <!-- ELSE -->
+                                    <?php if($shown_interview == 0){?>
+                                    <div class="portlet light md-grey-lighten-5">
+                                        <div class="portlet-body p-80">
+                                            <h3 class="text-center font-weight-500 md-indigo-text"> You have no interview invitation yet.</h3>
+                                            <h5 class="text-center font-grey-cascade mt-20">Search job that suitable to built your career ! If not , update your profile</h5>
+                                            <a href="<?=base_url()?>student/profile" class="btn btn-outline btn-md-indigo center-block mt-50">Update Profile ! </a>
+
+                                        </div>
+                                    </div>
+                                    <?php }?>
                                 </div>
                             </div>
-                            <!-- TAB END : Interview Session -->
 
-                            <!-- TAB BEGIN : System -->
-                            <div class="tab-pane " id="portlet_tab3">
+                            <!-- TAB : Recent Activities -->
+                            <!-- [Done] Add EMPTY STATE -->
+                            <div class="tab-pane " id="tab_activity">
                                 <div class="scroller" style="height: 350px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
                                     <ul class="feeds">
+                                        <!-- IF (!empty) -->
+                                        <?php if(!empty($recent_activities)){?>
                                         <?php foreach($recent_activities as $row){?>
                                         <li>
                                             <div class="col1">
@@ -358,61 +370,60 @@
                                             </div>
                                         </li>
                                         <?php }?>
+                                        <?php }else{?>
+                                        <!-- Else -->
+                                        <div class="portlet light md-grey-lighten-5">
+                                            <div class="portlet-body p-80 text-center">
+                                                <i class="icon-ghost font-50 md-indigo-text"></i>
+                                                <h3 class="text-center font-weight-500 md-indigo-text"> It's empty.</h3>
+                                                <h5 class="text-center font-grey-cascade mt-20">There is no recent activities found in your account.</h5>
+                                            </div>
+                                        </div>
+                                        <?php }?>
                                     </ul>
                                 </div>
                             </div>
-                            <!-- TAB END : System -->
                         </div>
                     </div>
                 </div>
-                <!-- END PORTLET-->
             </div>
 
-            <!-- FIX :Article  -->
-            <div class="col-md-6 col-sm-12 col-xs-12">
-                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel" data-ride="carousel">
+            <!-- # Article  -->
+            <div class="col-md-6 col-xs-12 col-sm-12">
+                <div id="carousel-example-generic-v2" class="carousel  slide widget-carousel" data-ride="carousel">
                     <!-- Indicators -->
-                    <ol class="carousel-indicators carousel-indicators-red">
+                    <ol class="carousel-indicators carousel-indicators-red mb-30">
                         <li data-target="#carousel-example-generic-v2" data-slide-to="0" class="circle active"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="1" class="circle"></li>
+                        <li data-target="#carousel-example-generic-v2" data-slide-to="2" class="circle"></li>
                     </ol>
                     <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
+                    <div class="carousel-inner " role="listbox">
+                        <?php $i = 1;foreach ($article as $row) { ?>
+                        <div class="item <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog text-center margin-bottom-20 clearfix" style="height: 442px; padding-top: 120px; background-image: url(../../assets/layouts/layout7/img/07.jpg">
+                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?php echo IMG; ?>/site/dawn.jpg'">
                                 <div class="widget-blog-heading text-uppercase">
-                                    <h3 class="widget-blog-title">San Francisco</h3>
-                                    <span class="widget-blog-subtitle">At dawn</span>
+                                    <h3 class="widget-blog-title md-white-text">
+                                        <?=$row->title?>
+                                    </h3>
+                                    <span class="widget-blog-subtitle mdo-white-v7-text">
+                                        <?=date('j F Y', strtotime($row->created_at))?>
+                                    </span>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat commodo consequat.
+                                <p class="mdo-white-v7-text">
+                                    <?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?>
                                 </p>
-                                <br>
-                                <a class="btn btn-danger text-uppercase" href="#">Read More</a>
+                                <br/>
+                                <a class="btn btn-danger text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
                             </div>
                             <!-- END WIDGET BLOG -->
                         </div>
-                        <div class="item">
-                            <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog text-center margin-bottom-20 clearfix" style="height: 442px; padding-top: 120px; background-image: url(../../assets/layouts/layout7/img/06.jpg">
-                                <div class="widget-blog-heading text-uppercase">
-                                    <h3 class="widget-blog-title md-white-text">San Francisco</h3>
-                                    <span class="widget-blog-subtitle md-white-text">At dawn</span>
-                                </div>
-                                <p class="md-white-text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat commodo consequat.
-                                </p>
-                                <br>
-                                <a class="btn btn-danger text-uppercase" href="#">Read More</a>
-                            </div>
-                            <!-- END WIDGET BLOG -->
-                        </div>
+                        <?php $i++;}?>
                     </div>
                 </div>
-
             </div>
         </div>
-
-
     </div>
     <!-- END CONTENT BODY -->
 
