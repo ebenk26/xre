@@ -94,26 +94,26 @@ class User_Model extends CI_Model{
             
             //sending confirmEmail($receiver) function calling link to the user, inside message body
 
-            $receiver["url"] = 'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=');
+            // $receiver["url"] = 'site/user/confirmForgotPassword/'.rtrim(base64_encode($email),'=');
+            $receiver["url"] = 'change_password/'.rtrim(base64_encode($email),'=');
 
             $message = $this->load->view("mail/forgot_password",$receiver,true);
 
-            $config['mailtype'] = 'html';
-            $config['priority'] = 2;
-            $config['wordwrap'] = TRUE;
+
+            $MailData = array(  
+                            "sender_email"      => EMAIL_SYSTEM,
+                            "receiver_email"    => trim($email),
+                            'subject'           => $subject,
+                            'message_html'      => $message
+                        );
             
-            $this->load->library('email', $config);
-            $this->email->set_mailtype("html");
-            //$this->email->initialize($config);
-            //send email
-            $this->email->from('system@xremo.com');
-            $this->email->to($email);
-            $this->email->subject('[Forgot Password] Xremo Account');
-            $this->email->message($message);
-            
-            if($this->email->send()){
-                return true;
-            }else{
+            try {
+                
+                sendEmail($MailData);
+                $this->db->where('email', $email);
+                $this->db->update('users', array('forgot_password_time'=> date('Y-m-d H:i:s')));
+                redirect(base_url().'instructions_change_password');
+            } catch (Exception $e) {
                 return false;
             }
 

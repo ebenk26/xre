@@ -15,6 +15,7 @@
             }
         }
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -659,8 +660,7 @@
         <script>
             function initMap() {
                 var address = <?php echo $detail['address']; ?>;
-                var company_name = '<?php echo $detail['
-                company_name ']; ?>';
+                var company_name = '<?= $detail['company_name']; ?>';
                 var latLang = {
                     lat: 0,
                     lng: 120

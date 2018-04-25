@@ -10,31 +10,18 @@
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&amp;subset=all">
 
     <!-- Bootstrap -->
     <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Icon -->
-    <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>icon/simple-line-icons.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Plugin -->
-    <link href="<?php echo JS; ?>plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo JS; ?>plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Global -->
-    <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Page Layout -->
-    <link href="<?php echo CSS; ?>pages/login-5.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url(); ?>assets/css/vendor/alertify.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css">
     <!-- END PAGE LEVEL STYLES -->
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../../custom_pages/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -54,8 +41,8 @@
                     <!-- Logo -->
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
-                            <a href="index.html" class="s-header-v2-logo-link">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default height-50" src="<?= IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo">
+                            <a href="<?= base_url(); ?>" class="s-header-v2-logo-link">
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
                             </a>
                         </div>
                     </div>
@@ -72,15 +59,15 @@
     <!--========== END HEADER ==========-->
 
     <!--========== CONTENT ==========-->
-    <section class="s-promo-block-v4 gradient-indigo g-fullheight">
-        <div class="container g-ver-center width-700 text-center">
-            <div class="portlet light md-shadow-z-3 p-100">
+    <section class="s-promo-block-v4 g-bg-gradient-md-indigo g-fullheight-xs">
+        <div class="container g-ver-center-xs pt-4  mt-width-600-xs text-center">
+            <div class="portlet light p-5 md-shadow-z-3">
                 <div class="portlet-body ">
                     <i class="icon-check display-3 md-green-text "></i>
-                    <h4 class="my-40">Password Reset Request Sent</h4>
-                    <p class="font-16"> A password reset message was sent to your email address. Please follow the instruction given in email to reset your password.</p>
-                    <p class="font-16 md-red-text"> If you do not receive the password reset message within few moments, please check your spam folder or other filtering tools </p>
-                    <a href="welcome.html" class="btn btn-md-indigo mt-15">Go to home</a>
+                    <h4 class="my-4">Password Reset Request Sent</h4>
+                    <p class="font-16-xs"> A password reset message was sent to your email address. Please follow the instruction given in email to reset your password.</p>
+                    <p class="font-16-xs md-red-text"> If you do not receive the password reset message within few moments, please check your spam folder or other filtering tools </p>
+                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo">Go to home</a>
                 </div>
             </div>
         </div>

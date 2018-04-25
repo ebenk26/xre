@@ -195,7 +195,7 @@
                                 <?php echo $value['name']; ?>
                             </td>
                             <td>
-                                <?php if ((date('Y-m-d') >= date('Y-m-d', strtotime($value['expiry_date']))) || $value['status'] == 'expired') {?>
+                                <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
                                 <span class="label label-sm label-md-red"> Expired </span>
                                 <?php }elseif ($value['status'] == 'draft') {?>
                                 <span class="label label-sm label-md-amber"> Draft </span>
@@ -655,7 +655,7 @@
                 </div>
                 <div class="modal-footer form-action ">
                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Preview</button>
+                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100" id="preview_button_edit_<?= $value['id']?>">Preview</button>
                 </div>
             </form>
         </div>
