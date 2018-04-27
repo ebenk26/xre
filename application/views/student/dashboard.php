@@ -1,6 +1,5 @@
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
-    <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
         <h1 class="page-title"> Welcome back ,
@@ -24,6 +23,7 @@
 
         <!-- Widget-Dashboard / Video Resume -->
         <div class="row">
+            <!-- # Widget -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <!-- # Widget : Profile Seen -->
                 <div class="dashboard-stat2  ">
@@ -54,7 +54,6 @@
                     </div>
                 </div>
             </div>
-            <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <!-- # Widget : Upcoming Interview -->
                 <div class="dashboard-stat2 ">
@@ -70,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+                <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>
                 <!-- # Widget : Latest Job Vacancy -->
                 <div class="dashboard-stat2 ">
                     <div class="display my-0">
@@ -85,16 +85,16 @@
                     </div>
                 </div>
             </div>
-
+            <!-- # Video -->
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                 <div class="portlet light  height-350">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-xs-12">
                         <div class="my-55">
                             <h2 class="mb-30">Interested in video resume</h2>
                             <h5>Check it out more by click play button</h5>
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-xs-12">
                         <!-- <div class=""> -->
                         <!-- <i class="icon-control-play font-26"></i> -->
                         <div class="embed-responsive embed-responsive-4by3 my-45 ">
@@ -107,127 +107,136 @@
         </div>
 
         <!-- Section: Find Job-->
-        <div class="portlet ">
-            <!-- TITLE  -->
-            <div class="media">
-                <div class="media-body">
-                    <h2 class="text-none mb-10">What we just found for you!
-                        <!-- <span class="font-24 label label-md-indigo">30 new job</span> -->
-                    </h2>
-                </div>
-                <div class="media-right media-bottom">
-                    <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0">View All Job Dashboard</a>
-                    <!-- <a href="student-settings.html" class="btn btn-outline btn-md-indigo mt-4">
+        <div class="row mx-0 mb-60">
+            <div class="portlet ">
+                <!-- TITLE  -->
+                <div class="media">
+                    <div class="media-body">
+                        <h2 class="text-none mb-10">What we just found for you!
+                            <!-- <span class="font-24 label label-md-indigo">30 new job</span> -->
+                        </h2>
+                    </div>
+                    <div class="media-right media-bottom">
+                        <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0">View All Job Dashboard</a>
+                        <!-- <a href="student-settings.html" class="btn btn-outline btn-md-indigo mt-4">
                         <i class="icon-settings"></i>Job Preferences</a> -->
+                    </div>
                 </div>
-            </div>
 
-            <hr class="border-mdo-darkblue-v1 ">
+                <hr class="border-mdo-darkblue-v1 ">
 
-            <!-- CONTENT -->
-            <!-- NOTE :  Only extract latest 1 week job have been posted and based user preferences or put limit only latest 10 job been posted will be show-->
-            <!-- @IF empty / No Info -->
-            <!-- <div class="portlet mt-height-50-percent  md-shadow-none"> -->
-            <!-- <div class="portlet-body px-18 py-10">
+                <!-- CONTENT -->
+                <!-- NOTE :  Only extract latest 1 week job have been posted and based user preferences or put limit only latest 10 job been posted will be show-->
+                <!-- @IF empty / No Info -->
+                <!-- <div class="portlet mt-height-50-percent  md-shadow-none"> -->
+                <!-- <div class="portlet-body px-18 py-10">
                     <h2 class="text-center font-weight-500 md-indigo-text"> Set up your job preferences! </h2>
                     <h5 class="text-center font-26-xs font-grey-cascade mt-4">Tired for waiting your job preference? Why not set up your job preferences by click
                         <b> '
                             <i class="icon-settings mr-2"></i>Job Preferences ' </b> and we will search and automatically notify your preferences!!</h5>
                 </div> -->
-            <!-- </div> -->
+                <!-- </div> -->
 
-            <!-- @ ELSE IF CONTENT less than and equal to 6  : button load do not have to appear -->
-            <?php $no_new = 0;foreach ($job_positions_new as $key => $value) { if($no_new == 6){break;} $no_new++;?>
-            <?= ($no_new %3 == 0) ? '<div class="row ">' : '' ?>
-                <div class="col-md-4">
-                    <div class="portlet light">
-                        <div class="media">
-                            <!-- # Post Title / Company Name / Time posted -->
-                            <div class="media-body media-middle">
-                                <!-- # Post Title -->
-                                <h4 class="font-weight-600 font-26">
-                                    <a class="md-black-text md-indigo-text-hover" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">
-                                        <?php echo $value['job_post'] ?>
-                                    </a>
-                                </h4>
-                                <!-- # Company Name -->
-                                <h5 class="font-weight-400 text-capitalize">
-                                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank">
-                                        <?php echo $value['company_name'] ?>
-                                    </a>
-                                </h5>
-                                <!-- # Post Date Released -->
-                                <small class="font-grey-salsa mb-0">
-                                    <i class="icon-calendar mr-5"></i>
-                                    <?php echo time_elapsed_string($value['job_created_time']); ?>
-                                </small>
+                <!-- @ ELSE IF CONTENT less than and equal to 6  : button load do not have to appear -->
+                <?php $no_new = 0;
+                foreach ($job_positions_new as $key => $value) { 
+                    if($no_new == 6){
+                        break;
+                    } 
+                    $no_new++;
+                ?>
+                <?= ($no_new%3 == 0) ? '<div class="row">' : '' ?>
+                    <div class="col-md-4  ">
+                        <div class="media md-white px-20 py-30 ">
+                            <div class="media-body">
+                                <div class="media mx-0">
+                                    <!-- # Post Title / Company Name / Time posted -->
+                                    <div class="media-body">
+                                        <!-- # Post Title -->
+                                        <h4 class="font-weight-600 font-20">
+                                            <a class="md-black-text md-indigo-text-hover" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">
+                                                <?php echo $value['job_post'] ?>
+                                            </a>
+                                        </h4>
+                                        <!-- # Company Name -->
+                                        <h5 class="font-weight-400 text-capitalize">
+                                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank">
+                                                <?php echo $value['company_name'] ?>
+                                            </a>
+                                        </h5>
+                                        <!-- # Post Date Released -->
+                                        <small class="font-grey-salsa mb-0">
+                                            <i class="icon-calendar mr-5"></i>
+                                            <?php echo time_elapsed_string($value['job_created_time']); ?>
+                                        </small>
+                                    </div>
+                                    <!-- # Company Profile Picture -->
+                                    <div class="media-right">
+                                        <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/profile-pic.png'; ?>" alt="<?php echo $value['company_name'] ?>" class="avatar avatar-tiny avatar-circle mr-10">
+                                    </div>
+                                </div>
+                                <hr class="my-20">
+                                <!-- # Label -->
+                                <!-- [Done] Fix : All label will be hidden if empty  -->
+                                <ul class="list-unstyled list-inline mt-ul-li-lr-0  mx-0" >
+                                    <!-- Location -->
+                                    <?php if (!empty($value['state_name'])) {?>
+                                    <li class="mb-10 px-0">
+                                        <p class="label label-md-cyan label-sm font-12 letter-space-xs">
+                                            <i class="fa fa-map-marker"></i>
+                                            <?php echo $value['state_name'] ?>
+                                        </p>
+                                    </li>
+                                    <?php } ?>
+
+                                    <!-- Employment Type -->
+                                    <?php if (!empty($value['employment_name'])) {?>
+                                    <li class=" mb-10 px-0 ">
+                                        <p class="label label-primary label-sm font-12 letter-space-xs">
+                                            <i class="fa fa-briefcase"></i>
+                                            <?php echo $value['employment_name'] ;?>
+                                        </p>
+                                    </li>
+                                    <?php } ?>
+
+                                    <!-- Position -->
+                                    <?php if (!empty($value['position_name'])) {?>
+                                    <li class=" mb-10">
+                                        <p class="label label-md-purple label-sm  font-12 letter-space-xs">
+                                            <i class="fa fa-sitemap"></i>
+                                            <?php echo $value['position_name'] ?>
+                                        </p>
+                                    </li>
+                                    <?php } ?>
+
+                                    <!-- Industry -->
+                                    <?php if (!empty($value['industry_name'])) {?>
+                                    <li class=" mb-10">
+                                        <p class="label label-md-blue-grey label-sm font-12 letter-space-xs">
+                                            <i class="fa fa-industry"></i>
+                                            <?php echo $value['industry_name'] ?>
+                                        </p>
+                                    </li>
+                                    <?php } ?>
+                                    <!-- Salary -->
+                                    <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
+                                    <li class=" mb-10">
+                                        <p class="label label-md-green label-sm font-12 letter-space-xs">
+                                            <i class="fa fa-usd"></i>
+                                            <?php echo $this->session->userdata('forex') ?>
+                                            <?php echo $value['min_budget']; ?> -
+                                            <?php echo $this->session->userdata('forex') ?>
+                                            <?php echo $value['max_budget']; ?>
+                                        </p>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+
                             </div>
-                            <!-- # Company Profile Picture -->
-                            <div class="media-right">
-                                <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/profile-pic.png'; ?>" alt="<?php echo $value['company_name'] ?>" class="avatar avatar-tiny avatar-circle mr-10">
-                            </div>
-                            <hr class="my-20">
-                            <!-- # Label -->
-                            <!-- [Done] Fix : All label will be hidden if empty  -->
-                            <ul class="list-unstyled list-inline mt-ul-li-lr-1 ml-0">
-
-                                <!-- Location -->
-                                <?php if (!empty($value['state_name'])) {?>
-                                <li class="mb-10 px-0">
-                                    <p class="label label-md-cyan label-sm">
-                                        <i class="fa fa-map-marker"></i>
-                                        <?php echo $value['state_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-
-                                <!-- Employment Type -->
-                                <?php if (!empty($value['employment_name'])) {?>
-                                <li class=" mb-10 px-0 ">
-                                    <p class="label label-primary  label-sm">
-                                        <i class="fa fa-briefcase"></i>
-                                        <?php echo $value['employment_name'] ;?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-
-                                <!-- Position -->
-                                <?php if (!empty($value['position_name'])) {?>
-                                <li class=" mb-10">
-                                    <p class="label label-md-purple label-sm ">
-                                        <i class="fa fa-sitemap"></i>
-                                        <?php echo $value['position_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-
-                                <!-- Industry -->
-                                <?php if (!empty($value['industry_name'])) {?>
-                                <li class=" mb-10">
-                                    <p class="label label-md-blue-grey label-sm ">
-                                        <i class="fa fa-industry"></i>
-                                        <?php echo $value['industry_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                                <!-- Salary -->
-                                <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
-                                <li class=" mb-10">
-                                    <p class="label label-md-green  label-sm">
-                                        <i class="fa fa-usd"></i>
-                                        <?php echo $this->session->userdata('forex') ?>
-                                        <?php echo $value['min_budget']; ?> -
-                                        <?php echo $this->session->userdata('forex') ?>
-                                        <?php echo $value['max_budget']; ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                            </ul>
                         </div>
                     </div>
-                </div>
-            <?= ($no_new %3 == 0) ? '</div>' : '' ?>
-                <?php } ?>
+                <?= ($no_new %3 == 0) ? '</div>' : '' ?><?php } ?>
+            </div>
         </div>
 
         <!-- Widget : Feed & Article -->
@@ -399,9 +408,9 @@
 
             <!-- # Article  -->
             <div class="col-md-6 col-xs-12 col-sm-12">
-                <div id="carousel-example-generic-v2" class="carousel  slide widget-carousel" data-ride="carousel">
+                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel " data-ride="carousel">
                     <!-- Indicators -->
-                    <ol class="carousel-indicators carousel-indicators-red mb-30">
+                    <ol class="carousel-indicators carousel-indicators-red py-40 ">
                         <li data-target="#carousel-example-generic-v2" data-slide-to="0" class="circle active"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="1" class="circle"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="2" class="circle"></li>
@@ -409,9 +418,9 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner " role="listbox">
                         <?php $i = 1;foreach ($article as $row) { ?>
-                        <div class="item <?=$i == 1?" active ":" "?>">
+                        <div class="item   <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG.'/article/'.$row->featured_image : IMG."/site/dawn.jpg"; ?>'">
+                            <div class="widget-blog text-center mb-30 py-110" style=" background: url('<?= !empty($row->featured_image) ?IMG.'/article/'.$row->featured_image : IMG.'/site/dawn.jpg'; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
                                     <h3 class="widget-blog-title md-white-text">
                                         <?=$row->title?>
@@ -424,7 +433,7 @@
                                     <?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?>
                                 </p>
                                 <br/>
-                                <a class="btn btn-danger text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
+                                <a class="btn btn-md-orange text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
                             </div>
                             <!-- END WIDGET BLOG -->
                         </div>
@@ -434,7 +443,5 @@
             </div>
         </div>
     </div>
-    <!-- END CONTENT BODY -->
-
 </div>
 <!-- END CONTENT -->

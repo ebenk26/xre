@@ -9,22 +9,22 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/js.cookie.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/moment.min.js"></script>
 
 <!-- Plugins @ Vendor  -->
-<!-- # Datatable -->
-<script type="text/javascript" src="<?php echo JS; ?>global/datatable.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>plugins/datatables/datatables.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
 <!-- # Date / Time -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-daterangepicker/daterangepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/clockface/js/clockface.js"></script>
+<!-- # Datatable -->
+<script type="text/javascript" src="<?php echo JS; ?>global/datatable.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/datatables/plugins/bootstrap/datatables.bootstrap.js"></script>
 <!-- # Widget -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/counterup/jquery.waypoints.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/counterup/jquery.counterup.min.js"></script>
@@ -32,7 +32,7 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <!-- # Calendar -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/fullcalendar/fullcalendar.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script> -->
 <!-- # Image Cropping -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.color.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.Jcrop.min.js"></script>
@@ -62,26 +62,23 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-<!-- # Custom -->
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pass-strength.js"></script>s
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
+
 
 <!-- GLOBAL -->
-<script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>global/app.js"></script>
 
 <!-- APPS -->
 <script type="text/javascript" src="<?php echo JS; ?>apps/calendar.js"></script>
 
 <!-- PAGE -->
+<script type="text/javascript" src="<?php echo JS; ?>pages/components-date-time-pickers.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-wizard-employer.js"></script>
-<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/dashboard.min.js"></script> -->
+<script type="text/javascript" src="<?php echo JS; ?>pages/dashboard.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/table-datatables-managed.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-repeater.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>pages/components-date-time-pickers.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-image-crop.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-bootstrap-select.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>pages/ui-modals.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/ui-modals.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-editors.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3.js"></script>
@@ -91,6 +88,10 @@
 <script type="text/javascript" src="<?php echo JS; ?>layout2/quick-sidebar.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>layout2/quick-nav.min.js"></script>
 
+<!-- # Custom -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/alertify.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/pass-strength.js"></script>s
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic.js"></script>
 
 
 
