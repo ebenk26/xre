@@ -13,11 +13,11 @@ var App = function() {
 
     var assetsPath = '../assets/';
 
-    var globalImgPath = 'global/img/';
+    var globalImgPath = '../../img/';
 
-    var globalPluginsPath = 'global/plugins/';
+    var globalPluginsPath = '../../js/plugins/';
 
-    var globalCssPath = 'global/css/';
+    var globalCssPath = '../../css/';
 
     // theme layout color set
 
@@ -1012,8 +1012,6 @@ var App = function() {
     };
 
 }();
-
-<!-- END THEME LAYOUT SCRIPTS -->
 
 jQuery(document).ready(function() {    
    App.init(); // init metronic core componets

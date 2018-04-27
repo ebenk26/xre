@@ -9,22 +9,23 @@
 - Article Page 
     - [Done] got issue on view image in home page
 
-- Login / Signup page
-    - [Done] got related js alertify and password strength
+- Login / Signup page    
     - need to add instructions to verify the email , success verification and expired verification    [Copy Paste from Forgot Password Design]
 
 - Student
     - Dashboard 
-        - Need to add backend code in article.
-        - update design new join and empty state
-        - add empty state if no activity
-        - sync color of job and change badge into label 
+        - [Done] Need to add backend code in article.
+        - [Done]update design new join and empty state
+        - [Done]add empty state if no activity
+        - [Done]sync color of job and change badge into label 
         
     - Profile
         - Edit profile need to clear up
         - modal need to be full width
         - need to fix scrollTo
         - copy employer layout design 
+        -found bug for student time period on tab education edit modal
+        - add empty states on description and tag
     - Gallery 
         - need to fix button color
         - come up friendly ui design
@@ -97,7 +98,7 @@
             - major
             - year 
     - Need to ask rico 
-        - [Done] why in job post , when job post under preview it was put into hidden .. so how the hell user want to make confirmation on that?
+        - [Done] why in job post , when job post under preview it was put into hidden .. so how user want to make confirmation on that?
         - [Done need to pull from master ]is it in job preview and company profile .. google maps script already updated? 
 
 
