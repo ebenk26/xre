@@ -58,9 +58,9 @@
       .controls:focus {
         border-color: #4d90fe;
       }
-      .title {
+      /* .title {
         font-weight: bold;
-      }
+      } */
       #infowindow-content {
         display: none;
       }
@@ -71,8 +71,7 @@
         position: absolute;
         z-index: 99999;
       }
-
-    </style>
+</style>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -122,19 +121,18 @@
                                 <!-- Short Content -->
                                 <div class="mt-card-content  ">
                                     <!-- Company Name -->
-                                    <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs ">
+                                    <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase  ">
                                         <?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Set Your Company Name'; ?>
                                     </h3>
-
                                     <ul class="list-inline list-unstyled">
                                         <li class="font-24 md-grey-darken-2-text">
                                             <i class="fa fa-industry mr-5"></i>
-                                            <?php echo !empty($detail['industry']) ? $detail['industry']: ''; ?>
+                                            <?php echo !empty($detail['industry']) ? $detail['industry']:' Edit your info. '; ?>
                                         </li>
                                         <li class="font-24 md-grey-darken-2-text">
                                             <!-- <h5 class="mb-10 font-weight-600 md-indigo-text"> Company Size</h5> -->
                                             <i class="fa fa-users md-grey-darken-2-text mr-5"></i>
-                                            <?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' Employee' : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?>
+                                            <?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' Employee' : 'Edit your info.'; ?>
 
                                         </li>
                                     </ul>

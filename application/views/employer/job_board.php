@@ -65,6 +65,7 @@
         <h1 class="page-title">Job Board
             <small>Here your job post should be</small>
         </h1>
+
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
@@ -186,7 +187,7 @@
                                     $i =1;
                                   foreach ($job_post as $key => $value) {
                                   ?>
-                        <tr class="odd gradeX <?php echo ($value['status'] == 'preview') ? 'hidden' : ''; ?>">
+                        <tr class="odd gradeX <?php echo ($value['status'] == 'preview') ? 'hidden' : ''; ?>">                        
                             <td class="text-center">
                                 <?php echo $i; ?>
                             </td>
@@ -290,7 +291,7 @@
                                     <input type="number" class="form-control addBudgetMin input-small" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
                                     <span class="mx-5">to</span>
                                     <input type="number" class="form-control addBudgetMax input-small " id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
-                                </div>                            
+                                </div>
                                 <span class="help-block has-error hidden" id="salaryBlockError">Minimum salary should be lower.</span>
                             </div>
                         </div>
@@ -364,7 +365,7 @@
 
                     <!-- LOCATION JOB -->
                     <h4 class="form-section ">Location</h4>
-                    
+
                     <!-- Address -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Address</label>

@@ -65,6 +65,9 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- # Google Map -->
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
+<!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/gmaps/gmaps.min.js"></script> -->
 
 <!-- GLOBAL -->
 <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
@@ -161,7 +164,6 @@
             }
         ,2000);
     });
-
     // GMap
     function initMap()
     {
