@@ -119,14 +119,16 @@
                 }
             }
         });
+
         // Edit Job Post
         $('.edit_jobpost').click(function () {
             var idJobPost = $(this).attr('data-id');
-            // console.log(idMap);
-            
+            // console.log(idJobPost);
+
             $('#editBudgetMax'+idJobPost).focusout(function () {
                 $this = $('#editBudgetMin'+idJobPost).val();
                 $that = $('#editBudgetMax'+idJobPost).val();
+                
                 if ($this.length > 0) {
                     if (parseInt($this) > parseInt($that)) {
                         $('#salaryBlock'+idJobPost).addClass('has-error');
@@ -139,137 +141,35 @@
                     }
                 }
             });
+            
+            showMaps(idJobPost);
+        });
 
-            var lat = document.getElementById('latitude' + idJobPost).value;
-            var lng = document.getElementById('longitude' + idJobPost).value;
+        // Add Job Post
+        $('#modal_add_jobpost').on('shown.bs.modal', function () {
+            initMap();
+        });
 
-            var input = document.getElementById('pac-input' + idJobPost);
+        setTimeout(
+            function()
+            {
+                var segments = window.location.href.split( '/' );
 
-            if (lat.length > 0 && lng.length > 0) {
-                var mapLatitude = document.getElementById('latitude' + idJobPost).value;
-                var mapLongitude = document.getElementById('longitude' + idJobPost).value;
-                var title = document.getElementById('addMapTitle' + idJobPost).value;
-                var description = document.getElementById('addMapDescription' + idJobPost).value;
+                if(window.location.hash != '' && segments[4] == 'employer' && segments[5] == 'job_board')
+                {
+                    var idJobPost = $('a[href="'+window.location.hash+'"]').attr('data-id');
 
-                var map = new google.maps.Map(document.getElementById('map' + idJobPost), {
-                    center: {
-                        lat: parseFloat(mapLatitude),
-                        lng: parseFloat(mapLongitude)
-                    },
-                    // center: {lat: -33.8688, lng: 151.2195},
-                    zoom: 13
-                });
-
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
-
-                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>' + title +
-                    '</b></span><br/>' + description + '</span></div>';
-                console.log(contentString);
-
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                });
-
-                var marker = new google.maps.Marker({
-                    position: {
-                        lat: parseFloat(mapLatitude),
-                        lng: parseFloat(mapLongitude)
-                    },
-                    map: map,
-                    title: title,
-                });
-
-                marker.addListener('click', function () {
-                    infowindow.open(map, marker);
-                });
-            } else {
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
-
-                var infowindow = new google.maps.InfoWindow();
-                var marker = new google.maps.Marker({
-                    map: map
-                });
-                marker.addListener('click', function () {
-                    infowindow.open(map, marker);
-                });
+                    showMaps(idJobPost);
+                }
             }
-
-            autocomplete.addListener('place_changed', function () {
-                infowindow.close();
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    return;
-                }
-
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                    map.setZoom(17);
-                }
-
-                // Set the position of the marker using the place ID and location.
-                marker.setPlace({
-                    placeId: place.place_id,
-                    location: place.geometry.location
-                });
-                marker.setVisible(true);
-                var element = document.getElementById('map-window' + idJobPost);
-                var InfoWindow = document.createElement('div');
-                var title = document.createElement('span');
-                var addr = document.createElement('span');
-                var br = document.createElement('br');
-
-                element.appendChild(InfoWindow);
-                InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
-                InfoWindow.setAttribute('style', 'display: inline');
-
-                InfoWindow.appendChild(title);
-                title.setAttribute('id', 'place-name' + idJobPost);
-                title.setAttribute('style', 'font-weight: bold');
-                InfoWindow.appendChild(br);
-                InfoWindow.appendChild(addr);
-                addr.setAttribute('id', 'place-address' + idJobPost);
-                document.getElementById('place-name' + idJobPost).textContent = place.name;
-                document.getElementById('place-address' + idJobPost).textContent =
-                    place.formatted_address;
-                infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
-                infowindow.open(map, marker);
-                document.getElementById('latitude' + idJobPost).value = place.geometry.location.lat();
-                document.getElementById('longitude' + idJobPost).value = place.geometry.location.lng();
-                document.getElementById('addAddress' + idJobPost).value = place.formatted_address;
-                for (var i = 0; i < place.address_components.length; i++) {
-                    var addressType = place.address_components[i].types[0];
-                    var val = place.address_components[i];
-                    if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                        document.getElementById('addState' + idJobPost).value = val.long_name;
-                    }
-                    if (addressType == 'administrative_area_level_1') {
-                        document.getElementById('addCity' + idJobPost).value = val.long_name;
-                    }
-                    if (addressType == 'country') {
-                        document.getElementById('addCountry' + idJobPost).value = val.long_name;
-                    }
-                    if (addressType == 'postal_code') {
-                        document.getElementById('addPostcode' + idJobPost).value = val.long_name;
-                    }
-                }
-
-            });
-        })
+        ,2000);
     });
     // GMap
-    function initMap() {
+    function initMap()
+    {
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {
-                lat: -33.8688,
-                lng: 151.2195
-            },
-            zoom: 13
+          zoom: 8,
+          center: {lat: 35.717, lng: 139.731}
         });
 
         var input = document.getElementById('pac-input');
@@ -286,6 +186,26 @@
         marker.addListener('click', function () {
             infowindow.open(map, marker);
         });
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infowindow.setPosition(pos);
+                infowindow.setContent('Location found.');
+                infowindow.open(map);
+                map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infowindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infowindow, map.getCenter());
+        }
 
         autocomplete.addListener('place_changed', function() {
           infowindow.close();
@@ -347,9 +267,156 @@
               }
           }
         });
-      }
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+    }
+
+    //Show Maps
+    function showMaps(idJobPost)
+    {
+        var lat = document.getElementById('latitude' + idJobPost).value;
+        var lng = document.getElementById('longitude' + idJobPost).value;
+
+        var input = document.getElementById('pac-input' + idJobPost);
+
+        if (lat.length > 0 && lng.length > 0) {
+            var mapLatitude = document.getElementById('latitude' + idJobPost).value;
+            var mapLongitude = document.getElementById('longitude' + idJobPost).value;
+            var title = document.getElementById('addMapTitle' + idJobPost).value;
+            var description = document.getElementById('addMapDescription' + idJobPost).value;
+
+            var map = new google.maps.Map(document.getElementById('map' + idJobPost), {
+                center: {
+                    lat: parseFloat(mapLatitude),
+                    lng: parseFloat(mapLongitude)
+                },
+                // center: {lat: -33.8688, lng: 151.2195},
+                zoom: 13
+            });
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+            var contentString = '<div id="infowindow-content" style="display:inline"><span><b>' + title +
+                '</b></span><br/>' + description + '</span></div>';
+            console.log(contentString);
+
+            var infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(mapLatitude),
+                    lng: parseFloat(mapLongitude)
+                },
+                map: map,
+                title: title,
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        } else {
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
+
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: map
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            
+            if (!place.geometry) {
+                return;
+            }
+
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
+
+            // Set the position of the marker using the place ID and location.
+            marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+
+            marker.setVisible(true);
+
+            var element     = document.getElementById('map-window' + idJobPost);
+            var InfoWindow  = document.createElement('div');
+            var title       = document.createElement('span');
+            var addr        = document.createElement('span');
+            var br          = document.createElement('br');
+
+            element.appendChild(InfoWindow);
+
+            InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
+            InfoWindow.setAttribute('style', 'display: inline');
+            InfoWindow.appendChild(title);
+            
+            title.setAttribute('id', 'place-name' + idJobPost);
+            title.setAttribute('style', 'font-weight: bold');
+            
+            InfoWindow.appendChild(br);
+            InfoWindow.appendChild(addr);
+            
+            addr.setAttribute('id', 'place-address' + idJobPost);
+            
+            document.getElementById('place-name' + idJobPost).textContent = place.name;
+            document.getElementById('place-address' + idJobPost).textContent =
+                place.formatted_address;
+            
+            infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
+            infowindow.open(map, marker);
+            
+            document.getElementById('latitude' + idJobPost).value = place.geometry.location.lat();
+            document.getElementById('longitude' + idJobPost).value = place.geometry.location.lng();
+            document.getElementById('addAddress' + idJobPost).value = place.formatted_address;
+            
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                var val = place.address_components[i];
+                
+                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('addState' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('addCity' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'country') {
+                    document.getElementById('addCountry' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'postal_code') {
+                    document.getElementById('addPostcode' + idJobPost).value = val.long_name;
+                }
+            }
+        });
+    }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"
         async defer></script>
     <?php endif; ?>
 
