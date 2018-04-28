@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller {
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
 		$job['job_positions'] = $this->student_model->get_all_job($id);
+		$footer['invitation'] = json_encode($this->student_model->get_interview_invitation($id));
 		if(!empty($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history'])){
 			$job['job_positions_new'] 	= $this->student_model->get_all_new_job($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
 			$job['new_join'] 			= $this->student_model->get_new_join($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
@@ -61,7 +62,7 @@ class Dashboard extends CI_Controller {
 		
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/dashboard', $job);
-        $this->load->view('student/main/footer');
+        $this->load->view('student/main/footer',$footer);
 	}
 
     public function applied(){

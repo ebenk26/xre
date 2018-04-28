@@ -69,7 +69,7 @@ class User extends CI_Controller {
                             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                         }
                     }
-
+                    $this->session->set_flashdata('msg_success', 'Login Successfully.');
                     redirect(base_url().$page.'/dashboard');
 
                 }
