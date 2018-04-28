@@ -1,3 +1,11 @@
+<?php 
+    $i= 0;
+    foreach ($invitation as $key => $value) {
+        if (strtotime($value['start_date']) > strtotime(date('Y-m-d H:i:s'))) {
+            $i++;
+        }
+    }
+    $upcoming = $i; ?>
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <!-- BEGIN CONTENT BODY -->
@@ -70,8 +78,8 @@
                         <i class="widget-thumb-icon md-purple icon-calendar"></i>
                         <div class="widget-thumb-body">
                             <span class="widget-thumb-subtitle">Upcoming </span>
-                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo count($invitation); ?>">
-                                <?php echo count($invitation); ?>
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $upcoming; ?>">
+                                <?php echo $upcoming; ?>
                             </span>
                         </div>
                     </div>
