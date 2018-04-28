@@ -221,14 +221,16 @@
                                                 <i class="icon-pencil"></i> Edit Job Post </a>
                                         </li>
                                         <?php } ?>
+                                        <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
                                         <li>
                                             <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                 <i class="icon-users"></i> View Candidates </a>
                                         </li>
+                                        <?php endif; ?>
                                         <li>
                                             <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                 <i class="fa fa-file-text-o"></i>
-                                                <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Draft' ?>
+                                                <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
                                             </a>
                                         </li>
                                         <li class="divider"> </li>
