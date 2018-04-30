@@ -251,14 +251,14 @@ class User extends CI_Controller {
         $this->db->where('md5(email)',$key);
         $this->db->update('users', $data);    //update status as 1 to make active user
         $this->session->set_flashdata('msg_success', 'Successfully verified. Please login to your account.');
-        redirect(base_url().'site/user/login');
+        redirect(base_url().'login');
     }
 
     function logout(){
         $loginCheck = $this->session->userdata('id');
         if(isset($loginCheck)){
             $this->session->sess_destroy();
-            redirect(base_url());
+            redirect(base_url().'login');
         } else {
             show_404();
         }
