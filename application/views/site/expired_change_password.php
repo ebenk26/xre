@@ -16,6 +16,9 @@
     <!-- Bootstrap -->
     <link href="<?php echo CSS; ?>bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css">
 
     <!-- Icon -->
     <link href="<?php echo CSS; ?>icon/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -24,7 +27,7 @@
     <!-- Global -->
     <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
-
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>

@@ -39,7 +39,6 @@ class User extends CI_Controller {
             
 
             if ($login_result['status_request'] == 200) {
-                var_dump('200');exit;
                 
                 $result = array(  'id' => $login_result['id'],
                                     'email' => $login_result['email'],
