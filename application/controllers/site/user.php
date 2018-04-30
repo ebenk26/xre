@@ -328,7 +328,8 @@ class User extends CI_Controller {
         $email = base64_decode($this->uri->segment(2));
         $checkForgotPasswordTime = $this->global_model->get_where('users', array('email' => $email));
         $forgotTime = current($checkForgotPasswordTime);
-        $checkExpiryTime = strtotime($forgotTime['forgot_password_time']) <= (strtotime($forgotTime['forgot_password_time'].+"1 day"));
+        $checkExpiryTime = (strtotime("now") > strtotime($forgotTime['forgot_password_time'])) && (strtotime("now") <= (strtotime($forgotTime['forgot_password_time']."+1 day")));
+
         if ($checkExpiryTime) {
             $this->load->view('site/change_password');
         }else{

@@ -71,7 +71,7 @@
                         <div class="form-group mx-0 mt-4">
                             <div class="input-icon">
                                 <i class="icon-envelope"></i>
-                                <input type="email" class="form-control" placeholder="Email Address">
+                                <input type="email" class="form-control" name="email" placeholder="Email Address">
                             </div>
 
                         </div>

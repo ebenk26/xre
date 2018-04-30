@@ -17,7 +17,7 @@ class Confirm_email extends CI_Controller {
 
         $confirm = $this->global_model->get_where('users', array('md5(email)' => $key ));
         $confirmed = current($confirm);
-        $checkExpiryTime = strtotime("now") <= (strtotime($confirmed['created_at']."+1 day"));
+        $checkExpiryTime = (strtotime("now") > strtotime($confirmed['created_at'])) && (strtotime("now") <= (strtotime($confirmed['created_at']."+1 day")));
         if ($checkExpiryTime) {
             try {
                 $data = array('verified' => 1);
