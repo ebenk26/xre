@@ -21,21 +21,29 @@ class User_Model extends CI_Model{
     }
 
     public function loginUser($email, $password){
-        $this->db->select('users.id as id, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, users.last_seen_notif, roles.slug as roles, profile_uploads.name as img_profile, profile_uploads.type as img_type');
+        $this->db->select('users.id as id, users.password as password, users.email as email, users.fullname as name, users.verified as verified, users.status as status, users.remember_token as remember_token, users.last_seen_notif, roles.slug as roles, profile_uploads.name as img_profile, profile_uploads.type as img_type');
         $this->db->from('users');
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"', 'left');
-        $this->db->where(array('users.email' => $email, 'users.password' => $password));
+        // $this->db->where(array('users.email' => $email, 'users.password' => $password));
         //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->where(array('users.email' => $email));
         $query = $this->db->get();
         $result = $query->last_row('array');
+
         if (!empty($result)) {
-            $user = array('user_id' => !empty($result['id']) ? $result['id'] : $this->session->userdata('id') );
-            $this->db->insert('user_history', $user);
+            if ($result['password'] == $password && $result['verified'] == 1) {
+                $user = array('user_id' => !empty($result['id']) ? $result['id'] : $this->session->userdata('id') );
+                $this->db->insert('user_history', $user);
+                $result['status_request'] = 200;
+            }elseif ($result['verified'] == 0) {
+                $result['status_request'] = 403;
+            }else{
+                $result['status_request'] = 422;
+            }
         }else{
-            $this->session->set_flashdata('msg_failed', 'Wrong username or password please check again');
-            return false;
+                $result['status_request'] = 401;
         }
 
         return $result;
