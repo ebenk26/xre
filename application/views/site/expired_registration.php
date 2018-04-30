@@ -25,6 +25,8 @@
     <!-- Global -->
     <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo CSS; ?>layout8/layout8.css" rel="stylesheet" type="text/css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
@@ -34,8 +36,7 @@
     <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
         <!-- Navbar -->
         <nav class="s-header-v2-navbar">
-            <div class="container g-display-table-lg">
-                <!-- Navbar Row -->
+            <div class="container mt-display-table-lg">
                 <div class="s-header-v2-navbar-row">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="s-header-v2-navbar-col">
@@ -48,14 +49,11 @@
                     <div class="s-header-v2-navbar-col ">
                         <div class="s-header-v2-logo">
                             <a href="<?= base_url(); ?>" class="s-header-v2-logo-link">
-                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
-                                <!-- <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="../../assets/global/img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo"> -->
+                                <img class="s-header-v2-logo-img s-header-v2-logo-img-default height-50" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
                             </a>
                         </div>
                     </div>
                     <!-- End Logo -->
-
-                    <!-- Content -->
 
                 </div>
                 <!-- End Navbar Row -->
@@ -72,9 +70,9 @@
                 <div class="portlet-body ">
                     <i class="icon-close display-3 md-red-text "></i>
                     <h4 class="mt-40">Link Expired.</h4>
-                    <p class="font-16 font-weight-400">Hey there! Your activation link for email address "user@email.com "has expired after 48 hours or already been used. To request resend new link activation , enter your email address .</p>
+                    <p class="font-16 font-weight-400">Hey there! Your activation link for email address has expired after 48 hours or already been used. To request resend new link activation , enter your email address .</p>
                     <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
-                        <div class="form-group mx-0 mt-20">
+                        <div class="form-group mx-0 mt-40">
                             <div class="input-icon">
                                 <i class="icon-envelope"></i>
                                 <input type="email" class="form-control" placeholder="Email Address">
@@ -82,8 +80,8 @@
 
                         </div>
                         <div class="text-right ">
-                            <a href="welcome.html" class="btn btn-outline-md-indigo">Cancel</a>
-                            <button class="btn btn-md-indigo width-200" type="submit">Submit</button>
+                            <a href="<?= base_url(); ?>" class="btn btn-outline btn-md-indigo">Cancel</a>
+                            <button class="btn btn-md-indigo width-150" type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
