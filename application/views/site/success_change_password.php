@@ -66,8 +66,8 @@
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
         <div class="container g-ver-center width-700">
-            <div class="portlet light  md-shadow-z-3 text-center">
-                <div class="portlet-body px-0 py-100">
+        <div class="portlet light p-100 md-shadow-z-3 text-center">
+                <div class="portlet-body ">
                     <i class="icon-check display-3 md-green-text "></i>
                     <h4 class="mt-20">Your password has been reset</h4>
                     <p class="font-16 font-weight-400">Login to your account by using new password.</p>

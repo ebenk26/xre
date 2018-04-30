@@ -69,11 +69,11 @@
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
         <div class="container g-ver-center width-700">
-            <div class="portlet light  md-shadow-z-3 text-center">
-                <div class="portlet-body px-0 py-100">
+        <div class="portlet light p-100 md-shadow-z-3 text-center">
+                <div class="portlet-body ">
                     <i class="icon-check display-3 md-green-text "></i>
                     <h4 class="my-40">Registration Successfull !!</h4>
-                    <p class="font-16 font-weight-400"> Your email address has been successfully verified. Now you can use your account and start to build your profile!</p>
+                    <p class="font-16 font-weight-400 mb-30"> Your email address has been successfully verified. Now you can use your account and start to build your profile!</p>
                     <a href="<?= base_url(); ?>" class="btn btn-md-indigo width-250"> Continue</a>
                 </div>
             </div>

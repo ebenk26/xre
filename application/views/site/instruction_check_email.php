@@ -67,7 +67,7 @@
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
         <div class="container g-ver-center width-700">
             <div class="portlet light  md-shadow-z-3 text-center">
-                <div class="portlet-body px-0 py-100">
+                <div class="portlet-body px-30 py-100">
                     <i class="icon-envelope display-3 md-green-text "></i>
                     <h4 class="my-40">Please check your email!</h4>
                     <p class="font-16 font-weight-400">Thank you for signing-up! A verification link has been sent to your email address. Please follow the instructions given in the verification email to finish creating your Xremo Account. </p>
