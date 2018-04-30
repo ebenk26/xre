@@ -134,7 +134,7 @@
                         <i class="widget-thumb-icon md-yellow icon-layers"></i>
                         <div class="widget-thumb-body">
                             <span class="widget-thumb-subtitle">Draft</span>
-                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $total_job-$post-$expired-$preview; ?>">
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $total_job-$post-$expired; ?>">
                                 <?php echo $expired; ?>
                             </span>
                         </div>
@@ -187,7 +187,7 @@
                                     $i =1;
                                   foreach ($job_post as $key => $value) {
                                   ?>
-                        <tr class="odd gradeX <?php echo ($value['status'] == 'preview') ? 'hidden' : ''; ?>">                        
+                        <tr class="odd gradeX ">                        
                             <td class="text-center">
                                 <?php echo $i; ?>
                             </td>
@@ -197,7 +197,7 @@
                             <td>
                                 <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
                                 <span class="label label-sm label-md-red"> Expired </span>
-                                <?php }elseif ($value['status'] == 'draft') {?>
+                                <?php }elseif ($value['status'] == 'preview') {?>
                                 <span class="label label-sm label-md-amber"> Draft </span>
                                 <?php }else{ ?>
                                 <span class="label label-sm label-md-green"> Active </span>
@@ -221,14 +221,16 @@
                                                 <i class="icon-pencil"></i> Edit Job Post </a>
                                         </li>
                                         <?php } ?>
+                                        <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
                                         <li>
                                             <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                 <i class="icon-users"></i> View Candidates </a>
                                         </li>
+                                        <?php endif; ?>
                                         <li>
                                             <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                 <i class="fa fa-file-text-o"></i>
-                                                <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Draft' ?>
+                                                <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
                                             </a>
                                         </li>
                                         <li class="divider"> </li>
@@ -242,7 +244,7 @@
 
                             </td>
                         </tr>
-                        <?php ($value['status'] != 'preview') ? $i++ : ''; }} ?>
+                        <?php $i++; }} ?>
                     </tbody>
                 </table>
             </div>

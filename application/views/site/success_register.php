@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Change Password</title>
+    <title>Registration successful</title>
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/style.css">
     <link rel="stylesheet" type="text/css" href="<?= CSS; ?>layout8/components.css">
     <link rel="stylesheet" type="text/css" href="<?php echo ASSETS; ?>plugins/simple-line-icons/simple-line-icons.min.css">
+    <!-- END PAGE LEVEL STYLES -->
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
@@ -28,8 +29,7 @@
     <header class="navbar-fixed-top s-header js-header-sticky js-header-overlay">
         <!-- Navbar -->
         <nav class="s-header-v2-navbar">
-            <div class="container g-display-table-lg">
-                <!-- Navbar Row -->
+            <div class="container mt-display-table-lg">
                 <div class="s-header-v2-navbar-row">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="s-header-v2-navbar-col">
@@ -43,7 +43,6 @@
                         <div class="s-header-v2-logo">
                             <a href="<?= base_url(); ?>" class="s-header-v2-logo-link">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo Logo" style="height:47px">
-                                <!-- <img class="s-header-v2-logo-img s-header-v2-logo-img-default" src="../../assets/global/img/xremo/xremo-logo-blue.png" style="height:47px" alt="Dublin Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -61,25 +60,14 @@
 
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 g-bg-gradient-md-indigo g-fullheight-xs">
-        <div class="container g-ver-center-xs pt-4 text-center mt-width-600-xs">
-            <div class="portlet light pt-4 pb-5 pr-5 pl-5 md-shadow-z-3">
+        <div class="container g-ver-center-xs pt-4  mt-width-600-xs text-center">
+            <div class="portlet light p-5 md-shadow-z-3">
                 <div class="portlet-body ">
-                    <i class="icon-close display-3 md-red-text "></i>
-                    <h4 class="mt-4" style="font-family: Montserrat, sans-serif; font-size: 24px; font-weight: 400;line-height: 28.8px;">Your reset password link already expired.</h4>
-                    <p class="font-16-xs" style="font-family: Lato, sans-serif;">Hey there! Your Xremo password has expired after 24 hour or has already been used! To reset your password , enter your email.</p>
-                    <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
-                        <div class="form-group mx-0 mt-4">
-                            <div class="input-icon">
-                                <i class="icon-envelope"></i>
-                                <input type="email" class="form-control" name="email" placeholder="Email Address">
-                            </div>
-
-                        </div>
-                        <div class="text-right ">
-                            <a href="welcome.html" class="btn btn-outline-md-indigo">Cancel</a>
-                            <button class="btn btn-md-indigo" type="submit">Submit</button>
-                        </div>
-                    </form>
+                    <i class="icon-check display-3 md-green-text "></i>
+                    <h4 class="my-4">Registration Successful</h4>
+                    <p class="font-16-xs"> You have successfully register as an xremo member, please check your email to confim.</p>
+                    <p class="font-16-xs md-red-text"> If you do not receive the registration confirmation within few moments, please check your spam folder or other filtering tools </p>
+                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo">Go to home</a>
                 </div>
             </div>
         </div>

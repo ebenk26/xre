@@ -10,4 +10,4 @@
 			</div>
 		</div>
     </div>
-    <!-- END FOOTER
+    <!-- END FOOTER-->

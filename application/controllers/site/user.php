@@ -69,7 +69,7 @@ class User extends CI_Controller {
                             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                         }
                     }
-
+                    $this->session->set_flashdata('msg_success', 'Login Successfully.');
                     redirect(base_url().$page.'/dashboard');
 
                 }
@@ -144,7 +144,7 @@ class User extends CI_Controller {
 
             //$header['page_title'] = 'Sign Up';
             //$this->load->view('site/signup', $header);
-            redirect(base_url().'login');          
+            redirect(base_url().'verify_registration');          
         }
     }
 
@@ -232,7 +232,7 @@ class User extends CI_Controller {
 
             //$header['page_title'] = 'Sign Up';
             //$this->load->view('site/signup', $header);
-            redirect(base_url().'login');
+            redirect(base_url().'verify_registration');
         }
     }
 
@@ -251,14 +251,14 @@ class User extends CI_Controller {
         $this->db->where('md5(email)',$key);
         $this->db->update('users', $data);    //update status as 1 to make active user
         $this->session->set_flashdata('msg_success', 'Successfully verified. Please login to your account.');
-        redirect(base_url().'site/user/login');
+        redirect(base_url().'login');
     }
 
     function logout(){
         $loginCheck = $this->session->userdata('id');
         if(isset($loginCheck)){
             $this->session->sess_destroy();
-            redirect(base_url());
+            redirect(base_url().'login');
         } else {
             show_404();
         }
@@ -328,12 +328,27 @@ class User extends CI_Controller {
         $email = base64_decode($this->uri->segment(2));
         $checkForgotPasswordTime = $this->global_model->get_where('users', array('email' => $email));
         $forgotTime = current($checkForgotPasswordTime);
-        $checkExpiryTime = strtotime($forgotTime['forgot_password_time']) <= (strtotime($forgotTime['forgot_password_time'])+strtotime("+1 day"));
+        $checkExpiryTime = (strtotime("now") > strtotime($forgotTime['forgot_password_time'])) && (strtotime("now") <= (strtotime($forgotTime['forgot_password_time']."+1 day")));
+
         if ($checkExpiryTime) {
             $this->load->view('site/change_password');
         }else{
             redirect(base_url().'expired_password');
         }
+    }
+
+    function resend_registration_link(){
+        $email = $this->input->post('email');
+        $data = array('email' => $email);
+        try {
+            $this->db->where('email',$email);
+            $this->db->update('users', array('created_at' => date('Y-m-d h:i:s')));
+            $this->user_model->sendEmail($data);
+        } catch (Exception $e) {
+            $this->session->set_flashdata('msg_failed', 'Failed record your data, please try again');
+            redirect(base_url().'expired_registration');
+        }
+        redirect(base_url().'verify_registration');
     }
 
     function expired_password(){
@@ -346,6 +361,18 @@ class User extends CI_Controller {
 
     function instructions_change_password(){
         $this->load->view('site/instructions_change_password');
+    }
+
+    function expired_registration(){
+        $this->load->view('site/expired_registration');
+    }
+
+    function success_registration(){
+        $this->load->view('site/success_register');
+    }
+
+    function verify_registration(){
+        $this->load->view('site/instruction_check_email');
     }
 
 }

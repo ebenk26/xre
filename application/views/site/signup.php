@@ -109,7 +109,7 @@
                 </div>
                 <div class="login-content ">
                     <div class="portlet " id="studentContent">
-                        <h1 class="font-weight-500 display-4 text-center mt-0 mb-70">Are you a student? </h1>
+                        <h1 class="font-weight-500 display-4 text-center mt-0 mb-70">Are you an student? </h1>
                         <a class="btn btn-md-darkblue btn-outline  btn-lg mb-60 mb-0-md" href="<?php echo base_url(); ?>signup#studentUser" id="studentRadio">Sign up as Student</a>
                     </div>
 
@@ -218,7 +218,7 @@
                 <div class="login-content ">
                     <div class="portlet" id="employerContent">
                         <div class="portlet-body">
-                            <h1 class="font-weight-500 display-4 md-white-text mt-0 text-center mb-70">Are you a employer? </h1>
+                            <h1 class="font-weight-500 display-4 md-white-text mt-0 text-center mb-70">Are you an employer? </h1>
                             <a class="btn btn-md-white btn-outline btn-lg" id="employerRadio" href="<?php echo base_url(); ?>signup#employerUser">
                                 Sign up as Employer</a>
                         </div>
@@ -549,12 +549,10 @@
         // assumes you're using jQuery
         $(document).ready(function () {
             <?php if($this->session->flashdata('msg_success')){ ?>
-            alertify.success('<?php echo $this->session->flashdata('
-                msg_success '); ?>', 'success', 10);
+            alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 10);
             <?php } ?>
             <?php if($this->session->flashdata('msg_failed')){ ?>
-            alertify.error('<?php echo $this->session->flashdata('
-                msg_failed '); ?>', 'error', 5);
+            alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
             <?php } ?>
         });
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Change Password</title>
+    <title>Expired Registration Link</title>
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
@@ -65,13 +65,13 @@
             <div class="portlet light pt-4 pb-5 pr-5 pl-5 md-shadow-z-3">
                 <div class="portlet-body ">
                     <i class="icon-close display-3 md-red-text "></i>
-                    <h4 class="mt-4" style="font-family: Montserrat, sans-serif; font-size: 24px; font-weight: 400;line-height: 28.8px;">Your reset password link already expired.</h4>
-                    <p class="font-16-xs" style="font-family: Lato, sans-serif;">Hey there! Your Xremo password has expired after 24 hour or has already been used! To reset your password , enter your email.</p>
+                    <h4 class="mt-4" style="font-family: Montserrat, sans-serif; font-size: 24px; font-weight: 400;line-height: 28.8px;">Your Registration confirmation link already expired.</h4>
+                    <p class="font-16-xs" style="font-family: Lato, sans-serif;">Hey there! Your Xremo Registration confirmation has expired after 24 hour or has already been used! To reset your Registration confirmation , enter your email.</p>
                     <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
                         <div class="form-group mx-0 mt-4">
                             <div class="input-icon">
                                 <i class="icon-envelope"></i>
-                                <input type="email" class="form-control" name="email" placeholder="Email Address">
+                                <input type="email" class="form-control" placeholder="Email Address">
                             </div>
 
                         </div>

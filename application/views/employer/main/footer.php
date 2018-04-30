@@ -1,6 +1,5 @@
 </div>
 <!-- END CONTAINER -->
-
 <?php $this->load->view('main/footer_app');?>
 
 
@@ -701,12 +700,10 @@
         });
 
         <?php if($this->session->flashdata('msg_success')){ ?>
-        alertify.success('<?php echo $this->session->flashdata('
-            msg_success '); ?>', 'success', 5);
+        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
         <?php } ?>
         <?php if($this->session->flashdata('msg_failed')){ ?>
-        alertify.error('<?php echo $this->session->flashdata('
-            msg_failed '); ?>', 'error', 5);
+        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
         <?php } ?>
 
         // CANDIDATE LIST & INTERVIEW SESSION 

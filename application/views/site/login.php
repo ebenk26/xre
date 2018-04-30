@@ -238,12 +238,10 @@
         // assumes you're using jQuery
         $(document).ready(function () {
             <?php if($this->session->flashdata('msg_success')){ ?>
-            alertify.success('<?php echo $this->session->flashdata('
-                msg_success '); ?>', 'success', 10);
+            alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 10);
             <?php } ?>
             <?php if($this->session->flashdata('msg_failed')){ ?>
-            alertify.error('<?php echo $this->session->flashdata('
-                msg_failed '); ?>', 'error', 5);
+            alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
             <?php } ?>
         });
 

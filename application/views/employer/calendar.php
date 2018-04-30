@@ -40,7 +40,7 @@
                                                                         <i class="icon-briefcase mr-2"></i><?php echo $value['job_name'] ?> (<?php echo $value['company_name']; ?>)</h4>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="scroller mt-height-600-xs" data-always-visible="1" data-rail-visible1="1">
+                                                                    <div class="scroller height-300" data-always-visible="1" data-rail-visible1="1">
                                                                         <ul class="list-unstyled">
                                                                             <li>
                                                                                 <div class="col-md-4 text-right font-weight-700">

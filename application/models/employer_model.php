@@ -106,7 +106,6 @@ class Employer_Model extends CI_Model{
 		$this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
 		$this->db->where('user_id', $id);
         $this->db->order_by('job_positions.created_at', 'desc');
-        $this->db->limit(6);
         $query = $this->db->get('job_positions');
         return $query->result_array();
     }
@@ -385,6 +384,7 @@ class Employer_Model extends CI_Model{
         $this->db->where('interview_schedule_user.employer_id', $id); 
         $this->db->where('interview_schedule.start_date >= '.date('Y-m-d'));
         $this->db->where('interview_schedule_user.status', 'accept');
+        // var_dump($this->db->last_query());exit;
         $interview = $this->db->get();
 
         return $interview->result_array();
