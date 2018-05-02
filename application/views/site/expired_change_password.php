@@ -71,7 +71,7 @@
                     <i class="icon-close display-3 md-red-text "></i>
                     <h4 class="mt-40">Link expired.</h4>
                     <p class="font-16 mx-30 mb-40 font-weight-400">Hey there! Your Xremo password has expired after 24 hour or has already been used! To reset your password , enter your email.</p>
-                    <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
+                    <form action="<?php echo base_url(); ?>forgot_password" method="post">
                         <div class="form-group mx-0 mt-30">
                             <div class="input-icon">
                                 <i class="icon-envelope"></i>

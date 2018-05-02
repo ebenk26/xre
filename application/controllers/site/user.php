@@ -267,11 +267,15 @@ class User extends CI_Controller {
     }
 
     function forgot_password(){
-        $this->form_validation->set_rules('email','User email', 'trim|required|valid_email|matches[users.email]');
-        $email = $this->input->post('email');
-        $this->user_model->forgotPassword($email);
-        // $this->session->set_flashdata('msg_success', 'Please check your email to reset password');
-        redirect(base_url().'instructions_change_password');
+        $email          = $this->input->post('email');
+        $checkEmail     = checkEmailExist($email);
+        if ($checkEmail['status_request'] == 200) {
+            $this->user_model->forgotPassword($email);
+            redirect(base_url().'instructions_change_password');
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Email not registered, please register first');
+            redirect(base_url().'expired_password');
+        }
     }
 
     function confirmForgotPassword(){
@@ -341,16 +345,18 @@ class User extends CI_Controller {
 
     function resend_registration_link(){
         $email = $this->input->post('email');
+        $checkEmail     = checkEmailExist($email);
         $data = array('email' => $email);
-        try {
+
+        if ($checkEmail['status_request'] == 200) {
             $this->db->where('email',$email);
             $this->db->update('users', array('created_at' => date('Y-m-d h:i:s')));
             $this->user_model->sendEmail($data);
-        } catch (Exception $e) {
-            $this->session->set_flashdata('msg_failed', 'Failed record your data, please try again');
+            redirect(base_url().'verify_registration');
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Email not registered, please register first');
             redirect(base_url().'expired_registration');
-        }
-        redirect(base_url().'verify_registration');
+        }        
     }
 
     function expired_password(){
