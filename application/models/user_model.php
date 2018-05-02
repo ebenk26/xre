@@ -98,7 +98,7 @@ class User_Model extends CI_Model{
 
         if ($receiver) {
             $from = "Xremo";    //senders email address
-            $subject = 'Retrieve new password';  //email subject
+            $subject = 'Reset password';  //email subject
             
             //sending confirmEmail($receiver) function calling link to the user, inside message body
 
