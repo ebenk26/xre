@@ -34,7 +34,7 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <!-- # Calendar -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/fullcalendar/fullcalendar.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script> -->
 <!-- # Image Cropping -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.color.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.Jcrop.min.js"></script>
@@ -82,9 +82,9 @@
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-date-time-pickers.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/form-image-crop.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-bootstrap-select.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>pages/ui-modals.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/ui-modals.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-editors.min.js"></script>
-<script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3.js"></script>
 
 <!-- PAGE LAYOUT   -->
