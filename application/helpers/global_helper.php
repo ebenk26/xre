@@ -313,4 +313,17 @@ function countRateEducation($params){
     $review['education']= $CI->global_model->get_where('ratings', $reviewDataEducation);
     return $review;
 }
+
+function checkEmailExist($email){
+    $CI =& get_instance();
+    $CI->load->model('global_model');
+    $checkEmailData = array('email'=> $email);
+    $result['data'] = $CI->global_model->get_where('users', $checkEmailData);
+    if (!empty($result)) {
+        $result['status_request'] = 200;
+    }else{
+        $result['status_request'] = 422;
+    }
+    return $result;
+}
 ?>

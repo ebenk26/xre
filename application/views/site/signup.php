@@ -108,7 +108,7 @@
                             <a href="<?=base_url()?>">
                                 <img class="height-110" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
                             </a>
-                            <h1 class="font-weight-500 display-4 text-center my-60">Are you a student? </h1>
+                            <h1 class="font-weight-500 display-4 text-center my-60">Are you an student? </h1>
                             <a class="btn btn-md-darkblue btn-outline  btn-lg mb-60 mb-0-md" href="<?php echo base_url(); ?>signup#studentUser" id="studentRadio">Sign up as Student</a>
                         </div>
 

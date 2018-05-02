@@ -57,6 +57,7 @@ $route['privacy'] 								= 'site/main';
 $route['terms-of-use'] 							= 'site/main';
 $route['login'] 								= 'site/user/login';
 $route['signup'] 								= 'site/user/signup';
+$route['forgot_password'] 						= 'site/user/forgot_password';
 $route['job/search'] 							= 'site/job_search_result';
 $route['job/search/(:any)'] 					= 'site/job_search_result';
 $route['home/job/search'] 						= 'site/job_search_result';
