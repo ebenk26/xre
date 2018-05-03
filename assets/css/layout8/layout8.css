@@ -622,6 +622,7 @@ h5,
 h6 {
   font-weight: 500;
   font-family: "Open Sans", sans-serif;
+  font-weight: 500;
   line-height: 1.2;
   color: #242424;
   margin-top: 0;
@@ -662,26 +663,25 @@ h6 {
       transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1); }
 
 h1 {
-  font-size: 2.5rem; }
+  font-size: 2.5em; }
 
 h2 {
-  font-size: 2rem; }
+  font-size: 2em; }
 
 h3 {
-  font-size: 1.75rem; }
+  font-size: 1.75em; }
 
 h4 {
-  font-size: 1.5rem; }
+  font-size: 1.5em; }
 
 h5 {
-  font-size: 1.25rem; }
+  font-size: 1.25em; }
 
 h6 {
-  font-size: 1.125rem; }
+  font-size: 1.125em; }
 
 em,
 li {
-  font-size: 1rem;
   font-weight: 300;
   color: #242424; }
   em > a,
@@ -694,18 +694,11 @@ li {
 small {
   color: #656565; }
 
-label {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: #242424;
-  margin-bottom: .25rem; }
-
 i {
   line-height: 1; }
 
 
 p {
-  font-size: 1rem;
   font-weight: 300;
   color: #656565;
   line-height: 1.6;
@@ -772,27 +765,27 @@ a {
 
 
 .s-btn-xs {
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   font-weight: 400;
   padding: 0.5rem 1.25rem; }
 
 .s-btn-sm {
-  font-size: 0.9375rem;
+  font-size: 0.9375em;
   font-weight: 400;
   padding: 0.75rem 1.25rem; }
 
 .s-btn-md {
-  font-size: 1.0625rem;
+  font-size: 1.0625em;
   font-weight: 400;
   padding: 1rem 2.5rem; }
 
 .s-btn-lg {
-  font-size: 1.25rem;
+  font-size: 1.25em;
   font-weight: 400;
   padding: 1.25em 2.75rem; }
 
 .s-btn-icon {
-  font-size: 1.0625rem;
+  font-size: 1.0625em;
   padding: 0.8rem 1.5rem; }
 
 
@@ -2539,7 +2532,7 @@ a {
     position: absolute;
     bottom: -1rem;
     left: 12.5rem;
-    font-size: 9.375rem;
+    font-size: 9.375em;
     font-family: Playfair Display, serif;
     color: rgba(245, 248, 249, 0.8);
     z-index: -1; }
@@ -2550,7 +2543,7 @@ a {
   margin: 0.3125rem 0; }
 
 .s-faq-grid-title {
-  font-size: 1rem;
+  font-size: 1em;
   color: #FFF;
   margin: 0.3125rem 0 0 0.5rem; }
 
@@ -2561,7 +2554,7 @@ a {
 
 
 .s-form-v1-input {
-  font-size: 0.875rem;
+  font-size: 0.875em;
   font-weight: 300;
   color: #FFF;
   letter-spacing: 0.1rem;
@@ -2587,7 +2580,7 @@ a {
 
 
 .s-form-v2-input {
-  font-size: 0.875rem;
+  font-size: 0.875em;
   font-weight: 300;
   transition-duration: 300ms;
   transition-property: all;
@@ -2628,7 +2621,7 @@ a {
 
 .s-form-v3-input {
   position: relative;
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   font-weight: 400;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -2670,7 +2663,7 @@ a {
 .s-form-v4-input {
   position: relative;
   height: 3.125rem;
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   font-weight: 400;
   color: rgba(34, 35, 36, 0.5);
   border: none;
@@ -2709,14 +2702,14 @@ a {
       color: #222324; }
 
 .s-form-v4-icon {
-  font-size: 1.125rem;
+  font-size: 1.125em;
   color: rgba(34, 35, 36, 0.7);
   border-bottom: 0.0625rem solid #222324;
   padding: 1rem; }
 
 
 .s-form-v5-input {
-  font-size: 0.875rem;
+  font-size: 0.875em;
   font-weight: 300;
   color: #656565;
   letter-spacing: 0.1rem;
@@ -2767,19 +2760,19 @@ a {
 .s-icon-sm {
   width: 2.5rem;
   height: 2.5rem;
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   padding: 0.6875rem; }
 
 .s-icon-md {
   width: 3.125rem;
   height: 3.125rem;
-  font-size: 1.125rem;
+  font-size: 1.125em;
   padding: 0.75rem; }
 
 .s-icon-lg {
   width: 3.5rem;
   height: 3.5rem;
-  font-size: 1.625rem;
+  font-size: 1.625em;
   padding: 0.5625rem 1rem; }
 
 
@@ -7505,10 +7498,10 @@ a {
   .s-plan-v1-price-mark, .s-plan-v1-price-tag {
     color: #13B1CD; }
   .s-plan-v1-price-mark {
-    font-size: 1.375rem;
+    font-size: 1.375em;
     vertical-align: top; }
   .s-plan-v1-price-tag {
-    font-size: 1.875rem;
+    font-size: 1.875em;
     line-height: 1.1; }
 
 
@@ -7874,7 +7867,7 @@ a {
     color: rgba(255, 255, 255, 0.75);
     position: relative;
     display: block;
-    font-size: 0.9375rem;
+    font-size: 0.9375em;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
     line-height: 5.5rem;
@@ -7902,7 +7895,7 @@ a {
 
 .s-header-v2-dropdown-menu {
   display: none;
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   min-width: 13.750rem;
   background: #FFF;
   border: none;
@@ -7920,7 +7913,7 @@ a {
   .s-header-v2-dropdown-menu:focus .s-header-v2-dropdown-menu-link, .s-header-v2-dropdown-menu:hover .s-header-v2-dropdown-menu-link {
     background: transparent; }
   .s-header-v2-dropdown-menu-link {
-    font-size: 0.875rem;
+    font-size: 0.875em;
     font-weight: 400 !important;
     font-family: Lato, sans-serif;
     color: rgba(34, 35, 36, 0.7) !important;
@@ -8027,7 +8020,7 @@ a {
   z-index: 9;
   display: block; }
   .s-back-to-top:before {
-    font-size: 0.75rem;
+    font-size: 0.75em;
     font-style: normal;
     font-family: themify;
     transition-duration: 300ms;
@@ -8152,7 +8145,7 @@ a {
 
 
 .s-portfolio-filter-v1-item {
-  font-size: 0.8125rem;
+  font-size: 0.8125em;
   color: #656565 !important;
   text-transform: uppercase;
   margin-bottom: 0 !important; }
@@ -8225,7 +8218,7 @@ a {
 
 .s-tab-filter-v1 {
   display: block;
-  font-size: 1.75rem;
+  font-size: 1.75em;
   color: #FFF;
   text-align: center;
   border: none;
@@ -8255,7 +8248,7 @@ a {
     color: #13B1CD; }
 
 .s-tab-grid-v1-item {
-  font-size: 0.9375rem;
+  font-size: 0.9375em;
   font-weight: 300;
   color: #656565; }
 
@@ -8651,7 +8644,7 @@ a {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 0.75rem;
+  font-size: 0.75em;
   font-family: themify;
   color: #656565;
   content: "\e646"; }
