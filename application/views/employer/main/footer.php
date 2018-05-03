@@ -142,7 +142,12 @@ $company_address = json_decode($user_profile['address']);?>
                 }
             });
             
-            showMaps(idJobPost);
+            setTimeout(
+                function()
+                {
+                  showMaps(idJobPost);
+                }
+            ,1000);
         });
 
         // Add Job Post
