@@ -1046,8 +1046,8 @@ if (!empty($company_address))
                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                     <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:600px; height: 300px;"> </div>
                                     <div>
-                                        <span class="btn red btn-outline btn-file">
-                                            <span class="fileinput-new"> Select image </span>
+                                        <span class="btn badge-md-darkblue btn-outline btn-file">
+                                            <span class="fileinput-new" style="color: white;"> Select image </span>
                                             <span class="fileinput-exists"> Change </span>
                                             <input type="file" name="company_header"> </span>
                                         <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
