@@ -33,11 +33,14 @@ class User extends CI_Controller {
             $header['page_title'] = 'Login';
             $this->load->view('site/login', $header);
         }else{
-            $token = 
             $user_email = $this->input->post('email');
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
-            $login_result = array(  'id' => $login_result['id'],
+            
+
+            if ($login_result['status_request'] == 200) {
+                
+                $result = array(  'id' => $login_result['id'],
                                     'email' => $login_result['email'],
                                     'name' => $login_result['name'],
                                     'verified' => $login_result['verified'],
@@ -47,36 +50,35 @@ class User extends CI_Controller {
                                     'last_seen_notif' => $login_result['last_seen_notif'],
                                     'img_profile' => base64_encode($login_result['img_profile']),
                                     'img_type' => $login_result['img_type']);
-            if (!empty($login_result)) {
-                $page = strtolower($login_result['roles']);
 
-                if ($login_result['verified'] == 0) {
-                    
-                    $this->session->set_flashdata('msg_failed', 'Please check your email to verify before you can login');
-                    /*$header['page_title'] = 'Login';
-                    $this->load->view('site/login', $header);*/
-                    redirect(base_url().'login');
-                    
-                }else{
-                    
-                    $this->session->set_userdata($login_result);
-                    if ($this->input->post('remember') == 'on') {
-                        $token = md5(SALT.sha1(rand(0,15)));
-                        $cookie = $this->user_model->set_token($token);
-                        if ($cookie) {
-                            $cookie_name = "xremo_cookie";
-                            $cookie_value = $token;
-                            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
-                        }
+                $page = strtolower($result['roles']);
+                $this->session->set_userdata($result);
+                
+                if ($this->input->post('remember') == 'on') {
+                    $token = md5(SALT.sha1(rand(0,15)));
+                    $cookie = $this->user_model->set_token($token);
+                    if ($cookie) {
+                        $cookie_name = "xremo_cookie";
+                        $cookie_value = $token;
+                        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
                     }
-                    $this->session->set_flashdata('msg_success', 'Login Successfully.');
-                    redirect(base_url().$page.'/dashboard');
-
                 }
+                
+                $this->session->set_flashdata('msg_success', 'Login Successfully.');
+                redirect(base_url().$page.'/dashboard');
+
+            }elseif ($login_result['status_request'] == 422) {
+                $this->session->set_flashdata('msg_failed', 'Wrong Password please try again.');
+                redirect(base_url().'login');
+            }elseif ($login_result['status_request'] == 403) {
+                $this->session->set_flashdata('msg_failed', 'Please check your email to verify before you can login.');
+                redirect(base_url().'login');
             }else{
-                $this->session->set_flashdata('msg_failed', 'Wrong username or password please check again');
+                $this->session->set_flashdata('msg_failed', 'Email not registered yet, please register!');
                 redirect(base_url().'login');                
             }
+
+            
         }
     }
 
@@ -144,7 +146,7 @@ class User extends CI_Controller {
 
             //$header['page_title'] = 'Sign Up';
             //$this->load->view('site/signup', $header);
-            redirect(base_url().'login');          
+            redirect(base_url().'verify_registration');          
         }
     }
 
@@ -232,7 +234,7 @@ class User extends CI_Controller {
 
             //$header['page_title'] = 'Sign Up';
             //$this->load->view('site/signup', $header);
-            redirect(base_url().'login');
+            redirect(base_url().'verify_registration');
         }
     }
 
@@ -251,25 +253,29 @@ class User extends CI_Controller {
         $this->db->where('md5(email)',$key);
         $this->db->update('users', $data);    //update status as 1 to make active user
         $this->session->set_flashdata('msg_success', 'Successfully verified. Please login to your account.');
-        redirect(base_url().'site/user/login');
+        redirect(base_url().'login');
     }
 
     function logout(){
         $loginCheck = $this->session->userdata('id');
         if(isset($loginCheck)){
             $this->session->sess_destroy();
-            redirect(base_url());
+            redirect(base_url().'login');
         } else {
             show_404();
         }
     }
 
     function forgot_password(){
-        $this->form_validation->set_rules('email','User email', 'trim|required|valid_email|matches[users.email]');
-        $email = $this->input->post('email');
-        $this->user_model->forgotPassword($email);
-        // $this->session->set_flashdata('msg_success', 'Please check your email to reset password');
-        redirect(base_url().'instructions_change_password');
+        $email          = $this->input->post('email');
+        $checkEmail     = checkEmailExist($email);
+        if ($checkEmail['status_request'] == 200) {
+            $this->user_model->forgotPassword($email);
+            redirect(base_url().'instructions_change_password');
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Email not registered, please register first');
+            redirect(base_url().'expired_password');
+        }
     }
 
     function confirmForgotPassword(){
@@ -328,12 +334,29 @@ class User extends CI_Controller {
         $email = base64_decode($this->uri->segment(2));
         $checkForgotPasswordTime = $this->global_model->get_where('users', array('email' => $email));
         $forgotTime = current($checkForgotPasswordTime);
-        $checkExpiryTime = strtotime($forgotTime['forgot_password_time']) <= (strtotime($forgotTime['forgot_password_time'])+strtotime("+1 day"));
+        $checkExpiryTime = (strtotime("now") > strtotime($forgotTime['forgot_password_time'])) && (strtotime("now") <= (strtotime($forgotTime['forgot_password_time']."+1 day")));
+
         if ($checkExpiryTime) {
             $this->load->view('site/change_password');
         }else{
             redirect(base_url().'expired_password');
         }
+    }
+
+    function resend_registration_link(){
+        $email = $this->input->post('email');
+        $checkEmail     = checkEmailExist($email);
+        $data = array('email' => $email);
+
+        if ($checkEmail['status_request'] == 200) {
+            $this->db->where('email',$email);
+            $this->db->update('users', array('created_at' => date('Y-m-d h:i:s')));
+            $this->user_model->sendEmail($data);
+            redirect(base_url().'verify_registration');
+        }else{
+            $this->session->set_flashdata('msg_failed', 'Email not registered, please register first');
+            redirect(base_url().'expired_registration');
+        }        
     }
 
     function expired_password(){
@@ -346,6 +369,18 @@ class User extends CI_Controller {
 
     function instructions_change_password(){
         $this->load->view('site/instructions_change_password');
+    }
+
+    function expired_registration(){
+        $this->load->view('site/expired_registration');
+    }
+
+    function success_registration(){
+        $this->load->view('site/success_register');
+    }
+
+    function verify_registration(){
+        $this->load->view('site/instruction_check_email');
     }
 
 }

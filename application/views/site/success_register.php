@@ -6,7 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Change Password</title>
+    <title>Registration successful</title>
+
+    <!-- CSS STYLES -->
+    <!-- Web Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700&amp;subset=all">
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
@@ -53,8 +58,6 @@
                     </div>
                     <!-- End Logo -->
 
-                    <!-- Content -->
-
                 </div>
                 <!-- End Navbar Row -->
             </div>
@@ -69,9 +72,9 @@
         <div class="portlet light p-100 md-shadow-z-3 text-center">
                 <div class="portlet-body ">
                     <i class="icon-check display-3 md-green-text "></i>
-                    <h4 class="mt-20">Your password has been reset</h4>
-                    <p class="font-16 font-weight-400">Login to your account by using new password.</p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo mt-15">Login to my account</a>
+                    <h4 class="my-40">Registration Successfull !!</h4>
+                    <p class="font-16 font-weight-400 mb-30"> Your email address has been successfully verified. Now you can use your account and start to build your profile!</p>
+                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo width-250"> Continue</a>
                 </div>
             </div>
         </div>

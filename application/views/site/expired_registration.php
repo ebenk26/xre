@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Change Password</title>
+    <title>Expired Registration Link</title>
+
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
@@ -25,6 +26,7 @@
     <link href="<?php echo CSS; ?>global/components.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>global/plugins.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS; ?>layout8/layout8.css" rel="stylesheet" type="text/css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico" type="image/x-icon">
 </head>
@@ -53,8 +55,6 @@
                     </div>
                     <!-- End Logo -->
 
-                    <!-- Content -->
-
                 </div>
                 <!-- End Navbar Row -->
             </div>
@@ -66,12 +66,24 @@
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
         <div class="container g-ver-center width-700">
-        <div class="portlet light p-100 md-shadow-z-3 text-center">
+            <div class="portlet light p-100 md-shadow-z-3 text-center">
                 <div class="portlet-body ">
-                    <i class="icon-check display-3 md-green-text "></i>
-                    <h4 class="mt-20">Your password has been reset</h4>
-                    <p class="font-16 font-weight-400">Login to your account by using new password.</p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo mt-15">Login to my account</a>
+                    <i class="icon-close display-3 md-red-text "></i>
+                    <h4 class="mt-40">Link Expired.</h4>
+                    <p class="font-16 font-weight-400">Hey there! Your activation link for email address has expired after 48 hours or already been used. To request resend new link activation , enter your email address .</p>
+                    <form action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
+                        <div class="form-group mx-0 mt-40">
+                            <div class="input-icon">
+                                <i class="icon-envelope"></i>
+                                <input type="email" name="email" class="form-control" placeholder="Email Address">
+                            </div>
+
+                        </div>
+                        <div class="text-right ">
+                            <a href="<?= base_url(); ?>" class="btn btn-outline btn-md-indigo">Cancel</a>
+                            <button class="btn btn-md-indigo width-150" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -90,9 +102,12 @@
     <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.blockui.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
+    <!-- VENDOR -->
+    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.smooth-scroll.min.js"></script>
 
     <!-- Custom-->
     <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
+
     <!-- Global-->
     <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
     <!-- Layout 8 -->

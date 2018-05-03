@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Change Password</title>
+    <title>Please check your email!</title>
 
     <!-- CSS STYLES -->
     <!-- Web Fonts -->
@@ -66,18 +66,18 @@
     <!--========== CONTENT ==========-->
     <section class="s-promo-block-v4 gradient-indigo g-fullheight">
         <div class="container g-ver-center width-700">
-        <div class="portlet light p-100 md-shadow-z-3 text-center">
-                <div class="portlet-body ">
-                    <i class="icon-check display-3 md-green-text "></i>
-                    <h4 class="mt-20">Your password has been reset</h4>
-                    <p class="font-16 font-weight-400">Login to your account by using new password.</p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo mt-15">Login to my account</a>
+            <div class="portlet light  md-shadow-z-3 text-center">
+                <div class="portlet-body px-30 py-100">
+                    <i class="icon-envelope display-3 md-green-text "></i>
+                    <h4 class="my-40">Please check your email!</h4>
+                    <p class="font-16 font-weight-400">Thank you for signing-up! A verification link has been sent to your email address. Please follow the instructions given in the verification email to finish creating your Xremo Account. </p>
+                    <p class="font-15 md-red-text font-weight-400 my-30"> If you do not receive email for verification link within few moments, please check your spam folder either other filtering tools or you can ask us to resend new email verications link by providing your email address. </p>
+                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo">Go to home</a>
                 </div>
             </div>
         </div>
     </section>
     <!--========== END CONTENT ==========-->
-
 
 
     <!-- CORE -->

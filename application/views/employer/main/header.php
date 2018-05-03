@@ -112,7 +112,7 @@
 
             <!-- BEGIN LOGO -->
             <div class="page-logo">
-                <a href="<?php echo base_url(); ?>home/">
+                <a href="<?php echo base_url(); ?>">
                     <img src="<?php echo IMG; ?>/site/xremo-logo-white.svg" alt="logo" class="logo-default logo-custom">
                 </a>
                 <div class="menu-toggler sidebar-toggler"> </div>

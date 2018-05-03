@@ -75,39 +75,36 @@
     </div>
 </div>
 
+<!-- Modal : Delete -->
 <?php foreach ($gallery as $key => $value) { ?>
-<!-- BEGIN MODAL : Create Employer -->
 <div id="modal_delete_<?=$value['id']?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content fade-in-up">
             <div class="modal-header ">
                 <h4 class="modal-title">Delete Photo</h4>
             </div>
-            <div class="modal-body">
-                <form action="<?php echo base_url(); ?>student/gallery/delete" method="POST">
-                    <div class="form-body">
-                        <h4>Are you sure?</h4>
-                        <br>
-                    </div>
+            <form action="<?php echo base_url(); ?>student/gallery/delete" method="POST">
+                <div class="modal-body ">
+                    <h4 class="my-40">Are you sure delete this
+                        <?php echo $value['title']; ?> ?
+                    </h4>
                     <input type="hidden" name="id" value="<?=$value['id']?>"></input>
                     <input type="hidden" name="photo" value="<?=$value['photo']?>"></input>
-
-                    <div class="modal-footer form-action ">
-                        <button type="submit" class="btn btn-md-red  mt-width-150-xs font-20-xs letter-space-xs">Delete</button>
-                        <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
-                    </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
+                </div>
+                <div class="modal-footer mx-0 px-30">
+                    <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline btn-md-red  letter-space-xs">Cancel</a>
+                    <button type="submit" class="btn btn-md-red width-200 letter-space-xs">Delete</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <?php } ?>
 
-<!-- EDIT -->
+<!-- Modal : Edit -->
 <div class="modal fade in" id="modal_edit" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content portlet light">
+        <div class="modal-content portlet light fade-in-up portlet-fit">
             <div class="modal-header portlet-title">
                 <div class="caption">
                     <span class="caption-subject text-capitalize font-weight-500">Edit Photo</span>
@@ -118,61 +115,52 @@
             </div>
             <form action="<?php echo base_url();?>student/gallery/post" method="POST" class="form form-horizontal" enctype="multipart/form-data">
                 <div class="modal-body portlet-body ">
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
-                        <div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: auto;">
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Title</label>
-                                <div class="col-md-9">
-                                    <input type="text" name="title" id="title_gallery" class="form-control" placeholder="Title" value="">
-                                </div>
+                    <div class="row mx-0">
+                        <div class="col-md-5 col-sm-4">
+                            <!-- Title -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Title</label>
+                                <input type="text" name="title" id="title_gallery" class="form-control" placeholder="Title" value="">
                             </div>
                             <!-- Description -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Description</label>
-                                <div class="col-md-9">
-                                    <textarea class="form-control" rows="4" placeholder="Description." name="description" id="description_gallery"></textarea>
-                                </div>
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Description</label>
+                                <textarea class="form-control" rows="5" placeholder="Description." name="description" wrap="hard" id="description_gallery"></textarea>
                             </div>
-
+                            <!-- Photo Upload -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Current Photo</label>
+                                <br>
+                                <img src="" class="img-fluid" id="curr_photo" style="width:150px;" />
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-8">
                             <style type="text/css">
                                 #yourIdEdit {
-                                    width: 500px;
-                                    height: 500px;
+                                    width: 400px;
+                                    height: 400px;
                                     position: relative;
                                     /* or fixed or absolute */
                                     border: 1px solid #ccc;
+                                    padding-bottom: 50px;
                                 }
 
                             </style>
 
                             <!-- Photo Upload -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Current Photo</label>
-                                <div class="col-md-9">
-                                    <img src="" width="250px" id="curr_photo" />
-                                </div>
-                            </div>
-
-                            <!-- Photo Upload -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">New Photo</label>
-                                <div class="col-md-9">
-                                    <div id="yourIdEdit" class="form-control"></div>
-                                    <input type="hidden" name="photo" id="myOutputIdEdit">
-                                    <input type="hidden" name="photo_old" id="myOutputIdEditOld">
-                                    <input type="hidden" name="id" id="id_gallery" value="">
-                                </div>
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">New Photo</label>
+                                <div id="yourIdEdit" class="form-control"></div>
+                                <input type="hidden" name="photo" id="myOutputIdEdit">
+                                <input type="hidden" name="photo_old" id="myOutputIdEditOld">
+                                <input type="hidden" name="id" id="id_gallery" value="">
                             </div>
                         </div>
-                        <div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
-                        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
                     </div>
-
-                    <div class="modal-footer form-action ">
-                        <button type="submit" class="btn btn-md-blue  mt-width-150-xs font-20-xs letter-space-xs">Update</button>
-                        <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Cancel</a>
-                    </div>
-
+                </div>
+                <div class="modal-footer form-action ">
+                    <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
+                    <button type="submit" class="btn btn-md-indigo letter-space-xs width-200">Update</button>
                 </div>
             </form>
         </div>
@@ -182,11 +170,10 @@
 <!-- Modal : Add  -->
 <div class="modal fade in" id="modal_add" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content portlet light">
+        <div class="modal-content portlet light portlet-fit fade-in-up ">
             <div class="modal-header portlet-title">
                 <div class="caption">
                     <span class="caption-subject text-capitalize font-weight-500">Add Photo</span>
-                    <!-- <span class="caption-helper">add about your education info</span> -->
                 </div>
                 <div class="actions py-4">
                     <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
@@ -195,30 +182,35 @@
             </div>
             <form action="<?php echo base_url();?>student/gallery/post" method="POST" class="form form-horizontal" enctype="multipart/form-data">
                 <div class="modal-body portlet-body ">
-                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: auto;">
-                        <div class="scroller mt-height-550-xs" data-always-visible="1" data-rail-visible1="1" data-initialized="1" style="overflow: hidden; width: auto; height: auto;">
-                            <!-- Institution Name -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Title</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control " placeholder="Title" name="title" required>
-                                    <!-- <span class="help-block"> A block of help text.</span> -->
-                                </div>
-
+                    <div class="row mx-0">
+                        <div class="col-md-6 col-sm-3">
+                            <!-- Title -->
+                            <div class="form-group mx-0">
+                                <label class="control-labe">Title</label>
+                                <input type="text" class="form-control " placeholder="Title" name="title" required>
                             </div>
-
                             <!-- Description -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Description</label>
-                                <div class="col-md-9">
-                                    <textarea class="form-control" rows="4" placeholder="Description." name="description"></textarea>
-                                </div>
+                            <div class="form-group mx-0">
+                                <label class="control-label">Description</label>
+                                <textarea class="form-control" rows="4" placeholder="Description." name="description"></textarea>
                             </div>
-
+                            <div class="note note-warning ">
+                                <h4 class="block">Note!</h4>
+                                <ul>
+                                    <li>File type : JPG, PNG</li>
+                                    <li>Max size : 1 MB</li>
+                                    <li>After choosing image, you can drag the image before cropping to get the best part to be shown</li>
+                                    <li>At the end don't forget to click the Crop Button
+                                        <img src="<?=base_url()?>assets/img/gallery_nav.jpg" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-3">
                             <style type="text/css">
                                 #yourId {
-                                    width: 500px;
-                                    height: 500px;
+                                    width: 410px;
+                                    height: 410px;
                                     position: relative;
                                     /* or fixed or absolute */
                                     border: 1px solid #ccc;
@@ -227,54 +219,19 @@
                             </style>
 
                             <!-- Photo Upload -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Photo</label>
-                                <div class="col-md-9">
-                                    <div class="note note-warning">
-                                        <h4 class="block">Note!</h4>
-                                        <ul>
-                                            <li>File type : JPG, PNG</li>
-                                            <li>Max size : 1 MB</li>
-                                            <li>After choosing image, you can drag the image before cropping to get the best part to be shown</li>
-                                            <li>At the end don't forget to click the Crop Button
-                                                <img src="<?=base_url()?>assets/img/gallery_nav.jpg" />
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div id="yourId" class="form-control"></div>
-                                    <input type="hidden" name="photo" id="myOutputId">
-                                    <input type="hidden" name="id" value="0">
-                                </div>
-                                <!--<div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <a class="btn file-btn">
-                                                            <span>Upload</span>
-                                                            <input type="file" id="upload" value="Choose a file" accept="image/*" />
-                                                        </a>
-                                                        <button class="upload-result">Result</button>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="upload-msg">
-                                                            Upload a file to start cropping
-                                                        </div>
-                                                        <div class="upload-demo-wrap">
-                                                            <div id="upload-demo"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>-->
+                            <div class="form-group mx-0">
+                                <label class="control-label "> Upload Photo</label>
+                                <div id="yourId" class="form-control"></div>
+                                <input type="hidden" name="photo" id="myOutputId">
+                                <input type="hidden" name="id" value="0">
                             </div>
                         </div>
-                        <div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div>
-                        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
                     </div>
                     <div class="modal-footer form-actions ">
-                        <button type="submit" id="button_save_gallery" class="btn btn-md-indigo  mt-width-150-xs font-20-xs letter-space-xs">Save</button>
+                        <button type="submit" id="button_save_gallery" class="btn btn-md-indigo  width-250 letter-space-xs">Save</button>
                     </div>
-                </div>
             </form>
+            </div>
         </div>
     </div>
 </div>

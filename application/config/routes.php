@@ -57,6 +57,7 @@ $route['privacy'] 								= 'site/main';
 $route['terms-of-use'] 							= 'site/main';
 $route['login'] 								= 'site/user/login';
 $route['signup'] 								= 'site/user/signup';
+$route['forgot_password'] 						= 'site/user/forgot_password';
 $route['job/search'] 							= 'site/job_search_result';
 $route['job/search/(:any)'] 					= 'site/job_search_result';
 $route['home/job/search'] 						= 'site/job_search_result';
@@ -87,6 +88,10 @@ $route['instructions_change_password']			= 'site/user/instructions_change_passwo
 $route['change_password/(:any)']				= 'site/user/change_password/$1';
 $route['expired_password']						= 'site/user/expired_password';
 $route['success_change_password']				= 'site/user/success_change_password';
+
+$route['verify_registration']					= 'site/user/verify_registration';
+$route['expired_registration']					= 'site/user/expired_registration';
+$route['success_registration']					= 'site/user/success_registration';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

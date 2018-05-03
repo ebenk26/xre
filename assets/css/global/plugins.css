@@ -14,10 +14,10 @@
   right: 4px !important; }
 
 .datepaginator .fa-angle-right:before {
-  content: "/f104"; }
+  content: "\f104"; }
 
 .datepaginator .fa-angle-left:before {
-  content: "/f105"; }
+  content: "\f105"; }
 
 
 
@@ -66,10 +66,10 @@
   border: 1px solid #EFEFEF; }
 
 .datepicker .fa-angle-left:before {
-  content: "/f104"; }
+  content: "\f104"; }
 
 .datepicker .fa-angle-right:before {
-  content: "/f105"; }
+  content: "\f105"; }
 
 
 
@@ -130,10 +130,10 @@
   margin-bottom: 0 !important; }
 
 .daterangepicker .fa-angle-right:before {
-  content: "/f104"; }
+  content: "\f104"; }
 
 .daterangepicker .fa-angle-left:before {
-  content: "/f105"; }
+  content: "\f105"; }
 
 
 
@@ -162,10 +162,10 @@
   background-image: none !important; }
 
 .datetimepicker .fa-angle-left:before {
-  content: "/f104"; }
+  content: "\f104"; }
 
 .datetimepicker .fa-angle-right:before {
-  content: "/f105"; }
+  content: "\f105"; }
 
 
 .modal-open .datetimepicker {
