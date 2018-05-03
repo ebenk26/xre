@@ -41,10 +41,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css" >
 
     <!-- Global -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" >
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" >
     
     <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
