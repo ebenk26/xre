@@ -31,7 +31,7 @@ class Profile extends CI_Controller {
         $profile_form['user_profile'] = $get_user_profile;
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/profile', $profile_form);
-        $this->load->view('employer/main/footer');
+        $this->load->view('employer/main/footer', $profile);
 	}
 
     function edit_profile(){
@@ -142,6 +142,7 @@ class Profile extends CI_Controller {
     function edit_contact_info(){
         $id = $this->session->userdata('id');
         $address = $this->input->post('contact_info');
+        // var_dump(json_encode($address,JSON_PRETTY_PRINT));exit();
 
         //BEGIN : SET SHIPPING ADDRESS AND LAT LONG
         $hq = false;$array_no = 0;$no = 0;
@@ -410,5 +411,19 @@ class Profile extends CI_Controller {
         $profile['user_profile'] = $profile_detail;
         $profile['applieds'] = $applieds_detail;
         print json_encode($profile);
+    }
+
+    public function newContactInfo()
+    {
+        $content = array(
+                        'countries' => $this->employer_model->get('countries', 'name', 'asc'),
+                        'key'       => $this->input->post('num')
+                    );
+
+        $data = array( 
+                        'form'      => $this->load->view('employer/contactInfo', $content, true)
+                    );
+
+        echo json_encode($data);exit();
     }
 }
