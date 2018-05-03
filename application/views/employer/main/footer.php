@@ -425,7 +425,7 @@ $company_address = json_decode($user_profile['address']);?>
 
     $(document).ready(function(){
 
-        $('#btnEditProfile').click(function(){
+        $('a[href="#tab_edit_contact_info"]').click(function(){
             <?php 
             if (!empty($company_address))
             {
@@ -450,16 +450,11 @@ $company_address = json_decode($user_profile['address']);?>
                 success: function(response){
                     $("#contactInfoForm").append(response.form);
 
-                    setTimeout(
-                        function()
-                        {
-                            showMaps(num,'gmap'+num);
+                    showMaps(num,'gmap'+num);
 
-                            var newNum = parseInt(num) + 1;
+                    var newNum = parseInt(num) + 1;
 
-                            $(this).attr('data-val',newNum);
-                        }
-                    ,2000);
+                    $("#addOffice").attr('data-val',newNum);
                 }
             });
             

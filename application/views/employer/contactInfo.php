@@ -137,7 +137,7 @@
             <div class="form-group mx-0">
                 <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
 
-                <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_phone]" id="building_phone<?= $key; ?>" required>
+                <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_phone]" id="building_phone<?= $key; ?>">
 
             </div>
         </div>
