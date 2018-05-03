@@ -20,58 +20,70 @@
     }*/
 
 ?>
-<style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #gmap {
-        height: 100%;
-        width: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      .controls {
-        background-color: #fff;
-        border-radius: 2px;
-        border: 1px solid transparent;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        box-sizing: border-box;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        height: 29px;
-        margin-left: 17px;
-        margin-top: 10px;
-        outline: none;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
 
-      .pac-container{
-        z-index: 99999 !important;
-      }
+<?php 
+if (!empty($company_address))
+{
+    foreach ($company_address as $key => $value)
+    {
+?>
+        <style>
+              /* Always set the map height explicitly to define the size of the div
+               * element that contains the map. */
+              #gmap<?= $key; ?> {
+                height: 100%;
+                width: 100%;
+              }
+              /* Optional: Makes the sample page fill the window. */
+              html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+              }
+              .controls {
+                background-color: #fff;
+                border-radius: 2px;
+                border: 1px solid transparent;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                box-sizing: border-box;
+                font-family: Roboto;
+                font-size: 15px;
+                font-weight: 300;
+                height: 29px;
+                margin-left: 17px;
+                margin-top: 10px;
+                outline: none;
+                padding: 0 11px 0 13px;
+                text-overflow: ellipsis;
+                width: 400px;
+              }
 
-      .controls:focus {
-        border-color: #4d90fe;
-      }
-      /* .title {
-        font-weight: bold;
-      } */
-      #infowindow-content {
-        display: none;
-      }
-      #gmap #infowindow-content {
-        display: inline;
-      }
-      #pac-input{
-        position: absolute;
-        z-index: 99999;
-      }
-</style>
+              .pac-container{
+                z-index: 99999 !important;
+              }
+
+              .controls:focus {
+                border-color: #4d90fe;
+              }
+              .title {
+                font-weight: bold;
+              }
+              #infowindow-content<?= $key; ?> {
+                display: none;
+              }
+              #gmap<?= $key; ?> #infowindow-content<?= $key; ?> {
+                display: inline;
+              }
+              #pac-input<?= $key; ?>{
+                position: absolute;
+                z-index: 99999;
+              }
+        </style>
+
+<?php
+    }
+}
+?>
 
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -121,18 +133,19 @@
                                 <!-- Short Content -->
                                 <div class="mt-card-content  ">
                                     <!-- Company Name -->
-                                    <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase  ">
+                                    <h3 class="mt-card-name  md-indigo-text font-weight-600 text-uppercase font-32-xs ">
                                         <?php echo !empty($detail['company_name']) ? $detail['company_name']: 'Set Your Company Name'; ?>
                                     </h3>
+
                                     <ul class="list-inline list-unstyled">
                                         <li class="font-24 md-grey-darken-2-text">
                                             <i class="fa fa-industry mr-5"></i>
-                                            <?php echo !empty($detail['industry']) ? $detail['industry']:' Edit your info. '; ?>
+                                            <?php echo !empty($detail['industry']) ? $detail['industry']: ''; ?>
                                         </li>
                                         <li class="font-24 md-grey-darken-2-text">
                                             <!-- <h5 class="mb-10 font-weight-600 md-indigo-text"> Company Size</h5> -->
                                             <i class="fa fa-users md-grey-darken-2-text mr-5"></i>
-                                            <?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' Employee' : 'Edit your info.'; ?>
+                                            <?php echo !empty($detail['total_staff']) ? str_replace('-', ' to ', $detail['total_staff']).' Employee' : '<h6 class="font-grey-cascade mt-1 text-none">Edit your info by clicking on " <i class="icon-pencil"></i> Edit Profile" button</h6>'; ?>
 
                                         </li>
                                     </ul>
@@ -187,13 +200,13 @@
                     </div>
 
                     <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right p-20 hidden-xs">
-                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo btn-circle" id="btnEditProfile">
+                        <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo btn-circle" id="btnEditProfile" data-id="<?= $detail['id']; ?>">
                             <i class="icon-pencil mr-5"></i>Edit Profile</a>
 
                     </div>
                     <div class="m-grid-col m-grid-col-xs-12 m-grid-col-middle m-grid-col-center visible-xs">
                         <div class="btn-group btn-group-justified mx-0">
-                            <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo ">
+                            <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo " data-id="<?= $detail['id']; ?>">
                                 <i class="icon-pencil mr-5"></i>Edit Profile</a>
                             <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank" class="btn btn-md-indigo mb-6">View My Profile</a>
                         </div>
@@ -686,31 +699,31 @@
                     <form method="POST" action="<?php echo base_url(); ?>employer/profile/edit_contact_info" class="form-horizontal">
                         <div class="modal-body form-body">
                             <!-- <div class="scroller height-600-sm height-300" data-always-visible="1" data-rail-visible1="1"> -->
-                                <div class="mt-repeater">
-                                    <div data-repeater-list="contact_info">
+                                <div class="">
+                                    <div id="contactInfoForm">
                                         <?php if (!empty($company_address)) {
                                         foreach ($company_address as $key => $value) { ?>
-                                        <div data-repeater-item class="mt-repeater-item">
-                                            <!-- <div class="row">
+                                        <div>
+                                            <div class="row">
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
-                                                    <input type="hidden" id="addMapTitle" name="mapTitle"></input>
-                                                    <input type="hidden" id="addMapDescription" name="mapDescription"></input>
+                                                    <input type="hidden" id="addMapTitle<?= $key; ?>" name="mapTitle"></input>
+                                                    <input type="hidden" id="addMapDescription<?= $key; ?>" name="mapDescription"></input>
                                                     <div class="row mx-0">
                                                         <div class="col-md-12">
-                                                            <div style="height: 300px;" id="map-window">
-                                                                <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
-                                                                <div class="profileMap" id="gmap" style="z-index: 9999 !important;"></div>
+                                                            <div style="height: 300px;" id="map-window<?= $key; ?>">
+                                                                <input id="pac-input<?= $key; ?>" class="controls" type="text" placeholder="Enter a location">
+                                                                <div class="profileMap" id="gmap<?= $key; ?>" style="z-index: 9999 !important;"></div>
                                                                 
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                             <!-- Address -->
                                             <div class="row mx-0">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600 ">Address</label>
-                                                    <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="building_address" value="<?php echo $value->building_address; ?>">
+                                                    <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="contact_info[<?= $key; ?>][building_address]" id="building_address<?= $key; ?>" value="<?php echo $value->building_address; ?>">
                                                 </div>
                                             </div>
                                             <!-- City & State-->
@@ -719,19 +732,19 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">City</label>
-                                                        <input type="text" class="form-control " name="building_city" value="<?php echo $value->building_city; ?>">
+                                                        <input type="text" class="form-control " name="contact_info[<?= $key; ?>][building_city]" id="building_city<?= $key; ?>" value="<?php echo $value->building_city; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">State</label>
-                                                        <input type="text" class="form-control" name="building_state" value="<?php echo $value->building_state; ?>">
+                                                        <input type="text" class="form-control" name="contact_info[<?= $key; ?>][building_state]" id="building_state<?= $key; ?>" value="<?php echo $value->building_state; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
-                                                        <input type="text" class="form-control" placeholder="Postcode" name="building_postcode" value="<?php echo $value->building_postcode; ?>">
+                                                        <input type="text" class="form-control" placeholder="Postcode" name="contact_info[<?= $key; ?>][building_postcode]" id="building_postcode<?= $key; ?>" value="<?php echo $value->building_postcode; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
@@ -739,9 +752,9 @@
                                                         <!-- <label class="control-label">Country</label> -->
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Country</label>
 
-                                                        <select class="form-control " name="building_country">
+                                                        <select class="form-control " name="contact_info[<?= $key; ?>][building_country]" id="building_country<?= $key; ?>">
                                                             <option value="" disabled>Select one </option>
-                                                            <?php foreach ($countries as $key => $country_value) { ?>
+                                                            <?php foreach ($countries as $country_value) { ?>
                                                             <option <?php ($value->building_country == $country_value['name']) ? 'selected' : ''; ?>>
                                                                 <?php echo $country_value['name']; ?>
                                                             </option>
@@ -758,27 +771,27 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
 
-                                                        <input type="text" name="building_latitude" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_latitude; ?>">
+                                                        <input type="text" name="contact_info[<?= $key; ?>][building_latitude]" id="building_latitude<?= $key; ?>" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_latitude; ?>">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
-                                                        <input type="text" name="building_longitude" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_longitude; ?>">
+                                                        <input type="text" name="contact_info[<?= $key; ?>][building_longitude]" id="building_longitude<?= $key; ?>" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_longitude; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" value="<?php echo $value->building_phone; ?>">
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_phone]" id="building_phone<?= $key; ?>" value="<?php echo $value->building_phone; ?>">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Fax Number</label>
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax" value="<?php echo $value->building_fax; ?>">
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_fax]" id="building_fax<?= $key; ?>" value="<?php echo $value->building_fax; ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -792,11 +805,11 @@
 
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" <?php echo ($value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
+                                                                <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios4" value="HQ" <?php echo ($value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios5" value="branch" name="branch" <?php echo ($value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
+                                                                <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios5" value="branch" <?php echo ($value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -805,11 +818,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Email Address</label>
-                                                        <input type="text" class="form-control " placeholder="hello@xremo.com" name="building_email" value="<?php echo $value->building_email; ?>">
+                                                        <input type="text" class="form-control " placeholder="hello@xremo.com" name="contact_info[<?= $key; ?>][building_email]" id="building_email<?= $key; ?>" value="<?php echo $value->building_email; ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 pull-right my-50">
-                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block">
+                                                    <a href="javascript:;" class="btn btn-danger btn-block delContact">
                                                         <i class="fa fa-close"></i> Remove
                                                     </a>
                                                 </div>
@@ -817,7 +830,7 @@
 
                                         </div>
                                         <?php } }else{ ?>
-                                        <div data-repeater-item class="mt-repeater-item">
+                                        <div>
                                             <div class="row">
                                                 <div class="col-md-12 col-xs-12 col-sm-12">
                                                     <input type="hidden" id="addMapTitle" name="mapTitle"></input>
@@ -837,7 +850,7 @@
                                             <div class="row mx-0 ">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Address</label>
-                                                    <input type="text" class="form-control" name="building_address" placeholder="Unit / Lot , Road ," required>
+                                                    <input type="text" class="form-control" name="contact_info[][building_address]" placeholder="Unit / Lot , Road ," required>
                                                 </div>
                                             </div>
 
@@ -847,7 +860,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">City</label>
-                                                        <input type="text" class="form-control" name="building_city" required>
+                                                        <input type="text" class="form-control" name="contact_info[][building_city]" required>
                                                     </div>
                                                 </div>
 
@@ -855,13 +868,13 @@
                                                     <div class="form-group mx-0">
 
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">State</label>
-                                                        <input type="text" class="form-control" name="building_state" required>
+                                                        <input type="text" class="form-control" name="contact_info[][building_state]" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
-                                                        <input type="text" class="form-control" placeholder="Postcode" name="building_postcode" required>
+                                                        <input type="text" class="form-control" placeholder="Postcode" name="contact_info[][building_postcode]" required>
                                                     </div>
                                                 </div>
 
@@ -870,7 +883,7 @@
                                                         <!-- <label class="control-label">Country</label> -->
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Country</label>
 
-                                                        <select class="form-control " name="building_country">
+                                                        <select class="form-control " name="contact_info[][building_country]">
                                                             <option value="" selected disabled>Select one </option>
                                                             <?php foreach ($countries as $key => $country_value) { ?>
                                                             <option>
@@ -888,14 +901,14 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
-                                                        <input type="text" class="form-control" placeholder="1.643604 " name="building_latitude">
+                                                        <input type="text" class="form-control" placeholder="1.643604 " name="contact_info[][building_latitude]">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
-                                                        <input type="text" class="form-control" placeholder="1.955566" name="building_longitude">
+                                                        <input type="text" class="form-control" placeholder="1.955566" name="contact_info[][building_longitude]">
                                                     </div>
                                                 </div>
 
@@ -903,7 +916,7 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
 
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="building_phone" required>
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[][building_phone]" required>
 
                                                     </div>
                                                 </div>
@@ -911,7 +924,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Fax Number</label>
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="building_fax">
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[][building_fax]">
                                                     </div>
                                                 </div>
                                             </div>
@@ -924,11 +937,11 @@
 
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
+                                                                <input type="radio" name="contact_info[][optionsRadios]" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios5" value="branch" name="branch"> Branch
+                                                                <input type="radio" name="contact_info[][optionsRadios]" id="optionsRadios5" value="branch"> Branch
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -938,7 +951,7 @@
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Email Address</label>
 
-                                                        <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="building_email">
+                                                        <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="contact_info[][building_email]">
                                                     </div>
 
                                                 </div>
@@ -953,7 +966,7 @@
                                         </div>
                                         <?php } ?>
                                     </div>
-                                    <a href="javascript:;" data-repeater-create class="btn btn-info  mt-repeater-add mb-30">
+                                    <a href="javascript:;" class="btn btn-info mb-30" id="addOffice" data-val="<?= count($company_address); ?>">
                                         <i class="fa fa-plus"></i> Add new office</a>
                                 </div>
 
