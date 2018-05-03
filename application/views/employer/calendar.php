@@ -53,16 +53,18 @@
                                                         <i class="icon-briefcase mr-10"></i>
                                                         <?php echo $value['job_name'] ?>
                                                     </h5>
-                                                    <!-- IF != ALL DAY -->
-                                                    <h5 class="font-weight-400 letter-space-xs mb-30">
-                                                        <i class="icon-clock mr-10"></i> Date :
-                                                        <?php echo date('D, j M , h:ia', strtotime($value['start_date'])); ?> -
-                                                        <?php echo date('D, j M ,h:ia', strtotime($value['end_date'])); ?> </h5>
-                                                    <!-- If == ALL DAY -->
-                                                    <h5 class="font-weight-400 letter-space-xs mb-30">
-                                                        <i class="icon-clock mr-10"></i> Date :
-                                                        <?php echo date('D, j M , h:ia', strtotime($value['start_date'])); ?> -
-                                                        <?php echo date('h:ia', strtotime($value['end_date'])); ?> </h5>
+                                                    <?php if (date('D', strtotime($value['start_date'])) != date('D', strtotime($value['end_date'])) ) {?>
+                                                        <h5 class="font-weight-400 letter-space-xs mb-30">
+                                                            <i class="icon-clock mr-10"></i> Date :
+                                                            <?php echo date('D, j M , h:ia', strtotime($value['start_date'])); ?> -
+                                                            <?php echo date('D, j M ,h:ia', strtotime($value['end_date'])); ?> </h5>
+                                                    <?php }else{ ?>
+                                                        <h5 class="font-weight-400 letter-space-xs mb-30">
+                                                            <i class="icon-clock mr-10"></i> Date :
+                                                            <?php echo date('D, j M , h:ia', strtotime($value['start_date'])); ?> -
+                                                            <?php echo date('h:ia', strtotime($value['end_date'])); ?> </h5>
+                                                    <?php } ?>
+                                                        
                                                     <h5 class="font-weight-400 letter-space-xs mb-30 ">
                                                         <i class="icon-tag mr-10"></i> Interview Invitation</span>
                                                     </h5>

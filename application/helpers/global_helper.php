@@ -88,23 +88,23 @@ function ProfileCompletion($params)
     $Additional   += !empty($params['benefits']) ? 5 : 0;
     
     //Contact Information 20%
-    $addr = !empty(json_decode($params['address'])) ? json_decode($params['address']) : '';
+    $addr = !empty(json_decode($params['address'])) ? json_decode($params['address'],true) : '';
     $Contact = 0;
     if(!empty($addr))
     {
-        $addr = $addr[0];
+        $addr = array_shift($addr);
 
-        $Contact   += !empty($addr->optionsRadios) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_address) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_city) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_postcode) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_state) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_country) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_email) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_phone) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_fax) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_latitude) ? 1.81818181818 : 0;
-        $Contact   += !empty($addr->building_longitude) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['optionsRadios']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_address']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_city']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_postcode']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_state']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_country']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_email']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_phone']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_fax']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_latitude']) ? 1.81818181818 : 0;
+        $Contact   += !empty($addr['building_longitude']) ? 1.81818181818 : 0;
     }
 
     $sum    = array_sum($About) + $Additional + $Contact;
@@ -319,7 +319,7 @@ function checkEmailExist($email){
     $CI->load->model('global_model');
     $checkEmailData = array('email'=> $email);
     $result['data'] = $CI->global_model->get_where('users', $checkEmailData);
-    if (!empty($result)) {
+    if (!empty($result['data'])) {
         $result['status_request'] = 200;
     }else{
         $result['status_request'] = 422;

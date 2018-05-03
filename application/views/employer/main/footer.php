@@ -1,6 +1,7 @@
 </div>
 <!-- END CONTAINER -->
-<?php $this->load->view('main/footer_app');?>
+<?php $this->load->view('main/footer_app');
+$company_address = json_decode($user_profile['address']);?>
 
 
 <!-- ========== Javascript ========== -->
@@ -424,26 +425,70 @@
 
     $(document).ready(function(){
 
-        $('.btnEditProfile').click(function(){
-            var idJobPost   = $(this).attr('data-id');
-            // console.log(idMap);
+        $('a[href="#tab_edit_contact_info"]').click(function(){
+            <?php 
+            if (!empty($company_address))
+            {
+                foreach ($company_address as $key => $value)
+                {
+            ?>
+                    showMaps(<?= $key; ?>,'gmap<?= $key; ?>');
+            <?php
+                }
+            }
+            ?>
+        });
 
-            var lat = document.getElementById('latitude'+idJobPost).value;
-            var lng = document.getElementById('longitude'+idJobPost).value;
+        $("#addOffice").on('click', function() {
+            var num = $(this).attr('data-val');
 
-            var input = document.getElementById('pac-input'+idJobPost);
+            $.ajax({
+                url: '<?= base_url(); ?>employer/profile/newContactInfo',
+                type: 'POST',
+                dataType: 'json',
+                data: {num: num},
+                success: function(response){
+                    $("#contactInfoForm").append(response.form);
 
+                    showMaps(num,'gmap'+num);
+
+                    var newNum = parseInt(num) + 1;
+
+                    $("#addOffice").attr('data-val',newNum);
+                }
+            });
+            
+        });
+
+        $(".delContact").on('click', function(){
+            $(this).parent().parent().parent().remove();
+        });
+    });
+
+    //Show Maps
+    function showMaps(idJobPost,mapId)
+    {
+        var lat = $('#building_latitude' + idJobPost).val();
+        var lng = $('#building_longitude' + idJobPost).val();
+
+        var input = document.getElementById('pac-input' + idJobPost);
+
+        if (typeof lat != 'undefined' && typeof lng != 'undefined' && lat != '' && lng != '') 
+        {
             if(lat.length > 0 && lng.length > 0)
             {
-                var mapLatitude     = document.getElementById('latitude'+idJobPost).value;
-                var mapLongitude    = document.getElementById('longitude'+idJobPost).value;
-                var title           = document.getElementById('addMapTitle'+idJobPost).value;
-                var description     = document.getElementById('addMapDescription'+idJobPost).value;
+                var mapLatitude = document.getElementById('building_latitude' + idJobPost).value;
+                var mapLongitude = document.getElementById('building_longitude' + idJobPost).value;
+                var title = document.getElementById('addMapTitle' + idJobPost).value;
+                var description = document.getElementById('addMapDescription' + idJobPost).value;
 
-                var map = new google.maps.Map(document.getElementById('gmap'+idJobPost), {
-                  center: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
-                  // center: {lat: -33.8688, lng: 151.2195},
-                  zoom: 13
+                var map = new google.maps.Map(document.getElementById(mapId), {
+                    center: {
+                        lat: parseFloat(mapLatitude),
+                        lng: parseFloat(mapLongitude)
+                    },
+                    // center: {lat: -33.8688, lng: 151.2195},
+                    zoom: 13
                 });
 
                 var autocomplete = new google.maps.places.Autocomplete(input);
@@ -451,106 +496,127 @@
 
                 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>'+title+
-                '</b></span><br/>'+description+'</span></div>';
-                console.log(contentString);
+                var contentString = '<div id="infowindow-content" style="display:inline"><span><b>' + title +
+                    '</b></span><br/>' + description + '</span></div>';
+                // console.log(contentString);
 
                 var infowindow = new google.maps.InfoWindow({
-                  content: contentString
+                    content: contentString
                 });
 
                 var marker = new google.maps.Marker({
-                  position: {lat: parseFloat(mapLatitude), lng: parseFloat(mapLongitude)},
-                  map: map,
-                  title: title,
+                    position: {
+                        lat: parseFloat(mapLatitude),
+                        lng: parseFloat(mapLongitude)
+                    },
+                    map: map,
+                    title: title,
                 });
 
-                marker.addListener('click', function() {
-                  infowindow.open(map, marker);
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
                 });
             }
-            else
-            {
-                var autocomplete = new google.maps.places.Autocomplete(input);
-                autocomplete.bindTo('bounds', map);
+        } else {
+            var map = new google.maps.Map(document.getElementById(mapId), {
+                    center: {
+                        lat: -33.8688,
+                        lng: 151.2195
+                    },
+                    zoom: 13
+            });
 
-                var infowindow = new google.maps.InfoWindow();
-                var marker = new google.maps.Marker({
-                  map: map
-                });
-                marker.addListener('click', function() {
-                  infowindow.open(map, marker);
-                });
-            }            
+            var autocomplete = new google.maps.places.Autocomplete(input);
+            autocomplete.bindTo('bounds', map);
 
-            autocomplete.addListener('place_changed', function() {
-              infowindow.close();
-              var place = autocomplete.getPlace();
-              if (!place.geometry) {
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: map
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
+        }
+
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            
+            if (!place.geometry) {
                 return;
-              }
+            }
 
-              if (place.geometry.viewport) {
+            if (place.geometry.viewport) {
                 map.fitBounds(place.geometry.viewport);
-              } else {
+            } else {
                 map.setCenter(place.geometry.location);
                 map.setZoom(17);
-              }
+            }
 
-              // Set the position of the marker using the place ID and location.
-              marker.setPlace({
+            // Set the position of the marker using the place ID and location.
+            marker.setPlace({
                 placeId: place.place_id,
                 location: place.geometry.location
-              });
-              marker.setVisible(true);
-              var element   = document.getElementById('map-window'+idJobPost);
-              var InfoWindow= document.createElement('div');
-              var title     = document.createElement('span');
-              var addr      = document.createElement('span');
-              var br        = document.createElement('br');
-
-              element.appendChild(InfoWindow);
-              InfoWindow.setAttribute('id', 'infowindow-content'+idJobPost);
-              InfoWindow.setAttribute('style', 'display: inline');
-
-              InfoWindow.appendChild(title);
-              title.setAttribute('id', 'place-name'+idJobPost);
-              title.setAttribute('style', 'font-weight: bold');
-              InfoWindow.appendChild(br);
-              InfoWindow.appendChild(addr);
-              addr.setAttribute('id', 'place-address'+idJobPost);
-              document.getElementById('place-name'+idJobPost).textContent = place.name;
-              document.getElementById('place-address'+idJobPost).textContent =
-                  place.formatted_address;
-              infowindow.setContent(document.getElementById('infowindow-content'+idJobPost));
-              infowindow.open(map, marker);
-              document.getElementById('latitude'+idJobPost).value=place.geometry.location.lat();
-              document.getElementById('longitude'+idJobPost).value=place.geometry.location.lng();
-              document.getElementById('addAddress'+idJobPost).value= place.formatted_address;
-              for (var i = 0; i < place.address_components.length; i++) {
-                var addressType = place.address_components[i].types[0];
-                  var val = place.address_components[i];
-                  if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                    document.getElementById('addState'+idJobPost).value= val.long_name;
-                  }
-                  if (addressType == 'administrative_area_level_1') {
-                    document.getElementById('addCity'+idJobPost).value= val.long_name; 
-                  }
-                  if (addressType == 'country') {
-                    document.getElementById('addCountry'+idJobPost).value= val.long_name;
-                  }
-                  if (addressType == 'postal_code') {
-                    document.getElementById('addPostcode'+idJobPost).value= val.long_name;
-                  }
-              }
-
             });
-        })
-    });
 
+            marker.setVisible(true);
 
+            var element     = document.getElementById('map-window' + idJobPost);
+            var InfoWindow  = document.createElement('div');
+            var title       = document.createElement('span');
+            var addr        = document.createElement('span');
+            var br          = document.createElement('br');
 
-      function initMap() {
+            element.appendChild(InfoWindow);
+            
+            InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
+            InfoWindow.setAttribute('style', 'display: inline');
+            InfoWindow.appendChild(title);
+            
+            title.setAttribute('id', 'place-name' + idJobPost);
+            title.setAttribute('style', 'font-weight: bold');
+            
+            InfoWindow.appendChild(br);
+            InfoWindow.appendChild(addr);
+            
+            addr.setAttribute('id', 'place-address' + idJobPost);
+            
+            document.getElementById('place-name' + idJobPost).textContent = place.name;
+            document.getElementById('place-address' + idJobPost).textContent =
+                place.formatted_address;
+            
+            infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
+            infowindow.open(map, marker);
+            
+            document.getElementById('building_latitude' + idJobPost).value = place.geometry.location.lat();
+            document.getElementById('building_longitude' + idJobPost).value = place.geometry.location.lng();
+            document.getElementById('building_address' + idJobPost).value = place.formatted_address;
+            
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                var val = place.address_components[i];
+                
+                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('building_state' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('building_city' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'country') {
+                    document.getElementById('building_country' + idJobPost).value = val.long_name;
+                }
+
+                if (addressType == 'postal_code') {
+                    document.getElementById('building_postcode' + idJobPost).value = val.long_name;
+                }
+            }
+        });
+    }
+
+    function initMap() {
 
         var map = new google.maps.Map(document.getElementById('gmap'), {
           center: {lat: -33.8688, lng: 151.2195},
@@ -632,9 +698,9 @@
               }
           }
         });
-      }
+    }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"
         async defer></script>
     <?php endif; ?>
 
