@@ -72,7 +72,7 @@
                     <h4 class="my-40">Please check your email!</h4>
                     <p class="font-16 font-weight-400">Thank you for signing-up! A verification link has been sent to your email address. Please follow the instructions given in the verification email to finish creating your Xremo Account. </p>
                     <p class="font-15 md-red-text font-weight-400 my-30"> If you do not receive email for verification link within few moments, please check your spam folder either other filtering tools or you can ask us to resend new email verications link by providing your email address. </p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo">Go to home</a>
+                    <a href="<?= base_url(); ?>login" class="btn btn-md-indigo">Go to home</a>
                 </div>
             </div>
         </div>

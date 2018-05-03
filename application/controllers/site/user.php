@@ -92,8 +92,9 @@ class User extends CI_Controller {
         $this->form_validation->set_message('is_unique', 'Email already registered');
         
         if($this->form_validation->run() == false){
-            $header['page_title'] = 'Sign Up';
-            $this->load->view('site/signup', $header);
+            $this->session->set_flashdata('msg_failed', 'Your Submitted data is not valid, please check again.');
+            redirect(base_url().'signup');
+            
             
         }else{
             //call db
@@ -205,10 +206,10 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
         $this->form_validation->set_rules('terms','Terms and Condition', 'required');
         $this->form_validation->set_message('is_unique', 'Email already registered');
-        
+
         if($this->form_validation->run() == false){
-            $header['page_title'] = 'Sign Up';
-            $this->load->view('site/signup', $header);
+            $this->session->set_flashdata('msg_failed', 'Your Submitted data is not valid, please check again.');
+            redirect(base_url().'signup');
             
         }else{
             //call db
@@ -274,7 +275,7 @@ class User extends CI_Controller {
             redirect(base_url().'instructions_change_password');
         }else{
             $this->session->set_flashdata('msg_failed', 'Email not registered, please register first');
-            redirect(base_url().'expired_password');
+            redirect(base_url().'login');
         }
     }
 

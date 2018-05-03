@@ -72,7 +72,7 @@
                     <h4 class="my-20">Password Reset Request Sent</h4>
                     <p class="font-16 font-weight-400"> A password reset message was sent to your email address. Please follow the instruction given in email to reset your password.</p>
                     <p class="font-15 md-red-text font-weight-400"> If you do not receive the password reset message within few moments, please check your spam folder or other filtering tools </p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo">Go to home</a>
+                    <a href="<?= base_url(); ?>login" class="btn btn-md-indigo">Go to home</a>
                 </div>
             </div>
         </div>

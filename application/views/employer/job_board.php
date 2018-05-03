@@ -512,7 +512,7 @@
                                 <select class="bs-select form-control  " name="employment_Type">
                                     <option value="" disabled>Employment Type</option>
                                     <?php foreach ($employment_type as $key => $employment_value) {?>
-                                    <option <?php echo $value[ 'employment_type_id']==$employment_value[ 'id'] ? 'selected': ''; ?> value="
+                                    <option <?php echo $value['employment_type_id']==$employment_value[ 'id'] ? 'selected': ''; ?> value="
                                         <?php echo $employment_value['id']; ?>" >
                                         <?php echo $employment_value['name']; ?>
                                     </option>
@@ -527,7 +527,7 @@
                                 <select class="bs-select form-control   " name="employment_level">
                                     <option disabled>Position Level</option>
                                     <?php foreach ($position_levels as $key => $position_level_value) {?>
-                                    <option <?php echo $value[ 'position_level_id']==$position_level_value[ 'id'] ? 'selected': ''; ?> value="
+                                    <option <?php echo $value['position_level_id']==$position_level_value[ 'id'] ? 'selected': ''; ?> value="
                                         <?php echo $position_level_value['id']; ?>" >
                                         <?php echo $position_level_value['name']; ?>
                                     </option>

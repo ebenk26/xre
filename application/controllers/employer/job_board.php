@@ -48,9 +48,9 @@ class Job_Board extends CI_Controller {
         $status = $this->input->post('status');
         $jobPost = array('name'                     => $this->input->post('job_position_name'),
                          'user_id'                  => $this->session->userdata('id'),
-                         'position_level_id'        => $this->input->post('employmentLevel'),
-                         'employment_type_id'       => $this->input->post('employmentType'),
-                         'years_of_experience'      => $this->input->post('yearOfExperience'),
+                         'position_level_id'        => ltrim($this->input->post('employmentLevel')),
+                         'employment_type_id'       => ltrim($this->input->post('employmentType')),
+                         'years_of_experience'      => ltrim($this->input->post('yearOfExperience')),
                          'job_description'          => $this->input->post('jobDescription'),
                          'qualifications'           => $this->input->post('jobRequirement'),
                          'other_requirements'       => $this->input->post('niceToHave'),
@@ -106,9 +106,9 @@ class Job_Board extends CI_Controller {
         $jobPost = array('name' => $this->input->post('title'),
                          'id' => $this->input->post('job_id'),
                          'user_id' => $this->session->userdata('id'),
-                         'position_level_id' => $this->input->post('employment_Level'),
-                         'employment_type_id' => $this->input->post('employment_Type'),
-                         'years_of_experience' => $this->input->post('year_Of_Experience'),
+                         'position_level_id' => ltrim($this->input->post('employment_level')),
+                         'employment_type_id' => ltrim($this->input->post('employment_Type')),
+                         'years_of_experience' => ltrim($this->input->post('year_Of_Experience')),
                          'job_description' => $this->input->post('job_Desc'),
                          'qualifications' => $this->input->post('job_Requirement'),
                          'other_requirements' => $this->input->post('nice_To_Have'),
@@ -122,7 +122,7 @@ class Job_Board extends CI_Controller {
                          );
         $editJob = $this->employer_model->job_edit($jobPost);
         if ($editJob == true) {
-            if ($status == 'post') {
+            if ($this->input->post('status') == 'post') {
                 $this->session->set_flashdata('msg_success', 'Success edit job');
             }   
 			

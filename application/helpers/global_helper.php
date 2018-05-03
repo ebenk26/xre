@@ -319,7 +319,7 @@ function checkEmailExist($email){
     $CI->load->model('global_model');
     $checkEmailData = array('email'=> $email);
     $result['data'] = $CI->global_model->get_where('users', $checkEmailData);
-    if (!empty($result)) {
+    if (!empty($result['data'])) {
         $result['status_request'] = 200;
     }else{
         $result['status_request'] = 422;

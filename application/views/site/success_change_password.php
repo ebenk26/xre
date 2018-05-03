@@ -71,7 +71,7 @@
                     <i class="icon-check display-3 md-green-text "></i>
                     <h4 class="mt-20">Your password has been reset</h4>
                     <p class="font-16 font-weight-400">Login to your account by using new password.</p>
-                    <a href="<?= base_url(); ?>" class="btn btn-md-indigo mt-15">Login to my account</a>
+                    <a href="<?= base_url(); ?>login" class="btn btn-md-indigo mt-15">Login to my account</a>
                 </div>
             </div>
         </div>
