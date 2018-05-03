@@ -125,7 +125,7 @@
 
                 <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <input type="text" class="form-control" placeholder="Search Job...." name="query">
                         <span class="input-group-btn">
                             <a href="javascript:;" class="btn submit">
                                 <i class="icon-magnifier"></i>
