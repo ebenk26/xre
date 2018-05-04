@@ -125,7 +125,7 @@
 
                 <form class="search-form search-form-expanded" action="<?php echo base_url(); ?>job/search" method="POST">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <input type="text" class="form-control" placeholder="Search Job...." name="query">
                         <span class="input-group-btn">
                             <a href="javascript:;" class="btn submit">
                                 <i class="icon-magnifier"></i>
@@ -256,9 +256,16 @@
                     <li class="nav-progress">
                         <div class="progress-info">
                             <div class="status">
+                                <?php if ($percent==100){?>                                
                                 <div class="status-title"> Profile Completion </div>
-                                <div class="status-number">
+                                <div class="status-number ">
+                                    <?php echo $percent; ?>%                                     
+                                </div>
+                                <?php }else{?>
+                                <div class="status-title md-orange-text"> Profile Completion </div>
+                                <div class="status-number md-orange-text">
                                     <?php echo $percent; ?>%</div>
+                                <?php }?>
                             </div>
                             <div class="progress">
                                 <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">

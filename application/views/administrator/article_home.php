@@ -1,8 +1,9 @@
 <?php
     foreach ($article as $articles){
-?>
-    <div class="col-sm-4 mb-0-md mb-30">
+        ?>
+    <div class="col-sm-12 col-md-4 mb-30-md mb-30">
         <!-- News -->
+
         <article>
             <?php
                 if(isset($articles["featured_image"]) && !empty($articles["featured_image"]))
@@ -15,8 +16,8 @@
                 <?php
                 }
             ?>
-                    <div class="md-white shadow-v3 text-center p-40">
-                        <h4 class=" font-weight-600 letter-space-xs">
+                    <div class="md-white shadow-v3 text-center p-40  ">
+                        <h4 class=" font-weight-600 letter-space-xs font-20 font-22-sm font-24-md font-26-lg">
                             <a href="<?= base_url().'article/'.$articles['slug']; ?>" target="_blank" class=" md-darkblue-text">
                                 <?= $articles["title"]; ?>
                             </a>
@@ -28,8 +29,9 @@
                         </p>
                     </div>
         </article>
+
         <!-- End News -->
     </div>
-<?php
+    <?php
     }
 ?>
