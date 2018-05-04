@@ -58,12 +58,12 @@
 
 <body class="login">
 
-    <div class="user-login-5 m-grid  m-grid-responsive-xs m-grid-responsive-sm">
+    <div class="user-login-5 m-grid  m-grid-responsive-xs m-grid-responsive-sm m-grid-flex">
         <div class="bs-reset m-grid-row m-grid-full-height">
             <!-- Col- MD DARKBLUE -->
-            <div class="m-grid-col m-grid-col-center m-grid-col-middle  bs-reset  m-grid-col-12-sm  ">
-                <div class="view">
-                    <img src="<?php echo base_url(); ?>assets/img/site/bg1.jpg" class="img-fluid login-bg" alt="">
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle  bs-reset  m-grid-col-12-sm  m-grid-col-order-2 hidden-xs ">
+                <div class="view g-fullheight">
+                    <img src="<?php echo base_url(); ?>assets/img/site/bg1.jpg" class="" alt="">
                     <div class="mask hm-darkblue-v8">
                         <div class="m-grid m-grid-full-height ">
                             <div class="m-grid-col m-grid-col-middle m-grid-col-center md-white-text">
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <!-- col-1 -->
-            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  ">
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  m-gird-col-order-1">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
                     <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
                         <div class="portlet">
@@ -87,8 +87,8 @@
                             <div class="portlet-body">
                                 <!-- Form Login -->
                                 <form class="form-horizontal login-form " action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
-                                        <div class="form-body ">
-                                            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                                    <div class="form-body ">
+                                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
                                             <h4 class="font-weight-400 md-grey-darken-2-text mt-90 mb-70">Login to your account</h4>
                                             <!--  Alert Display -->
                                             <div class="alert alert-danger display-hide mb-30 mt-5">
@@ -147,7 +147,7 @@
                                 <!-- BEGIN FORGOT PASSWORD FORM -->
                                 <form class="forget-form text-center mt-display-none" action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
                                     <div class="form-body">
-                                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
                                             <h3 class="md-indigo-text mt-90 mb-70">Forgot Password ?</h3>
                                             <p class="mb-30 "> Enter your e-mail address below to reset your password. </p>
 

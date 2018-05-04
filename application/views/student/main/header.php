@@ -256,9 +256,16 @@
                     <li class="nav-progress">
                         <div class="progress-info">
                             <div class="status">
+                                <?php if ($percent==100){?>                                
                                 <div class="status-title"> Profile Completion </div>
-                                <div class="status-number">
+                                <div class="status-number ">
+                                    <?php echo $percent; ?>%                                     
+                                </div>
+                                <?php }else{?>
+                                <div class="status-title md-orange-text"> Profile Completion </div>
+                                <div class="status-number md-orange-text">
                                     <?php echo $percent; ?>%</div>
+                                <?php }?>
                             </div>
                             <div class="progress">
                                 <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">
