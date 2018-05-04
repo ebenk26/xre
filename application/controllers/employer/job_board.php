@@ -102,50 +102,88 @@ class Job_Board extends CI_Controller {
                         'latitude' => $this->input->post('latitude'),
                         'longitude' => $this->input->post('longitude')
                         );
-
-        $jobPost = array('name' => $this->input->post('title'),
-                         'id' => $this->input->post('job_id'),
-                         'user_id' => $this->session->userdata('id'),
-                         'position_level_id' => ltrim($this->input->post('employment_level')),
-                         'employment_type_id' => ltrim($this->input->post('employment_Type')),
-                         'years_of_experience' => ltrim($this->input->post('year_Of_Experience')),
-                         'job_description' => $this->input->post('job_Desc'),
-                         'qualifications' => $this->input->post('job_Requirement'),
-                         'other_requirements' => $this->input->post('nice_To_Have'),
-                         'additional_info'=> $this->input->post('additional_Info'),
-                         'status'=> $this->input->post('status'),
-                         'location'=> json_encode($address),
-                         'forex' => $this->input->post('currency'),
-                         'budget_min' => $this->input->post('budget_min'),
-                         'budget_max' => $this->input->post('budget_max'),
-                         'updated_at' => date('Y-m-d H:i:s')
-                         );
+        $status = $this->input->post('status');
+        if ($status == 'draft'|| $status == 'preview') {
+            $jobPost = array('name' => $this->input->post('title'),
+                             'id' => $this->input->post('job_id'),
+                             'user_id' => $this->session->userdata('id'),
+                             'position_level_id' => ltrim($this->input->post('employment_level')),
+                             'employment_type_id' => ltrim($this->input->post('employment_Type')),
+                             'years_of_experience' => ltrim($this->input->post('year_Of_Experience')),
+                             'job_description' => $this->input->post('job_Desc'),
+                             'qualifications' => $this->input->post('job_Requirement'),
+                             'other_requirements' => $this->input->post('nice_To_Have'),
+                             'additional_info'=> $this->input->post('additional_Info'),
+                             'status'=> $this->input->post('status'),
+                             'location'=> json_encode($address),
+                             'forex' => $this->input->post('currency'),
+                             'budget_min' => $this->input->post('budget_min'),
+                             'budget_max' => $this->input->post('budget_max'),
+                             'updated_at' => date('Y-m-d H:i:s'),
+                             'expiry_date' => date('Y-m-d', strtotime("+30 days")),
+                             );
+        }else{
+            $jobPost = array('name' => $this->input->post('title'),
+                             'id' => $this->input->post('job_id'),
+                             'user_id' => $this->session->userdata('id'),
+                             'position_level_id' => ltrim($this->input->post('employment_level')),
+                             'employment_type_id' => ltrim($this->input->post('employment_Type')),
+                             'years_of_experience' => ltrim($this->input->post('year_Of_Experience')),
+                             'job_description' => $this->input->post('job_Desc'),
+                             'qualifications' => $this->input->post('job_Requirement'),
+                             'other_requirements' => $this->input->post('nice_To_Have'),
+                             'additional_info'=> $this->input->post('additional_Info'),
+                             'status'=> $this->input->post('status'),
+                             'location'=> json_encode($address),
+                             'forex' => $this->input->post('currency'),
+                             'budget_min' => $this->input->post('budget_min'),
+                             'budget_max' => $this->input->post('budget_max'),
+                             'updated_at' => date('Y-m-d H:i:s')
+                             );
+        }
         $editJob = $this->employer_model->job_edit($jobPost);
-        if ($editJob == true) {
-            if ($this->input->post('status') == 'post') {
-                $this->session->set_flashdata('msg_success', 'Success edit job');
-            }   
-			
-			//BEGIN : set recent activities
-			$data = array(
-						'user_id' 		=> $this->session->userdata('id'),
-						'ip_address' 	=> $this->input->ip_address(),
-						'activity' 		=> "Update Job Posting",
-						'icon' 			=> "fa-briefcase",
-						'label' 		=> "success",
-						'created_at' 	=> date('Y-m-d H:i:s'),
-					);
-			setRecentActivities($data);
-			//END : set recent activities
-        }else{
-            $this->session->set_flashdata('msg_error', 'Failed edit job');
-        }
 
-        if ($this->input->post('status') == 'preview') {
-            redirect(base_url().'job/details/'.rtrim(base64_encode($jobPost['id']),'=') );
-        }else{
-            redirect(base_url().'employer/job_board/');
-        }
+   //      if ($editJob == true) {
+   //          if ($this->input->post('status') == 'post') {
+   //              $this->session->set_flashdata('msg_success', 'Success edit job');
+   //          }   
+			
+			// //BEGIN : set recent activities
+			// $data = array(
+			// 			'user_id' 		=> $this->session->userdata('id'),
+			// 			'ip_address' 	=> $this->input->ip_address(),
+			// 			'activity' 		=> "Update Job Posting",
+			// 			'icon' 			=> "fa-briefcase",
+			// 			'label' 		=> "success",
+			// 			'created_at' 	=> date('Y-m-d H:i:s'),
+			// 		);
+			// setRecentActivities($data);
+			// //END : set recent activities
+   //      }else{
+   //          $this->session->set_flashdata('msg_error', 'Failed edit job');
+   //      }
+
+        // if ($this->input->post('status') == 'preview') {
+        //     redirect(base_url().'job/details/'.rtrim(base64_encode($jobPost['id']),'=') );
+        // }else{
+        //     redirect(base_url().'employer/job_board/');
+        // }
+
+        redirect(base_url().'job/details/'.rtrim(base64_encode($jobPost['id']),'=') );
+    }
+
+    public function post_job(){
+        $id = $this->input->post('post_id');
+        $this->job_model->post_job($id, array('status'=>'post'));
+        $data = array(
+                     'user_id'       => $this->session->userdata('id'),
+                     'ip_address'    => $this->input->ip_address(),
+                     'activity'      => "Update Job Posting",
+                     'icon'          => "fa-briefcase",
+                     'label'         => "success",
+                     'created_at'    => date('Y-m-d H:i:s'),
+                 );
+        setRecentActivities($data);
     }
 
     public function delete(){
@@ -199,11 +237,6 @@ class Job_Board extends CI_Controller {
         $job_post['job_id'] = $this->uri->segment(URI_SEGMENT_DETAIL);
         $job_post['applicant'] = $this->employer_model->get_user_profile($applicant_id);
         $this->load->view('employer/preview',$job_post);
-    }
-
-    public function post_job(){
-        $id = $this->input->post('post_id');
-        $this->job_model->post_job($id, array('status'=>'post'));
     }
 
     public function shortlist(){
