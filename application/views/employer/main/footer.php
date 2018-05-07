@@ -145,7 +145,12 @@ $company_address = json_decode($user_profile['address']);?>
                 }
             });
             
-            showMaps(idJobPost);
+            setTimeout(
+                function()
+                {
+                  showMaps(idJobPost);
+                }
+            ,1000);
         });
 
         // Add Job Post
@@ -439,6 +444,12 @@ $company_address = json_decode($user_profile['address']);?>
             <?php
                 }
             }
+            else
+            {
+            ?>
+              initMap();
+            <?php
+            }
             ?>
         });
 
@@ -619,11 +630,11 @@ $company_address = json_decode($user_profile['address']);?>
         });
     }
 
-    function initMap() {
-
+    function initMap()
+    {
         var map = new google.maps.Map(document.getElementById('gmap'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
+          zoom: 8,
+          center: {lat: 35.717, lng: 139.731}
         });
 
         var input = document.getElementById('pac-input');
@@ -635,11 +646,31 @@ $company_address = json_decode($user_profile['address']);?>
 
         var infowindow = new google.maps.InfoWindow();
         var marker = new google.maps.Marker({
-          map: map
+            map: map
         });
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
         });
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infowindow.setPosition(pos);
+                infowindow.setContent('Location found.');
+                infowindow.open(map);
+                map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infowindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infowindow, map.getCenter());
+        }
 
         autocomplete.addListener('place_changed', function() {
           infowindow.close();
@@ -678,29 +709,37 @@ $company_address = json_decode($user_profile['address']);?>
               place.formatted_address;
           infowindow.setContent(document.getElementById('infowindow-content'));
           infowindow.open(map, marker);
-          document.getElementById('addLatitude').value=place.geometry.location.lat();
-          document.getElementById('addLongitude').value=place.geometry.location.lng();
+          document.getElementById('building_latitude').value=place.geometry.location.lat();
+          document.getElementById('building_longitude').value=place.geometry.location.lng();
           document.getElementById('addMapTitle').value= place.name;
           document.getElementById('addMapDescription').value= place.formatted_address;
-          document.getElementById('addAddress').value= place.formatted_address;
+          document.getElementById('building_address').value= place.formatted_address;
           for (var i = 0; i < place.address_components.length; i++) {
             var addressType = place.address_components[i].types[0];;
               var val = place.address_components[i];
 
               if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                document.getElementById('addState').value= val.long_name;
+                document.getElementById('building_state').value= val.long_name;
               }
               if (addressType == 'administrative_area_level_1') {
-                document.getElementById('addCity').value= val.long_name; 
+                document.getElementById('building_city').value= val.long_name; 
               }
               if (addressType == 'country') {
-                document.getElementById('addCountry').value= val.long_name;
+                document.getElementById('building_country').value= val.long_name;
               }
               if (addressType == 'postal_code') {
-                document.getElementById('addPostcode').value= val.long_name;
+                document.getElementById('building_postcode').value= val.long_name;
               }
           }
         });
+    }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
     }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"

@@ -489,7 +489,7 @@
             </div>
             <!-- FORM -->
             <form action="<?php echo base_url(); ?>employer/job_board/update/" method="POST" class="form-horizontal  ">
-                <input type="hidden" id="job_status_edit" name="status" value="preview"></input>
+                <input type="hidden" id="job_status_edit" name="status" value="<?php echo !empty($value['status']) ? $value['status']: 'preview'; ?>"></input>
                 <div class="modal-body form-body ">
                     <input type="hidden" name="job_id" value="<?php echo $value['id'] ?>"></input>
                     <!-- Job Position Title & Salary Range-->
@@ -679,7 +679,7 @@
                 </div>
                 <div class="modal-footer form-action ">
                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100" id="preview_button_edit_<?= $value['id']?>">Preview</button>
+                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100" id="preview_button_edit_<?= $value['id']?>"><?= ($value['status'] == 'post') ? 'Update' : 'Preview' ?></button>
                 </div>
             </form>
         </div>

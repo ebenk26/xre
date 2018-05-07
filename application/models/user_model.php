@@ -5,16 +5,51 @@ class User_Model extends CI_Model{
     //insert employee details to employee table
     public function signup_post($data, $role){
         
-        $users = $this->db->insert('users',$data);
-        $user_id = $this->db->insert_id();
+        if ($role==3) {
+            $user = array(
+                'fullname'      => $data['fullname'],
+                'email'         => $data['email'],
+                'password'      => $data['password'],
+                'created_at'    => $data['created_at'],
+            );
+            $users = $this->db->insert('users',$user);
+            $user_id = $this->db->insert_id();
 
-        $user_role = array( 'user_id' => $user_id,
-                        'role_id' => $role);
-        
-        $this->db->insert('user_role',$user_role);
+            $user_role = array( 'user_id' => $user_id,
+                            'role_id' => $role);
+            
+            $this->db->insert('user_role',$user_role);
+
+        }else{
+
+            $users = $this->db->insert('users',$data);
+            $user_id = $this->db->insert_id();
+
+            $user_role = array( 'user_id' => $user_id,
+                            'role_id' => $role);
+            
+            $this->db->insert('user_role',$user_role);
+        }
 
         if($role == 5){
+
             $this->db->insert('student_bios', array('user_id' => $user_id));
+
+        }elseif($role == 3){
+            $pic = array(   'pic_name' => $data['fullname'],
+                            'pic_position' => 'HR / Recruitment Staff',
+                            'pic_email' => $data['email'] );
+
+            $data_profiles = array(
+                'contact_person'    => json_encode($pic),
+                'company_name'      => $data['company_name'],
+                'country_id'        => $data['country_code'],
+                'created_at'        => $data['created_at'],
+                'email'             => $data['email'],
+                'user_id'           => $user_id,
+            );
+
+            $this->db->insert('user_profiles', $data_profiles);
         }
 
         return true;      

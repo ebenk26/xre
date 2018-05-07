@@ -911,7 +911,6 @@
 
                                         $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
                                         $rating_counter = countRateExp($value['experience_id']);
-                                        
 
                                         if ($id != base64_decode($segmented_uri)) {
                                             $checkIdRatingExist = array_search($id, array_column($rating_counter['experience'],'endorser_id'));
@@ -928,7 +927,6 @@
                                             $checkRatingNotSame = true;
                                             $countRater = count($rating_counter['experience']);
                                         }
-
 
                                         if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_rate = 'modal_rated_empty_experience_'.$value['experience_id'];
@@ -1687,7 +1685,7 @@
                                 <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
                                     <div class="media-body media-middle">
                                         <input type="hidden" id="backing1Experience" value="4.5" name="ratings">
-                                        <input type="hidden" id="dataIdExp" name="skill_id">
+                                        <input type="hidden" id="dataIdExp" name="exp_id">
                                         <input type="hidden" id="endorserIdExp" name="endorser_id">
                                         <input type="hidden" id="dataUserIdExp" name="endorsed_id">
                                         <div id="rateit1Experience" data-size="50"></div>
