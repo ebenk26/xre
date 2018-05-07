@@ -147,7 +147,7 @@ class Profile extends CI_Controller {
         //BEGIN : SET SHIPPING ADDRESS AND LAT LONG
         $hq = false;$array_no = 0;$no = 0;
         foreach($address as $value){
-            if($value['optionsRadios'] == "HQ"){
+            if(isset($value['optionsRadios']) && $value['optionsRadios'] == "HQ"){
                 $hq = true;$array_no = $no;break;
             }
             $no++;

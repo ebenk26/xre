@@ -83,6 +83,63 @@ if (!empty($company_address))
 <?php
     }
 }
+else
+{
+?>
+    <style>
+          /* Always set the map height explicitly to define the size of the div
+           * element that contains the map. */
+          #gmap {
+            height: 100%;
+            width: 100%;
+          }
+          /* Optional: Makes the sample page fill the window. */
+          html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+          .controls {
+            background-color: #fff;
+            border-radius: 2px;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            height: 29px;
+            margin-left: 17px;
+            margin-top: 10px;
+            outline: none;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+          }
+
+          .pac-container{
+            z-index: 99999 !important;
+          }
+
+          .controls:focus {
+            border-color: #4d90fe;
+          }
+          .title {
+            font-weight: bold;
+          }
+          #infowindow-content {
+            display: none;
+          }
+          #gmap #infowindow-content {
+            display: inline;
+          }
+          #pac-input{
+            position: absolute;
+            z-index: 99999;
+          }
+    </style>
+<?php
+}
 ?>
 
 <!-- BEGIN CONTENT -->
@@ -850,7 +907,7 @@ if (!empty($company_address))
                                             <div class="row mx-0 ">
                                                 <div class="form-group mx-0">
                                                     <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Address</label>
-                                                    <input type="text" class="form-control" name="contact_info[][building_address]" placeholder="Unit / Lot , Road ," required>
+                                                    <input type="text" class="form-control" name="contact_info[0][building_address]" id="building_address" placeholder="Unit / Lot , Road ," required>
                                                 </div>
                                             </div>
 
@@ -860,7 +917,7 @@ if (!empty($company_address))
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">City</label>
-                                                        <input type="text" class="form-control" name="contact_info[][building_city]" required>
+                                                        <input type="text" class="form-control" name="contact_info[0][building_city]" id="building_city" required>
                                                     </div>
                                                 </div>
 
@@ -868,13 +925,13 @@ if (!empty($company_address))
                                                     <div class="form-group mx-0">
 
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">State</label>
-                                                        <input type="text" class="form-control" name="contact_info[][building_state]" required>
+                                                        <input type="text" class="form-control" name="contact_info[0][building_state]" id="building_state" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
-                                                        <input type="text" class="form-control" placeholder="Postcode" name="contact_info[][building_postcode]" required>
+                                                        <input type="text" class="form-control" placeholder="Postcode" name="contact_info[0][building_postcode]" id="building_postcode" required>
                                                     </div>
                                                 </div>
 
@@ -883,7 +940,7 @@ if (!empty($company_address))
                                                         <!-- <label class="control-label">Country</label> -->
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Country</label>
 
-                                                        <select class="form-control " name="contact_info[][building_country]">
+                                                        <select class="form-control " name="contact_info[0][building_country]" id="building_country">
                                                             <option value="" selected disabled>Select one </option>
                                                             <?php foreach ($countries as $key => $country_value) { ?>
                                                             <option>
@@ -901,14 +958,14 @@ if (!empty($company_address))
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
-                                                        <input type="text" class="form-control" placeholder="1.643604 " name="contact_info[][building_latitude]">
+                                                        <input type="text" class="form-control" placeholder="1.643604 " name="contact_info[0][building_latitude]" id="building_latitude">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
-                                                        <input type="text" class="form-control" placeholder="1.955566" name="contact_info[][building_longitude]">
+                                                        <input type="text" class="form-control" placeholder="1.955566" name="contact_info[0][building_longitude]" id="building_longitude">
                                                     </div>
                                                 </div>
 
@@ -916,7 +973,7 @@ if (!empty($company_address))
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
 
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[][building_phone]" required>
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[0][building_phone]" id="building_phone">
 
                                                     </div>
                                                 </div>
@@ -924,7 +981,7 @@ if (!empty($company_address))
                                                 <div class="col-md-3">
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Fax Number</label>
-                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[][building_fax]">
+                                                        <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[0][building_fax]" id="building_fax">
                                                     </div>
                                                 </div>
                                             </div>
@@ -937,11 +994,11 @@ if (!empty($company_address))
 
                                                         <div class="mt-radio-inline">
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="contact_info[][optionsRadios]" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
+                                                                <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
                                                                 <span></span>
                                                             </label>
                                                             <label class="mt-radio">
-                                                                <input type="radio" name="contact_info[][optionsRadios]" id="optionsRadios5" value="branch"> Branch
+                                                                <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios5" value="branch"> Branch
                                                                 <span></span>
                                                             </label>
                                                         </div>
@@ -951,12 +1008,12 @@ if (!empty($company_address))
                                                     <div class="form-group mx-0">
                                                         <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">Email Address</label>
 
-                                                        <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="contact_info[][building_email]">
+                                                        <input type="text" class="form-control input-large" placeholder="hello@xremo.com" name="contact_info[0][building_email]" id="building_email">
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-3 pull-right">
-                                                    <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-block">
+                                                <div class="col-md-3 pull-right my-50">
+                                                    <a href="javascript:;" class="btn btn-danger btn-block delContact">
                                                         <i class="fa fa-close"></i> Remove
                                                     </a>
                                                 </div>
