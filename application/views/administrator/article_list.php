@@ -2,13 +2,13 @@
 <div class="s-promo-block-v2 gradient-darkblue-v7  js-parallax-window parallax height-300" style="background: url('<?=base_url()?>assets/img/site/mainpagebanner.jpg')  no-repeat fixed;">
 	<div class="g-container-md text-center g-ver-bottom-90">
 		<div class="center-block">
-			<div class="wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".1s">
+			<div class="wow fadeInUp " data-wow-delay=".1s">
 				<h1 class="font-40 font-50-sm font-60-md  md-white-text letter-space-sm text-uppercase font-weight-500">Article</h1>
 			</div>
-			<div class="wow fadeInUp animated" data-wow-duration=".4" data-wow-delay=".3s">
+			<div class="wow fadeInUp " data-wow-delay=".3s">
 				<hr class=" width-250 center-block mt-0 mb-5 border-mdo-orange-v8 hor-divider-solid-medium">
 			</div>
-			<div class="wow fadeInUp animated" data-wow-duration=".4" data-wow-delay=".5s">
+			<div class="wow fadeInUp "  data-wow-delay=".5s">
 				<hr class=" width-200 center-block mt-0  border-mdo-orange-v8 hor-divider-solid-medium">
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 <div class="container py-60">
 	<div class="row">
 		<!-- LIST -->
-		<div class="col-md-9">
+		<div class="col-xs-12 col-sm-9 col-md-9">
 			<ul class="list-group list-border">
 				<?php 
 						$article_page 	= $this->session->userdata('article_page');
@@ -29,25 +29,32 @@
 							if(($no < $article_page*5-4) || ($no > $article_page*5)){$no++;continue;} 
 							$no++;					
 					?>
-				<li class="list-group-item wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".3s ">
-					<div class="media">
+				<li class="list-group-item ">
+					<div class="media ">
 						<?php if($row->featured_image != ""){?>
-						<div class="media-left">
+						<div class="pull-left hidden-xs visible-sm visible-md visible-lg">
 							<a href="<?=base_url()?>article/<?=$row->slug?>">
-								<img src="<?=base_url()?>assets/img/article/<?=$row->featured_image?>" alt="" class="avatar avatar-medium">
+								<img src="<?=base_url()?>assets/img/article/<?=$row->featured_image?>" alt="" class="avatar avatar-medium avatar-circle">
 							</a>
 						</div>
 						<?php }?>
 						<div class="media-body">
+							<?php if($row->featured_image != ""){?>
+							<div class=" visible-xs hidden-sm hidden-md hidden-lg">
+								<a href="<?=base_url()?>article/<?=$row->slug?>">
+									<img src="<?=base_url()?>assets/img/article/<?=$row->featured_image?>" alt="" class="img-fluid mb-30">
+								</a>
+							</div>
+							<?php }?>
 							<a href="<?=base_url()?>article/<?=$row->slug?>">
-								<h3 class="font-weight-600 ">
+								<h3 class="font-weight-600 font-18 font-20-sm font-22-md font-26-xl">
 									<?=$row->title?>
 								</h3>
 							</a>
 							<p class="roboto-font multiline-truncate">
 								<?=$row->excerpt?>
 							</p>
-							<p class="my-10">
+							<p class="my-10 hidden-xs">
 								<small>
 									<i class="icon-user mr-5"></i>
 									<?=$row->author?> | </small>
@@ -59,14 +66,18 @@
 									<a href="<?=base_url()?>article/<?=$row->slug?>" class="btn btn-md-orange px-40 btn-sm letter-space-sm text-uppercase font-weight-600">More</a>
 								</small>
 							</p>
+							<div class="visible-xs hidden-sm hidden-md hidden-lg mt-20 ">
+								<a href="<?=base_url()?>article/<?=$row->slug?>" class="btn btn-md-orange px-40 btn-sm letter-space-sm text-uppercase font-weight-600">More</a>
+
+							</div>
 
 						</div>
 					</div>
 				</li>
 				<?php }?>
 
-				<li class="list-group-item text-center wow fadeInUp animated" data-wow-duration=".1" data-wow-delay=".2s ">
-					<ul class="pagination pagination-mini">
+				<li class="list-group-item text-center ">
+					<ul class="pagination pagination-sm">
 						<?php
 								$article_total = 0;
 								foreach($result as $row){
@@ -141,34 +152,25 @@
 		</div>
 
 		<!-- Popular post / Recent Post -->
-		<div class="col-md-3">
+		<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 			<!-- Popular Post [Top 3 ] -->
 			<div class="row ">
-				<div class="col-md-12">
-					<h5 class="font-weight-600 md-darkblue-text wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".2s ">Popular Article </h5>
-					<hr class=" width-50 hor-divider-solid-medium border-mdo-orange-v5 my-10 wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".3s">
+				<div class="col-xs-12">
+					<h5 class="font-weight-600 md-darkblue-text ">Popular Article </h5>
+					<hr class=" width-50 hor-divider-solid-medium border-mdo-orange-v5 my-10 ">
 					<ul class="list-unstyled">
 						<?php $no = 1;foreach($popular as $row){ if($no == 6){break;} $no++;?>
-						<li class="wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".4s">
+						<li >
 							<div class="media">
-								<?php if($row->featured_image != ""){?>
-								<div class="media-left">
-									<a href="<?=base_url()?>article/<?=$row->slug?>">
-										<img src="<?=base_url()?>assets/img/article/<?=$row->featured_image?>" alt="" class="avatar avatar-tiny avatar-circle ">
-									</a>
-								</div>
-								<?php }?>
 								<div class="media-body">
 									<h5 class="font-weight-500 roboto-font ">
 										<a class="md-darkblue-text md-orange-text-hover" href="<?=base_url()?>article/<?=$row->slug?>">
 											<?=$row->title?>
 										</a>
 									</h5>
-									<p>
-										<small class="multiline-truncate">
-											<?=$row->excerpt?>
-										</small>
-									</p>
+									<small class="multiline-truncate mb-20">
+										<?=$row->excerpt?>
+									</small>
 								</div>
 							</div>
 						</li>
@@ -179,11 +181,11 @@
 			<!-- Recent Post [Latest 4 Post] -->
 			<div class="row mt-40">
 				<div class="col-md-12">
-					<h5 class="font-weight-600 md-darkblue-text wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".2s ">Recent Article </h5>
-					<hr class=" width-50 hor-divider-solid-medium border-mdo-orange-v5 my-10 wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".3s">
+					<h5 class="font-weight-600 md-darkblue-text ">Recent Article </h5>
+					<hr class=" width-50 hor-divider-solid-medium border-mdo-orange-v5 my-10 ">
 					<ul class="list-unstyled">
 						<?php $no = 1;foreach($recent as $row){ if($no == 6){break;} $no++;?>
-						<li class="wow fadeInUp animated" data-wow-duration=".3" data-wow-delay=".4s">
+						<li >
 							<p>
 								<a href="<?=base_url()?>article/<?=$row->slug?>" class="multiline-truncate md-darkblue-text md-orange-text-hover font-weight-400 roboto-font">
 									<?=$row->title?>

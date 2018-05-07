@@ -68,6 +68,8 @@ $company_address = json_decode($user_profile['address']);?>
 <!-- # Google Map -->
 <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
 <!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/gmaps/gmaps.min.js"></script> -->
+<!-- # Animation -->
+<script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.wow.min.js"></script>
 
 <!-- GLOBAL -->
 <script type="text/javascript" src="<?php echo JS; ?>global/app.min.js"></script>
@@ -85,7 +87,8 @@ $company_address = json_decode($user_profile['address']);?>
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-bootstrap-select.min.js"></script>
 <!-- <script type="text/javascript" src="<?php echo JS; ?>pages/ui-modals.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>pages/components-editors.min.js"></script>
-<!-- <script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script> -->
+<script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>pages/portfolio-3.js"></script>
 
 <!-- PAGE LAYOUT   -->
@@ -142,7 +145,12 @@ $company_address = json_decode($user_profile['address']);?>
                 }
             });
             
-            showMaps(idJobPost);
+            setTimeout(
+                function()
+                {
+                  showMaps(idJobPost);
+                }
+            ,1000);
         });
 
         // Add Job Post

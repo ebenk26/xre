@@ -48,12 +48,12 @@
     <!-- # Calendar -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/fullcalendar/fullcalendar.min.css">
     <!-- # Text Editor -->
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" >
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" >
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-summernote/summernote.css" >
-    <!-- # Image Crop -->    
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-summernote/summernote.css">
+    <!-- # Image Crop -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jcrop/css/jquery.Jcrop.min.css">
-    <!-- # Chart -->    
+    <!-- # Chart -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/morris/morris.css">
     <!-- # Notification -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.css">
@@ -61,10 +61,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jqvmap/jqvmap/jqvmap.css">
     <!-- # Portfolio @ Light Gallery -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/cubeportfolio/css/cubeportfolio.css">
+    <!-- # Animation -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css" >
 
     <!-- GLOBAL -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.min.css">
 
     <!-- APPS -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>apps/inbox.min.css">
@@ -102,9 +104,7 @@
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
-    <!-- <div class="loading">
-        <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
-    </div> -->
+
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
@@ -166,7 +166,7 @@
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/xremo-logo-blue.svg'?>">
+                                <img alt="<?php echo ucfirst($user_profile['name']); ?> " class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/profile-pic.png'?>">
                                 <span class="username username-hide-on-mobile">
                                     <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>

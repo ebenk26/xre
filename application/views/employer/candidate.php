@@ -1,5 +1,9 @@
 <div class="page-content-wrapper">
     <div class="page-content">
+        <!-- <div class="loading">
+            <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
+        </div> -->
+        <!-- Title / Tab -->
         <div class="portlet light md-transparent portlet-fit p-0">
             <div class="portlet-title tabbable-line tab-md-indigo py-0  pl-0 mb-0 border-md-grey">
                 <div class="caption">
@@ -22,7 +26,7 @@
             </div>
         </div>
 
-        <div class="page-bar hidden">
+        <div class="page-bar ">
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
@@ -30,16 +34,14 @@
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Job Board</span>
+                    <a href="<?php echo base_url();?>employer/job_board">Job Board</a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
                     <span>
                         <?php echo !empty($job) ? $job->name : 'none'; ?> [Candidate List]</span>
-                    <!-- <i class="fa fa-angle-right"></i> -->
                 </li>
             </ul>
-
         </div>
 
         <div class="tab-content">
@@ -49,15 +51,11 @@
                 <div class="portlet light">
                     <div class="portlet-title">
                         <div class="caption">
-                            <!-- <i class="icon-user font-44-xs "></i> -->
-                            <!-- <span class="caption-subject">
-                                <?php echo !empty($job) ? $job->name : 'none'; ?>
-                            </span> -->
                             <span class="caption-subject ">New Candidates</span>
                         </div>
-
                     </div>
-                    <?php if (!empty($candidates)): ?>
+                    <?php if (!empty($candidates)):?>
+                    <!-- Fix : Need to put another logic to diffrentiate new candidate and other type -->
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered order-column" id="xremo_table">
                             <thead>
@@ -280,8 +278,7 @@
                                 </tr>
                                 <?php $i++;} ?>
                                 <!-- BEGIN MODAL : View Candidate Summary -->
-                                <div class="modal fade modal-open-noscroll " id="modal_tab_shortlist_candidate" tabindex="-1" role="dialog" aria-hidden="false">
-
+                                <div class="modal fade " id="modal_tab_shortlist_candidate" tabindex="-1" role="dialog" aria-hidden="false">
                                 </div>
                                 <!-- END MODAL : View Candidate Summary -->
                             </tbody>
@@ -308,10 +305,10 @@
                                         <div class="modal-body ">
                                             <!-- Start DAte /Time [Proposed] -->
                                             <div class="row">
-                                                <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600">Proposed Start Date / Time</label>
                                                 <!-- Date -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
+                                                        <label class="md-grey-darken-3-text mb-10 font-weight-600">Proposed Date</label>
                                                         <div class="input-icon ">
                                                             <i class="icon-calendar"></i>
                                                             <input type="text" class="form-control date date-picker" readonly disabled>
@@ -321,6 +318,7 @@
                                                 <!-- Time -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
+                                                        <label class=" md-grey-darken-3-text mb-10 font-weight-600">Proposed Time</label>
                                                         <div class="input-icon">
                                                             <i class="fa fa-clock-o"></i>
                                                             <input type="text" class="form-control timepicker timepicker-24" readonly disabled> </div>
@@ -328,27 +326,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- End Date /Time [Proposed] -->
-                                            <div class="row">
-                                                <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600">Proposed End Date / Time</label>
-                                                <!-- Date -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon ">
-                                                            <i class="icon-calendar"></i>
-                                                            <input type="text" class="form-control date date-picker" readonly disabled>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Time -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24" readonly disabled> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                             <!-- Reason -->
                                             <div class="row mx-0 mt-20">
                                                 <label for="" class="md-grey-darken-3-text mb-10 font-weight-600"> Rescheduled Reason</label>
@@ -356,7 +334,8 @@
                                                     <?php echo $value['candidate_reply']; ?>
                                                 </p>
                                             </div>
-                                            <!-- Radio Butto -->
+                                            <!-- Radio Button -->
+                                            <!-- Fix : Show new schedule when radio button click 'no' -->
                                             <div class="form-group mt-20 ">
                                                 <label for="" class="md-grey-darken-3-text mb-10 font-weight-600">Do you agree to rescheduled ?</label>
                                                 <div class="mt-radio-inline">
@@ -365,20 +344,20 @@
                                                         <span></span>
                                                     </label>
                                                     <label class="mt-radio">
-                                                        <input type="radio" name="confirmation" class="disagree-reschedule" value="No" > No
+                                                        <input type="radio" name="confirmation" class="disagree-reschedule" value="No"> No
                                                         <span></span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <!-- If Radio "Yes" -->
+                                            <!-- If Radio "No" -->
                                             <div class="recreate-session">
                                                 <h4 class="form-section ">New Schedule</h4>
                                                 <!-- Start Date / Time -->
                                                 <div class="row">
-                                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">Start Date / Time </label>
                                                     <!-- Date -->
                                                     <div class="col-md-6">
                                                         <div class="form-group">
+                                                            <label class=" control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date </label>
                                                             <div class="input-icon ">
                                                                 <i class="icon-calendar"></i>
                                                                 <input type="text" class="form-control date date-picker">
@@ -388,76 +367,13 @@
                                                     <!-- Time -->
                                                     <div class="col-md-6">
                                                         <div class="form-group">
+                                                            <label class=" control-label md-grey-darken-3-text mb-10 font-weight-600 "> Time </label>
                                                             <div class="input-icon">
                                                                 <i class="fa fa-clock-o"></i>
                                                                 <input type="text" class="form-control timepicker timepicker-24"> </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Date / Time -->
-                                                <div class="row">
-                                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">End Date / Time </label>
-                                                    <!-- Date -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="input-icon ">
-                                                                <i class="icon-calendar"></i>
-                                                                <input type="text" class="form-control date date-picker">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Time -->
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <div class="input-icon">
-                                                                <i class="fa fa-clock-o"></i>
-                                                                <input type="text" class="form-control timepicker timepicker-24"> </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Checkbox: All Day -->
-                                                <!-- Note : IF user check this box , only show  below -->
-                                                <div class="form-group form-md-checkboxes mx-0 ">
-                                                    <div class="md-checkbox">
-                                                        <input type="checkbox" id="checkbox_allday" class="md-check">
-                                                        <label for="checkbox_allday">
-                                                            <span></span>
-                                                            <span class="check"></span>
-                                                            <span class="box"></span> All Day </label>
-                                                    </div>
-                                                </div>
-                                                <!-- Date [If All Day Check]-->
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group mx-0">
-                                                            <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date</label>
-                                                            <div class="input-icon ">
-                                                                <i class="icon-calendar"></i>
-                                                                <input type="text" class="form-control date date-picker ">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Start Time & End Time [If All Day Check] -->
-                                                <div class="row mb-30">
-                                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">Time</label>
-                                                    <div class="col-md-6">
-                                                        <div class="input-icon ">
-                                                            <i class="icon-clock"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time">
-                                                            <span class="helper-block font-15">Start</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="input-icon ">
-                                                            <i class="icon-clock"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time">
-                                                            <span class="helper-block font-15">End</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
 
                                                 <div class="form-group mx-0 ">
                                                     <label for="" class="control-label">Reply</label>
@@ -676,7 +592,7 @@
                                                 <td>
                                                     <?=$session_value['title']?>
                                                 </td>
-                                                <!-- Camdidate -->
+                                                <!-- Candidate -->
                                                 <td>
                                                     <?=$session_value['candidate_name']?>
                                                 </td>
@@ -806,6 +722,11 @@
                             <h5 class="font-weight-400 letter-space-xs mb-30 font-17 ">
                                 <i class="icon-briefcase mr-10"></i>
                                 <?php echo $session_value['job_name'] ?>
+                            </h5>
+                            <!-- User -->
+                            <h5 class="font-weight-400 letter-space-xs mb-30 font-17 ">
+                                <i class="icon-user mr-10"></i>
+                                <?php echo $session_value['candidate_name'] ?>
                             </h5>
                             <!-- IF != ALL DAY -->
                             <h5 class="font-weight-400 letter-space-xs mb-30 font-17">
