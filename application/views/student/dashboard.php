@@ -184,41 +184,12 @@
                                     <!-- [Done] Fix : All label will be hidden if empty  -->
                                     <ul class="list-unstyled list-inline mt-ul-li-lr-0  mx-0">
                                         <!-- Location -->
-                                        <?php if (!empty($value['state_name'])) {?>
+                                                <!-- <?php var_dump($value) ?> -->
+                                        <?php if (!empty($value['country_name'])) {?>
                                         <li class="mb-10 px-0">
-                                            <p class="label label-md-cyan label-sm font-12 letter-space-xs">
-                                                <i class="fa fa-map-marker"></i>
-                                                <?php echo $value['state_name'] ?>
-                                            </p>
-                                        </li>
-                                        <?php } ?>
-
-                                        <!-- Employment Type -->
-                                        <?php if (!empty($value['employment_name'])) {?>
-                                        <li class=" mb-10 px-0 ">
-                                            <p class="label label-primary label-sm font-12 letter-space-xs">
-                                                <i class="fa fa-briefcase"></i>
-                                                <?php echo $value['employment_name'] ;?>
-                                            </p>
-                                        </li>
-                                        <?php } ?>
-
-                                        <!-- Position -->
-                                        <?php if (!empty($value['position_name'])) {?>
-                                        <li class=" mb-10">
-                                            <p class="label label-md-purple label-sm  font-12 letter-space-xs">
-                                                <i class="fa fa-sitemap"></i>
-                                                <?php echo $value['position_name'] ?>
-                                            </p>
-                                        </li>
-                                        <?php } ?>
-
-                                        <!-- Industry -->
-                                        <?php if (!empty($value['industry_name'])) {?>
-                                        <li class=" mb-10">
-                                            <p class="label label-md-blue-grey label-sm font-12 letter-space-xs">
-                                                <i class="fa fa-industry"></i>
-                                                <?php echo $value['industry_name'] ?>
+                                            <p class="label label-md-purple label-sm font-12 letter-space-xs">
+                                                <i class="fa fa-map-marker "></i>
+                                                <?php echo $value['country_name'] ?>
                                             </p>
                                         </li>
                                         <?php } ?>
@@ -234,6 +205,37 @@
                                             </p>
                                         </li>
                                         <?php } ?>
+                                        <!-- Industry -->
+                                        <?php if (!empty($value['industry_name'])) {?>
+                                        <li class=" mb-10">
+                                            <p class="label label-md-blue-grey label-sm font-12 letter-space-xs">
+                                                <i class="fa fa-industry"></i>
+                                                <?php echo $value['industry_name'] ?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+                                        <!-- Employment Type -->
+                                        <?php if (!empty($value['employment_name'])) {?>
+                                        <li class=" mb-10 px-0 ">
+                                            <p class="label label-md-blue label-sm font-12 letter-space-xs">
+                                                <i class="fa fa-briefcase"></i>
+                                                <?php echo $value['employment_name'] ;?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+
+                                        <!-- Position -->
+                                        <?php if (!empty($value['position_name'])) {?>
+                                        <li class=" mb-10">
+                                            <p class="label label-md-deep-purple label-sm  font-12 letter-space-xs">
+                                                <i class="fa fa-sitemap"></i>
+                                                <?php echo $value['position_name'] ?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+
+                                        
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -252,7 +254,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Widget : Feed & Article -->
         <div class="row">
@@ -404,7 +405,7 @@
                                         </li>
                                         <?php }?>
                                         <?php }else{?>
-                                        <!-- Else -->
+                                        <!-- # Empty State -->
                                         <div class="portlet light md-grey-lighten-5">
                                             <div class="portlet-body p-80 text-center">
                                                 <i class="icon-ghost font-50 md-indigo-text"></i>
