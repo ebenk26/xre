@@ -455,6 +455,7 @@ $company_address = json_decode($user_profile['address']);?>
 
         $("#addOffice").on('click', function() {
             var num = $(this).attr('data-val');
+            // console.log(num,'atas');
 
             $.ajax({
                 url: '<?= base_url(); ?>employer/profile/newContactInfo',
@@ -467,6 +468,7 @@ $company_address = json_decode($user_profile['address']);?>
                     showMaps(num,'gmap'+num);
 
                     var newNum = parseInt(num) + 1;
+                    // console.log(newNum,'bawah');
 
                     $("#addOffice").attr('data-val',newNum);
                 }
@@ -474,7 +476,7 @@ $company_address = json_decode($user_profile['address']);?>
             
         });
 
-        $(".delContact").on('click', function(){
+        $(document).on('click',".delContact", function(){
             $(this).parent().parent().parent().remove();
         });
     });

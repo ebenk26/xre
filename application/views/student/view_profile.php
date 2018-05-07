@@ -1254,13 +1254,11 @@
                                                         <i class="icon-user"></i>
                                                         <?= $countEndorser; ?> Endorser
                                                     </a>
-                                                    <?php else: ?>
+                                                    <?php elseif($percentage_completion == false): ?>
                                                     <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-container="body" data-placement="top" data-original-title="view endorser">
                                                         <i class="icon-user"></i>
                                                         Complete your profile to endorse
                                                     </a>
-                                                    <?php endif ?>
-
                                                     <?php   else: ?>
                                                     <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                     <?php   endif ?>
