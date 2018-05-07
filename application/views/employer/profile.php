@@ -145,7 +145,7 @@ else
         <!-- Content -->
         <div class="portlet">
             <!-- # Header Image -->
-            <div class=" view height-300 " style="background:url('<?php echo !empty($header_picture) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat">
+            <div class=" view height-300 " style="background:url('<?php echo !empty($header_picture) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat;">
                 <div class="mask hm-darkblue-v7 ">
                     <a href="#modal_edit_header_picture" data-toggle="modal" class="btn  btn-circle btn-mdo-white pull-right m-30">
                         <i class="icon-camera"></i>
