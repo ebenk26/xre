@@ -89,9 +89,9 @@
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <?php if($header_image['name'] != ""){?>
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYERS.$header_image['name']; ?>') center center no-repeat fixed; z-index: -1; background-size:cover;">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYERS;?><?php echo $header_image['name']; ?>') center center no-repeat fixed; z-index: -1; background-size:cover;">
         <?php }else{?>
-        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYER;?>portfolio/1200x900/1.jpg') no-repeat fixed; z-index: -1; background-size:cover">
+        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYER;?>portfolio/1200x900/1.jpg') no-repeat fixed; z-index: -1; background-size:cover;">
             <?php }?>
         </div>
         <div class="container mt-o-120 ">
@@ -115,7 +115,7 @@
                                 <i class="fa fa-industry mr-5 font-17 ml-5"></i>
                                 <?php echo $detail['industry'] ?>
                             </h6>
-                            <?php } else{ ?>
+                            <?php } else { ?>
                             <h2 class="mt-40 md-white-text ">
                                 <?php echo $detail['company_name']; ?>
                             </h2>
@@ -292,8 +292,8 @@
                                                     </p>
                                                 </div>
                                             </div>
-
                                         </li>
+
                                         <?php } ?>
                                         <!-- Pagination -->
                                         <li class="list-group-item px-0 flex-center">
@@ -397,7 +397,6 @@
                     <div class="row mb-30  mx-0 ">
                         <ul class="list-unstyled ">
                             <!-- Company Industry -->
-                            <?php //if (!empty($detail['industry'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-industry mr-5"></i>Industry</h6>
@@ -405,10 +404,9 @@
                                     <?php echo $detail['industry'] != ""?$detail['industry']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
+
 
                             <!-- Company Size -->
-                            <?php //if (!empty($detail['total_staff'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-building-o mr-5"></i>Company Size</h6>
@@ -416,7 +414,6 @@
                                     <?php echo $detail['total_staff'] != ""?$detail['total_staff']."People":'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Working Day -->
                             <li>
@@ -437,7 +434,6 @@
                             </li>
 
                             <!-- Dress Code -->
-                            <?php //if (!empty($detail['dress_code'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-users mr-5"></i>Dress Code </h6>
@@ -445,10 +441,8 @@
                                     <?php echo $dresscode != ""?ucwords($dresscode):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Website -->
-                            <?php //if (!empty($detail['url'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-screen-desktop mr-5"></i>Website </h6>
@@ -462,10 +456,8 @@
                                     <?php }?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Spoken Language -->
-                            <?php //if (!empty($detail['spoken_language'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-language mr-5"></i>Spoken Language </h6>
@@ -473,7 +465,6 @@
                                     <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Benefit -->
                             <?php if (!empty($detail['benefits'])): ?>
@@ -565,57 +556,7 @@
                     </ul>
                 </div>-->
                 </div>
-            </div>
-
-            <!-- Modal Job Apply-->
-            <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content ">
-                        <div class="modal-header">
-                            <h5 class="mb-0">Short Description About Yourself</h5>
-                            <!-- <div class="media ">
-                            <div class="pull-left">
-                                <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-tiny avatar-circle">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-3 mb-5">Nick Jonas</h5>
-                                <p class="">Student </p  >
-                            </div>
-                        </div> -->
-                        </div>
-                        <form action="" class="form form-horizontal">
-                            <div class="modal-body  ">
-                                <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <div class="media ">
-                                        <div class="pull-left">
-                                            <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-mini avatar-circle">
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-1 mb-5 md-orange-text font-weight-500 ">Nick Jonas
-                                                <small class="">
-                                                    <i class="icon-pointer"></i> Kuala Lumpur</small>
-                                            </h6>
-                                            <p class=" text-none">Applied for job
-                                                <strong class="text-capitallize">Web Developer</strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group text-left mx-0 mb-2">
-                                        <textarea name="" id="" class="form-control " rows="7" placeholder="Tell me more about yourself and sell out your creativity in here to this company! Not more than 300 words"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer md-grey lighten-4">
-                                <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                <button type="submit" class="btn btn-md-orange ">Submit</button>
-                            </div>
-                        </form>
-
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
+            </div>            
         </div>
         <!--========== END CONTENT ==========-->
 
