@@ -120,10 +120,7 @@ else
 
           .controls:focus {
             border-color: #4d90fe;
-          }
-          .title {
-            font-weight: bold;
-          }
+          }          
           #infowindow-content {
             display: none;
           }

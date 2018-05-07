@@ -258,7 +258,7 @@
                     <div class="portlet-body">
                         <h3 class="font-weight-500 text-center md-indigo-text"> No Job Post Has Been Found </h3>
                         <h5 class="font-grey-cascade mt-30 font-weight-400  font-17 text-center">Start by create job post to hire suitable candidate for your company. </h5>
-                        <a href="<?php echo base_url(); ?>employer/job_board/" class="btn btn-md-indigo btn-md center-block mt-40 width-300" data-toggle="modal">
+                        <a href="#modal_add_jobpost" class="btn btn-md-indigo btn-md center-block mt-40 width-300" data-toggle="modal">
                             <i class="fa fa-plus"></i> Create Job Post </a>
                     </div>
                 </div>

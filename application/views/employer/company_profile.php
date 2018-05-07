@@ -107,6 +107,7 @@
 
                         </div>
                         <div class="media-body ">
+                            <?php if (!empty ($detail['industry'])){ ?>
                             <h2 class="mt-10  md-white-text ">
                                 <?php echo $detail['company_name']; ?>
                             </h2>
@@ -114,6 +115,11 @@
                                 <i class="fa fa-industry mr-5 font-17 ml-5"></i>
                                 <?php echo $detail['industry'] ?>
                             </h6>
+                            <?php } else{ ?>
+                            <h2 class="mt-40 md-white-text ">
+                                <?php echo $detail['company_name']; ?>
+                            </h2>
+                            <?php }  ?>
 
                         </div>
                     </div>
@@ -154,10 +160,9 @@
                                         <!-- Empty States -->
                                         <div class="portlet p-20 md-shadow-none">
                                             <div class="portlet-body text-center">
-                                                <i class="icon-ghost font-grey-mint font-40 mb-35"></i>
-                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">Add your info in here to make your company look great.</h6>
-												<a href="employer-profile.html" class="btn btn-outline-md-indigo px-6">My Profile</a>-->
+                                                <i class="icon-ghost font-grey-mint font-40 mb-40"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                                <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
                                             </div>
                                         </div>
                                         <?php }else{?>
@@ -239,9 +244,9 @@
 											</p>-->
                                         <div class="portlet p-20 md-shadow-none">
                                             <div class="portlet-body text-center">
-                                                <i class="icon-puzzle font-grey-mint font-40 mb-30"></i>
-                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">It's seem like this company forgot to update his/her info. </h6>-->
+                                                <i class="icon-ghost font-grey-mint font-40 mb-30"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                                <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
                                             </div>
                                         </div>
                                         <?php }?>
@@ -250,6 +255,7 @@
                                 </div>
 
                                 <div class="tab-pane" id="tab_job_info">
+                                    <?php if(!empty($job)){?>
                                     <ul class="list-group list-border pt-0">
                                         <!-- Content -->
                                         <?php 
@@ -291,8 +297,8 @@
                                         </li>
                                         <?php } ?>
                                         <!-- Pagination -->
-                                        <li class="list-group-item px-0 ">
-                                            <ul class="pagination ">
+                                        <li class="list-group-item px-0 flex-center">
+                                            <ul class="pagination  pagination-sm">
                                                 <?php
 												$article_total = 0;
 												foreach($job as $row){
@@ -363,6 +369,15 @@
                                             </ul>
                                         </li>
                                     </ul>
+                                    <?php } else {?>
+                                    <div class="portlet p-20 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-ghost font-grey-mint font-40 mb-30"></i>
+                                            <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                            <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
 
                                 </div>
                             </div>
