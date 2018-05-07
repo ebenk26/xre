@@ -65,8 +65,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css" >
 
     <!-- GLOBAL -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.min.css">
 
     <!-- APPS -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>apps/inbox.min.css">
@@ -166,7 +166,7 @@
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/xremo-logo-blue.svg'?>">
+                                <img alt="<?php echo ucfirst($user_profile['name']); ?> " class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/profile-pic.png'?>">
                                 <span class="username username-hide-on-mobile">
                                     <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>

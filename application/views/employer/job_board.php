@@ -164,12 +164,15 @@
                     <span class="caption-subject"> Job Post</span>
                 </div>
                 <div class="actions">
+                    <?php if (!empty($job_post)) { ?>
                     <a href="#modal_add_jobpost" class="btn btn-md-indigo" data-toggle="modal">
                         <i class="fa fa-plus"></i> New Job Post </a>
+                    <?php }  ?>
                 </div>
             </div>
             <!-- CONTENT -->
             <!-- ADD : EMPTY STATES -->
+            <?php if (!empty($job_post)) { ?>
             <div class="portlet-body">
                 <table class="table table-striped table-bordered table-hover order-column " id="xremo_table">
                     <thead>
@@ -183,71 +186,84 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if (!empty($job_post)) {
-                                    $i =1;
-                                  foreach ($job_post as $key => $value) {
-                                  ?>
-                        <tr class="odd gradeX ">                        
-                            <td class="text-center">
-                                <?php echo $i; ?>
-                            </td>
-                            <td>
-                                <?php echo $value['name']; ?>
-                            </td>
-                            <td>
-                                <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
-                                <span class="label label-sm label-md-red"> Expired </span>
-                                <?php }elseif ($value['status'] == 'preview') {?>
-                                <span class="label label-sm label-md-amber"> Draft </span>
-                                <?php }else{ ?>
-                                <span class="label label-sm label-md-green"> Active </span>
-                                <?php } ?>
-                            </td>
-                            <td class="">
-                                <?php echo date('d M Y', strtotime($value['expiry_date'])); ?> </td>
-                            <td class="text-center">
-                                <i class="icon-users"></i>
-                                <?=$value['number_of_candidate']?>
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-xs btn-md-indigo dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <?php if ( (date('Y-m-d') <= date('Y-m-d', strtotime($value['expiry_date']))) && $value['status'] != 'expired') {?>
-                                        <li>
-                                            <a class="edit_jobpost" data-id="<?=  $value['id']; ?>" href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
-                                                <i class="icon-pencil"></i> Edit Job Post </a>
-                                        </li>
-                                        <?php } ?>
-                                        <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                <i class="icon-users"></i> View Candidates </a>
-                                        </li>
-                                        <?php endif; ?>
-                                        <li>
-                                            <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                <i class="fa fa-file-text-o"></i>
-                                                <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
-                                            </a>
-                                        </li>
-                                        <li class="divider"> </li>
-                                        <li>
-                                            <a href="javascript:;" class="md-red-text dlt-btn" id="<?php echo $value['id']?>">
-                                                <i class="icon-trash md-red-text"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <?php
+                            $i =1;
+                            foreach ($job_post as $key => $value) {
+                            ?>
+                            <tr class="odd gradeX ">
+                                <td class="text-center">
+                                    <?php echo $i; ?>
+                                </td>
+                                <td>
+                                    <?php echo $value['name']; ?>
+                                </td>
+                                <td>
+                                    <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
+                                    <span class="label label-sm label-md-red"> Expired </span>
+                                    <?php }elseif ($value['status'] == 'preview') {?>
+                                    <span class="label label-sm label-md-amber"> Draft </span>
+                                    <?php }else{ ?>
+                                    <span class="label label-sm label-md-green"> Active </span>
+                                    <?php } ?>
+                                </td>
+                                <td class="">
+                                    <?php echo date('d M Y', strtotime($value['expiry_date'])); ?> </td>
+                                <td class="text-center">
+                                    <i class="icon-users"></i>
+                                    <?=$value['number_of_candidate']?>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-xs btn-md-indigo dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                            <i class="fa fa-angle-down"></i>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <?php if ( (date('Y-m-d') <= date('Y-m-d', strtotime($value['expiry_date']))) && $value['status'] != 'expired') {?>
+                                            <li>
+                                                <a class="edit_jobpost" data-id="<?=  $value['id']; ?>" href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
+                                                    <i class="icon-pencil"></i> Edit Job Post </a>
+                                            </li>
+                                            <?php } ?>
+                                            <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
+                                                    <i class="icon-users"></i> View Candidates </a>
+                                            </li>
+                                            <?php endif; ?>
+                                            <li>
+                                                <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
+                                                    <i class="fa fa-file-text-o"></i>
+                                                    <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
+                                                </a>
+                                            </li>
+                                            <li class="divider"> </li>
+                                            <li>
+                                                <a href="javascript:;" class="md-red-text dlt-btn" id="<?php echo $value['id']?>">
+                                                    <i class="icon-trash md-red-text"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                            </td>
-                        </tr>
-                        <?php $i++; }} ?>
+                                </td>
+                            </tr>
+                            <?php $i++; } ?>
                     </tbody>
                 </table>
             </div>
+            <?php } else { ?>
+            <!-- # Empty States -->
+            <div class="portlet-body">
+                <div class="portlet md-grey-lighten-5 p-130 ">
+                    <div class="portlet-body">
+                        <h3 class="font-weight-500 text-center md-indigo-text"> No Job Post Has Been Found </h3>
+                        <h5 class="font-grey-cascade mt-30 font-weight-400  font-17 text-center">Start by create job post to hire suitable candidate for your company. </h5>
+                        <a href="<?php echo base_url(); ?>employer/job_board/" class="btn btn-md-indigo btn-md center-block mt-40 width-300" data-toggle="modal">
+                            <i class="fa fa-plus"></i> Create Job Post </a>
+                    </div>
+                </div>
+            </div>
+            <?php }  ?>
         </div>
 
     </div>
@@ -256,19 +272,19 @@
 
 <!-- BEGIN MODAL : ADD JOB POST -->
 <div class="modal fade" id="modal_add_jobpost" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-full">
+    <div class="modal-dialog modal-full width-90-percent">
         <div class="modal-content ">
             <!-- TITLE -->
             <div class="modal-header ">
                 <h4 class="modal-title">New Job Post</h4>
             </div>
             <!-- FORM  -->
-            <form action="<?php echo base_url(); ?>employer/job_board/post" id="post_job" method="POST" class="form-horizontal ">
+            <form action="<?php echo base_url(); ?>employer/job_board/post" id="post_job" method="POST" class="form form-horizontal ">
                 <div class="modal-body form-body ">
 
                     <!-- Job Position Title & Salary Range-->
                     <div class="row">
-                        <div class="col-md-7 col-lg-7">
+                        <div class="col-md-7 col-xs-12">
                             <!-- Job Position Title -->
                             <div class="form-group mx-0">
                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Job Position Title</label>
@@ -279,7 +295,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5 col-lg-5">
+                        <div class="col-md-5 col-xs-12">
                             <div class="form-group mx-0 " id="salaryBlock">
                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
                                 <div class="form-inline">
@@ -290,9 +306,9 @@
                                         </option>
                                         <?php endforeach ?>
                                     </select>
-                                    <input type="number" class="form-control addBudgetMin input-small" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
+                                    <input type="number" class="form-control addBudgetMin" id="addBudgetMin" placeholder="0.00" name="budget_min" min="0" max="999999999">
                                     <span class="mx-5">to</span>
-                                    <input type="number" class="form-control addBudgetMax input-small " id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
+                                    <input type="number" class="form-control addBudgetMax  " id="addBudgetMax" placeholder="0.00" name="budget_max" min="0" max="999999999">
                                 </div>
                                 <span class="help-block has-error hidden" id="salaryBlockError">Minimum salary should be lower.</span>
                             </div>
@@ -366,82 +382,88 @@
                     </div>
 
                     <!-- LOCATION JOB -->
-                    <h4 class="form-section ">Location</h4>
+                    <h4 class="form-section mt-50">Location</h4>
 
-                    <!-- Address -->
-                    <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Address</label>
-                        <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" id="addAddress" required>
-                    </div>
-
-
-                    <!-- City / State / Postcode-->
-                    <div class="row ">
-                        <!-- City  -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">City</label>
-                                <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" id="addCity" required>
-                            </div>
-                        </div>
-                        <!-- State -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0 ">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">State</label>
-                                <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" id="addState" required>
-                            </div>
-                        </div>
-                        <!-- Postcode -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
-                                <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" id="addPostcode" required>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Country / Latitude / Longititude -->
                     <div class="row">
-                        <!-- Country -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Country</label>
-                                <select class="form-control" name="country" id="addCountry" required>
-                                    <?php foreach ($countries as $key => $value) {?>
-                                    <option value="<?=$value['name']?>" <?php if($value[ 'name']==$user_profile[ 'shipping_country']){echo "selected";}?>>
-                                        <?php echo $value['name']; ?>
-                                    </option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- Latitude -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
-                                <input type="text" class="form-control" placeholder="1.643604 " id="addLatitude" name="latitude" value="<?=$user_profile['latitude']?>" required>
-                            </div>
-                        </div>
-                        <!-- Longititude -->
-                        <div class="col-md-4">
-                            <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
-                                <input type="text" class="form-control" placeholder="1.955566" id="addLongitude" name="longitude" value="<?=$user_profile['longitude']?>" required>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- MAP -->
-                    <input type="hidden" id="addMapTitle" name="mapTitle"></input>
-                    <input type="hidden" id="addMapDescription" name="mapDescription"></input>
-                    <div class="row ">
-                        <div class="col-md-12">
-                            <div class="mb-50" style="height: 400px;" id="map-window">
+                        <div class="col-md-6 col-xs-12">
+                            <!-- Address -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" id="addAddress" required>
+                            </div>
+                            <!-- City / State / Postcode-->
+                            <div class="row ">
+                                <!-- City  -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">City</label>
+                                        <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" id="addCity" required>
+                                    </div>
+                                </div>
+                                <!-- Postcode -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
+                                        <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" id="addPostcode" required>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Country / Latitude / Longititude -->
+                            <div class="row">
+                                <!-- Country -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Country</label>
+                                        <select class="form-control" name="country" id="addCountry" required>
+                                            <?php foreach ($countries as $key => $value) {?>
+                                            <option value="<?=$value['name']?>" <?php if($value[ 'name']==$user_profile[ 'shipping_country']){echo "selected";}?>>
+                                                <?php echo $value['name']; ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- State -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0 ">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">State</label>
+                                        <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" id="addState" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Latitude -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
+                                        <input type="text" class="form-control" placeholder="1.643604 " id="addLatitude" name="latitude" value="<?=$user_profile['latitude']?>" required>
+                                    </div>
+                                </div>
+                                <!-- Longititude -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
+                                        <input type="text" class="form-control" placeholder="1.955566" id="addLongitude" name="longitude" value="<?=$user_profile['longitude']?>" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <!-- MAP -->
+                            <input type="hidden" id="addMapTitle" name="mapTitle"></input>
+                            <input type="hidden" id="addMapDescription" name="mapDescription"></input>
+                            <!-- <div class="row "> -->
+                            <!-- <div class="col-md-12"> -->
+                            <div class="mb-50" style="height: 350px;" id="map-window">
                                 <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
                                 <div id="map" style="z-index: 9999 !important"></div>
-
                             </div>
+                            <!-- </div> -->
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>
@@ -512,7 +534,7 @@
                                 <select class="bs-select form-control  " name="employment_Type">
                                     <option value="" disabled>Employment Type</option>
                                     <?php foreach ($employment_type as $key => $employment_value) {?>
-                                    <option <?php echo $value['employment_type_id']==$employment_value[ 'id'] ? 'selected': ''; ?> value="
+                                    <option <?php echo $value[ 'employment_type_id']==$employment_value[ 'id'] ? 'selected': ''; ?> value="
                                         <?php echo $employment_value['id']; ?>" >
                                         <?php echo $employment_value['name']; ?>
                                     </option>
@@ -527,7 +549,7 @@
                                 <select class="bs-select form-control   " name="employment_level">
                                     <option disabled>Position Level</option>
                                     <?php foreach ($position_levels as $key => $position_level_value) {?>
-                                    <option <?php echo $value['position_level_id']==$position_level_value[ 'id'] ? 'selected': ''; ?> value="
+                                    <option <?php echo $value[ 'position_level_id']==$position_level_value[ 'id'] ? 'selected': ''; ?> value="
                                         <?php echo $position_level_value['id']; ?>" >
                                         <?php echo $position_level_value['name']; ?>
                                     </option>
