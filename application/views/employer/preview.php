@@ -252,11 +252,12 @@
                 <!-- VIEW : Employer -->
                 <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                 <div class="row mb-30 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-green  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-indigo  letter-space-xs py-15 mt-sweetalert font-weight-600 text-uppercase" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                         data-confirm-button-class="btn-info">
-                        <i class="icon-book-open mr-5 "></i>Post</button>
+                        <!-- <i class="fa fa-upload "></i> <br> -->
+                        Post Job</button>
 
-                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" py-20 btn btn-block btn-md-indigo text-uppercase  font-18 font-weight-600 letter-space-xs edit_jobpost">
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" btn btn-block btn-md-indigo  btn-outline  font-weight-600 py-15 letter-space-xs text-uppercase edit_jobpost ">
                         <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>
                 <?php endif ?>
@@ -265,19 +266,19 @@
                 <!-- Button -->
                 <div class="row mb-30 mx-0">
                     <?php if(strtotime(date('Y-m-d')) > strtotime($job->expiry_date)){?>
-                    <a class=" btn btn-block btn-md-orange ">
-                        <i class="icon-info mr-5 "></i>Expired Job Vacancy</a>
+                    <a class=" btn btn-block btn-md-red py-15">
+                        Expired Job Vacancy</a>
                     <?php }else{?>
                     <?php if($applied == null){?>
-                    <a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange ">
-                        <i class="icon-note mr-5 "></i>Apply This Job</a>
+                    <a href="#modal_job_apply" data-toggle="modal" class=" btn btn-block btn-md-orange py-15 ">
+                        Apply This Job</a>
                     <?php }else{?>
-                    <a class=" btn btn-block btn-md-orange ">
-                        <i class="icon-info mr-5 "></i>
+                    <a class=" btn btn-block btn-md-orange disabled py-15">
+                        <i class="icon-check mr-5 "></i>
                         <?=$applied->status?>
                     </a>
                     <?php }}?>
-                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" target="_blank" class=" btn btn-block btn-md-darkblue ">
+                    <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" target="_blank" class=" btn btn-block btn-md-darkblue py-15">
                         <i class="fa fa-building-o mr-5 "></i>View Company</a>
                 </div>
                 <!-- Share To -->
