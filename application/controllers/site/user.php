@@ -213,11 +213,16 @@ class User extends CI_Controller {
             
         }else{
             //call db
+            
             $data = array(
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password'))),
+                'company_name' => $this->input->post('company_name'),
+                'country_code' => $_COOKIE['country_id'],
+                'created_at' => date('d-M-Y h:i:s'),
             );
+
 
             $role = 3;
             

@@ -326,4 +326,17 @@ function checkEmailExist($email){
     }
     return $result;
 }
+
+function checkCountryID($country_code){
+    $CI =& get_instance();
+    $CI->load->model('global_model');
+    $checkCountryID = array('country_code'=> $country_code);
+    $result['data'] = $CI->global_model->get_where('countries', $checkCountryID);
+    if (!empty($result['data'])) {
+        $result['status_request'] = 200;
+    }else{
+        $result['status_request'] = 422;
+    }
+    return $result;
+}
 ?>

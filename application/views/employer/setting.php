@@ -28,7 +28,7 @@
                             <i class="fa fa-user"></i> Account </a>
                     </li>
                     <!-- Nav : Payment -->
-                    <li class="hidden">
+                    <li >
                         <a data-toggle="tab" href="#tab_payment">
                             <i class="icon-wallet"></i> Payment</a>
                     </li>
@@ -126,7 +126,7 @@
                     Message: Trying to get property 'shipping_address' of non-object
                     Filename: employer/setting.php
                     Line Number: 148 -->
-                    <div class="tab-pane hidden" id="tab_payment">
+                    <div class="tab-pane " id="tab_payment">
                         <div class="panel  panel-borderless panel-transparent">
                             <div class="panel-heading">
                                 <h4 class="panel-title font-40-xs">

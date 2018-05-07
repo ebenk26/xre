@@ -19,6 +19,14 @@ class Country extends CI_Controller {
         $cookie_value = "id";
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
+        $country_code = "country_code";
+        $country_code_value = "IDN";
+        setcookie($country_code, $country_code_value, time() + (86400 * 30), "/");
+
+        $country_id = "country_id";
+        $country_id_value = 5;
+        setcookie($country_id, $country_id_value, time() + (86400 * 30), "/");
+
         $this->session->set_userdata($country);
         redirect(base_url().'home');
 	}
@@ -34,6 +42,14 @@ class Country extends CI_Controller {
         $cookie_value = "my";
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
+        $country_code = "country_code";
+        $country_code_value = "MYS";
+        setcookie($country_code, $country_code_value, time() + (86400 * 30), "/");
+
+        $country_id = "country_id";
+        $country_id_value = 3;
+        setcookie($country_id, $country_id_value, time() + (86400 * 30), "/");
+
         $this->session->set_userdata($country);
         redirect(base_url().'home');
     }
@@ -48,6 +64,15 @@ class Country extends CI_Controller {
         $cookie_name = "country";
         $cookie_value = "ph";
         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+
+        $country_code = "country_code";
+        $country_code_value = "PHL";
+        setcookie($country_code, $country_code_value, time() + (86400 * 30), "/");
+
+        $country_id = "country_id";
+        $country_id_value = 4;
+        setcookie($country_id, $country_id_value, time() + (86400 * 30), "/");
+
 
         $this->session->set_userdata($country);
         redirect(base_url().'home');
