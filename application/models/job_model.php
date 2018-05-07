@@ -97,9 +97,14 @@ class Job_Model extends CI_Model{
         	$this->db->where("user_profiles.company_industry_id = $company_industry");
         }
 
+        // if(!empty($country_name))
+        // {
+        //  $this->db->where("(countries.name LIKE '%$country_name%' OR states.name LIKE '%$country_name%')");
+        // }
+
         if(!empty($country_name))
         {
-        	$this->db->where("(countries.name LIKE '%$country_name%' OR states.name LIKE '%$country_name%')");
+            $this->db->where("(job_positions.location LIKE '%$country_name%')");
         }
 
 		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
