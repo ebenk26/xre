@@ -89,9 +89,9 @@
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <?php if($header_image['name'] != ""){?>
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1; background-size:cover;">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYERS.$header_image['name']; ?>') center center no-repeat fixed; z-index: -1; background-size:cover;">
         <?php }else{?>
-        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
+        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYER?>portfolio/1200x900/1.jpg') no-repeat fixed; z-index: -1; background-size:cover">
             <?php }?>
         </div>
         <div class="container mt-o-120 ">
@@ -100,9 +100,9 @@
                     <div class="media py-20 ">
                         <div class="pull-left mr-10">
                             <?php if($profile_image['name'] != ""){?>
-                            <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large  p-10 md-white  shadow-v4 avatar-border-md border-mdo-white-v8">
+                            <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large  avatar-circle  md-white  shadow-v4 avatar-border-md border-mdo-white-v8">
                             <?php }else{?>
-                            <img src="<?=base_url()?>assets/img/site/xremo-logo-blue.svg" alt="" class="avatar avatar-large avatar-border-md p-10 md-white shadow-v4 border-mdo-white-v8">
+                            <img src="<?php echo IMG;?>site/profile-pic.png" alt="" class="avatar avatar-large avatar-border-md avatar-circle md-white shadow-v4 border-mdo-white-v8">
                             <?php }?>
 
                         </div>
@@ -660,7 +660,8 @@
         <script>
             function initMap() {
                 var address = <?php echo $detail['address']; ?>;
-                var company_name = '<?= $detail['company_name']; ?>';
+                var company_name = '<?= $detail['
+                company_name ']; ?>';
                 var latLang = {
                     lat: 0,
                     lng: 120

@@ -1,8 +1,10 @@
 <?php 
+    // $header_image = end($header_photo); 
+    // $profile_image = end($profile_photo);
     $roles = $this->session->userdata('roles'); 
     $login = $this->session->userdata('id');
     $image = end($company_image);
-
+    $header_picture = end($header_image); 
     if (!empty($job->location)) {
         $location = json_decode($job->location, true);
         $location_map = json_decode($job->location);
@@ -14,6 +16,14 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:url" content="<?php echo current_url();?>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="XREMO Job Posting | <?php echo $job->name; ?>" />
+    <meta property="og:description" content="<?php echo strip_tags($job->job_description); ?>" />
+    <meta property="og:image" content="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" />
 
     <!-- ========== CSS STYLE ========== -->
     <!-- Web Fonts -->
@@ -32,21 +42,21 @@
     <!-- Vendor Styles -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css">
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/scrollbar/scrollbar.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/swiper/swiper.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css/cubeportfolio.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/magnific-popup/magnific-popup.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/swiper/swiper.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>layout8/vendor/cubeportfolio/css//cubeportfolio.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-select/css/bootstrap-select.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css">
+    <!-- <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/rateit/rateit.css"> -->
     <!-- # Notification -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.css">
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
     <!-- Global -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css">
 
     <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
     <!-- PAGES -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
@@ -54,18 +64,15 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
+
     <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:url" content="<?php echo current_url();?>" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="XREMO Job Posting | <?php echo $job->name; ?>" />
-    <meta property="og:description" content="<?php echo strip_tags($job->job_description); ?>" />
-    <meta property="og:image" content="<?php echo IMG_STUDENTS; ?>xremo-logo-white.svg" />
-
+    <?php if ($roles =='employer') {?>
     <title>Employer - Job Preview</title>
-
+    <?php } else {?>
+    <title>
+        <?php echo ucwords($job->name); ?>
+    </title>
+    <?php } ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
     <script>
@@ -85,34 +92,42 @@
     <?php $this->load->view('site/header_content');?>
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
-
-    <div class="s-promo-block-v2 gradient-darkblue-v8 height-300" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
+    <div class="s-promo-block-v2 gradient-darkblue-v8 height-300" style="background: url('<?php echo !empty($header_picture) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat ; background-size:cover;">
         <div class="container g-ver-bottom-80 text-center">
+            <!-- Job Title -->
             <h1 class="md-white-text font-weight-500 font-42 mb-20">
                 <?php echo isset($job->name) ? $job->name: 'Job title';?> </h1>
+            <div class="center-block clearfix mt-30">
+                <?php  if(!empty($this->session->userdata('country'))){?>
+                <!-- Country -->
+                <h6 class="label label-md-purple md-shadow-z-1 mr-10 font-16 letter-space-xs ">
+                    <i class="icon-pointer mr-5"></i>
+                    <?php echo $this->session->userdata('country')?>
+                </h6>
 
-            <p class="label label-md-green md-shadow-z-1 mr-10 font-17">
-                <i class="fa fa-usd mr-5"></i>
-                <?php echo $job->forex; ?>
-                <?php echo $job->budget_min; ?> -
-                <?php echo $job->forex; ?>
-                <?php echo $job->budget_max; ?>
-            </p>
-            <p class="label label-md-red md-shadow-z-1 mr-10 font-17">
-                <i class="icon-pointer mr-5"></i>
-                <?php echo $this->session->userdata('country')?>
-            </p>
-            <!-- <span class="label label-md-blue-grey font-weight-500 md-shadow-z-1">
-                        <i class="fa fa-building-o mr-5"></i>Company Industry</span> -->
-            <p class="label label-md-blue md-shadow-z-1 mr-10 font-17">
-                <i class="icon-briefcase mr-5"></i>
-                <?php echo $job->employment_name ;?>
-            </p>
-            <p class="label label-md-purple md-shadow-z-1 mr-10 font-17">
-                <!-- <i class="fa fa-sitemap mr-5"></i> -->
-                <?php echo $job->position_name ;?>
-            </p>
-
+                <?php } if((!empty($job->forex)) && (!empty($job->budget_min)) && (!empty($job->budget_max)) ){?>
+                <!-- Salary  -->
+                <h6 class="label label-md-green md-shadow-z-1 mr-10 font-16 letter-space-xs ">
+                    <i class="fa fa-usd mr-5"></i>
+                    <?php echo $job->forex; ?>
+                    <?php echo $job->budget_min; ?> -
+                    <?php echo $job->forex; ?>
+                    <?php echo $job->budget_max;?>
+                </h6>
+                <?php } if(!empty($job->employment_name)){?>
+                <!-- Employement Type -->
+                <h6 class="label label-md-blue md-shadow-z-1 mr-10 font-16 letter-space-xs">
+                    <i class="icon-briefcase mr-5"></i>
+                    <?php echo $job->employment_name ;?>
+                </h6>
+                <?php } if(!empty($job->position_name)){?>
+                <!-- Position  -->
+                <h6 class="label label-md-deep-purple md-shadow-z-1 mr-10 font-16 letter-space-xs">
+                    <i class="fa fa-sitemap mr-5"></i>
+                    <?php echo $job->position_name ;?>
+                </h6>
+                <?php } ?>
+            </div>
         </div>
     </div>
     <!--========== END PROMO : VIEW JOB TITLE==========-->
@@ -123,20 +138,20 @@
             <!-- COL - Company / Job Description / Requirement / Nice To Have / Additional Info / Location -->
             <div class="col-md-9">
                 <!-- Company -->
-                <div class="row mb-40 mx-0">
+                <div class="row mb-60 mx-0">
                     <div class="media ">
                         <div class="pull-left">
-                            <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG.'/site/xremo-logo-blue.svg'; ?>" alt="" class="avatar avatar-small">
+                            <img src="<?php echo !empty($image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG.'site/profile-pic.png'; ?>" alt="" class="avatar avatar-small avatar-circle">
                         </div>
                         <div class="media-body py-10">
                             <h6>
-                                <i class="fa fa-building-o mr-5"></i>
+                                <i class="fa fa-building-o mr-10"></i>
                                 <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" class="font-weight-500">
                                     <?php echo $user_profile['company_name'];?>
                                 </a>
                             </h6>
+                            <?php if (!empty($location)): ?>
                             <h6>
-                                <?php if (!empty($location)): ?>
                                 <?php
                                     //$full_address = $location['address'] != ""?$location['address'].", ":"";
                                     $full_address1 = $location['city'] != ""?$location['city'].", ":"";
@@ -145,74 +160,77 @@
                                     //$full_address .= $location['country'] != ""?$location['country'].", ":"";
                                     $full_address1 = $full_address1 != ""?substr($full_address1, 0, -2):"";
                                 ?>
-                                    <i class="icon-pointer"></i>
+                                    <i class="fa fa-map-marker mr-10"></i>
                                     <?php echo $full_address1;?>
-                                    <?php endif ?>
                             </h6>
-                            <h6 class="label label-md-blue-grey font-weight-500 label-sm">
+                            <?php endif ?>
+                            <?php if (!empty($user_profile['industry'])){?>
+                            <h6 class="label label-md-blue-grey font-weight-500 label-sm letter-space-xs mr-10">
                                 <i class="fa fa-industry mr-5"></i>
                                 <?php echo $user_profile['industry'];?>
                             </h6>
-                            <h6 class="label label-md-red font-weight-500 label-sm  mx-10">
-                                <i class="icon-calendar"></i>
+                            <?php } if (!empty($job->expiry_date)){?>
+                            <h6 class="label label-md-red font-weight-500 label-sm   letter-space-xs">
+                                <i class="icon-calendar mr-5"></i>
                                 Expired on
                                 <?php echo date('j F Y', strtotime($job->expiry_date));?>
                             </h6>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
 
                 <!-- Job Description -->
+                <?php if (!empty($job->job_description)){?>
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text  text-uppercase font-17">JOB DESCRIPTION </h5>
                     <hr class="my-10 width-70 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p class=" font-grey-gallery font-15">
+                    <p class=" font-grey-gallery font-weight-400 text-justify">
                         <?php echo $job->job_description != ""?$job->job_description:"Not Provided";?>
                     </p>
                 </div>
-
+                <?php } if (!empty($job->qualifications)){?>
                 <!-- Requirement -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text  font-16 text-uppercase letter-space-xs">Requirement</h5>
                     <hr class="my-10 width-30 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p class=" font-grey-gallery ">
+                    <p class=" font-grey-gallery font-weight-400 text-justify">
                         <?php echo $job->qualifications != ""?$job->qualifications:"Not Provided";?>
                     </p>
                 </div>
-
+                <?php } if (!empty($job->other_requirements)){?>
                 <!-- Nice To Have -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text font-16 text-uppercase letter-space-xs">Nice To Have</h5>
                     <hr class="my-10 width-30 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p class=" font-grey-gallery ">
+                    <p class=" font-grey-gallery font-weight-400 text-justify ">
                         <?php echo $job->other_requirements != ""?$job->other_requirements:"Not Provided";?>
                     </p>
                 </div>
-
+                <?php } if (!empty($job->benefits)){?>
                 <!-- Benefits -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text font-16 text-uppercase letter-space-xs">Benefits</h5>
                     <hr class="my-10 width-30 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p class="font-grey-gallery ">
+                    <p class="font-grey-gallery font-weight-400 text-justify">
                         <?php echo $user_profile['benefits'] != ""?$user_profile['benefits']:"Not Provided";?>
                     </p>
                 </div>
-
+                <?php } if (!empty($job->additional_info)){?>
                 <!-- Additional Info -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text font-16 text-uppercase letter-space-xs">Additional Info</h5>
                     <hr class="my-10 width-30 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p class=" font-grey-gallery ">
+                    <p class=" font-grey-gallery font-weight-400 text-justify">
                         <?php echo $job->additional_info != ""?$job->additional_info:"Not Provided";?>
                     </p>
                 </div>
-
                 <!-- Location -->
-                <?php if (!empty($location)): ?>
+                <?php } if (!empty($location)): ?>
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text font-16 text-uppercase letter-space-xs">Location</h5>
                     <hr class="my-10 width-30 hor-divider-solid-medium mx-0 border-md-indigo">
-                    <p>
+                    <p class="font-weight-400 text-justify font-grey-gallery">
                         <i class="icon-pointer mr-5"></i>
                         <?php
                             $full_address = $location['address'] != ""?$location['address'].", ":"";
@@ -224,29 +242,25 @@
                         ?>
                             <?php echo $full_address; ?>.
                     </p>
-                    <!-- <hr class="my-2 mt-width-100-xs border-md-indigo"> -->
-                    <!-- <section class="s-google-map">
-                        <div id="js-google-container" class="s-google-container g-height-400-xs"></div>
-                    </section> -->
-                    <div id="gmapbg" class="s-google-map" style="height: 300px;"></div>
+                    <div id="gmapbg" class="s-google-map md-grey-lighten-5" style="height: 300px;"></div>
                 </div>
                 <?php endif ?>
             </div>
             <!-- COL - Button / Share / List of Job Available from that company -->
             <div class="col-md-3">
 
-                <!-- Button -->
+                <!-- VIEW : Employer -->
                 <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
                 <div class="row mb-30 mx-0">
-                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-orange  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
+                    <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-green  letter-space-xs py-20 mt-sweetalert text-uppercase font-18 font-weight-600" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                         data-confirm-button-class="btn-info">
                         <i class="icon-book-open mr-5 "></i>Post</button>
 
-                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" py-20 btn btn-block btn-md-darkblue text-uppercase  font-18 font-weight-600 letter-space-xs edit_jobpost">
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" py-20 btn btn-block btn-md-indigo text-uppercase  font-18 font-weight-600 letter-space-xs edit_jobpost">
                         <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>
                 <?php endif ?>
-
+                <!-- VIEW : Student -->
                 <?php if (($roles == 'student' || $roles =='jobseeker') && $job->status == 'post') :?>
                 <!-- Button -->
                 <div class="row mb-30 mx-0">
@@ -266,7 +280,6 @@
                     <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($user_profile['id_users']), '='); ?>" target="_blank" class=" btn btn-block btn-md-darkblue ">
                         <i class="fa fa-building-o mr-5 "></i>View Company</a>
                 </div>
-
                 <!-- Share To -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text  mb-2 font-16 text-uppercase letter-space-xs">Share Job</h5>
@@ -292,7 +305,6 @@
                     </ul>
 
                 </div>
-
                 <!-- URL  -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text  mb-10 font-16 text-uppercase letter-space-xs">Job Url</h5>
@@ -306,7 +318,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- More From -->
                 <div class="row mb-20 mx-0">
                     <h5 class="font-weight-600 md-darkblue-text  mb-10 font-16 text-uppercase letter-space-xs">More From
@@ -333,11 +344,12 @@
                 </div>
                 <?php endif; ?>
 
+                <!-- VIEW : Guest -->
                 <?php if (empty($login)) : ?>
-                <!--<div class="row mb-5 mx-0">
-                        <a href="<?php echo base_url() ?>login" target="_blank" class=" btn btn-block btn-md-darkblue ">
-                            Login</a>
-                    </div>-->
+                <div class="row mb-5 mx-0">
+                    <a href="<?php echo base_url() ?>login" target="_blank" class=" btn btn-block btn-md-indigo letter-space-xs text-uppercase btn-lg py-20">
+                        Apply Now</a>
+                </div>
                 <?php endif; ?>
 
 
@@ -508,7 +520,8 @@
             var marker = new google.maps.Marker({
                 map: map,
                 position: latLang,
-                title: '<?php echo $user_profile['company_name'];?>'
+                title: '<?php echo $user_profile['
+                company_name '];?>'
             });
         }
         <?php }?>

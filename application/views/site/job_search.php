@@ -24,10 +24,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
     <!-- Global -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css">
 
     <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
 
     <!-- Favicon -->
@@ -80,10 +80,10 @@
                 <div class="media">
                     <div class="pull-right  ">
                         <form id="clear_all_form" action="<?= current_url(); ?>" method="POST">
-                            <h5>
-                                <input type="submit" name="clear_all_filter" class="hidden">
-                                <a href="#" class="md-indigo-text  font-15">Clear all filter</a>
-                            </h5>
+                            <!-- <h5> -->
+                            <input type="submit" name="clear_all_filter" class="hidden">
+                            <a href="#" class="md-indigo-text font-weight-400  font-14">Clear all filter</a>
+                            <!-- </h5> -->
                         </form>
                     </div>
                     <div class="media-body">
@@ -219,10 +219,8 @@
                             <!-- Location -->
                             <li class="list-group-item md-transparent p-10 border-none">
                                 <div class="media">
-                                    <div class="pull-right  ">
-                                        <h4>
-                                            <a href="<?= $clear_location; ?>" class="md-indigo-text font-14">Clear </a>
-                                        </h4>
+                                    <div class="pull-right mt-5 ">
+                                        <a href="<?= $clear_location; ?>" class="md-indigo-text font-14  ">Clear </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="my-10 text-uppercase font-weight-600 font-16 roboto-font"> Location
@@ -238,10 +236,8 @@
                             <!-- Job Type -->
                             <li class="list-group-item md-transparent p-10 border-none">
                                 <div class="media">
-                                    <div class="pull-right  ">
-                                        <h4>
-                                            <a href="<?= $clear_job_type; ?>" class="md-indigo-text font-14">Clear </a>
-                                        </h4>
+                                    <div class="pull-right mt-5  ">
+                                        <a href="<?= $clear_job_type; ?>" class="md-indigo-text font-14">Clear </a>
                                     </div>
                                     <div class="media-body">
                                         <div class="media-body">
@@ -254,8 +250,7 @@
                                 <div class="md-checkbox-list ">
                                     <?php foreach ($employment_type as $key => $value) { ?>
                                     <div class="md-checkbox">
-                                        <input type="checkbox" name="employment_type[]" id="checkbox<?php echo $value['name'];?>" value="<?php echo $value['id'] ?>" class="md-check" <?php echo (isset($_GET[ "employment_type"]) && in_array($value[
-                                            'id'],$_GET[ "employment_type"])) ? 'checked="checked"' : ''; ?>>
+                                        <input type="checkbox" name="employment_type[]" id="checkbox<?php echo $value['name'];?>" value="<?php echo $value['id'] ?>" class="md-check" <?php echo (isset($_GET[ "employment_type"]) && in_array($value[ 'id'],$_GET[ "employment_type"])) ? 'checked="checked"' : ''; ?>>
                                         <label class="font-weight-400 font-15" for="checkbox<?php echo $value['name'];?>">
                                             <span></span>
                                             <span class="check"></span>
@@ -269,10 +264,8 @@
                             <!-- Industry -->
                             <li class="list-group-item md-transparent p-10 border-none">
                                 <div class="media">
-                                    <div class="pull-right  ">
-                                        <h4>
-                                            <a href="<?= $clear_company_industry; ?>" class="md-indigo-text font-14">Clear </a>
-                                        </h4>
+                                    <div class="pull-right mt-5">
+                                        <a href="<?= $clear_company_industry; ?>" class="md-indigo-text font-14">Clear </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="my-10 text-uppercase font-weight-600 font-16"> Company Industry
@@ -295,10 +288,8 @@
                             <!-- Position Level-->
                             <li class="list-group-item md-transparent p-10 border-none">
                                 <div class="media">
-                                    <div class="pull-right  ">
-                                        <h4>
-                                            <a href="<?= $clear_position_levels; ?>" class="md-indigo-text font-14">Clear </a>
-                                        </h4>
+                                    <div class="pull-right  mt-5 ">
+                                        <a href="<?= $clear_position_levels; ?>" class="md-indigo-text font-14">Clear </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="my-10 text-uppercase font-weight-600 font-16 roboto-font"> Position Level
@@ -311,8 +302,7 @@
                                     <!-- Checkbox Junior-->
                                     <?php foreach ($position_levels as $key => $value) {?>
                                     <div class="md-checkbox">
-                                        <input type="checkbox" name="position_levels[]" id="checkbox<?php echo $value['name']?>" class="md-check" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET[ "position_levels"]) && in_array($value[
-                                            'id'],$_GET[ "position_levels"])) ? 'checked="checked"' : ''; ?>>
+                                        <input type="checkbox" name="position_levels[]" id="checkbox<?php echo $value['name']?>" class="md-check" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET[ "position_levels"]) && in_array($value[ 'id'],$_GET[ "position_levels"])) ? 'checked="checked"' : ''; ?>>
                                         <label class="font-weight-400 font-15" for="checkbox<?php echo $value['name']?>">
                                             <span></span>
                                             <span class="check"></span>
@@ -326,11 +316,8 @@
                             <!-- Experience Level-->
                             <li class="list-group-item border-none p-10 md-transparent">
                                 <div class="media">
-                                    <div class="pull-right  ">
-                                        <!-- <button type="reset" class="btn btn-outline-md-indigo btn-no-border">Clear</button> -->
-                                        <h4>
-                                            <a href="<?= $clear_experiences; ?>" class="md-indigo-text font-14 ">Clear </a>
-                                        </h4>
+                                    <div class="pull-right mt-5 ">
+                                        <a href="<?= $clear_experiences; ?>" class="md-indigo-text font-14 ">Clear </a>
                                     </div>
                                     <div class="media-body">
                                         <h4 class="my-10 text-uppercase font-weight-600 roboto-font font-16"> Experience
@@ -341,8 +328,8 @@
                                 <div class="md-checkbox-list ">
                                     <?php foreach ($year_of_experiences as $key => $value) { ?>
                                     <div class="md-checkbox">
-                                        <input type="checkbox" name="experiences[]" id="checkbox<?php echo str_replace(' ', '', $value['name']);?>" class="md-check" table="year_of_experience" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET[
-                                            "experiences"]) && in_array($value[ 'id'],$_GET[ "experiences"])) ? 'checked="checked"' : ''; ?>>
+                                        <input type="checkbox" name="experiences[]" id="checkbox<?php echo str_replace(' ', '', $value['name']);?>" class="md-check" table="year_of_experience" value="<?php echo $value['id'] ?>" <?php echo (isset($_GET[ "experiences"]) && in_array($value[ 'id'],$_GET[ "experiences"])) ? 'checked="checked"' :
+                                            ''; ?>>
                                         <label class="font-weight-400 font-15" for="checkbox<?php echo str_replace(' ', '', $value['name']);?>">
                                             <span></span>
                                             <span class="check"></span>
@@ -374,11 +361,13 @@
                             <!-- <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> </a> -->
                         </div>
                     </div>
+                    <?php if(!empty($search_result)){ ?>
                     <div class="portlet-body">
                         <ul class="list-group list-border">
                             <?php
                                 if($search_result)
                                 {
+                                    
                                     foreach ($search_result as $job_result)
                                     {
                                         $url_detail     = base_url().'job/details/'.rtrim(base64_encode($job_result['id']), '=');
@@ -386,80 +375,91 @@
                             ?>
                                 <!-- Job -->
                                 <li class="list-group-item px-0">
-                                    <div class="media border-none media-middle">
-                                        <?php if(!empty($job_result['company_img'])){?>
-                                        <div class="media-left ">
-                                            <!-- <div class="widget-media-elements text-center pull-left"> -->
-                                            <img class="avatar avatar-medium" src="<?php echo !empty($job_result['company_img']) ? IMG_EMPLOYERS.$job_result['company_img'] : IMG.'/site/xremo-logo-white.svg'; ?>" alt="<?=$job_result['company_name']; ?>">
-                                        </div>
-                                        <?php }?>
+                                    <div class="media border-none media-middle ">
+
                                         <div class="media-body ">
-                                            <!-- Job Title -->
-                                            <?php if(!empty($job_result['name'])){?>
-                                            <h5 class="font-weight-600">
-                                                <a href="<?= $url_detail; ?>" target="_blank" class="md-orange-text-hover">
-                                                    <?= $job_result["name"]; ?>
-                                                </a>
-                                            </h5>
-                                            <?php }?>
-                                            <!-- Company Name -->
-                                            <h6>
-                                                <a href="<?= $company_url; ?>" target="_blank">
-                                                    <i class="fa fa-building-o"></i>
-                                                    <?= $job_result["company_name"]; ?>
-                                                </a>
-                                            </h6>
-                                            <!-- Label -->
-                                            <h6>
-                                                <!-- Industry -->
-                                                <?php if(!empty($job_result['industry_name'])){?>
-                                                <p class="label label-md-blue-grey  mr-5 letter-space-xs">
-                                                    <i class="fa fa-industry"></i>
-                                                    <?= $job_result["industry_name"]; ?>
-                                                </p>
-                                                <?php }?>
+                                            <div class="media">
+                                                <?php if(!empty($job_result['company_img'])){?>
+                                                <div class="pull-right ">
+                                                    <img class="avatar avatar-small avatar-circle" src="<?php echo !empty($job_result['company_img']) ? IMG_EMPLOYERS.$job_result['company_img'] : IMG.'site/profile-pic.png'; ?>" alt="<?=$job_result['company_name']; ?>">
+                                                </div>
 
-                                                <!-- HIDE : IDK what is this -->
-                                                <p class="label label-md-red  mr-5 hidden">
-                                                    <?= $job_result["state_name"]; ?>
-                                                </p>
+                                                <?php }?>
+                                                <div class="media-body">
+                                                    <!-- Job Title -->
+                                                    <?php if(!empty($job_result['name'])){?>
+                                                    <h5 class="font-weight-600">
+                                                        <a href="<?= $url_detail; ?>" target="_blank" class="md-orange-text-hover">
+                                                            <?= $job_result["name"]; ?>
+                                                        </a>
+                                                    </h5>
+                                                    <?php }?>
+                                                    <!-- Company Name -->
+                                                    <h6>
+                                                        <a href="<?= $company_url; ?>" target="_blank">
+                                                            <i class="fa fa-building-o"></i>
+                                                            <?= $job_result["company_name"]; ?>
+                                                        </a>
+                                                    </h6>
+                                                    <!-- Label -->
+                                                    <h6>
+                                                        <!-- Country @ Location -->
+                                                        <?php if(!empty($job_result['location'])){?>
+                                                        <p class="label label-md-purple  mr-5  letter-space-xs rounded-2">
+                                                            <i class="icon-pointer"></i>
+                                                            <?= json_decode($job_result["location"])->country; ?>
+                                                        </p>
+                                                        <?php }?>
 
-                                                <!-- Job Type -->
-                                                <?php if(!empty($job_result['job_type'])){?>
-                                                <p class="label label-md-blue  mr-5 letter-space-xs">
-                                                    <i class="fa fa-briefcase"></i>
-                                                    <?= $job_result["job_type"]; ?>
-                                                </p>
-                                                <?php }?>
-                                                <!-- Position Level -->
-                                                <?php if(!empty($job_result['position_level'])){?>
-                                                <p class="label label-md-purple  mr-5 letter-space-xs">
-                                                    <i class="fa fa-sitemap"></i>
-                                                    <?= $job_result["position_level"]; ?>
-                                                </p>
-                                                <?php }?>
-                                                <!-- Country @ Location -->
-                                                <?php if(!empty($job_result['location'])){?>
-                                                <p class="label label-md-cyan  mr-5  letter-space-xs ">
-                                                    <i class="icon-pointer"></i>
-                                                    <?= json_decode($job_result["location"])->country; ?>
-                                                </p>
-                                                <?php }?>
-
-                                                <?php if(!empty($job_result['budget_min'] || $job_result['budget_max'] || $job_result['forex'] )){?>
-                                                <!-- Salary -->
-                                                <p class="label label-md-green  mr-5 letter-space-xs">
-                                                    <i class="fa fa-usd"></i>
-                                                    <?= $job_result['forex'];?>
-                                                        <?= str_replace(',', '.', number_format($job_result["budget_min"]));?>
-                                                            -
+                                                        <!-- Salary -->
+                                                        <?php if(!empty($job_result['budget_min'] || $job_result['budget_max'] || $job_result['forex'] )){?>
+                                                        <p class="label label-md-green  mr-5 letter-space-xs rounded-2">
+                                                            <i class="fa fa-usd"></i>
                                                             <?= $job_result['forex'];?>
-                                                                <?= str_replace(',', '.', number_format($job_result["budget_max"]));?>
-                                                </p>
-                                                <?php }?>
-                                            </h6>
+                                                                <?= str_replace(',', '.', number_format($job_result["budget_min"]));?>
+                                                                    -
+                                                                    <?= $job_result['forex'];?>
+                                                                        <?= str_replace(',', '.', number_format($job_result["budget_max"]));?>
+                                                        </p>
+                                                        <?php }?>
+
+                                                        <!-- Industry -->
+                                                        <?php if(!empty($job_result['industry_name'])){?>
+                                                        <p class="label label-md-blue-grey  mr-5 letter-space-xs rounded-2">
+                                                            <i class="fa fa-industry"></i>
+                                                            <?= $job_result["industry_name"]; ?>
+                                                        </p>
+                                                        <?php }?>
+
+
+
+                                                        <!-- HIDE : IDK what is this -->
+                                                        <p class="label label-md-red  mr-5 hidden">
+                                                            <?= $job_result["state_name"]; ?>
+                                                        </p>
+
+                                                        <!-- Job Type -->
+                                                        <?php if(!empty($job_result['job_type'])){?>
+                                                        <p class="label label-md-blue  mr-5 letter-space-xs rounded-2">
+                                                            <i class="fa fa-briefcase"></i>
+                                                            <?= $job_result["job_type"]; ?>
+                                                        </p>
+                                                        <?php }?>
+
+                                                        <!-- Position Level -->
+                                                        <?php if(!empty($job_result['position_level'])){?>
+                                                        <p class="label label-md-deep-purple  mr-5 letter-space-xs rounded-2">
+                                                            <i class="fa fa-sitemap"></i>
+                                                            <?= $job_result["position_level"]; ?>
+                                                        </p>
+                                                        <?php }?>
+
+                                                    </h6>
+
+                                                </div>
+                                            </div>
                                             <!-- Job Description -->
-                                            <p class="multiline-truncate  font-weight-300 mb-5">
+                                            <p class="multiline-truncate  font-weight-400 my-20 ">
                                                 <?//= substr($job_result["job_description"],0,250); ?>
                                                     <?= strip_tags($job_result["job_description"]); ?>
                                             </p>
@@ -472,13 +472,26 @@
                                 }
                             ?>
                                     <!-- Pagination-->
-                                    <li class="list-group-item px-0">
-                                        <ul class="pagination">
+                                    <li class="list-group-item px-0 text-center ">
+                                        <ul class="pagination pagination-sm">
                                             <?= $pagination; ?>
                                         </ul>
                                     </li>
                         </ul>
                     </div>
+                    <?php }else{
+                            ?>
+                    <!-- # Empty States -->
+                    <div class="portlet-body">
+                        <div class="portlet md-grey-lighten-5 p-130 ">
+                            <div class="portlet-body text-center">
+                                <i class="icon-magnifier font-46 mb-60 "></i>
+                                <h4 class="font-weight-500 text-center md-indigo-text">No search results found. </h3>
+                                    <h6 class="font-grey-cascade mt-30 text-center font-weight-400">Make sure words are spelled correctly, use less specific or different keywords </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -495,7 +508,7 @@
 
 
     <!-- CORE -->
-    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
@@ -510,8 +523,6 @@
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.equal-height.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.parallax.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.wow.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/counterup.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/scrollbar/jquery.scrollbar.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/swiper/swiper.jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/masonry/jquery.masonry.pkgd.min.js"></script>
@@ -530,10 +541,7 @@
 
     <!-- Component Page -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/header-sticky.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/scrollbar.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/magnific-popup.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/swiper.min.js"></script>
-    <script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
+    <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/scrollbar.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
     <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
