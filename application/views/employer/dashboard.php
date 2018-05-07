@@ -113,52 +113,63 @@
                             <span class="caption-subject font-dark font-weight-600 text-uppercase">Recent Job Post </span>
                         </div>
                     </div>
-                    <div class="scroller height-500" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                        <div class="portlet-body">
-
-                            <!-- ADD : EMPTY STATES -->
-                            <div class="table-scrollable table-scrollable-borderless">
-                                <table class="table table-hover ">
-                                    <thead>
-                                        <tr class="text-uppercase ">
-                                            <th> # </th>
-                                            <th class="col-sm-7"> Job </th>
-                                            <!-- <th> Last Update</th> -->
-                                            <th class="col-sm-2 text-center"> Status </th>
-                                            <th class="col-sm-2 text-center"> Candidate</th>
-                                            <th class="col-sm-1 text-center"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $i = 1; foreach ($job_post as $key => $value) { if($i == 6){break;}?>
-                                        <tr class="<?php echo ($value['status'] == 'preview') ? 'hidden' : '';  ?>">
-                                            <td>
-                                                <?php echo $i; ?> </td>
-                                            <td>
-                                                <?php echo $value['name'] ?> </td>
-                                            <td class="text-center">
-                                                <?php if(strtotime(date('Y-m-d')) >= strtotime($value['expiry_date'])){?>
-                                                <span class="label label-sm label-danger"> Expired </span>
-                                                <?php }else{?>
-                                                <span class="label label-sm label-<?php if($value['status'] == 'post') {echo 'md-green';}else if($value['status'] == 'draft'){echo 'warning';}else if($value['status'] == 'expired'){echo 'danger';}?>">
-                                                    <?php echo ucfirst($value['status'] == 'post'?"Active":$value['status']) ?> </span>
-                                                <?php }?>
-                                            </td>
-                                            <td class="text-center">
-                                                <i class="icon-users"></i>
-                                                <?=$value['number_of_candidate']?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">View Candidates</a>
-                                            </td>
-                                        </tr>
-                                        <?php ($value['status'] != 'preview') ? $i++ : ''; } ?>
-                                    </tbody>
-                                </table>
-                                <a href="<?=base_url()?>employer/job_board" class="btn btn-danger text-uppercase pull-right px-100 mt-50">View All</a>
+                    <?php if(!empty($job_post)){?>
+                    <div class="portlet-body">
+                        <!-- ADD : EMPTY STATES -->
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr class="text-uppercase ">
+                                        <th> # </th>
+                                        <th class="col-sm-7"> Job </th>
+                                        <!-- <th> Last Update</th> -->
+                                        <th class="col-sm-2 text-center"> Status </th>
+                                        <th class="col-sm-2 text-center"> Candidate</th>
+                                        <th class="col-sm-1 text-center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1; foreach ($job_post as $key => $value) { if($i == 6){break;}?>
+                                    <tr class="<?php echo ($value['status'] == 'preview') ? 'hidden' : '';  ?>">
+                                        <td>
+                                            <?php echo $i; ?> </td>
+                                        <td>
+                                            <?php echo $value['name'] ?> </td>
+                                        <td class="text-center">
+                                            <?php if(strtotime(date('Y-m-d')) >= strtotime($value['expiry_date'])){?>
+                                            <span class="label label-sm label-danger"> Expired </span>
+                                            <?php }else{?>
+                                            <span class="label label-sm label-<?php if($value['status'] == 'post') {echo 'md-green';}else if($value['status'] == 'draft'){echo 'warning';}else if($value['status'] == 'expired'){echo 'danger';}?>">
+                                                <?php echo ucfirst($value['status'] == 'post'?"Active":$value['status']) ?> </span>
+                                            <?php }?>
+                                        </td>
+                                        <td class="text-center">
+                                            <i class="icon-users"></i>
+                                            <?=$value['number_of_candidate']?>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">View Candidates</a>
+                                        </td>
+                                    </tr>
+                                    <?php ($value['status'] != 'preview') ? $i++ : ''; } ?>
+                                </tbody>
+                            </table>
+                            <a href="<?=base_url()?>employer/job_board" class="btn btn-danger text-uppercase pull-right px-100 mt-50">View All</a>
+                        </div>
+                    </div>
+                    <?php } else {?>
+                    <!-- # Empty States -->
+                    <div class="portlet-body">
+                        <div class="portlet md-grey-lighten-5 p-130 ">
+                            <div class="portlet-body">
+                                <h3 class="font-weight-500 text-center md-indigo-text"> No Job Post Has Been Found </h3>
+                                <h5 class="font-grey-cascade mt-30 text-center font-weight-400">Start by create job post to hire suitable candidate for your company. </h5>
+                                <a href="<?php echo base_url(); ?>employer/job_board/" class="btn btn-md-indigo btn-md center-block mt-40 width-300" data-toggle="modal">
+                                    <i class="fa fa-plus"></i> Create Job Post </a>
                             </div>
                         </div>
                     </div>
+                    <?php }?>
                 </div>
                 <!-- END PORTLET-->
             </div>
@@ -279,7 +290,7 @@
                         <?php $i = 1;foreach ($article as $row) { ?>
                         <div class="item <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG." /article/ ".$row->featured_image : IMG."/site/dawn.jpg "; ?>'">
+                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG.'article/'.$row->featured_image : IMG.'site/dawn.jpg'; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
                                     <h3 class="widget-blog-title md-white-text">
                                         <?=$row->title?>
