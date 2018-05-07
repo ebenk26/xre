@@ -577,30 +577,22 @@
                     <!-- TEXT EDITOR : JOB DESCRIPTION -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   ">Job Description</label>
-                        <textarea name="job_Desc" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc" class="textarea_editor">
-                            <?php echo $value['job_description']?>
-                        </textarea>
+                        <textarea name="job_Desc" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc" class="textarea_editor"><?php echo $value['job_description']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : NICE TO HAVE -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Nice To Have</label>
-                        <textarea name="nice_To_Have" data-provide="markdown" rows=10 data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor">
-                            <?php echo $value['other_requirements']?>
-                        </textarea>
+                        <textarea name="nice_To_Have" data-provide="markdown" rows=10 data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['other_requirements']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : JOB REQUIREMENT -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Job Requirement</label>
-                        <textarea name="job_Requirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor">
-                            <?php echo $value['qualifications']?>
-                        </textarea>
+                        <textarea name="job_Requirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['qualifications']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : ADDITIONAL INFO -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Additional Info</label>
-                        <textarea name="additional_Info" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor">
-                            <?php echo $value['additional_info']?>
-                        </textarea>
+                        <textarea name="additional_Info" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['additional_info']?></textarea>
                     </div>
 
                     <h4 class="form-section ">Location</h4>
