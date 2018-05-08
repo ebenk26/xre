@@ -3,7 +3,8 @@
         <!-- <div class="loading">
             <img src="<?= base_url(); ?>assets/employer/img/loading.gif">
         </div> -->
-        <!-- Title / Tab -->
+
+        <!-- # Title / Tab -->
         <div class="portlet light md-transparent portlet-fit p-0">
             <div class="portlet-title tabbable-line tab-md-indigo py-0  pl-0 mb-0 border-md-grey">
                 <div class="caption">
@@ -25,7 +26,7 @@
                 </ul>
             </div>
         </div>
-
+        <!-- # Page Bar -->
         <div class="page-bar ">
             <ul class="page-breadcrumb">
                 <li>
@@ -43,18 +44,19 @@
                 </li>
             </ul>
         </div>
-
+        <!-- # Tab Content -->
         <div class="tab-content">
 
             <!-- Tab New Candidates -->
             <div class="tab-pane active" id="tab_new_candidates">
+
                 <div class="portlet light">
                     <div class="portlet-title">
                         <div class="caption">
                             <span class="caption-subject ">New Candidates</span>
                         </div>
                     </div>
-                    <?php if (!empty($candidates)):?>
+                    <?php if (!empty($candidates)) :?>
                     <!-- Fix : Need to put another logic to diffrentiate new candidate and other type -->
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered order-column" id="xremo_table">
@@ -73,13 +75,13 @@
                                         if ($value['application_status'] == 'APPLIED' ) {
                                 ?>
                                 <tr class="odd gradeX ">
-                                    <td class="text-center  col-xs-1">
+                                    <td class="text-center ">
                                         <?php echo $i; ?>
                                     </td>
-                                    <td class="col-sm-5 ">
+                                    <td class="">
                                         <div class="media hidden-xs ">
                                             <div class="pull-left">
-                                                <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-circle avatar-xtramini  ">
+                                                <img src="<?php echo !empty($value['img'])? IMG_STUDENTS.$value['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="<?php echo $value['user_name']; ?>" class="avatar avatar-circle avatar-xtramini  ">
                                             </div>
                                             <div class="media-body">
                                                 <h4 class="font-weight-500 font-18">
@@ -87,32 +89,34 @@
                                                 </h4>
                                             </div>
                                         </div>
-                                        <div class="visible-xs">
+                                        <div class="visible-xs ">
                                             <?php echo $value['user_name']; ?>
                                         </div>
                                     </td>
-                                    <td class="text-center col-sm-2 font-weight-600 font-22">
+                                    <td class="text-center  font-weight-600 ">
                                         <?php echo $value['application_status']; ?> </td>
-                                    <td class="text-center  col-md-2">
+                                    <td class="text-center  ">
                                         <?php echo date('j F Y',strtotime($value['sent_at'])); ?> </td>
+                                    <!-- MOBILE MODE -->
                                     <td class="">
-                                        <!-- MOBILE MODE -->
-                                        <div class="btn-group visible-xs ">
-                                            <button class="btn btn-md-green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                        <div class="btn-group dropup clearfix  visible-xs visible-sm hidden-md">
+                                            <button class="btn btn-md-green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions 
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
-                                            <ul class="dropdown-menu pull-left" role="menu">
+                                            <ul class="dropdown-menu " role="menu">
+                                                <!-- View Summary -->
                                                 <li>
                                                     <a href="javascript:void(0)" data-toggle="modal" class="user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-original-title="View Summary">
                                                         <i class="icon-eye"></i> View Summary
                                                     </a>
                                                 </li>
+                                                <!-- Shortlist Candidate -->
                                                 <li>
                                                     <a href="javascript:void(0)" class=" shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
                                                         <i class="icon-star"></i> Shortlist Candidate
                                                     </a>
                                                 </li>
-
+                                                <!-- Reject Candidate -->
                                                 <li>
                                                     <button type="button" data-id='<?php echo rtrim(base64_encode($value[' application_id ']),'=');?>' candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-no-border btn-md-red btn-outline mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate"
                                                         data-title="Do you want to reject this candidate?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes'
@@ -122,26 +126,26 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="btn-group hidden-xs">
+                                        <div class="btn-group  hidden-xs hidden-sm visible-md visible-lg  clearfix ">
                                             <!-- View Summary -->
-                                            <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only m-5 tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-container="body"
+                                            <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-container="body"
                                                 data-placement="top" data-original-title="View Summary">
                                                 <i class="icon-eye"></i>
                                             </a>
                                             <!-- shortlist Candidate -->
-                                            <a href="javascript:void(0)" class="btn btn-md-orange btn-icon-only tooltips m-5 shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
+                                            <a href="javascript:void(0)" class="btn btn-md-orange btn-icon-only tooltips shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
                                                 <i class="icon-star"></i>
                                             </a>
                                             <!-- Reject Candidate -->
-                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips m-5 mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate"
+                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips  mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate"
                                                 data-title="Do you want to remove this post?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes'
                                                 data-confirm-button-class="btn-info">
 
                                                 <i class="icon-trash"></i>
                                             </button>
-
                                         </div>
                                     </td>
+                                    
                                 </tr>
                                 <?php $i++; }} ?>
                             </tbody>
@@ -165,11 +169,6 @@
                             <span class="caption-subject"> Shortlisted Candidates</span>
                         </div>
                         <div class="actions">
-                            <!-- <div class="btn-group hidden">
-                                <a class="btn btn-circle btn-default " href="#modal_set_session" data-toggle="modal">
-                                    <i class="fa fa-calendar"></i> Set Interview Session
-                                </a>
-                            </div> -->
                             <a class="btn  btn-md-indigo" href="#modal_interview_session_list" data-toggle="modal">
                                 <i class="icon-calendar"></i> Interview Session</a>
                         </div>
@@ -203,7 +202,7 @@
                                             </h4>
                                         </div>
                                     </td>
-                                    <td class="text-center vertical-middle col-xs-2">
+                                    <td class="text-center vertical-middle col-xs-2 ">
                                         <span class="label  <?php 
                                             if($value['application_status'] == 'SHORTLISTED'){
                                                 echo 'label-md-purple';
@@ -225,8 +224,8 @@
                                     </td>
                                     <td class="text-center vertical-middle col-xs-4">
                                         <span class="mr-5 label <?php if($value['interview_status'] == 'pending'){echo 'label-warning';}elseif ($value['interview_status'] == 'accept'){ echo 'label-md-green';
-                                                        }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'darkblue';} ?> label-sm">
-                                            <?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) : 'Not Sent Invitation' ?>
+                                                        }elseif ($value['interview_status'] == 'reject') {echo 'label-md-red';}elseif ($value['interview_status'] == 'reschedule') { echo 'label-info'; }else{ echo 'label-md-darkblue';} ?> label-sm">
+                                            <?php echo !empty($value['interview_status']) ? strtoupper($value['interview_status']) :'Invitation not sent' ?>
                                         </span>
                                         <b>
                                             <?php echo $value['interview_title']; ?>
@@ -301,7 +300,6 @@
                                         <input type="hidden" name="interview_schedule_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_id']), '='); ?>">
                                         <input type="hidden" name="job_position_id" value="<?php echo rtrim(base64_encode($value['job_position_id']), '='); ?>">
                                         <input type="hidden" name="candidate_id" value="<?php echo rtrim(base64_encode($value['interview_schedule_user_id']), '='); ?>">
-
                                         <div class="modal-body ">
                                             <!-- Start DAte /Time [Proposed] -->
                                             <div class="row">

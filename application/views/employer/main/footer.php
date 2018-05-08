@@ -7,7 +7,7 @@ $company_address = json_decode($user_profile['address']);?>
 <!-- ========== Javascript ========== -->
 <!-- CORE  -->
 <!-- Jquery in Plugin Folder v1.12.4  -->
-<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script> 
+<script type="text/javascript" src="<?php echo JS; ?>plugins/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery-v1-11.min.js"></script> -->
 <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/jquery.migrate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>bootstrap/bootstrap.min.js"></script>
@@ -115,7 +115,7 @@ $company_address = json_decode($user_profile['address']);?>
                     $('#salaryBlock').addClass('has-error');
                     $('#salaryBlockError').removeClass('hidden');
                     $('#preview_button_add').prop('disabled', true);
-                }else{
+                } else {
                     $('#salaryBlock').removeClass('has-error');
                     $('#salaryBlockError').addClass('hidden');
                     $('#preview_button_add').prop('disabled', false);
@@ -128,29 +128,27 @@ $company_address = json_decode($user_profile['address']);?>
             var idJobPost = $(this).attr('data-id');
             // console.log(idJobPost);
 
-            $('#editBudgetMax'+idJobPost).focusout(function () {
-                $this = $('#editBudgetMin'+idJobPost).val();
-                $that = $('#editBudgetMax'+idJobPost).val();
-                
+            $('#editBudgetMax' + idJobPost).focusout(function () {
+                $this = $('#editBudgetMin' + idJobPost).val();
+                $that = $('#editBudgetMax' + idJobPost).val();
+
                 if ($this.length > 0) {
                     if (parseInt($this) > parseInt($that)) {
-                        $('#salaryBlock'+idJobPost).addClass('has-error');
-                        $('#salaryBlockError'+idJobPost).removeClass('hidden');
-                        $('#preview_button_edit_'+idJobPost).prop('disabled', true);
-                    }else{
-                        $('#salaryBlock'+idJobPost).removeClass('has-error');
-                        $('#salaryBlockError'+idJobPost).addClass('hidden');
-                        $('#preview_button_edit_'+idJobPost).prop('disabled', false);
+                        $('#salaryBlock' + idJobPost).addClass('has-error');
+                        $('#salaryBlockError' + idJobPost).removeClass('hidden');
+                        $('#preview_button_edit_' + idJobPost).prop('disabled', true);
+                    } else {
+                        $('#salaryBlock' + idJobPost).removeClass('has-error');
+                        $('#salaryBlockError' + idJobPost).addClass('hidden');
+                        $('#preview_button_edit_' + idJobPost).prop('disabled', false);
                     }
                 }
             });
-            
+
             setTimeout(
-                function()
-                {
-                  showMaps(idJobPost);
-                }
-            ,1000);
+                function () {
+                    showMaps(idJobPost);
+                }, 1000);
         });
 
         // Add Job Post
@@ -159,25 +157,24 @@ $company_address = json_decode($user_profile['address']);?>
         });
 
         setTimeout(
-            function()
-            {
-                var segments = window.location.href.split( '/' );
+            function () {
+                var segments = window.location.href.split('/');
 
-                if(window.location.hash != '' && segments[4] == 'employer' && segments[5] == 'job_board')
-                {
-                    var idJobPost = $('a[href="'+window.location.hash+'"]').attr('data-id');
+                if (window.location.hash != '' && segments[4] == 'employer' && segments[5] == 'job_board') {
+                    var idJobPost = $('a[href="' + window.location.hash + '"]').attr('data-id');
 
                     showMaps(idJobPost);
                 }
-            }
-        ,2000);
+            }, 2000);
     });
     // GMap
-    function initMap()
-    {
+    function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: {lat: 35.717, lng: 139.731}
+            zoom: 8,
+            center: {
+                lat: 35.717,
+                lng: 139.731
+            }
         });
 
         var input = document.getElementById('pac-input');
@@ -197,7 +194,7 @@ $company_address = json_decode($user_profile['address']);?>
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+            navigator.geolocation.getCurrentPosition(function (position) {
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
@@ -207,7 +204,7 @@ $company_address = json_decode($user_profile['address']);?>
                 infowindow.setContent('Location found.');
                 infowindow.open(map);
                 map.setCenter(pos);
-            }, function() {
+            }, function () {
                 handleLocationError(true, infowindow, map.getCenter());
             });
         } else {
@@ -215,79 +212,78 @@ $company_address = json_decode($user_profile['address']);?>
             handleLocationError(false, infowindow, map.getCenter());
         }
 
-        autocomplete.addListener('place_changed', function() {
-          infowindow.close();
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            return;
-          }
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
 
-          if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-          }
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
 
-          // Set the position of the marker using the place ID and location.
-          marker.setPlace({
-            placeId: place.place_id,
-            location: place.geometry.location
-          });
-          marker.setVisible(true);
-          var element   = document.getElementById('map-window');
-          var InfoWindow= document.createElement('div');
-          var title     = document.createElement('span');
-          var addr      = document.createElement('span');
+            // Set the position of the marker using the place ID and location.
+            marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+            marker.setVisible(true);
+            var element = document.getElementById('map-window');
+            var InfoWindow = document.createElement('div');
+            var title = document.createElement('span');
+            var addr = document.createElement('span');
 
-          element.appendChild(InfoWindow);
-          InfoWindow.setAttribute('id', 'infowindow-content');
-          InfoWindow.appendChild(title);
-          title.setAttribute('id', 'place-name');
-          document.createElement('br');
-          InfoWindow.appendChild(addr);
-          addr.setAttribute('id', 'place-address');
-          document.getElementById('place-name').textContent = place.name;
-          document.getElementById('place-address').textContent =
-              place.formatted_address;
-          infowindow.setContent(document.getElementById('infowindow-content'));
-          infowindow.open(map, marker);
-          document.getElementById('addLatitude').value=place.geometry.location.lat();
-          document.getElementById('addLongitude').value=place.geometry.location.lng();
-          document.getElementById('addMapTitle').value= place.name;
-          document.getElementById('addMapDescription').value= place.formatted_address;
-          document.getElementById('addAddress').value= place.formatted_address;
-          for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];;
-              var val = place.address_components[i];
+            element.appendChild(InfoWindow);
+            InfoWindow.setAttribute('id', 'infowindow-content');
+            InfoWindow.appendChild(title);
+            title.setAttribute('id', 'place-name');
+            document.createElement('br');
+            InfoWindow.appendChild(addr);
+            addr.setAttribute('id', 'place-address');
+            document.getElementById('place-name').textContent = place.name;
+            document.getElementById('place-address').textContent =
+                place.formatted_address;
+            infowindow.setContent(document.getElementById('infowindow-content'));
+            infowindow.open(map, marker);
+            document.getElementById('addLatitude').value = place.geometry.location.lat();
+            document.getElementById('addLongitude').value = place.geometry.location.lng();
+            document.getElementById('addMapTitle').value = place.name;
+            document.getElementById('addMapDescription').value = place.formatted_address;
+            document.getElementById('addAddress').value = place.formatted_address;
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];;
+                var val = place.address_components[i];
 
-              if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                document.getElementById('addState').value= val.long_name;
-              }
-              if (addressType == 'administrative_area_level_1') {
-                document.getElementById('addCity').value= val.long_name; 
-              }
-              if (addressType == 'country') {
-                document.getElementById('addCountry').value= val.long_name;
-              }
-              if (addressType == 'postal_code') {
-                document.getElementById('addPostcode').value= val.long_name;
-              }
-          }
+                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('addState').value = val.long_name;
+                }
+                if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('addCity').value = val.long_name;
+                }
+                if (addressType == 'country') {
+                    document.getElementById('addCountry').value = val.long_name;
+                }
+                if (addressType == 'postal_code') {
+                    document.getElementById('addPostcode').value = val.long_name;
+                }
+            }
         });
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
 
     //Show Maps
-    function showMaps(idJobPost)
-    {
+    function showMaps(idJobPost) {
         var lat = document.getElementById('latitude' + idJobPost).value;
         var lng = document.getElementById('longitude' + idJobPost).value;
 
@@ -350,7 +346,7 @@ $company_address = json_decode($user_profile['address']);?>
         autocomplete.addListener('place_changed', function () {
             infowindow.close();
             var place = autocomplete.getPlace();
-            
+
             if (!place.geometry) {
                 return;
             }
@@ -370,41 +366,41 @@ $company_address = json_decode($user_profile['address']);?>
 
             marker.setVisible(true);
 
-            var element     = document.getElementById('map-window' + idJobPost);
-            var InfoWindow  = document.createElement('div');
-            var title       = document.createElement('span');
-            var addr        = document.createElement('span');
-            var br          = document.createElement('br');
+            var element = document.getElementById('map-window' + idJobPost);
+            var InfoWindow = document.createElement('div');
+            var title = document.createElement('span');
+            var addr = document.createElement('span');
+            var br = document.createElement('br');
 
             element.appendChild(InfoWindow);
 
             InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
             InfoWindow.setAttribute('style', 'display: inline');
             InfoWindow.appendChild(title);
-            
+
             title.setAttribute('id', 'place-name' + idJobPost);
             title.setAttribute('style', 'font-weight: bold');
-            
+
             InfoWindow.appendChild(br);
             InfoWindow.appendChild(addr);
-            
+
             addr.setAttribute('id', 'place-address' + idJobPost);
-            
+
             document.getElementById('place-name' + idJobPost).textContent = place.name;
             document.getElementById('place-address' + idJobPost).textContent =
                 place.formatted_address;
-            
+
             infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
             infowindow.open(map, marker);
-            
+
             document.getElementById('latitude' + idJobPost).value = place.geometry.location.lat();
             document.getElementById('longitude' + idJobPost).value = place.geometry.location.lng();
             document.getElementById('addAddress' + idJobPost).value = place.formatted_address;
-            
+
             for (var i = 0; i < place.address_components.length; i++) {
                 var addressType = place.address_components[i].types[0];
                 var val = place.address_components[i];
-                
+
                 if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
                     document.getElementById('addState' + idJobPost).value = val.long_name;
                 }
@@ -423,37 +419,36 @@ $company_address = json_decode($user_profile['address']);?>
             }
         });
     }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"
-        async defer></script>
-    <?php endif; ?>
 
-    <?php if ($this->uri->segment(2) == 'profile') :?>
-    <script>
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
+<?php endif; ?>
 
-    $(document).ready(function(){
+<?php if ($this->uri->segment(2) == 'profile') :?>
+<script>
+    $(document).ready(function () {
 
-        $('a[href="#tab_edit_contact_info"]').click(function(){
+        $('a[href="#tab_edit_contact_info"]').click(function () {
             <?php 
             if (!empty($company_address))
             {
                 foreach ($company_address as $key => $value)
                 {
             ?>
-                    showMaps(<?= $key; ?>,'gmap<?= $key; ?>');
+            showMaps(<?= $key; ?>, 'gmap<?= $key; ?>');
             <?php
                 }
             }
             else
             {
             ?>
-              initMap();
+            initMap();
             <?php
             }
             ?>
         });
 
-        $("#addOffice").on('click', function() {
+        $("#addOffice").on('click', function () {
             var num = $(this).attr('data-val');
             // console.log(num,'atas');
 
@@ -461,38 +456,37 @@ $company_address = json_decode($user_profile['address']);?>
                 url: '<?= base_url(); ?>employer/profile/newContactInfo',
                 type: 'POST',
                 dataType: 'json',
-                data: {num: num},
-                success: function(response){
+                data: {
+                    num: num
+                },
+                success: function (response) {
                     $("#contactInfoForm").append(response.form);
 
-                    showMaps(num,'gmap'+num);
+                    showMaps(num, 'gmap' + num);
 
                     var newNum = parseInt(num) + 1;
                     // console.log(newNum,'bawah');
 
-                    $("#addOffice").attr('data-val',newNum);
+                    $("#addOffice").attr('data-val', newNum);
                 }
             });
-            
+
         });
 
-        $(document).on('click',".delContact", function(){
+        $(document).on('click', ".delContact", function () {
             $(this).parent().parent().parent().remove();
         });
     });
 
     //Show Maps
-    function showMaps(idJobPost,mapId)
-    {
+    function showMaps(idJobPost, mapId) {
         var lat = $('#building_latitude' + idJobPost).val();
         var lng = $('#building_longitude' + idJobPost).val();
 
         var input = document.getElementById('pac-input' + idJobPost);
 
-        if (typeof lat != 'undefined' && typeof lng != 'undefined' && lat != '' && lng != '') 
-        {
-            if(lat.length > 0 && lng.length > 0)
-            {
+        if (typeof lat != 'undefined' && typeof lng != 'undefined' && lat != '' && lng != '') {
+            if (lat.length > 0 && lng.length > 0) {
                 var mapLatitude = document.getElementById('building_latitude' + idJobPost).value;
                 var mapLongitude = document.getElementById('building_longitude' + idJobPost).value;
                 var title = document.getElementById('addMapTitle' + idJobPost).value;
@@ -535,11 +529,11 @@ $company_address = json_decode($user_profile['address']);?>
             }
         } else {
             var map = new google.maps.Map(document.getElementById(mapId), {
-                    center: {
-                        lat: -33.8688,
-                        lng: 151.2195
-                    },
-                    zoom: 13
+                center: {
+                    lat: -33.8688,
+                    lng: 151.2195
+                },
+                zoom: 13
             });
 
             var autocomplete = new google.maps.places.Autocomplete(input);
@@ -558,7 +552,7 @@ $company_address = json_decode($user_profile['address']);?>
         autocomplete.addListener('place_changed', function () {
             infowindow.close();
             var place = autocomplete.getPlace();
-            
+
             if (!place.geometry) {
                 return;
             }
@@ -578,41 +572,41 @@ $company_address = json_decode($user_profile['address']);?>
 
             marker.setVisible(true);
 
-            var element     = document.getElementById('map-window' + idJobPost);
-            var InfoWindow  = document.createElement('div');
-            var title       = document.createElement('span');
-            var addr        = document.createElement('span');
-            var br          = document.createElement('br');
+            var element = document.getElementById('map-window' + idJobPost);
+            var InfoWindow = document.createElement('div');
+            var title = document.createElement('span');
+            var addr = document.createElement('span');
+            var br = document.createElement('br');
 
             element.appendChild(InfoWindow);
-            
+
             InfoWindow.setAttribute('id', 'infowindow-content' + idJobPost);
             InfoWindow.setAttribute('style', 'display: inline');
             InfoWindow.appendChild(title);
-            
+
             title.setAttribute('id', 'place-name' + idJobPost);
             title.setAttribute('style', 'font-weight: bold');
-            
+
             InfoWindow.appendChild(br);
             InfoWindow.appendChild(addr);
-            
+
             addr.setAttribute('id', 'place-address' + idJobPost);
-            
+
             document.getElementById('place-name' + idJobPost).textContent = place.name;
             document.getElementById('place-address' + idJobPost).textContent =
                 place.formatted_address;
-            
+
             infowindow.setContent(document.getElementById('infowindow-content' + idJobPost));
             infowindow.open(map, marker);
-            
+
             document.getElementById('building_latitude' + idJobPost).value = place.geometry.location.lat();
             document.getElementById('building_longitude' + idJobPost).value = place.geometry.location.lng();
             document.getElementById('building_address' + idJobPost).value = place.formatted_address;
-            
+
             for (var i = 0; i < place.address_components.length; i++) {
                 var addressType = place.address_components[i].types[0];
                 var val = place.address_components[i];
-                
+
                 if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
                     document.getElementById('building_state' + idJobPost).value = val.long_name;
                 }
@@ -632,11 +626,13 @@ $company_address = json_decode($user_profile['address']);?>
         });
     }
 
-    function initMap()
-    {
+    function initMap() {
         var map = new google.maps.Map(document.getElementById('gmap'), {
-          zoom: 8,
-          center: {lat: 35.717, lng: 139.731}
+            zoom: 8,
+            center: {
+                lat: 35.717,
+                lng: 139.731
+            }
         });
 
         var input = document.getElementById('pac-input');
@@ -656,7 +652,7 @@ $company_address = json_decode($user_profile['address']);?>
 
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+            navigator.geolocation.getCurrentPosition(function (position) {
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
@@ -666,7 +662,7 @@ $company_address = json_decode($user_profile['address']);?>
                 infowindow.setContent('Location found.');
                 infowindow.open(map);
                 map.setCenter(pos);
-            }, function() {
+            }, function () {
                 handleLocationError(true, infowindow, map.getCenter());
             });
         } else {
@@ -674,84 +670,84 @@ $company_address = json_decode($user_profile['address']);?>
             handleLocationError(false, infowindow, map.getCenter());
         }
 
-        autocomplete.addListener('place_changed', function() {
-          infowindow.close();
-          var place = autocomplete.getPlace();
-          if (!place.geometry) {
-            return;
-          }
+        autocomplete.addListener('place_changed', function () {
+            infowindow.close();
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
 
-          if (place.geometry.viewport) {
-            map.fitBounds(place.geometry.viewport);
-          } else {
-            map.setCenter(place.geometry.location);
-            map.setZoom(17);
-          }
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+            }
 
-          // Set the position of the marker using the place ID and location.
-          marker.setPlace({
-            placeId: place.place_id,
-            location: place.geometry.location
-          });
-          marker.setVisible(true);
-          var element   = document.getElementById('map-window');
-          var InfoWindow= document.createElement('div');
-          var title     = document.createElement('span');
-          var addr      = document.createElement('span');
+            // Set the position of the marker using the place ID and location.
+            marker.setPlace({
+                placeId: place.place_id,
+                location: place.geometry.location
+            });
+            marker.setVisible(true);
+            var element = document.getElementById('map-window');
+            var InfoWindow = document.createElement('div');
+            var title = document.createElement('span');
+            var addr = document.createElement('span');
 
-          element.appendChild(InfoWindow);
-          InfoWindow.setAttribute('id', 'infowindow-content');
-          InfoWindow.appendChild(title);
-          title.setAttribute('id', 'place-name');
-          document.createElement('br');
-          InfoWindow.appendChild(addr);
-          addr.setAttribute('id', 'place-address');
-          document.getElementById('place-name').textContent = place.name;
-          document.getElementById('place-address').textContent =
-              place.formatted_address;
-          infowindow.setContent(document.getElementById('infowindow-content'));
-          infowindow.open(map, marker);
-          document.getElementById('building_latitude').value=place.geometry.location.lat();
-          document.getElementById('building_longitude').value=place.geometry.location.lng();
-          document.getElementById('addMapTitle').value= place.name;
-          document.getElementById('addMapDescription').value= place.formatted_address;
-          document.getElementById('building_address').value= place.formatted_address;
-          for (var i = 0; i < place.address_components.length; i++) {
-            var addressType = place.address_components[i].types[0];;
-              var val = place.address_components[i];
+            element.appendChild(InfoWindow);
+            InfoWindow.setAttribute('id', 'infowindow-content');
+            InfoWindow.appendChild(title);
+            title.setAttribute('id', 'place-name');
+            document.createElement('br');
+            InfoWindow.appendChild(addr);
+            addr.setAttribute('id', 'place-address');
+            document.getElementById('place-name').textContent = place.name;
+            document.getElementById('place-address').textContent =
+                place.formatted_address;
+            infowindow.setContent(document.getElementById('infowindow-content'));
+            infowindow.open(map, marker);
+            document.getElementById('building_latitude').value = place.geometry.location.lat();
+            document.getElementById('building_longitude').value = place.geometry.location.lng();
+            document.getElementById('addMapTitle').value = place.name;
+            document.getElementById('addMapDescription').value = place.formatted_address;
+            document.getElementById('building_address').value = place.formatted_address;
+            for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];;
+                var val = place.address_components[i];
 
-              if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
-                document.getElementById('building_state').value= val.long_name;
-              }
-              if (addressType == 'administrative_area_level_1') {
-                document.getElementById('building_city').value= val.long_name; 
-              }
-              if (addressType == 'country') {
-                document.getElementById('building_country').value= val.long_name;
-              }
-              if (addressType == 'postal_code') {
-                document.getElementById('building_postcode').value= val.long_name;
-              }
-          }
+                if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
+                    document.getElementById('building_state').value = val.long_name;
+                }
+                if (addressType == 'administrative_area_level_1') {
+                    document.getElementById('building_city').value = val.long_name;
+                }
+                if (addressType == 'country') {
+                    document.getElementById('building_country').value = val.long_name;
+                }
+                if (addressType == 'postal_code') {
+                    document.getElementById('building_postcode').value = val.long_name;
+                }
+            }
         });
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
     }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"
-        async defer></script>
-    <?php endif; ?>
 
- 
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
+<?php endif; ?>
+
+
 <script>
     $(document).ready(function () {
-        
+
         var e = $("#xremo_table");
         e.dataTable({
             language: {
@@ -810,10 +806,12 @@ $company_address = json_decode($user_profile['address']);?>
         });
 
         <?php if($this->session->flashdata('msg_success')){ ?>
-        alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
+        alertify.success('<?php echo $this->session->flashdata('
+            msg_success '); ?>', 'success', 5);
         <?php } ?>
         <?php if($this->session->flashdata('msg_failed')){ ?>
-        alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
+        alertify.error('<?php echo $this->session->flashdata('
+            msg_failed '); ?>', 'error', 5);
         <?php } ?>
 
         // CANDIDATE LIST & INTERVIEW SESSION 
@@ -854,196 +852,151 @@ $company_address = json_decode($user_profile['address']);?>
 
                     $.each(student.user_profile.academics, function (i, v) {
                         var academic_date = new Date(v.start_date);
-                        academics +=
-                            '<ul class="list-unstyled">\
-                                                <li>\
-                                                    <h5 class="font-weight-700">\
-                                                        <small>' +
-                            v.start_date + ' - ' + v.end_date +
-                            '</small>\
-                                                    </h5>\
-                                                    <h6 class="font-weight-600 text-uppercase ">' +
-                            v.university_name + '</h6>\
-                                                </li>\
-                                            </ul>';
+                        academics += '<li class="mt-25">\
+                                <h5 class=" my-5 font-weight-600 text-capitalize">' + v.degree_name + '</h5>\
+                                <h6 class=" my-5 font-weight-400"><i class="icon-calendar mr-10"></i>' + v.start_date + ' - ' + v.end_date + '</h6>\
+                            </li>';
                     });
 
                     $.each(student.user_profile.projects, function (i, v) {
-                        project +=
-                            '<ul class="list-unstyled">\
-                                        <li>\
-                                            <h5 class="font-weight-700"> ' +
-                            v.name + ' </h5>\
-                                            <h6>' + v.skills_acquired +
-                            '</h6>\
-                                        </li>\
-                                    </ul>';
+                        project += '<li class="mt-25">\
+                                        <h5 class="font-weight-700 text-capitalize my-5"> ' + v.name + ' </h5>\
+                                        <h6 class="my-5">' + v.skills_acquired + '</h6>\
+                                    </li>';
                     });
 
                     $.each(student.user_profile.achievement, function (i, v) {
-                        non_academics += '<li>\
-                                                    <h5 class="font-weight-700">' + v.achievement_title +
-                            '\
-                                                        <small>' + v.achievement_start_date + ' - ' + v.achievement_end_date +
-                            '</small>\
-                                                    </h5>\
-                                                </li>';
+                        non_academics += '<li class="mt-25">\
+                                            <h5 class="font-weight-600 text-capitalize my-5">' + v.achievement_title + '</h5>\
+                                            <h6 class="font-weight-400 my-5"><i class="icon-calendar mr-10"></i>' + v.achievement_start_date + ' - ' + v.achievement_end_date + '</h6>\
+                                        </li>';
                     });
 
                     $.each(student.user_profile.experiences, function (i, v) {
-                        experience += '<li>\
-                                                <h5 class="font-weight-700">' + v.experiences_title +
-                            '\
-                                                    <small>' + v.experiences_start_date + ' - ' + v.experiences_end_date +
-                            '</small>\
-                                                </h5>\
-                                                <h6 class="font-weight-600 text-uppercase ">' +
-                            v.experiences_company_name + '</h6>\
-                                            </li>';
+                        experience += '<li class="mb-25">\
+                                        <h5 class=" my-5 font-weight-600">' + v.experiences_title + '</h5>\
+                                        <h6 class=" my-5 font-weight-400"><i class="icon-calendar mr-10"></i>' + v.experiences_start_date + ' - ' + v.experiences_end_date + '</h6>\
+                                    </li>';
                     });
 
                     $('#modal_view_summary').html(
                         '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content ">\
+                            <div class="modal-content">\
                                 <div class="modal-header md-indigo">\
                                     <div class="media">\
                                         <div class="pull-left">\
-                                            <img src="' +
-                        image_directory + profile_pic +
-                        '" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm  ">\
+                                            <img src="' + image_directory + profile_pic + '" alt="" class="avatar avatar-circle avatar-tiny avatar-border-sm">\
                                         </div>\
                                         <div class="pull-right">\
-                                            <a data-dismiss="modal" aria-hidden="true" class="md-white-text font-28-xs">\
+                                            <a data-dismiss="modal" aria-hidden="true" class="md-white-text ">\
                                                 <i class="fa fa-close"></i>\
                                             </a>\
                                         </div>\
                                         <div class="media-body">\
-                                            <h3 class="md-white-text font-weight-500 letter-space-xs mt-3">' +
-                        student.user_profile.overview.name +
-                        '</h3>\
+                                            <h3 class="md-white-text font-weight-500 letter-space-xs mt-10">' + student.user_profile.overview.name + '</h3>\
                                             <ul class="list-inline list-unstyled md-white-text ">\
                                                 <li>\
-                                                    <i class="icon-pointer"></i> ' +
-                        city_states +
-                        '</li>\
+                                                    <i class="icon-pointer mr-5"></i>' + city_states + '</li>\
                                                 <li>\
-                                                    <i class="icon-envelope"></i> ' +
-                        student.user_profile.overview.email +
-                        '</li>\
+                                                    <i class="icon-envelope mr-5"></i>' + student.user_profile.overview.email + '</li>\
                                             </ul>\
                                         </div>\
                                     </div>\
                                 </div>\
                                 <div class="modal-body">\
-                                    <div class="scroller mt-height-300-xs mt-height-500-sm mt-height-600-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="row">\
-                                            <div class="col-md-12 pr-0">\
-                                                <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
-                                                <p class="mt-0">' +
-                        summary +
-                        '</p>\
-                                            </div>\
+                                    <div class="row">\
+                                        <div class="col-md-12 pr-0">\
+                                            <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
+                                            <p class="mt-0">' + summary + '</p>\
                                         </div>\
-                                        <hr class="hidden-sm">\
-                                        <div class="row">\
-                                            <div class="col-md-6">\
-                                                \
-                                                <div class="portlet ">\
-                                                    <div class="portlet-title ">\
-                                                        <div class="caption">\
-                                                            <i class="icon-graduation"></i>\
-                                                            <span class="caption-subject font-26-xs"> Education</span>\
-                                                            <span class="caption-helper">Summary</span>\
-                                                        </div>\
-                                                        <div class="tools">\
-                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-md-6">\
+                                            <div class="portlet ">\
+                                                <div class="portlet-title">\
+                                                    <div class="caption">\
+                                                        <i class="icon-graduation font-18"></i>\
+                                                        <span class="caption-subject "> Education</span>\
+                                                        <span class="caption-helper">Summary</span>\
                                                     </div>\
-                                                    <div class="portlet-body ">\
-                                                    ' +
-                        academics +
-                        '\
+                                                    <div class="tools">\
+                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
                                                     </div>\
                                                 </div>\
-                                            </div>\
-                                            <div class="col-md-6">\
-                                                <div class="portlet  ">\
-                                                    <div class="portlet-title ">\
-                                                        <div class="caption">\
-                                                            <i class="icon-notebook"></i>\
-                                                            <span class="caption-subject font-26-xs">Non Education</span>\
-                                                            <span class="caption-helper">Summary</span>\
-                                                        </div>\
-                                                        <div class="tools">\
-                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="portlet-body">\
-                                                        <ul class="list-unstyled">\
-                                                            ' +
-                        non_academics +
-                        '\
-                                                        </ul>\
-                                                    </div>\
+                                                <div class="portlet-body ">\
+                                                    <ul class="list-unstyled">'
+                                                        + academics +
+                                                    '</ul>\
                                                 </div>\
                                             </div>\
                                         </div>\
-                                        <div class="row">\
-                                            <div class="col-md-6">\
-                                                \
-                                                <div class="portlet">\
-                                                    <div class="portlet-title">\
-                                                        <div class="caption">\
-                                                            <i class="icon-badge"></i>\
-                                                            <span class="caption-subject font-26-xs">Skill</span>\
-                                                            <span class="caption-helper">Summary</span>\
-                                                        </div>\
-                                                        <div class="tools">\
-                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                        </div>\
+                                        <div class="col-md-6">\
+                                            <div class="portlet">\
+                                                <div class="portlet-title ">\
+                                                    <div class="caption">\
+                                                        <i class="icon-notebook"></i>\
+                                                        <span class="caption-subject font-18">Non Education</span>\
+                                                        <span class="caption-helper">Summary</span>\
                                                     </div>\
-                                                    <div class="portlet-body  ">\
-                                                        ' +
-                        project +
-                        '\
+                                                    <div class="tools">\
+                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
                                                     </div>\
                                                 </div>\
+                                                <div class="portlet-body">\
+                                                    <ul class="list-unstyled">'
+                                                    + non_academics +
+                                                    '</ul>\
+                                                </div>\
                                             </div>\
-                                            <div class="col-md-6">\
-                                                \
-                                                <div class="portlet">\
-                                                    <div class="portlet-title">\
-                                                        <div class="caption">\
-                                                            <i class="icon-briefcase"></i>\
-                                                            <span class="caption-subject font-26-xs"> Experience</span>\
-                                                            <span class="caption-helper">Summary</span>\
-                                                        </div>\
-                                                        <div class="tools">\
-                                                            <a href="" class="collapse" data-original-title="" title=""> </a>\
-                                                        </div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="row">\
+                                        <div class="col-md-6">\
+                                            <div class="portlet">\
+                                                <div class="portlet-title">\
+                                                    <div class="caption">\
+                                                        <i class="icon-badge font-18"></i>\
+                                                        <span class="caption-subject ">Skill</span>\
+                                                        <span class="caption-helper">Summary</span>\
                                                     </div>\
-                                                    <div class="portlet-body ">\
-                                                        <ul class="list-unstyled">\
-                                                            ' +
-                        experience +
-                        '\
-                                                        </ul>\
+                                                    <div class="tools">\
+                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
                                                     </div>\
+                                                </div>\
+                                                <div class="portlet-body  ">\
+                                                    <ul class="list-unstyled">'
+                                                    + project +
+                                                    '</ul>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                        <div class="col-md-6">\
+                                            <div class="portlet">\
+                                                <div class="portlet-title">\
+                                                    <div class="caption">\
+                                                        <i class="icon-briefcase font-18"></i>\
+                                                        <span class="caption-subject">Experience</span>\
+                                                        <span class="caption-helper">Summary</span>\
+                                                    </div>\
+                                                    <div class="tools">\
+                                                        <a href="" class="collapse" data-original-title="" title=""> </a>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="portlet-body ">\
+                                                    <ul class="list-unstyled">'
+                                                    + experience +
+                                                    '</ul>\
                                                 </div>\
                                             </div>\
                                         </div>\
                                     </div>\
                                 </div>\
                                 <div class="modal-footer ">\
-                                    <a href="<?php echo base_url();?>profile/user/' +
-                        id +
-                        '" target="_blank" class="btn btn-md-cyan">\
-                                        <i class="icon-users"></i> View Resume\
+                                    <a href="<?php echo base_url();?>profile/user/' + id + '" target="_blank" class="btn btn-md-blue">\
+                                         View Candidate Resume\
                                     </a>\
                                 </div>\
-                                \
                             </div>\
-                            \
                         </div>'
                     );
                     $('#modal_view_summary').modal('show', {
