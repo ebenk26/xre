@@ -677,7 +677,7 @@
                 </div>
                 <div class="modal-footer form-action ">
                     <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100" id="preview_button_edit_<?= $value['id']?>"><?= ($value['status'] == 'post') ? 'Update' : 'Preview' ?></button>
+                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100" id="preview_button_edit_<?= $value['id']?>">Update</button>
                 </div>
             </form>
         </div>
