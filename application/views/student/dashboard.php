@@ -183,8 +183,7 @@
                                     <!-- # Label -->
                                     <!-- [Done] Fix : All label will be hidden if empty  -->
                                     <ul class="list-unstyled list-inline mt-ul-li-lr-0  mx-0">
-                                        <!-- Location -->
-                                                <!-- <?php var_dump($value) ?> -->
+                                        <!-- Location -->                                                
                                         <?php if (!empty($value['country_name'])) {?>
                                         <li class="mb-10 px-0">
                                             <p class="label label-md-purple label-sm font-12 letter-space-xs">
@@ -244,7 +243,7 @@
                         $colCount++;
                         // echo $colCount;
                         if ($colCount < $maxCol){
-                        if($colCount % $numOfCols == 0) { echo '</div><div class="row">'; }                                            
+                            if($colCount % $numOfCols == 0) { echo '</div><div class="row">'; }                                            
                          }
                          else{
                              break;
@@ -403,8 +402,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <?php }?>
-                                        <?php }else{?>
+                                        <?php } }else{ ?>                                        
                                         <!-- # Empty State -->
                                         <div class="portlet light md-grey-lighten-5">
                                             <div class="portlet-body p-80 text-center">
