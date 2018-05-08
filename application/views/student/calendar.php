@@ -169,7 +169,7 @@
                                                                         <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date</label>
                                                                         <div class="input-icon ">
                                                                             <i class="icon-calendar"></i>
-                                                                            <input type="text" class="form-control date date-picker ">
+                                                                            <input type="text" name="scheduleDate" class="form-control date date-picker ">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -178,7 +178,7 @@
                                                                         <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Time</label>
                                                                         <div class="input-icon ">
                                                                             <i class="icon-clock"></i>
-                                                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time">
+                                                                            <input type="text" class="form-control timepicker timepicker-24 " name="scheduleTime" placeholder="start time">
 
                                                                         </div>
                                                                     </div>

@@ -246,16 +246,13 @@ class Applications_history extends CI_Controller {
         $employer_id = $this->input->post('employer_id');
         $candidate_reply = $this->input->post('candidate_reply');
 
-        $start = explode(' - ', $this->input->post('start_date'));
-        $start_date = date('Y-m-d',strtotime(current($start)));
-        $start_hour = date('H:i:s', strtotime(end($start)));
+        $start_date = date('Y-m-d', strtotime($this->input->post('scheduleDate')));
+        $start_hour = date('H:i:s', strtotime($this->input->post('scheduleTime')));
         $start_date_hour = implode(' ', array($start_date, $start_hour));
 
-        $end = explode(' - ', $this->input->post('end_date'));
-        $end_date = date('Y-m-d',strtotime(current($end)));
-        $end_hour = date('H:i:s', strtotime(end($end)));
+        $end_date = date('Y-m-d', strtotime($this->input->post('scheduleDate')));
+        $end_hour = date('H:i:s', (strtotime($this->input->post('scheduleTime') .'+2 hours') ));
         $end_date_hour = implode(' ', array($end_date, $end_hour));
-
         $where = array( 'job_id'=>$job_id,
                         'session_id' => $session_id,
                         'employer_id' => $employer_id);
