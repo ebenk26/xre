@@ -250,13 +250,18 @@
             <div class="col-md-3">
 
                 <!-- VIEW : Employer -->
-                <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired): ?>
+                <?php if ($roles == 'employer' && ($job->status !='expired' && $job->status != 'post') && !$expired && ($job->user_id == $login)): ?>
                 <div class="row mb-30 mx-0">
                     <button type="submit" id="post_job" data-id='<?php echo $job->id; ?>' class=" btn btn-block btn-md-indigo  letter-space-xs py-15 mt-sweetalert font-weight-600 text-uppercase" data-title="Do you agree to post this job?" data-type="info" data-allow-outside-click="true" data-confirm-button-text="Yes, I agree"
                         data-confirm-button-class="btn-info">
                         <!-- <i class="fa fa-upload "></i> <br> -->
                         Post Job</button>
 
+                    <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" btn btn-block btn-md-indigo  btn-outline  font-weight-600 py-15 letter-space-xs text-uppercase edit_jobpost ">
+                        <i class="icon-pencil mr-5 "></i>Edit</a>
+                </div>
+                <?php elseif ($roles == 'employer' && ($job->status !='expired' && $job->status == 'post') && !$expired && ($job->user_id == $login)) : ?>
+                <div class="row mb-30 mx-0">
                     <a href="<?php echo base_url(); ?>employer/job_board/#modal_edit_jobpost_<?php echo $job->id;?>" target="_blank" data-id="<?php echo $job->id;?>" class=" btn btn-block btn-md-indigo  btn-outline  font-weight-600 py-15 letter-space-xs text-uppercase edit_jobpost ">
                         <i class="icon-pencil mr-5 "></i>Edit</a>
                 </div>

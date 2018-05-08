@@ -1254,11 +1254,13 @@
                                                         <i class="icon-user"></i>
                                                         <?= $countEndorser; ?> Endorser
                                                     </a>
-                                                    <?php elseif($percentage_completion == false): ?>
+                                                    <?php else: ?>
                                                     <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-container="body" data-placement="top" data-original-title="view endorser">
                                                         <i class="icon-user"></i>
                                                         Complete your profile to endorse
                                                     </a>
+                                                    <?php endif ?>
+
                                                     <?php   else: ?>
                                                     <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
                                                     <?php   endif ?>
@@ -1633,7 +1635,6 @@
                                             <i class="icon-star font-grey-mint font-40 mb-20"></i>
                                             <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
                                             <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
                                         </div>
                                     </div>
                                 </div>
@@ -1670,11 +1671,12 @@
                             <div class="modal-body">
                                 <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">
                                     <div class="portlet p-50 md-shadow-none">
-                                        <div class="portlet-body text-center">
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                        <div class="portlet p-50 md-shadow-none">
+                                            <div class="portlet-body text-center">
+                                                <i class="icon-star font-grey-mint font-40 mb-20"></i>
+                                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
+                                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
