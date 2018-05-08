@@ -2449,11 +2449,11 @@
                             '<div class="modal-dialog modal-lg">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + ' </small></h4>\
+                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h4>\
                                     </div>\
-                                    <div class="modal-body">\
+                                    <div class="modal-body">'
                                         + invitation + 
-                                        '<div class="mt-comments-v2">\
+                                        '<div class="mt-comments-v2">'
                                             + reviews +                    
                                         '</div>\
                                     </div>\
@@ -2528,8 +2528,8 @@
                                         <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h4>\
                                     </div>\
                                     <div class="modal-body">'
-                                        + invitation + '\
-                                        <div class="mt-comments-v2">' 
+                                        + invitation + 
+                                        '<div class="mt-comments-v2">' 
                                             + reviews +
                                         '</div>\
                                     </div>\
