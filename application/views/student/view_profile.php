@@ -27,7 +27,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- TITLE -->
+    <?php if ($roles =='student') {?>
     <title>Student | View Profile</title>
+    <?php } else {?>
+    <title>
+        <?php echo ucwords($user_profile['overview']['name']); ?>
+    </title>
+    <?php } ?>
+    
 
     <!-- ======= CSS STYLES ======= -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -88,7 +95,7 @@
     <?php $this->load->view('site/header_content');?>
 
     <!-- # VIEW -->
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center  hidden-xs hidden-sm" style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs hidden-sm" style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
         <div class="container g-ver-bottom-80 ">
             <div class="col-md-9 col-xs-12">
                 <ul class="list-unstyled mx-0 mt-50">
@@ -1823,6 +1830,7 @@
 
             });
 
+            // Endorsement
             $(".endorse-btn").click(function () {
                 var dataId = $(this).attr('data-id');
                 var endorserId = $(this).attr('endorser-id');
@@ -1882,14 +1890,13 @@
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to endorse you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
-                                    ';
+                            <div class="portlet-body text-center">\
+                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
+                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to endorse you! </h4>\
+                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
+                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
+                            </div>\
+                        </div>';
                 } else {
                     invitation = '';
                 }
@@ -1940,7 +1947,10 @@
                     }
                 })
             });
-
+            
+            // Review
+            
+            // # Review experience
             $('.review-input').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('user-id');
@@ -1967,73 +1977,50 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                                <div class="mt-comment-img">\
-                                                    <img src="' +
-                                v.profile_photo +
-                                '" class="avatar avatar-xtramini avatar-circle"> </div>\
-                                                <div class="mt-comment-body">\
-                                                    <div class="mt-comment-info">\
-                                                        <a>\
-                                                            <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                        </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                        <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                                    </div>\
-                                                    <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                                    </div>\
+                                    <div class="mt-comment-img">\
+                                        <img src="' + v.profile_photo + '" class="avatar avatar-xtramini avatar-circle"> </div>\
+                                            <div class="mt-comment-body">\
+                                                <div class="mt-comment-info">\
+                                                    <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                                    <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                                    <span class="mt-comment-date">' + v.created_at + '</span>\
                                                 </div>\
-                                            </div>';
+                                                <div class="mt-comment-text">' + v.rating + '</div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>';
                         });
 
                         $('#modal_list_reviewer_input').html(
                             '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Review -\
-                                        <small class="font-16">' +
-                            dataName +
-                            ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="mt-comments-v2">\
-                                            ' +
-                            reviews +
-                            '\
-                                        </div>\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + ' </small></h4>\
                                     </div>\
-                                </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                    <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
+                                    <div class="modal-body">\
+                                        <div class="mt-comments-v2">'
+                                          + reviews +                            
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-5">\
+                                        <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
                                         <div class="form-group text-left mx-0 mb-10">\
                                             <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
-                                            <input type="hidden" name="exp_id" value="' +
-                            dataId + '"></input>\
-                                            <input type="hidden" name="endorser_id" value="' + endorserId +
-                            '"></input>\
-                                            <input type="hidden" name="user_id" value="' + dataUserId +
-                            '"></input>\
+                                            <input type="hidden" name="exp_id" value="' + dataId + '"></input>\
+                                            <input type="hidden" name="endorser_id" value="' + endorserId + '"></input>\
+                                            <input type="hidden" name="user_id" value="' + dataUserId + '"></input>\
                                             <span class="help-block">Please put genuine statement !</span>\
                                         </div>\
                                         <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
                                         <button type="submit" class="btn btn-md-indigo ">Submit</button>\
                                     </form>\
                                 </div\
-                            </div>\
-                        </div>'
+                            </div>'
                         );
-
                     }
                 })
             });
-
             $('.review-experience-list').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('user-id');
@@ -2045,14 +2032,13 @@
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
-                                    ';
+                            <div class="portlet-body text-center">\
+                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
+                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
+                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
+                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
+                            </div>\
+                        </div>';
                 } else {
                     invitation = '';
                 }
@@ -2075,62 +2061,43 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                                <div class="mt-comment-img">\
-                                                    <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '" > </div>\
-                                                <div class="mt-comment-body">\
-                                                    <div class="mt-comment-info">\
-                                                        <a>\
-                                                            <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                        </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                        <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                                    </div>\
-                                                    <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                                    </div>\
-                                                </div>\
-                                            </div>';
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '" >\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                        </div>\
+                                        <div class="mt-comment-text">' + v.rating + '</div>\
+                                    </div>\
+                                </div>';
                         });
 
                         $('#modal_review_experience_list').html(
                             '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Review -\
-                                        <small class="font-16">' +
-                            dataName +
-                            ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        ' +
-                            invitation + '\
-                                        <div class="mt-comments-v2">\
-                                            ' +
-                            reviews +
-                            '\
-                                        </div>\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
+                                    </div>\
+                                    <div class="modal-body">'
+                                        + invitation + 
+                                        '<div class="mt-comments-v2">'
+                                        + reviews +
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-4">\
                                     </div>\
                                 </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                </div>\
-                            </div>\
-                        </div>'
+                            </div>'
                         );
 
                     }
                 })
             });
 
-
+            // # Review education
             $('.review-education-input').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('user-id');
@@ -2157,67 +2124,48 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                                <div class="mt-comment-img">\
-                                                    <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '"> </div>\
-                                                <div class="mt-comment-body">\
-                                                    <div class="mt-comment-info">\
-                                                        <a>\
-                                                            <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                        </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                        <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                                    </div>\
-                                                    <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                                    </div>\
-                                                </div>\
-                                            </div>';
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                        </div>\
+                                        <div class="mt-comment-text">' 
+                                            + v.rating +
+                                        '</div>\
+                                    </div>\
+                                </div>';
                         });
 
                         $('#modal_review_education_input').html(
                             '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Review -\
-                                        <small class="font-16">' +
-                            dataName +
-                            ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        <div class="mt-comments-v2">\
-                                            ' +
-                            reviews +
-                            '\
-                                        </div>\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
                                     </div>\
+                                    <div class="modal-body">\
+                                        <div class="mt-comments-v2">'
+                                            + reviews +                        
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-4">\
+                                        <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
+                                            <div class="form-group text-left mx-0 mb-10">\
+                                                <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
+                                                <input type="hidden" name="exp_id" value="' + dataId + '"></input>\
+                                                <input type="hidden" name="endorser_id" value="' + endorserId + '"></input>\
+                                                <input type="hidden" name="user_id" value="' + dataUserId + '"></input>\
+                                                <span class="help-block">Please put genuine statement !</span>\
+                                            </div>\
+                                            <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
+                                            <button type="submit" class="btn btn-md-indigo ">Submit</button>\
+                                        </form>\
+                                    </div\
                                 </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                    <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
-                                        <div class="form-group text-left mx-0 mb-10">\
-                                            <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
-                                            <input type="hidden" name="exp_id" value="' +
-                            dataId + '"></input>\
-                                            <input type="hidden" name="endorser_id" value="' + endorserId +
-                            '"></input>\
-                                            <input type="hidden" name="user_id" value="' + dataUserId +
-                            '"></input>\
-                                            <span class="help-block">Please put genuine statement !</span>\
-                                        </div>\
-                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
-                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>\
-                                    </form>\
-                                </div\
-                            </div>\
-                        </div>'
+                            </div>'
                         );
 
                     }
@@ -2235,14 +2183,13 @@
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
-                                    ';
+                            <div class="portlet-body text-center">\
+                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
+                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
+                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
+                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
+                            </div>\
+                        </div>';
                 } else {
                     invitation = '';
                 }
@@ -2265,63 +2212,46 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                        <div class="mt-comment-img">\
-                                            <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '"> </div>\
-                                        <div class="mt-comment-body">\
-                                            <div class="mt-comment-info">\
-                                                <a>\
-                                                    <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                            </div>\
-                                            <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                            </div>\
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
-                                    </div>';
+                                        <div class="mt-comment-text">' 
+                                            + v.rating +
+                                        '</div>\
+                                    </div>\
+                                </div>';
                         });
 
                         $('#modal_review_education_list').html(
                             '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Review -\
-                                        <small class="font-16">' +
-                            dataName +
-                            ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        ' +
-                            invitation + '\
-                                        <div class="mt-comments-v2">\
-                                            ' +
-                            reviews +
-                            '\
-                                        </div>\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
+                                    </div>\
+                                    <div class="modal-body">' 
+                                        + invitation + 
+                                        '<div class="mt-comments-v2">' 
+                                            + reviews +
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-4">\
                                     </div>\
                                 </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                </div>\
-                            </div>\
-                        </div>'
+                            </div>'
                         );
 
                     }
                 })
             });
 
-
-
+            // Rate
+            // # Rate experience
             $('.rate-experience-input').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('endorsed-id');
@@ -2348,28 +2278,20 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                                <div class="mt-comment-img">\
-                                                    <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '"> </div>\
-                                                <div class="mt-comment-body">\
-                                                    <div class="mt-comment-info">\
-                                                        <a>\
-                                                            <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                        </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                        <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                                    </div>\
-                                                    <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                                    </div>\
-                                                </div>\
-                                            </div>';
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                     </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                        </div>\
+                                        <div class="mt-comment-text">' 
+                                        + v.rating +
+                                        '</div>\
+                                    </div>\
+                                </div>';
                         });
 
 
@@ -2382,7 +2304,7 @@
                     }
                 })
             });
-
+            // # Rate education
             $('.rate-education-input').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('endorsed-id');
@@ -2409,28 +2331,20 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                                <div class="mt-comment-img">\
-                                                    <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '"> </div>\
-                                                <div class="mt-comment-body">\
-                                                    <div class="mt-comment-info">\
-                                                        <a>\
-                                                            <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                        </a>\
-                                                        <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                        <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                                    </div>\
-                                                    <div class="mt-comment-text">' +
-                                v.rating +
-                                '\
-                                                    </div>\
-                                                </div>\
-                                            </div>';
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' +v.fullname +'</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                        </div>\
+                                        <div class="mt-comment-text">' 
+                                            + v.rating +                                
+                                        '</div>\
+                                    </div>\
+                                </div>';
                         });
 
 
@@ -2443,7 +2357,7 @@
                     }
                 })
             });
-
+            // # Rate Empty
             $('.rate-education-input-empty').click(function () {
                 var dataId = $(this).attr('data-id');
                 var dataUserId = $(this).attr('endorsed-id');
@@ -2457,9 +2371,7 @@
                 $('#modal_rater_empty_educations #dataIdExp').val(dataId);
                 $('#modal_rater_empty_educations #dataUserIdExp').val(dataUserId);
                 $('#modal_rater_empty_educations #endorserIdExp').val(endorserId);
-
             });
-
 
             $('.rate-experience-input-empty').click(function () {
                 var dataId = $(this).attr('data-id');
@@ -2488,14 +2400,13 @@
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
-                                    ';
+                            <div class="portlet-body text-center">\
+                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
+                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
+                            </div>\
+                        </div>';
                 } else {
                     invitation = '';
                 }
@@ -2518,56 +2429,114 @@
                         $.each(student, function (i, v) {
                             reviews +=
                                 '<div class="mt-comment">\
-                                        <div class="mt-comment-img">\
-                                            <img class="avatar avatar-xtramini avatar-circle" src="' +
-                                v.profile_photo +
-                                '"> </div>\
-                                        <div class="mt-comment-body">\
-                                            <div class="mt-comment-info">\
-                                                <a>\
-                                                    <span class="mt-comment-author">' +
-                                v.fullname +
-                                '</span>\
-                                                </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                                v.link + '">View Profile</a>\
-                                                <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
-                                            </div>\
-                                            <small class="text-none font-14 mt-5">give rating ' +
-                                v.rating +
-                                ' out of 5\
-                                                <i class="icon-star"></i>\
-                                            </small>\
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
-                                    </div>';
+                                        <small class="text-none font-14 mt-5">give rating ' + v.rating + ' out of 5\
+                                            <i class="icon-star"></i>\
+                                        </small>\
+                                    </div>\
+                                </div>';
                         });
 
                         $('#modal_rate_education_list').html(
                             '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Rate -\
-                                        <small class="font-16">' +
-                            dataName +
-                            ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                        ' +
-                            invitation + '\
-                                        <div class="mt-comments-v2">\
-                                            ' +
-                            reviews +
-                            '\
-                                        </div>\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + ' </small></h4>\
+                                    </div>\
+                                    <div class="modal-body">\
+                                        + invitation + 
+                                        '<div class="mt-comments-v2">\
+                                            + reviews +                    
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
                                 </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                </div>\
+                            </div>'
+                        );
+
+                    }
+                })
+            });
+
+            $('.rate-experience-list').click(function () {
+                var dataId = $(this).attr('data-id');
+                var dataUserId = $(this).attr('endorsed-id');
+                var dataName = $(this).attr('data-name');
+                var endorsedType = $(this).attr('endorse-type');
+                var image_directory = window.location.origin + '/assets/img/student/';
+                var user = $(this).attr('user');
+
+                if (user == 'same_user') {
+                    invitation =
+                        '<div class="portlet p-50 md-shadow-none">\
+                            <div class="portlet-body text-center">\
+                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
+                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
+                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
-                        </div>'
+                        </div>';
+                } else {
+                    invitation = '';
+                }
+
+                $.ajax({
+                    url: "<?= base_url();?>site/endorsment/getRate",
+                    method: "GET",
+                    data: {
+                        data_id: dataId,
+                        user_id: dataUserId,
+                        endorsedType: endorsedType,
+                    },
+
+                    success: function (response) {
+                        var student = JSON.parse(response);
+                        var reviews = '';
+
+                        var profile_pic = 'profile-pic.png';
+
+                        $.each(student, function (i, v) {
+                            reviews +=
+                                '<div class="mt-comment">\
+                                    <div class="mt-comment-img">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                    </div>\
+                                    <div class="mt-comment-body">\
+                                        <div class="mt-comment-info">\
+                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                        </div>\
+                                        <small class="text-none font-14 mt-5">give rating ' + v.rating + ' out of 5 <i class="icon-star"></i></small>\
+                                    </div>\
+                                </div>';
+                        });
+
+                        $('#modal_rate_experience_list').html(
+                            '<div class="modal-dialog modal-lg">\
+                                <div class="modal-content">\
+                                    <div class="modal-header">\
+                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h4>\
+                                    </div>\
+                                    <div class="modal-body">'
+                                        + invitation + '\
+                                        <div class="mt-comments-v2">' 
+                                            + reviews +
+                                        '</div>\
+                                    </div>\
+                                    <div class="modal-footer md-grey-lighten-5">\
+                                    </div>\
+                                </div>\
+                            </div>'
                         );
 
                     }
@@ -2575,101 +2544,7 @@
             });
         });
 
-        $('.rate-experience-list').click(function () {
-            var dataId = $(this).attr('data-id');
-            var dataUserId = $(this).attr('endorsed-id');
-            var dataName = $(this).attr('data-name');
-            var endorsedType = $(this).attr('endorse-type');
-            var image_directory = window.location.origin + '/assets/img/student/';
-            var user = $(this).attr('user');
-
-            if (user == 'same_user') {
-                invitation =
-                    '<div class="portlet p-50 md-shadow-none">\
-                                        <div class="portlet-body text-center">\
-                                            <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                            <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                            <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
-                                            <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
-                                        </div>\
-                                    </div>\
-                                    ';
-            } else {
-                invitation = '';
-            }
-
-            $.ajax({
-                url: "<?= base_url();?>site/endorsment/getRate",
-                method: "GET",
-                data: {
-                    data_id: dataId,
-                    user_id: dataUserId,
-                    endorsedType: endorsedType,
-                },
-
-                success: function (response) {
-                    var student = JSON.parse(response);
-                    var reviews = '';
-
-                    var profile_pic = 'profile-pic.png';
-
-                    $.each(student, function (i, v) {
-                        reviews +=
-                            '<div class="mt-comment">\
-                                        <div class="mt-comment-img">\
-                                            <img class="avatar avatar-xtramini avatar-circle" src="' +
-                            v.profile_photo +
-                            '"> </div>\
-                                        <div class="mt-comment-body">\
-                                            <div class="mt-comment-info">\
-                                                <a>\
-                                                    <span class="mt-comment-author">' +
-                            v.fullname +
-                            '</span>\
-                                                </a>\
-                                                <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' +
-                            v.link + '">View Profile</a>\
-                                                <span class="mt-comment-date">' + v.created_at +
-                            '</span>\
-                                            </div>\
-                                            <small class="text-none font-14 mt-5">give rating ' +
-                            v.rating +
-                            ' out of 5\
-                                                <i class="icon-star"></i>\
-                                            </small>\
-                                        </div>\
-                                    </div>';
-                    });
-
-                    $('#modal_rate_experience_list').html(
-                        '<div class="modal-dialog modal-lg">\
-                            <div class="modal-content">\
-                                <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Rate -\
-                                        <small class="font-16">' +
-                        dataName +
-                        ' </small>\
-                                    </h4>\
-                                </div>\
-                                <div class="modal-body">\
-                                    <div class="scroller height-250 height-400-md" data-always-visible="1" data-rail-visible1="1">\
-                                            ' +
-                        invitation + '\
-                                        <div class="mt-comments-v2">\
-                                            ' + reviews +
-                        '\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="modal-footer md-grey-lighten-4">\
-                                </div>\
-                            </div>\
-                        </div>'
-                    );
-
-                }
-            })
-        });
+        
 
         $(function () {
             $('#rateit7').rateit({
@@ -2705,9 +2580,6 @@
                 $('#value1Experience').text('Are you sure give  this user rating : ' + value + ' out of 5');
             });
         });
-
-
-
         $(function () {
             $('#rateit2inputExperience').rateit({
                 max: 5,
@@ -2736,6 +2608,4 @@
 
     </script>
 </body>
-
-
 </html>
