@@ -89,9 +89,9 @@
 
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <?php if($header_image['name'] != ""){?>
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?php echo IMG_EMPLOYERS; ?><?php echo $header_image['name']; ?>) no-repeat fixed; z-index: -1; background-size:cover;">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYERS;?><?php echo $header_image['name']; ?>') center center no-repeat fixed; z-index: -1; background-size:cover;">
         <?php }else{?>
-        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url(<?=base_url()?>assets/img/site/mainpagebanner.jpg) no-repeat fixed; z-index: -1; background-size:cover;">
+        <div class="s-promo-block-v2 gradient-darkblue-v7 height-300" style="background: url('<?php echo IMG_EMPLOYER;?>portfolio/1200x900/1.jpg') no-repeat fixed; z-index: -1; background-size:cover;">
             <?php }?>
         </div>
         <div class="container mt-o-120 ">
@@ -100,13 +100,14 @@
                     <div class="media py-20 ">
                         <div class="pull-left mr-10">
                             <?php if($profile_image['name'] != ""){?>
-                            <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large  p-10 md-white  shadow-v4 avatar-border-md border-mdo-white-v8">
+                            <img src="<?php echo IMG_EMPLOYERS; ?><?php echo $profile_image['name']; ?>" alt="" class="avatar avatar-large  avatar-circle  md-white  shadow-v4 avatar-border-md border-mdo-white-v8">
                             <?php }else{?>
-                            <img src="<?=base_url()?>assets/img/site/xremo-logo-blue.svg" alt="" class="avatar avatar-large avatar-border-md p-10 md-white shadow-v4 border-mdo-white-v8">
+                            <img src="<?php echo IMG;?>site/profile-pic.png" alt="" class="avatar avatar-large avatar-border-md avatar-circle md-white shadow-v4 border-mdo-white-v8">
                             <?php }?>
 
                         </div>
                         <div class="media-body ">
+                            <?php if (!empty ($detail['industry'])){ ?>
                             <h2 class="mt-10  md-white-text ">
                                 <?php echo $detail['company_name']; ?>
                             </h2>
@@ -114,6 +115,11 @@
                                 <i class="fa fa-industry mr-5 font-17 ml-5"></i>
                                 <?php echo $detail['industry'] ?>
                             </h6>
+                            <?php } else { ?>
+                            <h2 class="mt-40 md-white-text ">
+                                <?php echo $detail['company_name']; ?>
+                            </h2>
+                            <?php }  ?>
 
                         </div>
                     </div>
@@ -154,10 +160,9 @@
                                         <!-- Empty States -->
                                         <div class="portlet p-20 md-shadow-none">
                                             <div class="portlet-body text-center">
-                                                <i class="icon-ghost font-grey-mint font-40 mb-35"></i>
-                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">Add your info in here to make your company look great.</h6>
-												<a href="employer-profile.html" class="btn btn-outline-md-indigo px-6">My Profile</a>-->
+                                                <i class="icon-ghost font-grey-mint font-40 mb-40"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                                <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
                                             </div>
                                         </div>
                                         <?php }else{?>
@@ -239,9 +244,9 @@
 											</p>-->
                                         <div class="portlet p-20 md-shadow-none">
                                             <div class="portlet-body text-center">
-                                                <i class="icon-puzzle font-grey-mint font-40 mb-30"></i>
-                                                <h5 class="text-center font-weight-500 font-grey-mint">Not Provided</h5>
-                                                <!--<h6 class="text-center  font-grey-cascade mt-1 text-none">It's seem like this company forgot to update his/her info. </h6>-->
+                                                <i class="icon-ghost font-grey-mint font-40 mb-30"></i>
+                                                <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                                <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
                                             </div>
                                         </div>
                                         <?php }?>
@@ -250,6 +255,7 @@
                                 </div>
 
                                 <div class="tab-pane" id="tab_job_info">
+                                    <?php if(!empty($job)){?>
                                     <ul class="list-group list-border pt-0">
                                         <!-- Content -->
                                         <?php 
@@ -262,37 +268,36 @@
 									    ?>
                                         <li class="list-group-item ">
                                             <div class="media">
-                                                <!--<div class="pull-right ">
-                                                    <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" class="btn btn-md-indigo btn-sm letter-space-xs " target="_blank">Apply</a>
-                                                </div>-->
                                                 <div class="media-body ">
-                                                    <h6 class="my-10 font-weight-600 font-17 ">
+                                                    <h6 class=" font-weight-600 font-17 ">
                                                         <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']), '='); ?>" target="_blank">
                                                             <?php echo !empty($value['name']) ? $value['name'] :'' ; ?> </a>
                                                     </h6>
+                                                    <p class="mt-0 ">
+                                                        <span class="label label-md-purple letter-space-xs mr-5 label-sm">
+                                                            <i class="fa fa-map-marker"></i>
+                                                            <?php echo $this->session->userdata('country')?>
+                                                        </span>
+                                                        <span class="label label-md-blue mr-5 label-sm">
+                                                            <i class="fa fa-briefcase"></i>
+                                                            <?php echo $value['employment_name'] ;?>
+                                                        </span>
+                                                        <span class="label label-deep-md-purple mr-5 label-sm">
+                                                            <i class="fa fa-sitemap"></i>
+                                                            <?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?>
+                                                        </span>
+                                                    </p>
+                                                    <p class="multiline-truncate font-weight-400 mb-15 font-14 ">
+                                                        <?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <p class="my-5 ">
-                                                <!-- <span class="label label-md-green label-sm">Salary</span> -->
-                                                <span class="label label-md-red mr-5 label-sm">
-                                                    <i class="fa fa-map-marker"></i>
-                                                    <?php echo $this->session->userdata('country')?>
-                                                </span>
-                                                <span class="label label-md-blue mr-5 label-sm">
-                                                    <?php echo $value['employment_name'] ;?>
-                                                </span>
-                                                <span class="label label-md-purple mr-5 label-sm">
-                                                    <?php echo $value['position_level_id']==1 ? 'Junior' : $value['position_level_id']==2 ? 'Senior' : 'Executive'; ?>
-                                                </span>
-                                            </p>
-                                            <p class="multiline-truncate font-weight-400 mb-15 font-14 ">
-                                                <?php echo !empty($value['job_description']) ? $value['job_description'] : ''; ?>
-                                            </p>
                                         </li>
+
                                         <?php } ?>
                                         <!-- Pagination -->
-                                        <li class="list-group-item px-0 ">
-                                            <ul class="pagination ">
+                                        <li class="list-group-item px-0 flex-center">
+                                            <ul class="pagination  pagination-sm">
                                                 <?php
 												$article_total = 0;
 												foreach($job as $row){
@@ -363,6 +368,15 @@
                                             </ul>
                                         </li>
                                     </ul>
+                                    <?php } else {?>
+                                    <div class="portlet p-20 md-shadow-none">
+                                        <div class="portlet-body text-center">
+                                            <i class="icon-ghost font-grey-mint font-40 mb-30"></i>
+                                            <h5 class="text-center font-weight-500 font-grey-mint">Sorry.. </h5>
+                                            <h6 class="text-center  font-grey-cascade mt-1 font-weight-400 text-none">No information can be found. </h6>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
 
                                 </div>
                             </div>
@@ -383,33 +397,30 @@
                     <div class="row mb-30  mx-0 ">
                         <ul class="list-unstyled ">
                             <!-- Company Industry -->
-                            <?php //if (!empty($detail['industry'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-industry mr-5"></i>Industry</h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['industry'] != ""?$detail['industry']:"Not Provided"; ?>
+                                    <?php echo $detail['industry'] != ""?$detail['industry']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
+
 
                             <!-- Company Size -->
-                            <?php //if (!empty($detail['total_staff'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-building-o mr-5"></i>Company Size</h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['total_staff'] != ""?$detail['total_staff']." People":"Not Provided"; ?>
+                                    <?php echo $detail['total_staff'] != ""?$detail['total_staff']."People":'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Working Day -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-calendar mr-5"></i>Working Day</h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):"Not Provided"; ?>
+                                    <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
 
@@ -418,23 +429,20 @@
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-clock mr-5"></i>Working Hour</h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):"Not Provided"; ?>
+                                    <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
 
                             <!-- Dress Code -->
-                            <?php //if (!empty($detail['dress_code'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-users mr-5"></i>Dress Code </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $dresscode != ""?ucwords($dresscode):"Not Provided"; ?>
+                                    <?php echo $dresscode != ""?ucwords($dresscode):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Website -->
-                            <?php //if (!empty($detail['url'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="icon-screen-desktop mr-5"></i>Website </h6>
@@ -443,22 +451,20 @@
                                     <a href="<?=$detail['url']?>" target="_blank">
                                         <?=$detail['url']?>
                                     </a>
-                                    <?php }else{?> Not Provided
+                                    <?php }else{?>
+                                    <i class="font-weight-300 font-15">Not Provided </i>
                                     <?php }?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Spoken Language -->
-                            <?php //if (!empty($detail['spoken_language'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-language mr-5"></i>Spoken Language </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:"Not Provided"; ?>
+                                    <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
-                            <?php //endif ?>
 
                             <!-- Benefit -->
                             <?php if (!empty($detail['benefits'])): ?>
@@ -466,7 +472,7 @@
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
                                     <i class="fa fa-diamond mr-5"></i>Benefit </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
-                                    <?php echo $detail['benefits'] != ""?$detail['benefits']:"Not Provided"; ?>
+                                    <?php echo $detail['benefits'] != ""?$detail['benefits']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
                             </li>
                             <?php endif ?>
@@ -517,9 +523,7 @@
                             <?php break; } ?>
 
                             <?php } if($followme == 0){?>
-                            <p class=" font-grey-gallery  ">
-                                Not Provided
-                            </p>
+                            <i class="font-weight-300 font-15">Not Provided </i>
                             <?php }?>
                         </ul>
                     </div>
@@ -552,57 +556,7 @@
                     </ul>
                 </div>-->
                 </div>
-            </div>
-
-            <!-- Modal Job Apply-->
-            <div class="modal fade modal-open-noscroll " id="modal_job_apply" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content ">
-                        <div class="modal-header">
-                            <h5 class="mb-0">Short Description About Yourself</h5>
-                            <!-- <div class="media ">
-                            <div class="pull-left">
-                                <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-tiny avatar-circle">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="mt-3 mb-5">Nick Jonas</h5>
-                                <p class="">Student </p  >
-                            </div>
-                        </div> -->
-                        </div>
-                        <form action="" class="form form-horizontal">
-                            <div class="modal-body  ">
-                                <div class="scroller mt-height-250-xs" data-always-visible="1" data-rail-visible1="1">
-                                    <div class="media ">
-                                        <div class="pull-left">
-                                            <img src="../assets//pages//img/avatars/team10.jpg" alt="" class="avatar avatar-mini avatar-circle">
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-1 mb-5 md-orange-text font-weight-500 ">Nick Jonas
-                                                <small class="">
-                                                    <i class="icon-pointer"></i> Kuala Lumpur</small>
-                                            </h6>
-                                            <p class=" text-none">Applied for job
-                                                <strong class="text-capitallize">Web Developer</strong>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="form-group text-left mx-0 mb-2">
-                                        <textarea name="" id="" class="form-control " rows="7" placeholder="Tell me more about yourself and sell out your creativity in here to this company! Not more than 300 words"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer md-grey lighten-4">
-                                <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                <button type="submit" class="btn btn-md-orange ">Submit</button>
-                            </div>
-                        </form>
-
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
+            </div>            
         </div>
         <!--========== END CONTENT ==========-->
 
@@ -660,7 +614,8 @@
         <script>
             function initMap() {
                 var address = <?php echo $detail['address']; ?>;
-                var company_name = '<?= $detail['company_name']; ?>';
+                var company_name = '<?= $detail['
+                company_name ']; ?>';
                 var latLang = {
                     lat: 0,
                     lng: 120

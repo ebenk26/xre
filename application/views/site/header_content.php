@@ -56,19 +56,17 @@
 
                                     <!-- Administrator -->
                                     <?php if ($roles =='administrator') {?>
-                                    <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'/site/xremo-logo-blue.svg'; ?>" class="avatar avatar-xtramini avatar-circle" alt="">
+                                    <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/xremo-logo-blue.svg'; ?>" class="avatar avatar-mini avatar-circle" alt="">
                                     <?php }?>
 
                                     <!-- Employer -->
                                     <?php if ($roles =='employer') {?>
-                                    <img alt="Employer Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "
-                                        " ?  IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG.'site/xremo-logo-blue.svg'?>">
+                                    <img alt="<?php echo $this->session->userdata('name')?>" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile'))?IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG.'site/profile-pic.png'?>">
                                     <?php }?>
 
                                     <!-- Student -->
                                     <?php if ($roles =='student') {?>
-                                    <img alt="Student Picture" class="avatar avatar-xtramini avatar-circle" src="<?php echo $this->session->userdata('img_profile') != "
-                                        " ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                    <img alt="Student Picture" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile')) ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                     <?php }?>
 
                                     <span class="font-10 ml-5 ti-angle-down"></span>
@@ -77,27 +75,27 @@
                                 <ul class="dropdown-menu s-header-v2-dropdown-menu pull-right mt-o-20">
                                     <!-- DASHBOARD -->
                                     <li>
-                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-home mr-10"></i>Dashboard</a>
                                     </li>
                                     <!-- EDIT PROFILE -->
                                     <?php if ($roles !='administrator') {?>
                                     <li>
-                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-note mr-10"></i>Edit Profile</a>
                                     </li>
                                     <?php } ?>
                                     <!-- RESUME FOR STUDENT -->
                                     <?php if ($roles !='employer' && $roles !='administrator') {?>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?>profile/user/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=');?>" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-book-open mr-10"></i>My Resume</a>
                                     </li>
                                     <?php } ?>
                                     <!-- VIEW PROFILE -->
                                     <?php if ($roles =='employer') {?>
                                     <li>
-                                        <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-book-open mr-10"></i>View My Profile
                                         </a>
                                     </li>
@@ -105,14 +103,14 @@
                                     <!-- CALENDAR -->
                                     <?php if ($roles !='administrator') {?>
                                     <li>
-                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-calendar mr-10"></i>My Calendar</a>
                                     </li>
                                     <?php } ?>
                                     <li class="divider"></li>
                                     <!-- LOGOUT -->
                                     <li>
-                                        <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link">
+                                        <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link font-18">
                                             <i class="icon-key mr-10"></i>Log Out</a>
                                     </li>
                                 </ul>
@@ -127,7 +125,8 @@
                         </ul>
                     </div>
                 </div>
-            </div>            
+            </div>
+            
         </div>
     </nav>
 </header>

@@ -236,6 +236,7 @@
 
         <!-- Section : Recent Activities Feed  / Article -->
         <div class="row">
+            <!-- REcent Activities -->
             <div class="col-lg-6 col-sm-12">
                 <div class="portlet light">
                     <div class="portlet-title">
@@ -244,6 +245,7 @@
                             <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">Recent Activities</span>
                         </div>
                     </div>
+                    <?php if (!empty($recent_activities)){?>
                     <div class="portlet-body ">
                         <div class="scroller height-370 " data-always-visible="1" data-rail-visible="1">
                             <ul class="feeds">
@@ -269,11 +271,23 @@
                                         </div>
                                     </div>
                                 </li>
-                                <?php }?>
-
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
+                    <?php } else { ?>
+                    <!-- # Empty State -->
+                    <div class="portlet-body">
+                        <div class="portlet light md-grey-lighten-5">
+                            <div class="portlet-body p-80 text-center">
+                                <i class="icon-ghost font-50 md-indigo-text"></i>
+                                <h3 class="text-center font-weight-500 md-indigo-text"> It's empty.</h3>
+                                <h5 class="text-center font-grey-cascade mt-20">There is no recent activities found in your account.</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+
                 </div>
             </div>
             <!-- Article -->
