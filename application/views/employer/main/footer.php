@@ -853,7 +853,7 @@ $company_address = json_decode($user_profile['address']);?>
                     $.each(student.user_profile.academics, function (i, v) {
                         var academic_date = new Date(v.start_date);
                         academics += '<li class="mt-25">\
-                                <h5 class=" my-5 font-weight-600 text-capitalize">' + v.degree_name + '</h5>\
+                                <h5 class=" my-5 font-weight-600 text-capitalize">' + v.qualification_level + 'in' + v.degree_name + '</h5>\
                                 <h6 class=" my-5 font-weight-400"><i class="icon-calendar mr-10"></i>' + v.start_date + ' - ' + v.end_date + '</h6>\
                             </li>';
                     });
