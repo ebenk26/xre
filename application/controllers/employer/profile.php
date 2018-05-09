@@ -17,6 +17,12 @@ class Profile extends CI_Controller {
     }
     
     public function index(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
+
         $profile['page_title'] = 'Profile';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
@@ -35,6 +41,12 @@ class Profile extends CI_Controller {
 	}
 
     function edit_profile(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
+
         $social = $this->input->post('group-b');
         $id = $this->session->userdata('id');
         $check_number_of_social_link = $this->employer_model->check_social_link($id);
@@ -95,6 +107,11 @@ class Profile extends CI_Controller {
     }
 
     function edit_additional_info(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
         $id = $this->session->userdata('id');
         $dress = $this->input->post('dress');
         $dresscode = '';
@@ -140,6 +157,11 @@ class Profile extends CI_Controller {
     }
 
     function edit_contact_info(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
         $id = $this->session->userdata('id');
         $address = $this->input->post('contact_info');
         // var_dump(json_encode($address,JSON_PRETTY_PRINT));exit();
@@ -185,6 +207,11 @@ class Profile extends CI_Controller {
     }
 
     function upload_company_logo(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
         if(!empty($_FILES['company_logo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
@@ -232,6 +259,11 @@ class Profile extends CI_Controller {
     }
 
     function upload_company_header(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
         if(!empty($_FILES['company_header']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'header_photo');

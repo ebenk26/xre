@@ -64,8 +64,7 @@ class User extends CI_Controller {
                     }
                 }
                 
-                $this->session->set_flashdata('msg_success', 'Login Successfully.');
-                redirect(base_url().$page.'/dashboard');
+                
 
             }elseif ($login_result['status_request'] == 422) {
                 $this->session->set_flashdata('msg_failed', 'Wrong Password please try again.');
@@ -78,6 +77,9 @@ class User extends CI_Controller {
                 redirect(base_url().'login');                
             }
 
+
+            $this->session->set_flashdata('msg_success', 'Login Successfully.');
+            redirect(base_url().$page.'/dashboard');
             
         }
     }

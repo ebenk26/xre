@@ -12,7 +12,7 @@ class Candidate extends CI_Controller {
         $this->load->model('user_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck)){
+        if(empty($countryCheck) || ($roles !== $segment)){
             redirect(base_url());
         }
     }
