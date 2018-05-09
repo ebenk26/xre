@@ -331,7 +331,7 @@ class Employer_Model extends CI_Model{
 
         if(!empty($addr))
         {
-            $addr = $addr[0];
+            $addr = current($addr);
 
             $Contact   += !empty($addr->optionsRadios) ? 2.7272727273 : 0;
             $Contact   += !empty($addr->building_address) ? 2.7272727273 : 0;

@@ -9,7 +9,7 @@ class Gallery extends CI_Controller {
         $this->load->model('employer_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if($roles !== $segment){
             redirect(base_url());
         }
     }

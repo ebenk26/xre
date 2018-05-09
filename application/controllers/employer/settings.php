@@ -10,7 +10,7 @@ class settings extends CI_Controller {
         $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
+        if($roles !== $segment){
             redirect(base_url());
         }
     }

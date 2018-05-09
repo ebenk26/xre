@@ -11,12 +11,16 @@ class Profile extends CI_Controller {
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck)){
-            redirect(base_url());
-        }
+
     }
     
     public function index(){
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
+        
         $profile['page_title'] = 'Profile';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);

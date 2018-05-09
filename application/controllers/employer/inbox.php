@@ -9,9 +9,6 @@ class Inbox extends CI_Controller {
         $this->load->model('employer_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(empty($countryCheck) || ($roles !== $segment)){
-            redirect(base_url());
-        }
     }
 
     public function index(){
