@@ -9,14 +9,16 @@ class Job_Board extends CI_Controller {
         $this->load->model('employer_model');
         $this->load->model('job_model');
         $this->load->model('global_model');
+        
+    }
+    
+    public function index(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if($roles !== $segment){
             redirect(base_url());
         }
-    }
-    
-    public function index(){
+        
         $profile['page_title'] = 'Job Board';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
