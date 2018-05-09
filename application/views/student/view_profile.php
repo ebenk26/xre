@@ -1592,8 +1592,8 @@
                                 <div class="portlet p-50">
                                     <div class="portlet-body text-center">
                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h5>
-                                        <h6 class="text-center  font-grey-cascade mt-10 font-16 font-weight-400 text-none">Hey ! Invite one of your friend to rate your resume.</h6>
+                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h5>
+                                        <h6 class="text-center  font-grey-cascade mt-10 font-16 font-weight-400 text-none">Give a genuine rating about his/her information.</h6>
                                     </div>
                                 </div>
                             </div>
@@ -1629,8 +1629,8 @@
                                 <div class="portlet p-50 md-shadow-none">
                                     <div class="portlet-body text-center">
                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h5>
-                                        <h6 class="text-center  font-grey-cascade mt-10 font-16 font-weight-400 text-none">Hey ! Invite one of your friend to rate your resume.</h6>
+                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to rate </h5>
+                                        <h6 class="text-center  font-grey-cascade mt-10 font-16 font-weight-400 text-none">Give a genuine rating about his/her information.</h6>
                                     </div>
                                 </div>
                             </div>
@@ -1933,23 +1933,22 @@
                     success: function (response) {
                         var student = JSON.parse(response);
                         var reviews = '';
-
                         var profile_pic = 'profile-pic.png';
 
                         $.each(student, function (i, v) {
                             reviews +=
-                                '<div class="mt-comment">\
-                                    <div class="mt-comment-img">\
-                                        <img src="' + v.profile_photo + '" class="avatar avatar-xtramini avatar-circle">\ 
-                                    </div>\
-                                    <div class="mt-comment-body">\
-                                        <div class="mt-comment-info">\
-                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
-                                        </div>\
-                                        <div class="mt-comment-text">' + v.rating +'</div>\
-                                    </div>\
-                                </div>'
+                                '<div class="mt-comment">'+
+                                    '<div class="mt-comment-img">'+
+                                        '<img src="' + v.profile_photo + '" class="avatar avatar-xtramini avatar-circle">'+ 
+                                    '</div>'+
+                                    '<div class="mt-comment-body">'+
+                                        '<div class="mt-comment-info">'+
+                                            '<a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>'+
+                                            '<span class="mt-comment-date">' + v.created_at + '</span>'+
+                                        '</div>'+
+                                        '<div class="mt-comment-text">' + v.rating +'</div>'+
+                                    '</div>'+
+                                '</div>'
                         });
 
                         $('#modal_list_reviewer_input').html(

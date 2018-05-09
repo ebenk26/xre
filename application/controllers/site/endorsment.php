@@ -87,6 +87,7 @@ class Endorsment extends CI_Controller {
     }
 
     public function getReview(){
+        $reviewed = [];
         $type = $this->input->get('endorsedType');
          if ($type == 'experience') {
             $data = array(  'reviews.user_id'  => $this->input->get('user_id'),
