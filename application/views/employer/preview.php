@@ -487,7 +487,7 @@
                                 },
                                 success: function (response) {
                                     swal("Success", "Job Has been posted.", "success");
-                                    window.location.replace('<?php echo base_url();?>employer/dashboard/');
+                                    window.location.replace('<?php echo base_url();?>employer/job_board/');
                                 }
                             })
                         } else {
@@ -498,12 +498,10 @@
             });
 
             <?php if($this->session->flashdata('msg_success')){ ?>
-            alertify.success('<?php echo $this->session->flashdata('
-                msg_success '); ?>', 'success', 5);
+            alertify.success('<?php echo $this->session->flashdata('msg_success'); ?>', 'success', 5);
             <?php } ?>
             <?php if($this->session->flashdata('msg_failed')){ ?>
-            alertify.error('<?php echo $this->session->flashdata('
-                msg_failed '); ?>', 'error', 5);
+            alertify.error('<?php echo $this->session->flashdata('msg_failed'); ?>', 'error', 5);
             <?php } ?>
         });
 
@@ -526,8 +524,7 @@
             var marker = new google.maps.Marker({
                 map: map,
                 position: latLang,
-                title: '<?php echo $user_profile['
-                company_name '];?>'
+                title: '<?php echo $user_profile['company_name'];?>'
             });
         }
         <?php }?>

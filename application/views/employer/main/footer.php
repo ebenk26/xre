@@ -160,10 +160,19 @@ $company_address = json_decode($user_profile['address']);?>
             function () {
                 var segments = window.location.href.split('/');
 
-                if (window.location.hash != '' && segments[4] == 'employer' && segments[5] == 'job_board') {
+                if (window.location.hash != '')
+                {
+                  if(segments[2] == 'localhost' && segments[4] == 'employer' && segments[5] == 'job_board') {
                     var idJobPost = $('a[href="' + window.location.hash + '"]').attr('data-id');
 
                     showMaps(idJobPost);
+                  }
+                  else if(segments[2] == 'xremo' && segments[3] == 'employer' && segments[4] == 'job_board') {
+                    var idJobPost = $('a[href="' + window.location.hash + '"]').attr('data-id');
+
+                    showMaps(idJobPost);
+                  }
+                }
                 }
             }, 2000);
     });
