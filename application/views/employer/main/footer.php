@@ -167,13 +167,12 @@ $company_address = json_decode($user_profile['address']);?>
 
                     showMaps(idJobPost);
                   }
-                  else if(segments[2] == 'xremo' && segments[3] == 'employer' && segments[4] == 'job_board') {
+                  else if(segments[2] == 'xremo.com' && segments[3] == 'employer' && segments[4] == 'job_board') {
                     var idJobPost = $('a[href="' + window.location.hash + '"]').attr('data-id');
 
                     showMaps(idJobPost);
                   }
-                }
-                }
+                }                
             }, 2000);
     });
     // GMap
