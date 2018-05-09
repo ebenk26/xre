@@ -1851,11 +1851,11 @@
 
                 if (user == 'same_user') {
                     invitation =
-                        '<div class="portlet p-50 md-shadow-none">\
+                        '<div class="portlet p-50 ">\
                             <div class="portlet-body text-center">\
-                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to endorse you! </h4>\
-                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to endorse your resume.</h5>\
+                                <i class="icon-star font-grey-mint font-40 mb-40"></i>\
+                                <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to endorse you! </h5>\
+                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-weight-400 font-16 text-none">Hey ! Invite one of your friend to endorse your resume.</h6>\
                                 <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
                         </div>';
@@ -1877,7 +1877,7 @@
                         var endorser = '';
 
                         var profile_pic = 'profile-pic.png';
-
+                        
                         $.each(student, function (i, v) {
                             endorser += '<li class="media media-middle">\
                                             <div class="pull-left">\
@@ -1894,10 +1894,10 @@
                             '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                    <h4 class="modal-title font-weight-500"> Endorse -\
+                                    <h5 class="modal-title font-weight-500"> Endorse -\
                                         <small class="font-16">' + dataName + ' </small>\
                                         <button data-dismiss="modal" class="close"></button>\
-                                    </h4>\
+                                    </h5>\
                                 </div>\
                                 <div class="modal-body">' +
                                     invitation +
@@ -1944,8 +1944,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">' + v.rating +'</div>\
@@ -1954,10 +1953,10 @@
                         });
 
                         $('#modal_list_reviewer_input').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog ">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' +dataName + ' </small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' +dataName + ' </small></h5>\
                                     </div>\
                                     <div class="modal-body">\
                                         <div class="mt-comments-v2">' +
@@ -1995,9 +1994,9 @@
                     invitation =
                         '<div class="portlet p-50 md-shadow-none">\
                             <div class="portlet-body text-center">\
-                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
-                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
+                                <i class="icon-star font-grey-mint font-40 mb-40"></i>\
+                                <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h5>\
+                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none">Hey ! Invite one of your friend to review your resume.</h6>\
                                 <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
                         </div>';
@@ -2028,8 +2027,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">' 
@@ -2040,10 +2038,10 @@
                         });
 
                         $('#modal_review_experience_list').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
                                     <div class="modal-body">' 
                                         + invitation +
@@ -2051,7 +2049,7 @@
                                         reviews +
                                         '</div>\
                                     </div>\
-                                    <div class="modal-footer md-grey-lighten-4">\
+                                    <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
                                 </div>\
                             </div>'
@@ -2093,8 +2091,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">' 
@@ -2105,17 +2102,17 @@
                         });
 
                         $('#modal_review_education_input').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
                                     <div class="modal-body">\
                                         <div class="mt-comments-v2">' 
                                             + reviews +
                                         '</div>\
                                     </div>\
-                                    <div class="modal-footer md-grey-lighten-4">\
+                                    <div class="modal-footer md-grey-lighten-5">\
                                         <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
                                             <div class="form-group text-left mx-0 mb-10">\
                                                 <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
@@ -2146,11 +2143,11 @@
 
                 if (user == 'same_user') {
                     invitation =
-                        '<div class="portlet p-50 md-shadow-none">\
+                        '<div class="portlet p-50">\
                             <div class="portlet-body text-center">\
-                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h4>\
-                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to review your resume.</h5>\
+                                <i class="icon-star font-grey-mint font-40 mb-40"></i>\
+                                <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h5>\
+                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none">Hey ! Invite one of your friend to review your resume.</h6>\
                                 <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
                         </div>';
@@ -2181,8 +2178,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">'
@@ -2193,10 +2189,10 @@
                         });
 
                         $('#modal_review_education_list').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
                                     <div class="modal-body">' 
                                         + invitation +
@@ -2204,7 +2200,7 @@
                                         reviews +
                                         '</div>\
                                     </div>\
-                                    <div class="modal-footer md-grey-lighten-4">\
+                                    <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
                                 </div>\
                             </div>'
@@ -2247,8 +2243,7 @@
                                      </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">' 
@@ -2300,8 +2295,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <div class="mt-comment-text">' 
@@ -2363,11 +2357,11 @@
 
                 if (user == 'same_user') {
                     invitation =
-                        '<div class="portlet p-50 md-shadow-none">\
+                        '<div class="portlet p-50">\
                             <div class="portlet-body text-center">\
-                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                <i class="icon-star font-grey-mint font-40 mb-40"></i>\
+                                <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h5>\
+                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-weight-600 font-16 text-none">Hey ! Invite one of your friend to rate your resume.</h6>\
                                 <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
                         </div>';
@@ -2398,8 +2392,7 @@
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
-                                            <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
                                             <span class="mt-comment-date">' + v.created_at +'</span>\
                                         </div>\
                                         <small class="text-none font-14 mt-5">give rating ' + v.rating + ' out of 5\
@@ -2410,10 +2403,10 @@
                         });
 
                         $('#modal_rate_education_list').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
                                     <div class="modal-body">' 
                                     + invitation +
@@ -2441,11 +2434,11 @@
 
                 if (user == 'same_user') {
                     invitation =
-                        '<div class="portlet p-50 md-shadow-none">\
+                        '<div class="portlet p-50">\
                             <div class="portlet-body text-center">\
-                                <i class="icon-star font-grey-mint font-40 mb-20"></i>\
-                                <h4 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>\
-                                <h5 class="text-center  font-grey-cascade mt-5 text-none">Hey ! Invite one of your friend to rate your resume.</h5>\
+                                <i class="icon-star font-grey-mint font-40 mb-40"></i>\
+                                <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h5>\
+                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none font-16 font-weight-400 ">Hey ! Invite one of your friend to rate your resume.</h6>\
                                 <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>\
                             </div>\
                         </div>';
@@ -2486,10 +2479,10 @@
                         });
 
                         $('#modal_rate_experience_list').html(
-                            '<div class="modal-dialog modal-lg">\
+                            '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h4 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h4>\
+                                        <h5 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
                                     <div class="modal-body">' 
                                         + invitation +
