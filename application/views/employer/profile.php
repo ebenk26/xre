@@ -353,7 +353,7 @@ else
                             <li>
                                 <?php if(!empty($value->optionsRadios)) { ?>
                                 <span class="label label-sm mb-20 label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>">
-                                    <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?>
+                                    <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : 'Branch'; ?>
                                 </span>
                                 <?php } ?>
                                 <?php

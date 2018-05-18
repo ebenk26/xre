@@ -188,7 +188,7 @@
                                             <li>
                                                 <!-- BRANCH / HQ -->
                                                 <h5 class="font-weight-600 md-grey-darken-3-text font-15 text-uppercase letter-space-xs">
-                                                    <?php echo $value->optionsRadios == 'HQ' ? 'Headquarter' : $value->optionsRadios; ?>
+                                                    <?php echo (!empty($value->optionsRadios) && $value->optionsRadios == 'HQ') ? 'Headquarter' : 'Branch'; ?>
                                                 </h5>
                                                 <?php
 													$full_address = $value->building_address != ""?$value->building_address.", ":"";
