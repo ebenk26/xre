@@ -10,15 +10,17 @@ class Main extends CI_Controller {
         if(empty($countryCheck)){
             redirect(base_url());
         }
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     }
     
     public function index(){
         $page = $this->uri->segment(USER_ROLE);
-        $content['site'] = $this->global_model->get_where('site', array('slug'=>$page));
-		$header['page_title'] = $content['site'][0]['title'];
+        $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : $this->cache->get('language');
+        $content['site'] = $this->global_model->get_where('site', array('slug'=>$page, 'locale'=> $_COOKIE['locale']));
+        $header['page_title']   = $content['site'][0]['title'];
         $this->load->view('main/header', $header);
         $this->load->view('site/main', $content);
-        $this->load->view('main/footer');
+        $this->load->view('main/footer', $header);
 	}
 
 }

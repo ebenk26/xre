@@ -10,6 +10,7 @@ class Article extends CI_Controller {
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         if(empty($countryCheck) ){
             redirect(base_url());
         }
@@ -39,7 +40,7 @@ class Article extends CI_Controller {
         $id 						= $this->session->userdata('id');
         $get_user_profile 			= $this->employer_model->get_user_profile($id);
         $profile['user_profile'] 	= $get_user_profile;
-        
+        $profile['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
 		$complement['result'] 		= $this->get_data();
 		$complement['popular'] 		= $this->get_data_list(1);
         $complement['recent'] 		= $this->get_data_list(2);
@@ -59,7 +60,7 @@ class Article extends CI_Controller {
         $id 						= $this->session->userdata('id');
         $get_user_profile 			= $this->employer_model->get_user_profile($id);
         $profile['user_profile'] 	= $get_user_profile;
-        
+        $profile['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
 		$complement['result'] 		= $this->get_data();
 		$complement['popular'] 		= $this->get_data_list(1);
         $complement['recent'] 		= $this->get_data_list(2);

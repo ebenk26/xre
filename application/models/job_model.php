@@ -44,7 +44,7 @@ class Job_Model extends CI_Model{
             $this->db->where("(job_positions.location LIKE '%$country_name%')");
         }
 
-		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%') AND(job_positions.location LIKE '%".$_COOKIE['country_name']."%')");
 		
         if(!empty($latest))
         {
@@ -107,7 +107,7 @@ class Job_Model extends CI_Model{
             $this->db->where("(job_positions.location LIKE '%$country_name%')");
         }
 
-		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%')");
+		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%') AND(job_positions.location LIKE '%".$_COOKIE['country_name']."%')");
 		$query = $this->db->get();
 		return $query->num_rows();
 	}

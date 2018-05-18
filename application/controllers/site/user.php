@@ -8,7 +8,7 @@ class User extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
         $this->load->model('global_model');
-
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         //if(empty($countryCheck)){
         //    redirect(base_url());
         //}
@@ -17,11 +17,13 @@ class User extends CI_Controller {
     
     public function login(){
         $header['page_title'] = 'Login';
+        $header['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
         $this->load->view('site/login', $header);
 	}
 
     public function signup(){
         $header['page_title'] = 'Sign Up';
+        $header['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
         $this->load->view('site/signup', $header);
     }
 
@@ -222,7 +224,7 @@ class User extends CI_Controller {
                 'password' => md5(SALT.sha1($this->input->post('password'))),
                 'company_name' => $this->input->post('company_name'),
                 'country_code' => $_COOKIE['country_id'],
-                'created_at' => date('d-M-Y h:i:s'),
+                'created_at' => date('Y-m-d h:i:s'),
             );
 
 

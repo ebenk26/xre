@@ -105,6 +105,7 @@ class Employer_Model extends CI_Model{
         $this->db->select('job_positions.*, employment_types.name as employment_name');
 		$this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
 		$this->db->where('user_id', $id);
+        // $this->db->where('status', 'post');
         $this->db->order_by('job_positions.expiry_date', 'desc');
         $query = $this->db->get('job_positions');
         return $query->result_array();

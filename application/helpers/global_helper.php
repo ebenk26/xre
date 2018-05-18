@@ -339,4 +339,16 @@ function checkCountryID($country_code){
     }
     return $result;
 }
+
+function getLocaleLanguage($locale){
+    $CI =& get_instance();
+    $CI->load->model('global_model');
+    $CI->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
+    $localeData = array('locale' => $locale );
+    $language = $CI->global_model->get_by_id('translation', $localeData, 'updated_at');
+    $result = json_decode($language->name);
+    $CI->cache->save('language', $result, 300);
+
+    return $result;   
+}
 ?>

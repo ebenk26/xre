@@ -572,4 +572,13 @@ class Job_Board extends CI_Controller {
         redirect(base_url().'job/candidate/'.base64_encode($job_id).'#tab_shortlisted_candidates');
     }
 
+    public function get_job_detail(){
+        $id = $this->input->get('jobId');
+        $detail = $this->employer_model->get_job_detail($id);
+        $locations = json_decode($detail->location);
+        $location = array(  'latitude' => $locations->latitude, 
+                            'longitude' => $locations->longitude);
+        print json_encode($location);
+    }
+
 }

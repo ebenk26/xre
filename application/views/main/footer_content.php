@@ -1,5 +1,4 @@
 <!--========== FOOTER ==========-->
-
 <footer class="bg-dark">
     <!-- Links -->
     <div class="hor-divider-solid-thin border-mdo-white-v3">
@@ -10,31 +9,31 @@
                         <h6 class="md-white-text">Sitemap</h6>
                         <hr class="hor-divider-solid-thin border-mdo-white-v3 width-150">
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>home">Home</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_home;?>"><?= $language->site_home;?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>about">About</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_about;?>"><?= $language->site_about;?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>services">Service</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_services;?>"><?= $language->site_services;?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>contact">Contacts</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_contact;?>"><?= $language->site_contact;?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>article">Article</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>article"><?= $language->site_article;?></a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-3 mb-40-xs mb-0-md">
                     <ul class="list-unstyled g-ul-li-tb-5-xs mb-0-xs">
-                        <h6 class="md-white-text">Privacy Protection</h6>
+                        <h6 class="md-white-text"><?= $language->site_privacy_protection;?></h6>
                         <hr class="hor-divider-solid-thin border-mdo-white-v3 width-150">
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>privacy">Privacy Policy</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_privacy_policy;?>"><?= $language->site_privacy_policy;?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>terms-of-use">Terms of Use</a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_terms_of_use;?>"><?= $language->site_terms_of_use;?></a>
                         </li>
                     </ul>
                 </div>
@@ -77,7 +76,7 @@
             <div class="col-xs-6 text-right">
                 <p class="font-14 mdo-white-v7-text mt-5 mb-0">
                     <i class="fa fa-copyright fa-fw"></i>
-                    <?php echo date('Y') ?> Copyright Xremo.com
+                    <?php echo date('Y') ?> <?= $language->site_copyright;?> Xremo.com
                 </p>
             </div>
         </div>

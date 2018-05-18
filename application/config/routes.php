@@ -55,6 +55,12 @@ $route['services'] 								= 'site/main';
 $route['contact'] 								= 'site/main';
 $route['privacy'] 								= 'site/main';
 $route['terms-of-use'] 							= 'site/main';
+$route['beranda'] 								= 'site/main';
+$route['tentang-kami'] 							= 'site/main';
+$route['layanan'] 								= 'site/main';
+$route['hubungi-kami'] 							= 'site/main';
+$route['privasi'] 								= 'site/main';
+$route['syarat-penggunaan'] 					= 'site/main';
 $route['login'] 								= 'site/user/login';
 $route['signup'] 								= 'site/user/signup';
 $route['forgot_password'] 						= 'site/user/forgot_password';
@@ -92,6 +98,8 @@ $route['success_change_password']				= 'site/user/success_change_password';
 $route['verify_registration']					= 'site/user/verify_registration';
 $route['expired_registration']					= 'site/user/expired_registration';
 $route['success_registration']					= 'site/user/success_registration';
+$route['sitemap\.xml'] 							= 'site/sitemap';
+$route['sitemap\.xml/googlef76eea03241e86d7\.html'] 							= 'site/sitemap/gVerify';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

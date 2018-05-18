@@ -351,9 +351,11 @@ else
                         <ul class="list-unstyled mt-25">
                             <?php foreach ($addr as $key => $value) {?>
                             <li>
+                                <?php if(!empty($value->optionsRadios)) { ?>
                                 <span class="label label-sm mb-20 label-<?php echo ($value->optionsRadios=='HQ') ? 'md-orange' : 'md-indigo' ?>">
                                     <?php echo ($value->optionsRadios == 'HQ') ? 'Headquarter' : ucfirst($value->optionsRadios); ?>
                                 </span>
+                                <?php } ?>
                                 <?php
                                                 $full_address = $value->building_address != ""?$value->building_address.", ":"";
                                                 $full_address .= $value->building_city != ""?$value->building_city.", ":"";
@@ -808,11 +810,11 @@ else
 
                                                     <div class="mt-radio-inline">
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios4" value="HQ" <?php echo ($value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
+                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios4" value="HQ" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
                                                             <span></span>
                                                         </label>
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios5" value="branch" <?php echo ($value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
+                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios5" value="branch" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
                                                             <span></span>
                                                         </label>
                                                     </div>

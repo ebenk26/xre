@@ -95,16 +95,16 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>about" class="s-header-v2-nav-link">About</a>
+                                    <a href="<?php echo base_url(); ?><?= $language->page_site_about;?>" class="s-header-v2-nav-link"><?= $language->site_about;?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>services" class="s-header-v2-nav-link">Services</a>
+                                    <a href="<?php echo base_url(); ?><?= $language->page_site_services;?>" class="s-header-v2-nav-link"><?= $language->site_services;?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?>contact" class="s-header-v2-nav-link">Contacts</a>
+                                    <a href="<?php echo base_url(); ?><?= $language->page_site_contact;?>" class="s-header-v2-nav-link"><?= $language->site_contact;?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?=base_url()?>article" class="s-header-v2-nav-link">Article</a>
+                                    <a href="<?=base_url()?>article" class="s-header-v2-nav-link"><?= $language->site_article;?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <?php if ($this->session->userdata('name')){ ?>
@@ -115,8 +115,8 @@
                                         <?php echo $this->session->userdata('name') ;?>
                                     </a>
                                     <?php }else{ ?>
-                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-default">Login</a>
-                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-shrink">Login</a>
+                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-default"><?= $language->site_login;?></a>
+                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-shrink"><?= $language->site_login;?></a>
                                     <?php } ?>
                                 </li>
                             </ul>

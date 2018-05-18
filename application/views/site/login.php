@@ -89,7 +89,7 @@
                                 <form class="form-horizontal login-form " action="<?php echo base_url(); ?>site/user/login_post" method="post" novalidate="novalidate">
                                     <div class="form-body ">
                                         <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-                                            <h4 class="font-weight-400 md-grey-darken-2-text mt-90 mb-70">Login to your account</h4>
+                                            <h4 class="font-weight-400 md-grey-darken-2-text mt-90 mb-70"><?= $language->login_to_your_account; ?></h4>
                                             <!--  Alert Display -->
                                             <div class="alert alert-danger display-hide mb-30 mt-5">
                                                 <button class="close" data-close="alert"></button>
@@ -120,25 +120,25 @@
                                                             <label for="checkbox16" class="font-weight-400 ">
                                                                 <span></span>
                                                                 <span class="check"></span>
-                                                                <span class="box"></span> Remember Me
+                                                                <span class="box"></span> <?= $language->login_remember_me; ?>
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="m-grid-col m-grid-col-middle m-grid-col-right">
                                                         <a href="javascript:;" id="forget-password" class="forget-password ">
-                                                            <label class="font-weight-400 ">Forgot Password? </label>
+                                                            <label class="font-weight-400 "><?= $language->login_forgot_password; ?>? </label>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group mb-40">
-                                                <button type="submit" class="btn btn-md-indigo btn-block">Sign in</button>
+                                                <button type="submit" class="btn btn-md-indigo btn-block"><?= $language->site_signin; ?></button>
                                             </div>
                                             <div class="m-grid my-4">
                                                 <div class="m-grid-col m-grid-col-middle m-grid-col-center ">
-                                                    Don't have an account ?
-                                                    <a href="<?php echo base_url(); ?>signup"> Sign Up </a>
+                                                    <?= $language->login_no_account; ?>?
+                                                    <a href="<?php echo base_url(); ?>signup"> <?= $language->site_signup; ?> </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                 <form class="forget-form text-center mt-display-none" action="<?php echo base_url(); ?>site/user/forgot_password" method="post">
                                     <div class="form-body">
                                         <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-                                            <h3 class="md-indigo-text mt-90 mb-70">Forgot Password ?</h3>
+                                            <h3 class="md-indigo-text mt-90 mb-70"><?= $language->login_forgot_password; ?> ?</h3>
                                             <p class="mb-30 "> Enter your e-mail address below to reset your password. </p>
 
                                             <div class="form-group">
