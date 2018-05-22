@@ -22,6 +22,7 @@ class Candidate extends CI_Controller {
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
+        $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $segment = $this->uri->segment(URI_SEGMENT_DETAIL);
         $job_id = base64_decode($segment);
         $complement['job'] = $this->global_model->get_by_id('job_positions', array('id'=>$job_id));

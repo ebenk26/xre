@@ -175,11 +175,11 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/dashboard/">
-                                        <i class="icon-home"></i> Dashboard </a>
+                                        <i class="icon-home"></i> <?= $language->site_dashboard; ?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/profile/">
-                                        <i class="icon-user"></i> Edit Profile </a>
+                                        <i class="icon-user"></i><?= $language->site_edit_profile; ?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank">
@@ -209,7 +209,7 @@
                                 </li>-->
                                 <li>
                                     <a href="<?php echo base_url(); ?>site/user/logout/">
-                                        <i class="icon-key"></i> Log Out </a>
+                                        <i class="icon-key"></i> <?= $language->site_logout; ?> </a>
                                 </li>
                             </ul>
                         </li>

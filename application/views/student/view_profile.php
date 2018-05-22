@@ -578,6 +578,7 @@
                                 <?php foreach($user_profile['academics'] as $key => $value){
                                         $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
                                         $review_counter = countReviewerEducation($value['academic_id']);
+
                                         if (!is_bool($keyReviewEdu)) {
                                             $checkReviewSame = $value['academic_id'] == $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
                                             $checkReviewNotSame = $value['academic_id'] != $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
@@ -588,12 +589,7 @@
                                             $countReviewer = count($review_counter['education']);
                                         }
 
-                                        $review_counter = countRateEducation($value['academic_id']);
-                                        if ($id != base64_decode($segmented_uri)) {
-                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'endorser_id'));
-                                        }else{
-                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'user_id'));
-                                        }
+
 
                                         if ($id != base64_decode($segmented_uri)) {
                                             $checkIdExistEducationRate = array_search($id, array_column($review_counter['education'],'endorser_id'));
@@ -605,7 +601,7 @@
                                             $modal_review = 'modal_reviewed_empty_educations_'.$value['academic_id'];
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_review = 'modal_reviewer_empty_educations_'.$value['academic_id'];
-                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducationReview)){
+                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducationRate)){
                                             $modal_review = 'modal_review_education_list';
                                         }else{
                                             $modal_review = 'modal_review_education_input';
@@ -685,13 +681,13 @@
                                                         <?php endif; ?>
                                                         <!-- Review -->
                                                         <?php if(!empty($keyReviewEdu)): ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>"
+                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>"
                                                                 endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
                                                                 <?= $countReviewer?>
                                                                     <i class="icon-note"></i>
                                                             </a>
                                                         <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>"
+                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>"
                                                                 endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
                                                                 <?= $countReviewer?>
                                                                     <i class="icon-note"></i>
@@ -2115,9 +2111,9 @@
                                         <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
                                             <div class="form-group text-left mx-0 mb-10">\
                                                 <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
-                                                <input type="hidden" name="exp_id" value="' + dataId + '"></input>\
+                                                <input type="hidden" name="skill_id" value="' + dataId + '"></input>\
                                                 <input type="hidden" name="endorser_id" value="' + endorserId + '"></input>\
-                                                <input type="hidden" name="user_id" value="' + dataUserId + '"></input>\
+                                                <input type="hidden" name="endorsed_id" value="' + dataUserId + '"></input>\
                                                 <span class="help-block">Please put genuine statement !</span>\
                                             </div>\
                                             <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
@@ -2139,7 +2135,11 @@
                 var endorsedType = $(this).attr('endorse-type');
                 var image_directory = window.location.origin + '/xremo/assets/img/student/';
                 var user = $(this).attr('user');
-
+                console.log(dataId);
+                console.log(dataUserId);
+                console.log(dataName);
+                console.log(endorsedType);
+                
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50">\

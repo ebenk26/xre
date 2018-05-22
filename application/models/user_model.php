@@ -66,7 +66,6 @@ class User_Model extends CI_Model{
         $this->db->where(array('users.email' => $email));
         $query = $this->db->get();
         $result = $query->last_row('array');
-
         if (!empty($result)) {
             if ($result['password'] == $password && $result['verified'] == 1) {
                 $user = array('user_id' => !empty($result['id']) ? $result['id'] : $this->session->userdata('id') );

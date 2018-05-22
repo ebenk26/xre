@@ -18,6 +18,7 @@ class Calendar extends CI_Controller {
     	$profile['page_title'] = 'Calendar';
 		$id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
+        $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $profile['user_profile'] = $get_user_profile;
         $calendar['invitation'] = $this->employer_model->get_interview_invitation($id);
         $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));

@@ -19,6 +19,7 @@ class Gallery extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/gallery');
         $this->load->view('employer/main/footer');

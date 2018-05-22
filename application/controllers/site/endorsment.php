@@ -31,7 +31,7 @@ class Endorsment extends CI_Controller {
         } catch (Exception $e) {
             $this->session->set_flashdata('msg_failed', 'Endorse user failed');
         }
-        return json_encode($data);
+        redirect(base_url().'profile/user/'.base64_encode($this->input->post('endorsed_id')));
 	}
 
     public function unendorse(){
@@ -78,7 +78,7 @@ class Endorsment extends CI_Controller {
                                         'fullname'              =>  $value['fullname'],
                                         'company_name'          =>  $value['company_name'],
                                         'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : (($value['roles']=='employer') ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYER.'xremo/xremo-logo-blue.png'),
-                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/student/'.rtrim(base64_encode($value['id']),'='),
+                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/user/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;
@@ -104,7 +104,7 @@ class Endorsment extends CI_Controller {
                                         'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
                                         'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
                                         'rating'                =>  $value['rating'],
-                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/student/'.rtrim(base64_encode($value['id']),'='),
+                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/user/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;
@@ -129,7 +129,7 @@ class Endorsment extends CI_Controller {
                                         'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
                                         'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
                                         'rating'                =>  $value['rating'],
-                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/student/'.rtrim(base64_encode($value['id']),'='),
+                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/user/'.rtrim(base64_encode($value['id']),'='),
                                         'type'                  =>  $value['type']);
 
             $i++;
@@ -163,7 +163,7 @@ class Endorsment extends CI_Controller {
         } catch (Exception $e) {
             $this->session->set_flashdata('msg_failed', 'Rating user failed');
         }
-        redirect(base_url().'profile/user/'.base64_encode($this->input->post('endorsed_id')));
+        redirect(base_url().'profile/user/'.rtrim(base64_encode($this->input->post('endorsed_id')),'='));
 
     }
 
@@ -187,14 +187,13 @@ class Endorsment extends CI_Controller {
                             'updated_at' => date('Y-m-d H:i:s') );
         }
 
-
         try {
             $this->global_model->create('reviews', $data);
             $this->session->set_flashdata('msg_success', 'Review user success');
         } catch (Exception $e) {
             $this->session->set_flashdata('msg_failed', 'Review user failed');
         }
-        redirect(base_url().'profile/user/'.base64_encode($this->input->post('endorsed_id')));
+        redirect(base_url().'profile/user/'.rtrim(base64_encode($this->input->post('endorsed_id')),'='));
     }
 
     public function invite(){

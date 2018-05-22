@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
         $id = $this->session->userdata('id');
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
+        $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $complement['user_profile'] = $get_user_profile;
         $complement['job_post'] = $this->employer_model->get_job_post($id);
 		$complement['invitation'] = $this->employer_model->get_interview_invitation_more_than_today($id);

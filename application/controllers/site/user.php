@@ -66,7 +66,6 @@ class User extends CI_Controller {
                     }
                 }
                 
-                
 
             }elseif ($login_result['status_request'] == 422) {
                 $this->session->set_flashdata('msg_failed', 'Wrong Password please try again.');
