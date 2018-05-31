@@ -257,6 +257,7 @@ $company_address = json_decode($user_profile['address']);?>
                 place.formatted_address;
             infowindow.setContent(document.getElementById('infowindow-content'));
             infowindow.open(map, marker);
+            console.log(place.geometry.location);
             document.getElementById('addLatitude').value = place.geometry.location.lat();
             document.getElementById('addLongitude').value = place.geometry.location.lng();
             document.getElementById('addMapTitle').value = place.name;
