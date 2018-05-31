@@ -58,6 +58,9 @@ class Profile extends CI_Controller {
                                     'name' => $value['name'],
                                     'user_id' => $id );
                     $this->employer_model->post_social($socmed);
+                }else{
+                    $this->session->set_flashdata('msg_failed', 'Please input your social media');    
+                    redirect(base_url().'employer/profile');
                 }
             }
         }else{
@@ -315,7 +318,7 @@ class Profile extends CI_Controller {
         if (!$id) {
             redirect(show_404());
         }
-        $profile_form['job'] = $this->employer_model->get_job_post($id);
+        $profile_form['job'] = $this->employer_model->getPostedJob($id);
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile_form['detail'] = $get_user_profile;
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));

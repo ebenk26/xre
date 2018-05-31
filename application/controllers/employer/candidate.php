@@ -83,7 +83,7 @@ class Candidate extends CI_Controller {
         $job_id = base64_decode($this->input->post('job_id'));
 
         $page = $this->input->post('page');
-
+/*
         $start = explode(' - ', $this->input->post('start_date'));
         $start_date = date('Y-m-d',strtotime(current($start)));
         $start_hour = date('H:i:s', strtotime(end($start)));
@@ -93,6 +93,13 @@ class Candidate extends CI_Controller {
         $end_date = date('Y-m-d',strtotime(current($end)));
         $end_hour = date('H:i:s', strtotime(end($end)));
         $end_date_hour = implode(' ', array($end_date, $end_hour));
+*/
+        $date = date('Y-m-d', strtotime($this->input->post('date')));
+        $start_hour = date('H:i:s', strtotime($this->input->post('start_time')));
+        $end_hour = date('H:i:s', strtotime($this->input->post('end_time')));
+        $start_date_hour = implode(' ', array($date, $start_hour));        
+        $end_date_hour = implode(' ', array($date, $end_hour)); 
+        
         $id = $this->input->post('id');
         $session = array('job_id'=>$job_id,
                         'title' => $this->input->post('title'), 
@@ -162,7 +169,7 @@ class Candidate extends CI_Controller {
         $interview_schedule_id      = base64_decode($this->input->post('interview_schedule_id'));
         $interview_schedule_user_id = base64_decode($this->input->post('candidate_id'));
         $page_id                    = $this->input->post('job_position_id');
-        $start                      = explode(' - ', $this->input->post('start_date'));
+        /*$start                      = explode(' - ', $this->input->post('start_date'));
         $start_date                 = date('Y-m-d',strtotime(current($start)));
         $start_hour                 = date('H:i:s', strtotime(end($start)));
         $start_date_hour            = implode(' ', array($start_date, $start_hour));
@@ -170,7 +177,13 @@ class Candidate extends CI_Controller {
         $end            = explode(' - ', $this->input->post('end_date'));
         $end_date       = date('Y-m-d',strtotime(current($end)));
         $end_hour       = date('H:i:s', strtotime(end($end)));
-        $end_date_hour  = implode(' ', array($end_date, $end_hour));
+        $end_date_hour  = implode(' ', array($end_date, $end_hour));*/
+
+        $date = date('Y-m-d', strtotime($this->input->post('date')));
+        $start_hour = date('H:i:s', strtotime($this->input->post('time')));
+        $end_hour = date('H:i:s', strtotime($this->input->post('time')));
+        $start_date_hour = implode(' ', array($date, $start_hour));        
+        $end_date_hour = implode(' ', array($date, $end_hour)); 
 
         $title          = 'Reschedule Session on '. $this->input->post('start_date');
         $description    = $this->input->post('reschedule_detail');

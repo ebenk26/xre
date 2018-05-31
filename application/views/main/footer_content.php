@@ -9,19 +9,19 @@
                         <h6 class="md-white-text">Sitemap</h6>
                         <hr class="hor-divider-solid-thin border-mdo-white-v3 width-150">
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_home;?>"><?= $language->site_home;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_home : 'home';?>"><?= !empty($language) ? $language->site_home : 'Home';?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_about;?>"><?= $language->site_about;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_about : 'about';?>"><?= !empty($language) ? $language->site_about : 'About';?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_services;?>"><?= $language->site_services;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_services : 'services';?>"><?= !empty($language) ? $language->site_services : 'Services';?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_contact;?>"><?= $language->site_contact;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_contact : 'contact';?>"><?= !empty($language) ? $language->site_contact : 'contact';?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>article"><?= $language->site_article;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?>article"><?= !empty($language) ? $language->site_article : 'Article';?></a>
                         </li>
                     </ul>
                 </div>
@@ -30,10 +30,10 @@
                         <h6 class="md-white-text"><?= $language->site_privacy_protection;?></h6>
                         <hr class="hor-divider-solid-thin border-mdo-white-v3 width-150">
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_privacy_policy;?>"><?= $language->site_privacy_policy;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_privacy_policy : 'privacy';?>"><?= !empty($language) ? $language->site_privacy_policy : 'Privacy';?></a>
                         </li>
                         <li>
-                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= $language->page_site_terms_of_use;?>"><?= $language->site_terms_of_use;?></a>
+                            <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_terms_of_use : 'terms-of-use';?>"><?= !empty($language) ? $language->site_terms_of_use : 'Terms of Use';?></a>
                         </li>
                     </ul>
                 </div>

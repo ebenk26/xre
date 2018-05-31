@@ -575,7 +575,7 @@
                         <div class="tab-pane" id="tab_education">
                             <?php if(!empty($user_profile['academics'])){?>
                             <ul class="list-group list-border">
-                                <?php foreach($user_profile['academics'] as $key => $value){
+                                <?php $i=0; foreach($user_profile['academics'] as $key => $value){
                                         $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
                                         $review_counter = countReviewerEducation($value['academic_id']);
 
@@ -589,19 +589,20 @@
                                             $countReviewer = count($review_counter['education']);
                                         }
 
-
+                                        
 
                                         if ($id != base64_decode($segmented_uri)) {
-                                            $checkIdExistEducationRate = array_search($id, array_column($review_counter['education'],'endorser_id'));
+                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'endorser_id'));
+                                            
                                         }else{
-                                            $checkIdExistEducationRate = array_search($id, array_column($review_counter['education'],'user_id'));
+                                            $checkIdExistEducationReview = array_search($id, array_column($review_counter['education'],'user_id'));
                                         }
 
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_review = 'modal_reviewed_empty_educations_'.$value['academic_id'];
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_review = 'modal_reviewer_empty_educations_'.$value['academic_id'];
-                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducationRate)){
+                                        }else if($countReviewer > 0 && !is_bool($checkIdExistEducationReview)){
                                             $modal_review = 'modal_review_education_list';
                                         }else{
                                             $modal_review = 'modal_review_education_input';
@@ -619,13 +620,20 @@
                                         $keyRatingEdu = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
                                         $rating_counter = countRateEducation($value['academic_id']);
                                         if (!is_bool($keyRatingEdu)) {
-                                            $checkRatingSame = $value['academic_id'] == $endorseReviewRating['rate'][$keyRatingExp]['skill_id'];
-                                            $checkRatingNotSame = $value['academic_id'] != $endorseReviewRating['rate'][$keyRatingExp]['skill_id'];
+                                            $checkRatingSame = $value['academic_id'] == $endorseReviewRating['rate'][$keyRatingEdu]['skill_id'];
+                                            $checkRatingNotSame = $value['academic_id'] != $endorseReviewRating['rate'][$keyRatingEdu]['skill_id'];
                                             $countRater = count($rating_counter['education']);
                                         }else{
                                             $checkRatingSame = false;
                                             $checkRatingNotSame = true;
                                             $countRater = count($rating_counter['education']);
+                                        }
+
+                                        if ($id != base64_decode($segmented_uri)) {
+                                            $checkIdExistEducationRate = array_search($id, array_column($rating_counter['education'],'endorser_id'));
+                                            
+                                        }else{
+                                            $checkIdExistEducationRate = array_search($id, array_column($rating_counter['education'],'user_id'));
                                         }
 
 
@@ -642,6 +650,8 @@
                                             $modal_rate = 'modal_list_rater_input';
                                             $class = 'rate-education-input';
                                         }
+
+                                        
 
                                         if ($total_rating > 0 && !empty($rate_education['education'])) {
                                             $totalRating = round($total_rating/count($rate_education['education']),1);
@@ -664,13 +674,6 @@
                                                                     <i class="icon-star text-center"></i>
                                                             </a>
 
-                                                        <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics"
-                                                                data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                <?= $totalRating; ?>
-                                                                    <i class="icon-star text-center"></i>
-                                                            </a>
-
                                                         <?php else: ?>
                                                             <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics"
                                                                 data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
@@ -683,12 +686,6 @@
                                                         <?php if(!empty($keyReviewEdu)): ?>
                                                             <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>"
                                                                 endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
-                                                                <?= $countReviewer?>
-                                                                    <i class="icon-note"></i>
-                                                            </a>
-                                                        <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (empty($endorseReviewRating['endorse'][$keyReviewEdu]['rating'])) ): ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>"
-                                                                endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
                                                                 <?= $countReviewer?>
                                                                     <i class="icon-note"></i>
                                                             </a>
@@ -836,7 +833,7 @@
                                     </div>                                    
                                 </div>
 
-                                <?php } ?>
+                                <?php $i++; } ?>
                             </ul>
                             <?php }else{?>
                             <!-- # Empty States -->
@@ -870,12 +867,16 @@
 
                                         if (($countReviewer == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_review = 'modal_reviewed_empty_experiences_'.$value['experience_id'];
+                                            $class = 'review-experience-list';
                                         }else if(($countReviewer == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_review = 'modal_reviewer_empty_experiences_'.$value['experience_id'];
+                                            $class = 'review-input';
                                         }else if($countReviewer > 0 && !is_bool($checkIdExist)){
                                             $modal_review = 'modal_review_experience_list';
+                                            $class = 'review-experience-list';
                                         }else{
                                             $modal_review = 'modal_list_reviewer_input';
+                                            $class = 'review-input';
                                         }
                                         /*end review*/
                                         /*start rating*/
@@ -907,15 +908,21 @@
                                             $countRater = count($rating_counter['experience']);
                                         }
 
+
                                         if (($countRater == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_rate = 'modal_rated_empty_experience_'.$value['experience_id'];
+                                            $class = 'rate-experience-list';
                                         }else if(($countRater == 0) && $id != base64_decode($segmented_uri)){
                                             $modal_rate = 'modal_rater_empty_experience';
+                                            $class = 'rate-experience-input-empty';
                                         }else if($countRater > 0 && !is_bool($checkIdRatingExist)){
                                             $modal_rate = 'modal_rate_experience_list';
+                                            $class = 'rate-experience-list';
                                         }else{
                                             $modal_rate = 'modal_list_rater_input';
+                                            $class = 'rate-experience-input';
                                         }
+
 
                                         if ($total_rating > 0 && !empty($rate_experience['experience'])) {
                                             $totalRating = round($total_rating/count($rate_experience['experience']),1);
@@ -932,7 +939,7 @@
                                                 <?php if (!empty($id)):
                                                         if (!empty($keyReviewExp)) :?>
                                                             <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input-empty';?>"
+                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
                                                                     data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
                                                                     <?= $totalRating; ?>
                                                                         <i class="icon-star text-center"></i>
@@ -944,7 +951,7 @@
                                                                 </a>
 
                                                             <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input-empty';?>"
+                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
                                                                     data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
                                                                     <?= $totalRating; ?>
                                                                         <i class="icon-star text-center"></i>
@@ -956,7 +963,7 @@
                                                                 </a>
 
                                                             <?php else: ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input-empty';?>"
+                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
                                                                     data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
                                                                     <?= $totalRating; ?>
                                                                         <i class="icon-star text-center"></i>
@@ -969,7 +976,7 @@
                                                             <?php endif; ?>
                                                 
                                                         <?php else: ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= ($modal_rate == 'modal_rate_experience_list') ?  'rate-experience-list' : 'rate-experience-input-empty';?>"
+                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>"
                                                                 data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
                                                                 <?= $totalRating; ?>
                                                                     <i class="icon-star text-center"></i>
@@ -1123,7 +1130,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Endorse -
+                                                <h5 class="modal-title font-weight-500"> Review -
                                                     <small class="font-16">
                                                         <?= $value['experiences_title'] ?>
                                                     </small>
@@ -1178,7 +1185,7 @@
                                         }else{
                                             $checkEndorseSame = false;
                                             $checkEndorseNotSame = true;
-                                            $countEndorser = 0;
+                                            $countEndorser = count($endorsement_counter['achievement']);
                                         }
                                         if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_endorse = 'modal_endorsed_empty_achievement_'.$value['achievement_id'];
@@ -1363,7 +1370,7 @@
                                         }else{
                                             $checkEndorseSame = false;
                                             $checkEndorseNotSame = true;
-                                            $countEndorser = 0;
+                                            $countEndorser = count($countEndorserProject['project']);
                                         }
                                         if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_endorse = 'modal_endorsed_empty_project_'.$value['id'];
@@ -1801,13 +1808,9 @@
                         endorsedId: endorsedId,
                         endorsedType: endorsedType
                     }, function (data) {
-                        if (data == "false") {
-                            alertify.error('Endorse user Failed');
-                        } else {
                             alertify.success('Endorse user success.');
-                            location.reload();
-                        }
                     });
+                            window.location.reload(true);
                 }, function (data) {
                     alertify.error('Cancel');
                 });
@@ -1825,13 +1828,9 @@
                         endorsedId: endorsedId,
                         endorsedType: endorsedType
                     }, function (data) {
-                        if (data == "false") {
-                            alertify.error('Unendorse user Failed');
-                        } else {
-                            alertify.success('Unendorse user success.');
-                            location.reload();
-                        }
+                            alertify.success('Endorse user success.');
                     });
+                            window.location.reload(true);
                 }, function (data) {
                     alertify.error('Cancel');
                 });
@@ -2135,10 +2134,6 @@
                 var endorsedType = $(this).attr('endorse-type');
                 var image_directory = window.location.origin + '/xremo/assets/img/student/';
                 var user = $(this).attr('user');
-                console.log(dataId);
-                console.log(dataUserId);
-                console.log(dataName);
-                console.log(endorsedType);
                 
                 if (user == 'same_user') {
                     invitation =
@@ -2337,6 +2332,7 @@
                 var endorsedType = $(this).attr('endorse-type');
                 var image_directory = window.location.origin + '/assets/img/student/';
                 var endorserId = $(this).attr('endorser-id');
+
 
                 $('#modal_rater_empty_experience #dataNameExp').text(dataName);
                 $('#modal_rater_empty_experience #reviews').html(reviews);

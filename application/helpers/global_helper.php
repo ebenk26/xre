@@ -241,12 +241,12 @@ function EndorseReviewRating($params)
     $profile['review']= $CI->global_model->get_where('reviews', $reviewData);
 
     if (!empty($params['endorser'])) {
-        $rateData = array('user_id_rater'=> $params['endorser'],
+        $rateData = array('endorser_id'=> $params['endorser'],
                 'user_id'=> $params['endorsed']);
     }else{
         $rateData = array('user_id'=> $params['endorsed']);
     }
-    $profile['rate']= $CI->global_model->get_where('user_rate', $rateData);
+    $profile['rate']= $CI->global_model->get_where('ratings', $rateData);
     return $profile;
 }
 

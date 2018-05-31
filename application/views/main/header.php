@@ -10,8 +10,8 @@
 
     <!-- Title -->
     <?php $title= !empty($page_title) ? $page_title : 'Welcome';?>
-    <title>Xremo -
-        <?php echo $title; ?>
+    <title>
+        <?php echo !empty($title) ? 'Xremo - '.$title : 'Xremo'; ?>
     </title>
 
     <!-- ========== CSS STYLE ========== -->

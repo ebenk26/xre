@@ -467,7 +467,7 @@ else
                                                     <div class="col-md-6 col-xs-6 col-sm-6">
                                                         <input type="text" placeholder="Add link to here" class="form-control" name="link" value="<?php echo $value['link']; ?>" /> </div>
                                                     <div class="col-md-4 col-xs-4 col-sm-4">
-                                                        <select class="form-control" name="name">
+                                                        <select class="form-control" name="name" required>
                                                             <option value="" selected disabled>Select account type </option>
                                                             <option value="facebook" <?php echo ($value[ 'name']=='facebook' ) ? 'selected' : '' ?>>Facebook</option>
                                                             <option value="twitter" <?php echo ($value[ 'name']=='twitter' ) ? 'selected' : '' ?>>Twitter</option>
