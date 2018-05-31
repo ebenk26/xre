@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-3 mb-40-xs mb-0-md">
                     <ul class="list-unstyled g-ul-li-tb-5-xs mb-0-xs">
-                        <h6 class="md-white-text"><?= $language->site_privacy_protection;?></h6>
+                        <h6 class="md-white-text"><?= !empty($language->site_privacy_protection) ? $language->site_privacy_protection : 'Privacy Protection';?></h6>
                         <hr class="hor-divider-solid-thin border-mdo-white-v3 width-150">
                         <li>
                             <a class="font-15 mdo-white-v7-text" href="<?php echo base_url(); ?><?= !empty($language) ? $language->page_site_privacy_policy : 'privacy';?>"><?= !empty($language) ? $language->site_privacy_policy : 'Privacy';?></a>
@@ -76,7 +76,7 @@
             <div class="col-xs-6 text-right">
                 <p class="font-14 mdo-white-v7-text mt-5 mb-0">
                     <i class="fa fa-copyright fa-fw"></i>
-                    <?php echo date('Y') ?> <?= $language->site_copyright;?> Xremo.com
+                    <?php echo date('Y') ?> <?= !empty($language->site_copyright) ? $language->site_copyright : 'Copyright';?> Xremo.com
                 </p>
             </div>
         </div>

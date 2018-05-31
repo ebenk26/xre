@@ -95,28 +95,28 @@
                         <div class="collapse navbar-collapse s-header-v2-navbar-collapse" id="nav-collapse">
                             <ul class="s-header-v2-nav">
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?><?= $language->page_site_about;?>" class="s-header-v2-nav-link"><?= $language->site_about;?></a>
+                                    <a href="<?php echo base_url(); ?><?= !empty($language->page_site_about) ? $language->page_site_about : 'about';?>" class="s-header-v2-nav-link"><?= !empty($language->site_about) ? $language->site_about : 'About';?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?><?= $language->page_site_services;?>" class="s-header-v2-nav-link"><?= $language->site_services;?></a>
+                                    <a href="<?php echo base_url(); ?><?= !empty($language->page_site_services) ? $language->page_site_services : 'services';?>" class="s-header-v2-nav-link"><?= !empty($language->site_services) ? $language->site_services : 'Services';?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?php echo base_url(); ?><?= $language->page_site_contact;?>" class="s-header-v2-nav-link"><?= $language->site_contact;?></a>
+                                    <a href="<?php echo base_url(); ?><?= !empty($language->page_site_contact) ? $language->page_site_contact : 'contact';?>" class="s-header-v2-nav-link"><?= !empty($language->site_contact) ? $language->site_contact : 'Contact';?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
-                                    <a href="<?=base_url()?>article" class="s-header-v2-nav-link"><?= $language->site_article;?></a>
+                                    <a href="<?=base_url()?>article" class="s-header-v2-nav-link"><?= !empty($language->site_article) ? $language->site_article: 'Article';?></a>
                                 </li>
                                 <li class="s-header-v2-nav-item">
                                     <?php if ($this->session->userdata('name')){ ?>
-                                    <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-button btn btn-default ">Welcome,
+                                    <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-button btn btn-default "><?= !empty($language->welcome) ? $language->welcome : 'Welcome'?>,
                                         <?php echo $this->session->userdata('name') ;?>
                                     </a>
-                                    <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-button btn btn-shrink ">Welcome,
+                                    <a href="<?php echo base_url(); ?><?php echo $this->session->userdata('roles'); ?>/dashboard" class="s-header-v2-button btn btn-shrink "><?= !empty($language->welcome) ? $language->welcome : 'Welcome'?>,
                                         <?php echo $this->session->userdata('name') ;?>
                                     </a>
                                     <?php }else{ ?>
-                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-default"><?= $language->site_login;?></a>
-                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-shrink"><?= $language->site_login;?></a>
+                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-default"><?= !empty($language->site_login) ? $language->site_login : "Login";?></a>
+                                    <a href="<?php echo base_url(); ?>login" class="s-header-v2-button btn btn-shrink"><?= !empty($language->site_login) ? $language->site_login : "Login";?></a>
                                     <?php } ?>
                                 </li>
                             </ul>

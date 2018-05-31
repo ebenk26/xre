@@ -175,20 +175,20 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/dashboard/">
-                                        <i class="icon-home"></i> <?= $language->site_dashboard; ?> </a>
+                                        <i class="icon-home"></i> <?= !empty($language)? $language->site_dashboard : 'Dashboard'; ?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/profile/">
-                                        <i class="icon-user"></i><?= $language->site_edit_profile; ?> </a>
+                                        <i class="icon-user"></i><?= !empty($language)? $language->site_edit_profile : 'Edit Profile'; ?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank">
-                                        <i class="icon-book-open"></i> View My Profile
+                                        <i class="icon-book-open"></i> <?= !empty($language)? $language->site_view_my_profile : 'View My Profile'; ?>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>employer/calendar/">
-                                        <i class="icon-calendar"></i> My Calendar </a>
+                                        <i class="icon-calendar"></i><?= !empty($language)? $language->site_my_calendar : 'My Calendar'; ?>  </a>
                                 </li>
                                 <!--<li>
                                     <a href="https://xremo.github.io/XremoFrontEnd/custom_pages/app_inbox.html">
@@ -209,7 +209,7 @@
                                 </li>-->
                                 <li>
                                     <a href="<?php echo base_url(); ?>site/user/logout/">
-                                        <i class="icon-key"></i> <?= $language->site_logout; ?> </a>
+                                        <i class="icon-key"></i> <?= !empty($language->site_logout) ? $language->site_logout : 'Logout'; ?> </a>
                                 </li>
                             </ul>
                         </li>
@@ -237,7 +237,7 @@
                     <li class="nav-progress">
                         <div class="progress-info">
                             <div class="status">
-                                <div class="status-title"> Profile Completion </div>
+                                <div class="status-title"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : "Profile Completion"  ?> </div>
                                 <div class="status-number">
                                     <?= ProfileCompletion($user_profile); ?>%</div>
                             </div>
@@ -253,7 +253,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
                             <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
+                            <span class="title"><?= !empty($language->site_dashboard) ? $language->site_dashboard : "Dashboard"  ?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -261,7 +261,7 @@
                     <li class="nav-item  <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>employer/profile/" class="nav-link nav-toggle ">
                             <i class="icon-diamond"></i>
-                            <span class="title">Company Profile</span>
+                            <span class="title"><?= !empty($language->site_company_profile) ? $language->site_company_profile : "Company Profile"  ?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -269,7 +269,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/job_board/" class="nav-link ">
                             <i class="icon-briefcase"></i>
-                            <span class="title">Job Board</span>
+                            <span class="title"><?= !empty($language->site_job_board) ? $language->site_job_board : "Job board"  ?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -277,7 +277,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/calendar/" class="nav-link ">
                             <i class="icon-calendar"></i>
-                            <span class="title">Calendar</span>
+                            <span class="title"><?= !empty($language->site_calendar) ? $language->site_calendar : "calendar"  ?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -285,7 +285,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/inbox/" class="nav-link ">
                             <i class="icon-envelope"></i>
-                            <span class="title">Inbox</span>
+                            <span class="title"><?= !empty($language->site_inbox) ? $language->site_inbox : "inbox"  ?></span>
                             <?php 
 								$data_message = getDataMessage("general");
 								if($data_message['new'] > 0){
@@ -317,7 +317,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/settings/" class="nav-link ">
                             <i class="icon-settings"></i>
-                            <span class="title">Settings</span>
+                            <span class="title"><?= !empty($language->site_settings) ? $language->site_settings : "Settings"  ?></span>
                             <span class="selected"></span>
                         </a>
                     </li>

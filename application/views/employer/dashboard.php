@@ -12,20 +12,20 @@
     <div class="page-content">
 
         <!-- BEGIN PAGE HEADER-->
-        <h1 class="page-title"> Hey ! Welcome back
+        <h1 class="page-title"> Hey ! <?= !empty($language->welcome) ? $language->welcome : "Welcome" ?> <?= !empty($language->back) ? $language->back : "Back" ?>
             <?php echo ucfirst($this->session->userdata('name'));?>
-            <small>Here latest feeds regarding your Company account</small>
+            <small><?= !empty($language->site_feed_label) ? $language->site_feed_label : "Here latest feeds regarding your Company account"; ?></small>
         </h1>
 
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url().'employer/dashboard'; ?>">Home</a>
+                    <a href="<?php echo base_url().'employer/dashboard'; ?>"><?= !empty($language->site_home) ? $language->site_home : "Home"; ?></a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <span><?= !empty($language->site_dashboard) ? $language->site_dashboard : "Dashboard"; ?></span>
                 </li>
             </ul>
 
@@ -37,7 +37,7 @@
             <!-- BEGIN WIDGET THUMB  : Job Post (Active)-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"> Job Post</h4>
+                    <h4 class="widget-thumb-heading"> <?= !empty($language->job_post) ? $language->job_post : "job post"  ?></h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-green icon-briefcase"></i>
                         <div class="widget-thumb-body">
@@ -49,7 +49,7 @@
                                     }
                                 }									
                             ?>
-                            <span class="widget-thumb-subtitle">Active</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->active) ? $language->active : "active"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$active?>"></span>
                         </div>
                     </div>
@@ -59,11 +59,11 @@
             <!-- BEGIN WIDGET THUMB : Profile Seen -->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading">Profile </h4>
+                    <h4 class="widget-thumb-heading"><?= !empty($language->profile) ? $language->profile : "profile"  ?> </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-red icon-eye"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle">Seen</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->seen) ? $language->seen : "seen"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$user_profile['number_of_seen']?>">0</span>
                         </div>
                     </div>
@@ -73,11 +73,11 @@
             <!-- BEGIN WIDGET THUMB : Upcoming Interview-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"> Interview</h4>
+                    <h4 class="widget-thumb-heading"> <?= !empty($language->interview) ? $language->interview : "interview"  ?></h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-purple icon-calendar"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle">Upcoming </span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->upcoming) ? $language->upcoming : "upcoming"  ?> </span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $upcoming; ?>">
                                 <?php echo $upcoming; ?>
                             </span>
@@ -89,12 +89,12 @@
             <!-- BEGIN WIDGET THUMB : Inbox-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading">Inbox</h4>
+                    <h4 class="widget-thumb-heading"><?= !empty($language->site_inbox) ? $language->site_inbox : "inbox"  ?></h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-blue icon-envelope"></i>
                         <div class="widget-thumb-body">
                             <?php $message = getDataMessage("general");?>
-                            <span class="widget-thumb-subtitle">Unread Message</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->unread_message) ? $language->unread_message : "unread message"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$message['new']?>">0</span>
                         </div>
                     </div>
