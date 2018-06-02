@@ -26,30 +26,56 @@ class Employer extends CI_Controller {
         $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
         $complement['job_post'] 			= $this->employer_model->get_job_post($id);
 		$complement['result'] 				= $this->get_data();
+        $complement['countries']            = $this->get_country_list();
 		
         $this->load->view('administrator/main/header', $profile);
         $this->load->view('administrator/employer', $complement);
         $this->load->view('administrator/main/footer');
 	}
 	
-	public function export(){
-        $data['page_title'] = 'Employer';
-		$data['type'] 		= 'Employer';
-		$data['hasil'] 		= $this->get_data();
+	public function export($country){
+        $country_name       = $this->get_country($country);
+        $data['page_title'] = 'Employer_'.$country_name;
+        $data['type'] 		= 'Employer';
+		$data['hasil'] 		= $this->get_data($country);
 		
         $this->load->view('administrator/excel', $data);
 	}
 	
-	public function get_data(){
+	public function get_data($country = null){
         $this->db->select('users.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
 		$this->db->from('users');
 		$this->db->join('user_role', 'users.id = user_role.user_id');
 		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
         $this->db->where('user_role.role_id = 3');
+        if($country != null){
+            $this->db->where('users.country', $country);
+        }
 		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+    public function get_country_list(){
+        $this->db->select('*');
+        $this->db->from('countries');
+         $this->db->order_by('id', 'ASC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function get_country($country){
+        $country_name = "Country Not Set";
+        //get country name
+        if($country != 0){
+            $this->db->select('*');
+            $this->db->from('countries');
+            $this->db->where('id', $country);
+            $query = $this->db->get();
+            $country_name = $query->row()->name;
+        }
+        return $country_name;
+    }
 
     public function post(){
         $id 		= $this->input->post('id');
@@ -62,6 +88,7 @@ class Employer extends CI_Controller {
 					'fullname' 				=> $this->input->post('fullname'),
 					'created_at' 			=> date('Y-m-d H:i:s'),
 					'verified' 				=> 1,
+                    'country'               => $this->input->post('country'),
 					//'verification_token' 	=> 1,
 			);
 			$post_status = $this->db->insert('users', $data);
@@ -83,7 +110,13 @@ class Employer extends CI_Controller {
 			);
 			$post_status = $this->db->insert('user_role', $data2);
 		}else{
-			$post_status = false;
+			$data = array(
+                    'country'  => $this->input->post('country'),
+            );
+            $this->db->where('id', $id);
+            $post_status = $this->db->update('users', $data);
+
+            $post_status = false;
 			if($this->input->post('password') != $this->input->post('password_old')){				
 				$data = array(
 						'password' => $password,

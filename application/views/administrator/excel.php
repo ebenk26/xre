@@ -10,7 +10,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 		<table border="1">	
 			<tr>
 				<th>No</th>
-				<?php if($type == "Job Seeker" || "Student"){?>
+				<?php if($type == "Job Seeker" || $type == "Student"){?>
 					<th>Name</th>
 					<th>Email</th>
 					<th>Signup Date</th>
@@ -119,7 +119,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 			?>
 				<tr>
 					<td><?=$no++?></td>
-					<?php if($type == "Job Seeker" || "Student"){?>
+					<?php if($type == "Job Seeker" || $type == "Student"){?>
 						<td><?=$row->fullname?></td>
 						<td><?=$row->email?></td>
 						<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
