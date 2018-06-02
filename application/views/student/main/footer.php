@@ -416,6 +416,47 @@
             );
         });
 
+        $('.search_company').click(function(){
+            $.ajax({
+                url: "<?= base_url(); ?>student/wishlist/get_company",
+                method: "GET",
+                data: {
+                    company_name: $("#search_company").val()
+                },
+                success: function(response){
+                    var company = JSON.parse(response);
+                    var image_directory = window.location.origin + '/assets/img/employer/';
+                    var profile_pic = 'profile-pic.png';
+                    $.each(company, function (i, v) {
+                        
+                        if (v.profile_photo != null) {
+                            profile_pic = v.profile_photo;
+                        }
+                        company += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
+                                        <div class="mt-card-item">\
+                                            <div class="mt-card-avatar mt-overlay-1">\
+                                                <img src="' + image_directory + profile_pic + '" class="img-fluid height-200 width-auto center-block">\
+                                                <div class="mt-overlay">\
+                                                    <ul class="mt-info">\
+                                                        <li>\
+                                                            <a class="btn btn-md-orange" href="javascript:void(0);">\
+                                                                <i class="fa fa-plus "></i>\
+                                                            </a>\
+                                                        </li>\
+                                                    </ul>\
+                                                </div>\
+                                            </div>\
+                                            <div class="mt-card-content">\
+                                                <h3 class="mt-card-name">'+v.company_name+'</h3>\
+                                            </div>\
+                                        </div>\
+                                    </div>';
+                    });
+                    $('#company_result').html(company);
+                }
+            });
+        });
+
         $('.btn-resc').click(function () {
             $('.modal_detail_interview').modal('hide');
             var job_id = $(this).attr('job-id');
@@ -622,6 +663,28 @@
                 }
             });
         });
+
+        $('[data-toggle="tooltip"]').tooltip()
+
+        $('#modal_edit_job_preferences input[type="checkbox"]').on('click', function() {
+            let idInput = $(this).attr('data-trigger')
+            let isChecked = $('#'+$(this).attr('id')+':checked').length
+
+            if(isChecked > 0)
+            {
+                $('#'+idInput).removeClass('hidden')
+            }
+            else
+            {
+                $('#'+idInput).addClass('hidden')
+            }
+        })
+
+        $(".select2-opt").select2({
+            placeholder: "Country",
+            allowClear: true,
+            theme: "bootstrap"
+        })
     });
 
     function showNotif() {

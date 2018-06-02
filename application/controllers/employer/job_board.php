@@ -462,17 +462,11 @@ class Job_Board extends CI_Controller {
         $candidate_email = $this->input->post('candidate_email');
         $employer_id = $this->session->userdata('id');
 
-        
-
-        $start = explode(' - ', $this->input->post('start_date'));
-        $start_date = date('Y-m-d',strtotime(current($start)));
-        $start_hour = date('H:i:s', strtotime(end($start)));
-        $start_date_hour = implode(' ', array($start_date, $start_hour));
-
-        $end = explode(' - ', $this->input->post('end_date'));
-        $end_date = date('Y-m-d',strtotime(current($end)));
-        $end_hour = date('H:i:s', strtotime(end($end)));
-        $end_date_hour = implode(' ', array($end_date, $end_hour));
+        $date = date('Y-m-d', strtotime($this->input->post('date')));
+        $start_hour = date('H:i:s', strtotime($this->input->post('start_time')));
+        $end_hour = date('H:i:s', strtotime($this->input->post('end_time')));
+        $start_date_hour = implode(' ', array($date, $start_hour));        
+        $end_date_hour = implode(' ', array($date, $end_hour));        
 
         $session = array('job_id'=>$job_id,
                         'title' => $this->input->post('title'), 

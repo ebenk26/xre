@@ -265,7 +265,6 @@ $company_address = json_decode($user_profile['address']);?>
             for (var i = 0; i < place.address_components.length; i++) {
                 var addressType = place.address_components[i].types[0];;
                 var val = place.address_components[i];
-
                 if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
                     document.getElementById('addState').value = val.long_name;
                 }
@@ -273,6 +272,9 @@ $company_address = json_decode($user_profile['address']);?>
                     document.getElementById('addCity').value = val.long_name;
                 }
                 if (addressType == 'country') {
+                    if (val.long_name == 'Filipina') {
+                        val.long_name = 'Phillipines';
+                    }
                     document.getElementById('addCountry').value = val.long_name;
                 }
                 if (addressType == 'postal_code') {
@@ -319,7 +321,6 @@ $company_address = json_decode($user_profile['address']);?>
 
             var contentString = '<div id="infowindow-content" style="display:inline"><span><b>' + title +
                 '</b></span><br/>' + description + '</span></div>';
-            console.log(contentString);
 
             var infowindow = new google.maps.InfoWindow({
                 content: contentString
@@ -418,6 +419,9 @@ $company_address = json_decode($user_profile['address']);?>
                 }
 
                 if (addressType == 'country') {
+                    if (val.long_name == 'Filipina') {
+                        val.long_name = 'Phillipines';
+                    }
                     document.getElementById('addCountry' + idJobPost).value = val.long_name;
                 }
 
@@ -624,6 +628,9 @@ $company_address = json_decode($user_profile['address']);?>
                 }
 
                 if (addressType == 'country') {
+                    if (val.long_name == 'Filipina') {
+                        val.long_name = 'Phillipines';
+                    }
                     document.getElementById('building_country' + idJobPost).value = val.long_name;
                 }
 
@@ -723,7 +730,6 @@ $company_address = json_decode($user_profile['address']);?>
             for (var i = 0; i < place.address_components.length; i++) {
                 var addressType = place.address_components[i].types[0];;
                 var val = place.address_components[i];
-
                 if (addressType == 'administrative_area_level_2' || addressType == 'locality') {
                     document.getElementById('building_state').value = val.long_name;
                 }
@@ -731,6 +737,9 @@ $company_address = json_decode($user_profile['address']);?>
                     document.getElementById('building_city').value = val.long_name;
                 }
                 if (addressType == 'country') {
+                    if (val.long_name == 'Filipina') {
+                        val.long_name = 'Phillipines';
+                    }
                     document.getElementById('building_country').value = val.long_name;
                 }
                 if (addressType == 'postal_code') {
@@ -1430,7 +1439,7 @@ $company_address = json_decode($user_profile['address']);?>
                         droppable: false,
                         events: invitation_calendar,
                         eventClick: function (invitation_calendar, jsEvent, view) {
-                            $('#modal_more_info_' + invitation_calendar.id).modal();
+                            $('#modal_info_' + invitation_calendar.id).modal();
                         },
                     });
                 }

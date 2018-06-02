@@ -38,7 +38,7 @@ class Inbox extends CI_Controller {
 			$get_user_profile = $this->employer_model->get_user_profile($id);
 		}
         $profile['user_profile'] = $get_user_profile;
-		
+		$profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
 		$data['roles'] 	= $roles;
 		$data['type'] 	= $type;
 		
@@ -444,7 +444,7 @@ class Inbox extends CI_Controller {
 			$profile['notification'] = $this->student_model->get_notification($id);
 			$calendar['invitation'] = $this->student_model->get_interview_invitation($id);
 		}
-		
+		$profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
 		if($type == "inbox"){
 			$profile['page_title'] = 'Inbox';
 		}elseif($type == "sent"){

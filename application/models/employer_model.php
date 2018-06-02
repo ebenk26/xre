@@ -111,6 +111,16 @@ class Employer_Model extends CI_Model{
         return $query->result_array();
     }
 
+    function getPostedJob($id){
+        $this->db->select('job_positions.*, employment_types.name as employment_name');
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+        $this->db->where('user_id', $id);
+        $this->db->where('status', 'post');
+        $this->db->order_by('job_positions.expiry_date', 'desc');
+        $query = $this->db->get('job_positions');
+        return $query->result_array();
+    }
+
     function get_job_detail($id){
         $this->db->select('job_positions.*, position_levels.name as position_name, employment_types.name as employment_name, profile_uploads.name as img');
         $this->db->from('job_positions');

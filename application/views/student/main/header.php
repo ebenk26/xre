@@ -182,23 +182,23 @@
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
                                     <a href="<?php echo base_url().'student/dashboard/'; ?>">
-                                        <i class="icon-home"></i> Dashboard </a>
+                                        <i class="icon-home"></i> <?= !empty($language->site_dashboard) ? $language->site_dashboard : 'Dashboard'?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url().'student/profile/'; ?>">
-                                        <i class="icon-user"></i> Edit Profile </a>
+                                        <i class="icon-user"></i> <?= !empty($language->site_edit_profile) ? $language->site_edit_profile : 'Edit Profile'?> </a>
                                 </li>
                                 <li>
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
 									echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank">
-                                        <i class="icon-book-open"></i> View My Resume
+                                        <i class="icon-book-open"></i> <?= !empty($language->site_view_my_profile) ? $language->site_view_my_profile : 'View My Profile'?>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url().'student/calendar/'; ?>">
-                                        <i class="icon-calendar"></i> My Calendar </a>
+                                        <i class="icon-calendar"></i> <?= !empty($language->site_my_calendar) ? $language->site_my_calendar : 'My Calendar'?> </a>
                                 </li>
                                 <!--<li>
                                     <a href="<?php echo base_url().'student/inbox/'; ?>">
@@ -209,7 +209,7 @@
                                 <li class="divider"> </li>
                                 <li>
                                     <a href="<?php echo base_url(); ?>site/user/logout">
-                                        <i class="icon-key"></i> Log Out </a>
+                                        <i class="icon-key"></i> <?= !empty($language->site_logout) ? $language->site_logout : 'Logout'?> </a>
                                 </li>
                             </ul>
                         </li>
@@ -257,12 +257,12 @@
                         <div class="progress-info">
                             <div class="status">
                                 <?php if ($percent==100){?>                                
-                                <div class="status-title"> Profile Completion </div>
+                                <div class="status-title"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
                                 <div class="status-number ">
                                     <?php echo $percent; ?>%                                     
                                 </div>
                                 <?php }else{?>
-                                <div class="status-title md-orange-text"> Profile Completion </div>
+                                <div class="status-title md-orange-text"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
                                 <div class="status-number md-orange-text">
                                     <?php echo $percent; ?>%</div>
                                 <?php }?>
@@ -279,7 +279,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
                             <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
+                            <span class="title"><?= !empty($language->site_dashboard) ? $language->site_dashboard : 'Dashboard'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -287,7 +287,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
                             <i class="icon-user"></i>
-                            <span class="title">Profile</span>
+                            <span class="title"><?= !empty($language->profile) ? ucfirst($language->profile) : 'Profile'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -295,7 +295,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/gallery/" class="nav-link">
                             <i class="icon-picture"></i>
-                            <span class="title">Gallery</span>
+                            <span class="title"><?= !empty($language->site_gallery) ? $language->site_gallery : 'Gallery'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -303,7 +303,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'applications_history'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
-                            <span class="title">Application History</span>
+                            <span class="title"><?= !empty($language->site_application_history) ? $language->site_application_history : 'Application History'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -311,7 +311,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
-                            <span class="title">Inbox</span>
+                            <span class="title"><?= !empty($language->site_inbox) ? ucfirst($language->site_inbox) : 'Inbox'?></span>
                             <?php 
 								$data_message = getDataMessage("general");
 								if($data_message['new'] > 0){
@@ -327,23 +327,23 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
-                            <span class="title">Calendar</span>
+                            <span class="title"><?= !empty($language->site_calendar) ? $language->site_calendar : 'Calendar'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Wishlist-->
-                    <!-- <li class="nav-item">
-                        <a href="student-wishlist.html" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'wishlist'): echo 'active'; endif?>">
+                        <a href="<?= base_url(); ?>student/wishlist" class="nav-link">
                             <i class="icon-heart"></i>
-                            <span class="title">Wish List</span>
+                            <span class="title"><?= !empty($language->site_wishlist) ? $language->site_wishlist : 'Wishlist'?></span>
                         </a>
-                    </li> -->
+                    </li>
 
                     <!-- Sidebar Menu : Settings -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
-                            <span class="title">Settings</span>
+                            <span class="title"><?= !empty($language->site_settings) ? ucfirst($language->site_settings) : 'Settings'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>

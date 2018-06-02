@@ -29,6 +29,7 @@ class Profile extends CI_Controller {
         $profile['employment_types'] = $this->student_model->get_array('employment_types', 'id', 'asc');
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
+        $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/profile', $profile);
         $this->load->view('student/main/footer');
@@ -556,6 +557,7 @@ class Profile extends CI_Controller {
     public function view_my_profile(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
 		$profile['user_profile'] = $this->student_model->get_user_profile($id);
+        $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         if ($this->session->userdata('roles') == 'employer') {
             $profile['employer_profile'] = $this->employer_model->get_user_profile($this->session->userdata('id'));
         }

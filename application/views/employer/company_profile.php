@@ -627,8 +627,20 @@
 
                 $.each(address, function (i, v) {
                     if (v.optionsRadios == 'HQ') {
-                        var lat = parseInt(v.building_latitude);
-                        var longi = parseInt(v.building_longitude);
+                        var lat = parseFloat(v.building_latitude);
+                        var longi = parseFloat(v.building_longitude);
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            position: {
+                                lat: lat,
+                                lng: longi
+                            },
+                            title: company_name
+                        });
+                    }else{
+                        var lat = parseFloat(v.building_latitude);
+                        var longi = parseFloat(v.building_longitude);
+
                         var marker = new google.maps.Marker({
                             map: map,
                             position: {

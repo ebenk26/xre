@@ -17,6 +17,7 @@ class Inbox extends CI_Controller {
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
+        var_dump($profile);exit;
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/inbox');
         $this->load->view('employer/main/footer');

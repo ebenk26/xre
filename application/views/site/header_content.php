@@ -1,6 +1,7 @@
 <?php 
     $roles = $this->session->userdata('roles'); 
     $login = $this->session->userdata('id');
+
 ?>
 
 <!--========== HEADER  ==========-->
@@ -31,23 +32,23 @@
                         <ul class="s-header-v2-nav">
                             <!-- Search Job  -->
                             <li class="s-header-v2-nav-item">
-                                <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link ">Search Job</a>
+                                <a href="<?php echo base_url(); ?>job/search" class="s-header-v2-nav-link "><?= !empty($language) ? $language->site_search_job : 'Search Job';?></a>
                             </li>
                             <!--  About -->
                             <li class="s-header-v2-nav-item">
-                                <a href="<?php echo base_url();?>about" class="s-header-v2-nav-link">About</a>
+                                <a href="<?php echo base_url();?>about" class="s-header-v2-nav-link"><?= !empty($language) ? $language->site_about : 'About';?></a>
                             </li>
                             <!-- Services -->
                             <li class="s-header-v2-nav-item">
-                                <a href="<?php echo base_url();?>services" class="s-header-v2-nav-link">Services</a>
+                                <a href="<?php echo base_url();?>services" class="s-header-v2-nav-link"><?= !empty($language) ? $language->site_services : 'Services';?></a>
                             </li>
                             <!-- Contact -->
                             <li class="s-header-v2-nav-item">
-                                <a href="<?php echo base_url();?>contact" class="s-header-v2-nav-link ">Contact</a>
+                                <a href="<?php echo base_url();?>contact" class="s-header-v2-nav-link "><?= !empty($language) ? $language->site_contact : 'Contact';?></a>
                             </li>
                             <!-- Article -->
                             <li class="s-header-v2-nav-item">
-                                <a href="<?php echo base_url();?>article" class="s-header-v2-nav-link">Article</a>
+                                <a href="<?php echo base_url();?>article" class="s-header-v2-nav-link"><?= !empty($language) ? $language->site_article : 'Article';?></a>
                             </li>
                             <!-- USER LOGIN -->
                             <?php if (!empty($login)){ ?>
@@ -76,13 +77,13 @@
                                     <!-- DASHBOARD -->
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/dashboard" class="s-header-v2-dropdown-menu-link font-18">
-                                            <i class="icon-home mr-10"></i>Dashboard</a>
+                                            <i class="icon-home mr-10"></i><?= !empty($language) ? $language->site_dashboard : 'Dashboard';?></a>
                                     </li>
                                     <!-- EDIT PROFILE -->
                                     <?php if ($roles !='administrator') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/profile" class="s-header-v2-dropdown-menu-link font-18">
-                                            <i class="icon-note mr-10"></i>Edit Profile</a>
+                                            <i class="icon-note mr-10"></i><?= !empty($language) ? $language->site_edit_profile : 'Edit Profile';?></a>
                                     </li>
                                     <?php } ?>
                                     <!-- RESUME FOR STUDENT -->
@@ -96,7 +97,7 @@
                                     <?php if ($roles =='employer') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" class="s-header-v2-dropdown-menu-link font-18">
-                                            <i class="icon-book-open mr-10"></i>View My Profile
+                                            <i class="icon-book-open mr-10"></i><?= !empty($language) ? $language->site_view_my_profile : 'View My Profile';?>
                                         </a>
                                     </li>
                                     <?php }?>
@@ -104,14 +105,14 @@
                                     <?php if ($roles !='administrator') {?>
                                     <li>
                                         <a href="<?php echo base_url(); ?><?php echo $roles; ?>/calendar" class="s-header-v2-dropdown-menu-link font-18">
-                                            <i class="icon-calendar mr-10"></i>My Calendar</a>
+                                            <i class="icon-calendar mr-10"></i><?= !empty($language) ? $language->site_my_calendar : 'My Calendar';?></a>
                                     </li>
                                     <?php } ?>
                                     <li class="divider"></li>
                                     <!-- LOGOUT -->
                                     <li>
                                         <a href="<?php echo base_url(); ?>site/user/logout" class="s-header-v2-dropdown-menu-link font-18">
-                                            <i class="icon-key mr-10"></i>Log Out</a>
+                                            <i class="icon-key mr-10"></i><?= !empty($language) ? $language->site_logout : 'Logout';?></a>
                                     </li>
                                 </ul>
                             </li>

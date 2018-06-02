@@ -175,7 +175,7 @@ class Endorsment extends CI_Controller {
             $data = array(  'rating' => $this->input->post('rating'),
                             'exp_id' => $this->input->post('exp_id'),
                             'endorser_id' => $this->input->post('endorser_id'),
-                            'user_id' => $this->input->post('endorsed_id'),
+                            'user_id' => $this->input->post('user_id'),
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' => date('Y-m-d H:i:s') );
         }else{
@@ -193,7 +193,13 @@ class Endorsment extends CI_Controller {
         } catch (Exception $e) {
             $this->session->set_flashdata('msg_failed', 'Review user failed');
         }
-        redirect(base_url().'profile/user/'.rtrim(base64_encode($this->input->post('endorsed_id')),'='));
+        $user = $this->input->post('user_id');
+
+        if (!empty($user)) {
+            redirect(base_url().'profile/user/'.rtrim(base64_encode($this->input->post('user_id')),'='));
+        }else{
+            redirect(base_url().'profile/user/'.rtrim(base64_encode($this->input->post('endorsed_id')),'='));
+        }
     }
 
     public function invite(){

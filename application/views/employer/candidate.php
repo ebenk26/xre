@@ -283,7 +283,7 @@
                             </tbody>
                         </table>
 
-                        <?php foreach ($shortlisted as $key => $value): ?>
+                        <?php foreach ($shortlisted as $key => $value):?>
 
                         <!-- BEGIN MODAL : Rescheduled Form -->
                         <div class="modal fade" id="modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" tabindex="-1" role="dialog" aria-hidden="false" data-backdrop="static" data-keyboard="false">
@@ -309,7 +309,7 @@
                                                         <label class="md-grey-darken-3-text mb-10 font-weight-600">Proposed Date</label>
                                                         <div class="input-icon ">
                                                             <i class="icon-calendar"></i>
-                                                            <input type="text" class="form-control date date-picker" readonly disabled>
+                                                            <input type="text" class="form-control date date-picker" value="<?= date('d-m-Y',strtotime($value['suggested_start_date']))?>" readonly disabled>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -319,7 +319,7 @@
                                                         <label class=" md-grey-darken-3-text mb-10 font-weight-600">Proposed Time</label>
                                                         <div class="input-icon">
                                                             <i class="fa fa-clock-o"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24" readonly disabled> </div>
+                                                            <input type="text" class="form-control timepicker timepicker-24" value="<?= date('H:i',strtotime($value['suggested_start_date']))?>" readonly disabled> </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -358,7 +358,7 @@
                                                             <label class=" control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date </label>
                                                             <div class="input-icon ">
                                                                 <i class="icon-calendar"></i>
-                                                                <input type="text" class="form-control date date-picker">
+                                                                <input type="text" class="form-control date date-picker" name="date" value="<?= date('d-m-Y',strtotime($value['suggested_start_date']))?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -368,7 +368,7 @@
                                                             <label class=" control-label md-grey-darken-3-text mb-10 font-weight-600 "> Time </label>
                                                             <div class="input-icon">
                                                                 <i class="fa fa-clock-o"></i>
-                                                                <input type="text" class="form-control timepicker timepicker-24"> </div>
+                                                                <input type="text" class="form-control timepicker timepicker-24" name="time" value="<?= date('H:i',strtotime($value['suggested_start_date']))?>"> </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -412,67 +412,14 @@
                                                 <input type="text" name="title" value="Session 1" class="form-control">
                                             </div>
                                             <!-- Start Date / Time -->
-                                            <div class="row">
-                                                <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">Start Date / Time </label>
-                                                <!-- Date -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon ">
-                                                            <i class="icon-calendar"></i>
-                                                            <input type="text" class="form-control date date-picker">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Time -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Date / Time -->
-                                            <div class="row">
-                                                <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">End Date / Time </label>
-                                                <!-- Date -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon ">
-                                                            <i class="icon-calendar"></i>
-                                                            <input type="text" class="form-control date date-picker">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Time -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="input-icon">
-                                                            <i class="fa fa-clock-o"></i>
-                                                            <input type="text" class="form-control timepicker timepicker-24"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Checkbox: All Day -->
-                                            <!-- Note : IF user check this box , only show  below -->
-                                            <div class="form-group form-md-checkboxes mx-0 ">
-                                                <div class="md-checkbox">
-                                                    <input type="checkbox" id="checkbox_allday" class="md-check">
-                                                    <label for="checkbox_allday">
-                                                        <span></span>
-                                                        <span class="check"></span>
-                                                        <span class="box"></span> All Day </label>
-                                                </div>
-                                            </div>
-                                            <!-- Date [If All Day Check]-->
+                                            
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mx-0">
                                                         <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date</label>
                                                         <div class="input-icon ">
                                                             <i class="icon-calendar"></i>
-                                                            <input type="text" class="form-control date date-picker ">
+                                                            <input type="text" class="form-control date date-picker " name="date">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -483,14 +430,14 @@
                                                 <div class="col-md-6">
                                                     <div class="input-icon ">
                                                         <i class="icon-clock"></i>
-                                                        <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time">
+                                                        <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time" name="start_time">
                                                         <span class="helper-block font-15">Start</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="input-icon ">
                                                         <i class="icon-clock"></i>
-                                                        <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time">
+                                                        <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time" name="end_time">
                                                         <span class="helper-block font-15">End</span>
                                                     </div>
                                                 </div>
@@ -729,7 +676,8 @@
                             <!-- IF != ALL DAY -->
                             <h5 class="font-weight-400 letter-space-xs mb-30 font-17">
                                 <i class="icon-clock mr-10"></i>
-                                <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?> -
+                                <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?>
+                                 -
                                 <?php echo date('D, j M ,h:ia', strtotime($session_value['end_date'])); ?>
                             </h5>
                             <!--  If == all day-->
@@ -771,67 +719,13 @@
                                     <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Title</label>
                                     <input type="text" value="<?php echo !empty($session_value['title']) ? $session_value['title'] : 'Session Name'; ?>" class="form-control" name="title" readonly>
                                 </div>
-                                <!-- Start Date / Time -->
-                                <div class="row">
-                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">Start Date / Time </label>
-                                    <!-- Date -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-icon ">
-                                                <i class="icon-calendar"></i>
-                                                <input type="text" class="form-control date date-picker">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Time -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-icon">
-                                                <i class="fa fa-clock-o"></i>
-                                                <input type="text" class="form-control timepicker timepicker-24"> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Date / Time -->
-                                <div class="row">
-                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">End Date / Time </label>
-                                    <!-- Date -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-icon ">
-                                                <i class="icon-calendar"></i>
-                                                <input type="text" class="form-control date date-picker">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Time -->
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-icon">
-                                                <i class="fa fa-clock-o"></i>
-                                                <input type="text" class="form-control timepicker timepicker-24"> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Checkbox: All Day -->
-                                <!-- Note : IF user check this box , only show  below -->
-                                <div class="form-group form-md-checkboxes mx-0 ">
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="checkbox_allday" class="md-check">
-                                        <label for="checkbox_allday">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> All Day </label>
-                                    </div>
-                                </div>
-                                <!-- Date [If All Day Check]-->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
                                             <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Date</label>
                                             <div class="input-icon ">
                                                 <i class="icon-calendar"></i>
-                                                <input type="text" class="form-control date date-picker ">
+                                                <input type="text" class="form-control date date-picker" name="date" value="<?php echo !empty($session_value['start_date']) ? date('m/d/Y', strtotime($session_value['start_date'])) : 'Session Name'; ?>">
                                             </div>
                                         </div>
                                     </div>
@@ -842,14 +736,14 @@
                                     <div class="col-md-6">
                                         <div class="input-icon ">
                                             <i class="icon-clock"></i>
-                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time">
+                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time" value="<?php echo !empty($session_value['start_date']) ? date('H:i', strtotime($session_value['start_date'])) : 'Session Name'; ?>" name="start_time">
                                             <span class="helper-block font-15">Start</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-icon ">
                                             <i class="icon-clock"></i>
-                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time">
+                                            <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time" name="end_time" value="<?php echo !empty($session_value['end_date']) ? date('H:i', strtotime($session_value['end_date'])) : 'Session Name'; ?>">
                                             <span class="helper-block font-15">End</span>
                                         </div>
                                     </div>
