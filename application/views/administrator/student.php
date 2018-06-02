@@ -26,67 +26,270 @@
                 <!-- END PAGE HEAD-->
 				
                 <div class="portlet light">
-                    <div class="portlet-title ">
+                    <div class="portlet-title tabbable-line">
                         <div class="caption font-green-sharp">
                             <i class="icon-briefcase font-green-sharp"></i>
                             <span class="caption-subject"> Student</span>
-                            <!-- <span class="caption-helper">more samples...</span> -->
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#portlet_tab2_1" data-toggle="tab" aria-expanded="true"> Indonesia </a>
+                            </li>
+                            <li class="">
+                                <a href="#portlet_tab2_2" data-toggle="tab" aria-expanded="false"> Malaysia </a>
+                            </li>
+                            <li class="">
+                                <a href="#portlet_tab2_3" data-toggle="tab" aria-expanded="false"> Philippines </a>
+                            </li>
+                            <li class="">
+                                <a href="#portlet_tab2_4" data-toggle="tab" aria-expanded="false"> Country Not Set </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!--<div class="portlet-title ">
+                        <div class="caption font-green-sharp">
+                            <i class="icon-briefcase font-green-sharp"></i>
+                            <span class="caption-subject"> Student</span>
                         </div>
                         <div class="actions">
                             <a href="<?=base_url()?>administrator/student/export" class="btn btn-circle btn-md-green">
                                 <i class="fa fa-download"></i> Download List 
 							</a>
-							<!--
-							<a href="#modal_add_jobpost" class="btn btn-circle btn-md-green" data-toggle="modal">
-                                <i class="fa fa-download"></i> Download List 
-							</a>
-							-->
                         </div>
-                    </div>
+                    </div>-->
                     <div class="portlet-body">
-                        <table class="table table-striped table-bordered table-hover order-column" id="xremo_table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th> Name </th>
-                                    <th> Email </th>
-                                    <th> Signup Date </th>
-                                    <!--<th class="col-md-2"> CV </th>-->
-                                    <th> Video CV </th>
-                                    <th> Actions </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $no = 1;foreach ($job_seeker as $row) { ?>
-                                    <tr class="odd gradeX">
-                                        <td class="text-center" ><?=$no++; ?></td>
-                                        <td> <?=$row->fullname; ?></td>
-										<td> <?=$row->email; ?></td>
-										<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
-										<!--<td> <?=$row->email; ?></td>-->
-										<td> 
-											<?php if($row->youtubelink != ""){?>
-												<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
-													<i class="fa fa-video-camera"></i> Watch 
-												</a>
-											<?php }?>
-										</td>
-										<td>
-											<a href="<?php
-												$id = $row->id;
-												$id_encoded = rtrim(base64_encode($id), '=');
-												echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
-												<i class="fa fa-user"></i> View Profile 
-											</a>
-											
-											<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
-												<i class="fa fa-edit"></i> 
-											</a>
-										</td>
-                                    </tr>                                        
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="portlet_tab2_1">
+                                <div class="alert alert-danger"> <b>Indonesia</b> </div>
+                                <div>
+                                	<a href="<?=base_url()?>administrator/student/export/5" class="btn btn-circle btn-md-green" style="margin-bottom: 15px;">
+	                                <i class="fa fa-download"></i> Download List 
+									</a>
+								</div>
+                                
+                                <!--<div class="btn-group margin-bottom-10">
+                                    <a class="btn red" href="javascript:;" data-toggle="dropdown">
+                                        <i class="fa fa-user"></i> Settings
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-plus"></i> Add </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-trash-o"></i> Edit </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-times"></i> Delete </a>
+                                        </li>
+                                        <li class="divider"> </li>
+                                        <li>
+                                            <a href="javascript:;"> Full Settings </a>
+                                        </li>
+                                    </ul>
+                                </div>-->
+                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
+		                            <thead>
+		                                <tr>
+		                                    <th class="text-center">#</th>
+		                                    <th> Name </th>
+		                                    <th> Email </th>
+		                                    <th> Signup Date </th>
+		                                    <!--<th class="col-md-2"> CV </th>-->
+		                                    <th> Video CV </th>
+		                                    <th> Actions </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 5){?>
+		                                    <tr class="odd gradeX">
+		                                        <td class="text-center" ><?=$no++; ?></td>
+		                                        <td> <?=$row->fullname; ?></td>
+												<td> <?=$row->email; ?></td>
+												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
+												<!--<td> <?=$row->email; ?></td>-->
+												<td> 
+													<?php if($row->youtubelink != ""){?>
+														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+															<i class="fa fa-video-camera"></i> Watch 
+														</a>
+													<?php }?>
+												</td>
+												<td>
+													<a href="<?php
+														$id = $row->id;
+														$id_encoded = rtrim(base64_encode($id), '=');
+														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
+														<i class="fa fa-user"></i> View Profile 
+													</a>
+													
+													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+														<i class="fa fa-edit"></i> 
+													</a>
+												</td>
+		                                    </tr>                                        
+		                                <?php }} ?>
+		                            </tbody>
+		                        </table>
+                            </div>
+                            <div class="tab-pane" id="portlet_tab2_2">
+                                <div class="alert alert-info"> <b>Malaysia</b> </div>
+                                <div>
+                                	<a href="<?=base_url()?>administrator/student/export/3" class="btn btn-circle btn-md-green" style="margin-bottom: 15px;">
+	                                <i class="fa fa-download"></i> Download List 
+									</a>
+								</div>
+                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
+		                            <thead>
+		                                <tr>
+		                                    <th class="text-center">#</th>
+		                                    <th> Name </th>
+		                                    <th> Email </th>
+		                                    <th> Signup Date </th>
+		                                    <!--<th class="col-md-2"> CV </th>-->
+		                                    <th> Video CV </th>
+		                                    <th> Actions </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 3){?>
+		                                    <tr class="odd gradeX">
+		                                        <td class="text-center" ><?=$no++; ?></td>
+		                                        <td> <?=$row->fullname; ?></td>
+												<td> <?=$row->email; ?></td>
+												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
+												<!--<td> <?=$row->email; ?></td>-->
+												<td> 
+													<?php if($row->youtubelink != ""){?>
+														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+															<i class="fa fa-video-camera"></i> Watch 
+														</a>
+													<?php }?>
+												</td>
+												<td>
+													<a href="<?php
+														$id = $row->id;
+														$id_encoded = rtrim(base64_encode($id), '=');
+														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
+														<i class="fa fa-user"></i> View Profile 
+													</a>
+													
+													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+														<i class="fa fa-edit"></i> 
+													</a>
+												</td>
+		                                    </tr>                                        
+		                                <?php }} ?>
+		                            </tbody>
+		                        </table>
+                            </div>
+                            <div class="tab-pane" id="portlet_tab2_3">
+                                <div class="alert alert-warning"> <b>Philippines</b> </div>
+                                <div>
+                                	<a href="<?=base_url()?>administrator/student/export/4" class="btn btn-circle btn-md-green" style="margin-bottom: 15px;">
+	                                <i class="fa fa-download"></i> Download List 
+									</a>
+								</div>
+                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
+		                            <thead>
+		                                <tr>
+		                                    <th class="text-center">#</th>
+		                                    <th> Name </th>
+		                                    <th> Email </th>
+		                                    <th> Signup Date </th>
+		                                    <!--<th class="col-md-2"> CV </th>-->
+		                                    <th> Video CV </th>
+		                                    <th> Actions </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 4){?>
+		                                    <tr class="odd gradeX">
+		                                        <td class="text-center" ><?=$no++; ?></td>
+		                                        <td> <?=$row->fullname; ?></td>
+												<td> <?=$row->email; ?></td>
+												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
+												<!--<td> <?=$row->email; ?></td>-->
+												<td> 
+													<?php if($row->youtubelink != ""){?>
+														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+															<i class="fa fa-video-camera"></i> Watch 
+														</a>
+													<?php }?>
+												</td>
+												<td>
+													<a href="<?php
+														$id = $row->id;
+														$id_encoded = rtrim(base64_encode($id), '=');
+														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
+														<i class="fa fa-user"></i> View Profile 
+													</a>
+													
+													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+														<i class="fa fa-edit"></i> 
+													</a>
+												</td>
+		                                    </tr>                                        
+		                                <?php }} ?>
+		                            </tbody>
+		                        </table>
+                            </div>
+                            <div class="tab-pane" id="portlet_tab2_4">
+                                <div class="alert alert-success"> <b>Country Not Set</b> </div>
+                                <div>
+                                	<a href="<?=base_url()?>administrator/student/export/0" class="btn btn-circle btn-md-green" style="margin-bottom: 15px;">
+	                                <i class="fa fa-download"></i> Download List 
+									</a>
+								</div>
+                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
+		                            <thead>
+		                                <tr>
+		                                    <th class="text-center">#</th>
+		                                    <th> Name </th>
+		                                    <th> Email </th>
+		                                    <th> Signup Date </th>
+		                                    <!--<th class="col-md-2"> CV </th>-->
+		                                    <th> Video CV </th>
+		                                    <th> Actions </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 0){?>
+		                                    <tr class="odd gradeX">
+		                                        <td class="text-center" ><?=$no++; ?></td>
+		                                        <td> <?=$row->fullname; ?></td>
+												<td> <?=$row->email; ?></td>
+												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
+												<!--<td> <?=$row->email; ?></td>-->
+												<td> 
+													<?php if($row->youtubelink != ""){?>
+														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+															<i class="fa fa-video-camera"></i> Watch 
+														</a>
+													<?php }?>
+												</td>
+												<td>
+													<a href="<?php
+														$id = $row->id;
+														$id_encoded = rtrim(base64_encode($id), '=');
+														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
+														<i class="fa fa-user"></i> View Profile 
+													</a>
+													
+													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+														<i class="fa fa-edit"></i> 
+													</a>
+												</td>
+		                                    </tr>                                        
+		                                <?php }} ?>
+		                            </tbody>
+		                        </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
