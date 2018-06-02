@@ -350,7 +350,7 @@
 
                         </div>
                     </div>
-                            
+
                     <!-- tab privacy -->
                     <div class="tab-pane" id="tab_privacy">
                         <div class="panel  panel-borderless panel-transparent">
@@ -394,6 +394,294 @@
             </div>
         </div>
 
+        <!-- Modal Edit Job Preferences -->
+        <div class="modal fade in" id="modal_edit_job_preferences" role="dialog" aria-hidden="true">
+            <div class="modal-dialog  ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Job Preferences </h4>
+                    </div>
+                    <form class="form">
+                        <div class="modal-body">
+                            <!-- Keyword -->
+                            <div class="form-group">
+                                <label class="control-label">Keyword</label>
+                                <input type="text" class="form-control input-lg" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+                            </div>
+                            if it checked , input will show else hide
+
+                            <div class="md-checkbox-list row">
+                                <div class="col-md-6">
+                                    <!-- Checkbox Location -->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxLocation" name="cbLocation" value="1" class="md-check trigger " data-trigger="fieldLocation">
+                                        <label for="checkboxLocation">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Location </label>
+                                    </div>
+                                    <!-- Checkbox Specialization -->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxSpecialization" name="cbSpecialization" value="1" class="md-check trigger" data-trigger="fieldSpecialization">
+                                        <label for="checkboxSpecialization">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Specialization </label>
+                                    </div>
+                                    <!--  Checkbox Position Level-->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxPositionLevel" name="cbPositionLevel" value="1" class="md-check trigger" data-trigger="fieldPositionLevel">
+                                        <label for="checkboxPositionLevel">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Position Level </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Checkbox Year Of Experience -->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxYearOfExperience" name="cbYearOfExperience" value="1" class="md-check trigger" data-trigger="fieldYearsOfExperience">
+                                        <label for="checkboxYearOfExperience">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Year Of Experience</label>
+                                    </div>
+                                    <!-- Checkbox Qualification -->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxQualification" name="cbQualification" value="1" class="md-check trigger" data-trigger="fieldQualifications">
+                                        <label for="checkboxQualification">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Qualification </label>
+                                    </div>
+                                    <!-- Checkbox Job Type-->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxJobType" name="cbJobType" value="1" class="md-check trigger" data-trigger="fieldJobType">
+                                        <label for="checkboxJobType">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Job Type </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="form-group" id="fieldLocation">
+                                <label class="control-label">Location</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                        <optgroup label="Pacific Time Zone">
+                                            <option value="CA">California</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="WA">Washington</option>
+                                        </optgroup>
+                                        <optgroup label="Mountain Time Zone">
+                                            <option value="AZ">Arizona</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="WY">Wyoming</option>
+                                        </optgroup>
+                                        <optgroup label="Central Time Zone">
+                                            <option value="AL">Alabama</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="TN">Tennessee</option>
+                                            <option value="WI">Wisconsin</option>
+                                        </optgroup>
+                                        <optgroup label="Eastern Time Zone">
+                                            <option value="CT">Connecticut</option>
+                                            <option value="DE">Delaware</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="GA">Georgia</option>
+                                            <option value="IN">Indiana</option>
+                                            <option value="ME">Maine</option>
+                                            <option value="MD">Maryland</option>
+                                            <option value="MA">Massachusetts</option>
+                                            <option value="MI">Michigan</option>
+                                            <option value="NH">New Hampshire</option>
+                                            <option value="NJ">New Jersey</option>
+                                            <option value="NY">New York</option>
+                                            <option value="NC">North Carolina</option>
+                                            <option value="OH">Ohio</option>
+                                            <option value="PA">Pennsylvania</option>
+                                            <option value="RI">Rhode Island</option>
+                                            <option value="SC">South Carolina</option>
+                                            <option value="VT">Vermont</option>
+                                            <option value="VA">Virginia</option>
+                                            <option value="WV">West Virginia</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Specialization -->
+                            <div class="form-group hidden" id="fieldSpecialization">
+                                <label class="control-label">Specialization</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                        <optgroup label="Pacific Time Zone">
+                                            <option value="CA">California</option>
+                                            <option value="NV">Nevada</option>
+                                            <option value="OR">Oregon</option>
+                                            <option value="WA">Washington</option>
+                                        </optgroup>
+                                        <optgroup label="Mountain Time Zone">
+                                            <option value="AZ">Arizona</option>
+                                            <option value="CO">Colorado</option>
+                                            <option value="ID">Idaho</option>
+                                            <option value="MT">Montana</option>
+                                            <option value="NE">Nebraska</option>
+                                            <option value="NM">New Mexico</option>
+                                            <option value="ND">North Dakota</option>
+                                            <option value="UT">Utah</option>
+                                            <option value="WY">Wyoming</option>
+                                        </optgroup>
+                                        <optgroup label="Central Time Zone">
+                                            <option value="AL">Alabama</option>
+                                            <option value="AR">Arkansas</option>
+                                            <option value="IL">Illinois</option>
+                                            <option value="IA">Iowa</option>
+                                            <option value="KS">Kansas</option>
+                                            <option value="KY">Kentucky</option>
+                                            <option value="LA">Louisiana</option>
+                                            <option value="MN">Minnesota</option>
+                                            <option value="MS">Mississippi</option>
+                                            <option value="MO">Missouri</option>
+                                            <option value="OK">Oklahoma</option>
+                                            <option value="SD">South Dakota</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="TN">Tennessee</option>
+                                            <option value="WI">Wisconsin</option>
+                                        </optgroup>
+                                        <optgroup label="Eastern Time Zone">
+                                            <option value="CT">Connecticut</option>
+                                            <option value="DE">Delaware</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="GA">Georgia</option>
+                                            <option value="IN">Indiana</option>
+                                            <option value="ME">Maine</option>
+                                            <option value="MD">Maryland</option>
+                                            <option value="MA">Massachusetts</option>
+                                            <option value="MI">Michigan</option>
+                                            <option value="NH">New Hampshire</option>
+                                            <option value="NJ">New Jersey</option>
+                                            <option value="NY">New York</option>
+                                            <option value="NC">North Carolina</option>
+                                            <option value="OH">Ohio</option>
+                                            <option value="PA">Pennsylvania</option>
+                                            <option value="RI">Rhode Island</option>
+                                            <option value="SC">South Carolina</option>
+                                            <option value="VT">Vermont</option>
+                                            <option value="VA">Virginia</option>
+                                            <option value="WV">West Virginia</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Position Level -->
+                            <div class="form-group hidden" id="fieldPositionLevel">
+                                <label class="control-label">Position Level</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Years Of Experience -->
+                            <div class="form-group hidden" id="fieldYearsOfExperience">
+                                <label class="control-label">Years Of Experience</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Qualifications -->
+                            <div class="form-group hidden" id="fieldQualifications">
+                                <label class="control-label">Qualifications</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Field Of Studys -->
+                            <div class="form-group hidden" id="fieldFOS">
+                                <label class="control-label">Field Of studys</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Job type -->
+                            <div class="form-group hidden" id="fieldJobType">
+                                <label class="control-label">Job Type</label>
+                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                    <select class="form-control select2" multiple>
+                                        <option></option>
+                                        <optgroup label="Alaskan">
+                                            <option value="AK">Alaska</option>
+                                            <option value="HI" disabled="disabled">Hawaii</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <a href="" data-dismiss="modal" class="btn btn-outline btn-md-indigo"> Close</a>
+                            <button type="submit" class="btn btn-md-indigo px-100 ">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
         <!-- Modal Edit Full Name -->
         <div class="modal fade in mt-200" id="modal_edit_fullname" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
