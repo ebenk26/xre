@@ -23,6 +23,7 @@ class settings extends CI_Controller {
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $settings['user_bios'] = $this->global_model->get_by_id('student_bios', array('user_id'=>$id));
         $settings['user'] = $this->global_model->get_by_id('users', array('id'=>$id));
+        $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/setting', $settings);
         $this->load->view('student/main/footer');

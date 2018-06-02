@@ -22,6 +22,7 @@ class Dashboard extends CI_Controller {
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
+        $profile['language']     = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
 		$job['job_positions'] = $this->student_model->get_all_job($id);
 		$footer['invitation'] = json_encode($this->student_model->get_interview_invitation($id));
