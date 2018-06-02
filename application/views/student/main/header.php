@@ -279,7 +279,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
                             <i class="icon-home"></i>
-                            <span class="title">Dashboard</span>
+                            <span class="title"><?= !empty($language->site_dashboard) ? $language->site_dashboard : 'Dashboard'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -287,7 +287,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
                             <i class="icon-user"></i>
-                            <span class="title">Profile</span>
+                            <span class="title"><?= !empty($language->profile) ? ucfirst($language->profile) : 'Profile'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
@@ -311,7 +311,7 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
-                            <span class="title">Inbox</span>
+                            <span class="title"><?= !empty($language->site_inbox) ? ucfirst($language->site_inbox) : 'Inbox'?></span>
                             <?php 
 								$data_message = getDataMessage("general");
 								if($data_message['new'] > 0){
@@ -327,23 +327,23 @@
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
-                            <span class="title">Calendar</span>
+                            <span class="title"><?= !empty($language->site_calendar) ? $language->site_calendar : 'Calendar'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
                     <!-- Sidebar Menu : Wishlist-->
-                    <!-- <li class="nav-item">
-                        <a href="student-wishlist.html" class="nav-link">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'wishlist'): echo 'active'; endif?>">
+                        <a href="<?= base_url(); ?>student/wishlist" class="nav-link">
                             <i class="icon-heart"></i>
                             <span class="title">Wish List</span>
                         </a>
-                    </li> -->
+                    </li>
 
                     <!-- Sidebar Menu : Settings -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
-                            <span class="title">Settings</span>
+                            <span class="title"><?= !empty($language->site_settings) ? ucfirst($language->site_settings) : 'Settings'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>

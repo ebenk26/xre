@@ -26,7 +26,12 @@
                         <a data-toggle="tab" href="#tab_account">
                             <i class="fa fa-user"></i> Account </a>
                     </li>
-
+                    <!-- Job Preferences -->
+                    <li>
+                        <a data-toggle="tab" href="#tab_job">
+                            <i class="fa fa-briefcase"></i> Job Preferences </a>
+                    </li>
+                    <!-- Privacy -->
                     <li>
                         <a data-toggle="tab" href="#tab_privacy">
                             <i class="fa fa-eye"></i> Privacy</a>
@@ -98,7 +103,254 @@
 
                         </div>
                     </div>
+                    <!-- Tab Job Preferences -->
+                    <div class="tab-pane" id="tab_job">
+                        <div class="panel  panel-borderless panel-transparent">
+                            <div class="panel-heading">
+                                <h4 class="panel-title font-26 font-weight-400">
+                                    My Job Preferences
+                                </h4>
+                            </div>
+                            <hr class="border-grey-silver my-10">
+                            <div class="panel-body">
+                                <div class="well">
+                                    <p>Note : Attribute </p>
+                                    <ol>
+                                        <li>
+                                            <b>Keyword </b>- Find skill ,job post title( job name) and other keyword </li>
+                                        <li>
+                                            <b>Location </b> - Specific to state and city based user reg ip (p/s if we include country it might too big for us to handle </li>
+                                        <li>
+                                            <b>Position Level </b> - use exist data</li>
+                                        <li>
+                                            <b>Specialization </b>- extract data from industry list , and we cannot provide a detail list of specialization(job position in industry) exist in this industy </li>
+                                        <li>
+                                            <b>Qualification </b> - issue how to find it in search job , unless system can detect certain keyword in job description or we can ignore it first </li>
+                                        <li>
+                                            <b>Field of study </b>- same thing like 'Qualifications'</li>
+                                        <li>
+                                            <b>Years of experience </b> - use exist data </li>
+                                    </ol>
+                                </div>
+                                <div class="media">
+                                    <div class="pull-right">
+                                        <a href="#modal_edit_job_preferences" data-toggle="modal" class="font-grey-gallery">Change</a>
+                                    </div>
+                                    <div class="media-body">
+                                        <!-- Keyword -->
 
+                                        <!--Note : Random Arrangement And badge color also random  , extract from student profile.php  -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs mt-0 md-indigo-text">Keyword</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Location -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Location</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Selangor</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Subang Jaya </span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">City </span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">State</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Specialization -->
+                                        <!-- Note :  Please extract from existing list of industry -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Specialization</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Job Type -->
+                                        <!-- Note :  Please extract from existing list-->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Job Type</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Internship</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Contract</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Position Level -->
+                                        <!-- Note :  Please extract from existing list -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Position Level</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Years Of Experience -->
+                                        <!-- Note :  Please extract from existing list of Year of expereince in job post employer side-->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Years Of Experience</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+
+
+                                        <!-- Qualifications -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Qualifications</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Field Of Study -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Field Of Study</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <li class="mb-20">
+                                                <p class="label label-md-green ">Engineer</p>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                            <li class="mb-20">
+                                                <span class="label label-md-green ">Engineer</span>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                            
                     <!-- tab privacy -->
                     <div class="tab-pane" id="tab_privacy">
                         <div class="panel  panel-borderless panel-transparent">
