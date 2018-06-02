@@ -1,3 +1,31 @@
+<?php
+$keywords               = '';
+$work_location          = [];
+$specialization         = [];
+$position_level         = [];
+$years_of_experience    = [];
+$qualifications         = '';
+$field_of_study         = '';
+$employment_type        = [];
+$keywords_view          = [];
+$qualifications_view    = [];
+$field_of_study_view    = [];
+
+if(!empty($job_preferences))
+{
+    $keywords               = $job_preferences->keywords;
+    $keywords_view          = !empty($job_preferences->keywords) ? explode(',', $job_preferences->keywords) : [];
+    $work_location          = !empty($job_preferences->work_location) ? explode(';', $job_preferences->work_location) : [];
+    $specialization         = !empty($job_preferences->specialization) ? explode(';', $job_preferences->specialization) : [];
+    $position_level         = !empty($job_preferences->position_level) ? explode(';', $job_preferences->position_level) : [];
+    $years_of_experience    = !empty($job_preferences->years_of_experience) ? explode(';', $job_preferences->years_of_experience) : [];
+    $qualifications         = $job_preferences->qualifications;
+    $qualifications_view    = !empty($job_preferences->qualifications) ? explode(',', $job_preferences->qualifications) : [];
+    $field_of_study         = $job_preferences->field_of_study;
+    $field_of_study_view    = !empty($job_preferences->field_of_study) ? explode(',', $job_preferences->field_of_study) : [];
+    $employment_type        = !empty($job_preferences->employment_type) ? explode(';', $job_preferences->employment_type) : [];
+}
+?>
 <!-- BEGIN CONTENT -->
 <div class="page-content-wrapper ">
     <div class="page-content">
@@ -113,25 +141,6 @@
                             </div>
                             <hr class="border-grey-silver my-10">
                             <div class="panel-body">
-                                <div class="well">
-                                    <p>Note : Attribute </p>
-                                    <ol>
-                                        <li>
-                                            <b>Keyword </b>- Find skill ,job post title( job name) and other keyword </li>
-                                        <li>
-                                            <b>Location </b> - Specific to state and city based user reg ip (p/s if we include country it might too big for us to handle </li>
-                                        <li>
-                                            <b>Position Level </b> - use exist data</li>
-                                        <li>
-                                            <b>Specialization </b>- extract data from industry list , and we cannot provide a detail list of specialization(job position in industry) exist in this industy </li>
-                                        <li>
-                                            <b>Qualification </b> - issue how to find it in search job , unless system can detect certain keyword in job description or we can ignore it first </li>
-                                        <li>
-                                            <b>Field of study </b>- same thing like 'Qualifications'</li>
-                                        <li>
-                                            <b>Years of experience </b> - use exist data </li>
-                                    </ol>
-                                </div>
                                 <div class="media">
                                     <div class="pull-right">
                                         <a href="#modal_edit_job_preferences" data-toggle="modal" class="font-grey-gallery">Change</a>
@@ -142,158 +151,161 @@
                                         <!--Note : Random Arrangement And badge color also random  , extract from student profile.php  -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs mt-0 md-indigo-text">Keyword</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($keywords_view))
+                                                {
+                                                    foreach ($keywords_view as $keywordsViewValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $keywordsViewValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Location -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Location</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Selangor</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Subang Jaya </span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">City </span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">State</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($work_location))
+                                                {
+                                                    foreach ($work_location as $workLocationValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $workLocationValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Specialization -->
                                         <!-- Note :  Please extract from existing list of industry -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Specialization</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($specialization))
+                                                {
+                                                    foreach ($specialization as $specializationValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $specializationValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Job Type -->
                                         <!-- Note :  Please extract from existing list-->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Job Type</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Internship</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Contract</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($employment_type))
+                                                {
+                                                    foreach ($employment_type as $employmentTypeValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $employmentTypeValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Position Level -->
                                         <!-- Note :  Please extract from existing list -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Position Level</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($position_level))
+                                                {
+                                                    foreach ($position_level as $positionLevelValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $positionLevelValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Years Of Experience -->
                                         <!-- Note :  Please extract from existing list of Year of expereince in job post employer side-->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Years Of Experience</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($years_of_experience))
+                                                {
+                                                    foreach ($years_of_experience as $yearsOfExperienceValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $yearsOfExperienceValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
 
@@ -301,47 +313,53 @@
                                         <!-- Qualifications -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Qualifications</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($qualifications_view))
+                                                {
+                                                    foreach ($qualifications_view as $qualificationsValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $qualificationsValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                         <!-- Field Of Study -->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Field Of Study</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <li class="mb-20">
-                                                <p class="label label-md-green ">Engineer</p>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
-                                            <li class="mb-20">
-                                                <span class="label label-md-green ">Engineer</span>
-                                            </li>
+                                            <?php
+                                                if(!empty($field_of_study_view))
+                                                {
+                                                    foreach ($field_of_study_view as $fieldOfStudyValue)
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $fieldOfStudyValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                    }
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
 
                                     </div>
@@ -401,20 +419,22 @@
                     <div class="modal-header">
                         <h4>Job Preferences </h4>
                     </div>
-                    <form class="form">
+                    <form class="form" method="POST" action="<?= site_url(); ?>student/settings/changeJobPreferences">
                         <div class="modal-body">
                             <!-- Keyword -->
                             <div class="form-group">
-                                <label class="control-label">Keyword</label>
-                                <input type="text" class="form-control input-lg" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+                                <label class="control-label">
+                                    Keyword 
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Type and press enter to add new keyword" style="cursor: pointer;"></i>
+                                </label>
+                                <input type="text" name="keywords" class="form-control input-lg" value="<?= $keywords; ?>" data-role="tagsinput">
                             </div>
-                            if it checked , input will show else hide
 
                             <div class="md-checkbox-list row">
                                 <div class="col-md-6">
                                     <!-- Checkbox Location -->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxLocation" name="cbLocation" value="1" class="md-check trigger " data-trigger="fieldLocation">
+                                        <input type="checkbox" id="checkboxLocation" name="cbLocation" value="1" class="md-check trigger " data-trigger="fieldLocation" <?= count($work_location) > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxLocation">
                                             <span></span>
                                             <span class="check"></span>
@@ -422,7 +442,7 @@
                                     </div>
                                     <!-- Checkbox Specialization -->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxSpecialization" name="cbSpecialization" value="1" class="md-check trigger" data-trigger="fieldSpecialization">
+                                        <input type="checkbox" id="checkboxSpecialization" name="cbSpecialization" value="1" class="md-check trigger" data-trigger="fieldSpecialization" <?= count($specialization) > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxSpecialization">
                                             <span></span>
                                             <span class="check"></span>
@@ -430,7 +450,7 @@
                                     </div>
                                     <!--  Checkbox Position Level-->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxPositionLevel" name="cbPositionLevel" value="1" class="md-check trigger" data-trigger="fieldPositionLevel">
+                                        <input type="checkbox" id="checkboxPositionLevel" name="cbPositionLevel" value="1" class="md-check trigger" data-trigger="fieldPositionLevel" <?= count($position_level) > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxPositionLevel">
                                             <span></span>
                                             <span class="check"></span>
@@ -440,7 +460,7 @@
                                 <div class="col-md-6">
                                     <!-- Checkbox Year Of Experience -->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxYearOfExperience" name="cbYearOfExperience" value="1" class="md-check trigger" data-trigger="fieldYearsOfExperience">
+                                        <input type="checkbox" id="checkboxYearOfExperience" name="cbYearOfExperience" value="1" class="md-check trigger" data-trigger="fieldYearsOfExperience" <?= count($years_of_experience) > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxYearOfExperience">
                                             <span></span>
                                             <span class="check"></span>
@@ -448,15 +468,23 @@
                                     </div>
                                     <!-- Checkbox Qualification -->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxQualification" name="cbQualification" value="1" class="md-check trigger" data-trigger="fieldQualifications">
+                                        <input type="checkbox" id="checkboxQualification" name="cbQualification" value="1" class="md-check trigger" data-trigger="fieldQualifications" <?= !empty($qualifications) ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxQualification">
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> Qualification </label>
                                     </div>
+                                    <!-- Checkbox Field of Study -->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxFos" name="cbFos" value="1" class="md-check trigger" data-trigger="fieldFOS" <?= !empty($field_of_study) ? 'checked="checked"' : ''; ?>>
+                                        <label for="checkboxFos">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Field of Study </label>
+                                    </div>
                                     <!-- Checkbox Job Type-->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxJobType" name="cbJobType" value="1" class="md-check trigger" data-trigger="fieldJobType">
+                                        <input type="checkbox" id="checkboxJobType" name="cbJobType" value="1" class="md-check trigger" data-trigger="fieldJobType" <?= count($employment_type) > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxJobType">
                                             <span></span>
                                             <span class="check"></span>
@@ -466,209 +494,100 @@
                             </div>
 
                             <!-- Location -->
-                            <div class="form-group" id="fieldLocation">
+                            <div class="form-group <?= count($work_location) <= 0 ? 'hidden' : ''; ?>" id="fieldLocation">
                                 <label class="control-label">Location</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                        <optgroup label="Pacific Time Zone">
-                                            <option value="CA">California</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="WA">Washington</option>
-                                        </optgroup>
-                                        <optgroup label="Mountain Time Zone">
-                                            <option value="AZ">Arizona</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="WY">Wyoming</option>
-                                        </optgroup>
-                                        <optgroup label="Central Time Zone">
-                                            <option value="AL">Alabama</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="TN">Tennessee</option>
-                                            <option value="WI">Wisconsin</option>
-                                        </optgroup>
-                                        <optgroup label="Eastern Time Zone">
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="ME">Maine</option>
-                                            <option value="MD">Maryland</option>
-                                            <option value="MA">Massachusetts</option>
-                                            <option value="MI">Michigan</option>
-                                            <option value="NH">New Hampshire</option>
-                                            <option value="NJ">New Jersey</option>
-                                            <option value="NY">New York</option>
-                                            <option value="NC">North Carolina</option>
-                                            <option value="OH">Ohio</option>
-                                            <option value="PA">Pennsylvania</option>
-                                            <option value="RI">Rhode Island</option>
-                                            <option value="SC">South Carolina</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WV">West Virginia</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                <select class="form-control bs-select" name="work_location[]" multiple>
+                                    <?php
+                                        foreach ($countries as $countriesVal)
+                                        {
+                                    ?>
+                                            <option <?= in_array($countriesVal['name'], $work_location) ? 'selected="selected"' : ''; ?>>
+                                                <?= $countriesVal['name']; ?>        
+                                            </option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                             <!-- Specialization -->
-                            <div class="form-group hidden" id="fieldSpecialization">
+                            <div class="form-group <?= count($specialization) <= 0 ? 'hidden' : ''; ?>" id="fieldSpecialization">
                                 <label class="control-label">Specialization</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                        <optgroup label="Pacific Time Zone">
-                                            <option value="CA">California</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="WA">Washington</option>
-                                        </optgroup>
-                                        <optgroup label="Mountain Time Zone">
-                                            <option value="AZ">Arizona</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="WY">Wyoming</option>
-                                        </optgroup>
-                                        <optgroup label="Central Time Zone">
-                                            <option value="AL">Alabama</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="TN">Tennessee</option>
-                                            <option value="WI">Wisconsin</option>
-                                        </optgroup>
-                                        <optgroup label="Eastern Time Zone">
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="ME">Maine</option>
-                                            <option value="MD">Maryland</option>
-                                            <option value="MA">Massachusetts</option>
-                                            <option value="MI">Michigan</option>
-                                            <option value="NH">New Hampshire</option>
-                                            <option value="NJ">New Jersey</option>
-                                            <option value="NY">New York</option>
-                                            <option value="NC">North Carolina</option>
-                                            <option value="OH">Ohio</option>
-                                            <option value="PA">Pennsylvania</option>
-                                            <option value="RI">Rhode Island</option>
-                                            <option value="SC">South Carolina</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WV">West Virginia</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                <select class="form-control bs-select" name="specialization[]" multiple>
+                                    <?php
+                                        foreach ($industries as $industriesVal)
+                                        {
+                                    ?>
+                                            <option <?= in_array($industriesVal['name'], $specialization) ? 'selected="selected"' : ''; ?>>
+                                                <?= $industriesVal['name']; ?>
+                                            </option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                             <!-- Position Level -->
-                            <div class="form-group hidden" id="fieldPositionLevel">
+                            <div class="form-group <?= count($position_level) <= 0 ? 'hidden' : ''; ?>" id="fieldPositionLevel">
                                 <label class="control-label">Position Level</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                <select class="form-control bs-select" name="position_level[]" multiple>
+                                    <option <?= in_array('Junior', $position_level) ? 'selected="selected"' : ''; ?>>
+                                        Junior
+                                    </option}>
+                                    <option <?= in_array('Senior', $position_level) ? 'selected="selected"' : ''; ?>>
+                                        Senior
+                                    </option>
+                                    <option <?= in_array('Executive', $position_level) ? 'selected="selected"' : ''; ?>>
+                                        Executive
+                                    </option>
+                                </select>
                             </div>
                             <!-- Years Of Experience -->
-                            <div class="form-group hidden" id="fieldYearsOfExperience">
+                            <div class="form-group <?= count($years_of_experience) <= 0 ? 'hidden' : ''; ?>" id="fieldYearsOfExperience">
                                 <label class="control-label">Years Of Experience</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                <select class="form-control bs-select" name="years_of_experience[]" multiple>
+                                    <option <?= in_array('1-2 Years of Experience', $years_of_experience) ? 'selected="selected"' : ''; ?>>
+                                        1-2 Years of Experience
+                                    </option>
+                                    <option <?= in_array('2-5 Years of Experience', $years_of_experience) ? 'selected="selected"' : ''; ?>>
+                                        2-5 Years of Experience
+                                    </option>
+                                    <option <?= in_array('5-10 Years of Experience', $years_of_experience) ? 'selected="selected"' : ''; ?>>
+                                        5-10 Years of Experience
+                                    </option>
+                                </select>
                             </div>
                             <!-- Qualifications -->
-                            <div class="form-group hidden" id="fieldQualifications">
-                                <label class="control-label">Qualifications</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                            <div class="form-group <?= !empty($qualifications) <= 0 ? 'hidden' : ''; ?>" id="fieldQualifications">
+                                <label class="control-label">
+                                    Qualifications
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Type and press enter to add new qualifications" style="cursor: pointer;"></i>
+                                </label>
+                                <input type="text" name="qualifications" class="form-control input-lg" value="<?= $qualifications; ?>" data-role="tagsinput">
                             </div>
 
                             <!-- Field Of Studys -->
-                            <div class="form-group hidden" id="fieldFOS">
-                                <label class="control-label">Field Of studys</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                            <div class="form-group <?= !empty($field_of_study) <= 0 ? 'hidden' : ''; ?>" id="fieldFOS">
+                                <label class="control-label">
+                                    Field Of studys
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Type and press enter to add new study" style="cursor: pointer;"></i>
+                                </label>
+                                <input type="text" name="field_of_study" class="form-control input-lg" value="<?= $field_of_study; ?>" data-role="tagsinput">
                             </div>
 
                             <!-- Job type -->
-                            <div class="form-group hidden" id="fieldJobType">
+                            <div class="form-group <?= count($employment_type) <= 0 ? 'hidden' : ''; ?>" id="fieldJobType">
                                 <label class="control-label">Job Type</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
+                                <select class="form-control bs-select" name="employment_type[]" multiple>
+                                    <?php
+                                        foreach ($employment as $employmentVal)
+                                        {
+                                    ?>
+                                            <option <?= in_array($employmentVal['name'], $employment_type) ? 'selected="selected"' : ''; ?>>
+                                                <?= $employmentVal['name']; ?>
+                                            </option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
 
 

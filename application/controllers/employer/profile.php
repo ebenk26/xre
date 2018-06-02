@@ -117,16 +117,12 @@ class Profile extends CI_Controller {
         $dress = $this->input->post('dress');
         $dresscode = '';
         $language = '';
-        foreach ($dress as $key => $value) {
-            $dresscode .= $value == end($dress) ? $value : $value.',';            
-        }
+        $dresscode = implode(',',$dress);
 
         $languages = $this->input->post('language');
         
         if (!empty($languages)) {
-            foreach ($languages as $key => $value) {
-                $language .= $value == end($languages) ? $value : $value.',';
-            }
+            $language = implode(',',$languages);
         }else{
             $language = '';
         }

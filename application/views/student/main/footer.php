@@ -663,6 +663,28 @@
                 }
             });
         });
+
+        $('[data-toggle="tooltip"]').tooltip()
+
+        $('#modal_edit_job_preferences input[type="checkbox"]').on('click', function() {
+            let idInput = $(this).attr('data-trigger')
+            let isChecked = $('#'+$(this).attr('id')+':checked').length
+
+            if(isChecked > 0)
+            {
+                $('#'+idInput).removeClass('hidden')
+            }
+            else
+            {
+                $('#'+idInput).addClass('hidden')
+            }
+        })
+
+        $(".select2-opt").select2({
+            placeholder: "Country",
+            allowClear: true,
+            theme: "bootstrap"
+        })
     });
 
     function showNotif() {

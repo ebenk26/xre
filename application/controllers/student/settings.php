@@ -19,11 +19,16 @@ class settings extends CI_Controller {
     	$profile['page_title'] = 'Setting';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
-        $profile['user_profile'] = $get_user_profile;
-        $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
-        $settings['user_bios'] = $this->global_model->get_by_id('student_bios', array('user_id'=>$id));
-        $settings['user'] = $this->global_model->get_by_id('users', array('id'=>$id));
-        $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
+
+        $profile['user_profile'] 		= $get_user_profile;
+        $profile['percent'] 			= $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
+        $settings['user_bios'] 			= $this->global_model->get_by_id('student_bios', array('user_id'=>$id));
+        $settings['user'] 				= $this->global_model->get_by_id('users', array('id'=>$id));
+        $settings['countries'] 			= $this->student_model->get_array('countries', 'name');
+        $settings['industries'] 		= $this->student_model->get_array('industries', 'name');
+        $settings['employment'] 		= $this->student_model->get_array('employment_types', 'name');
+        $settings['job_preferences'] 	= $this->global_model->get_by_id('job_preferences', array('user_id'=>$this->session->userdata('id')));
+
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/setting', $settings);
         $this->load->view('student/main/footer');
@@ -100,6 +105,53 @@ class settings extends CI_Controller {
 					'user_id' 		=> $this->session->userdata('id'),
 					'ip_address' 	=> $this->input->ip_address(),
 					'activity' 		=> "Change Privacy Setting",
+					'icon' 			=> "fa-edit",
+					'label' 		=> "success",
+					'created_at' 	=> date('Y-m-d H:i:s'),
+				);
+		setRecentActivities($data);
+		//END : set recent activities
+		
+        redirect(base_url().'student/settings');
+    }
+
+    public function changeJobPreferences(){
+        $data = array(
+        				'user_id' 				=> $this->session->userdata('id'),
+        				'keywords' 				=> $this->input->post('keywords'),
+        				'work_location' 		=> $this->input->post('work_location') != NULL ? implode(';', $this->input->post('work_location')) : '',
+        				'specialization' 		=> $this->input->post('specialization') != NULL ? implode(';', $this->input->post('specialization')) : '',
+        				'position_level' 		=> $this->input->post('position_level') != NULL ? implode(';', $this->input->post('position_level')) : '',
+        				'years_of_experience' 	=> $this->input->post('years_of_experience') != NULL ? implode(';', $this->input->post('years_of_experience')) : '',
+        				'qualifications' 		=> $this->input->post('qualifications'),
+        				'field_of_study' 		=> $this->input->post('field_of_study'),
+        				'employment_type' 		=> $this->input->post('employment_type') != NULL ? implode(';', $this->input->post('employment_type')) : ''
+        			);
+        $where = array('user_id' => $this->session->userdata('id'));
+
+        $checkData = $this->global_model->get_by_id('job_preferences', $where);
+
+        if(count($checkData) > 0)
+        {
+        	$data['created_by'] = $this->session->userdata('id');
+
+	        $where = array('id' => $checkData->id);
+
+        	$this->global_model->update('job_preferences', $where, $data);
+        }
+        else
+        {
+        	$data['updated_by'] 	= $this->session->userdata('id');
+        	$data['updated_date'] 	= date('Y-m-d H:i:s');
+        	
+        	$this->global_model->create('job_preferences', $data);
+        }
+		
+		//BEGIN : set recent activities
+		$data = array(
+					'user_id' 		=> $this->session->userdata('id'),
+					'ip_address' 	=> $this->input->ip_address(),
+					'activity' 		=> "Change Job Preferences Setting",
 					'icon' 			=> "fa-edit",
 					'label' 		=> "success",
 					'created_at' 	=> date('Y-m-d H:i:s'),
