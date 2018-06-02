@@ -13,6 +13,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 				<?php if($type == "Job Seeker" || "Student"){?>
 					<th>Name</th>
 					<th>Email</th>
+					<th>Signup Date</th>
 					<th>Video CV</th>
 					<th>Resume</th>
 				<?php }?>
@@ -23,6 +24,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 					<th>Contact Person Email</th>
 					<th>Phone</th>
 					<th>Fax</th>
+					<th>Signup Date</th>
 				<?php }?>
 				<?php if($type == "pendampingan"){?>
 					<th>Wilayah</th>
@@ -120,6 +122,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 					<?php if($type == "Job Seeker" || "Student"){?>
 						<td><?=$row->fullname?></td>
 						<td><?=$row->email?></td>
+						<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
 						<td><?=$row->youtubelink?></td>
 						<td><?php
 							$id = $row->id;
@@ -146,6 +149,7 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 						?>
 						<td> <?=$building_phone; ?></td>
 						<td> <?=$building_fax; ?></td>
+						<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
 					<?php }?>
 					<?php if($type == "pendampingan"){?>
 						<td><?=$row->prov_regional?></td>

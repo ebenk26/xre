@@ -52,6 +52,7 @@
                                     <!--<th class="col-md-1"> GST </th>-->
 									<th> Phone </th>
                                     <th> Fax </th>
+                                    <th> Signup Date</th>
                                     <th> Actions </th>
                                 </tr>
                             </thead>
@@ -77,6 +78,7 @@
 										?>
 										<td> <?=$building_phone; ?></td>
 										<td> <?=$building_fax; ?></td>
+										<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
 										<td>
                                             <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($row->id), '='); ?>" target="_blank" class="btn btn-icon-only red" title="View" style="margin-right:0;">
 												<i class="fa fa-search"></i>

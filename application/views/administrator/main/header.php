@@ -488,7 +488,7 @@
                             </div>
                         </div>
                     </li>-->
-					<li class="nav-item <?php if ($this->uri->segment(2) == 'student'): echo 'active'; endif?> ">
+					<li class="nav-item <?php if ($this->uri->segment(2) == 'student' || $this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/student" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title">Student</span>
