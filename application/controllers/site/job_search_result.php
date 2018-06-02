@@ -166,4 +166,14 @@ class Job_Search_Result extends CI_Controller {
         $table = $this->input->post('table');
     }
 
+    public function set_job_default_country(){
+        $location = '{"address":"","city":"","state":"","postcode":"","country":"Malaysia","latitude":"","longitude":""}';
+        $data = array(
+               'location' => $location
+        );
+
+        $this->db->where('forex', 'MYR');
+        $this->db->update('job_positions', $data);
+    }
+
 }
