@@ -41,7 +41,18 @@ class User extends CI_Controller {
             
 
             if ($login_result['status_request'] == 200) {
-                
+                //default Indonesia
+                $country_id = 5;
+                if (isset($_COOKIE['country_id'])) {
+                    $country_id = $_COOKIE['country_id'];
+                }
+
+                //if country is not set yet, then set country by cookie
+                if($login_result['country'] == 0){
+                    $this->db->where('id',$login_result['id']);
+                    $this->db->update('users', array('country' => $country_id));
+                }
+
                 $result = array(  'id' => $login_result['id'],
                                     'email' => $login_result['email'],
                                     'name' => $login_result['name'],
@@ -100,11 +111,18 @@ class User extends CI_Controller {
             
             
         }else{
+            //default Indonesia
+            $country_id = 5;
+            if (isset($_COOKIE['country_id'])) {
+                $country_id = $_COOKIE['country_id'];
+            }
+
             //call db
             $data = array(
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
-                'password' => md5(SALT.sha1($this->input->post('password')))
+                'password' => md5(SALT.sha1($this->input->post('password'))),
+                'country' => $country_id
             );
 
             
@@ -171,13 +189,20 @@ class User extends CI_Controller {
             $this->load->view('site/signup', $header);
             
         }else{
+            //default Indonesia
+            $country_id = 5;
+            if (isset($_COOKIE['country_id'])) {
+                $country_id = $_COOKIE['country_id'];
+            }
+
             //call db
             $data = array(
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password'))),
+                'country' => $country_id
             );
-            
+
             $role = 4;
             
             try{
@@ -215,8 +240,13 @@ class User extends CI_Controller {
             redirect(base_url().'signup');
             
         }else{
+            //default Indonesia
+            $country_id = 5;
+            if (isset($_COOKIE['country_id'])) {
+                $country_id = $_COOKIE['country_id'];
+            }
+
             //call db
-            
             $data = array(
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
@@ -224,8 +254,8 @@ class User extends CI_Controller {
                 'company_name' => $this->input->post('company_name'),
                 'country_code' => $_COOKIE['country_id'],
                 'created_at' => date('Y-m-d h:i:s'),
+                'country' => $country_id
             );
-
 
             $role = 3;
             

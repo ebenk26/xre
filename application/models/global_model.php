@@ -65,5 +65,13 @@ class Global_Model extends CI_Model{
 			return false;
 		}
 	}
+
+	public function get_like($table, $where, $order='created_at', $order_by ='asc'){
+		$this->db->order_by($order, $order_by);
+		$this->db->like($where);
+		$get = $this->db->get($table);
+
+		return $get->result_array();	
+	}
 }
 ?>

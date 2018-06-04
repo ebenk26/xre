@@ -22,7 +22,7 @@ class Gallery extends CI_Controller {
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
-
+        $profile['language']    = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->db->select('*');
         $this->db->from('gallery');
         $this->db->where('user_id', $this->session->userdata('id'));
