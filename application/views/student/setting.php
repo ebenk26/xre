@@ -1,29 +1,36 @@
 <?php
 $keywords               = '';
 $work_location          = [];
-$specialization         = [];
 $position_level         = [];
 $years_of_experience    = [];
 $qualifications         = '';
-$field_of_study         = '';
 $employment_type        = [];
 $keywords_view          = [];
 $qualifications_view    = [];
-$field_of_study_view    = [];
+$range_min              = 0;
+$range_max              = 0;
+$range_min_view         = 0;
+$range_max_view         = 0;
 
 if(!empty($job_preferences))
 {
     $keywords               = $job_preferences->keywords;
     $keywords_view          = !empty($job_preferences->keywords) ? explode(',', $job_preferences->keywords) : [];
     $work_location          = !empty($job_preferences->work_location) ? explode(';', $job_preferences->work_location) : [];
-    $specialization         = !empty($job_preferences->specialization) ? explode(';', $job_preferences->specialization) : [];
     $position_level         = !empty($job_preferences->position_level) ? explode(';', $job_preferences->position_level) : [];
     $years_of_experience    = !empty($job_preferences->years_of_experience) ? explode(';', $job_preferences->years_of_experience) : [];
     $qualifications         = $job_preferences->qualifications;
     $qualifications_view    = !empty($job_preferences->qualifications) ? explode(',', $job_preferences->qualifications) : [];
-    $field_of_study         = $job_preferences->field_of_study;
-    $field_of_study_view    = !empty($job_preferences->field_of_study) ? explode(',', $job_preferences->field_of_study) : [];
     $employment_type        = !empty($job_preferences->employment_type) ? explode(';', $job_preferences->employment_type) : [];
+
+    if(!empty($job_preferences->salary_range))
+    {
+        $range              = explode('-', $job_preferences->salary_range);
+        $range_min          = $range[0];
+        $range_max          = $range[1];
+        $range_min_view     = number_format($range[0],0,',','.');
+        $range_max_view     = number_format($range[1],0,',','.');
+    } 
 }
 ?>
 <!-- BEGIN CONTENT -->
@@ -200,33 +207,6 @@ if(!empty($job_preferences))
                                             ?>
                                         </ul>
 
-                                        <!-- Specialization -->
-                                        <!-- Note :  Please extract from existing list of industry -->
-                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Specialization</h5>
-                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php
-                                                if(!empty($specialization))
-                                                {
-                                                    foreach ($specialization as $specializationValue)
-                                                    {
-                                            ?>
-                                                        <li class="mb-20">
-                                                            <p class="label label-md-green ">
-                                                                <?= $specializationValue; ?>
-                                                            </p>
-                                                        </li>
-                                            <?php
-                                                    }
-                                                }
-                                                else
-                                                {
-                                            ?>
-                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
-                                            <?php
-                                                }
-                                            ?>
-                                        </ul>
-
                                         <!-- Job Type -->
                                         <!-- Note :  Please extract from existing list-->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Job Type</h5>
@@ -281,6 +261,30 @@ if(!empty($job_preferences))
                                             ?>
                                         </ul>
 
+                                        <!-- Salary Range -->
+                                        <!-- Note :  Please extract from existing list -->
+                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Salary Range</h5>
+                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
+                                            <?php
+                                                if(!empty($job_preferences->salary_range))
+                                                {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green ">
+                                                                <?= $range_min_view.' - '.$range_max_view; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php
+                                                }
+                                                else
+                                                {
+                                            ?>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                            <?php
+                                                }
+                                            ?>
+                                        </ul>
+
                                         <!-- Years Of Experience -->
                                         <!-- Note :  Please extract from existing list of Year of expereince in job post employer side-->
                                         <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Years Of Experience</h5>
@@ -322,32 +326,6 @@ if(!empty($job_preferences))
                                                         <li class="mb-20">
                                                             <p class="label label-md-green ">
                                                                 <?= $qualificationsValue; ?>
-                                                            </p>
-                                                        </li>
-                                            <?php
-                                                    }
-                                                }
-                                                else
-                                                {
-                                            ?>
-                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
-                                            <?php
-                                                }
-                                            ?>
-                                        </ul>
-
-                                        <!-- Field Of Study -->
-                                        <h5 class="text-uppercase font-weight-600 roboto-font font-17 letter-space-xs  md-indigo-text mt-30">Field Of Study</h5>
-                                        <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php
-                                                if(!empty($field_of_study_view))
-                                                {
-                                                    foreach ($field_of_study_view as $fieldOfStudyValue)
-                                                    {
-                                            ?>
-                                                        <li class="mb-20">
-                                                            <p class="label label-md-green ">
-                                                                <?= $fieldOfStudyValue; ?>
                                                             </p>
                                                         </li>
                                             <?php
@@ -440,14 +418,6 @@ if(!empty($job_preferences))
                                             <span class="check"></span>
                                             <span class="box"></span> Location </label>
                                     </div>
-                                    <!-- Checkbox Specialization -->
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxSpecialization" name="cbSpecialization" value="1" class="md-check trigger" data-trigger="fieldSpecialization" <?= count($specialization) > 0 ? 'checked="checked"' : ''; ?>>
-                                        <label for="checkboxSpecialization">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> Specialization </label>
-                                    </div>
                                     <!--  Checkbox Position Level-->
                                     <div class="md-checkbox">
                                         <input type="checkbox" id="checkboxPositionLevel" name="cbPositionLevel" value="1" class="md-check trigger" data-trigger="fieldPositionLevel" <?= count($position_level) > 0 ? 'checked="checked"' : ''; ?>>
@@ -455,6 +425,14 @@ if(!empty($job_preferences))
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> Position Level </label>
+                                    </div>
+                                    <!--  Checkbox Salary Range-->
+                                    <div class="md-checkbox">
+                                        <input type="checkbox" id="checkboxSalaryRange" name="cbSalaryRange" value="1" class="md-check trigger" data-trigger="fieldSalaryRange" <?= count($position_level) > 0 ? 'checked="checked"' : ''; ?>>
+                                        <label for="checkboxSalaryRange">
+                                            <span></span>
+                                            <span class="check"></span>
+                                            <span class="box"></span> Salary Range </label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -473,14 +451,6 @@ if(!empty($job_preferences))
                                             <span></span>
                                             <span class="check"></span>
                                             <span class="box"></span> Qualification </label>
-                                    </div>
-                                    <!-- Checkbox Field of Study -->
-                                    <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxFos" name="cbFos" value="1" class="md-check trigger" data-trigger="fieldFOS" <?= !empty($field_of_study) ? 'checked="checked"' : ''; ?>>
-                                        <label for="checkboxFos">
-                                            <span></span>
-                                            <span class="check"></span>
-                                            <span class="box"></span> Field of Study </label>
                                     </div>
                                     <!-- Checkbox Job Type-->
                                     <div class="md-checkbox">
@@ -509,22 +479,6 @@ if(!empty($job_preferences))
                                     ?>
                                 </select>
                             </div>
-                            <!-- Specialization -->
-                            <div class="form-group <?= count($specialization) <= 0 ? 'hidden' : ''; ?>" id="fieldSpecialization">
-                                <label class="control-label">Specialization</label>
-                                <select class="form-control bs-select" name="specialization[]" multiple>
-                                    <?php
-                                        foreach ($industries as $industriesVal)
-                                        {
-                                    ?>
-                                            <option <?= in_array($industriesVal['name'], $specialization) ? 'selected="selected"' : ''; ?>>
-                                                <?= $industriesVal['name']; ?>
-                                            </option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
                             <!-- Position Level -->
                             <div class="form-group <?= count($position_level) <= 0 ? 'hidden' : ''; ?>" id="fieldPositionLevel">
                                 <label class="control-label">Position Level</label>
@@ -539,6 +493,16 @@ if(!empty($job_preferences))
                                         Executive
                                     </option>
                                 </select>
+                            </div>
+                            <!-- Salary Range -->
+                            <div class="form-group <?= count($position_level) <= 0 ? 'hidden' : ''; ?>" id="fieldSalaryRange">
+                                <label class="control-label">Salary Range</label>
+                                <div style="margin-left: 10px;">
+                                    <div><small>From</small></div>
+                                    <input type="text" name="range_min" class="form-control" value="<?= $range_min; ?>">
+                                    <div><small>To</small></div>
+                                    <input type="text" name="range_max" class="form-control" value="<?= $range_max; ?>">
+                                </div>
                             </div>
                             <!-- Years Of Experience -->
                             <div class="form-group <?= count($years_of_experience) <= 0 ? 'hidden' : ''; ?>" id="fieldYearsOfExperience">
@@ -562,15 +526,6 @@ if(!empty($job_preferences))
                                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Type and press enter to add new qualifications" style="cursor: pointer;"></i>
                                 </label>
                                 <input type="text" name="qualifications" class="form-control input-lg" value="<?= $qualifications; ?>" data-role="tagsinput">
-                            </div>
-
-                            <!-- Field Of Studys -->
-                            <div class="form-group <?= !empty($field_of_study) <= 0 ? 'hidden' : ''; ?>" id="fieldFOS">
-                                <label class="control-label">
-                                    Field Of studys
-                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="Type and press enter to add new study" style="cursor: pointer;"></i>
-                                </label>
-                                <input type="text" name="field_of_study" class="form-control input-lg" value="<?= $field_of_study; ?>" data-role="tagsinput">
                             </div>
 
                             <!-- Job type -->
