@@ -120,11 +120,10 @@ class settings extends CI_Controller {
         				'user_id' 				=> $this->session->userdata('id'),
         				'keywords' 				=> $this->input->post('keywords'),
         				'work_location' 		=> $this->input->post('work_location') != NULL ? implode(';', $this->input->post('work_location')) : '',
-        				'specialization' 		=> $this->input->post('specialization') != NULL ? implode(';', $this->input->post('specialization')) : '',
+        				'salary_range' 			=> $this->input->post('range_min') != NULL ? $this->input->post('range_min').'-'.$this->input->post('range_max') : '',
         				'position_level' 		=> $this->input->post('position_level') != NULL ? implode(';', $this->input->post('position_level')) : '',
         				'years_of_experience' 	=> $this->input->post('years_of_experience') != NULL ? implode(';', $this->input->post('years_of_experience')) : '',
         				'qualifications' 		=> $this->input->post('qualifications'),
-        				'field_of_study' 		=> $this->input->post('field_of_study'),
         				'employment_type' 		=> $this->input->post('employment_type') != NULL ? implode(';', $this->input->post('employment_type')) : ''
         			);
         $where = array('user_id' => $this->session->userdata('id'));

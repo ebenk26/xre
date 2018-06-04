@@ -90,6 +90,7 @@
                                     <th class="text-center">#</th>
                                     <th> Name </th>
                                     <th> Email </th>
+                                    <th> Signup Date </th>
                                     <!--<th class="col-md-2"> CV </th>-->
                                     <th> Video CV </th>
                                     <th> Actions </th>
@@ -101,6 +102,7 @@
                                         <td class="text-center" ><?=$no++; ?></td>
                                         <td> <?=$row->fullname; ?></td>
 										<td> <?=$row->email; ?></td>
+										<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
 										<!--<td> <?=$row->email; ?></td>-->
 										<td> 
 											<?php if($row->youtubelink != ""){?>
