@@ -425,37 +425,146 @@
                 },
                 success: function(response){
                     var company = JSON.parse(response);
-                    var image_directory = window.location.origin + '/assets/img/employer/';
+                    if (window.location.host == 'localhost') {
+                        var image_directory = window.location.origin + '/xremo/assets/img/employer/';
+                    }else{
+                        var image_directory = window.location.origin + '/assets/img/employer/';
+                    }
                     var profile_pic = 'profile-pic.png';
-                    $.each(company, function (i, v) {
-                        
-                        if (v.profile_photo != null) {
-                            profile_pic = v.profile_photo;
-                        }
-                        company += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
-                                        <div class="mt-card-item">\
-                                            <div class="mt-card-avatar mt-overlay-1">\
-                                                <img src="' + image_directory + profile_pic + '" class="img-fluid height-200 width-auto center-block">\
-                                                <div class="mt-overlay">\
-                                                    <ul class="mt-info">\
-                                                        <li>\
-                                                            <a class="btn btn-md-orange" href="javascript:void(0);">\
+                    var companies = "";
+                    var canBeAddedToWishlist = true;
+                    if(company.length > 0){
+                        $.each(company, function (i, v) {
+                            
+
+                            if (v.profile_photo != null) {
+                                profile_pic = v.profile_photo;
+                            }else{
+                                profile_pic = 'profile-pic.png';
+                            }
+
+                            if (v.wishlist_id != null) {
+                                canBeAddedToWishlist = '<li>\
+                                                            <a wishlistId="'+v.wishlist_id+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                <i class="fa fa-close "></i>\
+                                                            </a>\
+                                                        </li>';
+
+                            }else{
+                                canBeAddedToWishlist = '<li>\
+                                                            <a companyId="'+v.id+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
                                                                 <i class="fa fa-plus "></i>\
                                                             </a>\
-                                                        </li>\
-                                                    </ul>\
+                                                        </li>';
+                             
+                            }
+
+                            companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
+                                            <div class="mt-card-item">\
+                                                <div class="mt-card-avatar mt-overlay-1">\
+                                                    <img src="' + image_directory + profile_pic + '" class="img-fluid height-200 width-auto center-block">\
+                                                    <div class="mt-overlay">\
+                                                        <ul class="mt-info">\
+                                                            '+canBeAddedToWishlist+'\
+                                                        </ul>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="mt-card-content">\
+                                                    <h3 class="mt-card-name">'+v.company_name+'</h3>\
                                                 </div>\
                                             </div>\
-                                            <div class="mt-card-content">\
-                                                <h3 class="mt-card-name">'+v.company_name+'</h3>\
-                                            </div>\
-                                        </div>\
-                                    </div>';
+                                        </div>';
+                        });
+                    }else{
+                        companies = '\
+                            <div class="portlet portlet-body center-block width-60-percent py-100 px-30 text-center md-red-text">\
+                                <p>Sorry!! "company name" not exist in our system.</p>\
+                                <p>Its doesnt mean you cannot add your favourite company. </p>\
+                            </div>\
+                            <div class="row mx-0">\
+                                <div class="col-md-8 col-md-offset-2">\
+                                    <div class="form-group mx-0">\
+                                        <label for="">Company Name</label>\
+                                        <input type="text" class="form-control">\
+                                    </div>\
+                                    <div class="form-group mx-0">\
+                                        <label for="">Why you want to join in this company? (Optional)</label>\
+                                        <textarea name="" id="" cols="30" rows="4" class="form-control"></textarea>\
+                                    </div>\
+                                </div>\
+                            </div>';
+                    }
+                    $('#company_result').html(companies);
+                    $('.addWishlist').click(function(){
+                        swal({
+                            title: "Are you sure want to add this as your wishlist?",
+                            text: "You will be able to remove it later",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Add",
+                            cancelButtonText: "Cancel",
+                            closeOnConfirm: false,
+                            closeOnCancel: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url: "<?= base_url(); ?>student/wishlist/addCompany",
+                                    method: "POST",
+                                    data: {
+                                        companyId: $(this).attr('companyId')
+                                    },
+                                    success: function(response){
+
+                                        swal("Success", "Successfuly add company to job wishlist", "success");
+                                        location.reload();
+                                    }
+                                })
+                            } else {
+                                swal("Cancelled", "Your Post is safe", "error");
+                            }
+                        }
+                        );                        
                     });
-                    $('#company_result').html(company);
+
+                    $('.removeWishlist').click(function(){
+                        swal({
+                                title: "Are you sure you want to remove from your wishlist?",
+                                text: "You will be able to add it later",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Delete",
+                                cancelButtonText: "Cancel",
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: "<?= base_url(); ?>student/wishlist/removeCompany",
+                                        method: "POST",
+                                        data: {
+                                            wishlistId: $(this).attr('wishlistId')
+                                        },
+                                        success: function(response){
+                                            swal("Success", "Successfuly remove company to job wishlist", "success");
+                                            location.reload();
+                                        }
+                                    })
+                                } else {
+                                    swal("Cancelled", "Your Post is safe", "error");
+                                }
+                            }
+                        )
+                        
+                    });
                 }
             });
         });
+
+
 
         $('.btn-resc').click(function () {
             $('.modal_detail_interview').modal('hide');
