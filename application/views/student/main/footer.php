@@ -476,6 +476,7 @@
                                         </div>';
                         });
                     }else{
+                        $('.modal-footer .btn').removeClass('hidden');
                         companies = '\
                             <div class="portlet portlet-body center-block width-60-percent py-100 px-30 text-center md-red-text">\
                                 <p>Sorry!! "company name" not exist in our system.</p>\
