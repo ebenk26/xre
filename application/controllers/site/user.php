@@ -39,6 +39,7 @@ class User extends CI_Controller {
             $password = md5(SALT.sha1($this->input->post('password')));
             $login_result = $this->user_model->loginUser($user_email, $password);
             
+            
 
             if ($login_result['status_request'] == 200) {
                 //default Indonesia

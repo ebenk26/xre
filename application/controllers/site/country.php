@@ -5,12 +5,11 @@ class Country extends CI_Controller {
     
     function __construct(){
         parent::__construct();
-        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     }
 
     
     public function id(){
-        $this->cache->delete('language');
+
         $country = array(
                 'country_code' => 'IDN',
                 'country' => 'Indonesia',
@@ -40,14 +39,14 @@ class Country extends CI_Controller {
 
         $lang = getLocaleLanguage($_COOKIE['locale']);
 
-        $this->cache->save('language', $lang, 300);
+        
         
         $this->session->set_userdata($country);
         redirect(base_url().'beranda');
 	}
 
     public function my(){
-        $this->cache->delete('language');
+
         $country = array(
                 'country_code' => 'MYS',
                 'country' => 'Malaysia',
@@ -77,14 +76,14 @@ class Country extends CI_Controller {
 
         $lang = getLocaleLanguage($cookie_locale_value);
 
-        $this->cache->save('language', $lang, 300);
+        
 
         $this->session->set_userdata($country);
         redirect(base_url().'home');
     }
 
     public function ph(){
-        $this->cache->delete('language');
+
         $country = array(
                 'country_code' => 'PHL',
                 'country' => 'Phillipines',
@@ -114,14 +113,14 @@ class Country extends CI_Controller {
 
         $lang = getLocaleLanguage($cookie_locale_value);
 
-        $this->cache->save('language', $lang, 300);
+        
 
         $this->session->set_userdata($country);
         redirect(base_url().'home');
     }
 
     public function sg(){
-        $this->cache->delete('language');
+
         $country = array(
                 'country_code' => 'SIN',
                 'country' => 'Singapore',
@@ -142,7 +141,7 @@ class Country extends CI_Controller {
     }
 
     public function th(){
-        $this->cache->delete('language');
+
         $country = array(
                 'country_code' => 'THD',
                 'country' => 'Thailand',
