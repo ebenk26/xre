@@ -618,6 +618,16 @@ class Student_Model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    function get_company_by_user_id($where){
+        $this->db->select('wishlist.*, user_profiles.company_name as company, profile_uploads.name as profile_photo');
+        $this->db->from('wishlist');
+        $this->db->join('user_profiles', 'user_profiles.user_id = wishlist.company_id', 'left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = wishlist.student_id AND profile_uploads.type != "header_photo"','left');
+        $this->db->where($where);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 }
 
 ?>

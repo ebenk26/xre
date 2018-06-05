@@ -485,17 +485,18 @@
                                 <div class="col-md-8 col-md-offset-2">\
                                     <div class="form-group mx-0">\
                                         <label for="">Company Name</label>\
-                                        <input type="text" class="form-control">\
+                                        <input type="text" class="form-control" name="companyName">\
                                     </div>\
                                     <div class="form-group mx-0">\
                                         <label for="">Why you want to join in this company? (Optional)</label>\
-                                        <textarea name="" id="" cols="30" rows="4" class="form-control"></textarea>\
+                                        <textarea name="wantToJoinReason" id="" cols="30" rows="4" class="form-control"></textarea>\
                                     </div>\
                                 </div>\
                             </div>';
                     }
                     $('#company_result').html(companies);
                     $('.addWishlist').click(function(){
+                        var $companyId = $(this).attr('companyId')
                         swal({
                             title: "Are you sure want to add this as your wishlist?",
                             text: "You will be able to remove it later",
@@ -513,7 +514,7 @@
                                     url: "<?= base_url(); ?>student/wishlist/addCompany",
                                     method: "POST",
                                     data: {
-                                        companyId: $(this).attr('companyId')
+                                        companyId: $companyId
                                     },
                                     success: function(response){
 
@@ -529,6 +530,8 @@
                     });
 
                     $('.removeWishlist').click(function(){
+                        console.log('removeWishlist');
+                        var $wishlistId = $(this).attr('wishlistId');
                         swal({
                                 title: "Are you sure you want to remove from your wishlist?",
                                 text: "You will be able to add it later",
@@ -546,7 +549,7 @@
                                         url: "<?= base_url(); ?>student/wishlist/removeCompany",
                                         method: "POST",
                                         data: {
-                                            wishlistId: $(this).attr('wishlistId')
+                                            wishlistId: $wishlistId
                                         },
                                         success: function(response){
                                             swal("Success", "Successfuly remove company to job wishlist", "success");
@@ -564,7 +567,40 @@
             });
         });
 
-
+        $('.removeWishlist').click(function(){
+            console.log('removeWishlist');
+            var $wishlistId = $(this).attr('wishlistId');
+            swal({
+                    title: "Are you sure you want to remove from your wishlist?",
+                    text: "You will be able to add it later",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Delete",
+                    cancelButtonText: "Cancel",
+                    closeOnConfirm: false,
+                    closeOnCancel: false
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        $.ajax({
+                            url: "<?= base_url(); ?>student/wishlist/removeCompany",
+                            method: "POST",
+                            data: {
+                                wishlistId: $wishlistId
+                            },
+                            success: function(response){
+                                swal("Success", "Successfuly remove company to job wishlist", "success");
+                                location.reload();
+                            }
+                        })
+                    } else {
+                        swal("Cancelled", "Your Post is safe", "error");
+                    }
+                }
+            )
+            
+        });
 
         $('.btn-resc').click(function () {
             $('.modal_detail_interview').modal('hide');
