@@ -29,6 +29,8 @@ class settings extends CI_Controller {
         $settings['employment'] 		= $this->student_model->get_array('employment_types', 'name');
         $settings['job_preferences'] 	= $this->global_model->get_by_id('job_preferences', array('user_id'=>$this->session->userdata('id')));
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
+        $settings['currency'] 			= $this->global_model->get_by_id('forex', array('country_id'=>$_COOKIE['country_id']));
+        
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/setting', $settings);
         $this->load->view('student/main/footer');
