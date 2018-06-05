@@ -28,8 +28,8 @@ if(!empty($job_preferences))
         $range              = explode('-', $job_preferences->salary_range);
         $range_min          = $range[0];
         $range_max          = $range[1];
-        $range_min_view     = number_format($range[0],0,',','.');
-        $range_max_view     = number_format($range[1],0,',','.');
+        $range_min_view     = $currency->name.' '.number_format($range[0],0,',','.');
+        $range_max_view     = $currency->name.' '.number_format($range[1],0,',','.');
     } 
 }
 ?>
