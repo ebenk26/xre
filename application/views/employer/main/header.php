@@ -286,14 +286,14 @@
                             <li class="nav-item start active">
                                 <a href="<?php echo base_url(); ?>employer/search_candidate/" class="nav-link">
                                     <i class="icon-magnifier"></i>
-                                    <span class="title"><?= !empty($language->site_search_candidate) ? $language->site_search_candidate : 'Search Candidate'?></span>
+                                    <span class="title"><?= !empty($language->site_candidate_search) ? $language->site_candidate_search : 'Search Candidate'?></span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a href="#" class="nav-link">
+                                <a href="<?php echo base_url(); ?>employer/candidates_bookmark" class="nav-link">
                                     <i class="icon-user-following"></i>
-                                    <span class="title"><?= !empty($language->site_candidate_bookmart) ? $language->site_candidate_bookmart : 'Candidate Bookmark'?></span>
+                                    <span class="title"><?= !empty($language->site_candidate_bookmark) ? $language->site_candidate_bookmark : 'Candidate Bookmark'?></span>
 
                                 </a>
                             </li>
