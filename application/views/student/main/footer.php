@@ -475,6 +475,7 @@
                                             </div>\
                                         </div>';
                         });
+                        $('.modal-footer .btn').addClass('hidden');
                     }else{
                         $('.modal-footer .btn').removeClass('hidden');
                         companies = '\
