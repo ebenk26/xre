@@ -26,7 +26,7 @@ class Wishlist extends CI_Controller {
         $profile['user_profile']   = $get_user_profile;
         $profile['percent']        = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']       = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
-        $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id));
+        $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id, 'wishlist.status'=> 1));
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/wishlist',$data);
         $this->load->view('student/main/footer');
@@ -44,11 +44,15 @@ class Wishlist extends CI_Controller {
         $userId = $this->session->userdata('id');
         if (!empty($companyId)) {
             $data = array(  'student_id' => $userId, 
-                            'company_id' => $companyId );
+                            'company_id' => $companyId,
+                            'created_by' => $userId,
+                            'status'     => 1 );
         }else{
             $data = array(  'student_id'    => $userId,
                             'company_name'  => $this->input->post('companyName'),
-                            'reason'        => $this->input->post('wantToJoinReason'));
+                            'reason'        => $this->input->post('wantToJoinReason'),
+                            'created_by'    => $userId,
+                            'status'        => 1);
         }
         $this->global_model->create('wishlist', $data);
         redirect(base_url().'student/wishlist');
@@ -56,7 +60,11 @@ class Wishlist extends CI_Controller {
 
     public function removeCompany(){
         $wishlistId = $this->input->post('wishlistId');
-        $data = array(  'id' => $wishlistId);
-        $this->global_model->remove('wishlist', $data);
+        $userId = $this->session->userdata('id');
+        $where = array(  'id' => $wishlistId);
+        $data = array(  'status'=> 0,
+                        'deleted_by' => $userId,
+                        'deleted_at' => date('Y-m-d H:i:s'));
+        $this->global_model->update('wishlist', $where, $data);
     }
 }

@@ -17,13 +17,13 @@ class User extends CI_Controller {
     
     public function login(){
         $header['page_title'] = 'Login';
-        $header['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
+        $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/login', $header);
 	}
 
     public function signup(){
         $header['page_title'] = 'Sign Up';
-        $header['language'] = ($this->cache->get('language')) ? $this->cache->get('language') : getLocaleLanguage($_COOKIE['locale']);
+        $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/signup', $header);
     }
 
