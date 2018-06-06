@@ -134,7 +134,7 @@
                                     <div class="mt-element-card mt-element-overlay">
                                         <div class="row">
                                             <!-- Default card-->
-                                            <div id="company_result"></div>
+                                            <div id="company_result" style="display: flex;flex-wrap: wrap;"></div>
                                         </div>
                                     </div>
                                 </div>

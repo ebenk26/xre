@@ -42,17 +42,23 @@ class Wishlist extends CI_Controller {
     public function addCompany(){
         $companyId = $this->input->post('companyId');
         $userId = $this->session->userdata('id');
+        $companyName = $this->input->post('companyName');
         if (!empty($companyId)) {
             $data = array(  'student_id' => $userId, 
                             'company_id' => $companyId,
                             'created_by' => $userId,
                             'status'     => 1 );
         }else{
-            $data = array(  'student_id'    => $userId,
-                            'company_name'  => $this->input->post('companyName'),
-                            'reason'        => $this->input->post('wantToJoinReason'),
-                            'created_by'    => $userId,
-                            'status'        => 1);
+            if (!empty($companyName)) {
+                $data = array(  'student_id'    => $userId,
+                                'company_name'  => $this->input->post('companyName'),
+                                'reason'        => $this->input->post('wantToJoinReason'),
+                                'created_by'    => $userId,
+                                'status'        => 1);
+            }else{
+                redirect(base_url().'student/wishlist#modal_add_wishlist_search');
+                $this->session->set_flashdata('msg_error', 'Please write down company name ');
+            }
         }
         $this->global_model->create('wishlist', $data);
         redirect(base_url().'student/wishlist');

@@ -425,6 +425,7 @@
                 },
                 success: function(response){
                     var company = JSON.parse(response);
+
                     if (window.location.host == 'localhost') {
                         var image_directory = window.location.origin + '/xremo/assets/img/employer/';
                     }else{
@@ -433,14 +434,20 @@
                     var profile_pic = 'profile-pic.png';
                     var companies = "";
                     var canBeAddedToWishlist = true;
+                    var companyName = "";
                     if(company.length > 0){
                         $.each(company, function (i, v) {
                             
-
                             if (v.profile_photo != null) {
                                 profile_pic = v.profile_photo;
                             }else{
                                 profile_pic = 'profile-pic.png';
+                            }
+
+                            if (v.company_name != "") {
+                                companyName = v.company_name;
+                            }else{
+                                companyName = v.registered_company;
                             }
 
                             if (v.wishlist_id != null) {
@@ -470,12 +477,14 @@
                                                     </div>\
                                                 </div>\
                                                 <div class="mt-card-content">\
-                                                    <h3 class="mt-card-name">'+v.company_name+'</h3>\
+                                                    <h3 class="mt-card-name">'+companyName+'</h3>\
                                                 </div>\
                                             </div>\
                                         </div>';
                         });
                         $('.modal-footer .btn').addClass('hidden');
+                        $('#company_result').css("display", "flex");
+                        $('#company_result').css("flex-wrap", "wrap");
                     }else{
                         $('.modal-footer .btn').removeClass('hidden');
                         companies = '\
@@ -497,6 +506,7 @@
                             </div>';
                     }
                     $('#company_result').html(companies);
+                    $('#company_result').removeAttr("style");
                     $('.addWishlist').click(function(){
                         var $companyId = $(this).attr('companyId')
                         swal({
