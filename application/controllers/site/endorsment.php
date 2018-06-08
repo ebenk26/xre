@@ -187,6 +187,7 @@ class Endorsment extends CI_Controller {
                             'updated_at' => date('Y-m-d H:i:s') );
         }
 
+
         try {
             $this->global_model->create('reviews', $data);
             $this->session->set_flashdata('msg_success', 'Review user success');

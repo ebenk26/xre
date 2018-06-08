@@ -598,7 +598,6 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-		
         $this->load->view('student/view_profile',$profile);
     }
 }

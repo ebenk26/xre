@@ -265,51 +265,51 @@ function AllUserReviewer($params)
     return $profile;
 }
 
-function countEndorserAchievement($params){
+function countEndorserAchievement($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $endorseDataAchievement = array('achievement_id'=> $params);
+    $endorseDataAchievement = array('achievement_id'=> $params, 'endorsed_user_id' => base64_decode($user_id));
     $endorse['achievement']= $CI->global_model->get_where('endorse', $endorseDataAchievement);
     return $endorse;
 }
 
-function countEndorserProject($params){
+function countEndorserProject($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $endorseDataProject = array('user_project_id'=> $params);
+    $endorseDataProject = array('user_project_id'=> $params, 'endorsed_user_id' => base64_decode($user_id));
     $endorse['project']= $CI->global_model->get_where('endorse', $endorseDataProject);
     return $endorse;
 }
 
 
-function countReviewerEducation($params){
+function countReviewerEducation($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $reviewDataProject = array('skill_id'=> $params);
+    $reviewDataProject = array('skill_id'=> $params, 'user_id' => base64_decode($user_id));
     $review['education']= $CI->global_model->get_where('reviews', $reviewDataProject);
     return $review;
 }
 
-function countReviewerExp($params){
+function countReviewerExp($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $reviewDataExperience = array('exp_id'=> $params);
+    $reviewDataExperience = array('exp_id'=> $params, 'user_id' => base64_decode($user_id));
     $review['experience']= $CI->global_model->get_where('reviews', $reviewDataExperience);
     return $review;
 }
 
-function countRateExp($params){
+function countRateExp($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $reviewDataExperience = array('exp_id'=> $params);
+    $reviewDataExperience = array('exp_id'=> $params, 'user_id' => base64_decode($user_id));
     $review['experience']= $CI->global_model->get_where('ratings', $reviewDataExperience);
     return $review;
 }
 
-function countRateEducation($params){
+function countRateEducation($params, $user_id){
     $CI =& get_instance();
     $CI->load->model('global_model');
-    $reviewDataEducation = array('skill_id'=> $params);
+    $reviewDataEducation = array('skill_id'=> $params, 'user_id' => base64_decode($user_id));
     $review['education']= $CI->global_model->get_where('ratings', $reviewDataEducation);
     return $review;
 }

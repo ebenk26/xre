@@ -186,24 +186,24 @@
 
                 <!-- Personal Info -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-30 ">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "> Personal Information</h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "> <?= !empty($language->site_personal_information) ? $language->site_personal_information: "Personal Information" ?> </h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
                             <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>
                             <a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-20" target="_blank">
-                                <i class="icon-envelope mr-2 "></i>Send Message</a>
+                                <i class="icon-envelope mr-2 "></i><?= !empty($language->site_send_message) ? $language->site_send_message : "Send Message" ;?></a>
                             <?php }?>
                         </li>
                         <li>
-                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-14 text-uppercase">Gender</h5>
+                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->site_gender) ? $language->site_gender : "Gender" ;?></h5>
                             <p class="mt-5  text-lighten-4">
                                 <?= !empty($user_profile['overview']['student_bios_gender']) ?  $user_profile['overview']['student_bios_gender'] : '-'; ?>
                             </p>
                         </li>
                         <?php if(!empty($roles)){ ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">Date Of Birth </h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->DOB) ? $language->DOB : "Date Of Birth" ;?> </h5>
                             <p class="mt-5 ">
                                 <?php   
                                     if(!empty($user_profile['overview']['student_bios_DOB']))
@@ -234,13 +234,13 @@
                             </p>
                         </li>
                         <li>
-                            <h5 class="font-weight-700  mb-0 font-14 text-uppercase font-grey-gallery">EMAIL ADDRESS</h5>
+                            <h5 class="font-weight-700  mb-0 font-14 text-uppercase font-grey-gallery"><?= !empty($language->email_address) ? $language->email_address : "Email Address" ;?></h5>
                             <p class="mt-5 ">
                                 <?= !empty($user_profile['overview']['email']) ?  $user_profile['overview']['email'] : '-'; ?>
                             </p>
                         </li>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">ADDRESS</h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->address) ? $language->address : "Address" ;?></h5>
                             <?php
                                 $full_address = !empty($user_profile['address']['address']) ? $user_profile['address']['address'].", ":"";
                                 $full_address .= !empty($user_profile['address']['city']) ? $user_profile['address']['city'].", ":"";
@@ -255,7 +255,7 @@
                         </li>
                         <?php } ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">Language </h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->language) ? $language->language : "Language" ;?> </h5>
                             <ul class="list-unstyled mx-0">
                                 <?php if(!empty($user_profile['language'])){?>
                                 <?php foreach($user_profile['language'] as $key => $value){?>
@@ -265,8 +265,8 @@
                                             <?= $value['title']; ?>
                                         </strong>
                                         <br>
-                                        <small>[ Spoken :
-                                            <?= $value['spoken']; ?> Level , Written :
+                                        <small>[ <?= !empty($language->spoken) ? $language->spoken : "Spoken" ;?> :
+                                            <?= $value['spoken']; ?> Level , <?= !empty($language->written) ? $language->written : "Written" ;?> :
                                                 <?= $value['written']; ?> Level] </small>
                                     </p>
 
@@ -279,7 +279,7 @@
 
                 <!-- CV Video -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-30">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">Video Resume</h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ;?></h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe width="560" height="315" src="<?= !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -288,7 +288,7 @@
 
                 <!-- Gallery -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-30">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">Gallery</h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->site_gallery) ? $language->site_gallery : "Gallery" ;?></h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <?php if(!empty($gallery)) {?>
                     <div class="portfolio-content portfolio-3">
@@ -372,23 +372,23 @@
                     <ul class="nav nav-tabs pull-left">
                         <li class="active">
                             <a href="#tab_summary" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-user mr-5"></i> Summary</a>
+                                <i class="icon-user mr-5"></i> <?= !empty($language->site_summary) ? $language->site_summary : "Summary" ;?></a>
                         </li>
                         <li>
                             <a href="#tab_education" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-graduation mr-5"></i>Education </a>
+                                <i class="icon-graduation mr-5"></i><?= !empty($language->site_education) ? $language->site_education : "Education" ;?> </a>
                         </li>
                         <li>
                             <a href="#tab_experience" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-briefcase mr-5"></i>Experience</a>
+                                <i class="icon-briefcase mr-5"></i><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?></a>
                         </li>
                         <li>
                             <a href="#tab_noneducation" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-notebook mr-5"></i>Non Education</a>
+                                <i class="icon-notebook mr-5"></i><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?></a>
                         </li>
                         <li>
                             <a href="#tab_skills" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-badge mr-5"></i>Skills</a>
+                                <i class="icon-badge mr-5"></i><?= !empty($language->site_project) ? $language->site_project : "Project" ;?></a>
                         </li>
                     </ul>
                 </div>
@@ -402,7 +402,7 @@
                             <ul class="list-group list-border">
                                 <!-- About Me -->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">About Me</h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_about_me) ? $language->site_about_me : "About Me" ;?></h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['overview']['summary'])){?>
@@ -418,7 +418,7 @@
 
                                 <!-- Education [Latest ]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Education</h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_education) ? $language->site_education : "Education" ;?></h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['academics'])){?>
@@ -457,7 +457,7 @@
 
                                 <!-- Experience [All] -->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Experience</h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?></h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['experiences'])){?>
@@ -503,7 +503,7 @@
 
                                 <!-- Non Education [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Non Education </h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?> </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['achievement'])){?>
@@ -538,7 +538,7 @@
 
                                 <!-- Skill [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">Skill </h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_project) ? $language->site_project : "Project" ;?> </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <?php if(!empty($user_profile['achievement'])){?>
                                     <ul class="list-unstyled">
@@ -577,7 +577,7 @@
                             <ul class="list-group list-border">
                                 <?php $i=0; foreach($user_profile['academics'] as $key => $value){
                                         $keyReviewEdu = array_search($value['academic_id'], array_column($endorseReviewRating['review'],'skill_id'));
-                                        $review_counter = countReviewerEducation($value['academic_id']);
+                                        $review_counter = countReviewerEducation($value['academic_id'], $segmented_uri);
 
                                         if (!is_bool($keyReviewEdu)) {
                                             $checkReviewSame = $value['academic_id'] == $endorseReviewRating['review'][$keyReviewEdu]['skill_id'];
@@ -610,7 +610,7 @@
 
                                         /*end review*/
                                         /*start rating*/
-                                        $rate_education = countRateEducation($value['academic_id']);
+                                        $rate_education = countRateEducation($value['academic_id'], $segmented_uri);
                                         $total_rating = 0;
                                         foreach ($rate_education['education'] as $key => $rating) {
                                             // var_dump($value[$i+1]['rating']);
@@ -618,7 +618,7 @@
                                         }
 
                                         $keyRatingEdu = array_search($value['academic_id'], array_column($endorseReviewRating['rate'],'skill_id'));
-                                        $rating_counter = countRateEducation($value['academic_id']);
+                                        $rating_counter = countRateEducation($value['academic_id'], $segmented_uri);
                                         if (!is_bool($keyRatingEdu)) {
                                             $checkRatingSame = $value['academic_id'] == $endorseReviewRating['rate'][$keyRatingEdu]['skill_id'];
                                             $checkRatingNotSame = $value['academic_id'] != $endorseReviewRating['rate'][$keyRatingEdu]['skill_id'];
@@ -823,7 +823,7 @@
                                                         <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>
                                                         <input type="hidden" value="<?= $value['academic_id'];?>" name="skill_id">
                                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
-                                                        <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
+                                                        <input type="hidden" value="<?= !empty($segmented_uri) ? base64_decode($segmented_uri) : $this->session->userdata('id');?>" name="endorsed_id">
                                                     </div>
                                                     <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
                                                     <button type="submit" class="btn btn-md-indigo ">Submit</button>
@@ -847,7 +847,7 @@
                             <ul class="list-group list-border">
                                 <?php $i=1; foreach($user_profile['experiences'] as $key => $value){        
                                         $keyReviewExp = array_search($value['experience_id'], array_column($endorseReviewRating['review'],'exp_id'));
-                                        $review_counter = countReviewerExp($value['experience_id']);
+                                        $review_counter = countReviewerExp($value['experience_id'], $segmented_uri);
                                         
                                         if (!is_bool($keyReviewExp)) {
                                             $checkReviewSame = $value['experience_id'] == $endorseReviewRating['review'][$keyReviewExp]['exp_id'];
@@ -881,7 +881,7 @@
                                         /*end review*/
                                         /*start rating*/
 
-                                        $rate_experience = countRateExp($value['experience_id']);
+                                        $rate_experience = countRateExp($value['experience_id'], $segmented_uri);
 
                                         $total_rating = 0;
                                         foreach ($rate_experience['experience'] as $key => $rating) {
@@ -890,7 +890,7 @@
                                         }
 
                                         $keyRatingExp = array_search($value['experience_id'], array_column($endorseReviewRating['rate'],'exp_id'));
-                                        $rating_counter = countRateExp($value['experience_id']);
+                                        $rating_counter = countRateExp($value['experience_id'], $segmented_uri);
 
                                         if ($id != base64_decode($segmented_uri)) {
                                             $checkIdRatingExist = array_search($id, array_column($rating_counter['experience'],'endorser_id'));
@@ -1176,7 +1176,7 @@
                             <?php if(!empty($user_profile['achievement'])){?>
                             <ul class="list-group list-border">
                                 <?php foreach($user_profile['achievement'] as $key => $value){
-                                        $endorsement_counter = countEndorserAchievement($value['achievement_id']);
+                                        $endorsement_counter = countEndorserAchievement($value['achievement_id'], $segmented_uri);
                                         $keyAchievement = array_search($value['achievement_id'], array_column($endorseReviewRating['endorse'],'achievement_id'));
                                         if (!is_bool($keyAchievement)) {
                                             $checkEndorseSame = $value['achievement_id'] == $endorseReviewRating['endorse'][$keyAchievement]['achievement_id'];
@@ -1362,7 +1362,7 @@
                             <ul class="list-group list-border">                                
                                 <?php $i=0; foreach($user_profile['projects'] as $key => $value){
                                         $keyAchievement = array_search($value['id'], array_column($endorseReviewRating['endorse'],'user_project_id'));
-                                        $countEndorserProject = countEndorserProject($value['id']);
+                                        $countEndorserProject = countEndorserProject($value['id'], $segmented_uri);
                                         if (!is_bool($keyAchievement)) {
                                             $checkEndorseSame = $value['id'] == $endorseReviewRating['endorse'][$keyAchievement]['user_project_id'];
                                             $checkEndorseNotSame = $value['id'] != $endorseReviewRating['endorse'][$keyAchievement]['user_project_id'];
