@@ -212,6 +212,9 @@
                 </div>
             </div>
             <!-- Jobseeker Form -->
+            <?php if ($_COOKIE['country'] == 'ph'): ?>
+                
+            
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  " style="background-color: #3F51B5;">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
                     <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
@@ -321,6 +324,7 @@
                     </div>
                 </div>
             </div>
+            <?php endif ?>
             <!-- Employer Form -->
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue m-grid-col-12-sm ">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">

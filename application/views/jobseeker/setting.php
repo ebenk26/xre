@@ -594,7 +594,7 @@ if(!empty($job_preferences))
                                 <!-- <label for="">Phone Number</label> -->
                                 <!-- <div class="form-inline">
                                     <div class="input-group"> -->
-                                        <input type="text" name="contact_number" class="form-control " value="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: 'Please Edit your profile'; ?>">
+                                        <input type="text" name="contact_number" class="form-control " placeholder="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: '123456'; ?>" value="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: '123456'; ?>">
                                     <!-- </div>
                                 </div> -->
                             </div>

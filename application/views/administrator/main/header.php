@@ -557,6 +557,13 @@
 							<span class="selected"></span>
                         </a>
 					</li>
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'translation'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>administrator/translation" class="nav-link ">
+                            <i class="icon-note"></i>
+                            <span class="title">Translation</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
 					
                     <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
