@@ -147,28 +147,7 @@ class User extends CI_Controller {
                 redirect(base_url().'signup');
             }
 
-/*          $email = explode('@', $this->input->post('email'));
-            $university_email = end($email);
-            $univ_email_check = $this->user_model->check_university_email($university_email);
 
-            if ($univ_email_check == true) {
-                try{
-                    $save = $this->user_model->signup_post($data, $role);
-                    if ($save == false) {
-                        throw new Exception('Email Send Failed');
-                    }
-                    $this->user_model->sendEmail($data);    
-                }catch (Exception $e){
-                    $this->session->set_flashdata('msg_failed', 'Failed!! Please try again later.');
-                    redirect(base_url().'site/user/signup');
-                }
-            }else{
-                    $this->session->set_flashdata('msg_failed', 'Your university not registered in our system');
-                    redirect(base_url().'site/user/signup');
-            }*/
-
-            //$header['page_title'] = 'Sign Up';
-            //$this->load->view('site/signup', $header);
             redirect(base_url().'verify_registration');          
         }
     }
@@ -215,14 +194,10 @@ class User extends CI_Controller {
             }catch (Exception $e){
                 $this->session->set_flashdata('msg_failed', 'Failed!! Please try again.');
                 redirect(base_url().'signup');
-                // $header['page_title'] = 'Sign Up';
-                // $this->load->view('site/signup', $header);
                 
             }
 
-            //$header['page_title'] = 'Sign Up';
-            //$this->load->view('site/signup', $header); 
-            redirect(base_url().'login');  
+            redirect(base_url().'verify_registration');     
         }
     }
 

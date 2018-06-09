@@ -32,7 +32,7 @@ class User_Model extends CI_Model{
             $this->db->insert('user_role',$user_role);
         }
 
-        if($role == 5){
+        if($role == 5 || $role==4){
 
             $this->db->insert('student_bios', array('user_id' => $user_id));
 

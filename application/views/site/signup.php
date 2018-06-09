@@ -211,6 +211,116 @@
                     </div>
                 </div>
             </div>
+            <!-- Jobseeker Form -->
+            <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  " style="background-color: #3F51B5;">
+                <div class="login-content m-grid p-0 m-0 g-fullheight">
+                    <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
+                        <div class="portlet g-ver-center  mt-display-block" id="jobseekerContent">
+                            <a href="<?=base_url()?>">
+                                <img class="height-110  wow fadeInDown " data-wow-duration=".3" data-wow-delay=".1s" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
+                            </a>
+                            <h1 class="font-weight-500 display-4 text-center my-60  wow fadeInDown md-white-text" data-wow-duration=".3" data-wow-delay=".3s">Are you a jobseeker? </h1>
+                            <a class="btn btn-md-white btn-outline  btn-lg mb-60 mb-0-md  wow fadeInDown md-white-text" data-wow-duration=".3" data-wow-delay=".5s" href="<?php echo base_url(); ?>signup#jobseekerUser" id="jobseekerRadio">Sign up as Jobseeker</a>
+                        </div>
+
+                        <div class="portlet py-70 g-ver-center mx-30 mx-0-md mx-20-sm mt-display-none  wow fadeIn " data-wow-duration=".3" data-wow-delay=".1s" id="jobseekerUser">
+                            <a href="<?=base_url()?>">
+                                <img class="height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
+                            </a>
+                            <div class="portlet-body py-50 ">
+                                <form method="POST" action="<?php echo base_url(); ?>site/user/jobseeker_signup_post" class="form-horizontal" id="jobseekerUserForm">
+                                    <div class="form-body">
+                                        <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+                                            <!-- Input : Fullname -->
+                                            <div class="form-group form-md-line-input  mb-5 ">
+                                                <!-- <div class="col-md-8 col-md-offset-2 "> -->
+                                                <div class="input-icon">
+                                                    <i class="fa fa-user"></i>
+                                                    <input type="text" name="fullname" id="fullname_jobseeker" class="form-control " placeholder="Full Name" required>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="text-danger">
+                                                        <?php echo form_error('fullname'); ?>
+                                                    </span>
+                                                </div>
+                                                <!-- </div> -->
+                                            </div>
+                                            <!-- Input : Email -->
+                                            <div class="form-group form-md-line-input mb-5 ">
+                                                <div class="input-icon">
+                                                    <i class="fa fa-envelope-o"></i>
+                                                    <input type="email" name="email" id="email_jobseeker" class="form-control " placeholder="Email Address" required>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="text-danger">
+                                                        <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- Input : Password -->
+                                            <div class="form-group form-md-line-input  mb-5">
+                                                <div class="input-icon">
+                                                    <i class="fa fa-key"></i>
+                                                    <input type="password" name="password" id="password_jobseeker" class="pass-strength-jobseeker form-control" placeholder="Password" required>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="text-danger">
+                                                        <?php echo form_error('password'); ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- Input : Password -->
+                                            <div class="form-group form-md-line-input  mb-5 password-strength-bar-jobseeker" id="password-strength-bar" style="display:none;">
+                                                <div class="progress progress-striped active mb-0">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-label="Poor" style="width: 0%">
+                                                        <span class="sr-only">0% Complete Poor</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Input : Confirm Password -->
+                                            <div class="form-group form-md-line-input  mb-5">
+                                                <div class="input-icon">
+                                                    <i class="fa fa-key"></i>
+                                                    <input type="password" name="confirm_password" id="confirm_password_jobseeker" class="form-control" placeholder="Confirm Password" required>
+                                                    <div class="form-control-focus"> </div>
+                                                    <span class="text-danger">
+                                                        <?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <!-- Checkbox : I Agree -->
+                                            <div class="form-group form-md-line-input  my-15">
+                                                <div class="md-checkbox-list md-checkbox md-indigo-box">
+                                                    <!--<input type="checkbox" name="terms" id="checkbox16" class="md-check">-->
+                                                    <input type="checkbox" name="terms" id="checkboxregisterjobseeker" class="md-check" required>
+                                                    <label for="checkboxregisterjobseeker" class="ml-1 md-white-text">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> I agree with all the
+                                                        <a href="<?=base_url()?>terms-of-use" target="_blank" class="md-white-text">terms of use </a> and
+                                                        <a href="<?=base_url()?>privacy" target="_blank" class="md-white-text"> privacy policy</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Button : Submit -->
+                                            <div class="form-group mt-3 ">
+                                                <button type="submit" class="btn btn-block btn-md-orange">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-footer wow fadeIn " data-wow-duration=".3" data-wow-delay=".7s">
+                    <div class="row bs-reset">
+                        <div class="m-grid ">
+                            <div class="m-grid-col m-grid-col-middle m-grid-col-center pb-40 md-white-text">
+                                Already have an account ?
+                                <a href="<?php echo base_url(); ?>login" class="md-orange-text"> Sign In </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- Employer Form -->
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue m-grid-col-12-sm ">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
@@ -332,7 +442,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
@@ -383,11 +492,24 @@
                 $("#studentUser").show();
                 $("#employerContent").show();
                 $("#employerUser").hide();
+                $("#jobseekerContent").show();
+                $("#jobseekerUser").hide();
             });
 
             $("#employerRadio").click(function () {
                 $("#employerContent").hide();
                 $("#employerUser").show();
+                $("#studentContent").show();
+                $("#studentUser").hide();
+                $("#jobseekerContent").show();
+                $("#jobseekerUser").hide();
+            });
+
+            $("#jobseekerRadio").click(function () {
+                $("#jobseekerContent").hide();
+                $("#jobseekerUser").show();
+                $("#employerContent").show();
+                $("#employerUser").hide();
                 $("#studentContent").show();
                 $("#studentUser").hide();
             });
@@ -437,36 +559,48 @@
             });
 
             // Jobseeker
-            $("#jobseekerRadio").click(function () {
-                $("#jobseekerContent").show();
-                $("#studentContent").hide();
-                $("#employerContent").hide();
-
-                $("#jobseekerUserForm")[0].reset();
-                $(".password-strength-bar-student").hide();
-                $(".password-strength-bar-employer").hide();
-                $(".password-strength-bar-jobseeker").hide();
-
-                if ($('#jobseekerRadio').prop('checked') === false) {
-                    $('#jobseekerContent').hide();
-                }
-            });
-
             $("#jobseekerUser button").click(function (argument) {
+                alertify.dismissAll();
+                alertify.set('notifier', 'position', 'bottom-left');
+
+                var error = false;
+                if ($("#jobseekerUser #fullname_jobseeker").val() == "") {
+                    alertify.error('Please fill in your full name', 'error', 5);
+                    error = true;
+                }
+
+                if ($("#jobseekerUser #email_jobseeker").val() == "") {
+                    alertify.error('Please fill in your email address', 'error', 5);
+                    error = true;
+                }
+
+                if ($("#jobseekerUser #password_jobseeker").val() == "") {
+                    alertify.error('Please fill in your password', 'error', 5);
+                    error = true;
+                }
+
+                if ($("#jobseekerUser #confirm_password_jobseeker").val() == "") {
+                    alertify.error('Please fill in your confirm password', 'error', 5);
+                    error = true;
+                }
+
                 if ($("#jobseekerUser #password_jobseeker").val() != $(
                         "#jobseekerUser #confirm_password_jobseeker").val()) {
                     alertify.error('Your password and confirm password did not same', 'error',
                         5);
+                    error = true;
                 }
 
                 if ($('#jobseekerUser #checkboxregisterjobseeker').prop('checked') === false) {
                     alertify.error('Please check agree term of use and privacy policy', 'error',
                         5);
+                    error = true;
                 }
 
                 if (error) {
                     return false;
                 }
+
             });
 
             // Employer

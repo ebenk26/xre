@@ -15,11 +15,7 @@ class Profile extends CI_Controller {
     }
     
     public function index(){
-        $roles = $this->session->userdata('roles');
-        $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
-            redirect(base_url());
-        }
+        
         
         $profile['page_title'] = 'Profile';
         $id = $this->session->userdata('id');
@@ -30,9 +26,9 @@ class Profile extends CI_Controller {
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/profile', $profile);
-        $this->load->view('student/main/footer');
+        $this->load->view('jobseeker/main/header', $profile);
+        $this->load->view('jobseeker/profile', $profile);
+        $this->load->view('jobseeker/main/footer');
 	}
 
     public function post(){
@@ -50,7 +46,7 @@ class Profile extends CI_Controller {
             $targetFile =  $targetPath.$profile_photo;
             if (isset($checkImage)) {
 
-                // unlink("./assets/img/student/".$checkImage['name']);
+                // unlink("./assets/img/jobseeker/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -68,7 +64,7 @@ class Profile extends CI_Controller {
                             'type' => 'header_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
             $tempFile = $_FILES['header_photo']['tmp_name'];        
-            $targetPath = "./assets/img/student/";
+            $targetPath = "./assets/img/jobseeker/";
 
             $path = pathinfo($_FILES['header_photo']['name']);
             $ext = $path['extension'];
@@ -76,7 +72,7 @@ class Profile extends CI_Controller {
             $targetFile =  $targetPath.$header_photo;
             if (isset($checkImage)) {
 
-                // unlink("./assets/img/student/".$checkImage['name']);
+                // unlink("./assets/img/jobseeker/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -101,6 +97,7 @@ class Profile extends CI_Controller {
 				$youtubelink = "";
 			}
 		}
+
 
         $profile = array(
             'student_name' => $this->input->post('fullname'),
@@ -140,8 +137,9 @@ class Profile extends CI_Controller {
 				);
 		setRecentActivities($data);
 		//END : set recent activities
+
 		
-        redirect(base_url().'student/profile/');
+        redirect(base_url().'jobseeker/profile/');
     }
 
     public function add_education(){
@@ -183,7 +181,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
     }
 
     public function edit_education(){
@@ -228,7 +226,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
         
     }
 
@@ -277,7 +275,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
     }
 
     public function edit_experience(){
@@ -324,7 +322,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
     }
 
     public function add_skills(){
@@ -336,7 +334,7 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->add($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data added') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().'jobseeker/profile/');
     }
 
     public function edit_skills(){
@@ -349,7 +347,7 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->update($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data updated') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().'jobseeker/profile/');
     }
 
     public function add_language(){
@@ -360,7 +358,7 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->add($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data added') : $this->session->set_flashdata('msg_failed', 'language data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().'jobseeker/profile/');
     }
 
     public function edit_language(){
@@ -372,7 +370,7 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->update($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data updated') : $this->session->set_flashdata('msg_failed', 'Language data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().'jobseeker/profile/');
     }
 
     public function add_achievement(){
@@ -403,7 +401,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
     }
 
     public function edit_achievement(){
@@ -435,7 +433,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
     }
 
     public function add_project(){
@@ -476,7 +474,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-		redirect(base_url().'student/profile');
+		redirect(base_url().'jobseeker/profile');
     }
 
     public function edit_project(){
@@ -516,7 +514,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().'jobseeker/profile');
 
     }
 	
@@ -598,6 +596,6 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-        $this->load->view('student/view_profile',$profile);
+        $this->load->view('jobseeker/view_profile',$profile);
     }
 }

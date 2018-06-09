@@ -30,7 +30,7 @@ class Inbox extends CI_Controller {
 		
 		//data for each header
 		$id = $this->session->userdata('id');
-        if($roles == "student"){
+        if($roles == "student" || $roles == "jobseeker"){
 			$get_user_profile = $this->student_model->get_user_profile($id);
 			$profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
 			$profile['notification'] = $this->student_model->get_notification($id);
@@ -431,7 +431,7 @@ class Inbox extends CI_Controller {
         
 		if($roles == "employer"){
 			$get_user_profile = $this->employer_model->get_user_profile($id);
-		}elseif($roles == "student"){
+		}elseif($roles == "student" || $roles=="jobseeker"){
 			$get_user_profile = $this->student_model->get_user_profile($id);
 		}
         $profile['user_profile'] = $get_user_profile;
@@ -439,7 +439,7 @@ class Inbox extends CI_Controller {
 		if($roles == "employer"){
 			$profile['profile_completion'] = $this->employer_model->get_profile_completion($profile);
 		}
-		if($roles == "student"){
+		if($roles == "student" || $roles=="jobseeker"){
 			$profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
 			$profile['notification'] = $this->student_model->get_notification($id);
 			$calendar['invitation'] = $this->student_model->get_interview_invitation($id);
