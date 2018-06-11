@@ -115,15 +115,6 @@ class User_Model extends CI_Model{
         }else{
             return false;
         }
-        
-        //config email settings
-        /*$config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.gmail.com';
-        $config['smtp_port'] = '465';
-        $config['smtp_user'] = 'kartaterazu27@gmail.com';
-        $config['smtp_pass'] = 'darethord140614';  //sender's password
-        $config['charset'] = 'iso-8859-1';
-        $config['newline'] = "\r\n";*/ 
     }
 
     function forgotPassword($email){

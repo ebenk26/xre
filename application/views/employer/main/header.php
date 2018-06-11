@@ -274,7 +274,7 @@
                         </a>
                     </li>
                     <!-- Sidebar Menu : Search Talent -->
-                    <li class="nav-item active ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-users"></i>
                             <span class="title"><?= !empty($language->site_talent_search) ? $language->site_talent_search : 'Talent Search'?></span>
@@ -283,14 +283,14 @@
                         </a>
 
                         <ul class="sub-menu">
-                            <li class="nav-item start active">
+                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
                                 <a href="<?php echo base_url(); ?>employer/search_candidate/" class="nav-link">
                                     <i class="icon-magnifier"></i>
                                     <span class="title"><?= !empty($language->site_search_candidate) ? $language->site_search_candidate : 'Search Candidate'?></span>
                                     <span class="selected"></span>
                                 </a>
                             </li>
-                            <li class="nav-item ">
+                            <li class="nav-item <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
                                 <a href="#" class="nav-link">
                                     <i class="icon-user-following"></i>
                                     <span class="title"><?= !empty($language->site_candidate_bookmart) ? $language->site_candidate_bookmart : 'Candidate Bookmark'?></span>

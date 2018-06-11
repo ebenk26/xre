@@ -411,6 +411,44 @@ class Employer_Model extends CI_Model{
 
     }
 
+    function getSearchResult($keywords){
+        //check keywords by candidate's job preferences
+        $this->db->where("keywords LIKE '%".$keywords."%'");
+        
+        $search = $this->db->get('job_preferences');
+        // var_dump($search->result());exit();
+        //get candidate profile
+        $candidate = [];
+
+        foreach($search->result() as $val)
+        {
+            $getCandidate = $this->db->query("SELECT
+                                                    a.fullname, 
+                                                    b.title, 
+                                                    b.start_date, 
+                                                    b.end_date, 
+                                                    c.university_name, 
+                                                    d.expected_salary, 
+                                                    d.location,
+                                                    IFNULL(e.user_id,0) AS is_shortlisted
+                                                FROM
+                                                    users a
+                                                        LEFT JOIN experiences b ON b.user_id = a.id
+                                                        LEFT JOIN academics c ON c.user_id = a.id
+                                                        LEFT JOIN student_bios d ON d.user_id = a.id
+                                                        LEFT JOIN bookmark_candidate e ON e.user_id = a.id
+                                                WHERE
+                                                    a.id = ".$val->user_id."
+                            ");
+
+            $candidate[] = $getCandidate->result();
+        }
+
+        // var_dump($candidate);exit();
+
+        return $candidate;
+    }
+
 
 }
 

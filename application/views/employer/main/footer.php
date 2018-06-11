@@ -1466,7 +1466,68 @@ $company_address = json_decode($user_profile['address']);?>
                 }
             });
         });
-    });
+
+        $("#toggleAdvancedSearch").on('click', function(){
+            if($("#advanced-search").css('display') == 'none')
+            {
+                $("#toggleAdvancedSearch i").removeClass('fa-caret-up')
+                $("#toggleAdvancedSearch i").addClass('fa-caret-down')
+                $("#advanced-search").slideDown('slow')
+            }
+            else
+            {
+                $("#toggleAdvancedSearch i").removeClass('fa-caret-down')
+                $("#toggleAdvancedSearch i").addClass('fa-caret-up')
+                $("#advanced-search").slideUp('slow')
+            }
+        })
+
+        $("#search_panelv1 #keywords").on('input paste keyup blur', function(event) {
+            if(this.value == '')
+            {
+                $(this).css('border-color','red')
+            }
+            else
+            {
+                $(this).css('border-color','#dfdfdf')
+            }
+
+            if(event.which == 13)
+            {
+                var keywords       = $('#search_panelv1 #keywords').val()
+
+                $.ajax({
+                    url: "<?= base_url(); ?>employer/search_candidate/getCandidate",
+                    type: 'POST',
+                    data: {keywords:keywords},
+                    beforeSend: function(){
+                        
+                    },
+                    dataType : 'json',
+                    success: function (data) {
+                        if(data.searchResult.length > 0)
+                        {
+                            $(".searchResult").html(data.searchResult);
+                        }
+                        else
+                        {
+                            $(".searchResult").html("Empty Result");
+                        }
+                    },
+                    error: function( data )
+                    {
+                        var errors = data.responseJSON.errors.email[0]
+                            
+                        $('#submit').text('LOGIN')
+
+                        $('.error-msg').text(errors)
+                        $('.error-msg').removeClass('hidden')
+                    }
+                })
+            }
+        })
+    })
+
     // Notif Show
     function showNotif() {
         $.ajax({
