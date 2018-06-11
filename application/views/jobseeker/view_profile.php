@@ -322,7 +322,7 @@
                     </div>
                     <?php }else{?>
                     <!-- # Empty States -->
-                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                     <?php }?>
                 </li>
 
@@ -356,7 +356,7 @@
                         <?php }}  ?>
                     </ul>
                     <?php }else{?>
-                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                        <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                         <?php }?>
                     <?php }?>
                 </li>
@@ -411,7 +411,7 @@
                                     </p>
                                     <?php }else{?>
                                     <!-- # Empty States -->
-                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                                     <?php }?>
 
                                 </li>
@@ -450,7 +450,7 @@
                                     </ul>
                                     <?php }else{?>
                                     <!-- # Empty States -->
-                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                                     <?php }?>
 
                                 </li>
@@ -496,7 +496,7 @@
                                     </ul>
                                     <?php }else{?>
                                     <!-- # Empty States -->
-                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                                     <?php }?>
 
                                 </li>
@@ -532,7 +532,7 @@
                                     </ul>
                                     <?php }else{?>
                                     <!-- # Empty States -->
-                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                                     <?php }?>
                                 </li>
 
@@ -565,7 +565,7 @@
                                         <?php }?>
                                     </ul>
                                     <?php }else{?>
-                                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                                    <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                                     <?php }?>
                                 </li>
                             </ul>
@@ -837,7 +837,7 @@
                             </ul>
                             <?php }else{?>
                             <!-- # Empty States -->
-                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                            <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                             <?php }?>
                         </div>
 
@@ -1167,7 +1167,7 @@
                             </ul>
                             <?php }else{?>
                             <!-- # Empty States -->
-                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                            <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                             <?php }?>
                         </div>
 
@@ -1351,7 +1351,7 @@
                             </ul>
                             <?php }else{?>
                             <!-- # Empty State -->
-                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                            <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                             <?php }?>
 
                         </div>
@@ -1530,7 +1530,7 @@
                             </ul>
                             <?php }else{?>
                             <!-- # Empty State -->
-                            <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                            <?php $this->load->view('jobseeker/main/profile_missing', $data_arr);?>
                             <?php }?>
                         </div>
                         

@@ -14,23 +14,23 @@
 							$tab_student = $this->session->flashdata('tab_student');
 						?>
                             <li class="<?=$tab_student =='tab_overview' || $tab_student =='' ?'active':'' ?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab">
+                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_overview" data-toggle="tab">
                                     <i class="icon-user font-22"></i> Overview</a>
                             </li>
                             <li class="<?=$tab_student == " tab_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab">
+                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_education" data-toggle="tab">
                                     <i class="icon-graduation font-22"></i>Education </a>
                             </li>
                             <li class="<?=$tab_student == " tab_experience "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab">
+                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_experience" data-toggle="tab">
                                     <i class="icon-briefcase font-22"></i>Experience</a>
                             </li>
                             <li class="<?=$tab_student == " tab_non_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab">
+                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_non_education" data-toggle="tab">
                                     <i class="icon-notebook font-22"></i>Non Education</a>
                             </li>
                             <li class="<?=$tab_student == " tab_project "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab">
+                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_project" data-toggle="tab">
                                     <i class="icon-badge font-22"></i>Skills</a>
                             </li>
 
@@ -351,7 +351,7 @@
                             <!-- Modal Add education -->
                             <div class="actions">
                                 <?php if (!empty($user_profile['academics'])){ ?>
-                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
+                                <a href="<?php echo base_url();?>jobseeker/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
                                     <i class="fa fa-plus  "></i> Add </a>
                                 <?php } ?>
                             </div>
@@ -393,7 +393,7 @@
                                         <!-- Button -->
                                         <div class="media-right media-middle ">
                                             <!-- Edit Button -->
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu mb-20" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
+                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu mb-20" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
                                                 <i class="icon-pencil" data-toggle="tooltip" title="edit"></i>
                                             </a>
                                             <!-- Delete Button -->
@@ -414,7 +414,7 @@
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
                                                 </div>
-                                                <form action="<?php echo base_url();?>student/profile/edit_education" method="POST" class="form">
+                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_education" method="POST" class="form">
                                                     <input type="hidden" name="academic_id" value="<?php echo $value['academic_id'];?>"></input>
                                                     <div class="modal-body portlet-body form-horizontal ">
                                                         <!-- Institution Name -->
@@ -499,7 +499,7 @@
                                     <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                     <h5 class="font-grey-cascade mt-30 text-center">Click button below to add education information.</h5>
                                     <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
+                                        <a href="<?php echo base_url();?>jobseeker/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
                                             <i class="fa fa-plus  "></i> Add Education Info </a>
                                     </div>
                                 </div>
@@ -602,7 +602,7 @@
                                         </div>
                                         <!-- Button -->
                                         <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only  mb-20 ">
+                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only  mb-20 ">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
@@ -624,7 +624,7 @@
                                                     </div>
 
                                                 </div>
-                                                <form action="<?php echo base_url();?>student/profile/edit_experience" method="POST" class="form form-horizontal">
+                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_experience" method="POST" class="form form-horizontal">
                                                     <input type="hidden" name="experience_id" value="<?php echo $value['experience_id']?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Job Post & Time Period -->
@@ -746,7 +746,7 @@
                                     <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
                                     <h5 class="font-grey-cascade mt-30 text-center">Click button below to add experience information.</h5>
                                     <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>student/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
+                                        <a href="<?php echo base_url();?>jobseeker/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
                                             <i class="fa fa-plus  "></i> Add Experience Info </a>
                                     </div>
                                 </div>
@@ -820,7 +820,7 @@
                                             <?php } ?>
                                         </div>
                                         <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only mb-20 " data-toggle="modal">
+                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only mb-20 " data-toggle="modal">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete mb-20">
@@ -841,7 +841,7 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="<?php echo base_url();?>student/profile/edit_achievement" class="form form-horizontal" method="POST">
+                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_achievement" class="form form-horizontal" method="POST">
                                                     <input type="hidden" name="achievement_id" value="<?php echo $value['achievement_id'];?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Institution Name [required]-->
@@ -994,7 +994,7 @@
                                         <!-- Button -->
                                         <div class="media-right media-middle my-20 ">
                                             <!-- Edit Button  -->
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only mb-20">
+                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only mb-20">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <!-- Delete Button -->
@@ -1017,7 +1017,7 @@
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
                                                 </div>
-                                                <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
+                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_project" method="POST" class="form form-horizontal">
                                                     <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Project Title / Time Period-->
@@ -1144,7 +1144,7 @@
                         </ul>
                     </div>
 
-                    <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
+                    <form id="profile" action="<?php echo base_url(); ?>jobseeker/profile/post" method="POST" class="form" enctype="multipart/form-data">
                         <div class="modal-body portlet-body form-horizontal">
                             <div class="tab-content">
                                 <!-- SECTION : Personal Info -->
@@ -1566,7 +1566,7 @@
                         </div>
 
                     </div>
-                    <form action="<?php echo base_url();?>student/profile/add_education" method="POST" class="form form-horizontal">
+                    <form action="<?php echo base_url();?>jobseeker/profile/add_education" method="POST" class="form form-horizontal">
                         <input type="hidden" name="academic_id"></input>
                         <div class="modal-body portlet-body ">
 
@@ -1654,7 +1654,7 @@
                         </div>
 
                     </div>
-                    <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
+                    <form action="<?php echo base_url()?>jobseeker/profile/add_experience" method="POST" class="form form-horizontal">
                         <div class="modal-body portlet-body ">
                             <!-- Job Post & Time Period -->
                             <div class="row ">
@@ -1775,7 +1775,7 @@
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                         </div>
                     </div>
-                    <form method="POST" id="achievement" class="form " action="<?php echo base_url()?>student/profile/add_achievement">
+                    <form method="POST" id="achievement" class="form " action="<?php echo base_url()?>jobseeker/profile/add_achievement">
                         <div class="modal-body portlet-body form-horizontal ">
                             <!-- Institution Name -->
                             <div class="form-group">
@@ -1849,7 +1849,7 @@
                         </div>
 
                     </div>
-                    <form class="form form-horizontal" action="<?php echo base_url();?>student/profile/add_project" method="POST">
+                    <form class="form form-horizontal" action="<?php echo base_url();?>jobseeker/profile/add_project" method="POST">
                         <div class="modal-body portlet-body ">
 
                             <!-- Project Title & Time Period -->

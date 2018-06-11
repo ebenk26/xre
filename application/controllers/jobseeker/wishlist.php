@@ -27,9 +27,9 @@ class Wishlist extends CI_Controller {
         $profile['percent']        = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']       = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id, 'wishlist.status'=> 1));
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/wishlist',$data);
-        $this->load->view('student/main/footer');
+        $this->load->view('jobseeker/main/header', $profile);
+        $this->load->view('jobseeker/wishlist',$data);
+        $this->load->view('jobseeker/main/footer');
 	}
 
     public function get_company(){
@@ -56,12 +56,12 @@ class Wishlist extends CI_Controller {
                                 'created_by'    => $userId,
                                 'status'        => 1);
             }else{
-                redirect(base_url().'student/wishlist#modal_add_wishlist_search');
+                redirect(base_url().'jobseeker/wishlist#modal_add_wishlist_search');
                 $this->session->set_flashdata('msg_error', 'Please write down company name ');
             }
         }
         $this->global_model->create('wishlist', $data);
-        redirect(base_url().'student/wishlist');
+        redirect(base_url().'jobseeker/wishlist');
     }
 
     public function removeCompany(){

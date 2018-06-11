@@ -378,6 +378,41 @@
                 e.stopImmediatePropagation();
             }
         });
+
+        $('.remove').click(function () {
+                var obj_key = $(this).attr('key');
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will remove this translation",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Remove",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>administrator/translation/delete",
+                                    method:"POST",
+                                    data: {
+                                      key: obj_key,
+                                    },
+                                    success:function(response) {
+                                        console.log(response);
+                                       swal("Sucess", "Success remove translation.", "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You Cancelled remove the translation", "error");
+                            }
+                        }
+                    );
+            });
+
     </script>
 
 

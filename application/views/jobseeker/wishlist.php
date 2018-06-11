@@ -93,7 +93,7 @@
                 <!-- Modal add by search -->
                 <div class="modal fade in" id="modal_add_wishlist_search" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-                        <form method="POST" action="<?= base_url(); ?>student/wishlist/addCompany" class="form">
+                        <form method="POST" action="<?= base_url(); ?>jobseeker/wishlist/addCompany" class="form">
                             <div class="modal-content portlet light portlet-fit">
                                 <div class="modal-header portlet-title">
                                     <div class="caption">

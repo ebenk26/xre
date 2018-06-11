@@ -84,6 +84,9 @@ $route['employer/trash'] 						= 'administrator/inbox/view_list/trash';
 $route['student/inbox'] 						= 'administrator/inbox/view_list/inbox';
 $route['student/sent'] 							= 'administrator/inbox/view_list/sent';
 $route['student/trash'] 						= 'administrator/inbox/view_list/trash';
+$route['jobseeker/inbox'] 						= 'administrator/inbox/view_list/inbox';
+$route['jobseeker/sent'] 						= 'administrator/inbox/view_list/sent';
+$route['jobseeker/trash'] 						= 'administrator/inbox/view_list/trash';
 
 $route['notif'] 								= 'notifications/notifications/notifList';
 $route['clear-notif'] 							= 'notifications/notifications/clearNotif';
