@@ -32,24 +32,41 @@ class Job_Seeker extends CI_Controller {
         $this->load->view('administrator/main/footer');
 	}
 	
-	public function export(){
-        $data['page_title'] = 'Job Seeker';
+	public function export($country){
+        $country_name       = $this->get_country($country);
+        $data['page_title'] = 'Job Seeker_'.$country_name;
 		$data['type'] 		= 'Job Seeker';
-		$data['hasil'] 		= $this->get_data();
+		$data['hasil'] 		= $this->get_data($country);
 		
         $this->load->view('administrator/excel', $data);
 	}
 	
-	public function get_data(){
+	public function get_data($country = null){
         $this->db->select('users.*, student_bios.youtubelink');
 		$this->db->from('users');
 		$this->db->join('user_role', 'users.id = user_role.user_id');
 		$this->db->join('student_bios', 'users.id = student_bios.user_id');
 		$this->db->where('user_role.role_id = 4');
-		$this->db->order_by('users.id', 'DESC');
+		if($country != null){
+            $this->db->where('users.country', $country);
+        }
+        $this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+    public function get_country($country){
+        $country_name = "Country Not Set";
+        //get country name
+        if($country != 0){
+            $this->db->select('*');
+            $this->db->from('countries');
+            $this->db->where('id', $country);
+            $query = $this->db->get();
+            $country_name = $query->row()->name;
+        }
+        return $country_name;
+    }
 
     public function post(){
         $id 		= $this->input->post('id');
