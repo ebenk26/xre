@@ -11,6 +11,7 @@ $range_min              = 0;
 $range_max              = 0;
 $range_min_view         = 0;
 $range_max_view         = 0;
+$range                  = 0;
 
 if(!empty($job_preferences))
 {
@@ -30,7 +31,7 @@ if(!empty($job_preferences))
         $range_max          = $range[1];
         $range_min_view     = $currency->name.' '.number_format($range[0],0,',','.');
         $range_max_view     = $currency->name.' '.number_format($range[1],0,',','.');
-    } 
+    }
 }
 ?>
 <!-- BEGIN CONTENT -->
@@ -428,7 +429,7 @@ if(!empty($job_preferences))
                                     </div>
                                     <!--  Checkbox Salary Range-->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxSalaryRange" name="cbSalaryRange" value="1" class="md-check trigger" data-trigger="fieldSalaryRange" <?= count($position_level) > 0 ? 'checked="checked"' : ''; ?>>
+                                        <input type="checkbox" id="checkboxSalaryRange" name="cbSalaryRange" value="1" class="md-check trigger" data-trigger="fieldSalaryRange" <?= $range > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxSalaryRange">
                                             <span></span>
                                             <span class="check"></span>

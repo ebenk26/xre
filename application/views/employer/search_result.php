@@ -10,7 +10,7 @@
                         <div class="media">
                             <div class="media-body media-middle">
                                 <h4 class="font-weight-600 text-uppercase">
-                                    <a><?= isset($value[0]->fullname) ? $value[0]->fullname : 'None'; ?></a>
+                                    <a><?= isset($value->fullname) ? $value->fullname : 'None'; ?></a>
                                 </h4>
                             </div>
                             <div class="media-right">
@@ -18,15 +18,15 @@
                             </div>
                         </div>
                         <h5>
-                            <?php if(isset($value[0]->title) && !empty($value[0]->title)) {?>
+                            <?php if(isset($value->title) && !empty($value->title)) {?>
                                     <!-- if experience exist in resume show -->
                                     <i class="icon-briefcase mr-10"></i> 
-                                    <?= $value[0]->title; ?>
+                                    <?= $value->title; ?>
                                     <br/>
                             <?php }else{ ?>
                                     <!-- else show latest academic with qualifications in what fields study -->
                                     <i class="icon-graduation mr-10"></i>
-                                    <?= isset($value[0]->university_name) ? $value[0]->university_name : 'None'; ?>
+                                    <?= isset($value->university_name) ? $value->university_name : 'None'; ?>
                                     <br/>
                         </h5>
                             <?php } ?>
@@ -36,31 +36,31 @@
                                 <p class="label label-md-blue label-sm font-weight-400"> Job Type</p>
                             </li> -->
 
-                            <?php if(!empty($value[0]->expected_salary)) {?>
+                            <?php if(!empty($value->expected_salary)) {?>
                                 <!-- Salary -->
                                 <li>
                                     <p class="label label-md-green label-sm font-weight-400">
-                                        <?= isset($value[0]->expected_salary) ? number_format($value[0]->expected_salary,0,',','.') : 'None'; ?>
+                                        <?= isset($value->expected_salary) ? number_format($value->expected_salary,0,',','.') : 'None'; ?>
                                     </p>
                                 </li>
                             <?php } ?>
 
-                            <?php if(!empty($value[0]->location)) {?>
+                            <?php if(!empty($value->location)) {?>
                                 <!-- Location -->
                                 <li>
                                     <p class="label label-md-purple label-sm font-weight-400">
-                                        <?= isset($value[0]->location) ? $value[0]->location : 'None'; ?>
+                                        <?= isset($value->location) ? $value->location : 'None'; ?>
                                     </p>
                                 </li>
                             <?php } ?>
 
-                            <?php if(!empty($value[0]->start_date) && !empty($value[0]->end_date)) {?>
+                            <?php if(!empty($value->start_date) && !empty($value->end_date)) {?>
                                 <!-- Year Of Experience -->
                                 <li class="">
                                     <p class="label label-md-yellow md-black-text label-sm font-weight-400">
                                         <?php
-                                            $endDate = in_array($value[0]->end_date,['0000-00-00','',NULL]) ? date('Y-m-d') : $value[0]->end_date;
-                                            $start_date = new DateTime($value[0]->start_date);
+                                            $endDate = in_array($value->end_date,['0000-00-00','',NULL]) ? date('Y-m-d') : $value->end_date;
+                                            $start_date = new DateTime($value->start_date);
                                             $end_date   = new DateTime($endDate);
 
                                             $diff = $end_date->diff($start_date);
@@ -94,7 +94,7 @@
                     </div>
                     <div class="mask mdo-white-v8 flex-center">
                         <?php
-                            if($value[0]->is_shortlisted == 0)
+                            if($value->is_shortlisted == 0)
                             {
                         ?>
                                 <!-- If already add delete button -->

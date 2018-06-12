@@ -411,17 +411,30 @@ class Employer_Model extends CI_Model{
 
     }
 
-    function getSearchResult($keywords){
-        //check keywords by candidate's job preferences
-        $this->db->where("keywords LIKE '%".$keywords."%'");
-        
-        $search = $this->db->get('job_preferences');
-        // var_dump($search->result());exit();
+    function getSearchResult($params){
         //get candidate profile
-        $candidate = [];
+        $candidate = "";
 
-        foreach($search->result() as $val)
+        if(!empty($params))
         {
+            $where  = [];
+            $join   = "";
+
+            if(!empty($params["keywords"]))
+            {
+                $where[] = "f.keywords LIKE '%".$params["keywords"]."%'";
+            }
+
+            if(!empty($params["range_min"]) && !empty($params["range_max"]))
+            {
+                $where[] = "(d.expected_salary BETWEEN '".$params["range_min"]."' AND '".$params["range_max"]."')";
+            }
+
+            if(!empty($where))
+            {
+                $wheres = "WHERE ".implode('AND', $where);
+            }
+
             $getCandidate = $this->db->query("SELECT
                                                     a.fullname, 
                                                     b.title, 
@@ -437,14 +450,12 @@ class Employer_Model extends CI_Model{
                                                         LEFT JOIN academics c ON c.user_id = a.id
                                                         LEFT JOIN student_bios d ON d.user_id = a.id
                                                         LEFT JOIN bookmark_candidate e ON e.user_id = a.id
-                                                WHERE
-                                                    a.id = ".$val->user_id."
-                            ");
+                                                        LEFT JOIN job_preferences f ON f.user_id = a.id
+                                                ".$wheres
+                                            );
 
-            $candidate[] = $getCandidate->result();
+            $candidate = $getCandidate->result();
         }
-
-        // var_dump($candidate);exit();
 
         return $candidate;
     }

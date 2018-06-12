@@ -1501,30 +1501,79 @@ $company_address = json_decode($user_profile['address']);?>
                     type: 'POST',
                     data: {keywords:keywords},
                     beforeSend: function(){
-                        
+                        $(".loader").removeClass('hidden')
+                        $(".searchResult").html("")
                     },
                     dataType : 'json',
                     success: function (data) {
-                        if(data.searchResult.length > 0)
+                        setTimeout(function()
                         {
-                            $(".searchResult").html(data.searchResult);
-                        }
-                        else
-                        {
-                            $(".searchResult").html("Empty Result");
-                        }
+                            if(data.searchResult.length > 0)
+                            {
+                                $(".searchResult").html(data.searchResult)
+                                $(".loader").addClass('hidden')
+                            }
+                            else
+                            {
+                                $(".searchResult").html("Empty Result")
+                                $(".loader").addClass('hidden')
+                            }
+                        },3000)
                     },
                     error: function( data )
                     {
-                        var errors = data.responseJSON.errors.email[0]
-                            
-                        $('#submit').text('LOGIN')
-
-                        $('.error-msg').text(errors)
-                        $('.error-msg').removeClass('hidden')
+                        console.log(data)
                     }
                 })
             }
+        })
+
+        $("#advance-search").on('submit', function(event) {
+            event.preventDefault();
+
+            let param = {
+                keywords        : $("#search_panelv1 #keywords").val(),
+                currency        : $("input[name=currency]").val(),
+                range_min       : $("input[name=range_min]").val(),
+                range_max       : $("input[name=range_max]").val(),
+                location        : $("input[name=location]").val(),
+                education       : $("input[name=education]").val(),
+                position_level  : $("input[name=position_level]").val(),
+                job_type        : $("input[name=job_type]").val(),
+                yoe             : $("input[name=yoe]").val(),
+            }
+
+            let params = $(this).serialize()+'&keywords='+$("#search_panelv1 #keywords").val();
+
+            $.ajax({
+                url: "<?= base_url(); ?>employer/search_candidate/getCandidate",
+                type: 'POST',
+                data: params,
+                beforeSend: function(){
+                    $(".loader").removeClass('hidden')
+                    $(".searchResult").html("")
+                },
+                dataType : 'json',
+                success: function (data) {
+                    setTimeout(function()
+                    {
+                        if(data.searchResult.length > 0)
+                        {
+                            $(".searchResult").html(data.searchResult)
+                            $(".loader").addClass('hidden')
+                        }
+                        else
+                        {
+                            $(".searchResult").html("Empty Result")
+                            $(".loader").addClass('hidden')
+                        }
+                    },3000)
+                },
+                error: function( data )
+                {
+                    console.log(data)
+                }
+            })
         })
     })
 
