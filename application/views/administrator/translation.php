@@ -60,8 +60,8 @@
                                                     <i class="fa fa-edit"></i> 
                                                 </a>
 
-                                                <a href="javascript:void(0);" class="btn btn-icon-only red remove" title="Remove" style="margin-right:0;">
-                                                    <i class="fa fa-remove" key="<?= $key; ?>"></i> 
+                                                <a href="javascript:void(0);" class="btn btn-icon-only red remove" key="<?= $key; ?>" title="Remove" style="margin-right:0;">
+                                                    <i class="fa fa-remove"></i> 
                                                 </a>
                                             </td>
                                     </tr>                                        

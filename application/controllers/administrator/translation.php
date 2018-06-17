@@ -134,12 +134,36 @@ class Translation extends CI_Controller {
         $translationEng = json_decode(current($getTransEng)['name'],true);
         unset($translationEng[$obj]);
 
-        var_dump($translationEng);exit;
+        if (!empty($translationEng)) {
+
+            foreach ($translationEng as $key => $value) {
+                if ($key !== $obj) {
+                    $dataEng[$key] = $value;
+                }else{
+                    $dataEng[$obj] = $eng;
+                }
+            }
+
+            $this->global_model->update('translation', array('locale' => 'EN' ), array('name'=> json_encode($dataEng)));
+        }
 
         $getTransIna = $this->global_model->get_where('translation', array('locale' => 'ID' ), 'id');
         $translationIna = json_decode(current($getTransIna)['name'],true);
         unset($translationIna[$obj]);
 
+        if (!empty($translationIna)) {
+
+            foreach ($translationIna as $key => $value) {
+                if ($key !== $obj) {
+                    $dataIna[$key] = $value;
+                }else{
+                    $dataIna[$obj] = $ina;
+                }
+                
+            }
+
+            $this->global_model->update('translation', array('locale' => 'ID' ), array('name'=> json_encode($dataIna)));
+        }
 
         $this->session->set_flashdata('msg_success', 'Success delete job');
 
