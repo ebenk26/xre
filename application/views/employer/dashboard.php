@@ -181,7 +181,7 @@
                     <div class="portlet-title ">
                         <div class="caption">
                             <i class="icon-calendar font-dark"></i>
-                            <span class="caption-subject font-dark font-weight-600 text-uppercase">Calendar</span>
+                            <span class="caption-subject font-dark font-weight-600 text-uppercase"><?= !empty($language->site_calendar) ? $language->site_calendar : "calendar"  ?></span>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -242,7 +242,7 @@
                     <div class="portlet-title">
                         <div class="caption caption-md md-darkblue-text">
                             <i class="icon-list md-darkblue-text"></i>
-                            <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">Recent Activities</span>
+                            <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase"><?= !empty($language->site_recent_activities) ? $language->site_recent_activities : "Recent Activities"  ?></span>
                         </div>
                     </div>
                     <?php if (!empty($recent_activities)){?>

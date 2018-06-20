@@ -28,7 +28,7 @@ class Profile extends CI_Controller {
         $profile_form['industries'] = $this->employer_model->get('industries', 'name', 'asc');
         $profile_form['countries'] = $this->employer_model->get('countries', 'name', 'asc');
         $profile_form['detail'] = $get_user_profile;
-        $profile_form['language'] = $this->employer_model->get('language', 'name', 'asc');
+        $profile_form['languages'] = $this->employer_model->get('language', 'name', 'asc');
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $this->session->userdata('id') ));
         $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'profile_photo'));
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $this->session->userdata('id'), 'type'=>'header_photo'));

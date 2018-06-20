@@ -140,7 +140,7 @@ else
 <div class="page-content-wrapper">
     <div class="page-content">
         <!-- Page Header -->
-        <h1 class="page-title">Company Profile</h1>
+        <h1 class="page-title"><?= !empty($language->site_company_profile) ? $language->site_company_profile : "Company Profile" ?></h1>
 
         <!-- Content -->
         <div class="portlet">
@@ -149,7 +149,7 @@ else
                 <div class="mask hm-darkblue-v7 ">
                     <a href="#modal_edit_header_picture" data-toggle="modal" class="btn  btn-circle btn-mdo-white pull-right m-30">
                         <i class="icon-camera"></i>
-                        Edit Header
+                        <?= !empty($language->site_edit_header) ? $language->site_edit_header : "Edit Header" ?>
                     </a>
                 </div>
             </div>
@@ -235,9 +235,9 @@ else
                         </div>
                         <div class="center-block width-400">
                             <!-- <div class="btn-group mx-0"> -->
-                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank" class="btn btn-md-indigo mb-6">View My Profile</a>
+                            <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($this->session->userdata('id')),'=') ?>" target="_blank" class="btn btn-md-indigo mb-6"><?= !empty($language->site_view_my_profile) ? $language->site_view_my_profile : "View My Profile" ?></a>
                             <a href="#modal_edit_company" data-toggle="modal" class="btn btn-outline btn-md-indigo " data-id="<?= $detail['id']; ?>">
-                                <i class="icon-pencil mr-5"></i>Edit Profile</a>
+                                <i class="icon-pencil mr-5"></i><?= !empty($language->site_edit_profile) ? $language->site_edit_profile : "Edit Profile" ?></a>
                             <!-- </div> -->
                         </div>
                     </div>
@@ -247,11 +247,11 @@ else
                     <ul class="nav nav-tabs ">
                         <li class="active ">
                             <a href="#tab_about_info" data-toggle="tab" class="font-18">
-                                <i class="fa fa-building-o mr-10"></i>About Company</a>
+                                <i class="fa fa-building-o mr-10"></i><?= !empty($language->site_about_company) ? $language->site_about_company : "About Company" ?></a>
                         </li>
                         <li>
                             <a href="#tab_contact_info " data-toggle="tab" class="font-18">
-                                <i class="icon-pointer mr-10"></i>Company Location </a>
+                                <i class="icon-pointer mr-10"></i><?= !empty($language->site_company_location) ? $language->site_company_location : "Company Location" ?></a>
                         </li>
                     </ul>
                 </div>
@@ -261,7 +261,7 @@ else
                     <div class="tab-pane active" id="tab_about_info">
                         <!-- About Company -->
                         <div class="row  mx-0">
-                            <h5 class="font-weight-700 text-uppercase mb-10 text-left md-indigo-text">About Company</h5>
+                            <h5 class="font-weight-700 text-uppercase mb-10 text-left md-indigo-text"><?= !empty($language->site_about_company) ? $language->site_about_company : "About Company" ?></h5>
                             <p>
                                 <?php if (!empty($detail['company_description'])) {?>
                                 <?php echo ucfirst($detail['company_description']); ?>
@@ -276,14 +276,14 @@ else
                                 <ul class="list-unstyled">
                                     <!-- Spoken Languange -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> Spoken Language</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> <?= !empty($language->site_spoken_language) ? $language->site_spoken_language : "Spoken Language" ?></h5>
                                         <h5 class="roboto-font">
                                             <?php echo !empty($detail['spoken_language']) ?  $detail['spoken_language'] : '<i class="md-grey-text"> None</i>'; ?>
                                         </h5>
                                     </li>
                                     <!-- Dress Code  -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text">Dress Code</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"><?= !empty($language->site_dress_code) ? $language->site_dress_code : "Dress Code" ?></h5>
                                         <h5 class="roboto-font ">
                                             <?php if(!empty($user_profile['dress_code'])){?>
                                             <?php echo !empty($dresscode) ? ucwords($dresscode) : '' ?>
@@ -294,7 +294,7 @@ else
                                     </li>
                                     <!-- Benefits -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text">Benefit</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"><?= !empty($language->site_benefit) ? $language->site_benefit : "Benefits" ?></h5>
                                         <h5 class="roboto-font ">
                                             <?php echo !empty($detail['benefits']) ? $detail['benefits'] : '<i class="md-grey-text"> None</i>'?>
                                         </h5>
@@ -305,7 +305,7 @@ else
                                 <ul class="list-unstyled">
                                     <!-- Working Day & Time -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> Working Day & Time</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> <?= !empty($language->site_working_day) ? $language->site_working_day : "Working Day" ?> & <?= !empty($language->site_working_time) ? $language->site_working_time : "Working Time" ?></h5>
                                         <h5 class="roboto-font">
                                             <?php if($detail['working_days_start'] != "" && $detail['working_days_end'] != ""){?>
                                             <?php echo ucwords($detail['working_days_start'].' - '.$detail['working_days_end']);?>
@@ -321,7 +321,7 @@ else
                                     </li>
                                     <!-- Company Website -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> Company Website</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> <?= !empty($language->site_company_website) ? $language->site_company_website : "Company Website" ?></h5>
                                         <h5 class="roboto-font font-weight-300">
                                             <?php if(!empty($detail['url'])){?>
                                             <a href="<?php echo $detail['url']?>" target="_blank">
@@ -334,7 +334,7 @@ else
                                     </li>
                                     <!-- Company Email -->
                                     <li>
-                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> Company Email</h5>
+                                        <h5 class="mb-10 font-weight-600 md-indigo-text"> <?= !empty($language->site_company_email) ? $language->site_company_email : "Company Email" ?></h5>
                                         <h5 class="roboto-font font-weight-300">
                                             <?php echo !empty($detail['email']) ? $detail['email'] : '<i class="md-grey-text"> None</i>'; ?>
                                         </h5>
@@ -419,17 +419,17 @@ else
             <div class="portlet-title tabbable-line tabbable-tabdrop mb-0 ">
                 <div class="caption">
                     <i class="icon-pencil"></i>
-                    <span class="caption-subject text-capitalize">Edit Company Profile</span>
+                    <span class="caption-subject text-capitalize"><?= !empty($language->site_edit_company_profile) ? $language->site_edit_company_profile : "Edit Company Profile" ?></span>
                 </div>
                 <ul class="nav nav-tabs ">
                     <li class="active">
-                        <a href="#tab_edit_about" data-toggle="tab">About Company</a>
+                        <a href="#tab_edit_about" data-toggle="tab"><?= !empty($language->site_about_company) ? $language->site_about_company : "About Company" ?></a>
                     </li>
                     <li>
-                        <a href="#tab_edit_add_info" data-toggle="tab">Additional Info </a>
+                        <a href="#tab_edit_add_info" data-toggle="tab"><?= !empty($language->site_additional_info) ? $language->site_additional_info : "Additional Info" ?> </a>
                     </li>
                     <li>
-                        <a href="#tab_edit_contact_info" data-toggle="tab">Location Info </a>
+                        <a href="#tab_edit_contact_info" data-toggle="tab"><?= !empty($language->site_location_info) ? $language->site_location_info : "Location Info" ?> </a>
                     </li>
                 </ul>
             </div>
@@ -444,21 +444,21 @@ else
                                 <div class="col-md-7 col-sm-12">
                                     <!-- Company Name -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Name</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?></label>
                                         <input type="text" class="form-control " name="company_name" placeholder="Your company name" value="<?php echo !empty($detail['company_name']) ? $detail['company_name'] : ''; ?>" required>
                                         <!--<span class="help-block small">Company Full Name </span>-->
                                     </div>
 
                                     <!--About Company  -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">About Company</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_about_company) ? $language->site_about_company : "About Company" ?></label>
                                         <textarea class="form-control autosizeme" name="about_company" rows="5" placeholder="Summarize about your company."><?php echo !empty($detail['company_description']) ? $detail['company_description'] : ''; ?></textarea>
                                         <!-- <input type="text" class="form-control " placeholder="Summarize about your company"> -->
                                         <!-- <span class="help-block small">Company Full Name </span> -->
                                     </div>
 
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Social Account</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_social_account) ? $language->site_social_account : "Social Account" ?></label>
                                         <div class="mt-repeater">
                                             <div data-repeater-list="group-b">
                                                 <?php if (!empty($social)) {
@@ -508,7 +508,7 @@ else
                                             </div>
                                             <hr>
                                             <a href="javascript:;" data-repeater-create class="btn btn-info btn-sm mt-repeater-add">
-                                                <i class="fa fa-plus"></i> Add another account</a>
+                                                <i class="fa fa-plus"></i> <?= !empty($language->site_add_another_account) ? $language->site_add_another_account : "Add another account" ?></a>
                                         </div>
                                     </div>
 
@@ -517,19 +517,19 @@ else
                                 <div class="col-md-5 col-sm-12">
                                     <!-- Company Registration Number -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Registration Number</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_company_registration_number) ? $language->site_company_registration_number : "Company Registration Number" ?></label>
                                         <input type="text" class="form-control " name="company_registration_number" placeholder="012ABC-DEFGH34" value="<?php echo !empty($detail['company_registration_number']) ? $detail['company_registration_number'] : ''; ?>">
                                     </div>
 
                                     <!-- Company Email -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Email</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_company_email) ? $language->site_company_email : "Company Email" ?></label>
                                         <input type="text" class="form-control " name="email" placeholder="your@company.com" value="<?php echo !empty($detail['email']) ? $detail['email'] : ''; ?>" required>
                                     </div>
 
                                     <!-- Industry -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Industry</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_industry) ? $language->site_industry : "Industry" ?></label>
                                         <select class="bs-select form-control" name="industry">
                                             <option value="" selected disabled>Select one </option>
                                             <?php foreach($industries as $value){?>
@@ -543,7 +543,7 @@ else
 
                                     <!-- Corporate Website -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Corporate Websites</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_company_website) ? $language->site_company_website : "Company Website" ?></label>
 
                                         <input type="text" class="form-control" name="corporate_website" placeholder="Add link here" value="<?php echo !empty($detail['url']) ? $detail['url'] : ''; ?>">
                                     </div>
@@ -553,8 +553,8 @@ else
                             <!-- </div> -->
                         </div>
                         <div class="modal-footer form-action ">
-                            <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                            <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Save</button>
+                            <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
+                            <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                         </div>
                     </form>
                 </div>
@@ -567,7 +567,7 @@ else
                                 <div class="col-sm-6 col-xs-12">
                                     <!-- Company Size -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Company Size</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_company_size) ? $language->site_company_size : "Company Size" ?></label>
                                         <select class="bs-select form-control " name="company_size">
                                             <option value="">Select company size</option>
                                             <option value="1-50" <?php echo ($user_profile[ 'total_staff']=='1-50' ) ? 'selected' : ''; ?>>1 to 50 employee</option>
@@ -578,7 +578,7 @@ else
 
                                     <!-- Company Dress Code -->
                                     <div class="form-group form-md-checkboxes mx-0 ">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Dress Code</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_dress_code) ? $language->site_dress_code : "Dress Code" ?></label>
                                         <div class="md-checkbox-inline">
                                             <div class="md-checkbox">
                                                 <input type="checkbox" id="checkbox6" class="md-check" value="casual" name="dress[]" <?php foreach($dress_code as $key=> $value) : echo ($value == 'casual') ? 'checked' : ''; endforeach; ?>>
@@ -606,7 +606,7 @@ else
 
                                     <!-- Benefits -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"> Benefits</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"> <?= !empty($language->site_benefits) ? $language->site_benefits : "Benefits" ?></label>
                                         <textarea class="autosizeme form-control" rows="4" placeholder="Annual Leaves , Allowances , Medicalfee , Dental Fee ,Annual Trip" name="benefits"><?php echo !empty($user_profile['benefits']) ? $user_profile['benefits'] : ''; ?></textarea>
                                     </div>
                                 </div>
@@ -615,9 +615,9 @@ else
 
                                     <!-- Working Hours -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Working Hour</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_working_day) ? $language->site_working_day : "Working Day" ?></label>
                                         <br>
-                                        <label for="">Day</label>
+                                        <label for=""><?= !empty($language->site_day) ? $language->site_day : "Day" ?></label>
                                         <div class="m-grid">
                                             <div class="m-grid-col m-grid-col-md-5">
                                                 <select class="bs-select form-control" name="day_start">
@@ -632,7 +632,7 @@ else
                                                 </select>
                                             </div>
                                             <div class="m-grid-col m-grid-col-md-2 m-grid-col-center">
-                                                <h5>to</h5>
+                                                <h5><?= !empty($language->site_until) ? $language->site_until : "Until" ?></h5>
                                             </div>
                                             <div class="m-grid-col m-grid-col-md-5">
                                                 <select class="bs-select form-control" name="day_end">
@@ -648,7 +648,7 @@ else
                                             </div>
                                         </div>
                                         <hr>
-                                        <label for="">Time</label>
+                                        <label for=""><?= !empty($language->site_working_time) ? $language->site_working_time : "Working Time" ?></label>
                                         <div class="m-grid">
                                             <!-- Start Time -->
                                             <div class="m-grid-col m-grid-col-md-5">
@@ -662,7 +662,7 @@ else
                                                 </div>
                                             </div>
                                             <div class="m-grid-col m-grid-col-md-2 m-grid-col-center">
-                                                <h5>until</h5>
+                                                <h5><?= !empty($language->site_until) ? $language->site_until : "Until" ?></h5>
                                             </div>
                                             <!-- End Time -->
                                             <div class="m-grid-col m-grid-col-md-5">
@@ -679,9 +679,9 @@ else
                                     </div>
                                     <!--Spoken Language-->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Spoken Language</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_spoken_language) ? $language->site_spoken_language : "Spoken Language" ?></label>
                                         <select class="bs-select form-control " multiple name="language[]" id="spoken_language">
-                                            <?php foreach ($language as $key => $value) {?>
+                                            <?php foreach ($languages as $key => $value) {?>
                                             <?php foreach ($spoken_language as $spoken_key => $spoken_value) {?>
                                             <option <?php echo ($spoken_value==$value[ 'name']) ? 'selected' : '' ?>>
                                                 <?php echo $value['name']; ?>
@@ -694,8 +694,8 @@ else
                             </div>
                         </div>
                         <div class="modal-footer form-actions ">
-                            <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                            <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Save</button>
+                            <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
+                            <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                         </div>
                     </form>
                 </div>
@@ -966,8 +966,8 @@ else
                                     <i class="fa fa-plus"></i> Add new office</a>
                             </div>
                             <div class="modal-footer form-actions">
-                                <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                                <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Save</button>
+                                <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
+                                <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                             </div>
                     </form>
                     </div>
@@ -1002,8 +1002,8 @@ else
                     </div>
                 </div>
                 <div class="modal-footer md-grey-lighten-5">
-                    <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Save</button>
+                    <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
+                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                 </div>
             </form>
 
@@ -1037,8 +1037,8 @@ else
                 </div>
 
                 <div class="modal-footer md-grey-lighten-5">
-                    <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
-                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Save</button>
+                    <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
+                    <button type="submit" class="btn btn-md-indigo  btn-md letter-space-xs px-100"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                 </div>
             </form>
 
