@@ -444,6 +444,16 @@ class Employer_Model extends CI_Model{
                 $where[] = "LOWER(b.title) LIKE '%".strtolower($params["position_level"])."%'";
             }
 
+            if(!empty($params["education"]))
+            {
+                $where[] = "LOWER(c.qualification_level) LIKE '%".strtolower($params["education"])."%'";
+            }
+
+            if(!empty($params["job_type"]))
+            {
+                $where[] = "b.employment_type_id = ".$params["job_type"];
+            }
+
             if(!empty($where))
             {
                 $wheres = "WHERE ".implode('AND', $where);
@@ -472,7 +482,7 @@ class Employer_Model extends CI_Model{
                                                 ".$joins." ".$wheres."
                                                 GROUP BY a.id
                                                 ORDER BY b.end_date
-                                                LIMIT 12
+                                                LIMIT 9
                                                 "
                                             );
 
