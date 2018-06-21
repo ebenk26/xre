@@ -274,7 +274,7 @@
                         </a>
                     </li>
                     <!-- Sidebar Menu : Search Talent -->
-                    <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-users"></i>
                             <span class="title"><?= !empty($language->site_talent_search) ? $language->site_talent_search : 'Talent Search'?></span>
@@ -298,7 +298,7 @@
                             </li>
 
                         </ul>
-                    </li>-->
+                    </li>
                     <!-- CALENDAR -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/calendar/" class="nav-link ">

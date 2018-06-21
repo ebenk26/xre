@@ -63,7 +63,7 @@
     <div class="page-content">
 
         <!-- BEGIN PAGE HEAD-->
-        <h1 class="page-title">Job Board
+        <h1 class="page-title"><?= !empty($language->site_job_board) ? $language->site_job_board : "Job Board"  ?>
             <small>Here your job post should be</small>
         </h1>
 
@@ -71,11 +71,11 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url();?>employer/dashboard">Home</a>
+                    <a href="<?php echo base_url();?>employer/dashboard"><?= !empty($language->site_home) ? $language->site_home : "Home"  ?></a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Job Board</span>
+                    <span><?= !empty($language->site_job_board) ? $language->site_job_board : "Job Board"  ?></span>
                 </li>
             </ul>
 
@@ -88,11 +88,11 @@
             <!-- REMAINING POST -->
             <div class="col-md-4">
                 <div class="widget-thumb md-white text-uppercase mb-30 ">
-                    <h4 class="widget-thumb-heading"> Job Post</h4>
+                    <h4 class="widget-thumb-heading"> <?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?></h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-green icon-bulb"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle">Active</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->active) ? $language->active : "Active"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $post; ?>">
                                 <?php echo $post; ?>
                             </span>
@@ -105,11 +105,11 @@
             <div class="col-md-4">
                 <!-- BEGIN WIDGET THUMB -->
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading">Job Post </h4>
+                    <h4 class="widget-thumb-heading"><?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?> </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-red icon-layers"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle">Expired</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->expired) ? $language->expired : "Expired"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $expired; ?>">
                                 <?php echo $expired; ?>
                             </span>
@@ -130,11 +130,11 @@
             <!-- DRAFT POST -->
             <div class="col-md-4">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading">Job Post </h4>
+                    <h4 class="widget-thumb-heading"><?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?> </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-yellow icon-layers"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle">Draft</span>
+                            <span class="widget-thumb-subtitle"><?= !empty($language->draft) ? $language->draft : "Draft"  ?></span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $total_job-$post-$expired; ?>">
                                 <?php echo $expired; ?>
                             </span>
@@ -162,12 +162,12 @@
             <div class="portlet-title ">
                 <div class="caption ">
                     <i class="icon-briefcase"></i>
-                    <span class="caption-subject"> Job Post</span>
+                    <span class="caption-subject"> <?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?></span>
                 </div>
                 <div class="actions">
                     <?php if (!empty($job_post)) { ?>
                     <a href="#modal_add_jobpost" class="btn btn-md-indigo" data-toggle="modal">
-                        <i class="fa fa-plus"></i> New Job Post </a>
+                        <i class="fa fa-plus"></i> <?= !empty($language->new_job_post) ? $language->new_job_post : "New Job Post"  ?> </a>
                     <?php }  ?>
                 </div>
             </div>
@@ -179,10 +179,10 @@
                     <thead>
                         <tr>
                             <th class="col-md-1 text-center">#</th>
-                            <th class="col-md-6"> Job Title </th>
+                            <th class="col-md-6"> <?= !empty($language->job_title) ? $language->job_title : "Job Title"  ?> </th>
                             <th class="col-md-1"> Status </th>
-                            <th class="col-md-2"> Expired At </th>
-                            <th class="col-md-1 "> Candidates </th>
+                            <th class="col-md-2"> <?= !empty($language->expired_at) ? $language->expired_at : "Expired At"  ?> </th>
+                            <th class="col-md-1 "> <?= !empty($language->candidates) ? $language->candidates : "Candidates"  ?> </th>
                             <th class="col-md-1"> Actions </th>
                         </tr>
                     </thead>
@@ -202,9 +202,9 @@
                                         </td>
                                         <td>
                                             <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
-                                            <span class="label label-sm label-md-red"> Expired </span>
+                                            <span class="label label-sm label-md-red"> <?= !empty($language->expired) ? $language->expired : "Expired"  ?> </span>
                                             <?php }elseif ($value['status'] == 'preview') {?>
-                                            <span class="label label-sm label-md-amber"> Draft </span>
+                                            <span class="label label-sm label-md-amber"> <?= !empty($language->draft) ? $language->draft : "Draft"  ?> </span>
                                             <?php }else{ ?>
                                             <span class="label label-sm label-md-green"> Active </span>
                                             <?php } ?>
@@ -230,7 +230,7 @@
                                                     <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                            <i class="icon-users"></i> View Candidates </a>
+                                                            <i class="icon-users"></i> <?= !empty($language->view_candidates) ? $language->view_candidates : "View Candidates"  ?> </a>
                                                     </li>
                                                     <?php endif; ?>
                                                     <li>
@@ -242,7 +242,7 @@
                                                     <li class="divider"> </li>
                                                     <li>
                                                         <a href="javascript:;" class="md-red-text dlt-btn" id="<?php echo $value['id']?>">
-                                                            <i class="icon-trash md-red-text"></i> Delete
+                                                            <i class="icon-trash md-red-text"></i> <?= !empty($language->site_remove) ? $language->site_remove : "Remove"  ?>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -282,7 +282,7 @@
         <div class="modal-content ">
             <!-- TITLE -->
             <div class="modal-header ">
-                <h4 class="modal-title">New Job Post</h4>
+                <h4 class="modal-title"><?= !empty($language->new_job_post) ? $language->new_job_post : "New Job Post"  ?></h4>
             </div>
             <!-- FORM  -->
             <form action="<?php echo base_url(); ?>employer/job_board/post" id="post_job" method="POST" class="form form-horizontal ">
@@ -293,7 +293,7 @@
                         <div class="col-md-7 col-xs-12">
                             <!-- Job Position Title -->
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Job Position Title</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->job_position_title) ? $language->job_position_title : "Job Position Title"  ?></label>
                                 <div class="input-icon">
                                     <i class="icon-briefcase"></i>
                                     <input type="text" class="form-control " placeholder="Internship in IT department" name="job_position_name" required>
@@ -303,7 +303,7 @@
                         </div>
                         <div class="col-md-5 col-xs-12">
                             <div class="form-group mx-0 " id="salaryBlock">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->salary_range) ? $language->salary_range : "Salary Range"  ?></label>
                                 <div class="form-inline">
                                     <select name="currency" class="form-control ">
                                         <?php foreach ($forex as $key => $value): ?>
@@ -325,7 +325,7 @@
                     <div class="row ">
                         <div class="col-md-4">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Employment Type</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->employment_type) ? $language->employment_type : "Employment Type"  ?></label>
                                 <select class="bs-select form-control" name="employmentType">
                                     <option value="" selected disabled>Employment Type</option>
                                     <?php foreach ($employment_type as $key => $employment_value) {?>
@@ -338,7 +338,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Position Level</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->position_level) ? $language->position_level : "Position Level"  ?></label>
                                 <select class="bs-select form-control" name="employmentLevel">
                                     <option disabled selected>Position Level</option>
                                     <?php foreach ($position_levels as $key => $position_level_value) {?>
@@ -351,7 +351,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Years Of Experience</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->year_of_experience) ? $language->year_of_experience : "Years Of Experience"  ?></label>
                                 <select class="bs-select form-control" name="yearOfExperience">
                                     <?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
                                     <option value="<?php echo $year_of_experience_value['id']; ?>">
@@ -365,36 +365,36 @@
 
                     <!-- TEXT EDITOR : JOB DESCRIPTION -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Job Description</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->job_description) ? $language->job_description : "Job Description"  ?></label>
                         <textarea name="jobDescription" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : NICE TO HAVE -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Nice To Have</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->nice_to_have) ? $language->nice_to_have : "Nice To Have"  ?></label>
                         <textarea name="niceToHave" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : JOB REQUIREMENT -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Job Requirement</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->job_requirement) ? $language->job_requirement : "Job Requirement"  ?></label>
                         <textarea name="jobRequirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : ADDITIONAL INFO -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Additional Info</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->additional_info) ? $language->additional_info : "additional_info"  ?></label>
                         <textarea name="additionalInfo" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
                     </div>
 
                     <!-- LOCATION JOB -->
-                    <h4 class="form-section mt-50">Location</h4>
+                    <h4 class="form-section mt-50"><?= !empty($language->site_location_info) ? $language->site_location_info : "Location Info"  ?></h4>
 
                     <div class="row">
                         <div class="col-md-6 col-xs-12">
                             <!-- Address -->
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Address</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->address) ? $language->address : "Address"  ?></label>
                                 <input type="text" name="address" class="form-control" placeholder="Unit / Lot , Road ," value="<?=$user_profile['shipping_address']?>" id="addAddress" required>
                             </div>
                             <!-- City /  Postcode-->
@@ -402,14 +402,14 @@
                                 <!-- City  -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">City</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->city) ? $language->city : "City"  ?></label>
                                         <input type="text" class="form-control" name="city" value="<?=$user_profile['shipping_city']?>" id="addCity" required>
                                     </div>
                                 </div>
                                 <!-- Postcode -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->postcode) ? $language->postcode : "Postcode"  ?></label>
                                         <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?=$user_profile['shipping_postcode']?>" id="addPostcode" required>
 
                                     </div>
@@ -422,14 +422,14 @@
                                 <!-- State -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 ">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">State</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->state) ? $language->state : "State"  ?></label>
                                         <input type="text" class="form-control" name="state" value="<?=$user_profile['shipping_state']?>" id="addState" required>
                                     </div>
                                 </div>
                                 <!-- Country -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Country</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->country) ? $language->country : "Country"  ?></label>
                                         <select class="form-control" name="country" id="addCountry" required>
                                             <?php foreach ($countries as $key => $value) {?>
                                             <option value="<?=$value['name']?>" <?php if($value[ 'name']==$user_profile[ 'shipping_country']){echo "selected";}?>>
@@ -446,14 +446,14 @@
                                 <!-- Latitude -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->latitude) ? $language->latitude : "Latitude"  ?></label>
                                         <input type="text" class="form-control" placeholder="1.643604 " id="addLatitude" name="latitude" value="<?=$user_profile['latitude']?>" required>
                                     </div>
                                 </div>
                                 <!-- Longititude -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->longitude) ? $language->longitude : "Longitude"  ?></label>
                                         <input type="text" class="form-control" placeholder="1.955566" id="addLongitude" name="longitude" value="<?=$user_profile['longitude']?>" required>
                                     </div>
                                 </div>
@@ -505,7 +505,7 @@
                         <div class="col-md-6 col-lg-6 col-xs-12">
                             <!-- Job Position Title -->
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Job Position Title</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->job_position_title) ? $language->job_position_title : "Job Position Title"  ?></label>
                                 <div class="input-icon">
                                     <i class="icon-briefcase"></i>
                                     <input type="text" class="form-control" placeholder="Internship in IT department" value="<?php echo $value['name'] ?>" name="title" required>
@@ -515,7 +515,7 @@
                         </div>
                         <div class="col-md-6 col-lg-6 col-xs-12">
                             <div class="form-group mx-0 " id="salaryBlock<?=$value['id']?>">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Salary Range</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->salary_range) ? $language->salary_range : "Salary Range"  ?></label>
                                 <div class="form-inline">
                                     <select name="currency" class="form-control ">
                                         <?php foreach ($forex as $key => $currency): ?>
@@ -538,7 +538,7 @@
                         <!-- Employement Type -->
                         <div class="col-md-4 col-xs-12">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Employment Type</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->employment_type) ? $language->employment_type : "Employment Type"  ?></label>
                                 <select class="bs-select form-control  " name="employment_Type">
                                     <option value="" disabled>Employment Type</option>
                                     <?php foreach ($employment_type as $key => $employment_value) {?>
@@ -553,7 +553,7 @@
                         <!-- Position Level -->
                         <div class="col-md-4 col-xs-12">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   ">Position Level</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   "><?= !empty($language->position_level) ? $language->position_level : "Position Level"  ?></label>
                                 <select class="bs-select form-control   " name="employment_level">
                                     <option disabled>Position Level</option>
                                     <?php foreach ($position_levels as $key => $position_level_value) {?>
@@ -568,7 +568,7 @@
                         <!-- Years Of Experience -->
                         <div class="col-md-4 col-xs-12">
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   ">Years Of Experience</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   "><?= !empty($language->year_of_experience) ? $language->year_of_experience : "Years Of Experience"  ?></label>
                                 <select class="bs-select form-control" name="year_Of_Experience">
                                     <?php foreach ($year_of_experience as $key => $year_of_experience_value) { ?>
                                     <option <?php echo $value[ 'years_of_experience']==$year_of_experience_value[ 'id'] ? 'selected': ''; ?> value="
@@ -584,22 +584,22 @@
                     <!-- Job Description / Nice To Have / Job Requirement / Additional Info -->
                     <!-- TEXT EDITOR : JOB DESCRIPTION -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   ">Job Description</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   "><?= !empty($language->job_description) ? $language->job_description : "Job Description"  ?></label>
                         <textarea name="job_Desc" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" name="job_Desc" class="textarea_editor"><?php echo $value['job_description']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : NICE TO HAVE -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Nice To Have</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->nice_to_have) ? $language->nice_to_have : "Nice To Have"  ?></label>
                         <textarea name="nice_To_Have" data-provide="markdown" rows=10 data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['other_requirements']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : JOB REQUIREMENT -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Job Requirement</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->job_requirement) ? $language->job_requirement : "Job Requirement"  ?></label>
                         <textarea name="job_Requirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['qualifications']?></textarea>
                     </div>
                     <!-- TEXT EDITOR : ADDITIONAL INFO -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Additional Info</label>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->additional_info) ? $language->additional_info : "additional_info"  ?></label>
                         <textarea name="additional_Info" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['additional_info']?></textarea>
                     </div>
 
@@ -608,20 +608,20 @@
                         <div class="col-md-6 col-sm-12">
                             <!-- Address -->
                             <div class="form-group mx-0">
-                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Address</label>
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->address) ? $language->address : "Address"  ?></label>
                                 <input type="text" name="address" value="<?php echo !empty($location->address) ? $location->address : ''; ?>" class="form-control" placeholder="Unit / Lot , Road ," id="addAddress<?= $value['id'];?>">
                             </div>
                             <!-- City /  Postcode-->
                             <div class="row ">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">City</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->city) ? $language->city : "City"  ?></label>
                                         <input type="text" class="form-control" name="city" value="<?php echo !empty($location->city) ? $location->city : ''; ?>" id="addCity<?= $value['id'];?>">
                                     </div>
                                 </div>    
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Postcode</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->postcode) ? $language->postcode : "Postcode"  ?></label>
                                         <input type="text" class="form-control" placeholder="Postcode" name="postcode" value="<?php echo !empty($location->postcode) ? $location->postcode : ''; ?>" id="addPostcode<?= $value['id'];?>">
                                     </div>
                                 </div>
@@ -630,14 +630,14 @@
                             <div class="row ">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0 ">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">State</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->state) ? $language->state : "State"  ?></label>
                                         <input type="text" class="form-control" name="state" value="<?php echo !empty($location->state) ? $location->state : ''; ?>" id="addState<?= $value['id'];?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0">
                                         <!-- <label class="control-label">Country</label> -->
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   ">Country</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600   "><?= !empty($language->country) ? $language->country : "Country"  ?></label>
 
                                         <select class="form-control" name="country" id="addCountry<?= $value['id'];?>">
                                             <?php foreach ($countries as $key => $country_value) {?>
@@ -654,13 +654,13 @@
                             <div class="row">
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Latitude</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->latitude) ? $language->latitude : "Latitude"  ?></label>
                                         <input id="latitude<?= $value['id']?>" type="text" class="form-control" placeholder="1.643604 " name="latitude" value="<?php echo !empty($location->latitude) ? $location->latitude : ''; ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-xs-12">
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  ">Longititude</label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->longitude) ? $language->longitude : "Longitude"  ?></label>
                                         <input id="longitude<?= $value['id']?>" type="text" class="form-control" placeholder="1.955566" name="longitude" value="<?php echo !empty($location->longitude) ? $location->longitude : ''; ?>">
                                     </div>
                                 </div>

@@ -81,7 +81,7 @@
                     <!-- Logo -->
                     <div class="s-header-v2-navbar-col s-header-v2-navbar-col-width-180">
                         <div class="s-header-v2-logo ">
-                            <a href="<?php echo base_url(); ?>home" class="s-header-v2-logo-link ">
+                            <a href="<?php echo base_url(); ?>" class="s-header-v2-logo-link ">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-default height-50" src="<?php echo IMG; ?>site/xremo-logo-white.svg" alt="Xremo">
                                 <img class="s-header-v2-logo-img s-header-v2-logo-img-shrink height-50-sm height-60" src="<?php echo IMG; ?>site/xremo-logo-blue.svg" alt="Xremo ">
                             </a>

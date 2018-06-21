@@ -6,32 +6,32 @@
             <div class="portlet light md-transparent  p-0">
                 <div class="portlet-title tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
                     <div class="caption">
-                        <span class="caption-subject font-weight-300 text-capitalize font-26">User Profile</span>
+                        <span class="caption-subject font-weight-300 text-capitalize font-26"><?= !empty($language->user_profile) ? $language->user_profile : "User Profile" ?></span>
                     </div>
                     <!-- Nav Tabs -->
                     <ul class="nav nav-tabs mb-0 pb-0">
                         <?php
-							$tab_student = $this->session->flashdata('tab_student');
-						?>
+                            $tab_student = $this->session->flashdata('tab_student');
+                        ?>
                             <li class="<?=$tab_student =='tab_overview' || $tab_student =='' ?'active':'' ?>">
-                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_overview" data-toggle="tab">
-                                    <i class="icon-user font-22"></i> Overview</a>
+                                <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab">
+                                    <i class="icon-user font-22"></i> <?= !empty($language->site_summary) ? $language->site_summary : "Overview" ?></a>
                             </li>
                             <li class="<?=$tab_student == " tab_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_education" data-toggle="tab">
-                                    <i class="icon-graduation font-22"></i>Education </a>
+                                <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab">
+                                    <i class="icon-graduation font-22"></i><?= !empty($language->site_education) ? $language->site_education : "Education" ?> </a>
                             </li>
                             <li class="<?=$tab_student == " tab_experience "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_experience" data-toggle="tab">
-                                    <i class="icon-briefcase font-22"></i>Experience</a>
+                                <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab">
+                                    <i class="icon-briefcase font-22"></i><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?></a>
                             </li>
                             <li class="<?=$tab_student == " tab_non_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_non_education" data-toggle="tab">
-                                    <i class="icon-notebook font-22"></i>Non Education</a>
+                                <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab">
+                                    <i class="icon-notebook font-22"></i><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?></a>
                             </li>
                             <li class="<?=$tab_student == " tab_project "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>jobseeker/profile#tab_project" data-toggle="tab">
-                                    <i class="icon-badge font-22"></i>Skills</a>
+                                <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab">
+                                    <i class="icon-badge font-22"></i><?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?></a>
                             </li>
 
                     </ul>
@@ -52,7 +52,7 @@
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
                                  echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-orange pull-right m-20 letter-space-xs">
-                                View My Resume </a>
+                                <?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : "View My Resume" ?></a>
                         </div>
                     </div>
                     <div class="portlet light">
@@ -133,7 +133,7 @@
                             <div class="m-grid-col m-grid-col-center m-grid-col-sm-10 m-grid-col-xs-10">
                                 <div class="m-grid">
                                     <div class="m-grid-col">
-                                        <h5 class="font-weight-700 text-uppercase letter-space-sm font-19">About Myself</h5>
+                                        <h5 class="font-weight-700 text-uppercase letter-space-sm font-19"> <?= !empty($language->site_about_me) ? $language->site_about_me : "About Myself" ?></h5>
                                         <hr class="hor-divider-solid-medium border-mdo-orange-v7 width-60 my-0">
                                         <p>
                                             <?php echo !empty($user_profile['overview']['summary']) ? $user_profile['overview']['summary'] : 'I am a good candidate';?>
@@ -147,7 +147,7 @@
                         <div class="m-grid m-grid-col m-grid-col-center mt-40 pb-100">
                             <div class="m-grid-col m-grid-col-sm-1 m-grid-col-xs-1"></div>
                             <div class="m-grid-col  m-grid-col-sm-10 m-grid-col-xs-10">
-                                <h5 class="font-weight-700 text-uppercase letter-space-sm font-19">Personal information</h5>
+                                <h5 class="font-weight-700 text-uppercase letter-space-sm font-19"><?= !empty($language->site_personal_information) ? $language->site_personal_information : "Personal Information" ?></h5>
                                 <hr class="hor-divider-solid-medium border-mdo-orange-v7 width-60 mt-0 mb-10 ">
                                 <div class="m-grid m-grid-responsive-xs">
                                     <!-- Col 1 -->
@@ -155,7 +155,7 @@
                                         <!-- Full Name -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Full Name</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->site_full_name) ? $language->site_full_name : "Full Name" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?>
                                                 </h5>
@@ -164,7 +164,7 @@
                                         <!-- Preferences Name -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class=" font-weight-600 md-indigo-text">Preferences Name</h5>
+                                                <h5 class=" font-weight-600 md-indigo-text"><?= !empty($language->site_pref_name) ? $language->site_pref_name : "Preferences Name" ?></h5>
                                                 <h5 class=" roboto-font ">
                                                     <?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : ucfirst($this->session->userdata('name'));?>
                                                 </h5>
@@ -173,7 +173,7 @@
                                         <!-- Gender -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Gender</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->site_gender) ? $language->site_gender : "Gender" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['overview']['student_bios_gender']) ? $user_profile['overview']['student_bios_gender'] : '<i class="font-weight-300 md-grey-lighten-1-text"> I prefer not to say </i>';?>
                                                 </h5>
@@ -182,7 +182,7 @@
                                         <!-- DOB -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Date Of Birth</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->DOB) ? $language->DOB : "Date of Birth" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['overview']['student_bios_DOB']) ?  date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i> ';?>
                                                 </h5>
@@ -191,7 +191,7 @@
                                         <!-- Video Link -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Video Resume</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>
                                                 </h5>
@@ -200,7 +200,7 @@
                                         <!-- Salary Expectation -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Salary Expectation</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->site_expected_salary) ? $language->site_expected_salary : "Salary Expectation" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <!-- If not empty this will show -->
                                                     <?php if(!empty($user_profile['overview']['expected_salary'])){?>
@@ -219,7 +219,7 @@
                                         <!-- Language Preferences -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text ">Language Preferences</h5>
+                                                <h5 class="font-weight-600 md-indigo-text "><?= !empty($language->site_pref_language) ? $language->site_pref_language : "Language Preferences" ?></h5>
                                                 <?php if (!empty($user_profile['language'])) {?>
                                                 <?php foreach ($user_profile['language'] as $key => $lang) {?>
                                                 <!-- Language Ttle -->
@@ -227,15 +227,15 @@
                                                     <?php echo !empty($lang['title']) ?  $lang['title'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
                                                 <hr class="hor-divider-solid-medium border-mdo-orange-v5 width-40 my-10">
-                                                <h5 class="mt-0 mb-10 roboto-font "> <b class="font-weight-400">Written </b> :
+                                                <h5 class="mt-0 mb-10 roboto-font "> <b class="font-weight-400"><?= !empty($language->written) ? $language->written : "Written" ?> </b> :
                                                     <?php echo $lang['written']; ?> Level </h5>
-                                                <h5 class="mt-0 mb-0 roboto-font"> <b class="font-weight-400"> Spoken </b> :
+                                                <h5 class="mt-0 mb-0 roboto-font"> <b class="font-weight-400"> <?= !empty($language->spoken) ? $language->spoken : "Spoken" ?> </b> :
                                                     <?php echo $lang['spoken']; ?> Level </h5>
 
                                                 <?php } ?>
                                                 <?php } else{ ?>
                                                 <h5>
-                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"><?= !empty($language->none) ? $language->none : "None" ?></i>
                                                 </h5>
                                                 <?php } ?>
                                             </div>
@@ -246,7 +246,7 @@
                                         <!-- Email -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Email</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->email_address) ? $language->email_address : "Email" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo $this->session->userdata('email');?>
                                                 </h5>
@@ -255,7 +255,7 @@
                                         <!-- Contact Number -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="mb-10 font-weight-600 md-indigo-text">Contact Number</h5>
+                                                <h5 class="mb-10 font-weight-600 md-indigo-text"><?= !empty($language->site_contact_number) ? $language->site_contact_number : "Contact Number" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? $user_profile['overview']['student_bios_contact_number'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
@@ -264,7 +264,7 @@
                                         <!-- Street -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Street</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->address) ? $language->address : "Street" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
@@ -273,13 +273,13 @@
                                         <!-- Postcode -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">Postcode</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->postcode) ? $language->postcode : "Postcode" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
                                             </div>
                                             <div class="m-grid-col">
-                                                <h5 class="mb-10 font-weight-600 md-indigo-text"> City</h5>
+                                                <h5 class="mb-10 font-weight-600 md-indigo-text"><?= !empty($language->city) ? $language->city : "City" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>' ;?>
                                                 </h5>
@@ -288,13 +288,13 @@
                                         <!-- State / Country -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">State</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->state) ? $language->state : "State" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['address']['states']) ? $user_profile['address']['states'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>' ;?>
                                                 </h5>
                                             </div>
                                             <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text"> Country</h5>
+                                                <h5 class="font-weight-600 md-indigo-text"><?= !empty($language->country) ? $language->country : "Country" ?></h5>
                                                 <h5 class="roboto-font">
                                                     <?php echo !empty($user_profile['address']['country']) ? $user_profile['address']['country'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
@@ -304,7 +304,7 @@
                                         <!-- Reference -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
-                                                <h5 class=" font-weight-600 md-indigo-text">References</h5>
+                                                <h5 class=" font-weight-600 md-indigo-text"><?= !empty($language->references) ? $language->references : "References" ?></h5>
                                                 <ul class="list-unstyled">
                                                     <?php 
                                                         if(!empty($user_profile['reference'])){
@@ -314,19 +314,19 @@
                                                         <h5 class=" roboto-font font-weight-500">
                                                             <?=$reference_value['reference_name']?>
                                                         </h5>
-                                                        <h5 class="roboto-font font-15"><b class="font-weight-400 "> Email </b> :
+                                                        <h5 class="roboto-font font-15"><b class="font-weight-400 "><?= !empty($language->email_address) ? $language->email_address : "Email" ?></b> :
                                                             <?=$reference_value['reference_email'] != ""?$reference_value['reference_email']:"-"?>
                                                         </h5>
-                                                        <h5 class="font-weight-400 roboto-font"><b class="font-weight-400 "> Phone No.</b> :
+                                                        <h5 class="font-weight-400 roboto-font"><b class="font-weight-400 "> <?= !empty($language->phone_number) ? $language->phone_number : "Phone No." ?></b> :
                                                             <?=$reference_value['reference_phone'] != ""?$reference_value['reference_phone']:"-"?>
                                                         </h5>
-                                                        <h5 class=" font-weight-400 roboto-font"><b class="font-weight-400 "> Relationships </b>:
+                                                        <h5 class=" font-weight-400 roboto-font"><b class="font-weight-400 "><?= !empty($language->relationship) ? $language->relationship : "Relationships" ?> </b>:
                                                             <?=$reference_value['reference_relationship'] != ""?$reference_value['reference_relationship']:"-"?>
                                                         </h5>
                                                     </li>
                                                     <?php }}
                                                      else{ ?>
-                                                    <i class="font-weight-300 md-grey-lighten-1-text"> None </i>
+                                                    <i class="font-weight-300 md-grey-lighten-1-text"> <?= !empty($language->none) ? $language->none : "None" ?></i>
                                                     <?php } ?>
                                                 </ul>
                                             </div>
@@ -345,14 +345,14 @@
                         <div class="portlet-title ">
                             <div class="caption ">
                                 <i class="icon-graduation font-17"></i>
-                                <span class="caption-subject font-weight-500 roboto-font "> Education</span>
-                                <span class="caption-helper"> list out your previous education</span>
+                                <span class="caption-subject font-weight-500 roboto-font "><?= !empty($language->site_education) ? $language->site_education : "Education" ?></span>
+                                <span class="caption-helper"><?= !empty($language->site_list_edu) ? $language->site_list_edu : "list out your previous education" ?></span>
                             </div>
                             <!-- Modal Add education -->
                             <div class="actions">
                                 <?php if (!empty($user_profile['academics'])){ ?>
-                                <a href="<?php echo base_url();?>jobseeker/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
-                                    <i class="fa fa-plus  "></i> Add </a>
+                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
+                                    <i class="fa fa-plus  "></i><?= !empty($language->add) ? $language->add : "Add" ?></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -393,7 +393,7 @@
                                         <!-- Button -->
                                         <div class="media-right media-middle ">
                                             <!-- Edit Button -->
-                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu mb-20" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu mb-20" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
                                                 <i class="icon-pencil" data-toggle="tooltip" title="edit"></i>
                                             </a>
                                             <!-- Delete Button -->
@@ -408,18 +408,18 @@
                                             <div class="modal-content portlet light portlet-fit fade-in-up">
                                                 <div class="modal-header portlet-title">
                                                     <div class="caption">
-                                                        <span class="caption-subject text-capitalize font-weight-500">Edit Education</span>
+                                                        <span class="caption-subject text-capitalize font-weight-500"></i><?= !empty($language->site_edit_edu) ? $language->site_edit_edu : "Edit Education" ?></span>
                                                     </div>
                                                     <div class="actions py-20">
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
                                                 </div>
-                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_education" method="POST" class="form">
+                                                <form action="<?php echo base_url();?>student/profile/edit_education" method="POST" class="form">
                                                     <input type="hidden" name="academic_id" value="<?php echo $value['academic_id'];?>"></input>
                                                     <div class="modal-body portlet-body form-horizontal ">
                                                         <!-- Institution Name -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Institution Name</label>
+                                                            <label class="control-label col-md-3"></i><?= !empty($language->institution) ? $language->institution : "Institution Name" ?></label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" value="<?php echo ucfirst($value['university_name']); ?>" required>
                                                             </div>
@@ -428,7 +428,7 @@
 
                                                         <!-- Qualifications Level -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Qualifications Level </label>
+                                                            <label class="control-label col-md-3"><?= !empty($language->qualification) ? $language->qualification : "Qualification Level" ?> </label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" value="<?php echo ucfirst($value['qualification_level']); ?>" required>
                                                             </div>
@@ -436,16 +436,16 @@
 
                                                         <!-- Field Of Study-->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Field Of Study</label>
+                                                            <label class="control-label col-md-3"><?= !empty($language->site_studyfield) ? $language->site_studyfield : "Field of Study" ?></label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" value="<?php echo ucfirst($value['degree_name']); ?>" required>
                                                             </div>
                                                         </div>
 
-                                                        <!-- TIme Period  -->
-                                                        <!-- BUG : FIx End Date input disable if checkbox check -->
+                                                        <!-- Time Period  -->
+                                                        <!-- BUG : Fix End Date input disable if checkbox check -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Time Period</label>
+                                                            <label class="control-label col-md-3"><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
                                                             <div class="col-md-9  ">
                                                                 <div class="m-grid ">
                                                                     <div class="m-grid-col m-grid-col-xs-6">
@@ -453,7 +453,7 @@
                                                                         <!-- <span class="help-block"> Select date </span> -->
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                                        <span class="help-block"> to </span>
+                                                                        <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?></span>
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-6">
                                                                         <input class="form-control form-control-inline date-picker date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? ' ' : date('d-m-Y', strtotime($value['end_date'])); ?>" id="EndDate1" placeholder="End Year" name="until" required>
@@ -462,7 +462,7 @@
                                                                             <label for="md-check-edu-end_<?php echo $i;?>">
                                                                                 <span></span>
                                                                                 <span class="check"></span>
-                                                                                <span class="box"></span> Currently still studying?
+                                                                                <span class="box"></span> <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently Still Studying?" ?>
                                                                             </label>
                                                                         </span>
                                                                     </div>
@@ -472,7 +472,7 @@
 
                                                         <!-- Description -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Description</label>
+                                                            <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                                             <div class="col-md-9">
                                                                 <textarea class="form-control" rows="4" placeholder="Brief about your studying place and what subject you had study." name="academics_description">
                                                                     <?php echo ucfirst($value['degree_description']); ?>
@@ -481,7 +481,7 @@
                                                         </div>
                                                     </div>
                                                     <div class=" form-actions  modal-footer px-30 ">
-                                                        <button type="submit" class="btn btn-md-indigo width-250 letter-space-xs">Save</button>
+                                                        <button type="submit" class="btn btn-md-indigo width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -496,11 +496,11 @@
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
                                 <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">Click button below to add education information.</h5>
+                                    <h3 class="font-weight-500 text-center md-indigo-text"><?= !empty($language->site_empty_edu) ? $language->site_empty_edu: "It's empty ..." ?></h3>
+                                    <h5 class="font-grey-cascade mt-30 text-center"><?= !empty($language->site_click_addedu) ? $language->site_click_addedu : "Click button below to add education information." ?></h5>
                                     <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>jobseeker/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
-                                            <i class="fa fa-plus  "></i> Add Education Info </a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
+                                            <i class="fa fa-plus  "></i><?= !empty($language->site_add_eduinfo) ? $language->site_add_eduinfo : "Add Education Info" ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -515,13 +515,13 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-briefcase"></i>
-                                <span class="caption-subject font-weight-500  roboto-font ">Experience</span>
-                                <span class="caption-helper"> list out all your previous working experience</span>
+                                <span class="caption-subject font-weight-500  roboto-font "><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?></span>
+                                <span class="caption-helper"><?= !empty($language->site_list_work) ? $language->site_list_work : "list out all your previous working experience" ?></span>
                             </div>
                             <div class="actions">
                                 <?php if (!empty($user_profile['experiences'])){ ?>
                                 <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo  btn-add-exp px-60">
-                                    <i class="fa fa-plus"></i> Add</a>
+                                    <i class="fa fa-plus"></i><?= !empty($language->add) ? $language->add : "Add" ?></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -543,7 +543,7 @@
                                             </h4>
                                             <!-- Company Name -->
                                             <h5 class="font-weight-400 font-18">
-                                                <i class="fa fa-building-o mr-5"></i>
+                                                <i class="fa fa-builfing-o mr-5"></i>
                                                 <?php echo ucfirst($value['experiences_company_name']);?>
                                             </h5>
                                             <!-- Start & End Date -->
@@ -580,7 +580,7 @@
                                             <?php } ?>
                                             <!-- Skill Earned -->
                                             <?php if (!empty($value['skills'])){ ?>
-                                            <p class="font-weight-600 mt-20  mb-10 text-uppercase font-15">Skill Earned</p>
+                                            <p class="font-weight-600 mt-20  mb-10 text-uppercase font-15"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></p>
                                             <ul class="list-unstyled list-inline mt-ul-li-lr-0 mx-0">
                                                 <?php 
                                                     $tag = explode(',', $value['skills']);
@@ -602,7 +602,7 @@
                                         </div>
                                         <!-- Button -->
                                         <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only  mb-20 ">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only  mb-20 ">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
@@ -624,29 +624,29 @@
                                                     </div>
 
                                                 </div>
-                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_experience" method="POST" class="form form-horizontal">
+                                                <form action="<?php echo base_url();?>student/profile/edit_experience" method="POST" class="form form-horizontal">
                                                     <input type="hidden" name="experience_id" value="<?php echo $value['experience_id']?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Job Post & Time Period -->
                                                         <div class="row ">
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label">Job Title</label>
+                                                                    <label class="control-label"><?= !empty($language->site_job_title) ? $language->site_job_title : "Job Title" ?></label>
                                                                     <input type="text" class="form-control " name="title" placeholder="Internship in IT Dept" value="<?php echo ucfirst($value['experiences_title']);?>">
-                                                                    <span class="help-block small"> Add your current status career info </span>
+                                                                    <span class="help-block small"> <?= !empty($language->site_add_current_career) ? $language->site_add_current_career : "Add your current status career info" ?></span>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <!-- TIme Period  -->
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label ">Time Period</label>
+                                                                    <label class="control-label "><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
 
                                                                     <div class="m-grid ">
                                                                         <div class="m-grid-col m-grid-col-xs-6">
                                                                             <input class="form-control form-control-inline date-picker-start " size="16" type="text" name="start_date" value="<?php echo date('d-m-Y', strtotime($value['experiences_start_date']));?>" placeholder="From year" id="StartDate3">
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                                            <span class="help-block"> to </span>
+                                                                            <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?></span>
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
                                                                             <input class="form-control form-control-inline date-picker-end date-picker-end-exp " size="16" type="text" name="end_date" value="<?php echo ($value['experiences_end_date'] == '0000-00-00')? " " : date('d-m-Y', strtotime($value['experiences_end_date'])); ?>" placeholder="End Year" id="EndDate3" required>
@@ -656,7 +656,7 @@
                                                                                     <span></span>
                                                                                     <span class="check"></span>
                                                                                     <span class="box"></span>
-                                                                                    <small> Currently still working?</small>
+                                                                                    <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still working?" ?></small>
                                                                                 </label>
                                                                             </span>
                                                                         </div>
@@ -669,7 +669,7 @@
                                                         <div class="row ">
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label">Company Name</label>
+                                                                    <label class="control-label"><?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?></label>
                                                                     <input type="text" class="form-control " placeholder="Company #1 Sdn Bhd" name="company_name" value="<?php echo !empty($value['experiences_company_name']) ? $value['experiences_company_name'] : ''?>">
                                                                     <!-- <span class="help-block small"> Add your current status career info </span> -->
                                                                 </div>
@@ -679,7 +679,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group mx-0 mb-0">
-                                                                            <label class="control-label ">Employement Type</label>
+                                                                            <label class="control-label "><?= !empty($language->site_employment_type) ? $language->site_employment_type : "Employment Type" ?></label>
                                                                             <select class="form-control" name="employment_type">
                                                                                 <?php foreach ($employment_types as $key => $employment_types_value) {?>
                                                                                 <option value="<?php echo !empty($employment_types_value['id']) ? $employment_types_value['id'] : ''?>" <?php echo $value[ 'employment_type_id']==$employment_types_value[ 'id'] ? 'selected' : '' ?>>
@@ -687,21 +687,21 @@
                                                                                 </option>
                                                                                 <?php } ?>
                                                                             </select>
-                                                                            <span class="help-block small"> Previous employement type </span>
+                                                                            <span class="help-block small"><?= !empty($language->site_prev_employment) ? $language->site_prev_employment : "Previous employement type" ?></span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <div class="form-group mx-0 mb-0">
-                                                                            <label class="control-label ">Industry</label>
+                                                                            <label class="control-label "><?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry" ?></label>
                                                                             <select class="form-control   " name="industry">
-                                                                                <option value="" selected disabled>Company Industry </option>
+                                                                                <option value="" selected disabled><?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry" ?></option>
                                                                                 <?php foreach ($industries as $key => $industry_value) {?>
                                                                                 <option value="<?php echo !empty($industry_value['id']) ? $industry_value['id'] : ''?>" <?php echo $value[ 'industries_id']==$industry_value[ 'id'] ? 'selected' : '' ?>>
                                                                                     <?php echo !empty($industry_value['name']) ? $industry_value['name'] : ''?>
                                                                                 </option>
                                                                                 <?php } ?>
                                                                             </select>
-                                                                            <span class="help-block small"> Add your company industries </span>
+                                                                            <span class="help-block small"><?= !empty($language->site_add_company_industry) ? $language->site_add_company_industry : "Add your company industries" ?></span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -711,7 +711,7 @@
                                                             <div class="col-md-6">
                                                                 <!-- Description -->
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label ">Description</label>
+                                                                    <label class="control-label ">  <?= !empty($language->description) ? $language->description : "Description" ?></label>
                                                                     <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true" style="overflow-y: visible; overflow-x: hidden; word-wrap: break-word; resize: horizontal;">
                                                                         <?php echo ucfirst($description);?>
                                                                     </textarea>
@@ -720,15 +720,15 @@
                                                             <div class="col-md-6">
                                                                 <!-- Skill Earned -->
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label">Skill Earned</label>
+                                                                    <label class="control-label"> <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
                                                                     <input type="text" class="form-control input-xlarge" value="<?php echo !empty($value['skills']) ? $value['skills'] : '' ?>" data-role="tagsinput" name="skills">
-                                                                    <span class="help-block small"> Press "Tab" to add tag </span>
+                                                                    <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">Save</button>
+                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -743,11 +743,11 @@
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
                                 <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text"> It's empty ... </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">Click button below to add experience information.</h5>
+                                    <h3 class="font-weight-500 text-center md-indigo-text"><?= !empty($language->site_empty_work) ? $language->site_empty_work : "It's empty ..." ?> </h3>
+                                    <h5 class="font-grey-cascade mt-30 text-center"><?= !empty($language->site_click_addwork) ? $language->site_click_addwork : "Click button below to add experience information." ?></h5>
                                     <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>jobseeker/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
-                                            <i class="fa fa-plus  "></i> Add Experience Info </a>
+                                        <a href="<?php echo base_url();?>student/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
+                                            <i class="fa fa-plus  "></i><?= !empty($language->site_add_workexp) ? $language->site_add_workexp : "Add Experience Info" ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -756,19 +756,19 @@
                     </div>
                 </div>
 
-                <!-- Tab Content : Achievements -->
+                <!-- Tab Content : Non Education -->
                 <div class="tab-pane <?=$tab_student == 'tab_non_education'?'active':' '?>" id="tab_non_education">
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-notebook"></i>
-                                <span class="caption-subject font-weight-500 roboto-font "> Non Education</span>
-                                <span class="caption-helper"> list out all your previous non educational activity (join any colleage event ... or whatsoever)</span>
+                                <span class="caption-subject font-weight-500 roboto-font "><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?></span>
+                                <span class="caption-helper"><?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "list out all your previous non educational activity (join any colleage event ... or whatsoever)" ?></span>
                             </div>
                             <div class="actions">
                                 <?php if (!empty($user_profile['achievement'])){ ?>
                                 <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo px-60 ">
-                                    <i class="fa fa-plus"></i> Add</a>
+                                    <i class="fa fa-plus"></i> <?= !empty($language->add) ? $language->add : "Add" ?></a>
                                 <?php } ?>
                             </div>
                         </div>
@@ -820,7 +820,7 @@
                                             <?php } ?>
                                         </div>
                                         <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only mb-20 " data-toggle="modal">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only mb-20 " data-toggle="modal">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete mb-20">
@@ -841,7 +841,7 @@
                                                     </div>
                                                 </div>
 
-                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_achievement" class="form form-horizontal" method="POST">
+                                                <form action="<?php echo base_url();?>student/profile/edit_achievement" class="form form-horizontal" method="POST">
                                                     <input type="hidden" name="achievement_id" value="<?php echo $value['achievement_id'];?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Institution Name [required]-->
@@ -994,7 +994,7 @@
                                         <!-- Button -->
                                         <div class="media-right media-middle my-20 ">
                                             <!-- Edit Button  -->
-                                            <a href="<?php echo base_url();?>jobseeker/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only mb-20">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only mb-20">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <!-- Delete Button -->
@@ -1017,7 +1017,7 @@
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                                                     </div>
                                                 </div>
-                                                <form action="<?php echo base_url();?>jobseeker/profile/edit_project" method="POST" class="form form-horizontal">
+                                                <form action="<?php echo base_url();?>student/profile/edit_project" method="POST" class="form form-horizontal">
                                                     <input type="hidden" name="project_id" value="<?php echo $value['id'] ?>"></input>
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Project Title / Time Period-->
@@ -1144,7 +1144,7 @@
                         </ul>
                     </div>
 
-                    <form id="profile" action="<?php echo base_url(); ?>jobseeker/profile/post" method="POST" class="form" enctype="multipart/form-data">
+                    <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
                         <div class="modal-body portlet-body form-horizontal">
                             <div class="tab-content">
                                 <!-- SECTION : Personal Info -->
@@ -1559,20 +1559,20 @@
                 <div class="modal-content portlet light portlet-fit fade-in-up">
                     <div class="modal-header portlet-title">
                         <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">Add Education</span>
+                            <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_add_edu) ? $language->site_add_edu : "Add Education" ?></span>
                         </div>
                         <div class="actions py-20">
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                         </div>
 
                     </div>
-                    <form action="<?php echo base_url();?>jobseeker/profile/add_education" method="POST" class="form form-horizontal">
+                    <form action="<?php echo base_url();?>student/profile/add_education" method="POST" class="form form-horizontal">
                         <input type="hidden" name="academic_id"></input>
                         <div class="modal-body portlet-body ">
 
                             <!-- Institution Name -->
                             <div class="form-group ">
-                                <label class="control-label col-md-3">Institution Name</label>
+                                <label class="control-label col-md-3"><?= !empty($language->institution) ? $language->institution : "Institution Name" ?></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" required>
                                     <!-- <span class="help-block"> A block of help text.</span> -->
@@ -1582,7 +1582,7 @@
 
                             <!-- Qualifications Level -->
                             <div class="form-group">
-                                <label class="control-label col-md-3">Qualifications Level </label>
+                                <label class="control-label col-md-3"><?= !empty($language->qualification) ? $language->qualification : "Qualification Level" ?></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" required>
                                     <!-- <span class="help-block"> A block of help text.</span> -->
@@ -1591,7 +1591,7 @@
 
                             <!-- Field Of Study-->
                             <div class="form-group">
-                                <label class="control-label col-md-3">Field Of Study</label>
+                                <label class="control-label col-md-3"><?= !empty($language->site_studyfield) ? $language->site_studyfield : "Field of Study" ?></label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" required>
                                 </div>
@@ -1599,7 +1599,7 @@
 
                             <!-- TIme Period  -->
                             <div class="form-group">
-                                <label class="control-label col-md-3">Time Period</label>
+                                <label class="control-label col-md-3"><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
                                 <div class="col-md-9  ">
                                     <div class="m-grid ">
                                         <div class="m-grid-col m-grid-col-xs-6">
@@ -1607,7 +1607,7 @@
                                             <!-- <span class="help-block"> Select date </span> -->
                                         </div>
                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                            <span class="help-block"> to </span>
+                                            <span class="help-block"> <?= !empty($language->site_to) ? $language->site_to : "to" ?> </span>
                                         </div>
                                         <div class="m-grid-col m-grid-col-xs-6">
                                             <input class="form-control form-control-inline date-picker date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until" required>
@@ -1616,7 +1616,7 @@
                                                 <label for="add_education">
                                                     <span></span>
                                                     <span class="check"></span>
-                                                    <span class="box"></span> Currently still studying?
+                                                    <span class="box"></span> <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still studying?" ?> 
                                                 </label>
                                             </span>
                                         </div>
@@ -1627,14 +1627,14 @@
 
                             <!-- Description -->
                             <div class="form-group">
-                                <label class="control-label col-md-3">Description</label>
+                                <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                 <div class="col-md-9">
                                     <textarea class="form-control" rows="4" placeholder="Brief about your studying place and what subject you had study." name="academics_description"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">Save</button>
+                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                         </div>
                     </form>
                 </div>
@@ -1647,28 +1647,28 @@
                 <div class="modal-content portlet light portlet-fit fade-in-up">
                     <div class="modal-header portlet-title">
                         <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">Add Experience</span>
+                            <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_add_work) ? $language->site_add_work : "Add Experience" ?></span>
                         </div>
                         <div class="actions py-20">
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                         </div>
 
                     </div>
-                    <form action="<?php echo base_url()?>jobseeker/profile/add_experience" method="POST" class="form form-horizontal">
+                    <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
                         <div class="modal-body portlet-body ">
                             <!-- Job Post & Time Period -->
                             <div class="row ">
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">Job Title</label>
+                                        <label class="control-label"><?= !empty($language->site_job_title) ? $language->site_job_title : "Job Title" ?></label>
                                         <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title" required>
-                                        <span class="help-block small"> Add your current status career info </span>
+                                        <span class="help-block small"> <?= !empty($language->site_add_current_career) ? $language->site_add_current_career : "Add your current status career info" ?> </span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- TIme Period  -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">Time Period</label>
+                                        <label class="control-label "><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
 
                                         <div class="m-grid ">
                                             <div class="m-grid-col m-grid-col-xs-6">
@@ -1676,7 +1676,7 @@
                                                 <!-- <span class="help-block"> Select date </span> -->
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                <span class="help-block"> to </span>
+                                                <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?></span>
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-6">
                                                 <input class="form-control form-control-inline date-picker-end input-date-picker-end" name="end_date" size="16" type="text" value="" placeholder="End Year" required>
@@ -1685,7 +1685,7 @@
                                                     <label for="add_experience">
                                                         <span></span>
                                                         <span class="check"></span>
-                                                        <span class="box"></span> Currently still working?
+                                                        <span class="box"></span><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still working?" ?> 
                                                     </label>
                                                 </span>
                                             </div>
@@ -1698,7 +1698,7 @@
                             <div class="row ">
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">Company Name</label>
+                                        <label class="control-label"><?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?></label>
                                         <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>
                                         <!-- <span class="help-block small"> Add your current status career info </span> -->
                                     </div>
@@ -1708,7 +1708,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
-                                                <label class="control-label ">Employement Type</label>
+                                                <label class="control-label "><?= !empty($language->site_employment_type) ? $language->site_employment_type : "Employment Type" ?></label>
                                                 <select class="form-control" name="employment_type">
                                                     <?php foreach ($employment_types as $key => $value) {?>
                                                     <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>">
@@ -1716,21 +1716,21 @@
                                                     </option>
                                                     <?php } ?>
                                                 </select>
-                                                <span class="help-block small"> Previous employement type </span>
+                                                <span class="help-block small"><?= !empty($language->site_prev_employment) ? $language->site_prev_employment : "Previous employement type" ?> </span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
-                                                <label class="control-label ">Industry</label>
+                                                <label class="control-label "><?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry" ?></label>
                                                 <select class="form-control   " name="industry">
-                                                    <option value="" selected disabled>Company Industry </option>
+                                                    <option value="" selected disabled><?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry"?> </option>
                                                     <?php foreach ($industries as $key => $value) {?>
                                                     <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>">
                                                         <?php echo !empty($value['name']) ? $value['name'] : ''?>
                                                     </option>
                                                     <?php } ?>
                                                 </select>
-                                                <span class="help-block small"> Add your company industries </span>
+                                                <span class="help-block small"><?= !empty($language->site_add_company_industry) ? $language->site_add_company_industry : "Add your company industries" ?> </span>
                                             </div>
                                         </div>
                                     </div>
@@ -1741,22 +1741,22 @@
                                 <div class="col-md-6">
                                     <!-- Description -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">Description</label>
+                                        <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                         <textarea class="form-control autosizeme" rows="4" placeholder="Brief about your working place ...." name="description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Skill Earned -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">Skill Earned</label>
+                                        <label class="control-label"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
                                         <input type="text" class="form-control input-xlarge" value="Microsoft Office, Internet Browsing, Research" data-role="tagsinput" name="skills">
-                                        <span class="help-block small"> Press "Tab" to add tag </span>
+                                        <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">Save</button>
+                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
                         </div>
                     </form>
                 </div>
@@ -1775,7 +1775,7 @@
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                         </div>
                     </div>
-                    <form method="POST" id="achievement" class="form " action="<?php echo base_url()?>jobseeker/profile/add_achievement">
+                    <form method="POST" id="achievement" class="form " action="<?php echo base_url()?>student/profile/add_achievement">
                         <div class="modal-body portlet-body form-horizontal ">
                             <!-- Institution Name -->
                             <div class="form-group">
@@ -1849,7 +1849,7 @@
                         </div>
 
                     </div>
-                    <form class="form form-horizontal" action="<?php echo base_url();?>jobseeker/profile/add_project" method="POST">
+                    <form class="form form-horizontal" action="<?php echo base_url();?>student/profile/add_project" method="POST">
                         <div class="modal-body portlet-body ">
 
                             <!-- Project Title & Time Period -->

@@ -606,7 +606,7 @@ else
 
                                     <!-- Benefits -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"> <?= !empty($language->site_benefits) ? $language->site_benefits : "Benefits" ?></label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"> <?= !empty($language->site_benefit) ? $language->site_benefit : "Benefits" ?></label>
                                         <textarea class="autosizeme form-control" rows="4" placeholder="Annual Leaves , Allowances , Medicalfee , Dental Fee ,Annual Trip" name="benefits"><?php echo !empty($user_profile['benefits']) ? $user_profile['benefits'] : ''; ?></textarea>
                                     </div>
                                 </div>
@@ -727,7 +727,7 @@ else
                                         <!-- Address -->
                                         <div class="row mx-0">
                                             <div class="form-group mx-0">
-                                                <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600 ">Address</label>
+                                                <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->address) ? $language->address : "Address" ?></label>
                                                 <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="contact_info[<?= $key; ?>][building_address]" id="building_address<?= $key; ?>" value="<?php echo $value->building_address; ?>">
                                             </div>
                                         </div>
@@ -736,26 +736,26 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">City</label>
+                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->city) ? $language->city : "City" ?></label>
                                                     <input type="text" class="form-control " name="contact_info[<?= $key; ?>][building_city]" id="building_city<?= $key; ?>" value="<?php echo $value->building_city; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">State</label>
+                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->state) ? $language->state : "State" ?></label>
                                                     <input type="text" class="form-control" name="contact_info[<?= $key; ?>][building_state]" id="building_state<?= $key; ?>" value="<?php echo $value->building_state; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->postcode) ? $language->postcode : "Postcode" ?></label>
                                                     <input type="text" class="form-control" placeholder="Postcode" name="contact_info[<?= $key; ?>][building_postcode]" id="building_postcode<?= $key; ?>" value="<?php echo $value->building_postcode; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
                                                     <!-- <label class="control-label">Country</label> -->
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Country</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->country) ? $language->country : "Country" ?></label>
 
                                                     <select class="form-control " name="contact_info[<?= $key; ?>][building_country]" id="building_country<?= $key; ?>">
                                                         <option value="" disabled>Select one </option>
@@ -774,7 +774,7 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->latitude) ? $language->latitude : "Latitude" ?></label>
 
                                                     <input type="text" name="contact_info[<?= $key; ?>][building_latitude]" id="building_latitude<?= $key; ?>" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_latitude; ?>">
                                                 </div>
@@ -782,20 +782,20 @@ else
 
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->longitude) ? $language->longitude : "Longititude" ?></label>
                                                     <input type="text" name="contact_info[<?= $key; ?>][building_longitude]" id="building_longitude<?= $key; ?>" class="form-control" placeholder="1.643604 " value="<?php echo $value->building_longitude; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ?></label>
                                                     <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_phone]" id="building_phone<?= $key; ?>" value="<?php echo $value->building_phone; ?>">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Fax Number</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->fax_number) ? $language->fax_number : "Fax Number" ?></label>
                                                     <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[<?= $key; ?>][building_fax]" id="building_fax<?= $key; ?>" value="<?php echo $value->building_fax; ?>">
                                                 </div>
                                             </div>
@@ -806,15 +806,15 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Office Type</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->office_type) ? $language->office_type : "Office Type" ?></label>
 
                                                     <div class="mt-radio-inline">
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios4" value="HQ" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> Headquarter
+                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios4" value="HQ" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='HQ') ? 'checked' : '' ?> name="HQ"> <?= !empty($language->headquarter) ? $language->headquarter : "HQ" ?>
                                                             <span></span>
                                                         </label>
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios5" value="branch" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='branch') ? 'checked' : '' ?>> Branch
+                                                            <input type="radio" name="contact_info[<?= $key; ?>][optionsRadios]" id="optionsRadios5" value="branch" <?php echo (!empty($value->optionsRadios) && $value->optionsRadios=='branch') ? 'checked' : '' ?>> <?= !empty($language->branch) ? $language->branch : "Branch" ?>
                                                             <span></span>
                                                         </label>
                                                     </div>
@@ -822,13 +822,13 @@ else
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Email Address</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->email_address) ? $language->email_address : "Email Address" ?></label>
                                                     <input type="text" class="form-control " placeholder="hello@xremo.com" name="contact_info[<?= $key; ?>][building_email]" id="building_email<?= $key; ?>" value="<?php echo $value->building_email; ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-3 pull-right my-50">
                                                 <a href="javascript:;" class="btn btn-danger btn-block delContact">
-                                                    <i class="fa fa-close"></i> Remove
+                                                    <i class="fa fa-close"></i> <?= !empty($language->remove) ? $language->remove : "Remove" ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -854,7 +854,7 @@ else
                                         <!-- Address -->
                                         <div class="row mx-0">
                                             <div class="form-group mx-0">
-                                                <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600 ">Address</label>
+                                                <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->address) ? $language->address : "Address" ?></label>
                                                 <input type="text" class="form-control" placeholder="  Unit / Lot , Road ," name="contact_info[0][building_address]" id="building_address">
                                             </div>
                                         </div>
@@ -863,26 +863,26 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">City</label>
+                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->city) ? $language->city : "City" ?></label>
                                                     <input type="text" class="form-control " name="contact_info[0][building_city]" id="building_city">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600">State</label>
+                                                    <label class="control-label  md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->state) ? $language->state : "State" ?></label>
                                                     <input type="text" class="form-control" name="contact_info[0][building_state]" id="building_state">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Postcode</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->postcode) ? $language->postcode : "Postcode" ?></label>
                                                     <input type="text" class="form-control" placeholder="Postcode" name="contact_info[0][building_postcode]" id="building_postcode">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
                                                     <!-- <label class="control-label">Country</label> -->
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Country</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->country) ? $language->country : "Country" ?></label>
 
                                                     <select class="form-control " name="contact_info[0][building_country]" id="building_country">
                                                         <option value="" disabled>Select one </option>
@@ -901,7 +901,7 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Latitude</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->latitude) ? $language->latitude : "Latitude" ?></label>
 
                                                     <input type="text" name="contact_info[0][building_latitude]" id="building_latitude" class="form-control" placeholder="1.643604 ">
                                                 </div>
@@ -909,20 +909,20 @@ else
 
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Longititude</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->longitude) ? $language->longitude : "Longititude" ?></label>
                                                     <input type="text" name="contact_info[0][building_longitude]" id="building_longitude" class="form-control" placeholder="1.643604 ">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Phone Number</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ?></label>
                                                     <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[0][building_phone]" id="building_phone">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Fax Number</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->fax_number) ? $language->fax_number : "Fax Number" ?></label>
                                                     <input type="text" class="form-control" placeholder="01 -23459557 " name="contact_info[0][building_fax]" id="building_fax">
                                                 </div>
                                             </div>
@@ -933,15 +933,15 @@ else
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group mx-0">
-                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">Office Type</label>
+                                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->office_type) ? $language->office_type : "Office Type" ?></label>
 
                                                     <div class="mt-radio-inline">
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> Headquarter
+                                                            <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios4" value="HQ" name="HQ" checked="checked"> <?= !empty($language->headquarter) ? $language->headquarter : "HQ" ?>
                                                             <span></span>
                                                         </label>
                                                         <label class="mt-radio">
-                                                            <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios5" value="branch"> Branch
+                                                            <input type="radio" name="contact_info[0][optionsRadios]" id="optionsRadios5" value="branch"> <?= !empty($language->branch) ? $language->branch : "Branch" ?>
                                                             <span></span>
                                                         </label>
                                                     </div>
@@ -955,7 +955,7 @@ else
                                             </div>
                                             <div class="col-md-3 pull-right my-50">
                                                 <a href="javascript:;" class="btn btn-danger btn-block delContact">
-                                                    <i class="fa fa-close"></i> Remove
+                                                    <i class="fa fa-close"></i> <?= !empty($language->remove) ? $language->remove : "Remove" ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -963,7 +963,7 @@ else
                                     <?php } ?>
                                 </div>
                                 <a href="javascript:;" class="btn btn-info mb-30" id="addOffice" data-val="<?= count($company_address); ?>">
-                                    <i class="fa fa-plus"></i> Add new office</a>
+                                    <i class="fa fa-plus"></i> <?= !empty($language->add_new_office) ? $language->add_new_office : "Add New Office" ?></a>
                             </div>
                             <div class="modal-footer form-actions">
                                 <a data-dismiss="modal" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>

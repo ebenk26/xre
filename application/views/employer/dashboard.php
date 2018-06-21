@@ -110,7 +110,7 @@
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
                             <i class="icon-notebook font-dark"></i>
-                            <span class="caption-subject font-dark font-weight-600 text-uppercase">Recent Job Post </span>
+                            <span class="caption-subject font-dark font-weight-600 text-uppercase"><?= !empty($language->recent_job_post) ? $language->recent_job_post : "Recent Job Post"  ?> </span>
                         </div>
                     </div>
                     <?php if(!empty($job_post)){?>
@@ -189,7 +189,7 @@
                     </div>
                 </div>
                 <?php foreach ($dashboardInvitationCalendar as $key => $value): ?>
-                <div class="modal fade" id="modal_more_info_<?php echo $value['id'];?>" tabindex="-1" role="dialog" aria-hidden="false">
+                <div class="modal fade" id="modal_info_<?php echo $value['id'];?>" tabindex="-1" role="dialog" aria-hidden="false">
                     <div class="modal-dialog">
                         <div class="modal-content wow fadeInUp " data-wow-delay=".1s" data-wow-duration=".7s">
                             <div class="modal-header md-indigo md-white-text">

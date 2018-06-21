@@ -35,6 +35,7 @@ $company_address = json_decode($user_profile['address']);?>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
 <!-- # Calendar -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/fullcalendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/fullcalendar/lang-all.js"></script>
 <!-- <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script> -->
 <!-- # Image Cropping -->
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.color.js"></script>
@@ -1433,6 +1434,7 @@ $company_address = json_decode($user_profile['address']);?>
                     });
                     $('#fullcalendar').fullCalendar({
                         header: h,
+                        lang: '<?= !empty($_COOKIE["country"]) ? $_COOKIE['country'] : "en"; ?>',
                         defaultView: 'month',
                         slotMinutes: 15,
                         editable: false,
