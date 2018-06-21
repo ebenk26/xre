@@ -27,6 +27,7 @@ class Search_candidate extends CI_Controller {
         $content['position']        = $this->employer_model->get_position();
         $content['employment']      = $this->employer_model->get_employment();
         $content['yoe']             = $this->employer_model->get_year_of_experience();
+        $content['location']        = $this->global_model->get('countries', 'name');
         
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/search_candidate', $content);

@@ -6,26 +6,6 @@
         <!-- Search -->
         <div class="portlet mt-60" id="search_panelv1">
             <!-- <h4>Search Keywords</h4> -->
-            <div class="well" >
-                <p>Atribbute </p>
-                <ol>
-                    <li>
-                        <b>Keyword</b> - all</li>
-                    <li>
-                        <b>Location</b> - extract state and city </li>
-                    <li>
-                        <b>Salary Range</b> - User can create a range of it expected candidate salary </li>
-                    <li>
-                        <b>Job Type</b> - Get data from candidate latest job experience</li>
-                    <li>
-                        <b>Position Level</b> - Get data from candidate latest job exp.</li>
-                    <li>
-                        <b>Years of Experience</b> - Get data from candidate latest job exp</li>
-                    <li>
-                        <b>Field Of Study & Qualifications is merge and named as education</b> - Get data from candidat latest academic field-ofstudy and qualifications</li>
-
-                </ol>
-            </div>
             <!-- Search Keyword -->
             <div class="row">
                 <div class="col-md-12 col-sm-12">
@@ -74,23 +54,23 @@
                                         </a>
                                     </span>
                                 </div>
-                                <span class="helper-block">Output for this from attr 'expected salary' form student</span>
                             </div>
                         </div>
                         <!-- Location -->
                         <div class="col-md-4">
                             <div class="form-group mx-0">
                                 <label class="control-label">Location</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend ">
-                                    <select name="location" class="form-control select2" multiple>
-                                        <option></option>
-                                        <optgroup label="Alaskan">
-                                            <option value="AK">Alaska</option>
-                                            <option value="HI" disabled="disabled">Hawaii</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <span class="helper-block">Output for this from attr 'address' from student. Extract data , [city , state ] , country shall remove because its depend by ip </span>
+                                <select name="location" class="bs-select form-control mb-10" aria-placeholder="Location" title="Location">
+                                    <option value="">None</option>
+                                    <?php
+                                        foreach ($location as $locationVal)
+                                        {
+                                    ?>
+                                            <option value="<?= $locationVal["name"]; ?>"><?= $locationVal["name"]; ?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                         <!-- Qualifications -->
@@ -98,19 +78,17 @@
                             <!--Education  -->
                             <div class="form-group mx-0">
                                 <label class="control-label">Education</label>
-                                <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
-                                    <select name="education" class="form-control select2" multiple title="Language">
-                                        <option value="">None</option>
-                                        <?php
-                                            foreach ($education as $educationVal)
-                                            {
-                                        ?>
-                                                <option value="<?= $educationVal["id"]; ?>"><?= $educationVal["name"]; ?></option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
+                                <select name="education" class="bs-select form-control mb-10" aria-placeholder="Education" title="Education">
+                                    <option value="">None</option>
+                                    <?php
+                                        foreach ($education as $educationVal)
+                                        {
+                                    ?>
+                                            <option value="<?= $educationVal["name"]; ?>"><?= $educationVal["name"]; ?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -125,7 +103,7 @@
                                         foreach ($position as $val)
                                         {
                                     ?>
-                                            <option value="<?= $val["id"]; ?>"><?= $val["name"]; ?></option>
+                                            <option value="<?= $val["name"]; ?>"><?= $val["name"]; ?></option>
                                     <?php
                                         }
                                     ?>

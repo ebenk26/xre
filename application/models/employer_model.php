@@ -418,11 +418,20 @@ class Employer_Model extends CI_Model{
         if(!empty($params))
         {
             $where  = [];
-            $join   = "";
+            $join   = [];
+            $wheres  = "";
+            $joins   = "";
 
             if(!empty($params["keywords"]))
             {
                 $where[] = "f.keywords LIKE '%".$params["keywords"]."%'";
+                $join[] = "LEFT JOIN job_preferences f ON f.user_id = a.id";
+            }
+
+            if(!empty($params["location"]))
+            {
+                $where[] = "LOWER(g.country) LIKE '%".strtolower($params["location"])."%'";
+                $join[] = "LEFT JOIN user_address g ON g.user_id = a.id";
             }
 
             if(!empty($params["range_min"]) && !empty($params["range_max"]))
@@ -430,9 +439,19 @@ class Employer_Model extends CI_Model{
                 $where[] = "(d.expected_salary BETWEEN '".$params["range_min"]."' AND '".$params["range_max"]."')";
             }
 
+            if(!empty($params["position_level"]))
+            {
+                $where[] = "LOWER(b.title) LIKE '%".strtolower($params["position_level"])."%'";
+            }
+
             if(!empty($where))
             {
                 $wheres = "WHERE ".implode('AND', $where);
+            }
+
+            if(!empty($join))
+            {
+                $joins = implode(' ', $join);
             }
 
             $getCandidate = $this->db->query("SELECT
@@ -450,8 +469,11 @@ class Employer_Model extends CI_Model{
                                                         LEFT JOIN academics c ON c.user_id = a.id
                                                         LEFT JOIN student_bios d ON d.user_id = a.id
                                                         LEFT JOIN bookmark_candidate e ON e.user_id = a.id
-                                                        LEFT JOIN job_preferences f ON f.user_id = a.id
-                                                ".$wheres
+                                                ".$joins." ".$wheres."
+                                                GROUP BY a.id
+                                                ORDER BY b.end_date
+                                                LIMIT 12
+                                                "
                                             );
 
             $candidate = $getCandidate->result();
