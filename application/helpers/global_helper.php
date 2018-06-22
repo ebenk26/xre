@@ -35,10 +35,12 @@ function xrPagination($param=array())
     $CI =& get_instance();
     $CI->load->library('pagination');
 
+    $segment = isset($param["segment"]) && !empty($param["segment"]) ? $param["segment"] : 3;
+
     $config['base_url']         = $param["base_url"];
     $config['total_rows']       = $param["total_rows"];
     $config['per_page']         = $param["perPage"];
-    $config['uri_segment']      = 3;
+    $config['uri_segment']      = $segment;
     $config['num_links']        = 5;
     $config['full_tag_open']    = '<li>';
     $config['full_tag_close']   = '</li>';

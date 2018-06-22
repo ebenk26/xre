@@ -1533,18 +1533,6 @@ $company_address = json_decode($user_profile['address']);?>
         $("#advance-search").on('submit', function(event) {
             event.preventDefault();
 
-            let param = {
-                keywords        : $("#search_panelv1 #keywords").val(),
-                currency        : $("input[name=currency]").val(),
-                range_min       : $("input[name=range_min]").val(),
-                range_max       : $("input[name=range_max]").val(),
-                location        : $("input[name=location]").val(),
-                education       : $("input[name=education]").val(),
-                position_level  : $("input[name=position_level]").val(),
-                job_type        : $("input[name=job_type]").val(),
-                yoe             : $("input[name=yoe]").val(),
-            }
-
             let params = $(this).serialize()+'&keywords='+$("#search_panelv1 #keywords").val();
 
             $.ajax({
