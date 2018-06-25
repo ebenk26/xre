@@ -121,7 +121,7 @@
                                 <thead>
                                     <tr class="text-uppercase ">
                                         <th> # </th>
-                                        <th class="col-sm-7"> Job </th>
+                                        <th class="col-sm-7"> <?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?> </th>
                                         <!-- <th> Last Update</th> -->
                                         <th class="col-sm-2 text-center"> Status </th>
                                         <th class="col-sm-2 text-center"> Candidate</th>
@@ -148,7 +148,7 @@
                                             <?=$value['number_of_candidate']?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">View Candidates</a>
+                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm"><?= !empty($language->view_candidates) ? $language->view_candidates : "View Candidates"  ?></a>
                                         </td>
                                     </tr>
                                     <?php ($value['status'] != 'preview') ? $i++ : ''; } ?>

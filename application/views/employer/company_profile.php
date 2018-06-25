@@ -15,7 +15,6 @@
             }
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Company | Description</title>
+    <title><?php echo ucfirst($detail['company_name']); ?> | <?= !empty($language->description)? $language->description : 'Description'; ?></title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap.min.css">
@@ -139,11 +138,11 @@
                             <ul class="nav nav-tabs pull-left">
                                 <li class="active">
                                     <a href="#tab_about_info" data-toggle="tab" class="font-15">
-                                        <i class="icon-notebook mr-5"></i>About Company</a>
+                                        <i class="icon-notebook mr-5"></i><?= !empty($language->site_about_company)? $language->site_about_company : 'About Company'; ?></a>
                                 </li>
                                 <li>
                                     <a href="#tab_job_info" data-toggle="tab" class="font-15">
-                                        <i class="icon-briefcase mr-5"></i>Job Post</a>
+                                        <i class="icon-briefcase mr-5"></i><?= !empty($language->job_post)? $language->job_post : 'Job Post'; ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -152,7 +151,7 @@
                                 <div class="tab-pane active" id="tab_about_info">
                                     <!-- About Company -->
                                     <div class="row my-20 mx-0">
-                                        <h5 class="font-weight-600 md-grey-darken-3-text  font-16 text-uppercase letter-space-xs">About
+                                        <h5 class="font-weight-600 md-grey-darken-3-text  font-16 text-uppercase letter-space-xs"><?= !empty($language->site_about)? $language->site_about : 'About'; ?>
                                             <?php echo $detail['company_name']; ?>
                                         </h5>
                                         <hr class="hor-divider-solid-medium border-md-orange my-10 width-30">
@@ -174,7 +173,7 @@
 
                                     <!-- Location -->
                                     <div class="row my-20 mx-0">
-                                        <h5 class="font-weight-600 md-grey-darken-3-text font-16 text-uppercase letter-space-xs">Location</h5>
+                                        <h5 class="font-weight-600 md-grey-darken-3-text font-16 text-uppercase letter-space-xs"><?= !empty($language->site_location_info)? $language->site_location_info : 'Location Info'; ?></h5>
                                         <hr class="hor-divider-solid-medium border-md-orange my-10 width-30">
                                         <?php 
                                         if(!empty($company_location)){?>
@@ -389,7 +388,7 @@
                     <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $detail['id_users'])){?>
                     <div class="row  mx-0 mb-30">
                         <a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($detail['id_users']), '='); ?>/new" class=" btn btn-md-orange btn-block " target="_blank">
-                            <i class="icon-envelope mr-5 "></i>Send Message</a>
+                            <i class="icon-envelope mr-5 "></i><?= !empty($language->site_send_message)? $language->site_send_message : 'Send Message'; ?></a>
 
                     </div>
                     <?php }?>
@@ -399,7 +398,7 @@
                             <!-- Company Industry -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="fa fa-industry mr-5"></i>Industry</h6>
+                                    <i class="fa fa-industry mr-5"></i><?= !empty($language->site_industry)? $language->site_industry : 'Industry'; ?></h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['industry'] != ""?$detail['industry']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -409,7 +408,7 @@
                             <!-- Company Size -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="fa fa-building-o mr-5"></i>Company Size</h6>
+                                    <i class="fa fa-building-o mr-5"></i><?= !empty($language->site_company_size)? $language->site_company_size : 'Company Size'; ?></h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['total_staff'] != ""?$detail['total_staff']."People":'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -418,7 +417,7 @@
                             <!-- Working Day -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="icon-calendar mr-5"></i>Working Day</h6>
+                                    <i class="icon-calendar mr-5"></i><?= !empty($language->site_working_day)? $language->site_working_day : 'Working Day'; ?></h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['working_days_start'] != "" && $detail['working_days_end'] != ""?ucwords($detail['working_days_start'].' - '.$detail['working_days_end']):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -427,7 +426,7 @@
                             <!-- Working Hour -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="icon-clock mr-5"></i>Working Hour</h6>
+                                    <i class="icon-clock mr-5"></i><?= !empty($language->site_working_time)? $language->site_working_time : 'Working Time'; ?></h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['working_hours_start'] != "" && $detail['working_hours_end'] != ""?ucwords($detail['working_hours_start'].' - '.$detail['working_hours_end']):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -436,7 +435,7 @@
                             <!-- Dress Code -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="icon-users mr-5"></i>Dress Code </h6>
+                                    <i class="icon-users mr-5"></i><?= !empty($language->site_dresscode)? $language->site_dresscode : 'Dress code'; ?> </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $dresscode != ""?ucwords($dresscode):'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -445,7 +444,7 @@
                             <!-- Website -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="icon-screen-desktop mr-5"></i>Website </h6>
+                                    <i class="icon-screen-desktop mr-5"></i><?= !empty($language->site_company_website)? $language->site_company_website : 'Company Website'; ?> </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php if($detail['url'] != ""){?>
                                     <a href="<?=$detail['url']?>" target="_blank">
@@ -460,7 +459,7 @@
                             <!-- Spoken Language -->
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="fa fa-language mr-5"></i>Spoken Language </h6>
+                                    <i class="fa fa-language mr-5"></i><?= !empty($language->site_spoken_language)? $language->site_spoken_language : 'Spoken Language'; ?> </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['spoken_language'] != "" && $detail['spoken_language'] != "0"?$detail['spoken_language']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
@@ -470,7 +469,7 @@
                             <?php if (!empty($detail['benefits'])): ?>
                             <li>
                                 <h6 class="font-weight-600 font-grey-gallery text-capitalize mb-5 font-15">
-                                    <i class="fa fa-diamond mr-5"></i>Benefit </h6>
+                                    <i class="fa fa-diamond mr-5"></i><?= !empty($language->site_benefit)? $language->site_benefit : 'Benefit'; ?> </h6>
                                 <p class="font-weight-400 font-grey-gallery font-15 ">
                                     <?php echo $detail['benefits'] != ""?$detail['benefits']:'<i class="font-weight-300 font-15">Not Provided </i>'; ?>
                                 </p>
