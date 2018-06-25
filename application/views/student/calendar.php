@@ -7,11 +7,11 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url();?>student/dashboard">Home</a>
+                    <a href="<?php echo base_url();?>student/dashboard"><?= !empty($language->site_home) ? $language->site_home : "Home"  ?></a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Calendar</span>
+                    <span><?= !empty($language->site_calendar) ? $language->site_calendar : "Calendar"  ?></span>
                 </li>
             </ul>
         </div>
