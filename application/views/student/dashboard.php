@@ -2,7 +2,7 @@
 <div class="page-content-wrapper">
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
-        <h1 class="page-title"> Welcome back ,
+        <h1 class="page-title"> <?= !empty($language->welcome) ? $language->welcome : "Welcome" ?> ,
             <?php echo ucfirst($this->session->userdata('name'));?>!
             <small>last login on
                 <?php echo !empty($last_logged_in[count($last_logged_in)-2]['user_history']) ? date('d F Y H:i:m', strtotime($last_logged_in[count($last_logged_in)-2]['user_history'])) : date('d F Y H:i:m'); ?> </small>
@@ -11,11 +11,11 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url().'student/dashboard'; ?>">Home</a>
+                    <a href="<?php echo base_url().'student/dashboard'; ?>"><?= !empty($language->site_home) ? $language->site_home : "Home" ?></a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Dashboard</span>
+                    <span><?= !empty($language->site_dashboard) ? $language->site_dashboard : "Dashboard" ?></span>
                 </li>
             </ul>
         </div>
@@ -30,9 +30,9 @@
                     <div class="display my-0">
                         <div class="number">
                             <h3 class="font-green-sharp">
-                                <span data-counter="counterup" data-value="<?=$users['overview']['number_of_seen'] != null?$users['overview']['number_of_seen']:0?>">0</span>
+                                <span data-counter="counterup" data-value="<?=$users['overview']['number_of_seen'] != null?$users['overview']['number_of_seen']:0?>"><?=$users['overview']['number_of_seen'] != null?$users['overview']['number_of_seen']:0?></span>
                             </h3>
-                            <small class="text-uppercase">Profile Seen</small>
+                            <small class="text-uppercase"><?= !empty($language->profile_seen) ? $language->profile_seen : "Profile Seen" ?> </small>
                         </div>
                         <div class="icon">
                             <i class="icon-eye"></i>
@@ -46,7 +46,7 @@
                             <h3 class="md-red-text">
                                 <span data-counter="counterup" data-value="<?=$rate?>"></span>
                             </h3>
-                            <small class="text-uppercase">Your Profile Rate</small>
+                            <small class="text-uppercase"><?= !empty($language->your_profile_rate) ? $language->your_profile_rate : "Your Profile Rate" ?></small>
                         </div>
                         <div class="icon">
                             <i class="icon-star"></i>
@@ -62,7 +62,7 @@
                             <h3 class="font-blue-sharp">
                                 <span data-counter="counterup" data-value="<?=$upcoming_interview['upcoming_interview_number']?>"></span>
                             </h3>
-                            <small class="text-uppercase">Upcoming Interview</small>
+                            <small class="text-uppercase"><?= !empty($language->upcoming_interview) ? $language->upcoming_interview : "Upcoming Interview" ?> </small>
                         </div>
                         <div class="icon">
                             <i class="icon-calendar"></i>
@@ -77,7 +77,7 @@
                             <h3 class="font-purple-soft">
                                 <span data-counter="counterup" data-value="<?=$new_job?>"></span>
                             </h3>
-                            <small class="text-uppercase">New Job Vacancy</small>
+                            <small class="text-uppercase"><?= !empty($language->new_job_vacancy) ? $language->new_job_vacancy : "New Job Vacancy" ?></small>
                         </div>
                         <div class="icon">
                             <i class="icon-briefcase"></i>
@@ -90,7 +90,7 @@
                 <div class="portlet light  height-350">
                     <div class="col-md-7 col-xs-12">
                         <div class="my-55">
-                            <h2 class="mb-30">Interested in video resume</h2>
+                            <h2 class="mb-30"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Interested in video resume" ?></h2>
                             <h5>Check it out more by click play button</h5>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         </h2>
                     </div>
                     <div class="media-right media-bottom">
-                        <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0">View All Job Dashboard</a>
+                        <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0"><?= !empty($language->view_all_job_dashboard) ? $language->view_all_job_dashboard : "View All Job Dashboard" ?></a>
                         <!-- <a href="student-settings.html" class="btn btn-outline btn-md-indigo mt-4">
                         <i class="icon-settings"></i>Job Preferences</a> -->
                     </div>
