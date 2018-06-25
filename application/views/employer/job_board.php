@@ -236,7 +236,7 @@
                                                     <li>
                                                         <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
                                                             <i class="fa fa-file-text-o"></i>
-                                                            <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
+                                                            <?php echo ($value['status'] == 'post') ? (!empty($language->view_post) ? $language->view_post : 'View Post ') : 'Preview' ?>
                                                         </a>
                                                     </li>
                                                     <li class="divider"> </li>
@@ -262,10 +262,10 @@
             <div class="portlet-body">
                 <div class="portlet md-grey-lighten-5 p-130 ">
                     <div class="portlet-body">
-                        <h3 class="font-weight-500 text-center md-indigo-text"> No Job Post Has Been Found </h3>
-                        <h5 class="font-grey-cascade mt-30 font-weight-400  font-17 text-center">Start by create job post to hire suitable candidate for your company. </h5>
+                        <h3 class="font-weight-500 text-center md-indigo-text"> <?= !empty($language->no_job_post_found) ? $language->no_job_post_found : "No Job Post Has Been Found"  ?></h3>
+                        <h5 class="font-grey-cascade mt-30 font-weight-400  font-17 text-center"><?= !empty($language->start_by_create_job_post) ? $language->start_by_create_job_post : "Start by create job post to hire suitable candidate for your company."  ?>  </h5>
                         <a href="#modal_add_jobpost" class="btn btn-md-indigo btn-md center-block mt-40 width-300" data-toggle="modal">
-                            <i class="fa fa-plus"></i> Create Job Post </a>
+                            <i class="fa fa-plus"></i> <?= !empty($language->create_job_post) ? $language->create_job_post : "Create Job Post" ?></a>
                     </div>
                 </div>
             </div>
@@ -477,7 +477,7 @@
                 </div>
                 <input type="hidden" id="job_status_add" name="status"></input>
                 <div class="modal-footer form-action ">
-                    <a data-dismiss="modal" id="submit_button_add" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
+                    <a data-dismiss="modal" id="submit_button_add" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel"  ?></a>
                     <button type="submit" id="preview_button_add" class="btn btn-md-indigo  btn-md letter-space-xs px-100">Preview</button>
                 </div>
             </form>
@@ -603,7 +603,7 @@
                         <textarea name="additional_Info" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"><?php echo $value['additional_info']?></textarea>
                     </div>
 
-                    <h4 class="form-section mt-50 ">Location</h4>
+                    <h4 class="form-section mt-50 "><?= !empty($language->site_location_info) ? $language->site_location_info : "Location Info"  ?></h4>
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <!-- Address -->
