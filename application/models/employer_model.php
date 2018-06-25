@@ -417,9 +417,11 @@ class Employer_Model extends CI_Model{
 
         if(!empty($params))
         {
-            $where  = [];
-            $join   = [];
-            $joinTotal   = [];
+            $where      = [];
+            $join       = [];
+            $joinTotal  = [];
+            $page       = !isset($params["page"]) && empty($params["page"]) ? "" : $params["page"];
+            $offset     = empty($page) ? 0 : $page;
 
             if(!empty($params["keywords"]))
             {
@@ -439,6 +441,7 @@ class Employer_Model extends CI_Model{
             {
                 $where[] = "(d.expected_salary BETWEEN '".$params["range_min"]."' AND '".$params["range_max"]."')";
                 $join[] = "INNER JOIN forex h ON h.country_id = a.country";
+                $joinTotal[] = "LEFT JOIN student_bios d ON d.user_id = a.id";
                 $joinTotal[] = "INNER JOIN forex h ON h.country_id = a.country";
             }
 
@@ -483,7 +486,7 @@ class Employer_Model extends CI_Model{
                                                 ".$joins." ".$wheres."
                                                 GROUP BY a.id
                                                 LIMIT 9
-                                                "
+                                                OFFSET ".$offset
                                             );
 
             $getTotalCandidate = $this->db->query("SELECT
@@ -495,14 +498,15 @@ class Employer_Model extends CI_Model{
 
             $candidate['result'] = $getCandidate->result();
 
-            /*$page = !isset($param["page"]) && empty($param["page"]) ? "" : $param["page"];
+            
             $pageParam = array(
-                            'base_url'  => base_url().'employer/search_candidate/getCandidate/'.$page,
+                            'base_url'  => base_url().'employer/search_candidate/getCandidate/',
                             'total_rows'=> $getTotalCandidate->result()[0]->total,
                             'perPage'   => 9,
-                            'segment'   => 4
+                            'segment'   => 4,
+                            /*'suffix'    => '?'.http_build_query($params, '', "&")*/
                         );
-            $candidate['pagination'] = xrPagination($pageParam);*/
+            $candidate['pagination'] = xrPagination($pageParam);
         }
 
         return $candidate;

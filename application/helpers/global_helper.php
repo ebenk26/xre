@@ -37,6 +37,11 @@ function xrPagination($param=array())
 
     $segment = isset($param["segment"]) && !empty($param["segment"]) ? $param["segment"] : 3;
 
+    if(isset($param["suffix"]))
+    {
+        $config['suffix']       = $param["suffix"];
+    }
+
     $config['base_url']         = $param["base_url"];
     $config['total_rows']       = $param["total_rows"];
     $config['per_page']         = $param["perPage"];

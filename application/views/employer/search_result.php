@@ -1,4 +1,4 @@
-<?php if(!empty($searchResult)) {?>
+<?php if(!empty($searchResult['result'])) {?>
         <div class="row" style="display: flex;flex-wrap: wrap;">
             <?php
                 foreach ($searchResult['result'] as $value)
@@ -125,14 +125,57 @@
             ?>
         </div>
     
-        <?php /*if(!empty($searchResult["pagination"])) {?>
+        <?php if(!empty($searchResult["pagination"])) {?>
                 <br/>
 
                 <!-- Pagination-->
                 <li class="list-group-item px-0 text-center ">
-                    <ul class="pagination pagination-sm">
+                    <ul class="pagination pagination-sm pagination-advance-search">
                         <?= $searchResult["pagination"]; ?>
                     </ul>
                 </li>
-        <?php }*/ ?>
+
+                <script type="text/javascript">
+                    $(function(){
+                        $(".pagination-advance-search a").on('click', function(event) {
+                            event.preventDefault()
+                            
+                            if($(this).parent().attr('class') != 'active')
+                            {
+                                let params = $("#advance-search").serialize()+'&keywords='+$("#search_panelv1 #keywords").val()
+                                
+                                $.ajax({
+                                    url: $(this).attr('href'),
+                                    type: 'POST',
+                                    data: params,
+                                    beforeSend: function(){
+                                        $(".loader").removeClass('hidden')
+                                        $(".searchResult").html("")
+                                    },
+                                    dataType : 'json',
+                                    success: function (data) {
+                                        setTimeout(function()
+                                        {
+                                            if(data.searchResult.length > 0)
+                                            {
+                                                $(".searchResult").html(data.searchResult)
+                                                $(".loader").addClass('hidden')
+                                            }
+                                            else
+                                            {
+                                                $(".searchResult").html("Empty Result")
+                                                $(".loader").addClass('hidden')
+                                            }
+                                        },3000)
+                                    },
+                                    error: function( data )
+                                    {
+                                        console.log(data)
+                                    }
+                                })
+                            }
+                        })
+                    })
+                </script>
+        <?php } ?>
 <?php } ?>
