@@ -91,7 +91,7 @@
                     <div class="col-md-7 col-xs-12">
                         <div class="my-55">
                             <h2 class="mb-30"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Interested in video resume" ?></h2>
-                            <h5>Check it out more by click play button</h5>
+                            <h5><?= !empty($language->click_video_resume) ? $language->click_video_resume : "Check it out more by click play button" ?></h5>
                         </div>
                     </div>
                     <div class="col-md-5 col-xs-12">
@@ -112,7 +112,7 @@
                 <!-- TITLE  -->
                 <div class="media">
                     <div class="media-body">
-                        <h2 class="text-none mb-10">What we just found for you!
+                        <h2 class="text-none mb-10"><?= !empty($language->we_just_found_for_you) ? $language->we_just_found_for_you : "What we just found for you" ?>!
                             <!-- <span class="font-24 label label-md-indigo">30 new job</span> -->
                         </h2>
                     </div>
@@ -268,15 +268,15 @@
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab_join" data-toggle="tab">
-                                    <i class="icon-users"></i> New Join </a>
+                                    <i class="icon-users"></i> <?= !empty($language->new_join) ? $language->new_join : "New Join" ?> </a>
                             </li>
                             <li>
                                 <a href="#tab_interview" data-toggle="tab">
-                                    <i class="icon-calendar"></i> Interview </a>
+                                    <i class="icon-calendar"></i> <?= !empty($language->interview) ? $language->interview : "Interview" ?> </a>
                             </li>
                             <li>
                                 <a href="#tab_activity" data-toggle="tab">
-                                    <i class="icon-rocket"></i> Recent Activities </a>
+                                    <i class="icon-rocket"></i> <?= !empty($language->site_recent_activities) ? $language->site_recent_activities : "Recent Activities" ?></a>
                             </li>
                         </ul>
                     </div>

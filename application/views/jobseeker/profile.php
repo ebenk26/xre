@@ -1187,14 +1187,14 @@
                                         <div class="col-sm-4">
                                             <!-- DOB -->
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->dob ) ? $language->dob  : "Date Of Birth" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->DOB ) ? $language->DOB  : "Date Of Birth" ?></label>
                                                 <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" required>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <!-- Gender -->
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Gender</label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_gender ) ? $language->site_gender  : "Gender" ?></label>
                                                 <select class="form-control bs-select" name="gender">
                                                     <?php if (!empty($user_profile['overview']['student_bios_gender'])){ ?>
                                                     <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Male' ){echo "selected";}?>><?= !empty($language->male ) ? $language->male  : "Male" ?></option>

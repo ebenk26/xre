@@ -28,7 +28,7 @@
 
     <!-- TITLE -->
     <?php if ($roles =='student') {?>
-    <title>Student | View Profile</title>
+    <title><?= !empty($language->site_stdview_profile) ? $language->site_stdview_profile : "Student | View Profile"?></title>
     <?php } else {?>
     <title>
         <?php echo ucwords($user_profile['overview']['name']); ?>
@@ -156,7 +156,7 @@
                 <!-- Share button -->
                 <?php if($checkUser == 'same_user'): ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-30 ">
-                    <h6 class="text-center  text-uppercase  md-darkblue-text font-weight-600 letter-space-sm  "> SHARE </h6>
+                    <h6 class="text-center  text-uppercase  md-darkblue-text font-weight-600 letter-space-sm  "><?= !empty($language->site_share) ? $language->site_share : "SHARE"?></h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <ul class="list-inline list-unstyled mx-0 text-center ">
                         <!-- G+ -->
@@ -227,7 +227,7 @@
                         <?php } ?>
                         <?php if(!empty($roles) && ($roles == 'employer' || $this->session->userdata('id') == $user_profile['overview']['id_users'])){ ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">Phone Number</h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ;?></h5>
                             <p class="mt-5 ">
                                 <?= !empty($user_profile['overview']['student_bios_contact_number']) ?  $user_profile['overview']['student_bios_contact_number'] : '-'; ?>
                                     <!--<span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>-->
@@ -316,7 +316,7 @@
                         </div>
                         <?php if($gall_no > 12){?>
                         <div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">
-                            <a href="#" class="cbp-l-loadMore-link btn btn-md-grey btn-outline m-20 letter-space-xs" id="gall_more">LOAD MORE</a>
+                            <a href="#" class="cbp-l-loadMore-link btn btn-md-grey btn-outline m-20 letter-space-xs" id="gall_more"><?= !empty($language->site_load) ? $language->site_load : "LOAD MORE" ;?></a>
                         </div>
                         <?php }?>
                     </div>
@@ -329,7 +329,7 @@
                 <!-- Reference (Limit PUT 3 ONLY)-->
                 <?php if(!empty($roles)){ ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">References</h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->references) ? $language->references : "References" ;?></h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <?php if(!empty($user_profile['reference'])) { ?>
                     <ul class="list-unstyled text-center ">
@@ -698,7 +698,7 @@
                                                         <?php endif; ?>
 
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?></a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -747,7 +747,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> Rating -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> - 
                                                     <small class="font-16">
                                                         <?= $value['degree_name'];?>
                                                     </small>
@@ -758,9 +758,9 @@
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h4>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none">Hey ! Invite one of your friend to rate your resume.</h5>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?></h4>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none"><?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?></h5>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -774,7 +774,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Review -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
                                                     <small class="font-16">
                                                         <?= $value['degree_name'] ?>
                                                     </small>
@@ -785,9 +785,9 @@
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-note font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h5>
-                                                        <h6 class="text-center font-16 font-weight-400 font-grey-cascade mt-10 mb-30 text-none">Hey ! Invite one of your friend to review your resume.</h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?></h5>
+                                                        <h6 class="text-center font-16 font-weight-400 font-grey-cascade mt-10 mb-30 text-none"><?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?></h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -801,7 +801,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Review -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review s" ;?> -
                                                     <small class="font-16">
                                                         <?= $value['degree_name'] ?>
                                                     </small>
@@ -812,8 +812,8 @@
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to review </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">Give a genuine review about his/her information.</h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?></h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -825,8 +825,8 @@
                                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                                         <input type="hidden" value="<?= !empty($segmented_uri) ? base64_decode($segmented_uri) : $this->session->userdata('id');?>" name="endorsed_id">
                                                     </div>
-                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                                    <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
+                                                    <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                                 </form>
                                             </div>
                                         </div>                                        
@@ -988,7 +988,7 @@
                                                             </a>
                                                         <?php endif; ?>
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?></a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1049,7 +1049,7 @@
                                     <?php } ?>
                                     <!-- Skill Earned -->
                                     <?php if (!empty($value['skills'])){ ?>
-                                    <p class="font-weight-600 font-14 text-uppercase mb-5">Skill Earned</p>
+                                    <p class="font-weight-600 font-14 text-uppercase mb-5"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ;?></p>
                                     <ul class="list-unstyled list-inline mt-ul-li-lr-0 mx-0">
                                         <?php 
                                             $tag = explode(',', $value['skills']);
@@ -1076,7 +1076,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Rating -                                                    
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -                                                    
                                                     <small class="font-16">
                                                         <?= $value['experiences_title'];?>
                                                     </small>
@@ -1087,9 +1087,9 @@
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to rate you! </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none font-16 font-weight-400">Hey ! Invite one of your friend to rate your resume.</h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?></h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none font-16 font-weight-400"><?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?></h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -1103,7 +1103,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> Review -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
                                                     <small class="font-16">
                                                         <?= $value['experiences_title'] ?>
                                                     </small>
@@ -1114,9 +1114,9 @@
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Get your friends to review you! </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">Hey ! Invite one of your friend to review your resume.</h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?></h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?></h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1130,7 +1130,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Review -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
                                                     <small class="font-16">
                                                         <?= $value['experiences_title'] ?>
                                                     </small>
@@ -1141,8 +1141,8 @@
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to review </h5>
-                                                        <h6 class="font-16 font-weight-400 text-center  font-grey-cascade mt-5 text-none">Give a genuine review about his/her information.</h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?></h5>
+                                                        <h6 class="font-16 font-weight-400 text-center  font-grey-cascade mt-5 text-none"><?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1153,10 +1153,10 @@
                                                         <input type="hidden" value="<?= $value['experience_id'];?>" name="exp_id">
                                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                                         <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
-                                                        <span class="help-block">Please put genuine statement !</span>
+                                                        <span class="help-block"><?= !empty($language->site_genuine_state) ? $language->site_genuine_state : "Please put genuine statement !" ;?></span>
                                                     </div>
-                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                                    <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
+                                                    <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                                 </form>
                                             </div>
                                         </div>                                        
@@ -1210,7 +1210,7 @@
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body"
                                                                 data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
                                                                 <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
 
                                                         <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkEndorseNotSame ): ?>
@@ -1222,25 +1222,25 @@
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body"
                                                                 data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
                                                                 <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
 
                                                         <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" data-name="<?= $value['achievement_title']; ?>" data-id="<?= $value['achievement_id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-container="body"
                                                                 data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
                                                                 <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
 
                                                         <?php else: ?>
                                                             <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-container="body" data-placement="top" data-original-title="view endorser">
                                                                 <i class="icon-user"></i>
-                                                                Complete your profile to endorse
+                                                                <?= !empty($language->site_complete) ? $language->site_complete : "Complete your profile to endorse" ;?> 
                                                             </a>
                                                         <?php endif ?>
 
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?> </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1301,7 +1301,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Endorse -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
                                                     <small class="font-16">
                                                         <?= $value['achievement_title'] ?>
                                                     </small>
@@ -1312,9 +1312,9 @@
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint ">Ask your friend to endorse! </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400">Hey ! Invite one of your friend to endorse your resume.</h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint "><?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?></h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400"><?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?></h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1328,7 +1328,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Endorse -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
                                                     <small class="font-16">
                                                         <?= $value['achievement_title'] ?>
                                                     </small>
@@ -1339,8 +1339,8 @@
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">Give a genuine endorsement about his/her information.</h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?></h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1395,7 +1395,7 @@
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top"
                                                                 data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
                                                                 <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
 
                                                         <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkEndorseNotSame ): ?>
@@ -1407,14 +1407,14 @@
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top"
                                                                 data-original-title="view endorser" id="endorse_project">
                                                                 <i class="icon-user" user="<?= $checkUser?>"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
 
                                                         <?php elseif (base64_decode($segmented_uri) == $id): ?>
                                                             <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser"
                                                                 id="endorse_project" user="<?= $checkUser?>">
                                                                 <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> Endorser
+                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
                                                             </a>
                                                         <?php else: ?>
                                                             <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" user="<?= $checkUser?>">
@@ -1423,7 +1423,7 @@
                                                             </a>
                                                         <?php endif; ?>
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">Login to review </a>
+                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?> </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1481,7 +1481,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> Endorse -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
                                                     <small class="font-16">
                                                         <?= $value['name'] ?>
                                                     </small>
@@ -1492,9 +1492,9 @@
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Ask your friend to endorse! </h5>
-                                                        <h6 class="text-center font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none">Hey ! Invite one of your friend to endorse your resume.</h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">Invite My Friends</a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?> </h5>
+                                                        <h6 class="text-center font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none"><?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?></h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
                                                     </div>
                                                 </div>                                                
                                             </div>
@@ -1507,7 +1507,7 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> Endorse -
+                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
                                                     <small class="font-16">
                                                         <?= $value['name'] ?>
                                                     </small>
@@ -1518,8 +1518,8 @@
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">Be the first to endorse </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 text-none font-16 font-weight-400">Give a genuine endorsement about his/her information.</h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?> </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?></h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1555,7 +1555,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> Rate -
+                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
                                     <small class="font-16" id="dataName">Experience </small>
                                 </h5>
                             </div>
@@ -1574,7 +1574,7 @@
                                         <h5 class="text-none" id="value2inputExperience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo">Submit</button>
+                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                     </div>
                                 </form>
                             </div>
@@ -1587,7 +1587,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> Rate -
+                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
                                     <small class="font-16" id="dataNameExp">Experience </small>
                                 </h5>
                             </div>
@@ -1611,7 +1611,7 @@
                                         <h5 class="text-none" id="value3inputExperience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo">Submit</button>
+                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                     </div>
                                 </form>
                             </div>
@@ -1624,7 +1624,7 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> Rate -
+                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
                                     <small class="font-16" id="dataNameExp">Experience </small>
                                 </h5>
                             </div>
@@ -1648,7 +1648,7 @@
                                         <h5 class="text-none" id="value1Experience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo">Submit</button>
+                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                     </div>
                                 </form>
                             </div>
@@ -1685,8 +1685,8 @@
                                         </div>
                                         <input type="hidden" name="username" value="<?= $this->session->userdata('name');?>"></input>
                                         <input type="hidden" name="user_id" value="<?= $segmented_uri;?>"></input>
-                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>
-                                        <button type="submit" class="btn btn-md-indigo ">Submit</button>
+                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
+                                        <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
                                     </form>
                                 </div>
                             </div>
@@ -1966,7 +1966,7 @@
                                             <input type="hidden" name="user_id" value="' + dataUserId + '"></input>\
                                             <span class="help-block">Please put genuine statement !</span>\
                                         </div>\
-                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
+                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">submit</a>\
                                         <button type="submit" class="btn btn-md-indigo ">Submit</button>\
                                         </form>\
                                     </div>\
