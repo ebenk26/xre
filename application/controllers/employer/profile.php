@@ -320,6 +320,7 @@ class Profile extends CI_Controller {
         $profile_form['social'] = $this->employer_model->get_where('user_social', 'name', 'asc', array('user_id' => $id ));
         $profile_form['profile_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'profile_photo'));
         $profile_form['header_photo'] = $this->employer_model->get_where('profile_uploads', 'name', 'asc', array('user_id' => $id, 'type'=>'header_photo'));
+        $profile_form['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
 		
 		//BEGIN : increase number of seen
 		if($this->session->userdata('roles') != "administrator" && $this->session->userdata('id') != $id){

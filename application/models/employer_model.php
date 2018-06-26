@@ -413,62 +413,66 @@ class Employer_Model extends CI_Model{
 
     function getSearchResult($params){
         //get candidate profile
-        $candidate = "";
+        $candidate = [];
 
         if(!empty($params))
         {
-            $where  = [];
-            $join   = [];
-            $wheres  = "";
-            $joins   = "";
+            $where      = [];
+            $join       = [];
+            $joinTotal  = [];
+            $page       = !isset($params["page"]) && empty($params["page"]) ? "" : $params["page"];
+            $offset     = empty($page) ? 0 : $page;
 
             if(!empty($params["keywords"]))
             {
                 $where[] = "f.keywords LIKE '%".$params["keywords"]."%'";
                 $join[] = "LEFT JOIN job_preferences f ON f.user_id = a.id";
+                $joinTotal[] = "LEFT JOIN job_preferences f ON f.user_id = a.id";
             }
 
             if(!empty($params["location"]))
             {
                 $where[] = "LOWER(g.country) LIKE '%".strtolower($params["location"])."%'";
                 $join[] = "LEFT JOIN user_address g ON g.user_id = a.id";
+                $joinTotal[] = "LEFT JOIN user_address g ON g.user_id = a.id";
             }
 
             if(!empty($params["range_min"]) && !empty($params["range_max"]))
             {
                 $where[] = "(d.expected_salary BETWEEN '".$params["range_min"]."' AND '".$params["range_max"]."')";
+                $join[] = "INNER JOIN forex h ON h.country_id = a.country";
+                $joinTotal[] = "LEFT JOIN student_bios d ON d.user_id = a.id";
+                $joinTotal[] = "INNER JOIN forex h ON h.country_id = a.country";
             }
 
             if(!empty($params["position_level"]))
             {
                 $where[] = "LOWER(b.title) LIKE '%".strtolower($params["position_level"])."%'";
+                $joinTotal[] = "LEFT JOIN experiences b ON b.user_id = a.id";
             }
 
             if(!empty($params["education"]))
             {
                 $where[] = "LOWER(c.qualification_level) LIKE '%".strtolower($params["education"])."%'";
+                $joinTotal[] = "LEFT JOIN academics c ON c.user_id = a.id";
             }
 
             if(!empty($params["job_type"]))
             {
                 $where[] = "b.employment_type_id = ".$params["job_type"];
+                $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
             }
 
-            if(!empty($where))
-            {
-                $wheres = "WHERE ".implode('AND', $where);
-            }
+            $wheres = !empty($where) ? "WHERE ".implode('AND', $where) : "";
 
-            if(!empty($join))
-            {
-                $joins = implode(' ', $join);
-            }
+            $joins = !empty($join) ? implode(' ', $join) : "";
+            $joinsTotal = !empty($joinTotal) ? implode(' ', $joinTotal) : "";
 
             $getCandidate = $this->db->query("SELECT
                                                     a.fullname, 
                                                     b.title, 
                                                     b.start_date, 
-                                                    b.end_date, 
+                                                    MAX(b.end_date) AS end_date, 
                                                     c.university_name, 
                                                     d.expected_salary, 
                                                     d.location,
@@ -481,12 +485,28 @@ class Employer_Model extends CI_Model{
                                                         LEFT JOIN bookmark_candidate e ON e.user_id = a.id
                                                 ".$joins." ".$wheres."
                                                 GROUP BY a.id
-                                                ORDER BY b.end_date
                                                 LIMIT 9
-                                                "
+                                                OFFSET ".$offset
                                             );
 
-            $candidate = $getCandidate->result();
+            $getTotalCandidate = $this->db->query("SELECT
+                                                    COUNT(a.id) as total
+                                                FROM
+                                                    users a
+                                                ".$joinsTotal." ".$wheres
+                                            );
+
+            $candidate['result'] = $getCandidate->result();
+
+            
+            $pageParam = array(
+                            'base_url'  => base_url().'employer/search_candidate/getCandidate/',
+                            'total_rows'=> $getTotalCandidate->result()[0]->total,
+                            'perPage'   => 9,
+                            'segment'   => 4,
+                            /*'suffix'    => '?'.http_build_query($params, '', "&")*/
+                        );
+            $candidate['pagination'] = xrPagination($pageParam);
         }
 
         return $candidate;

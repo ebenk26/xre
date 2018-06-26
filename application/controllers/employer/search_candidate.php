@@ -36,7 +36,11 @@ class Search_candidate extends CI_Controller {
 
     public function getCandidate()
     {
-        $data['searchResult'] = $this->employer_model->getSearchResult($this->input->post());
+        $page = $this->uri->segment(4) != NULL ? $this->uri->segment(4) : 0;
+
+        $params = array_merge(array("page"=>$page),$this->input->post());
+        
+        $data['searchResult'] = $this->employer_model->getSearchResult($params);
         $result["searchResult"] = $this->load->view('employer/search_result',$data,true);
         
         echo json_encode($result);

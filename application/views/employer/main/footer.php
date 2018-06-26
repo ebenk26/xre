@@ -922,7 +922,7 @@ $company_address = json_decode($user_profile['address']);?>
                                 <div class="modal-body">\
                                     <div class="row">\
                                         <div class="col-md-12 pr-0">\
-                                            <h5 class="font-weight-700 text-uppercase">Tell Me About Yourselves</h5>\
+                                            <h5 class="font-weight-700 text-uppercase"><?= !empty($language->tell_me_about_yourself) ? $language->tell_me_about_yourself : "Tell Me About Yourselves"  ?></h5>\
                                             <p class="mt-0">' + summary + '</p>\
                                         </div>\
                                     </div>\
@@ -932,8 +932,8 @@ $company_address = json_decode($user_profile['address']);?>
                                                 <div class="portlet-title">\
                                                     <div class="caption">\
                                                         <i class="icon-graduation font-18"></i>\
-                                                        <span class="caption-subject "> Education</span>\
-                                                        <span class="caption-helper">Summary</span>\
+                                                        <span class="caption-subject "> <?= !empty($language->site_education) ? $language->site_education : "Education"  ?></span>\
+                                                        <span class="caption-helper"><?= !empty($language->site_summary) ? $language->site_summary : "Summary"  ?></span>\
                                                     </div>\
                                                     <div class="tools">\
                                                         <a href="" class="collapse" data-original-title="" title=""> </a>\
@@ -951,8 +951,8 @@ $company_address = json_decode($user_profile['address']);?>
                                                 <div class="portlet-title ">\
                                                     <div class="caption">\
                                                         <i class="icon-notebook"></i>\
-                                                        <span class="caption-subject font-18">Non Education</span>\
-                                                        <span class="caption-helper">Summary</span>\
+                                                        <span class="caption-subject font-18"><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education"  ?></span>\
+                                                        <span class="caption-helper"><?= !empty($language->site_summary) ? $language->site_summary : "Summary"  ?></span>\
                                                     </div>\
                                                     <div class="tools">\
                                                         <a href="" class="collapse" data-original-title="" title=""> </a>\
@@ -972,8 +972,8 @@ $company_address = json_decode($user_profile['address']);?>
                                                 <div class="portlet-title">\
                                                     <div class="caption">\
                                                         <i class="icon-badge font-18"></i>\
-                                                        <span class="caption-subject ">Skill</span>\
-                                                        <span class="caption-helper">Summary</span>\
+                                                        <span class="caption-subject "><?= !empty($language->site_skill) ? $language->site_skill : "Skill"  ?></span>\
+                                                        <span class="caption-helper"><?= !empty($language->site_summary) ? $language->site_summary : "Summary"  ?></span>\
                                                     </div>\
                                                     <div class="tools">\
                                                         <a href="" class="collapse" data-original-title="" title=""> </a>\
@@ -991,8 +991,8 @@ $company_address = json_decode($user_profile['address']);?>
                                                 <div class="portlet-title">\
                                                     <div class="caption">\
                                                         <i class="icon-briefcase font-18"></i>\
-                                                        <span class="caption-subject">Experience</span>\
-                                                        <span class="caption-helper">Summary</span>\
+                                                        <span class="caption-subject"><?= !empty($language->site_experience) ? $language->site_experience : "Experience"  ?></span>\
+                                                        <span class="caption-helper"><?= !empty($language->site_summary) ? $language->site_summary : "Summary"  ?></span>\
                                                     </div>\
                                                     <div class="tools">\
                                                         <a href="" class="collapse" data-original-title="" title=""> </a>\
@@ -1533,19 +1533,7 @@ $company_address = json_decode($user_profile['address']);?>
         $("#advance-search").on('submit', function(event) {
             event.preventDefault();
 
-            let param = {
-                keywords        : $("#search_panelv1 #keywords").val(),
-                currency        : $("input[name=currency]").val(),
-                range_min       : $("input[name=range_min]").val(),
-                range_max       : $("input[name=range_max]").val(),
-                location        : $("input[name=location]").val(),
-                education       : $("input[name=education]").val(),
-                position_level  : $("input[name=position_level]").val(),
-                job_type        : $("input[name=job_type]").val(),
-                yoe             : $("input[name=yoe]").val(),
-            }
-
-            let params = $(this).serialize()+'&keywords='+$("#search_panelv1 #keywords").val();
+            let params = $(this).serialize()+'&keywords='+$("#search_panelv1 #keywords").val()
 
             $.ajax({
                 url: "<?= base_url(); ?>employer/search_candidate/getCandidate",
