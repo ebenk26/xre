@@ -237,35 +237,14 @@
             <div class="page-sidebar navbar-collapse collapse">
                 <!-- BEGIN SIDEBAR MENU -->
                 <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu page-sidebar-menu-compact" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-
-                    <!-- Profile Progress -->
-                    <!-- <li class="nav-item px-2 py-4 hidden-sm">
-                        <div class="m-grid mb-2 mt-4">
-                            <div class="m-grid-row md-white-text font-20-xs">
-                                <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"></div>
-                            </div>
-                        </div>
-                        <div class="progress progress-lg ">
-                            <div class="progress-bar progress-bar-warning " role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent; ?>%">
-                                <span class="sr-only"> <?php echo $percent; ?>% Complete (warning) </span>
-                            </div>
-                        </div>
-                    </li> -->
-
+                    <!-- Completion Progress Profile -->
                     <li class="nav-progress">
                         <div class="progress-info">
-                            <div class="status">
-                                <?php if ($percent==100){?>                                
+                            <div class="status">                                
                                 <div class="status-title"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
                                 <div class="status-number ">
                                     <?php echo $percent; ?>%                                     
                                 </div>
-                                <?php }else{?>
-                                <div class="status-title md-orange-text"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
-                                <div class="status-number md-orange-text">
-                                    <?php echo $percent; ?>%</div>
-                                <?php }?>
                             </div>
                             <div class="progress">
                                 <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">
@@ -275,6 +254,7 @@
                             </div>
                         </div>
                     </li>
+                    
                     <!-- Sidebar Menu : Dashboard -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
@@ -283,6 +263,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Profile-->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
@@ -291,6 +272,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu Gallery -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/gallery/" class="nav-link">
@@ -299,6 +281,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu Job Application History -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'applications_history'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
@@ -307,6 +290,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Inbox -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
@@ -323,6 +307,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Calendar  -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
                         <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
@@ -331,6 +316,7 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Wishlist-->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'wishlist'): echo 'active'; endif?>">
                         <a href="<?= base_url(); ?>student/wishlist" class="nav-link">
