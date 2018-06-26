@@ -116,25 +116,9 @@
 
                                     </div>
                                 </div>
-<<<<<<< HEAD
                                 <div class="center-block">
                                     <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo ">
                                         <i class="icon-pencil"></i> Edit Profile</a>
-=======
-                            </div>
-                            <!-- Show sm above [Button]-->
-                            <div class="m-grid-col m-grid-col-sm-3 m-grid-col-middle m-grid-col-right pr-20 hidden-xs">
-                                <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo ">
-                                    <i class="icon-pencil mr-5"></i>Edit</a>
-                            </div>
-                            <!-- Hide Sm Above but show when sm below -->
-                            <div class="m-grid-col m-grid-col-xs-12 visible-xs">
-                                <div class="btn-group btn-group-justified px-10 mb-0 ">
-                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo">
-                                        <i class="icon-pencil"></i> Edit</a>
-                                    <a href="<?php echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-indigo  btn-outline letter-space-xs"><?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : "View My Resume" ?></a>
-                                </div>
->>>>>>> 8008dd56a3be9491f4608ce75195d1b8f776cb18
 
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
@@ -1206,15 +1190,10 @@
                                                             <!-- Description -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-<<<<<<< HEAD
-                                                                    <label class="control-label ">Description</label>
-                                                                    <textarea class="form-control autosizeme" name="project_description" rows="6" placeholder="Brief about your project progress ...."><?php echo ucfirst($value['description']); ?></textarea>
-=======
                                                                     <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                                                     <textarea class="form-control autosizeme" name="project_description" rows="6" placeholder="Brief about your project progress ....">
                                                                         <?php echo ucfirst($value['description']); ?>
                                                                     </textarea>
->>>>>>> 8008dd56a3be9491f4608ce75195d1b8f776cb18
                                                                 </div>
                                                             </div>
                                                             <!-- Skill Earned -->
@@ -1265,11 +1244,7 @@
                     <div class="portlet-title tabbable-line md-indigo tab-tw-md-orange">
                         <div class="caption">
                             <span class="caption-subject">
-<<<<<<< HEAD
-                                Update Profile
-=======
                                <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile information" ?>
->>>>>>> 8008dd56a3be9491f4608ce75195d1b8f776cb18
                             </span>
                         </div>
                         <ul class="nav nav-tabs">
@@ -1427,15 +1402,6 @@
                                     <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->site_summarize) ? $language->site_summarize : "Summarize About Yourself" ?></h4>
                                     <!-- # Quote -->
                                     <div class="form-group mx-0">
-<<<<<<< HEAD
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">Quote</label>
-                                        <textarea name="quotes" class="form-control" id="" rows="2" placeholder="Add your quote / headlines"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
-                                    </div>
-                                    <!-- About Yourself-->
-                                    <div class="form-group mx-0 ">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">About Yourself</label>
-                                        <textarea name="summary" class="form-control" id="" rows="4" placeholder="Summary about yourself"><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
-=======
                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_quote) ? $language->site_quote : "Quote" ?></label>
                                         <textarea name="quotes" class="form-control" id="" rows="2" placeholder="Add your quote / headlines">
                                             <?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?>
@@ -1447,7 +1413,6 @@
                                         <textarea name="summary" class="form-control" id="" rows="4" placeholder="Summary about yourself">
                                             <?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?>
                                         </textarea>
->>>>>>> 8008dd56a3be9491f4608ce75195d1b8f776cb18
                                     </div>
 
                                     <!-- Video Resume -->
