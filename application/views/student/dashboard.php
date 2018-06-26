@@ -45,7 +45,7 @@
                     <div class="display my-0">
                         <div class="number">
                             <h3 class="md-red-text">
-                                <span data-counter="counterup" data-value="<?=$rate?>"></span>
+                                <span data-counter="counterup" data-value="<?=$rate?>">0</span>
                             </h3>
                             <small class="text-uppercase">Your Profile Rate</small>
                         </div>
@@ -59,7 +59,7 @@
                     <div class="display my-0">
                         <div class="number">
                             <h3 class="md-blue-text">
-                                <span data-counter="counterup" data-value="<?=$upcoming_interview['upcoming_interview_number']?>"></span>
+                                <span data-counter="counterup" data-value="<?=$upcoming_interview['upcoming_interview_number']?>">0</span>
                             </h3>
                             <small class="text-uppercase">Upcoming Interview</small>
                         </div>
