@@ -83,26 +83,15 @@
                         </div>
                     </div>
                 </div>
-=======
->>>>>>> origin/scss
             </div>
 
             <!-- # Video -->
-<<<<<<< HEAD
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
                 <div class="portlet light  height-350">
                     <div class="col-md-7 col-xs-12">
                         <div class="my-55">
                             <h2 class="mb-30"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Interested in video resume" ?></h2>
                             <h5><?= !empty($language->click_video_resume) ? $language->click_video_resume : "Check it out more by click play button" ?></h5>
-=======
-            <div class="m-grid-col m-grid-col-md-9 m-grid-col-auto-height panel">
-                <div class=" panel-body py-0 mb-0">
-                    <div class="m-grid">
-                        <div class="m-grid-col m-grid-col-middle m-grid-col-xs-12 m-grid-col-sm-4">
-                            <h3 class="mb-30 font-weight-600 line-height-lg md-grey-darken-3-text">Find out more the benefit to have video resume!</h3>
-                            <p class="md-grey-darken-2-text font-16">Click play on video to learn more.</p>
->>>>>>> origin/scss
                         </div>
                         <div class="m-grid-col m-grid-col-middle m-grid-col-center m-grid-col-xs-12 m-grid-col-sm-8 py-20 pl-30 pr-0">
                             <!-- <div class=""> -->
@@ -117,7 +106,6 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         <!-- Section: Find Job-->
         <div class="row mx-0 mb-30 ">
             <div class="portlet ">
@@ -148,18 +136,6 @@
                             <i class="icon-settings mr-2"></i>Job Preferences ' </b> and we will search and automatically notify your preferences!!</h5>
                 </div> -->
                 <!-- </div> -->
-=======
-        <!-- # Section: Job Preferences Board-->
-        <div class="portlet mb-30 ">
-            <!-- TITLE  -->
-            <div class="media">
-                <div class="media-body">
-                    <h3 class=" mb-0 text-capitalize ">What we just found for you!
-                        <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>
-                        <small class="label label-md-indigo label-sm my-0 ">
-                            <?=$new_job?> new job</small>
-                    </h3>
->>>>>>> origin/scss
 
                 </div>
                 <div class="media-right media-bottom">
@@ -305,11 +281,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active">
                                 <a href="#tab_join" data-toggle="tab">
-<<<<<<< HEAD
                                     <i class="icon-users"></i> <?= !empty($language->new_join) ? $language->new_join : "New Join" ?> </a>
-=======
-                                    <i class="icon-users"></i> New User </a>
->>>>>>> origin/scss
                             </li>
                             <li>
                                 <a href="#tab_interview" data-toggle="tab">
