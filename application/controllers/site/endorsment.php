@@ -175,7 +175,7 @@ class Endorsment extends CI_Controller {
             $data = array(  'rating' => $this->input->post('rating'),
                             'exp_id' => $this->input->post('exp_id'),
                             'endorser_id' => $this->input->post('endorser_id'),
-                            'user_id' => $this->input->post('user_id'),
+                            'user_id' => $this->input->post('endorsed_id'),
                             'created_at' => date('Y-m-d H:i:s'),
                             'updated_at' => date('Y-m-d H:i:s') );
         }else{
