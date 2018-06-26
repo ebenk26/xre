@@ -147,7 +147,7 @@ else
             <!-- # Header Image -->
             <div class=" view height-300 " style="background:url('<?php echo !empty($header_picture) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat;">
                 <div class="mask hm-darkblue-v7 ">
-                    <a href="#modal_edit_header_picture" data-toggle="modal" class="btn  btn-circle btn-mdo-white pull-right m-30">
+                    <a href="#modal_edit_header_picture" data-toggle="modal" class="btn  btn-circle btn-mdo-black pull-right m-30">
                         <i class="icon-camera"></i>
                         <?= !empty($language->site_edit_header) ? $language->site_edit_header : "Edit Header" ?>
                     </a>
@@ -160,7 +160,7 @@ else
                         <!-- Default Picture -->
                         <div class="mt-card-avatar text-center p-0">
                             <img src="<?php echo !empty($profile_picture) ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG.'site/profile-pic.png'?>" class=" avatar avatar-large avatar-circle mt-o-150 ">
-                            <a href="#modal_edit_default_picture" data-toggle="modal" class="btn btn-circle btn-mdo-white  ml-o-50 btn-icon-only">
+                            <a href="#modal_edit_default_picture" data-toggle="modal" class="btn btn-circle btn-mdo-white  ml-o-70 btn-icon-only">
                                 <i class="icon-camera"></i>
                             </a>
                         </div>
