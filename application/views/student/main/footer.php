@@ -63,6 +63,10 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- # Animation -->
+<!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script> -->
+
+
 
 
 <!-- GLOBAL -->
