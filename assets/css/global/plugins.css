@@ -101,7 +101,6 @@
 
 
 
-
 .datepaginator a {
   font-family: 'Open Sans';
   font-size: 13px;
@@ -723,6 +722,9 @@
     padding: 4px 6px 4px 6px; }
     .bootstrap-tagsinput .tag input {
       width: 5em !important; }
+  .bootstrap-tagsinput input {
+    vertical-align: 6px !important;
+    padding: 1px 4px; }
 
 .bootstrap-tagsinput-width-auto .bootstrap-tagsinput {
   display: inline-block; }

@@ -15695,7 +15695,7 @@ li [class*=' icon-'].icon-large {
   .btn-icon-only > [class^='icon-'],
   .btn-icon-only > i {
     text-align: center;
-    margin-top: 2px; }
+    margin-top: 0px; }
 
 .btn-group.btn-group-devided > .btn {
   margin-right: 5px; }
