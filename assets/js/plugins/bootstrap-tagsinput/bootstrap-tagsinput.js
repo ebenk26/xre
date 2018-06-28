@@ -8,7 +8,7 @@
 
   var defaultOptions = {
     tagClass: function(item) {
-      return 'label label-info';
+      return 'label label-info label-sm';
     },
     focusClass: 'focus',
     itemValue: function(item) {

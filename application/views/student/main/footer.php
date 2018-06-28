@@ -38,7 +38,7 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.color.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.Jcrop.min.js"></script>
 <!-- # Forms -->
-<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/typeahead/handlebars.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/typeahead/typeahead.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/autosize/autosize.min.js"></script>
