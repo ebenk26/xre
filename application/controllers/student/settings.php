@@ -160,7 +160,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().'student/settings#tab_job');
     }
 }
 

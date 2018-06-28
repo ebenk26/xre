@@ -512,6 +512,29 @@ class Employer_Model extends CI_Model{
         return $candidate;
     }
 
+    public function get_bookmarked_user($id){
+        $this->db->select('     users.id, 
+                                users.email,
+                                users.fullname,
+                                users.preference_name,   
+                                users.country as country_id, 
+                                countries.name as country,
+                                student_bios.*, 
+                                bookmark_candidate.user_id,
+                                bookmark_candidate.company_id,
+                                bookmark_candidate.status,
+                                ');
+        $this->db->from('users');
+        $this->db->join('student_bios','users.id = student_bios.user_id', 'left' );
+        $this->db->join('countries','countries.id = users.country_id', 'left' );
+        $this->db->where('bookmark_candidate.user_id','=', $id);
+        $this->db->where('bookmark_candidate.status','=', '1');
+        $candidate = $this->db->get();
+
+        return $candidate->result_array();
+
+    }
+
 
 }
 
