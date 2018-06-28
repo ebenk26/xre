@@ -453,8 +453,10 @@ class Employer_Model extends CI_Model{
 
             if(!empty($params["education"]))
             {
-                $where[] = "LOWER(c.qualification_level) LIKE '%".strtolower($params["education"])."%'";
+                $where[] = "LOWER(c.qualification_level) LIKE '%".strtolower($params["education"])."%' OR LOWER(i.qualifications) LIKE '%".strtolower($params["education"])."%'";
+                $join[] = "LEFT JOIN job_preferences i ON i.user_id = a.id";
                 $joinTotal[] = "LEFT JOIN academics c ON c.user_id = a.id";
+                $joinTotal[] = "LEFT JOIN job_preferences i ON i.user_id = a.id";
             }
 
             if(!empty($params["job_type"]))
@@ -463,7 +465,7 @@ class Employer_Model extends CI_Model{
                 $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
             }
 
-            $wheres = !empty($where) ? "WHERE ".implode('AND', $where) : "";
+            $wheres = !empty($where) ? "WHERE ".implode(' AND ', $where) : "";
 
             $joins = !empty($join) ? implode(' ', $join) : "";
             $joinsTotal = !empty($joinTotal) ? implode(' ', $joinTotal) : "";
