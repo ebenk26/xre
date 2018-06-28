@@ -421,18 +421,18 @@
                             <!-- BEGIN WIDGET BLOG -->
                             <div class="widget-blog py-60 text-center height-650-md height-550" style=" background: url('<?= !empty($row->featured_image) ?IMG.'/article/'.$row->featured_image : IMG.'/site/dawn.jpg'; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
-                                    <h4 class="widget-blog-title md-white-text font-24 line-height-md">
+                                    <h4 class="widget-blog-title md-white-text font-18 font-20-sm font-24-md line-height-md mt-0 mt-20-sm">
                                         <?=$row->title?>
                                     </h4>
-                                    <span class="widget-blog-subtitle mdo-white-v7-text">
+                                    <span class="widget-blog-subtitle mdo-white-v7-text font-15 font-17-sm">
                                         <?=date('j F Y', strtotime($row->created_at))?>
                                     </span>
                                 </div>
-                                <p class="mdo-white-v7-text px-20">
+                                <p class="mdo-white-v7-text px-20-md font-15 font-16-sm ">
                                     <?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?>
                                 </p>
                                 <br/>
-                                <a class="btn btn-md-amber text-uppercase letter-space-xs font-weight-600 md-grey-darken-3-text" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More <i class="fa fa-chevron-right font-14"></i></a>
+                                <a class="btn btn-md-amber text-uppercase letter-space-xs font-weight-600 md-grey-darken-3-text font-14  " href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More <i class="fa fa-chevron-right font-12"></i></a>
                             </div>
                             <!-- END WIDGET BLOG -->
                         </div>
