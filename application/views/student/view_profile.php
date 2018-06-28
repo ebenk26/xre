@@ -4,8 +4,7 @@
     $segmented_uri = $this->uri->segment(3);
     $percentage_completion = ($roles == 'employer') ? (ProfileCompletion($employer_profile) >= 90) : (studentProfileCompletion($id) >= 70);
     if ($id != base64_decode($segmented_uri)) {
-        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
-                                    'endorsed'=> base64_decode($segmented_uri)));
+        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,'endorsed'=> base64_decode($segmented_uri)));
     }else{
         $endorseReviewRating = EndorseReviewRating(array('endorsed'=> base64_decode($segmented_uri)));
     }
@@ -62,12 +61,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
     <!-- Global -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css">
 
     <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
-    <!-- PAGES -->
+    <!-- Pages -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
 
     <!-- Favicon -->
@@ -110,7 +109,6 @@
                     <li>
                         <p class=" font-17 font-weight-500 md-white-text letter-space-xs">
                             <?= !empty($user_profile['overview']['quote']) ?  '<i class="fa fa-quote-left font-10 vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-10"></i>' : ''; ?>
-
                         </p>
                     </li>
                 </ul>

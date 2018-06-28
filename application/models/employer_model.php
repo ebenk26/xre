@@ -514,6 +514,38 @@ class Employer_Model extends CI_Model{
         return $candidate;
     }
 
+    public function get_bookmarked_user($id){
+        $this->db->select('     users.id, 
+                                users.email,
+                                users.fullname,
+                                users.preference_name,   
+                                users.country as country_id, 
+                                countries.name as country,
+                                student_bios.*, 
+                                bookmark_candidate.user_id,
+                                bookmark_candidate.company_id,
+                                bookmark_candidate.status,
+                                experiences.start_date as exp_start,
+                                experiences.end_date as exp_end,
+                                experiences.exp_time as exp_time,
+                                experiences.company_name as company_name,
+                                experiences.employment_type_id as employment_type_id,
+                                experiences.industries_id as industries_id,
+                                experiences.skills as skills,
+                                ');
+        $this->db->from('users');
+        $this->db->join('student_bios','users.id = student_bios.user_id', 'left' );
+        $this->db->join('countries','countries.id = users.country_id', 'left' );
+        $this->db->join('bookmark_candidate','bookmark_candidate.user_id = users.id', 'left' );
+        $this->db->join('experiences','experiences.user_id = users.id', 'left' );
+        $this->db->where('bookmark_candidate.user_id','=', $id);
+        $this->db->where('bookmark_candidate.status','=', 1);
+        $candidate = $this->db->get();
+
+        return $candidate->result_array();
+
+    }
+
 
 }
 

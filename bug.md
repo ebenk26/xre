@@ -14,8 +14,7 @@
     5. 
 
 3. Student
-    1. [] On non education and skill tab got bug over there , where , if user create skill and without creating anything on non-education tab , on view resume , skill wont show up unless user put information on noneducation page , yes , it will show up 
-    2.  [x] change progress completion profile color
-    3.  [x] Resize of video resume on dashboard
-    4. 
-    5. 
+    1. [] Remove "inbox" ,"calendar" ,"settings" from sidebar(our previous meeting in indonesia had review this thing but never clean up)
+    2. [] On non education and skill tab got bug over there , where , if user create skill and without creating anything on non-education tab , on view resume , skill wont show up unless user put information on noneducation page , yes , it will show up 
+    3.  [x] change progress completion profile color
+    4.  [x] Resize of video resume on dashboard
