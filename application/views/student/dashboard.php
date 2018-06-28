@@ -22,9 +22,9 @@
         
 
         <!-- # Section : Video Resume & Profile Seen & Profile Rate & Upcoming Interview -->
-        <div class="m-grid m-grid-responsive-xs mb-30">
+        <div class="m-grid mb-30 m-grid-responsive-sm m-grid-responsive-xs">
             <!-- # Widget -->
-            <div class="m-grid-col m-grid-col-md-4 pr-20-md ">
+            <div class="m-grid-col m-grid-col-lg-4 m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12 pr-20-md p-0  ">
                 <!-- # Widget : Profile Seen -->
                 <div class="dashboard-stat2 pb-25 ">
                     <div class="display my-0">
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <!-- # Widget : Upcoming Interview -->
-                <div class="dashboard-stat2 pb-25 mb-0">
+                <div class="dashboard-stat2 pb-25 mb-0-md ">
                     <div class="display my-0">
                         <div class="number">
                             <h3 class="md-blue-text"><span data-counter="counterup" data-value="<?=$upcoming_interview['upcoming_interview_number']?>">0</span>
@@ -69,38 +69,38 @@
             </div>
 
             <!-- # Video -->
-            <div class="m-grid-col m-grid-col-md-9 m-grid-col-auto-height panel">
-                <div class=" panel-body py-0 mb-0">
-                    <div class="m-grid">
-                        <div class="m-grid-col m-grid-col-middle m-grid-col-xs-12 m-grid-col-sm-4">
-                            <h3 class="mb-30 font-weight-600 line-height-lg md-grey-darken-3-text"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Find out more the benefit to have video resume!" ?></h3>
-                            <p class="md-grey-darken-2-text font-16"><?= !empty($language->click_video_resume) ? $language->click_video_resume : "Click play on video to learn more." ?></p>
-                        </div>
-                        <div class="m-grid-col m-grid-col-middle m-grid-col-center m-grid-col-xs-12 m-grid-col-sm-8 py-20 pl-30 pr-0">
-                            <div class="embed-responsive embed-responsive-16by9 my-auto  ">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xbmAA6eslqU"></iframe>
-                            </div>
-                            <!-- </div> -->
-                        </div>
+            <div class="m-grid-col m-grid-col-lg-8 m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12 m-grid-col-auto-height panel panel-body">
+                
+                <div class="m-grid m-grid-responsive-sm m-grid-responsive-sm">
+                    <div class="m-grid-col m-grid-col-middle m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12">
+                        <h3 class=" font-weight-600 mt-0 line-height-md md-grey-darken-3-text font-20-sm"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Find out more the benefit to have video resume!" ?></h3>
+                        <p class="md-grey-darken-2-text font-16"><?= !empty($language->click_video_resume) ? $language->click_video_resume : "Click play on video to learn more." ?></p>
+                        <hr class="visible-xs">
                     </div>
-                </div>
+
+                    <div class="m-grid-col m-grid-col-middle m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12  pl-30-md pr-0-md">
+                        <div class="embed-responsive embed-responsive-16by9   ">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/xbmAA6eslqU"></iframe>
+                        </div>                            
+                    </div>
+                </div>                
             </div>
         </div>
 
         <!-- # Section: Job Preferences Board-->
-        <div class="portlet mb-30 ">
+        <div class="portlet mb-15 ">
             <!-- TITLE  -->
-            <div class="media">
-                <div class="media-body">                
-                    <h3 class=" mb-0 text-capitalize "><?= !empty($language->we_just_found_for_you) ? $language->we_just_found_for_you : "What we just found for you" ?>!
+            <div class="m-grid m-grid-responsive-xs">
+                <div class="m-grid-col m-grid-col-md-9 m-grid-col-sm-12 m-grid-col-xs-12">                
+                    <h3 class=" mb-0-md mb-0-sm text-capitalize "><?= !empty($language->we_just_found_for_you) ? $language->we_just_found_for_you : "What we just found for you" ?>!
                         <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>                        
-                        <small class="label label-md-indigo label-sm my-0 ">
-                            <?=$new_job?> <?= !empty($language->new_job_vacancy) ? $language->new_job_vacancy : "New Job " ?></small>
+                        <span class="badge badge-md-indigo badge-roundless  my-0 ">
+                            <?=$new_job?> <?= !empty($language->new_job_vacancy) ? $language->new_job_vacancy : "New Job " ?></span>
                     </h3>
 
                 </div>
-                <div class="media-right media-bottom">
-                <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue mb-0"><?= !empty($language->view_all_job_dashboard) ? $language->view_all_job_dashboard : "View All Job Dashboard" ?></a>
+                <div class="m-grid-col m-grid-col-md-3 m-grid-col-sm-12 m-grid-xs-12  m-grid-col-bottom">
+                <a href="<?=base_url()?>job/search" target="_blank" class="btn btn-outline btn-md-darkblue text-uppercase font-13 letter-space-sm font-weight-600  mb-0 mt-10 mt-0-sm pull-right-sm"><?= !empty($language->view_all_job_dashboard) ? $language->view_all_job_dashboard : "View All Job" ?></a>
                         <!-- <a href="student-settings.html" class="btn btn-outline btn-md-indigo mt-4">
                         <i class="icon-settings"></i>Job Preferences</a> -->
                 </div>
@@ -115,7 +115,7 @@
                 $bootstrapColWidth = 12 / $numOfCols;
                 $maxCol = 6 ;
             ?>
-            <div class="row mb-10">
+            <div class="row ">
                 <?php
                     
                     foreach ($job_positions_new as $key => $value) {      
@@ -231,33 +231,34 @@
 
 
         <!-- # Section : Feed & Article -->
-        <div class="m-grid mb-30">
+        <div class="m-grid m-grid-responsive-sm m-grid-responsive-xs mb-20 ">
             <!-- # Widget : New User   -->
-            <div class="m-grid-col pr-15">
-                <div class="portlet light tasks-widget">
+            <div class="m-grid-col m-grid-col-sm-12 m-grid-col-xs-12 pr-15-md  ">
+                <div class="portlet light tasks-widget mb-0-md mb-30 ">
                     <!-- Tab  -->
-                    <div class="portlet-title tabbable-line">
-                        <div class="caption">
-                            <i class="icon-directions md-grey-darken-3-text"></i>
-                            <span class="caption-subject md-grey-darken-3-text font-weight-600  text-uppercase">Info</span>
+                    <div class="portlet-title tabbable tabbable-line tabbable-tabdrop">
+                        <div class="caption ">
+                            <i class="icon-directions md-grey-darken-3-text font-12"></i>
+                            <span class="caption-subject md-grey-darken-3-text font-weight-600  text-uppercase font-12">Info</span>
                         </div>
-                        <ul class="nav nav-tabs">
+                        <ul class="nav nav-tabs ">
                             <li class="active">
-                                <a href="#tab_join" data-toggle="tab">
+                                <a href="#tab_join" data-toggle="tab" class="font-14-sm">
                                 <i class="icon-users"></i> <?= !empty($language->new_join) ? $language->new_join : "New User" ?> </a>
 
                             </li>
                             <li>
-                                <a href="#tab_interview" data-toggle="tab">
+                                <a href="#tab_interview" data-toggle="tab" class="font-14-sm">
                                 <i class="icon-calendar"></i> <?= !empty($language->interview) ? $language->interview : "Interview" ?> </a>
 
                             </li>
                             <li>
-                                <a href="#tab_activity" data-toggle="tab">
+                                <a href="#tab_activity" data-toggle="tab" class="font-14-sm">
                                 <i class="icon-rocket"></i> <?= !empty($language->site_recent_activities) ? $language->site_recent_activities : "Recent Activity" ?></a>
 
                             </li>
                         </ul>
+
                     </div>
 
                     <div class="portlet-body">
@@ -266,7 +267,7 @@
                             <div class="tab-pane active" id="tab_join">
                                 <!-- ! Empty -->
                                 <?php if(!empty($shown_new)){?>
-                                <div class="scroller height-400" data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
+                                <div class="scroller height-500-md height-450 " data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
                                     <div class="mt-comments-v2">
                                         <!-- IF (!empty) -->
                                         <?php $shown_new = 0;foreach($new_join as $row){$shown_new++;?>
@@ -299,11 +300,11 @@
 
                                 <!-- # Empty State -->
                                 <?php } else {?>
-                                <div class="m-grid ">
-                                    <div class="portlet md-grey-lighten-5 height-400 m-grid-col m-grid-col-middle m-grid-col-center px-80">
-                                        <i class="icon-users font-40 md-indigo-text"></i>
+                                <div class="m-grid portlet md-grey-lighten-5 height-500-md height-450 my-0">
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center  ">
+                                        <i class="icon-users md-indigo-text font-40-md font-36-sm font-28 "></i>
                                         <h4 class="text-center font-weight-600 md-indigo-text ">No newcomer.</h4>
-                                        <h6 class="text-center font-grey-cascade mt-20 font-15">There is no student had joined since your last login.</h6>
+                                        <h6 class="text-center font-grey-cascade mt-20 font-15 mx-0-md mx-20">There is no student had joined since your last login.</h6>
                                     </div>
                                 </div>
                                 <?php }?>
@@ -315,7 +316,7 @@
 
                                 <!-- IF (!empty) -->
                                 <?php if(!empty($shown_interview)){?>
-                                <div class="scroller height-400" data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
+                                <div class="scroller height-500-md height-450" data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
                                     <div class="general-item-list">
                                         <?php $shown_interview = 0;foreach($upcoming_interview['upcoming_interview'] as $row){ $shown_interview++;?>
                                         <div class="item">
@@ -347,8 +348,8 @@
 
                                 <!-- # Empty States -->
                                 <?php } else {?>
-                                <div class="m-grid ">
-                                    <div class="portlet md-grey-lighten-5 height-400  m-grid-col m-grid-col-middle m-grid-col-center px-80">
+                                <div class="m-grid portlet md-grey-lighten-5 height-500-md height-450 my-0">
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center  ">
                                         <h4 class="text-center font-weight-600 md-indigo-text ">No interview invitation had be received. </h4>
                                         <h6 class="text-center font-grey-cascade mt-20 font-15">Start to search job that suitable for you or improve your resume to get better chance !</h6>
                                     </div>
@@ -361,7 +362,7 @@
                             <div class="tab-pane " id="tab_activity">
                                 <!-- IF (!empty) -->
                                 <?php if(!empty($recent_activities)){?>
-                                <div class="scroller height-400" data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
+                                <div class="scroller height-500-md height-450" data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
                                     <ul class="feeds">
                                         <?php foreach($recent_activities as $row){?>
                                         <li>
@@ -391,8 +392,8 @@
 
                                 <!-- # Empty State -->
                                 <?php } else { ?>
-                                <div class="m-grid ">
-                                    <div class="portlet md-grey-lighten-5 height-400  m-grid-col m-grid-col-middle m-grid-col-center px-80">
+                                <div class="m-grid portlet md-grey-lighten-5 height-500-md height-450 my-0">
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center  ">
                                         <i class="icon-ghost font-40 md-indigo-text"></i>
                                         <h4 class="text-center font-weight-600 md-indigo-text"> No recent activity </h4>
                                     </div>
@@ -405,8 +406,8 @@
                 </div>
             </div>
             <!-- # Widget : Article -->
-            <div class="m-grid-col m-grid-col-auto-height pl-15">
-                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel height-550" data-ride="carousel">
+            <div class="m-grid-col m-grid-col-sm-12 m-grid-col-xs-12 m-grid-col-auto-height pl-15-md ">
+                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel height-650-md height-550" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators carousel-indicators-white  ">
                         <li data-target="#carousel-example-generic-v2" data-slide-to="0" class="circle active"></li>
@@ -418,7 +419,7 @@
                         <?php $i = 1;foreach ($article as $row) { ?>
                         <div class="item  <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog py-60 text-center height-550 " style=" background: url('<?= !empty($row->featured_image) ?IMG.'/article/'.$row->featured_image : IMG.'/site/dawn.jpg'; ?>'">
+                            <div class="widget-blog py-60 text-center height-650-md height-550" style=" background: url('<?= !empty($row->featured_image) ?IMG.'/article/'.$row->featured_image : IMG.'/site/dawn.jpg'; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
                                     <h4 class="widget-blog-title md-white-text font-24 line-height-md">
                                         <?=$row->title?>
