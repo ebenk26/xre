@@ -98,7 +98,7 @@
                                     {
                                 ?>
                                         <!-- If already add delete button -->
-                                        <a href="" class="btn btn-md-green  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Shortlist Candidate">
+                                        <a href="<?= base_url();?>employer/candidates_bookmark/bookmark/<?= $value->id; ?>" class="btn btn-md-green  letter-space-xs mx-5 tooltips bookmark_candidate" data-container="body" data-placement="top" data-html="true" data-original-title="Shortlist Candidate">
                                             <i class="fa fa-plus "></i>
                                         </a>
                                 <?php
@@ -107,14 +107,14 @@
                                     {
                                 ?>
                                         <!-- else by default -->
-                                        <a href="" class="btn btn-md-amber  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="This candidate already exist in your bookmark.">
+                                        <a href="#" class="btn btn-md-amber  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="This candidate already exist in your bookmark.">
                                             <i class="fa fa-check "></i>
                                         </a>
                                 <?php
                                     }
                                 ?>
                                 <!--  -->
-                                <a href="" class="btn btn-md-indigo  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume">
+                                <a href="#" class="btn btn-md-indigo  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume">
                                     <i class="fa fa-eye "></i>
                                 </a>
                             </div>
@@ -160,6 +160,7 @@
                                             {
                                                 $(".searchResult").html(data.searchResult)
                                                 $(".loader").addClass('hidden')
+                                                location.reload()
                                             }
                                             else
                                             {
@@ -174,6 +175,43 @@
                                     }
                                 })
                             }
+                        })
+
+
+
+                        $(".bookmark_candidate").on('click', function(event) {
+                            event.preventDefault()
+
+                            let url = $(this).attr('href')
+
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                /*data: params,*/
+                                beforeSend: function(){
+                                    $(".loader").removeClass('hidden')
+                                },
+                                dataType : 'json',
+                                success: function (data) {
+                                    setTimeout(function()
+                                    {
+                                        if(data.status == 1)
+                                        {
+                                            $(".loader").addClass('hidden')
+                                            swal("Success", "Candidate has been bookmarked", "success");
+                                        }
+                                        else
+                                        {
+                                            $(".loader").addClass('hidden')
+                                            swal("Cancelled", "Can't bookmark candidate", "error");
+                                        }
+                                    },3000)
+                                },
+                                error: function( data )
+                                {
+                                    console.log(data)
+                                }
+                            })
                         })
                     })
                 </script>

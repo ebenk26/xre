@@ -472,6 +472,7 @@ class Employer_Model extends CI_Model{
 
             $getCandidate = $this->db->query("SELECT
                                                     a.fullname, 
+                                                    a.id, 
                                                     b.title, 
                                                     b.start_date, 
                                                     MAX(b.end_date) AS end_date, 

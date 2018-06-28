@@ -7,6 +7,7 @@ class Candidates_bookmark extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('employer_model');
+        $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
         if($roles !== $segment){
@@ -24,6 +25,29 @@ class Candidates_bookmark extends CI_Controller {
         $this->load->view('employer/main/header', $profile);
         $this->load->view('employer/candidates_bookmark', $data);
         $this->load->view('employer/main/footer');
+    }
+
+    public function bookmark($user_id)
+    {
+        $data = array(
+                        'user_id' => $user_id,
+                        'company_id' => $this->session->userdata('id'),
+                        'status' => 1,
+                        'created_by' => $this->session->userdata('id')
+        );
+
+        $bookmarked = $this->global_model->create('bookmark_candidate', $data);
+
+        if($bookmarked)
+        {
+            $result["status"] = true;
+        }
+        else
+        {
+            $result["status"] = false;
+        }
+        
+        echo json_encode($result);
     }
 }
 

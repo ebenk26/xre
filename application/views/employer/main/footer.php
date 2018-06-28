@@ -1531,7 +1531,7 @@ $company_address = json_decode($user_profile['address']);?>
         })
 
         $("#advance-search").on('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault()
 
             let params = $(this).serialize()+'&keywords='+$("#search_panelv1 #keywords").val()
 
