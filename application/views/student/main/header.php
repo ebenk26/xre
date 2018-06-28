@@ -67,7 +67,7 @@
     
 
     <!-- GLOBAL -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
 
     <!-- APPS -->
