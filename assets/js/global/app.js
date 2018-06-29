@@ -11,13 +11,13 @@ var App = function() {
 
     var resizeHandlers = [];
 
-    var assetsPath = '../assets/';
+    var assetsPath = 'assets/';
 
     var globalImgPath = '../../img/';
 
-    var globalPluginsPath = '../../js/plugins/';
+    var globalPluginsPath = '../js/plugins/';
 
-    var globalCssPath = '../../css/';
+    var globalCssPath = '../css/';
 
     // theme layout color set
 
@@ -336,7 +336,7 @@ var App = function() {
 
         if ($().tabdrop) {
             $('.tabbable-tabdrop .nav-pills, .tabbable-tabdrop .nav-tabs').tabdrop({
-                text: '<i class="fa fa-ellipsis-v"></i>&nbsp;<i class="fa fa-angle-down"></i>'
+                text: '<i class="fa fa-ellipsis-v md-grey-darken-3-text"></i>'
             });
         }
     };

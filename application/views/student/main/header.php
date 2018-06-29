@@ -27,6 +27,8 @@
 
     <!-- Plugins @ Vendor -->
     <!-- Note : all plugin folder in JS folder . so it need to redirect there -->
+    <!-- # Animate -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css">
     <!-- # Social Icon -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/socicon/socicon.css">
     <!-- # Datatables -->
@@ -60,9 +62,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jqvmap/jqvmap/jqvmap.css">
     <!-- # Portfolio @ Light Gallery -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/cubeportfolio/css/cubeportfolio.css">
+    <!-- # TabDrop -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-tabdrop/tabdrop.css">
+    
 
     <!-- GLOBAL -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
 
     <!-- APPS -->

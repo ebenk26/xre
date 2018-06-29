@@ -38,7 +38,7 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.color.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jcrop/js/jquery.Jcrop.min.js"></script>
 <!-- # Forms -->
-<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/typeahead/handlebars.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/typeahead/typeahead.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/autosize/autosize.min.js"></script>
@@ -63,6 +63,10 @@
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+<!-- # Animation -->
+<!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script> -->
+
+
 
 
 <!-- GLOBAL -->

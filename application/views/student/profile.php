@@ -2,16 +2,16 @@
     <div class="page-content">
 
         <!-- Page Header -->
-        <div class="portlet mb-0 md-shadow-none ">
-            <div class="portlet light md-transparent  p-0">
-                <div class="portlet-title tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
+        
+            <div class="portlet light md-transparent  p-0 portlet-fit">
+                <div class="portlet-title tabbable tabbable-tabdrop tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
                     <div class="caption">
                         <span class="caption-subject font-weight-300 text-capitalize font-26">
                             <?= !empty($language->user_profile) ? $language->user_profile : "User Profile" ?>
                         </span>
                     </div>
                     <!-- Nav Tabs -->
-                    <ul class="nav nav-tabs mb-0 pb-0">
+                    <ul class="nav nav-tabs mb-0 pb-0 ">
                         <?php
                             $tab_student = $this->session->flashdata('tab_student');
                         ?>
@@ -48,8 +48,7 @@
 
                     </ul>
                 </div>
-            </div>
-        </div>
+            </div>        
 
         <!-- Content -->
         <div class="portlet mt-0 ">
@@ -60,25 +59,26 @@
                     <!-- # Header Image -->
                     <div class="view height-300 bg-position-center" style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                         <div class="mask mdo-darkblue-v7 ">
-
+                        <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-md-indigo m-30 pull-right"><i class="icon-pencil"></i> Edit Profile</a>
                         </div>
                     </div>
                     <!-- # User Card -->
                     <div class="portlet light">
-                        <!--  Brief you whole profile -->
-                        <div class="m-grid">
+                        <!--  Describe you whole profile -->
+                        <div class="m-grid px-250">
                             <div class="m-grid-col m-grid-col-center  ">
                                 <div class="mt-element-card-v2 ">
                                     <div class="mt-card-item p-0">
                                         <!-- Avatar -->
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">        
                                         </div>
-                                        <div class="mt-card-content  ">
+                                        <div class="mt-card-content mb-20 ">
                                             <!--  Full name   -->
                                             <h3 class="mt-card-name mt-15 md-indigo-text">
                                                 <?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?>
                                             </h3>
+                                            
                                             <!-- Role / Location / DOB -->
                                             <ul class="list-inline list-unstyled">
                                                 <!-- User Role -->
@@ -104,57 +104,60 @@
                                                 <li class="font-17">
                                                     <i class="icon-calendar"></i>
                                                     <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : "DOB not set";?>
+                                            
                                                 </li>
                                                 <?php }?>
                                             </ul>
                                             <!-- Quote -->
-
-                                            <p class="mt-card-desc mt-40">
+                                            <hr class="border-medium center-block width-300 border-md-orange my-10">
+                                            <p class="mt-card-desc mb-10 ">
                                                 <?php echo !empty($user_profile['overview']['quote']) ? '<i class="fa fa-quote-left font-12 vertical-top mr-5"></i> '.$user_profile['overview']['quote'].' <i class="fa fa-quote-right vertical-top font-12 ml-5"></i>' : '';?>
                                             </p>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="center-block">
-                                    <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-outline btn-md-indigo ">
-                                        <i class="icon-pencil"></i> Edit Profile</a>
-
+                                <div class="center-block px-250  ">
+                                    <div class="btn-group btn-group-justified ">
+                                    <a href="#modal_print_resume" data-toggle="modal" class="btn btn-md-orange md-black-text "><i class="icon-printer mr-5"></i> Print Resume</a>
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
-                                 echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-indigo letter-space-xs">
-                                        <i class="icon-doc"></i>
-                                        <?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : " View My Resume " ?>
+                                    echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-darkblue "> <i class="icon-notebook"></i>
+                                        <?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : " View Profile" ?>
                                     </a>
+                                    
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
                         <hr >
-                        <!-- About myself -->
+                        <!-- # Section : About Myself -->
                         <div class="m-grid px-150">
                             <div class="m-grid-col ">
                                 <h5 class="font-weight-700 text-uppercase letter-space-sm font-19">
                                     <?= !empty($language->site_about_me) ? $language->site_about_me : "About Myself" ?>
                                 </h5>
-                                <hr class="hor-divider-solid-medium border-mdo-orange-v7 width-60 my-0">
+                                <hr class="border-medium border-mdo-orange-v7 width-60 my-0">
                                 <p>
                                     <?php echo !empty($user_profile['overview']['summary']) ? $user_profile['overview']['summary'] : '<i>Edit about you</i>';?>
                                 </p>
                             </div>                            
                         </div>
-                        <!-- Profile Information -->
+                        <!-- # Section : Profile Info -->
                         <div class="m-grid px-150 mt-40 pb-100">
                             <div class="m-grid-col">
+                                                    
                                 <h5 class="font-weight-700 text-uppercase letter-space-sm font-19">
                                     <?= !empty($language->site_personal_information) ? $language->site_personal_information : "Personal Information" ?>
                                 </h5>
-                                <hr class="hor-divider-solid-medium border-mdo-orange-v7 width-60 mt-0 mb-10 ">
+                                <hr class="border-medium border-mdo-orange-v7 width-60 mt-0 mb-10 ">
 
                                 <div class="m-grid m-grid-responsive-xs">
                                     <!-- Col 1 -->
                                     <div class="m-grid-col m-grid-col-sm-6  m-grid-col-xs-12">
-                                        <!-- Full Name -->
+                                        <!-- Attribute : Full Name -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -165,7 +168,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Preferences Name -->
+                                        <!-- Attribute : Preferences Name -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
                                                 <h5 class=" font-weight-600 md-indigo-text">
@@ -176,7 +179,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Gender -->
+                                        <!-- Attribute : Gender -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -187,7 +190,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- DOB -->
+                                        <!-- Attribute : DOB -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -198,7 +201,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Video Link -->
+                                        <!-- Attribute : Video Link -->
                                         <div class="m-grid ">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -209,7 +212,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Salary Expectation -->
+                                        <!-- Attribute : Salary Expectation -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -230,7 +233,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Language Preferences -->
+                                        <!-- Attribute : Language Preferences -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text ">
@@ -242,7 +245,7 @@
                                                 <h5 class="roboto-font font-weight-500 mb-0 letter-space-xs mt-30">
                                                     <?php echo !empty($lang['title']) ?  $lang['title'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
                                                 </h5>
-                                                <hr class="hor-divider-solid-medium border-mdo-orange-v5 width-40 my-10">
+                                                <hr class="border-medium border-mdo-orange-v5 width-40 my-10">
                                                 <h5 class="mt-0 mb-10 roboto-font ">
                                                     <b class="font-weight-400">
                                                         <?= !empty($language->written) ? $language->written : "Written" ?>
@@ -268,7 +271,7 @@
 
                                     <!-- Col 2 -->
                                     <div class="m-grid-col m-grid-col-sm-6 p-10 m-grid-col-xs-12">
-                                        <!-- Email -->
+                                        <!-- Attribute : Email Address  -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -279,7 +282,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Contact Number -->
+                                        <!-- Attribute : Phone Number -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="mb-10 font-weight-600 md-indigo-text">
@@ -290,7 +293,7 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Street -->
+                                        <!-- Attribute : Street @ Address -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -301,16 +304,9 @@
                                                 </h5>
                                             </div>
                                         </div>
-                                        <!-- Postcode -->
+                                        <!-- Attribute : City & Postcode -->
                                         <div class="m-grid">
-                                            <div class="m-grid-col">
-                                                <h5 class="font-weight-600 md-indigo-text">
-                                                    <?= !empty($language->postcode) ? $language->postcode : "Postcode" ?>
-                                                </h5>
-                                                <h5 class="roboto-font">
-                                                    <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
-                                                </h5>
-                                            </div>
+                                            <!-- Attribute : City  -->
                                             <div class="m-grid-col">
                                                 <h5 class="mb-10 font-weight-600 md-indigo-text">
                                                     <?= !empty($language->city) ? $language->city : "City" ?>
@@ -319,8 +315,17 @@
                                                     <?php echo !empty($user_profile['address']['city']) ? $user_profile['address']['city'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>' ;?>
                                                 </h5>
                                             </div>
+                                            <!-- Attribute : Postcode  -->
+                                            <div class="m-grid-col">
+                                                <h5 class="font-weight-600 md-indigo-text">
+                                                    <?= !empty($language->postcode) ? $language->postcode : "Postcode" ?>
+                                                </h5>
+                                                <h5 class="roboto-font">
+                                                    <?php echo !empty($user_profile['address']['postcode']) ? $user_profile['address']['postcode'] : '<i class="font-weight-300 md-grey-lighten-1-text"> None </i>';?>
+                                                </h5>
+                                            </div>
                                         </div>
-                                        <!-- State / Country -->
+                                        <!-- Attribute : State & Country  -->
                                         <div class="m-grid">
                                             <div class="m-grid-col">
                                                 <h5 class="font-weight-600 md-indigo-text">
@@ -347,15 +352,16 @@
                                                     <?= !empty($language->references) ? $language->references : "References" ?>
                                                 </h5>
                                                 <ul class="list-unstyled">
-                                                    <?php 
-                                                        var_dump($user_profile['reference']);
-                                                        if(!empty($user_profile['reference'])){
+                                                    <?php           
+                                                        if(!empty($user_profile['reference']) ){
                                                         foreach ($user_profile['reference'] as $reference_key => $reference_value) {
                                                     ?>
                                                     <li class="mb-30">
+                                                    <?php if(!empty($reference_value['reference_name'])){ ?>
                                                         <h5 class=" roboto-font font-weight-500">
                                                             <?=$reference_value['reference_name']?>
                                                         </h5>
+                                                    <?php } if(!empty($reference_value['reference_email'])){ ?>
                                                         <h5 class="roboto-font font-15">
                                                             <b class="font-weight-400 ">
                                                                 <?= !empty($language->email_address) ? $language->email_address : "Email" ?>
@@ -363,18 +369,21 @@
 
                                                             <?=$reference_value['reference_email'] != " "?$reference_value['reference_email']:"-"?>
                                                         </h5>
+                                                        <?php } if(!empty($reference_value['reference_phone'])){ ?>
                                                         <h5 class="font-weight-400 roboto-font">
                                                             <b class="font-weight-400 ">
                                                                 <?= !empty($language->phone_number) ? $language->phone_number : "Phone No." ?>
                                                             </b> :
                                                             <?=$reference_value['reference_phone'] != ""?$reference_value['reference_phone']:"-"?>
-                                                        </h5>
+                                                        </h5>                                                    
+                                                        <?php } if(!empty($reference_value['reference_relationship'])){ ?>
                                                         <h5 class=" font-weight-400 roboto-font">
                                                             <b class="font-weight-400 ">
                                                                 <?= !empty($language->relationship) ? $language->relationship : "Relationships" ?>
                                                             </b>:
                                                             <?=$reference_value['reference_relationship'] != ""?$reference_value['reference_relationship']:"-"?>
                                                         </h5>
+                                                        <?php } ?>
                                                     </li>
                                                     <?php } } else{ ?>
                                                     <i class="font-weight-300 md-grey-lighten-1-text">
@@ -401,18 +410,18 @@
                                     <?= !empty($language->site_education) ? $language->site_education : "Education" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_edu) ? $language->site_list_edu : "list out your previous education" ?>
+                                    <?= !empty($language->site_list_edu) ? $language->site_list_edu : "List out your education information." ?>
                                 </span>
                             </div>
                             <!-- Modal Add education -->
+                            <?php if (!empty($user_profile['academics'])){ ?>
                             <div class="actions">
-                                <?php if (!empty($user_profile['academics'])){ ?>
                                 <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
                                     <i class="fa fa-plus  "></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
-                                <?php } ?>
                             </div>
+                            <?php } ?>
                         </div>
                         <!-- IF NOT EMPTY -->
                         <?php if (!empty($user_profile['academics'])): ?>
@@ -424,7 +433,7 @@
                                     <div class="media">
                                         <div class="media-body">
                                             <!-- 'Qualifications Level' in 'Field Study' -->
-                                            <h4 class="font-weight-600 letter-space-xs font-20">
+                                            <h4 class="font-weight-600 letter-space-xs font-20 mt-0">
                                                 <?php echo ucfirst($value['qualification_level']); ?> in
                                                 <?php echo ucfirst($value['degree_name']);?>
                                             </h4>
@@ -441,7 +450,7 @@
                                             </h5>
                                             <!-- Description  -->
                                             <?php if (!empty($value['degree_description'])){ ?>
-                                            <hr class="hor-divider-solid-medium width-100 border-md-amber mt-0 mb-10">
+                                            <hr class="border-medium width-100 border-md-amber mt-0 mb-10">
                                             <p class=" multiline-truncate my-20">
                                                 <?//=strip_tags($value['degree_description']); ?>
                                                     <?=ucfirst($value['degree_description']);?>
@@ -449,14 +458,15 @@
                                             <?php } ?>
                                         </div>
                                         <!-- Button -->
-                                        <div class="media-right media-middle ">
+                                        <div class="media-right ">
                                             <!-- Edit Button -->
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu mb-20" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
-                                                <i class="icon-pencil" data-toggle="tooltip" title="edit"></i>
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
+                                                <i class="icon-pencil" ></i>
                                             </a>
+                                            <div class="clearfix my-5"></div>
                                             <!-- Delete Button -->
-                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>">
-                                                <i class="icon-trash" data-toggle="tooltip" title="delete"></i>
+                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete  tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>">
+                                                <i class="icon-trash" ></i>
                                             </a>
                                         </div>
                                     </div>
@@ -535,7 +545,7 @@
                                                                                 <span></span>
                                                                                 <span class="check"></span>
                                                                                 <span class="box"></span>
-                                                                                <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently Still Studying?" ?>
+                                                                                <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
                                                                             </label>
                                                                         </span>
                                                                     </div>
@@ -549,7 +559,7 @@
                                                                 <?= !empty($language->description) ? $language->description : "Description" ?>
                                                             </label>
                                                             <div class="col-md-9">
-                                                                <textarea class="form-control" rows="4" placeholder="Brief about your studying place and what subject you had study." name="academics_description"><?php echo ucfirst($value['degree_description']); ?></textarea>
+                                                                <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." name="academics_description"><?php echo ucfirst($value['degree_description']); ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -566,12 +576,12 @@
                                 <?php $i++; }  ?>
                             </ul>
                         </div>
-                        <!-- Empty State -->
+                        <!-- # Empty State -->
                         <?php else: ?>
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
                                 <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text">
+                                    <h3 class="font-weight-500 text-center md-indigo-text ">
                                         <?= !empty($language->site_empty_edu) ? $language->site_empty_edu: "It's empty ..." ?>
                                     </h3>
                                     <h5 class="font-grey-cascade mt-30 text-center">
@@ -600,17 +610,17 @@
                                     <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_work) ? $language->site_list_work : "list out all your previous working experience" ?>
+                                    <?= !empty($language->site_list_work) ? $language->site_list_work : "List out your previous working experience." ?>
                                 </span>
                             </div>
+                            <?php if (!empty($user_profile['experiences'])){ ?>
                             <div class="actions">
-                                <?php if (!empty($user_profile['experiences'])){ ?>
                                 <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo  btn-add-exp px-60">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
-                                <?php } ?>
                             </div>
+                            <?php } ?>
                         </div>
                         <!-- IF NOT EMPTY -->
                         <?php if (!empty($user_profile['experiences'])): ?>
@@ -625,12 +635,12 @@
                                         <!-- Content -->
                                         <div class="media-body">
                                             <!-- Job Title -->
-                                            <h4 class="font-weight-600 letter-space-xs mb-5 ">
+                                            <h4 class="font-weight-600 letter-space-xs mb-5 mt-0">
                                                 <?php echo ucfirst($value['experiences_title']);?>
                                             </h4>
                                             <!-- Company Name -->
                                             <h5 class="font-weight-400 font-18">
-                                                <i class="fa fa-builfing-o mr-5"></i>
+                                                <i class="fa fa-building-o mr-5"></i>
                                                 <?php echo ucfirst($value['experiences_company_name']);?>
                                             </h5>
                                             <!-- Start & End Date -->
@@ -656,7 +666,7 @@
                                             </h6>
 
                                             <?php if (!empty($value['experiences_description']) ||($value['skills']) ){ ?>
-                                            <hr class="hor-divider-solid-medium width-100 border-md-amber my-10">
+                                            <hr class="border-medium width-100 border-md-amber my-10">
                                             <?php } ?>
 
                                             <!-- Description -->
@@ -690,13 +700,15 @@
                                             <?php } ?>
                                         </div>
                                         <!-- Button -->
-                                        <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only  mb-20 ">
+                                        <div class="media-right ">                                                    
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit">
                                                 <i class="icon-pencil"></i>
                                             </a>
-                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
+                                            <div class="clearfix my-5"></div>
+                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
                                                 <i class="icon-trash"></i>
-                                            </a>
+                                            </a>                                                    
+                                            
                                         </div>
                                     </div>
                                     <!-- Modal : Edit Experience  -->
@@ -754,7 +766,7 @@
                                                                                     <span class="check"></span>
                                                                                     <span class="box"></span>
                                                                                     <small>
-                                                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still working?" ?>
+                                                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
                                                                                     </small>
                                                                                 </label>
                                                                             </span>
@@ -825,7 +837,7 @@
                                                                     <label class="control-label ">
                                                                         <?= !empty($language->description) ? $language->description : "Description" ?>
                                                                     </label>
-                                                                    <textarea class="form-control autosizeme" rows="4" name="description" placeholder="Brief about your working place ...." data-autosize-on="true"><?php echo ucfirst($description);?></textarea>
+                                                                    <textarea class="form-control autosizeme no-resize" rows="4" name="description" placeholder="Describe about your working experience." data-autosize-on="true"><?php echo ucfirst($description);?></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -855,7 +867,7 @@
                                 <?php $i++; } ?>
                             </ul>
                         </div>
-                        <!-- Empty State -->
+                        <!-- # Empty State -->
                         <?php else: ?>
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
@@ -882,6 +894,7 @@
                 <!-- Tab Content : Non Education -->
                 <div class="tab-pane <?=$tab_student == 'tab_non_education'?'active':' '?>" id="tab_non_education">
                     <div class="portlet light ">
+
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-notebook"></i>
@@ -889,17 +902,17 @@
                                     <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "list out all your previous non educational activity (join any colleage event ... or whatsoever)" ?>
+                                    <?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "List out any event / activity / contest you have participate. " ?>
                                 </span>
                             </div>
+                            <?php if (!empty($user_profile['achievement'])){ ?>
                             <div class="actions">
-                                <?php if (!empty($user_profile['achievement'])){ ?>
                                 <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo px-60 ">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
-                                <?php } ?>
                             </div>
+                            <?php } ?>
                         </div>
                         <!-- If Not empty -->
                         <?php if (!empty($user_profile['achievement'])): ?>
@@ -910,7 +923,7 @@
                                     <div class="media">
                                         <div class="media-body">
                                             <!-- Event -->
-                                            <h4 class="font-weight-700 letter-space-xs ">
+                                            <h4 class="font-weight-700 letter-space-xs mt-0">
                                                 <?php echo ucfirst($value['achievement_title']);?> </h4>
 
                                             <!-- Date -->
@@ -921,7 +934,7 @@
                                             </h5>
 
                                             <?php if (!empty($value['achievement_description']) || ($value['achievement_tag']) ){ ?>
-                                            <hr class="hor-divider-solid-medium width-100 border-md-amber my-10">
+                                            <hr class="border-medium width-100 border-md-amber my-10">
                                             <?php } ?>
 
                                             <!-- Description -->
@@ -948,11 +961,12 @@
                                             </ul>
                                             <?php } ?>
                                         </div>
-                                        <div class="media-right my-20 ">
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only mb-20 " data-toggle="modal">
+                                        <div class="media-right ">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_achievements_<?php echo $value['achievement_id']?>" class="btn btn-md-cyan btn-icon-only tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit" data-toggle="modal">
                                                 <i class="icon-pencil"></i>
                                             </a>
-                                            <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete mb-20">
+                                            <div class="clearfix my-5"></div>
+                                            <a href="javascript:;" tb-val="achievement" data-value="<?php echo $value['achievement_id'];?>" class="btn btn-md-red btn-icon-only btn-delete tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete">
                                                 <i class="icon-trash"></i>
                                             </a>
                                         </div>
@@ -987,7 +1001,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                                             <div class="col-md-9">
-                                                                <textarea class="form-control autosizeme" name="achievement_description" rows="4" placeholder="Brief about your studying place and what subject you had study."><?php echo !empty($value['achievement_description']) ? $value['achievement_description'] : ''; ?></textarea>
+                                                                <textarea class="form-control autosizeme no-resize" name="achievement_description" rows="4" placeholder="Describe about your studying place and what subject you had study."><?php echo !empty($value['achievement_description']) ? $value['achievement_description'] : ''; ?></textarea>
                                                             </div>
                                                         </div>
 
@@ -1033,7 +1047,7 @@
                                 <?php } ?>
                             </ul>
                         </div>
-                        <!-- Empty State -->
+                        <!-- # Empty State -->
                         <?php else: ?>
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
@@ -1058,14 +1072,14 @@
                             <div class="caption ">
                                 <i class="icon-badge"></i>
                                 <span class="caption-subject font-weight-500  roboto-font "><?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?></span>
-                                <span class="caption-helper"><?= !empty($language->site_list_skill) ? $language->site_list_skill : "list out all your skill based by project" ?></span>
+                                <span class="caption-helper"><?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out your acquire skill based by project you have participate." ?></span>
                             </div>
+                            <?php if (!empty($user_profile['projects'])){ ?>
                             <div class="actions">
-                                <?php if (!empty($user_profile['projects'])){ ?>
                                 <a href="#modal_add_project" data-toggle="modal" class="btn btn-md-indigo  px-60">
                                     <i class="fa fa-plus"></i><?= !empty($language->add) ? $language->add : "Add" ?></a>
-                                <?php } ?>
                             </div>
+                            <?php } ?>
                         </div>
                         <?php if (!empty($user_profile['projects'])): ?>
                         <div class="portlet-body my-0 py-0">
@@ -1076,7 +1090,7 @@
                                         <!-- Content -->
                                         <div class="media-body">
                                             <!-- Project Name -->
-                                            <h4 class="font-weight-700 letter-space-xs">
+                                            <h4 class="font-weight-700 letter-space-xs mt-0">
                                                 <?php echo ucfirst($value['name']);?> </h4>
 
                                             <!-- Start / EndDate -->
@@ -1088,7 +1102,7 @@
 
                                             <!-- DIVIDER only show when description or skill not empty -->
                                             <?php if (!empty($value['description']) || ($value['skills_acquired']) ){ ?>
-                                            <hr class="hor-divider-solid-medium width-100 border-md-amber mt-0 mb-10">
+                                            <hr class="border-medium width-100 border-md-amber mt-0 mb-10">
                                             <?php } ?>
 
                                             <!-- Description -->
@@ -1119,13 +1133,14 @@
                                             <?php } ?>
                                         </div>
                                         <!-- Button -->
-                                        <div class="media-right media-middle my-20 ">
+                                        <div class="media-right">
                                             <!-- Edit Button  -->
-                                            <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only mb-20">
+                                            <a href="<?php echo base_url();?>student/profile#modal_edit_project_<?php echo $value['id'] ?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit">
                                                 <i class="icon-pencil"></i>
                                             </a>
+                                            <div class="clearfix my-5"></div>
                                             <!-- Delete Button -->
-                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete mb-20" data-value="<?php echo $value['id'];?>" tb-val="user_projects">
+                                            <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete" data-value="<?php echo $value['id'];?>" tb-val="user_projects">
                                                 <i class="icon-trash"></i>
                                             </a>
                                         </div>
@@ -1176,7 +1191,7 @@
                                                                                     <span></span>
                                                                                     <span class="check"></span>
                                                                                     <span class="box"></span>
-                                                                                    <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently project still ongoing?" ?></small>
+                                                                                    <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?></small>
                                                                                 </label>
                                                                             </span>
                                                                         </div>
@@ -1191,16 +1206,14 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
                                                                     <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
-                                                                    <textarea class="form-control autosizeme" name="project_description" rows="6" placeholder="Brief about your project progress ....">
-                                                                        <?php echo ucfirst($value['description']); ?>
-                                                                    </textarea>
+                                                                    <textarea class="form-control autosizeme no-resize" name="project_description" rows="6" placeholder="Describe about your project progress."><?php echo ucfirst($value['description']); ?></textarea>
                                                                 </div>
                                                             </div>
                                                             <!-- Skill Earned -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
                                                                     <label class="control-label"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
-                                                                    <input type="text" class="form-control input-xlarge" value="<?php echo $value['skills_acquired']; ?>" data-role="tagsinput" name="skills">
+                                                                    <input type="text" class="form-control" value="<?php echo $value['skills_acquired']; ?>" data-role="tagsinput" name="skills">
                                                                     <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
                                                                 </div>
                                                             </div>
@@ -1277,16 +1290,16 @@
                                 <!-- SECTION : Personal Info -->
                                 <div class="tab-pane active fade-in-up" id="tab_personal">
                                     <h4 class="form-section font-weight-600 text-uppercase md-indigo-text"><?= !empty($language->site_personal_information ) ? $language->site_personal_information  : "My Personal Information" ?></h4>
-                                    <!-- # Full Name / Preferences Name -->
+                                    <!-- # Attribute : Full Name / User Status -->
                                     <div class="row">
-                                        <!-- Full name -->
+                                        <!-- Attribute : Full name -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_full_name ) ? $language->site_full_name  : "Full Name" ?></label>
-                                                <input type="text" class="form-control" name="fullname" placeholder="Jennifer Lawrence" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
+                                                <input type="text" class="form-control" name="fullname" placeholder="John Doe" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
                                             </div>
                                         </div>
-                                        <!-- Preferencs Name -->
+                                        <!-- Attribute : User Status -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_current_career ) ? $language->site_current_career  : "Current Career" ?></label>
@@ -1299,27 +1312,29 @@
                                                 </div>
 
                                             </div>
-
                                         </div>
                                     </div>
-                                    <!-- # Prefences Name / Gender / DOB -->
+                                    <!-- # Attribute : Prefences Name / Gender / DOB -->
                                     <div class="row">
+                                        
+                                        <!-- Attribute : Preferences Name -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_pref_name ) ? $language->site_pref_name  : "Preferences Name" ?></label>
-                                                <input type="text" class="form-control" placeholder="Jenny" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
+                                                <input type="text" class="form-control" placeholder="John" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
                                             </div>
-
                                         </div>
+
+                                        <!-- Attribute : DOB -->
                                         <div class="col-sm-4">
-                                            <!-- DOB -->
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->DOB ) ? $language->DOB  : "Date Of Birth" ?></label>
-                                                <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="mm/dd/yyyy" placeholder="mm/dd/yyyy" required>
+                                                <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
                                             </div>
                                         </div>
+                                        
+                                        <!-- Attribute : Gender -->
                                         <div class="col-sm-4">
-                                            <!-- Gender -->
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_gender ) ? $language->site_gender  : "Gender" ?></label>
                                                 <select class="form-control bs-select" name="gender">
@@ -1337,14 +1352,18 @@
                                         </div>
 
                                     </div>
-                                    <!-- # Phone Number / Salary Expectation -->
+
+                                    <!-- # Attribute : Phone Number / Salary Expectation -->
                                     <div class="row">
+                                        <!-- Attribute : Phone Number -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ?></label>
                                                 <input type="number" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
                                             </div>
                                         </div>
+
+                                        <!-- Attribute : Salary Expectation -->
                                         <div class=" col-sm-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_expected_salary) ? $language->site_expected_salary : "Salary Expectation" ?></label>
@@ -1352,25 +1371,26 @@
                                                     <span class="input-group-addon">
                                                         <?php echo $this->session->userdata('forex'); ?>
                                                     </span>
-                                                    <input type="text" class="form-control" placeholder="2500" name="expected_salary" value="<?php echo !empty($user_profile['overview']['expected_salary']) ? ucfirst($user_profile['overview']['expected_salary']) : '000';?>" required>
+                                                    <input type="text" class="form-control" placeholder="1000" name="expected_salary" value="<?php echo !empty($user_profile['overview']['expected_salary']) ? ucfirst($user_profile['overview']['expected_salary']) : '000';?>" required>
                                                     <span class="input-group-addon">.00</span>
                                                 </div>
                                                 <small class="helper-block md-grey-text mb-0"><?= !empty($language->site_salary_expectation) ? $language->site_salary_expectation : "Your salary expectation" ?></small>
                                             </div>
                                         </div>
                                     </div>
-
+                                    
+                                    <!-- # Title : Address -->
                                     <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->address) ? $language->address : "Address" ?></h4>
-                                    <!-- # Street / Postcode -->
+                                    <!-- # Attribute : Street / Postcode -->
                                     <div class="row  ">
-                                        <!-- Address -->
+                                        <!-- Attribute : Street -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->address) ? $language->address : "Address" ?></label>
                                                 <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road " value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>" required>
                                             </div>
                                         </div>
-                                        <!--  Postcode -->
+                                        <!-- Attribute : Postcode -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->postcode) ? $language->postcode : "Postcode" ?></label>
@@ -1378,19 +1398,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- # City & state -->
+                                    <!-- # Attribute : City / State / Country -->
                                     <div class="row">
+                                        <!-- Attribute : City -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->city) ? $language->city : "City" ?></label>
-                                                <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>" required> </div>
+                                                <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>" required> 
+                                            </div>
                                         </div>
+                                        <!-- Attribute : State -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->state) ? $language->state : "State" ?></label>
                                                 <input type="text" class="form-control" name="state" placeholder="State" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
                                             </div>
                                         </div>
+                                        <!-- Attribute : Country -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
                                                 <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->country) ? $language->country: "Country" ?></label>
@@ -1398,21 +1422,18 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    
+                                    <!-- # Title : Summary / QOute -->
                                     <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->site_summarize) ? $language->site_summarize : "Summarize About Yourself" ?></h4>
-                                    <!-- # Quote -->
+                                    <!-- Attribute : Quote -->
                                     <div class="form-group mx-0">
                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_quote) ? $language->site_quote : "Quote" ?></label>
-                                        <textarea name="quotes" class="form-control" id="" rows="2" placeholder="Add your quote / headlines">
-                                            <?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?>
-                                        </textarea>
+                                        <textarea name="quotes" class="form-control autosizeme no-resize" id="" rows="2" placeholder="Add your quote / headlines"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
                                     </div>
                                     <!-- About Yourself-->
                                     <div class="form-group mx-0 ">
                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_about_you) ? $language->site_about_you : "About Yourself" ?></label>
-                                        <textarea name="summary" class="form-control" id="" rows="4" placeholder="Summary about yourself">
-                                            <?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?>
-                                        </textarea>
+                                        <textarea name="summary" class="form-control autosizeme no-resize"   rows="4" placeholder="Summarize about yourself."><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
                                     </div>
 
                                     <!-- Video Resume -->
@@ -1439,6 +1460,7 @@
                                                     <div class="col-md-4">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->language) ? $language->language : "Language" ?></label>
                                                         <select class="form-control " name="name">
+                                                            <option disabled selected><?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?></option>
                                                             <?php foreach ($languages as $key => $value) { ?>
                                                             <option <?php echo $user_language_value[ 'title']==$value[ 'name'] ? 'selected' : '' ?>>
                                                                 <?php echo $value['name']; ?>
@@ -1458,7 +1480,7 @@
                                                     <div class="col-md-3">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->spoken) ? $language->spoken : "Spoken" ?></label>
                                                         <select class="form-control" name="spoken">
-                                                            <option value="" disabled><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
+                                                        <option value="" disabled><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
                                                             <option value="Beginner" <?php echo $user_language_value[ 'spoken']=='Beginner' ? 'selected' : '' ?>><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
                                                             <option value="Intermediate" <?php echo $user_language_value[ 'spoken']=='Intermediate' ? 'selected' : '' ?>><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
                                                             <option value="Advanced" <?php echo $user_language_value[ 'spoken']=='Advanced' ? 'selected' : '' ?>><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
@@ -1475,10 +1497,11 @@
                                                 ?>
 
                                                 <div data-repeater-item class="row mt-20">
+                                                    <!-- Attribute : Name Language  -->
                                                     <div class="col-md-4">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->language) ? $language->language : "Language" ?></label>
                                                         <select class="form-control " name="name">
-                                                            <option value=""><?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?></option>
+                                                            <option disabled selected><?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?></option>
                                                             <?php foreach ($languages as $key => $value) { ?>
                                                             <option>
                                                                 <?php echo $value['name']; ?>
@@ -1486,27 +1509,30 @@
                                                             <?php } ?>
                                                         </select>
                                                     </div>
+                                                    <!-- Attribute : Spoken  -->
                                                     <div class="col-md-3">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->written) ? $language->written : "Written" ?></label>
-                                                        <select class="form-control bs-select" name="written">
-                                                            <option value=""><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
+                                                        <select class="form-control" name="written" >
+                                                            <option disabled selected><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
                                                             <option value="Beginner"><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
                                                             <option value="Intermediate"><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
                                                             <option value="Advanced"><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
                                                         </select>
                                                     </div>
+                                                    <!-- Attribute : Written  -->
                                                     <div class="col-md-3">
                                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->spoken) ? $language->spoken : "Spoken" ?></label>
                                                         <select class="form-control" name="spoken">
-                                                            <option value=""><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
+                                                            <option disabled selected><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
                                                             <option value="Beginner"><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
                                                             <option value="Intermediate"><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
                                                             <option value="Advanced"><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
                                                         </select>
                                                     </div>
+                                                    <!-- Button Remove -->
                                                     <div class="col-md-2 pt-55">
-                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm">
-                                                            <i class="fa fa-close"></i> <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-md-red btn-sm  letter-space-sm  text-uppercase font-weight-700">
+                                                            <i class="fa fa-close mr-5"></i> <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1515,8 +1541,8 @@
                                             </div>
                                             <hr>
                                             <div class="mx-100">
-                                                <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add  btn-block  ">
-                                                    <i class="fa fa-plus"></i><?= !empty($language->add_new_lang) ? $language->add_new_lang : "Add New Language" ?>
+                                                <a href="javascript:;" data-repeater-create class="btn btn-md-blue mt-repeater-add btn-block letter-space-sm font-14 text-uppercase font-weight-600  ">
+                                                    <i class="fa fa-plus mr-5"></i><?= !empty($language->add_new_lang) ? $language->add_new_lang : "New Language" ?>
                                                 </a>
                                             </div>
 
@@ -1756,7 +1782,7 @@
                                                     <span></span>
                                                     <span class="check"></span>
                                                     <span class="box"></span>
-                                                    <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still studying?" ?>
+                                                    <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
                                                 </label>
                                             </span>
                                         </div>
@@ -1768,10 +1794,10 @@
                             <!-- Description -->
                             <div class="form-group">
                                 <label class="control-label col-md-3">
-                                    <?= !empty($language->description) ? $language->description : "Description" ?>
+                                <?= !empty($language->description) ? $language->description : "Description" ?>
                                 </label>
                                 <div class="col-md-9">
-                                    <textarea class="form-control" rows="4" placeholder="Brief about your studying place and what subject you had study." name="academics_description"></textarea>
+                                    <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place." name="academics_description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -1789,6 +1815,7 @@
         <div class="modal fade in" id="modal_add_experience" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content portlet light portlet-fit fade-in-up">
+                    <!-- Modal : Header -->
                     <div class="modal-header portlet-title">
                         <div class="caption">
                             <span class="caption-subject text-capitalize font-weight-500">
@@ -1798,34 +1825,32 @@
                         <div class="actions py-20">
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
                         </div>
-
                     </div>
                     <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
                         <div class="modal-body portlet-body ">
-                            <!-- Job Post & Time Period -->
+                            <!-- # Attribute : Job Post & Time Period -->
                             <div class="row ">
+                                <!-- Attribute : Job Position Title -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label">
-                                            <?= !empty($language->site_job_title) ? $language->site_job_title : "Job Title" ?>
+                                            <?= !empty($language->site_job_title) ? $language->site_job_title : "Job Position Title" ?>
                                         </label>
-                                        <input type="text" class="form-control " placeholder="Internship in IT Dept" name="title" required>
+                                        <input type="text" class="form-control " placeholder="Internship In Marketing Department" name="title" required>
                                         <span class="help-block small">
-                                            <?= !empty($language->site_add_current_career) ? $language->site_add_current_career : "Add your current status career info" ?>
+                                            <?= !empty($language->site_add_current_career) ? $language->site_add_current_career : "Your previous job position title" ?>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <!-- TIme Period  -->
+                                <!-- Attribute : Time Period -->
+                                <div class="col-md-6">                                    
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label ">
                                             <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
                                         </label>
-
                                         <div class="m-grid ">
                                             <div class="m-grid-col m-grid-col-xs-6">
-                                                <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
-                                                <!-- <span class="help-block"> Select date </span> -->
+                                                <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>                                                
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                 <span class="help-block">
@@ -1840,29 +1865,30 @@
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
-                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still working?" ?>
+                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
                                                     </label>
                                                 </span>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-                            <!-- Company Name / Job Employement Type / Industry -->
+                            <!-- # Attibute : Company Name / Job Employement Type / Industry -->
                             <div class="row ">
+                                <!-- Attribute : Company Name -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label">
                                             <?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?>
                                         </label>
-                                        <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>
-                                        <!-- <span class="help-block small"> Add your current status career info </span> -->
+                                        <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>                                        
                                     </div>
                                 </div>
+                                
+                                <!-- # Attribute : Job Employement Type  / Industry -->
                                 <div class="col-md-6">
-                                    <!-- Job Employement Type  / Industry -->
                                     <div class="row">
+                                        <!-- Attribute : Job Employement Type -->
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
                                                 <label class="control-label ">
@@ -1880,6 +1906,7 @@
                                                 </span>
                                             </div>
                                         </div>
+                                            <!-- Attribute : Industry -->
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
                                                 <label class="control-label ">
@@ -1903,24 +1930,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Description / Skill Earned -->
+                            <!--# Attribute : Description / Skill Earned -->
                             <div class="row ">
+                                <!--# Attribute : Description -->
                                 <div class="col-md-6">
-                                    <!-- Description -->
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label ">
                                             <?= !empty($language->description) ? $language->description : "Description" ?>
                                         </label>
-                                        <textarea class="form-control autosizeme" rows="4" placeholder="Brief about your working place ...." name="description"></textarea>
+                                        <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your working place." name="description"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
                                     <!-- Skill Earned -->
+                                <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label">
                                             <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
                                         </label>
-                                        <input type="text" class="form-control input-xlarge" value="Microsoft Office, Internet Browsing, Research" data-role="tagsinput" name="skills">
+                                        <input type="text" class="form-control input-xlarge" value="Time Management, Banking , Design  " data-role="tagsinput" name="skills">
                                         <span class="help-block small">
                                             <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
                                         </span>
@@ -1966,7 +1993,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
                                 <div class="col-md-9">
-                                    <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme" rows="4" placeholder="Brief about your studying place and what subject you had study." data-autosize-on="true"></textarea>
+                                    <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." data-autosize-on="true"></textarea>
                                 </div>
                             </div>
 
@@ -2057,7 +2084,7 @@
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
-                                                        <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently still working?" ?></small>
+                                                        <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?></small>
                                                     </label>
                                                 </span>
                                             </div>
@@ -2072,14 +2099,14 @@
                                     <!-- Description -->
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
-                                        <textarea class="form-control autosizeme" rows="6" placeholder="Brief about yourproject progress ...." name="project_description"></textarea>
+                                        <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about how you acquire skill by involve in this project." name="project_description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Skill Earned -->
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
-                                        <input type="text" class="form-control input-xlarge" id="tagsinput" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" name="skills">
+                                        <input type="text" class="form-control" id="tagsinput" value="Design , Reporting , Editing Video , Grapic Designer" data-role="tagsinput" name="skills">
                                         <span class="help-block small"><?= !empty($language->site_enter_tag) ? $language->site_enter_tag : "Press \"Enter\" to add tag" ?>   </span>
                                     </div>
                                 </div>
