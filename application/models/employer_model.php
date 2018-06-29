@@ -536,7 +536,7 @@ class Employer_Model extends CI_Model{
                                 ');
         $this->db->from('users');
         $this->db->join('student_bios','users.id = student_bios.user_id', 'left' );
-        $this->db->join('countries','countries.id = users.country_id', 'left' );
+        $this->db->join('countries','countries.id = users.country', 'left' );
         $this->db->join('bookmark_candidate','bookmark_candidate.user_id = users.id', 'left' );
         $this->db->join('experiences','experiences.user_id = users.id', 'left' );
         $this->db->where('bookmark_candidate.user_id','=', $id);
