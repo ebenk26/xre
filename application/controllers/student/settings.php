@@ -125,7 +125,7 @@ class settings extends CI_Controller {
         				'salary_range' 			=> !empty($this->input->post('range_min')) && $this->input->post('cbSalaryRange') != FALSE ? $this->input->post('range_min').'-'.$this->input->post('range_max') : NULL,
         				'position_level' 		=> !empty($this->input->post('position_level')) && $this->input->post('cbPositionLevel') != FALSE ? implode(';', $this->input->post('position_level')) : NULL,
         				'years_of_experience' 	=> !empty($this->input->post('years_of_experience')) && $this->input->post('cbYearOfExperience') != FALSE ? implode(';', $this->input->post('years_of_experience')) : NULL,
-        				'qualifications' 		=> !empty($this->input->post('qualifications')) && $this->input->post('cbQualification') != FALSE ? implode(';', $this->input->post('qualifications')) : NULL,
+        				'qualifications' 		=> !empty($this->input->post('qualifications')) && $this->input->post('cbQualification') != FALSE ? $this->input->post('qualifications') : NULL,
         				'employment_type' 		=> !empty($this->input->post('employment_type')) && $this->input->post('cbJobType') != FALSE ? implode(';', $this->input->post('employment_type')) : NULL
         			);
         $where = array('user_id' => $this->session->userdata('id'));
@@ -134,7 +134,8 @@ class settings extends CI_Controller {
 
         if(count($checkData) > 0)
         {
-        	$data['created_by'] = $this->session->userdata('id');
+            $data['updated_by']     = $this->session->userdata('id');
+            $data['updated_date']   = date('Y-m-d H:i:s');
 
 	        $where = array('id' => $checkData->id);
 
@@ -142,8 +143,7 @@ class settings extends CI_Controller {
         }
         else
         {
-        	$data['updated_by'] 	= $this->session->userdata('id');
-        	$data['updated_date'] 	= date('Y-m-d H:i:s');
+            $data['created_by'] = $this->session->userdata('id');
         	
         	$this->global_model->create('job_preferences', $data);
         }
@@ -160,7 +160,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().'student/settings#tab_job');
     }
 }
 
