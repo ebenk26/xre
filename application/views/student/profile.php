@@ -2119,6 +2119,62 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- Modal : Print Resume -->
+        <div class="modal fade in" id="modal_print_resume" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content fade-in-up">
+                    <div class="modal-body p-0">
+                        <div class="m-grid">
+                            <div class="m-grid-col">
+                                <div class="panel my-0 ">
+                                    <div class="panel-body md-grey-light my-0 py-30">
+                                        
+                                        <img src="<?php echo IMG; ?>print/print-v1-blank.jpg" class="img-responsive height-450 center-block" alt="">
+                                    </div>
+                                    <div class="panel-footer md-grey-light border-none text-center">
+                                        <div class="form-group ">
+                                            <input type="radio" name="print" value="Style 1" checked>
+                                            <label for="">Style 1</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-grid-col">
+                                <div class="panel my-0">
+                                    <div class="panel-body py-30">
+                                    <img src="<?php echo IMG; ?>print/print-v3-blank.jpg" class="img-responsive height-450 center-block" alt="">
+                                    </div>
+                                    <div class="panel-footer  border-none text-center md-transparent">
+                                        <div class="form-group ">
+                                            <input type="radio" name="print" value="Style 2">
+                                            <label for="">Style 2</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-grid-col">
+                                <div class="panel my-0">
+                                    <div class="panel-body md-grey-light py-30">
+                                        <img src="<?php echo IMG; ?>print/print-v5-blank.jpg" class="img-responsive height-450 center-block" alt="">
+                                    </div>
+                                    <div class="panel-footer md-grey-light border-none text-center">
+                                        <div class="form-group ">
+                                            <input type="radio" name="print" value="Style 3">
+                                            <label for="">Style 3</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-md-indigo"><i class="icon-printer mr-5"></i>Print</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ********************** End MODAL ********************* -->
     </div>
 </div>
