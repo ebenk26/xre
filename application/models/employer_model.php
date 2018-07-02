@@ -516,34 +516,55 @@ class Employer_Model extends CI_Model{
     }
 
     public function get_bookmarked_user($id){
-        $this->db->select('     users.id, 
-                                users.email,
-                                users.fullname,
-                                users.preference_name,   
-                                users.country as country_id, 
-                                countries.name as country,
-                                student_bios.*, 
-                                bookmark_candidate.user_id,
-                                bookmark_candidate.company_id,
-                                bookmark_candidate.status,
-                                experiences.start_date as exp_start,
-                                experiences.end_date as exp_end,
-                                experiences.exp_time as exp_time,
-                                experiences.company_name as company_name,
-                                experiences.employment_type_id as employment_type_id,
-                                experiences.industries_id as industries_id,
-                                experiences.skills as skills,
-                                ');
-        $this->db->from('users');
-        $this->db->join('student_bios','users.id = student_bios.user_id', 'left' );
-        $this->db->join('countries','countries.id = users.country', 'left' );
-        $this->db->join('bookmark_candidate','bookmark_candidate.user_id = users.id', 'left' );
-        $this->db->join('experiences','experiences.user_id = users.id', 'left' );
-        $this->db->where('bookmark_candidate.user_id','=', $id);
-        $this->db->where('bookmark_candidate.status','=', 1);
-        $candidate = $this->db->get();
 
-        return $candidate->result_array();
+
+
+        $query = $this->db->get_where('bookmark_candidate', array('company_id' => $id, 'status' => 1));
+        $candidate = $query->result_array();
+        foreach ($candidate as $key => $value) {
+            $this->db->select('     users.id as id_user,
+                                    users.email,
+                                    users.fullname,
+                                    users.preference_name,   
+                                    users.country as country_id, 
+                                    countries.name as country_name,
+                                    student_bios.*,
+                                    user_address.city,
+                                    user_address.state
+                                ');
+            $this->db->from('users');
+            $this->db->join('student_bios','student_bios.user_id = users.id');
+            $this->db->join('countries','countries.id = users.country');
+            $this->db->join('user_address','user_address.user_id = users.id');
+            $this->db->where('users.id', $value['user_id'] );
+            
+            $query = $this->db->get();
+
+
+            $result[$key]['candidate'] = $query->last_row();
+
+
+            $this->db->select('     experiences.*,
+                                    industries.name as industry,
+                                    employment_types.name as employment_types,
+                                ');
+            $this->db->from('experiences');
+            $this->db->join('industries','industries.id = experiences.industries_id');
+            $this->db->join('employment_types','employment_types.id = experiences.employment_type_id');
+            $this->db->where('experiences.user_id', $value['user_id'] );
+            $query = $this->db->get();
+            $result[$key]['experiences'] = $query->last_row();   
+
+
+            $query = $this->db->get_where('academics',array('user_id'=> $value['user_id']));
+            $result[$key]['academics'] = $query->last_row();   
+
+            $query = $this->db->get_where('job_preferences',array('user_id'=> $value['user_id']));
+            $result[$key]['job_preferences'] = $query->last_row();   
+
+        }
+
+        return $result;
 
     }
 
