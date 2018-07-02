@@ -114,7 +114,7 @@
                                     }
                                 ?>
                                 <!--  -->
-                                <a href="#" class="btn btn-md-indigo  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume">
+                                <a href="<?= base_url(); ?>profile/user/<?= rtrim(base64_encode($value->id),'='); ?>" target="_blank" class="btn btn-md-indigo  letter-space-xs mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume">
                                     <i class="fa fa-eye "></i>
                                 </a>
                             </div>
@@ -160,7 +160,7 @@
                                             {
                                                 $(".searchResult").html(data.searchResult)
                                                 $(".loader").addClass('hidden')
-                                                location.reload()
+                                                // location.reload()
                                             }
                                             else
                                             {
