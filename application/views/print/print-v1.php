@@ -380,7 +380,7 @@
                         <!-- Title -->
                         <div class="m-grid title-resume">
                             <hr class="border-mdo-amber-v7 mt-0 mb-10">
-                            <h6 class=" text-uppercase font-15 md-darkblue-text font-weight-700 text-center letter-space-sm mb-0">Extra Curricular Activity</h6>
+                            <h6 class=" text-uppercase font-15 md-darkblue-text font-weight-700 text-center letter-space-sm mb-0">Extracurricular Activity</h6>
                             <hr class="border-mdo-amber-v7 mt-10 mb-0">
                         </div>
                         <!-- Content -->
