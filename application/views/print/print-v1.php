@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">    
         
     <!-- GLobal -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css">
 
     <!-- Favicon -->
     <!-- <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon"> -->

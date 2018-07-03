@@ -1,3 +1,8 @@
+<?php
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header('Content-Type: application/octet-stream');
+header("Content-Disposition: attachment; filename=$page_title.docx");    
+?>
 <!-- NOTE : NEED TO manage it margin to none when print -->
 <!DOCTYPE html>
 <html lang="en">
