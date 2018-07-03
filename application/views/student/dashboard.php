@@ -160,11 +160,20 @@
                                 <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
                                 <li>
                                     <p class="badge badge-md-green  badge-roundless letter-space-xs">
-                                        <i class="fa fa-usd"></i>
-                                        <?php echo $this->session->userdata('forex') ?>
+                                        <?php if (!empty($this->session->userdata('forex'))){
+                                            echo $this->session->userdata('forex') 
+                                         ?>
                                         <?php echo $value['min_budget']; ?> -
                                         <?php echo $this->session->userdata('forex') ?>
                                         <?php echo $value['max_budget']; ?>
+
+                                        <?php } else{ ?>
+                                        
+                                        <i class="fa fa-usd"></i> 
+                                        <?php echo $value['min_budget']; ?> -
+                                        <i class="fa fa-usd"></i> 
+                                        <?php echo $value['max_budget']; ?>
+                                        <?php } ?>
                                     </p>
                                 </li>
                                 <?php } ?>
