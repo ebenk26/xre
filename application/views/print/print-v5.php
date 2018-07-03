@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Print-v1 </title>
+    <title> Print-v5 </title>
 
     <!-- Web Fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
@@ -18,17 +18,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
 
     <!-- Icon -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
-
-    <!-- Vendor Styles -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/css/print.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">    
 
     <!-- GLobal -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
-
-    <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
@@ -36,10 +29,10 @@
 </head>
 
 <body>
-    <section class="page ">
+<section class="page-resume">
         <div class="m-grid m-grid-full-height ">
             <!-- Education > Experience > Skill -->
-            <div class="m-grid-col-xs-8 m-grid-col p-20">
+            <div class="m-grid-col-xs-8 m-grid-col p-25">
                 <!-- # Profile -->
                 <div class="m-grid mb-5">
                     <!-- Title -->
@@ -57,7 +50,7 @@
                         </div>
                     </div>
                     <!-- Content -->
-                    <p class=" font-13 md-grey-darken-3-text text-justify p-5 mb-5">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
+                    <p class=" font-12 md-grey-darken-3-text text-justify p-5 mb-5">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
                 </div>
 
                 <!-- # Education -->
@@ -300,7 +293,7 @@
             </div>
 
             <!-- Image > Name  > Profile > Contact  > Language > Reference-->
-            <div class="m-grid-col-xs-4 m-grid-col md-light-blue-light p-20">
+            <div class="m-grid-col-xs-4 m-grid-col md-light-blue-light p-25">
 
                 <!-- # Profile Image -->
                 <div class="m-grid ">

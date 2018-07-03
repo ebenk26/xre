@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> Print-v1 </title>
+    <title> Print-v3 </title>
 
     <!-- Web Fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,400,400i|Montserrat:400,700">
@@ -19,16 +19,9 @@
 
     <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
-
-    <!-- Vendor Styles -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/css/print.css">
 
     <!-- GLobal -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
-
-    <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
@@ -36,31 +29,31 @@
 </head>
 
 <body>
-    <section class="page">
+<section class="page-resume">
         <!-- @ ATTR : Full Name & About Me -->
-        <div class="m-grid bg-sky-light">
+        <div class="m-grid md-red-light">
             <div class="m-grid-col m-grid-col-center m-grid-col-middle">
-                <div class="px-40 py-20">
+                <div class="py-40 px-50">
                     <!-- @ ATTR : FULL NAME -->
                     <h4 class="letter-space-sm  md-darkblue-text ">DANNY WONG FEI MUN</h4>
                     <hr class="width-250 center-block my-15 border-mdo-blue-grey-v8 ">
                     <!-- @ ATTR : ABOUT ME -->
-                    <p class="font-13 mb-0 px-10 mdo-black-v8-text letter-space-xxs line-height-sm">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
+                    <p class="font-12 mb-0 px-30 mdo-black-v8-text letter-space-xxs line-height-sm">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
                 </div>
             </div>
         </div>
 
         <div class="m-grid m-grid-full-height">
             <div class="m-grid-row">
-                <div class="m-grid-col m-grid-col-xs-4 px-20 py-10 ">
+                <div class="m-grid-col m-grid-col-xs-4 p-20 ">
                     <!-- # PROFILE IMAGE -->
                     <img src="../../assets/pages/img/avatars/team10.jpg" alt="" class="avatar avatar-large avatar-circle center-block mb-20">
 
                     <!-- # CONTACT INFO  -->
                     <div class="row no-space">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Contact </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Contact </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
 
                         <!-- Content -->
                         <ul class="list-unstyled mt-ul-li-tb-3 px-5">
@@ -109,8 +102,8 @@
                     <!-- # LANGUAGE -->
                     <div class="row no-space">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Language </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Language </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content -->
                         <ul class="list-unstyled mt-ul-li-tb-5 px-5">
                             <li>
@@ -146,8 +139,8 @@
                     <!-- # REFERENCE -->
                     <div class="row no-space ">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Reference </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Reference </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content -->
                         <ul class="list-unstyled mt-ul-li-tb-5 mx-0 px-5">
                             <li class="m-grid">
@@ -189,12 +182,12 @@
 
                 </div>
 
-                <div class="m-grid-col border-left border-mdo-grey-v3 p-15 m-grid-col-xs-8">
+                <div class="m-grid-col border-left border-mdo-grey-v3 p-20 m-grid-col-xs-8">
                     <!-- Education -->
                     <div class="row no-space">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Education </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Education </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content ------- Note : Latest info will be the first-->
                         <ul class="list-unstyled mt-ul-li-tb-5 px-5 ">
                             <li>
@@ -222,10 +215,10 @@
                     <!-- Experience -->
                     <div class="row no-space">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Experience </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Experience </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-3 px-5 ">
+                        <ul class="list-unstyled mt-ul-li-tb-5 px-5 ">
                             <li>
                                 <!-- @ATTR : Company Name | Job Position Title -->
                                 <h5 class="font-13 mb-5  md-darkblue-text">
@@ -266,43 +259,43 @@
                     <!-- Skill -->
                     <div class="row no-space">
                         <!-- Title -->
-                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Skill </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <h6 class="text-uppercase font-weight-700 md-darkblue-text font-15 letter-space-xs mb-0 title-resume"> Skill </h6>
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content -->
                         <ul class=" mt-ul-li-lr-0 mx-0 list-inline px-5 mt-ul-li-tb-0">
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12 ">
                                 Brand Management
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
                             </li>
                             <li class=" md-grey-darken-3-text text-break font-12">
-                                Campaign Management
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                Campaign Management                                
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
                             </li>
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12">                                    
                                 Business (Marketing) Strategy
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
                             </li>
                             <li class=" md-grey-darken-3-text text-break font-12">
                                 Channel Management
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>                                
 
                             </li>
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12 ">
                                 Budgeting and Planning
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
                             </li>
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12 ">
                                 Graphic Design
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
 
                             </li>
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12 ">
                                 Marketing Communications
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
                             </li>
-                            <li class=" md-grey-darken-3-text text-break font-12">
+                            <li class=" md-grey-darken-3-text text-break font-12 ">
                                 Business Development
-                                <i class="md-blue-grey-darken-3-text fa fa-minus font-weight-700 font-10"></i>
+                                <i class="md-blue-grey-darken-3-text fa fa-minus font-13 "></i>
 
                             </li>
                             <li class=" md-grey-darken-3-text text-break font-12">
@@ -314,12 +307,12 @@
                     <div class="row no-space ">
                         <!-- Title -->
                         <h6 class="text-uppercase font-weight-700 md-darkblue-text font-16 letter-space-xs mb-0 title-resume"> Extracurricular Activity </h6>
-                        <hr class="hor-divider-solid-medium my-5 md border-mdo-blue-grey-v7">
+                        <hr class="hor-divider-solid-medium my-10 md border-mdo-blue-grey-v7">
                         <!-- Content -->
-                        <ul class="list-unstyled  mt-ul-li-tb-3 px-5">
+                        <ul class="list-unstyled  mt-ul-li-tb-5 px-5">
                             <!-- DISPLAY TITLE -->
                             <li>
-                                <h5 class="font-13 mb-0  md-darkblue-text ">Charity Event </h5>
+                                <h5 class="font-13 mb-0 md-darkblue-text ">Charity Event </h5>
                             </li>
                             <li>
                                 <h5 class="font-13 mb-0  md-darkblue-text">Event #1</h5>

@@ -18,17 +18,10 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>bootstrap/bootstrap-switch.min.css">
 
     <!-- Icon -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/simple-line-icons.min.css">
-
-    <!-- Vendor Styles -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/css/print.css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>icon/font-awesome.min.css">    
+        
     <!-- GLobal -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
-
-    <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
@@ -36,7 +29,7 @@
 </head>
 
 <body>
-    <section class="page">
+<section class="page-resume">
         <div class="m-grid m-grid-full-height ">
             <div class="m-grid-row">
                 <div class="m-grid-col m-grid-col-xs-4 m-grid-col-center p-20 md-darkblue full-height-content height-100-percent">
@@ -49,8 +42,8 @@
                     <hr class="border-dash border-mdo-white-v8 my-15">
 
                     <!-- # CONTACT -->
-                    <div class="portlet portlet-body  ">
-                        <ul class="list-unstyled">
+                    <div class="portlet portlet-body mb-15 ">
+                        <ul class="list-unstyled px-5 ">
                             <!-- Phone -->
                             <li class="m-grid">
                                 <div class="m-grid-col-xs-2 m-grid-col">
@@ -96,12 +89,12 @@
                     </div>
 
                     <!-- # LANGUAGE -->
-                    <div class="portlet portlet-body text-left ">
+                    <div class="portlet portlet-body text-left mb-15">
                         <!-- Title -->
                         <h6 class=" text-uppercase font-15 md-amber-text mb-0 letter-space-xs title-resume">Language</h6>
                         <hr class="border-dash border-mdo-white-v8 my-15">
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-1">
+                        <ul class="list-unstyled mt-ul-li-tb-4 px-5">
                             <li>
                                 <h6 class="md-amber-text font-13 mb-5">English</h6>
                                 <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Spoken
@@ -127,44 +120,44 @@
                     </div>
 
                     <!-- # SKILL -->
-                    <div class="portlet portlet-body text-left ">
+                    <div class="portlet portlet-body text-left mb-15">
                         <!-- Title -->
                         <h6 class=" text-uppercase font-15 md-amber-text mb-0 letter-space-xs title-resume">Skill</h6>
                         <hr class="border-dash border-mdo-white-v8 my-15 ">
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-1 ">
+                        <ul class="list-unstyled mt-ul-li-tb-2 ">
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0 ">Campaign Management</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0 "> <i class="fa fa-caret-right md-amber-text "></i>Campaign Management</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Brand Management </p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"> <i class="fa fa-caret-right md-amber-text"></i>Brand Management </p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Business (Marketing) Strategy</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"> <i class="fa fa-caret-right md-amber-text"></i>Business (Marketing) Strategy</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Channel Management</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"> <i class="fa fa-caret-right md-amber-text"></i>Channel Management</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Budgeting and Planning</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"><i class="fa fa-caret-right md-amber-text"></i>Budgeting and Planning</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Graphic Design</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"><i class="fa fa-caret-right md-amber-text"></i>Graphic Design</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Marketing Communications</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"><i class="fa fa-caret-right md-amber-text"></i>Marketing Communications</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0">Business Development</p>
+                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-0"><i class="fa fa-caret-right md-amber-text"></i>Business Development</p>
                             </li>
                             <li>
-                                <p class="mdo-white-v7-text font-13 letter-space-xxs mb-0">International Business</p>
+                                <p class="mdo-white-v7-text font-13 letter-space-xxs mb-0"><i class="fa fa-caret-right md-amber-text"></i>International Business</p>
                             </li>
                         </ul>
                     </div>
 
                     <!-- # REFERENCES -->
-                    <div class="portlet portlet-body text-left ">
+                    <div class="portlet portlet-body text-left mb-0">
                         <!-- Title -->
                         <h6 class="text-uppercase font-15 md-amber-text letter-space-xs title-resume">References</h6>
                         <hr class="border-dash border-mdo-white-v8 my-15">
@@ -173,7 +166,7 @@
                             Note : Attribute involve is Name of Referer , Relationship , Contact No , Email Address  
                             IF "Email Address " do not exist or null , hide it from resume
                         -->
-                        <ul class="list-unstyled mt-ul-li-tb-1">
+                        <ul class="list-unstyled mt-ul-li-tb-4 px-5">
                             <li>
                                 <h6 class="md-amber-text font-13 my-5">Roy Goh</h6>
                                 <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Former Peer </p>
@@ -197,9 +190,9 @@
                     </div>
                 </div>
 
-                <div class="m-grid-col m-grid-col-xs-8 p-20 ">
+                <div class="m-grid-col m-grid-col-xs-8 p-20">
                     <!-- # About Me @ Profile-->
-                    <div class="row no-space mt-0">
+                    <div class="row no-space mt-0 mb-15">
                         <!-- Title -->
                         <div class="m-grid title-resume mt-0">
                             <hr class="border-mdo-amber-v7 mb-10 mt-0">
@@ -207,13 +200,13 @@
                             <hr class="border-mdo-amber-v7 mt-10 mb-0">
                         </div>
                         <!-- Description -->
-                        <p class="font-13 text-justify line-height-sm md-grey-darken-4-text mt-10">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
+                        <p class="font-12 text-justify line-height-sm md-grey-darken-4-text mt-10 px-5">Currently managing two brands under the same management. Experienced Marketing Manager with a demonstrated history of working in the telecommunications industry. Skilled in Strategic Brand Positioning, Creative Concept Design, Campaign Management, Brand Management, and Business (Marketing) Strategy. Strong marketing professional graduated from In-House Multimedia College and further my study at INTI International University.</p>
                     </div>
 
                     <!-- # Education -->
                     <!-- Note arrangement of each point is the latest one on top -->
                     <!-- Limit 4 [Select latest one on top] -->
-                    <div class="row no-space mb-10">
+                    <div class="row no-space mb-15">
                         <!-- Title -->
                         <div class="m-grid title-resume ">
                             <hr class="border-mdo-amber-v7 mb-10 mt-0">
@@ -221,7 +214,7 @@
                             <hr class="border-mdo-amber-v7 mt-10 mb-0">
                         </div>
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-5 mt-10 ">
+                        <ul class="list-unstyled mt-ul-li-tb-5 mt-10 px-5">
                             <li class="m-grid ">
                                 <div class="m-grid-col m-grid-col-xs-3 m-grid-col-center m-grid-col-middle border-right border-medium p-10  border-mdo-grey-v3 md-blue-light">
                                     <small class="font-12 line-height-exs font-weight-600 mdo-darkblue-v7-text"> Present
@@ -255,7 +248,7 @@
 
                     <!-- # Experience -->
                     <!-- Note arrangement of each point is the latest one on top -->
-                    <div class="row no-space mb-10">
+                    <div class="row no-space mb-15">
                         <!-- Title -->
                         <div class="m-grid  title-resume">
                             <hr class="border-mdo-amber-v7 mb-10 mt-0">
@@ -264,7 +257,7 @@
                         </div>
 
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-5  mt-10">
+                        <ul class="list-unstyled mt-ul-li-tb-5  mt-10 px-5">
                             <li class="m-grid">
                                 <!-- END Date Joined - START Date Joined -->
                                 <div class="m-grid-col m-grid-col-xs-3 m-grid-col-center m-grid-col-middle border-right border-medium p-10  border-mdo-grey-v3 md-blue-light">
@@ -376,7 +369,7 @@
 
                     <!-- # Non Education [Optional] -->
                     <!-- Note arrangement of each point is the latest one on top -->
-                    <div class="row no-space mb-10 ">
+                    <div class="row no-space  ">
                         <!-- Title -->
                         <div class="m-grid title-resume">
                             <hr class="border-mdo-amber-v7 mt-0 mb-10">
@@ -384,7 +377,7 @@
                             <hr class="border-mdo-amber-v7 mt-10 mb-0">
                         </div>
                         <!-- Content -->
-                        <ul class="list-unstyled mt-ul-li-tb-5  mt-10">
+                        <ul class="list-unstyled mt-ul-li-tb-5  mt-10 px-5">
                             <li class="m-grid">
                                 <div class="m-grid-col m-grid-col-xs-3 m-grid-col-center m-grid-col-middle border-right border-medium p-10  border-mdo-grey-v3 md-blue-light">
                                     <small class="font-12 line-height-exs font-weight-600 mdo-darkblue-v7-text">Nov 2012</small>
