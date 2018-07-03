@@ -65,7 +65,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="my-25">
-                                            <a href="" class="btn btn-md-cyan btn-icon-only mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Download resume">
+                                            <a href="<?= base_url();?>employer/download/<?= rtrim(base64_encode($value['candidate']->user_id),'='); ?>" class="btn btn-md-cyan btn-icon-only mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Download resume">
                                                 <i class="icon-cloud-download"></i>
                                             </a>
                                             <a href="" class="btn btn-md-indigo mx-5 btn-icon-only tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume ">

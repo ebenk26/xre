@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="../custom_pages/favicon.ico" type="image/x-icon"> -->
 
 </head>
 
