@@ -7,6 +7,7 @@
         $preview++;
     }
 }
+
  ?>
 <style>
     /* Always set the map height explicitly to define the size of the div
@@ -140,7 +141,7 @@
                             </span>
                         </div>
                     </div>
-                </div>
+                </div>''
                 <!-- END WIDGET THUMB -->
             </div>
             <!-- BUY MORE -->
@@ -190,8 +191,7 @@
                         <?php
                             $i =1;
                             foreach ($job_post as $key => $value) {
-                                if ($value['status'] == 'post')
-                                {
+                                
                             ?>
                                     <tr class="odd gradeX">
                                         <td class="text-center">
@@ -251,9 +251,9 @@
                                         </td>
                                     </tr>
                             <?php
-                                }
+                                
                             ?>
-                            <?php $value['status']=="post" ? $i++ : $i; } ?>
+                            <?php $i++; } ?>
                     </tbody>
                 </table>
             </div>
@@ -691,89 +691,3 @@
 </div>
 <?php } ?>
 <!-- END MODAL : EDIT JOB POST -->
-
-<?php if (!empty($job_post)) {?>
-<div class="portlet-body hidden">
-                <table class="table table-striped table-bordered table-hover order-column " id="xremo_table">
-                    <thead>
-                        <tr>
-                            <th class="col-md-1 text-center">#</th>
-                            <th class="col-md-6"> Job Title </th>
-                            <th class="col-md-1"> Status </th>
-                            <th class="col-md-2"> Expired At </th>
-                            <th class="col-md-1 "> Candidates </th>
-                            <th class="col-md-1"> Actions </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            $i =1;
-                            foreach ($job_post as $key => $value) {
-                                if ($value['status'] == 'preview')
-                                {
-                            ?>
-                                    <tr class="odd gradeX">
-                                        <td class="text-center">
-                                            <?php echo $i; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $value['name'];  ?>
-                                        </td>
-                                        <td>
-                                            <?php if (strtotime(date('Y-m-d')) >= strtotime($value['expiry_date']) || $value['status'] == 'expired') {?>
-                                            <span class="label label-sm label-md-red"> Expired </span>
-                                            <?php }elseif ($value['status'] == 'preview') {?>
-                                            <span class="label label-sm label-md-amber"> Draft </span>
-                                            <?php }else{ ?>
-                                            <span class="label label-sm label-md-green"> Active </span>
-                                            <?php } ?>
-                                        </td>
-                                        <td class="">
-                                            <?php echo date('d M Y', strtotime($value['expiry_date'])); ?> </td>
-                                        <td class="text-center">
-                                            <i class="icon-users"></i>
-                                            <?=$value['number_of_candidate']?>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-md-indigo dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                    <i class="fa fa-angle-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu pull-right" role="menu">
-                                                    <?php if ( (date('Y-m-d') <= date('Y-m-d', strtotime($value['expiry_date']))) && $value['status'] != 'expired') {?>
-                                                    <li>
-                                                        <a class="edit_jobpost" data-id="<?=  $value['id']; ?>" href="#modal_edit_jobpost_<?php echo $value['id'] ?>" data-toggle="modal">
-                                                            <i class="icon-pencil"></i> Edit Job Post </a>
-                                                    </li>
-                                                    <?php } ?>
-                                                    <?php if($value['status'] != 'preview' || $value['status'] != 'draft'):  ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                            <i class="icon-users"></i> View Candidates </a>
-                                                    </li>
-                                                    <?php endif; ?>
-                                                    <li>
-                                                        <a href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['id']),'='); ?>">
-                                                            <i class="fa fa-file-text-o"></i>
-                                                            <?php echo ($value['status'] == 'post') ? 'View Post ' : 'Preview' ?>
-                                                        </a>
-                                                    </li>
-                                                    <li class="divider"> </li>
-                                                    <li>
-                                                        <a href="javascript:;" class="md-red-text dlt-btn" id="<?php echo $value['id']?>">
-                                                            <i class="icon-trash md-red-text"></i> Delete
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                            <?php
-                                }
-                            ?>
-                            <?php $value['status']=="post" ? $i++ : $i; } ?>
-                    </tbody>
-                </table>
-            </div>
-            <?php } ?>
