@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>
-        <?=$page_title?> | Student </title>
+        My <?=$page_title?> | Xremo </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description" />
@@ -87,7 +87,8 @@
     <!-- CUSTOM -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/alertify.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css">
-    <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
+    
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
