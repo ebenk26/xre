@@ -115,113 +115,114 @@
                 $bootstrapColWidth = 12 / $numOfCols;
                 $maxCol = 6 ;
             ?>
-            <div class="row ">
-                <?php
-                    
-                    foreach ($job_positions_new as $key => $value) {      
-                    ?>
-                    <div class="col-md-<?php echo $bootstrapColWidth; ?>">
-                        <div class="panel panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h4 class="font-weight-600 mb-10">
-                                        <a class="md-black-text md-indigo-text-hover" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">
-                                            <?php echo $value['job_post'] ?>
-                                        </a>
-                                    </h4>
-                                    <h5 class="mb-10">
-                                        <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank">
-                                            <?php echo $value['company_name'] ?>
-                                        </a>
-                                    </h5>
-                                    <small class="font-grey-salsa">
-                                        <i class="icon-clock mr-10"></i>
-                                        <?php  echo time_elapsed_string($value['job_created_time']); ?>
-                                    </small>
-
-
-                                </div>
-                                <div class="media-right media-middle">
-                                    <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/profile-pic.png'; ?>" alt="<?php echo $value['company_name'] ?>" class="avatar avatar-tiny avatar-circle mr-10">
-                                </div>
-                            </div>
-                            <hr class="my-10">
-                            <ul class="list-unstyled list-inline mt-ul-li-lr-0  mx-0 mt-ul-li-tb-2">
-                                <!-- Location -->
-                                <?php if (!empty($value['country_name'])) {?>
-                                <li>
-                                    <p class="badge badge-md-purple badge-roundless letter-space-xs">
-                                        <i class="fa fa-map-marker "></i>
-                                        <?php echo $value['country_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                                <!-- Salary -->
-                                <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
-                                <li>
-                                    <p class="badge badge-md-green  badge-roundless letter-space-xs">
-                                        <?php if (!empty($this->session->userdata('forex'))){
-                                            echo $this->session->userdata('forex') 
-                                         ?>
-                                        <?php echo $value['min_budget']; ?> -
-                                        <?php echo $this->session->userdata('forex') ?>
-                                        <?php echo $value['max_budget']; ?>
-
-                                        <?php } else{ ?>
-                                        
-                                        <i class="fa fa-usd"></i> 
-                                        <?php echo $value['min_budget']; ?> -
-                                        <i class="fa fa-usd"></i> 
-                                        <?php echo $value['max_budget']; ?>
+            <div class="m-grid pb-40">
+                <div class="m-grid-row  ">
+                    <?php foreach ($job_positions_new as $key => $value) {  ?>
+                        <div class="m-grid-col  m-grid-col-auto-height m-grid-col-md-<?php echo $bootstrapColWidth; ?>  panel">                            
+                                <div class="panel-body">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="font-weight-600 mb-10">
+                                                <a class="md-black-text md-indigo-text-hover" href="<?php echo base_url(); ?>job/details/<?php echo rtrim(base64_encode($value['job_id']), '=');?>" target="_blank">
+                                                    <?php echo $value['job_post'] ?>
+                                                </a>
+                                            </h4>
+                                            <h5 class="mb-10">
+                                                <a href="<?php echo base_url(); ?>profile/company/<?php echo rtrim(base64_encode($value['user_id']), '=');?>" target="_blank">
+                                                    <?php echo $value['company_name'] ?>
+                                                </a>
+                                            </h5>
+                                            <small class="font-grey-salsa">
+                                                <i class="icon-clock mr-10"></i>
+                                                <?php  echo time_elapsed_string($value['job_created_time']); ?>
+                                            </small>
+    
+    
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <img src="<?php echo !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG.'/site/profile-pic.png'; ?>" alt="<?php echo $value['company_name'] ?>" class="avatar avatar-tiny avatar-circle mr-10">
+                                        </div>
+                                    </div>
+                                    <hr class="my-10">
+                                    <ul class="list-unstyled list-inline mt-ul-li-lr-0  mx-0 mt-ul-li-tb-2">
+                                        <!-- Location -->
+                                        <?php if (!empty($value['country_name'])) {?>
+                                        <li>
+                                            <p class="badge badge-md-purple badge-roundless letter-space-xs">
+                                                <i class="fa fa-map-marker "></i>
+                                                <?php echo $value['country_name'] ?>
+                                            </p>
+                                        </li>
                                         <?php } ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                                <!-- Industry -->
-                                <?php if (!empty($value['industry_name'])) {?>
-                                <li>
-                                    <p class="badge badge-md-blue-grey badge-roundless letter-space-xs">
-                                        <i class="fa fa-industry"></i>
-                                        <?php echo $value['industry_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                                <!-- Employment Type -->
-                                <?php if (!empty($value['employment_name'])) {?>
-                                <li>
-                                    <p class="badge badge-md-blue badge-roundless letter-space-xs">
-                                        <i class="fa fa-briefcase"></i>
-                                        <?php echo $value['employment_name'] ;?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-
-                                <!-- Position -->
-                                <?php if (!empty($value['position_name'])) {?>
-                                <li>
-                                    <p class="badge badge-md-deep-purple badge-roundless letter-space-xs">
-                                        <i class="fa fa-sitemap"></i>
-                                        <?php echo $value['position_name'] ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-
-
-
-                            </ul>
+                                        <!-- Salary -->
+                                        <?php if (!empty($value['min_budget']) || ($value['max_budget']) ) {?>
+                                        <li>
+                                            <p class="badge badge-md-green  badge-roundless letter-space-xs">
+                                                <?php if (!empty($this->session->userdata('forex'))){
+                                                    echo $this->session->userdata('forex') 
+                                                ?>
+                                                <?php echo $value['min_budget']; ?> -
+                                                <?php echo $this->session->userdata('forex') ?>
+                                                <?php echo $value['max_budget']; ?>
+    
+                                                <?php } else{ ?>
+                                                
+                                                <i class="fa fa-usd"></i> 
+                                                <?php echo $value['min_budget']; ?> -
+                                                <i class="fa fa-usd"></i> 
+                                                <?php echo $value['max_budget']; ?>
+                                                <?php } ?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+                                        <!-- Industry -->
+                                        <?php if (!empty($value['industry_name'])) {?>
+                                        <li>
+                                            <p class="badge badge-md-blue-grey badge-roundless letter-space-xs">
+                                                <i class="fa fa-industry"></i>
+                                                <?php echo $value['industry_name'] ?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+                                        <!-- Employment Type -->
+                                        <?php if (!empty($value['employment_name'])) {?>
+                                        <li>
+                                            <p class="badge badge-md-blue badge-roundless letter-space-xs">
+                                                <i class="fa fa-briefcase"></i>
+                                                <?php echo $value['employment_name'] ;?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+    
+                                        <!-- Position -->
+                                        
+                                        <?php if (!empty($value['position_name'])) {?>
+                                        <li>
+                                            <p class="badge badge-md-deep-purple badge-roundless letter-space-xs">
+                                                <i class="fa fa-sitemap"></i>
+                                                <?php echo $value['position_name'] ?>
+                                            </p>
+                                        </li>
+                                        <?php } ?>
+    
+    
+    
+                                    </ul>
+                                </div>                                                        
                         </div>
-                    </div>
+                        <div class=" m-grid-col m-grid-col-md-1 width-20"></div>
                     <?php
                         $colCount++;
                         if ($colCount < $maxCol){                                
-                            if($colCount % $numOfCols == 0 ) { echo '</div><div class="row">'; }                                            
+                            if($colCount % $numOfCols == 0 ) { echo '</div><div class="clearfix my-10"></div><div class="m-grid-row ">'; }                                            
                         }
                         else{ 
                             break; 
                         }
-                    }
-                    ?>
+                    } ?>
+                </div>
             </div>
+            
 
             
             <!-- # Empty States -->
