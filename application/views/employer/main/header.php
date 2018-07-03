@@ -11,7 +11,7 @@
 
     <!-- TITLE -->
     <title>
-        <?=$page_title?> | Employer</title>
+       My <?=$page_title?> | Xremo </title>
 
     <!-- ======== CSS STYLE ======== -->
     <!-- Web Fonts -->
@@ -86,7 +86,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/alertify.min.css">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
