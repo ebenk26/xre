@@ -73,7 +73,7 @@
                 
                 <div class="m-grid m-grid-responsive-sm m-grid-responsive-sm">
                     <div class="m-grid-col m-grid-col-middle m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12">
-                        <h3 class=" font-weight-600 mt-0 line-height-md md-grey-darken-3-text font-20-sm"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Find out more the benefit to have video resume!" ?></h3>
+                        <h3 class=" font-weight-600 mt-0 line-height-md md-grey-darken-3-text font-20 font-24-sm font-26-md"><?= !empty($language->interest_video_resume) ? $language->interest_video_resume : "Find out more the benefit to have video resume!" ?></h3>
                         <p class="md-grey-darken-2-text font-16"><?= !empty($language->click_video_resume) ? $language->click_video_resume : "Click play on video to learn more." ?></p>
                         <hr class="visible-xs">
                     </div>
@@ -115,10 +115,11 @@
                 $bootstrapColWidth = 12 / $numOfCols;
                 $maxCol = 6 ;
             ?>
-            <div class="m-grid pb-40">
-                <div class="m-grid-row  ">
+            <div class="m-grid pb-40 m-grid-responsive-xs m-grid-responsive-sm">
+                <div class="m-grid-row  m-">
                     <?php foreach ($job_positions_new as $key => $value) {  ?>
-                        <div class="m-grid-col  m-grid-col-auto-height m-grid-col-md-<?php echo $bootstrapColWidth; ?>  panel">                            
+                        <div class=" m-grid-col m-grid-col-md-1 width-10-md"></div>
+                        <div class="m-grid-col  m-grid-col-auto-height m-grid-col-sm-6 m-grid-col-md-<?php echo $bootstrapColWidth; ?>  panel">                            
                                 <div class="panel-body">
                                     <div class="media">
                                         <div class="media-body">
@@ -210,7 +211,8 @@
                                     </ul>
                                 </div>                                                        
                         </div>
-                        <div class=" m-grid-col m-grid-col-md-1 width-20"></div>
+                        
+                        <div class=" m-grid-col m-grid-col-md-1 width-10-md"></div>
                     <?php
                         $colCount++;
                         if ($colCount < $maxCol){                                
@@ -229,8 +231,8 @@
             <?php } else { ?>
             <div class="portlet text-center">
                 <div class="portlet-body p-100">
-                    <h3 class="text-center font-weight-600 md-indigo-text mb-20"> Set up your job preferences! </h2>
-                    <h5 class="text-center  font-grey-cascade mb-40 px-200">Tired for waiting to get your own job preferences? How about set up now by edit your job preferences and we will search and notify to you !</h5>
+                    <h3 class="text-center font-weight-600 md-indigo-text mb-20"> Set up your job preferences! </h3>
+                    <h5 class="text-center font-grey-cascade mb-40 px-200">Tired for waiting to get your own job preferences? How about set up now by edit your job preferences and we will search and notify to you !</h5>
                     <a href="<?php echo base_url(); ?>student/settings/" class="btn btn-outline btn-md-indigo  py-10 ">
                         <i class="icon-settings mr-10"></i> Set up my preferences.</a>
                 </div>
@@ -434,7 +436,7 @@
                                     <h4 class="widget-blog-title md-white-text font-18 font-20-sm font-24-md line-height-md mt-0 mt-20-sm">
                                         <?=$row->title?>
                                     </h4>
-                                    <span class="widget-blog-subtitle mdo-white-v7-text font-15 font-17-sm">
+                                    <span class="widget-blog-subtitle mdo-white-v7-text font-15 font-16-sm">
                                         <?=date('j F Y', strtotime($row->created_at))?>
                                     </span>
                                 </div>
