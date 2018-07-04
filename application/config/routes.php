@@ -103,7 +103,7 @@ $route['expired_registration']					= 'site/user/expired_registration';
 $route['success_registration']					= 'site/user/success_registration';
 $route['sitemap\.xml'] 							= 'site/sitemap';
 $route['sitemap\.xml/googlef76eea03241e86d7\.html'] 							= 'site/sitemap/gVerify';
-$route['employer/download/(:any)']				= 'employer/search_candidate/downloadResume/(:any)';
+$route['download/(:any)']				= 'site/main/downloadResume/(:any)';
 /*[Result] = [source]*/
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
