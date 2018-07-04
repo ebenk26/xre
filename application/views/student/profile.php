@@ -118,8 +118,8 @@
                                     </div>
                                 </div>
                                 <div class="center-block px-250  ">
-                                    <div class="btn-group btn-group-justified ">
-                                    <a href="#modal_print_resume" data-toggle="modal" class="btn btn-md-orange md-black-text "><i class="icon-printer mr-5"></i> Print Resume</a>
+                                    <div class="btn-group">
+                                    <!-- <a href="#modal_print_resume" data-toggle="modal" class="btn btn-md-orange md-black-text hidden "><i class="icon-printer mr-5"></i> Print Resume</a> -->
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
