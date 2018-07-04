@@ -50,7 +50,7 @@ class Search_candidate extends CI_Controller {
         $page = base64_decode($this->uri->segment(3));
         
 
-        $html = $this->load->view('mail/apply_job', $page, true);
+        $html = $this->load->view('print/print-v1', $page, true);
         $pdfFilePath = $page.".pdf";
         // $stylesheet = file_get_contents(base_url().'/assets/css/bootstrap/bootstrap.min.css');
         // $this->m_pdf->pdf->WriteHTML($stylesheet,1);
