@@ -38,7 +38,7 @@
                     <img src="../../assets/global/img/xremo/profile-pic.png" class="avatar avatar-medium avatar-circle mb-15 " alt="">
 
                     <!-- # FULL NAME -->
-                    <h5 class="text-uppercase font-17 md-amber-text letter-space-xs mt-15 ">Nur atikah amira binti mohd zain </h5>
+                    <h5 class="text-uppercase font-17 md-amber-text letter-space-xs mt-15 "><?= !empty($candidate['overview']['name']) ? $candidate['overview']['name'] : 'N/A'?></h5>
                     <hr class="border-dash border-mdo-white-v8 my-15">
 
                     <!-- # CONTACT -->
@@ -50,7 +50,7 @@
                                     <i class="fa fa-phone md-amber-text "></i>
                                 </div>
                                 <div class="m-grid-col-xs-10 m-grid-col">
-                                    <small class="mdo-white-v8-text font-12">+60126307780</small>
+                                    <small class="mdo-white-v8-text font-12"><?= !empty($candidate['overview']['student_bios_contact_number']) ? $candidate['overview']['student_bios_contact_number'] : 'N/A'; ?></small>
                                 </div>
                             </li>
 
@@ -60,7 +60,7 @@
                                     <i class="fa fa-envelope md-amber-text"></i>
                                 </div>
                                 <div class="m-grid-col-xs-10 m-grid-col">
-                                    <small class="mdo-white-v8-text font-12 text-break">qunn1818@yahoo.com</small>
+                                    <small class="mdo-white-v8-text font-12 text-break"><?= !empty($candidate['overview']['email']) ? $candidate['overview']['email'] : 'N/A'; ?></small>
                                 </div>
                             </li>
 
@@ -71,7 +71,7 @@
                                     <i class="fa fa-map-marker md-amber-text "></i>
                                 </div>
                                 <div class="m-grid-col-xs-10 m-grid-col">
-                                    <small class="mdo-white-v8-text text-break font-12">Seremban, Negeri Sembilan</small>
+                                    <small class="mdo-white-v8-text text-break font-12"><?= !empty($candidate['address']['states']) ? $candidate['address']['states'] : 'N/A'; ?>, <?= !empty($candidate['address']['city']) ? $candidate['address']['city'] : 'N/A'; ?></small>
                                 </div>
                             </li>
 
@@ -82,7 +82,7 @@
                                     <i class="fa fa-link md-amber-text"></i>
                                 </div>
                                 <div class="m-grid-col-xs-10 m-grid-col">
-                                    <small class="mdo-white-v8-text text-break font-12">www.xremo.com</small>
+                                    <small class="mdo-white-v8-text text-break font-12"><?= $candidate['link']; ?></small>
                                 </div>
                             </li>
                         </ul>
@@ -95,27 +95,16 @@
                         <hr class="border-dash border-mdo-white-v8 my-15">
                         <!-- Content -->
                         <ul class="list-unstyled mt-ul-li-tb-4 px-5">
-                            <li>
-                                <h6 class="md-amber-text font-13 mb-5">English</h6>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Spoken
-                                    <i class="fa fa-caret-right"></i> Intermediate </p>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Written
-                                    <i class="fa fa-caret-right"></i> Intermediate </p>
-                            </li>
-                            <li>
-                                <h6 class="md-amber-text font-13 mb-5">Malay</h6>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Spoken
-                                    <i class="fa fa-caret-right"></i> Intermediate </p>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Written
-                                    <i class="fa fa-caret-right"></i> Beginner </p>
-                            </li>
-                            <li>
-                                <h6 class="md-amber-text font-13 mb-5">Chinese</h6>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Spoken
-                                    <i class="fa fa-caret-right"></i> Expert </p>
-                                <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Written
-                                    <i class="fa fa-caret-right"></i> Beginner </p>
-                            </li>
+                            <?php if (!empty($candidate['language'])) {
+                             foreach ($candidate['language'] as $value) {?>
+                                <li>
+                                    <h6 class="md-amber-text font-13 mb-5"><?= $value['title'];?></h6>
+                                    <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Spoken
+                                        <i class="fa fa-caret-right"></i> <?= $value['spoken'];?> </p>
+                                    <p class="mdo-white-v7-text font-12 letter-space-xxs mb-5">Written
+                                        <i class="fa fa-caret-right"></i> <?= $value['written'];?> </p>
+                                </li>
+                            <?php }} ?>
                         </ul>
                     </div>
 

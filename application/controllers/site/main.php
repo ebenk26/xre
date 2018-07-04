@@ -7,7 +7,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $countryCheck = $this->session->userdata('country');
         $this->load->model('global_model');
-        $this->load->model('employer_model');
+        $this->load->model('student_model');
         if(empty($countryCheck)){
             redirect(base_url());
         }
@@ -26,11 +26,12 @@ class Main extends CI_Controller {
     public function downloadResume(){
         $page = base64_decode($this->uri->segment(2));
         
-        $data['candidate'] = $this->employer_model->get_bookmarked_user($page);
+        $data['candidate'] = $this->student_model->get_user_profile($page);
+        $data['candidate']['link'] = 'www.xremo.com/download/'.$page;
 
-        // var_dump($data);exit;
 
-        $html = $this->load->view('print/print-v1', $page, true);
+        $html = $this->load->view('print/print-v1', $data, true);
+        
         $pdfFilePath = $page.".pdf";
         // $stylesheet = file_get_contents(base_url().'/assets/css/bootstrap/bootstrap.min.css');
         // $this->m_pdf->pdf->WriteHTML($stylesheet,1);
