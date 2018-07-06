@@ -533,9 +533,9 @@ class Employer_Model extends CI_Model{
                                     user_address.state
                                 ');
             $this->db->from('users');
-            $this->db->join('student_bios','student_bios.user_id = users.id');
-            $this->db->join('countries','countries.id = users.country');
-            $this->db->join('user_address','user_address.user_id = users.id');
+            $this->db->join('student_bios','student_bios.user_id = users.id', 'left');
+            $this->db->join('countries','countries.id = users.country', 'left');
+            $this->db->join('user_address','user_address.user_id = users.id', 'left');
             $this->db->where('users.id', $value['user_id'] );
             
             $query = $this->db->get();
