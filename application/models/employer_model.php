@@ -465,6 +465,24 @@ class Employer_Model extends CI_Model{
                 $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
             }
 
+            if(!empty($params["yoe"]))
+            {
+                if($params["yoe"] == 2)
+                {
+                    $where[] = "b.exp_time BETWEEN 1 AND 2";
+                }
+                elseif($params["yoe"] == 3)
+                {
+                    $where[] = "b.exp_time BETWEEN 2 AND 5";
+                }
+                elseif($params["yoe"] == 4)
+                {
+                    $where[] = "b.exp_time >= 5";
+                }
+                
+                $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
+            }
+
             $wheres = !empty($where) ? "WHERE ".implode(' AND ', $where) : "";
 
             $joins = !empty($join) ? implode(' ', $join) : "";
