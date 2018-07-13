@@ -24,6 +24,8 @@ class Main extends CI_Controller {
 	}
 
     public function downloadResume(){
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
         $this->load->library('Pdf');
         $page = base64_decode($this->uri->segment(2));
         

@@ -1026,6 +1026,7 @@ $company_address = json_decode($user_profile['address']);?>
             })
         });
 
+        //delete job post
         $('.dlt-btn').click(function () {
             var del = $(this).attr('id');
             swal({
@@ -1066,6 +1067,7 @@ $company_address = json_decode($user_profile['address']);?>
             <?php } ?>
         });
 
+        //shortlist candidate
         $('.shortlist-btn').click(function () {
             var id = $(this).attr('app-id');
             $.ajax({

@@ -105,10 +105,12 @@
                             <span class="caption-subject"> Job List</span>
                             <!-- <span class="caption-helper">more samples...</span> -->
                         </div>
-                        <!--<div class="actions">
+                        <div class="actions">
+                        <?php if ($_COOKIE['country'] == 'id') {?>
                             <a href="#modal_add_jobpost" class="btn btn-circle btn-md-indigo" data-toggle="modal">
                                 <i class="fa fa-plus"></i> New Job Post </a>                        
-                        </div>-->
+                        <?php } ?>
+                        </div>
                     </div>
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered table-hover  order-column" id="xremo_table">
@@ -201,7 +203,7 @@
 							<form action="<?php echo base_url(); ?>administrator/job_board/post/" method="POST">
 								<div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
 								<div class="form-body">
-									<div class="row">
+                                    <div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Job Position Title</label>
@@ -312,10 +314,20 @@
                     <div class="modal-header ">
                         <h4 class="modal-title">New Job Post Info</h4>
                     </div>
-                    <form action="<?php echo base_url(); ?>employer/job_board/post" method="POST" class="form-horizontal form-row-seperated ">
+                    <form action="<?php echo base_url(); ?>employer/job_board/post" method="POST" class="form-horizontal form-row-seperated " id="addJobPost">
                         <div class="scroller mt-height-650-xs" data-always-visible="1" data-rail-visible1="1">
                             <div class="modal-body form-body pr-0">
-
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group mx-0" id="search_company">
+                                            <label class="control-label ">Company Name</label>
+                                            <div class="input-icon">
+                                                <i class="icon-briefcase"></i>
+                                                <input type="text" class="form-control new-search-input trans-all" placeholder="Xremo sdn bhd" title="Search" id="keyword" name="user_id" onfocus="searchSolr(this.id,'addJobPost')" url="<?php echo base_url();?>administrator/job_board/get_company" id="company">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Job Position Title & Salary Range-->
                                 <div class="row">
                                     <div class="col-md-6">
@@ -531,3 +543,4 @@
 				<!-- /.modal-dialog -->
 			</div>
 		</div>
+

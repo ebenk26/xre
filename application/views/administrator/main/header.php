@@ -38,6 +38,7 @@
     <link href="<?php echo CSS_EMPLOYER; ?>fullcalendar.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>jqvmap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo CSS_EMPLOYER; ?>pricing.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo JS; ?>plugins/autocomplete.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url(); ?>assets/css/inbox.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/css/alertify.min.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS -->
@@ -564,7 +565,32 @@
                             <span class="selected"></span>
                         </a>
                     </li>
-					
+					<!-- Sidebar Menu : Sales -->
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'sales' || $this->uri->segment(2) == 'sales'): echo 'active'; endif?>">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-users"></i>
+                            <span class="title">Sales</span>
+                            <span class="arrow open"></span>
+                            <span class="selected"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <!-- <li class="nav-item start <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
+                                <a href="<?php echo base_url(); ?>employer/search_candidate/" class="nav-link">
+                                    <i class="icon-magnifier"></i>
+                                    <span class="title">Dashboard</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(); ?>administrator/sales/shortlist" class="nav-link">
+                                    <i class="icon-user-following"></i>
+                                    <span class="title">Shortlist Target</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
                     <!--<li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/dashboard/" class="nav-link ">
                             <i class="icon-home"></i>
