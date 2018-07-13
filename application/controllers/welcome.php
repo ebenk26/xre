@@ -41,7 +41,7 @@ class Welcome extends CI_Controller {
         		redirect(base_url().'site/user/login');
 			}else{
 				if ($_SERVER['REMOTE_ADDR']=="::1") {
-					redirect(base_url().'site/country/my');
+					redirect(base_url().'site/country/id');
 				}else{
 					$this->load->view('welcome_message');
 				}

@@ -3,6 +3,7 @@
 
 	<?php $this->load->view('main/footer_app');?>
 
+    <link href="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <!-- BEGIN CORE PLUGINS -->
     <script src="<?php echo JS_STUDENTS; ?>jquery.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_STUDENTS; ?>bootstrap.min.js" type="text/javascript"></script>
@@ -12,6 +13,8 @@
     <script src="<?php echo JS_STUDENTS; ?>bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/jquery-ui/jquery-ui.min.js"></script> 
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/autocomplete.js"></script> 
     <script src="<?php echo JS_EMPLOYER; ?>datatable.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>datatables.min.js" type="text/javascript"></script>
     <script src="<?php echo JS_EMPLOYER; ?>datatables.bootstrap.js" type="text/javascript"></script>
@@ -76,6 +79,17 @@
     <!-- END TINY MCE EDITOR SCRIPTS -->
 
     <script>
+        function searchSolr(id,form){
+            if(typeof(form)=='undefined'){var formid=""; }else{ var formid = "#"+form;}
+            $(formid+" #"+id).autocomplete($(formid+" #"+id).attr('url'), {maxdata:50, selectFirst: false, width: "200px", tops: "27px", lefts: "123px", scrollHeight: "260px", delay:false, divResult:"#search_company"});
+            $(formid+" #"+id).result(function(event, data, formatted){
+                console.log(data);
+                if(data){
+                    $('#company').val(data[0]);
+                }
+            });    
+        }
+
         $(document).ready(function () {
             //EDIT ARTICLE
 			$( ".edit_button_article" ).on( "click", function() {
@@ -106,6 +120,17 @@
 				});
 			});
 			
+            // $('#company').autocomplete({
+            //     source: "<?php echo base_url();?>administrator/job_board/get_company",
+      
+            //     select: function (event, ui) {
+            //         $('#company').text(ui.item.label); 
+            //         $('#company').val(ui.item.id); 
+            //     }
+            // });
+
+
+
 			//EDIT JOB POST
 			$( ".edit_button_job" ).on( "click", function() {
 				//$('#featured_image_article').hide();
