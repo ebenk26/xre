@@ -234,11 +234,22 @@ class Profile extends CI_Controller {
 
     public function add_experience(){
 
+        $startYear   = date('Y',strtotime($this->input->post('start_date')));
+        $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
+        $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
+        $endMonth    = ($this->input->post('end_date') == 'on') ? date('m') : date('m',strtotime($this->input->post('end_date')))/12;
+
+        $startExp   = $startYear + $startMonth;
+        $endExp     = $endYear + $endMonth;
+
+        $YoE        = ceil($endExp - $startExp); // lebih dari setengah tahun, dibulatkan menjadi 1 tahun
+
         if ($this->input->post('current_date') == 'on') {
             $experience = array('title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -251,6 +262,7 @@ class Profile extends CI_Controller {
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -281,12 +293,24 @@ class Profile extends CI_Controller {
     }
 
     public function edit_experience(){
+
+        $startYear   = date('Y',strtotime($this->input->post('start_date')));
+        $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
+        $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
+        $endMonth    = ($this->input->post('end_date') == 'on') ? date('m') : date('m',strtotime($this->input->post('end_date')))/12;
+
+        $startExp   = $startYear + $startMonth;
+        $endExp     = $endYear + $endMonth;
+
+        $YoE        = ceil($endExp - $startExp); // lebih dari setengah tahun, dibulatkan menjadi 1 tahun
+
         if ($this->input->post('current_date') == 'on') {
             $experience = array('id' => $this->input->post('experience_id'),
                                 'title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -299,6 +323,7 @@ class Profile extends CI_Controller {
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),

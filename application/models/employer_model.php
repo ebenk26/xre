@@ -465,6 +465,24 @@ class Employer_Model extends CI_Model{
                 $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
             }
 
+            if(!empty($params["yoe"]))
+            {
+                if($params["yoe"] == 2)
+                {
+                    $where[] = "b.exp_time BETWEEN 1 AND 2";
+                }
+                elseif($params["yoe"] == 3)
+                {
+                    $where[] = "b.exp_time BETWEEN 2 AND 5";
+                }
+                elseif($params["yoe"] == 4)
+                {
+                    $where[] = "b.exp_time >= 5";
+                }
+                
+                $joinTotal[] = !empty($params["position_level"]) ? "" : "LEFT JOIN experiences b ON b.user_id = a.id";
+            }
+
             $wheres = !empty($where) ? "WHERE ".implode(' AND ', $where) : "";
 
             $joins = !empty($join) ? implode(' ', $join) : "";
@@ -533,9 +551,9 @@ class Employer_Model extends CI_Model{
                                     user_address.state
                                 ');
             $this->db->from('users');
-            $this->db->join('student_bios','student_bios.user_id = users.id');
-            $this->db->join('countries','countries.id = users.country');
-            $this->db->join('user_address','user_address.user_id = users.id');
+            $this->db->join('student_bios','student_bios.user_id = users.id', 'left');
+            $this->db->join('countries','countries.id = users.country', 'left');
+            $this->db->join('user_address','user_address.user_id = users.id', 'left');
             $this->db->where('users.id', $value['user_id'] );
             
             $query = $this->db->get();
