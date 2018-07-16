@@ -13971,6 +13971,12 @@ code {
 .no-resize {
   resize: none; }
 
+.no-cursor {
+  cursor: default !important; }
+
+.pointer-cursor {
+  cursor: pointer !important; }
+
 
 .view, .parallax,
 .view.parallax,
