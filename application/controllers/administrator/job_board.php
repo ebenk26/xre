@@ -7,6 +7,7 @@ class Job_Board extends CI_Controller {
         parent::__construct();
         $this->load->model('employer_model');
         $this->load->model('job_model');
+        $this->load->model('global_model');
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
@@ -175,5 +176,17 @@ class Job_Board extends CI_Controller {
 			$post_status = $this->db->update('job_positions', $data);
 		}
 	}
+
+    public function get_company(){
+        $company_name = $this->input->get('term');
+        $result = $this->global_model->get_like('user_profiles',array('company_name'=>$company_name), 'user_id', 'DESC');
+        $array = "";
+        if (count($result) > 0) {
+            foreach ($result as $row)
+                $array .=  $row['company_name']."|". $row['user_id']."\n";
+        }
+        
+        echo $array;
+    }
 
 }

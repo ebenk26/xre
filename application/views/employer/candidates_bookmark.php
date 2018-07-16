@@ -18,7 +18,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php $i=1; foreach ($candidates_bookmark as $key => $value): ?>
+                            <?php if (!empty($candidates_bookmark)) {
+                                $i=1; foreach ($candidates_bookmark as $key => $value): ?>
                                 <tr class="odd gradeX">
                                     <td class="text-center"> <?php echo $i; ?> </td>
                                     <td>
@@ -65,7 +66,7 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="my-25">
-                                            <a href="<?= base_url();?>download/<?= rtrim(base64_encode($value['candidate']->user_id),'='); ?>" class="btn btn-md-cyan btn-icon-only mx-5 tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Download resume">
+                                            <a href="<?= base_url();?>download/<?= rtrim(base64_encode($value['candidate']->user_id),'='); ?>" class="btn btn-md-cyan btn-icon-only mx-5 tooltips hidden" data-container="body" data-placement="top" data-html="true" data-original-title="Download resume">
                                                 <i class="icon-cloud-download"></i>
                                             </a>
                                             <a href="" class="btn btn-md-indigo mx-5 btn-icon-only tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="View Resume ">
@@ -77,7 +78,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            <?php $i++; endforeach ?>
+                            <?php $i++; endforeach; } ?>
                             </tbody>
                         </table>
                     </div>
