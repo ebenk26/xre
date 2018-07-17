@@ -614,6 +614,8 @@ class Student_Model extends CI_Model{
         $this->db->join('users', 'user_profiles.user_id = users.id');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
         $this->db->join('wishlist', 'wishlist.company_id = users.id', 'left');
+        // $this->db->where('student_id', $this->session->userdata('id'));
+        // $this->db->where('wishlist.status','=', 1);
         $this->db->like($where);
         $this->db->or_like(array('users.fullname'=> $where['user_profiles.company_name']));
         $query = $this->db->get();

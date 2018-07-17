@@ -4,6 +4,7 @@
                 <!-- BEGIN PAGE HEADER-->
                 <h1 class="page-title"> <?= !empty($language->site_my_wishlist) ? $language->site_my_wishlist : 'My Wishlist'?>
                     <small><?= !empty($language->site_wishlist_subtitle) ? $language->site_wishlist_subtitle : 'My Wishlist'?> </small>
+                    
                 </h1>
                 <!-- END PAGE HEADER-->
 
@@ -27,7 +28,7 @@
                                 </div>
                             <?php endif ?>
                             <?php foreach ($wishlist as $key => $value): ?>
-                                <?php if (!empty($value['company_id'])): ?>
+                                <?php if (!empty($value['company_id']) && $value['company_id'] == $this->session->userdata('id')): ?>
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                         <div class="mt-card-item ">
                                             <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
@@ -69,7 +70,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-card-content p-0">
-                                                <h3 class="mt-card-name"><?= !empty($value['company_name']) ? $value['company_name'] : '';  ?></h3>
+                                                <h3 class="mt-card-name"><?= !empty($value['company_name']) ? $value['company_name'] :  $value['company'];  ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -106,7 +107,7 @@
                                         <div class="portlet-input input-inline input-small">
                                             <div class="input-icon right">
                                                 <i class="icon-magnifier"></i>
-                                                <input type="text" class="form-control input-circle" placeholder="search...">
+                                                <input type="text" id="searchTexboxCorner" class="form-control input-circle" placeholder="search...">
                                             </div>
                                         </div>
                                     </div>
@@ -285,6 +286,8 @@
                     </div>
                 </div>
 
-
+                    <?php if ($totalWishlist == 5): ?>
+                        <small style="color: red"><?= !empty($language->removeWishlist) ? $language->removeWishlist : 'Please Remove wishlist before you add more'?> </small>
+                    <?php endif ?>
             </div>
         </div>

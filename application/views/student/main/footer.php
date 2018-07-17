@@ -441,7 +441,7 @@
                     var companyName = "";
                     if(company.length > 0){
                         $.each(company, function (i, v) {
-                            
+                            console.log(v);
                             if (v.profile_photo != null) {
                                 profile_pic = v.profile_photo;
                             }else{
@@ -454,9 +454,9 @@
                                 companyName = v.registered_company;
                             }
 
-                            if (v.wishlist_id != null) {
+                            if (v.wishlist_user_id == <?= $this->session->userdata('id');?> && (v.status == 1)) {
                                 canBeAddedToWishlist = '<li>\
-                                                            <a wishlistId="'+v.wishlist_id+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                            <a wishlistId="'+v.wishlist_id+'" companyName="'+v.companyName+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
                                                                 <i class="fa fa-close "></i>\
                                                             </a>\
                                                         </li>';
@@ -473,7 +473,7 @@
                             companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
                                             <div class="mt-card-item">\
                                                 <div class="mt-card-avatar mt-overlay-1">\
-                                                    <img src="' + image_directory + profile_pic + '" class="img-fluid height-200 width-auto center-block">\
+                                                    <img src="' + v.profile_photo + '" class="img-fluid height-200 width-auto center-block">\
                                                     <div class="mt-overlay">\
                                                         <ul class="mt-info">\
                                                             '+canBeAddedToWishlist+'\
@@ -508,9 +508,9 @@
                                     </div>\
                                 </div>\
                             </div>';
+                        $('#company_result').removeAttr("style");
                     }
                     $('#company_result').html(companies);
-                    $('#company_result').removeAttr("style");
                     $('.addWishlist').click(function(){
                         var $companyId = $(this).attr('companyId')
                         swal({
@@ -546,7 +546,6 @@
                     });
 
                     $('.removeWishlist').click(function(){
-                        console.log('removeWishlist');
                         var $wishlistId = $(this).attr('wishlistId');
                         swal({
                                 title: "Are you sure you want to remove from your wishlist?",
@@ -583,8 +582,171 @@
             });
         });
 
+        $("#searchTextboxCorner").keyup(function(e){
+            if (e.keyCode==13) {
+                $.ajax({
+                    url: "<?= base_url(); ?>student/wishlist/get_company",
+                    method: "GET",
+                    data: {
+                        company_name: $("#search_company").val()
+                    },
+                    success: function(response){
+                        var company = JSON.parse(response);
+
+                        if (window.location.host == 'localhost') {
+                            var image_directory = window.location.origin + '/xremo/assets/img/employer/';
+                        }else{
+                            var image_directory = window.location.origin + '/assets/img/employer/';
+                        }
+                        var profile_pic = 'profile-pic.png';
+                        var companies = "";
+                        var canBeAddedToWishlist = true;
+                        var companyName = "";
+                        if(company.length > 0){
+                            $.each(company, function (i, v) {
+                                console.log(v);
+                                if (v.profile_photo != null) {
+                                    profile_pic = v.profile_photo;
+                                }else{
+                                    profile_pic = 'profile-pic.png';
+                                }
+
+                                if (v.company_name != "") {
+                                    companyName = v.company_name;
+                                }else{
+                                    companyName = v.registered_company;
+                                }
+
+                                if (v.wishlist_user_id == <?= $this->session->userdata('id');?> && (v.status == 1)) {
+                                    canBeAddedToWishlist = '<li>\
+                                                                <a wishlistId="'+v.wishlist_id+'" companyName="'+v.companyName+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                    <i class="fa fa-close "></i>\
+                                                                </a>\
+                                                            </li>';
+
+                                }else{
+                                    canBeAddedToWishlist = '<li>\
+                                                                <a companyId="'+v.id+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                    <i class="fa fa-plus "></i>\
+                                                                </a>\
+                                                            </li>';
+                                 
+                                }
+
+                                companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
+                                                <div class="mt-card-item">\
+                                                    <div class="mt-card-avatar mt-overlay-1">\
+                                                        <img src="' + v.profile_photo + '" class="img-fluid height-200 width-auto center-block">\
+                                                        <div class="mt-overlay">\
+                                                            <ul class="mt-info">\
+                                                                '+canBeAddedToWishlist+'\
+                                                            </ul>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="mt-card-content">\
+                                                        <h3 class="mt-card-name">'+companyName+'</h3>\
+                                                    </div>\
+                                                </div>\
+                                            </div>';
+                            });
+                            $('.modal-footer .btn').addClass('hidden');
+                            $('#company_result').css("display", "flex");
+                            $('#company_result').css("flex-wrap", "wrap");
+                        }else{
+                            $('.modal-footer .btn').removeClass('hidden');
+                            companies = '\
+                                <div class="portlet portlet-body center-block width-60-percent py-100 px-30 text-center md-red-text">\
+                                    <p>Sorry!! "company name" not exist in our system.</p>\
+                                    <p>Its doesnt mean you cannot add your favourite company. </p>\
+                                </div>\
+                                <div class="row mx-0">\
+                                    <div class="col-md-8 col-md-offset-2">\
+                                        <div class="form-group mx-0">\
+                                            <label for="">Company Name</label>\
+                                            <input type="text" class="form-control" name="companyName">\
+                                        </div>\
+                                        <div class="form-group mx-0">\
+                                            <label for="">Why you want to join in this company? (Optional)</label>\
+                                            <textarea name="wantToJoinReason" id="" cols="30" rows="4" class="form-control"></textarea>\
+                                        </div>\
+                                    </div>\
+                                </div>';
+                            $('#company_result').removeAttr("style");
+                        }
+                        $('#company_result').html(companies);
+                        $('.addWishlist').click(function(){
+                            var $companyId = $(this).attr('companyId')
+                            swal({
+                                title: "Are you sure want to add this as your wishlist?",
+                                text: "You will be able to remove it later",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Add",
+                                cancelButtonText: "Cancel",
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    $.ajax({
+                                        url: "<?= base_url(); ?>student/wishlist/addCompany",
+                                        method: "POST",
+                                        data: {
+                                            companyId: $companyId
+                                        },
+                                        success: function(response){
+
+                                            swal("Success", "Successfuly add company to job wishlist", "success");
+                                            location.reload();
+                                        }
+                                    })
+                                } else {
+                                    swal("Cancelled", "Your Post is safe", "error");
+                                }
+                            }
+                            );                        
+                        });
+
+                        $('.removeWishlist').click(function(){
+                            var $wishlistId = $(this).attr('wishlistId');
+                            swal({
+                                    title: "Are you sure you want to remove from your wishlist?",
+                                    text: "You will be able to add it later",
+                                    type: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#DD6B55",
+                                    confirmButtonText: "Delete",
+                                    cancelButtonText: "Cancel",
+                                    closeOnConfirm: false,
+                                    closeOnCancel: false
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        $.ajax({
+                                            url: "<?= base_url(); ?>student/wishlist/removeCompany",
+                                            method: "POST",
+                                            data: {
+                                                wishlistId: $wishlistId
+                                            },
+                                            success: function(response){
+                                                swal("Success", "Successfuly remove company to job wishlist", "success");
+                                                location.reload();
+                                            }
+                                        })
+                                    } else {
+                                        swal("Cancelled", "Your Post is safe", "error");
+                                    }
+                                }
+                            )
+                            
+                        });
+                    }
+                });
+            }
+        })
+
         $('.removeWishlist').click(function(){
-            console.log('removeWishlist');
             var $wishlistId = $(this).attr('wishlistId');
             swal({
                     title: "Are you sure you want to remove from your wishlist?",
