@@ -32,7 +32,7 @@
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                         <div class="mt-card-item ">
                                             <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
-                                                <img src="<?= !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block py-0">
+                                                <img src="<?= file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block py-0">
                                                 <div class="mt-overlay mt-top">
                                                     <ul class="mt-info">
                                                         <li>
@@ -49,7 +49,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-card-content">
-                                                <h3 class="mt-card-name"><?= !empty($value['company']) ? $value['company'] : '';  ?></h3>
+                                                <h3 class="mt-card-name"><?= !empty($value['company_name']) ? $value['company_name'] :  $value['company'];  ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -57,7 +57,7 @@
                                     <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                                         <div class="mt-card-item ">
                                             <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
-                                                <img src="<?= !empty($value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block ">
+                                                <img src="<?= file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block ">
                                                 <div class="mt-overlay mt-top">
                                                     <!-- Only had Remove Buton -->
                                                     <ul class="mt-info">

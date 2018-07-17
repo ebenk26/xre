@@ -441,42 +441,18 @@
                     var companyName = "";
                     if(company.length > 0){
                         $.each(company, function (i, v) {
-                            console.log(v);
-                            if (v.profile_photo != null) {
-                                profile_pic = v.profile_photo;
-                            }else{
-                                profile_pic = 'profile-pic.png';
-                            }
-
                             if (v.company_name != "") {
                                 companyName = v.company_name;
                             }else{
                                 companyName = v.registered_company;
                             }
 
-                            if (v.wishlist_user_id == <?= $this->session->userdata('id');?> && (v.status == 1)) {
-                                canBeAddedToWishlist = '<li>\
-                                                            <a wishlistId="'+v.wishlist_id+'" companyName="'+v.companyName+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
-                                                                <i class="fa fa-close "></i>\
-                                                            </a>\
-                                                        </li>';
-
-                            }else{
-                                canBeAddedToWishlist = '<li>\
-                                                            <a companyId="'+v.id+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
-                                                                <i class="fa fa-plus "></i>\
-                                                            </a>\
-                                                        </li>';
-                             
-                            }
-
                             companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
-                                            <div class="mt-card-item">\
+                                            <div class="mt-card-item wishlistCheckAvailability" companyId="'+v.id+'">\
                                                 <div class="mt-card-avatar mt-overlay-1">\
                                                     <img src="' + v.profile_photo + '" class="img-fluid height-200 width-auto center-block">\
                                                     <div class="mt-overlay">\
-                                                        <ul class="mt-info">\
-                                                            '+canBeAddedToWishlist+'\
+                                                        <ul class="mt-info wishlistInfo">\
                                                         </ul>\
                                                     </div>\
                                                 </div>\
@@ -544,6 +520,48 @@
                         }
                         );                        
                     });
+
+                    $('.wishlistCheckAvailability').hover(function(){
+                        $.ajax({
+                            url: "<?= base_url(); ?>student/wishlist/checkWishlistAvailability",
+                            method: "GET",
+                            data: {
+                                companyId: $(this).attr('companyId')
+                            },
+                            success: function(response){
+                                var result = JSON.parse(response);
+                                console.log(result);
+                                if (result.response == 'exist') {
+                                    $('.wishlistCheckAvailability .wishlistInfo').html('<li>\
+                                                                 <a wishlistId="'+result.id+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                     <i class="fa fa-close "></i>\
+                                                                 </a>\
+                                                             </li>');
+                                }else{
+                                    $('.wishlistCheckAvailability .wishlistInfo').html('<li>\
+                                                                 <a companyId="'+$(this).attr('companyId')+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                     <i class="fa fa-plus "></i>\
+                                                                 </a>\
+                                                             </li>');
+                                }
+                                // if (response == 'exist') {
+                                //     canBeAddedToWishlist = '<li>\
+                                //                                 <a wishlistId="'+v.wishlist_id+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                //                                     <i class="fa fa-close "></i>\
+                                //                                 </a>\
+                                //                             </li>';
+
+                                // }else{
+                                //     canBeAddedToWishlist = '<li>\
+                                //                                 <a companyId="'+$(this).attr('companyId')+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                //                                     <i class="fa fa-plus "></i>\
+                                //                                 </a>\
+                                //                             </li>';
+                                 
+                                // }
+                            }
+                        });
+                    })
 
                     $('.removeWishlist').click(function(){
                         var $wishlistId = $(this).attr('wishlistId');
