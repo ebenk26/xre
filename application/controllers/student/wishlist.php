@@ -27,6 +27,10 @@ class Wishlist extends CI_Controller {
         $profile['percent']        = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']       = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id, 'wishlist.status'=> 1));
+
+        $wishlistCount = $this->global_model->get_where('wishlist', array('student_id'=>$id));
+        $data['totalWishlist'] = count($wishlistCount);
+
         $this->load->view('student/main/header', $profile);
         $this->load->view('student/wishlist',$data);
         $this->load->view('student/main/footer');
@@ -35,8 +39,18 @@ class Wishlist extends CI_Controller {
     public function get_company(){
         $company = $this->input->get('company_name');
         $data = $this->student_model->get_company('user_profiles', array('user_profiles.company_name' => $company));
-        
-        print(json_encode($data));
+        foreach ($data as $key => $value) {
+            $newData[$key] = array(   'id'=>$value['id'],
+                                'company_name'=>$value['company_name'],
+                                'registered_company'=> $value['registered_company'],
+                                'profile_photo'=> file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? file_exists(IMG_EMPLOYERS.$value['profile_photo']) : IMG_EMPLOYERS.'profile-pic.png',
+                                'company_id'=> $value['company_id'],
+                                'wishlist_id'=> $value['wishlist_id'],
+                                'wishlist_user_id'=> $value['wishlist_user_id'],
+                                'status'=> $value['status']
+                            );
+        }
+        print(json_encode($newData));
     }
 
     public function addCompany(){
@@ -68,9 +82,15 @@ class Wishlist extends CI_Controller {
         $wishlistId = $this->input->post('wishlistId');
         $userId = $this->session->userdata('id');
         $where = array(  'id' => $wishlistId);
-        $data = array(  'status'=> 0,
-                        'deleted_by' => $userId,
-                        'deleted_at' => date('Y-m-d H:i:s'));
-        $this->global_model->update('wishlist', $where, $data);
+        $data = array(
+                    'user_id'       => $this->session->userdata('id'),
+                    'ip_address'    => $this->input->ip_address(),
+                    'activity'      => "Remove Wishlist of company",
+                    'icon'          => "fa-edit",
+                    'label'         => "success",
+                    'created_at'    => date('Y-m-d H:i:s'),
+                );
+        setRecentActivities($data);
+        $this->global_model->remove('wishlist', $where);
     }
 }
