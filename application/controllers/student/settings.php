@@ -122,7 +122,7 @@ class settings extends CI_Controller {
         				'user_id' 				=> $this->session->userdata('id'),
         				'keywords' 				=> $this->input->post('keywords') != NULL ? $this->input->post('keywords') : NULL,
         				'work_location' 		=> !empty($this->input->post('work_location')) && $this->input->post('cbLocation') != FALSE ? implode(';', $this->input->post('work_location')) : '',
-        				'salary_range' 			=> !empty($this->input->post('range_min')) && $this->input->post('cbSalaryRange') != FALSE ? $this->input->post('range_min').'-'.$this->input->post('range_max') : NULL,
+        				'salary_range' 			=> !empty($this->input->post('range_min')) && $this->input->post('cbSalaryRange') != FALSE ? $this->input->post('range_min').'-'.$this->input->post('range_max') : 0,
         				'position_level' 		=> !empty($this->input->post('position_level')) && $this->input->post('cbPositionLevel') != FALSE ? implode(';', $this->input->post('position_level')) : NULL,
         				'years_of_experience' 	=> !empty($this->input->post('years_of_experience')) && $this->input->post('cbYearOfExperience') != FALSE ? implode(';', $this->input->post('years_of_experience')) : NULL,
         				'qualifications' 		=> !empty($this->input->post('qualifications')) && $this->input->post('cbQualification') != FALSE ? $this->input->post('qualifications') : NULL,
