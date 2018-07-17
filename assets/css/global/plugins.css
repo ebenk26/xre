@@ -367,7 +367,8 @@
 
 
 .bootstrap-select .btn {
-  border-color: #c2cad8; }
+  border-color: #c2cad8;
+  box-shadow: none !important; }
 
 .has-error .bootstrap-select .btn {
   border-color: #fbe1e3; }
