@@ -1,5 +1,4 @@
 <div class="page-content-wrapper">
-    <!-- BEGIN CONTENT BODY -->
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
         <h1 class="page-title"> Gallery </h1>
@@ -69,7 +68,7 @@
         <!-- # Empty States -->
         <div class="portlet height-600-md height-550-sm height-450 light flex-center mb-0">
             <div class="portlet-body text-center">
-                <i class="fa fa-picture-o font-80-md font-70-sm font-60 md-grey-lighten-2-text mb-55-md mb-35-sm mb-15"></i>
+                <i class="fa fa-picture-o font-80-md font-70-sm font-60 md-grey-lighten-1-text mb-55-md mb-35-sm mb-15"></i>
                 <h5 class="text-center font-weight-600 md-grey-darken-2-text font-22-md font-18">Gallery is empty !</h5>
                 <p class="text-center font-weight-400 md-grey-darken-1-text font-16-md font-15-sm font-14">Show prove of your experience in participate activity or event by uploading photo in here.</p>
                 <a data-toggle="modal" href="#modal_add" class="btn btn-md-indigo btn-sm mt-30-md mt-25">
