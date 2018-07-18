@@ -39,7 +39,11 @@ class Wishlist extends CI_Controller {
     public function get_company(){
         $company = $this->input->get('company_name');
         $data = $this->student_model->get_company('user_profiles', array('user_profiles.company_name' => $company));
+        $wishlist = $this->global_model->get_where('wishlist', array('company_id'=>$this->session->userdata('id')));
+        // $res = array_search($this->session->userdata('id'), array_column($data,'wishlist_user_id'));
         foreach ($data as $key => $value) {
+            
+
             $newData[$key] = array(   'id'=>$value['id'],
                                 'company_name'=>$value['company_name'],
                                 'registered_company'=> $value['registered_company'],
@@ -47,7 +51,8 @@ class Wishlist extends CI_Controller {
                                 'company_id'=> $value['company_id'],
                                 'wishlist_id'=> $value['wishlist_id'],
                                 'wishlist_user_id'=> $value['wishlist_user_id'],
-                                'status'=> $value['status']
+                                'status'=> $value['status'],
+                                'session_id'=> $this->session->userdata('id'),
                             );
         }
         print(json_encode($newData));
@@ -92,5 +97,16 @@ class Wishlist extends CI_Controller {
                 );
         setRecentActivities($data);
         $this->global_model->remove('wishlist', $where);
+    }
+
+    public function checkWishlistAvailability(){
+        $companyId = $this->input->get('companyId');
+        $userId = $this->session->userdata('id');
+        $where = array('student_id' => $userId,
+                        'company_id' => $companyId);
+        $resultCheck = $this->global_model->get_where('wishlist', $where);
+        $result = current($resultCheck);
+        $result['response'] = !empty($resultCheck) ? 'exist' : 'empty'; 
+        print json_encode($result);
     }
 }

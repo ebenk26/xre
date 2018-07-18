@@ -98,7 +98,7 @@
                                             <!-- Email Input -->
                                             <div class="form-group form-md-line-input ">
                                                 <div class="input-icon">
-                                                    <input name="email" type="email" class="form-control " placeholder="Email" required>
+                                                    <input name="email" type="email" class="form-control " placeholder="Email" value="<?= !empty($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" required>
                                                     <div class="form-control-focus"> </div>
                                                     <i class="fa fa-envelope-o"></i>
                                                 </div>
@@ -106,7 +106,7 @@
                                             <!-- Password -->
                                             <div class="form-group form-md-line-input">
                                                 <div class="input-icon ">
-                                                    <input name="password" type="password" class="form-control " placeholder="Password" required>
+                                                    <input name="password" type="password" class="form-control " placeholder="Password" value="<?= !empty($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>" required>
                                                     <div class="form-control-focus"> </div>
                                                     <i class="fa fa-key"></i>
                                                 </div>

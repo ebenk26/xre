@@ -15,7 +15,7 @@ class Inbox extends CI_Controller {
     public function index(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if(empty($roles && $this->session->userdata('id'))){
             redirect(base_url());
         }
         
@@ -24,8 +24,9 @@ class Inbox extends CI_Controller {
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
+        $calendar['invitation'] = $this->student_model->get_interview_invitation($id);
         $this->load->view('student/main/header', $profile);
-        $this->load->view('student/inbox');
-        $this->load->view('student/main/footer');
+        $this->load->view('administrator/inbox_list',$profile);
+        $this->load->view('student/main/footer', $calendar);
 	}
 }

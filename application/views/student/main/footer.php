@@ -441,42 +441,18 @@
                     var companyName = "";
                     if(company.length > 0){
                         $.each(company, function (i, v) {
-                            console.log(v);
-                            if (v.profile_photo != null) {
-                                profile_pic = v.profile_photo;
-                            }else{
-                                profile_pic = 'profile-pic.png';
-                            }
-
                             if (v.company_name != "") {
                                 companyName = v.company_name;
                             }else{
                                 companyName = v.registered_company;
                             }
 
-                            if (v.wishlist_user_id == <?= $this->session->userdata('id');?> && (v.status == 1)) {
-                                canBeAddedToWishlist = '<li>\
-                                                            <a wishlistId="'+v.wishlist_id+'" companyName="'+v.companyName+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
-                                                                <i class="fa fa-close "></i>\
-                                                            </a>\
-                                                        </li>';
-
-                            }else{
-                                canBeAddedToWishlist = '<li>\
-                                                            <a companyId="'+v.id+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
-                                                                <i class="fa fa-plus "></i>\
-                                                            </a>\
-                                                        </li>';
-                             
-                            }
-
                             companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
-                                            <div class="mt-card-item">\
+                                            <div class="mt-card-item wishlistCheckAvailability" companyId="'+v.id+'">\
                                                 <div class="mt-card-avatar mt-overlay-1">\
                                                     <img src="' + v.profile_photo + '" class="img-fluid height-200 width-auto center-block">\
                                                     <div class="mt-overlay">\
-                                                        <ul class="mt-info">\
-                                                            '+canBeAddedToWishlist+'\
+                                                        <ul class="mt-info wishlistInfo">\
                                                         </ul>\
                                                     </div>\
                                                 </div>\
@@ -511,39 +487,104 @@
                         $('#company_result').removeAttr("style");
                     }
                     $('#company_result').html(companies);
-                    $('.addWishlist').click(function(){
-                        var $companyId = $(this).attr('companyId')
-                        swal({
-                            title: "Are you sure want to add this as your wishlist?",
-                            text: "You will be able to remove it later",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Add",
-                            cancelButtonText: "Cancel",
-                            closeOnConfirm: false,
-                            closeOnCancel: false
-                        },
-                        function (isConfirm) {
-                            if (isConfirm) {
-                                $.ajax({
-                                    url: "<?= base_url(); ?>student/wishlist/addCompany",
-                                    method: "POST",
-                                    data: {
-                                        companyId: $companyId
-                                    },
-                                    success: function(response){
+                    
 
-                                        swal("Success", "Successfuly add company to job wishlist", "success");
-                                        location.reload();
+                    $('.wishlistCheckAvailability').hover(function(){
+                        var companyId = $(this).attr('companyid');
+                        $.ajax({
+                            url: "<?= base_url(); ?>student/wishlist/checkWishlistAvailability",
+                            method: "GET",
+                            data: {
+                                companyId: companyId
+                            },
+                            success: function(response){
+                                var result = JSON.parse(response);
+                                if (result.response == 'exist') {
+                                    $('.wishlistCheckAvailability .wishlistInfo').html('<li>\
+                                                                 <a wishlistId="'+result.id+'" class="btn btn-md-red removeWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                     <i class="fa fa-close "></i>\
+                                                                 </a>\
+                                                             </li>');
+                                }else{
+                                    $('.wishlistCheckAvailability .wishlistInfo').html('<li>\
+                                                                 <a companyId="'+companyId+'" class="btn btn-md-orange addWishlist" href="javascript:void(0);" data-dismiss="modal">\
+                                                                     <i class="fa fa-plus "></i>\
+                                                                 </a>\
+                                                             </li>');
+                                }
+
+                                $('.removeWishlist').click(function(){
+                                    var $wishlistId = $(this).attr('wishlistId');
+                                    swal({
+                                            title: "Are you sure you want to remove from your wishlist?",
+                                            text: "You will be able to add it later",
+                                            type: "warning",
+                                            showCancelButton: true,
+                                            confirmButtonColor: "#DD6B55",
+                                            confirmButtonText: "Delete",
+                                            cancelButtonText: "Cancel",
+                                            closeOnConfirm: false,
+                                            closeOnCancel: false
+                                        },
+                                        function (isConfirm) {
+                                            if (isConfirm) {
+                                                $.ajax({
+                                                    url: "<?= base_url(); ?>student/wishlist/removeCompany",
+                                                    method: "POST",
+                                                    data: {
+                                                        wishlistId: $wishlistId
+                                                    },
+                                                    success: function(response){
+                                                        swal("Success", "Successfuly remove company to job wishlist", "success");
+                                                        location.reload();
+                                                    }
+                                                })
+                                            } else {
+                                                swal("Cancelled", "Your Post is safe", "error");
+                                            }
+                                        }
+                                    )
+                                    
+                                });
+
+                                $('.addWishlist').click(function(){
+                                    var $companyId = $(this).attr('companyId')
+                                    swal({
+                                        title: "Are you sure want to add this as your wishlist?",
+                                        text: "You will be able to remove it later",
+                                        type: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#DD6B55",
+                                        confirmButtonText: "Add",
+                                        cancelButtonText: "Cancel",
+                                        closeOnConfirm: false,
+                                        closeOnCancel: false
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            $.ajax({
+                                                url: "<?= base_url(); ?>student/wishlist/addCompany",
+                                                method: "POST",
+                                                data: {
+                                                    companyId: $companyId
+                                                },
+                                                success: function(response){
+
+                                                    swal("Success", "Successfuly add company to job wishlist", "success");
+                                                    location.reload();
+                                                }
+                                            })
+                                        } else {
+                                            swal("Cancelled", "Your Post is safe", "error");
+                                        }
                                     }
-                                })
-                            } else {
-                                swal("Cancelled", "Your Post is safe", "error");
+                                    );                        
+                                });
                             }
-                        }
-                        );                        
-                    });
+                        });
+                    })
+
+                    
 
                     $('.removeWishlist').click(function(){
                         var $wishlistId = $(this).attr('wishlistId');
@@ -779,6 +820,10 @@
             )
             
         });
+
+        <?php if ($this->uri->segment(2) == 'wishlist' && $totalWishlist == 5) { ?>
+            swal("Alert", "Please Remove 1 of the wishlist to add more", "error");
+        <?php } ?>
 
         $('.btn-resc').click(function () {
             $('.modal_detail_interview').modal('hide');

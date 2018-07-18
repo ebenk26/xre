@@ -75,6 +75,8 @@ class User extends CI_Controller {
                         $cookie_name = "xremo_cookie";
                         $cookie_value = $token;
                         setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+                        setcookie('email', $this->input->post('email'), time() + (86400 * 30), "/");
+                        setcookie('password', $this->input->post('password'), time() + (86400 * 30), "/");
                     }
                 }
                 

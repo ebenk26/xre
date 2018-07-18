@@ -428,7 +428,6 @@ class Inbox extends CI_Controller {
     	$roles 	= $this->session->userdata('roles');
 		$id 	= $this->session->userdata('id');
 		$calendar = array();
-        
 		if($roles == "employer"){
 			$get_user_profile = $this->employer_model->get_user_profile($id);
 		}elseif($roles == "student" || $roles=="jobseeker"){
