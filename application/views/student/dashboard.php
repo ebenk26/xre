@@ -162,16 +162,16 @@
                                                 <?php if (!empty($this->session->userdata('forex'))){
                                                     echo $this->session->userdata('forex') 
                                                 ?>
-                                                <?php echo $value['min_budget']; ?> -
+                                                <?php echo simplifyCurrency($value['min_budget']); ?> -
                                                 <?php echo $this->session->userdata('forex') ?>
-                                                <?php echo $value['max_budget']; ?>
+                                                <?php echo simplifyCurrency($value['max_budget']); ?>
     
                                                 <?php } else{ ?>
                                                 
                                                 <i class="fa fa-usd"></i> 
-                                                <?php echo $value['min_budget']; ?> -
+                                                <?php echo simplifyCurrency($value['min_budget']); ?> -
                                                 <i class="fa fa-usd"></i> 
-                                                <?php echo $value['max_budget']; ?>
+                                                <?php echo simplifyCurrency($value['max_budget']); ?>
                                                 <?php } ?>
                                             </p>
                                         </li>
