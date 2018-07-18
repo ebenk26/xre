@@ -166,7 +166,7 @@
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="<?php echo ucfirst($user_profile['name']); ?> " class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/profile-pic.png'?>">
+                                <img alt="<?php echo ucfirst($user_profile['name']); ?> " class="avatar avatar-xtramini avatar-circle" src="<?php echo file_exists(IMG_EMPLOYERS.$user_profile['img']) ?  IMG_EMPLOYERS.$user_profile['img'] : IMG.'site/profile-pic.png'?>">
                                 <span class="username username-hide-on-mobile">
                                     <?php echo ucfirst($user_profile['name']); ?> </span>
                                 <i class="fa fa-angle-down"></i>
