@@ -12,20 +12,28 @@
     <div class="page-content">
 
         <!-- BEGIN PAGE HEADER-->
-        <h1 class="page-title"> Hey ! <?= !empty($language->welcome) ? $language->welcome : "Welcome" ?> <?= !empty($language->back) ? $language->back : "Back" ?>
-            <?php echo ucfirst($this->session->userdata('name'));?>
-            <small><?= !empty($language->site_feed_label) ? $language->site_feed_label : "Here latest feeds regarding your Company account"; ?></small>
+        <h1 class="page-title"> Hey !
+            <?= !empty($language->welcome) ? $language->welcome : "Welcome" ?>
+                <?= !empty($language->back) ? $language->back : "Back" ?>
+                    <?php echo ucfirst($this->session->userdata('name'));?>
+                    <small>
+                        <?= !empty($language->site_feed_label) ? $language->site_feed_label : "Here latest feeds regarding your Company account"; ?>
+                    </small>
         </h1>
 
         <div class="page-bar">
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url().'employer/dashboard'; ?>"><?= !empty($language->site_home) ? $language->site_home : "Home"; ?></a>
+                    <a href="<?php echo base_url().'employer/dashboard'; ?>">
+                        <?= !empty($language->site_home) ? $language->site_home : "Home"; ?>
+                    </a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span><?= !empty($language->site_dashboard) ? $language->site_dashboard : "Dashboard"; ?></span>
+                    <span>
+                        <?= !empty($language->site_dashboard) ? $language->site_dashboard : "Dashboard"; ?>
+                    </span>
                 </li>
             </ul>
 
@@ -37,7 +45,9 @@
             <!-- BEGIN WIDGET THUMB  : Job Post (Active)-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"> <?= !empty($language->job_post) ? $language->job_post : "job post"  ?></h4>
+                    <h4 class="widget-thumb-heading">
+                        <?= !empty($language->job_post) ? $language->job_post : "job post"  ?>
+                    </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-green icon-briefcase"></i>
                         <div class="widget-thumb-body">
@@ -49,7 +59,9 @@
                                     }
                                 }									
                             ?>
-                            <span class="widget-thumb-subtitle"><?= !empty($language->active) ? $language->active : "active"  ?></span>
+                            <span class="widget-thumb-subtitle">
+                                <?= !empty($language->active) ? $language->active : "active"  ?>
+                            </span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$active?>"></span>
                         </div>
                     </div>
@@ -59,11 +71,15 @@
             <!-- BEGIN WIDGET THUMB : Profile Seen -->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"><?= !empty($language->profile) ? $language->profile : "profile"  ?> </h4>
+                    <h4 class="widget-thumb-heading">
+                        <?= !empty($language->profile) ? $language->profile : "profile"  ?>
+                    </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-red icon-eye"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle"><?= !empty($language->seen) ? $language->seen : "seen"  ?></span>
+                            <span class="widget-thumb-subtitle">
+                                <?= !empty($language->seen) ? $language->seen : "seen"  ?>
+                            </span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$user_profile['number_of_seen']?>">0</span>
                         </div>
                     </div>
@@ -73,11 +89,15 @@
             <!-- BEGIN WIDGET THUMB : Upcoming Interview-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"> <?= !empty($language->interview) ? $language->interview : "interview"  ?></h4>
+                    <h4 class="widget-thumb-heading">
+                        <?= !empty($language->interview) ? $language->interview : "interview"  ?>
+                    </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-purple icon-calendar"></i>
                         <div class="widget-thumb-body">
-                            <span class="widget-thumb-subtitle"><?= !empty($language->upcoming) ? $language->upcoming : "upcoming"  ?> </span>
+                            <span class="widget-thumb-subtitle">
+                                <?= !empty($language->upcoming) ? $language->upcoming : "upcoming"  ?>
+                            </span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?php echo $upcoming; ?>">
                                 <?php echo $upcoming; ?>
                             </span>
@@ -89,12 +109,16 @@
             <!-- BEGIN WIDGET THUMB : Inbox-->
             <div class="col-md-3">
                 <div class="widget-thumb md-white text-uppercase mb-30">
-                    <h4 class="widget-thumb-heading"><?= !empty($language->site_inbox) ? $language->site_inbox : "inbox"  ?></h4>
+                    <h4 class="widget-thumb-heading">
+                        <?= !empty($language->site_inbox) ? $language->site_inbox : "inbox"  ?>
+                    </h4>
                     <div class="widget-thumb-wrap">
                         <i class="widget-thumb-icon md-blue icon-envelope"></i>
                         <div class="widget-thumb-body">
                             <?php $message = getDataMessage("general");?>
-                            <span class="widget-thumb-subtitle"><?= !empty($language->unread_message) ? $language->unread_message : "unread message"  ?></span>
+                            <span class="widget-thumb-subtitle">
+                                <?= !empty($language->unread_message) ? $language->unread_message : "unread message"  ?>
+                            </span>
                             <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<?=$message['new']?>">0</span>
                         </div>
                     </div>
@@ -110,7 +134,9 @@
                     <div class="portlet-title tabbable-line">
                         <div class="caption">
                             <i class="icon-notebook font-dark"></i>
-                            <span class="caption-subject font-dark font-weight-600 text-uppercase"><?= !empty($language->recent_job_post) ? $language->recent_job_post : "Recent Job Post"  ?> </span>
+                            <span class="caption-subject font-dark font-weight-600 text-uppercase">
+                                <?= !empty($language->recent_job_post) ? $language->recent_job_post : "Recent Job Post"  ?>
+                            </span>
                         </div>
                     </div>
                     <?php if(!empty($job_post)){?>
@@ -121,7 +147,9 @@
                                 <thead>
                                     <tr class="text-uppercase ">
                                         <th> # </th>
-                                        <th class="col-sm-7"> <?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?> </th>
+                                        <th class="col-sm-7">
+                                            <?= !empty($language->job_post) ? $language->job_post : "Job Post"  ?>
+                                        </th>
                                         <!-- <th> Last Update</th> -->
                                         <th class="col-sm-2 text-center"> Status </th>
                                         <th class="col-sm-2 text-center"> Candidate</th>
@@ -148,7 +176,9 @@
                                             <?=$value['number_of_candidate']?>
                                         </td>
                                         <td>
-                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm"><?= !empty($language->view_candidates) ? $language->view_candidates : "View Candidates"  ?></a>
+                                            <a href="<?php echo base_url(); ?>job/candidate/<?php echo rtrim(base64_encode($value['id']),'='); ?>" target="_blank" class="btn btn-md-indigo btn-sm">
+                                                <?= !empty($language->view_candidates) ? $language->view_candidates : "View Candidates"  ?>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php ($value['status'] != 'preview') ? $i++ : ''; } ?>
@@ -181,7 +211,9 @@
                     <div class="portlet-title ">
                         <div class="caption">
                             <i class="icon-calendar font-dark"></i>
-                            <span class="caption-subject font-dark font-weight-600 text-uppercase"><?= !empty($language->site_calendar) ? $language->site_calendar : "calendar"  ?></span>
+                            <span class="caption-subject font-dark font-weight-600 text-uppercase">
+                                <?= !empty($language->site_calendar) ? $language->site_calendar : "calendar"  ?>
+                            </span>
                         </div>
                     </div>
                     <div class="portlet-body">
@@ -242,12 +274,14 @@
                     <div class="portlet-title">
                         <div class="caption caption-md md-darkblue-text">
                             <i class="icon-list md-darkblue-text"></i>
-                            <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase"><?= !empty($language->site_recent_activities) ? $language->site_recent_activities : "Recent Activities"  ?></span>
+                            <span class="caption-subject md-darkblue-text font-weight-600 text-uppercase">
+                                <?= !empty($language->site_recent_activities) ? $language->site_recent_activities : "Recent Activities"  ?>
+                            </span>
                         </div>
                     </div>
                     <?php if (!empty($recent_activities)){?>
                     <div class="portlet-body ">
-                        <div class="scroller height-370 " data-always-visible="1" data-rail-visible="1">
+                        <div class="scroller height-500-md height-450 " data-always-visible="1" data-rail-visible="1" data-handle-color="#D7DCE2">
                             <ul class="feeds">
                                 <?php foreach($recent_activities as $row){?>
                                 <li>
@@ -292,9 +326,9 @@
             </div>
             <!-- Article -->
             <div class="col-md-6">
-                <div id="carousel-example-generic-v2" class="carousel  slide widget-carousel" data-ride="carousel">
+                <div id="carousel-example-generic-v2" class="carousel slide widget-carousel height-650-md height-550" data-ride="carousel">
                     <!-- Indicators -->
-                    <ol class="carousel-indicators carousel-indicators-red mb-30">
+                    <ol class="carousel-indicators carousel-indicators-white  ">
                         <li data-target="#carousel-example-generic-v2" data-slide-to="0" class="circle active"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="1" class="circle"></li>
                         <li data-target="#carousel-example-generic-v2" data-slide-to="2" class="circle"></li>
@@ -302,29 +336,30 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner " role="listbox">
                         <?php $i = 1;foreach ($article as $row) { ?>
-                        <div class="item <?=$i == 1?" active ":" "?>">
+                        <div class="item  <?=$i == 1?" active ":" "?>">
                             <!-- BEGIN WIDGET BLOG -->
-                            <div class="widget-blog  text-center mb-30 " style=" background-image: url('<?= !empty($row->featured_image) ? IMG.'article/'.$row->featured_image : IMG.'site/dawn.jpg'; ?>'">
+                            <div class="widget-blog py-60 text-center height-650-md height-550" style=" background: url('<?= !empty($row->featured_image) ?IMG.'/article/'.$row->featured_image : IMG.'/site/dawn.jpg'; ?>'">
                                 <div class="widget-blog-heading text-uppercase">
-                                    <h3 class="widget-blog-title md-white-text">
+                                    <h4 class="widget-blog-title md-white-text font-18 font-20-sm font-24-md line-height-md mt-0 mt-20-sm">
                                         <?=$row->title?>
-                                    </h3>
-                                    <span class="widget-blog-subtitle mdo-white-v7-text">
+                                    </h4>
+                                    <span class="widget-blog-subtitle mdo-white-v7-text font-15 font-16-sm">
                                         <?=date('j F Y', strtotime($row->created_at))?>
                                     </span>
                                 </div>
-                                <p class="mdo-white-v7-text">
+                                <p class="mdo-white-v7-text px-20-md font-15 font-16-sm ">
                                     <?= strlen($row->excerpt) > 250?preg_replace('/\W\w+\s*(\W*)$/', '$1', substr($row->excerpt, 0 , 250))."...":$row->excerpt; ?>
                                 </p>
                                 <br/>
-                                <a class="btn btn-danger text-uppercase" href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More</a>
+                                <a class="btn btn-md-amber text-uppercase letter-space-xs font-weight-600 md-grey-darken-3-text font-14  " href="<?=base_url()?>article/<?=$row->slug?>" target="_blank">Read More
+                                    <i class="fa fa-chevron-right font-12"></i>
+                                </a>
                             </div>
                             <!-- END WIDGET BLOG -->
                         </div>
                         <?php $i++;}?>
                     </div>
                 </div>
-
             </div>
         </div>
 
