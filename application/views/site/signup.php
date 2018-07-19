@@ -212,7 +212,7 @@
                 </div>
             </div>
             <!-- Jobseeker Form -->
-            <?php if ($_COOKIE['country'] == 'ph'): ?>
+            <?php if ($_COOKIE['country'] == 'ph' || $_COOKIE['country'] == 'id'): ?>
                 
             
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  " style="background-color: #3F51B5;">

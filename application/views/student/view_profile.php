@@ -96,7 +96,7 @@
     <?php $this->load->view('site/header_content');?>
 
     <!-- # VIEW -->
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= file_exists(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
         <div class="container g-ver-bottom-80-md g-ver-bottom-70-sm ">
             <!-- Fullname & Quote -->
             <div class="col-md-9 col-sm-9">
@@ -128,8 +128,8 @@
             </div>
             <!--  Profile IMAGE -->
             <div class="col-md-3  col-sm-3 text-center">
-                <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle  hidden-sm">
-                <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle  visible-sm">
+                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle  hidden-sm">
+                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle  visible-sm">
             </div>
         </div>
     </div>

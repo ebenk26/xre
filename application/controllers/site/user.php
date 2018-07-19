@@ -16,12 +16,18 @@ class User extends CI_Controller {
     }
     
     public function login(){
+        if ($this->session->userdata('id')) {
+            redirect(base_url());
+        }
         $header['page_title'] = 'Login';
         $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/login', $header);
 	}
 
     public function signup(){
+        if ($this->session->userdata('id')) {
+            redirect(base_url());
+        }
         $header['page_title'] = 'Sign Up';
         $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/signup', $header);
