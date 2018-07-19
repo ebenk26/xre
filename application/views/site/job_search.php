@@ -405,15 +405,16 @@
                                                     <h6>
                                                         <!-- Country @ Location -->
                                                         <?php if(!empty($job_result['location'])){?>
-                                                        <p class="label label-md-purple  mr-5  letter-space-xs rounded-2">
+                                                        <p class="label label-md-purple label-sm mr-5  letter-space-xs rounded-2">
                                                             <i class="icon-pointer"></i>
-                                                            <?= json_decode($job_result["location"])->country; ?>
+                                                            <?= json_decode($job_result["location"])->city; ?> ,  
+                                                            <?= json_decode($job_result["location"])->state; ?> 
                                                         </p>
                                                         <?php }?>
 
                                                         <!-- Salary -->
                                                         <?php if(!empty($job_result['budget_min'] || $job_result['budget_max'] || $job_result['forex'] )){?>
-                                                        <p class="label label-md-green  mr-5 letter-space-xs rounded-2">
+                                                        <p class="label label-md-green  mr-5 letter-space-xs rounded-2 label-sm">
                                                             <i class="fa fa-usd"></i>
                                                             <?= $job_result['forex'];?>
                                                                 <?= str_replace(',', '.', number_format($job_result["budget_min"]));?>
@@ -425,7 +426,7 @@
 
                                                         <!-- Industry -->
                                                         <?php if(!empty($job_result['industry_name'])){?>
-                                                        <p class="label label-md-blue-grey  mr-5 letter-space-xs rounded-2">
+                                                        <p class="label label-md-blue-grey  mr-5 letter-space-xs rounded-2 label-sm">
                                                             <i class="fa fa-industry"></i>
                                                             <?= $job_result["industry_name"]; ?>
                                                         </p>
@@ -440,7 +441,7 @@
 
                                                         <!-- Job Type -->
                                                         <?php if(!empty($job_result['job_type'])){?>
-                                                        <p class="label label-md-blue  mr-5 letter-space-xs rounded-2">
+                                                        <p class="label label-md-blue  mr-5 letter-space-xs rounded-2 label-sm">
                                                             <i class="fa fa-briefcase"></i>
                                                             <?= $job_result["job_type"]; ?>
                                                         </p>
@@ -448,7 +449,7 @@
 
                                                         <!-- Position Level -->
                                                         <?php if(!empty($job_result['position_level'])){?>
-                                                        <p class="label label-md-deep-purple  mr-5 letter-space-xs rounded-2">
+                                                        <p class="label label-md-deep-purple  mr-5 letter-space-xs rounded-2 label-sm">
                                                             <i class="fa fa-sitemap"></i>
                                                             <?= $job_result["position_level"]; ?>
                                                         </p>
