@@ -362,7 +362,7 @@ function simplifyCurrency($money){
     if (($money > 999) && ($money < 1000000)) {
         $result = $money/1000;
         $moneyResult = $result.'k';
-    }else if($money > 1000000){
+    }else if($money >= 1000000){
         $result = $money/1000000;
         $moneyResult = $result.'m';
     }else{

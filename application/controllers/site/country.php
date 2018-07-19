@@ -37,7 +37,7 @@ class Country extends CI_Controller {
         $cookie_locale_value = "ID";
         setcookie($cookie_locale_name, $cookie_locale_value, time() + (86400 * 30), "/");
 
-        $lang = getLocaleLanguage($_COOKIE['locale']);
+        $lang = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage($country['locale']);
 
         
         
@@ -74,7 +74,7 @@ class Country extends CI_Controller {
         $cookie_locale_value = "EN";
         setcookie($cookie_locale_name, $cookie_locale_value, time() + (86400 * 30), "/");
 
-        $lang = getLocaleLanguage($cookie_locale_value);
+        $lang = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage($country['locale']);
 
         
 
@@ -111,7 +111,7 @@ class Country extends CI_Controller {
         $country_id_value = 4;
         setcookie($country_id, $country_id_value, time() + (86400 * 30), "/");
 
-        $lang = getLocaleLanguage($cookie_locale_value);
+        $lang = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage($country['locale']);
 
         
 
