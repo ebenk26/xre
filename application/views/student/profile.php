@@ -2,53 +2,52 @@
     <div class="page-content">
 
         <!-- Page Header -->
-        
-            <div class="portlet light md-transparent  p-0 portlet-fit">
-                <div class="portlet-title tabbable tabbable-tabdrop tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
-                    <div class="caption">
-                        <span class="caption-subject font-weight-300 text-capitalize font-26">
-                            <?= !empty($language->user_profile) ? $language->user_profile : "User Profile" ?>
-                        </span>
-                    </div>
-                    <!-- Nav Tabs -->
-                    <ul class="nav nav-tabs mb-0 pb-0 ">
-                        <?php
+        <div class="portlet light md-transparent  p-0 portlet-fit">
+            <div class="portlet-title tabbable tabbable-tabdrop tabbable-line tab-md-indigo py-0 mb-0 border-md-blue-grey">
+                <div class="caption">
+                    <span class="caption-subject font-weight-300 text-capitalize font-26">
+                        <?= !empty($language->user_profile) ? $language->user_profile : "User Profile" ?>
+                    </span>
+                </div>
+                <!-- Nav Tabs -->
+                <ul class="nav nav-tabs mb-0 pb-0 ">
+                    <?php
                             $tab_student = $this->session->flashdata('tab_student');
                         ?>
-                            <li class="<?=$tab_student =='tab_overview' || $tab_student =='' ?'active':'' ?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab">
-                                    <i class="icon-user font-22"></i>
-                                    <?= !empty($language->site_summary) ? $language->site_summary : "Overview" ?>
-                                </a>
-                            </li>
-                            <li class="<?=$tab_student == " tab_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab">
-                                    <i class="icon-graduation font-22"></i>
-                                    <?= !empty($language->site_education) ? $language->site_education : "Education" ?>
-                                </a>
-                            </li>
-                            <li class="<?=$tab_student == " tab_experience "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab">
-                                    <i class="icon-briefcase font-22"></i>
-                                    <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?>
-                                </a>
-                            </li>
-                            <li class="<?=$tab_student == " tab_non_education "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab">
-                                    <i class="icon-notebook font-22"></i>
-                                    <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?>
-                                </a>
-                            </li>
-                            <li class="<?=$tab_student == " tab_project "?"active ":" "?>">
-                                <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab">
-                                    <i class="icon-badge font-22"></i>
-                                    <?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?>
-                                </a>
-                            </li>
+                        <li class="<?=$tab_student =='tab_overview' || $tab_student =='' ?'active':'' ?>">
+                            <a href="<?php echo base_url(); ?>student/profile#tab_overview" data-toggle="tab">
+                                <i class="icon-user font-22"></i>
+                                <?= !empty($language->site_summary) ? $language->site_summary : "Overview" ?>
+                            </a>
+                        </li>
+                        <li class="<?=$tab_student == " tab_education "?"active ":" "?>">
+                            <a href="<?php echo base_url(); ?>student/profile#tab_education" data-toggle="tab">
+                                <i class="icon-graduation font-22"></i>
+                                <?= !empty($language->site_education) ? $language->site_education : "Education" ?>
+                            </a>
+                        </li>
+                        <li class="<?=$tab_student == " tab_experience "?"active ":" "?>">
+                            <a href="<?php echo base_url(); ?>student/profile#tab_experience" data-toggle="tab">
+                                <i class="icon-briefcase font-22"></i>
+                                <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?>
+                            </a>
+                        </li>
+                        <li class="<?=$tab_student == " tab_non_education "?"active ":" "?>">
+                            <a href="<?php echo base_url(); ?>student/profile#tab_non_education" data-toggle="tab">
+                                <i class="icon-notebook font-22"></i>
+                                <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?>
+                            </a>
+                        </li>
+                        <li class="<?=$tab_student == " tab_project "?"active ":" "?>">
+                            <a href="<?php echo base_url(); ?>student/profile#tab_project" data-toggle="tab">
+                                <i class="icon-badge font-22"></i>
+                                <?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?>
+                            </a>
+                        </li>
 
-                    </ul>
-                </div>
-            </div>        
+                </ul>
+            </div>
+        </div>
 
         <!-- Content -->
         <div class="portlet mt-0 ">
@@ -59,7 +58,8 @@
                     <!-- # Header Image -->
                     <div class="view height-300 bg-position-center" style="background:url(' <?php echo !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                         <div class="mask mdo-darkblue-v7 ">
-                        <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-md-indigo m-30 pull-right"><i class="icon-pencil"></i> Edit Profile</a>
+                            <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-md-indigo m-30 pull-right">
+                                <i class="icon-pencil"></i> Edit Profile</a>
                         </div>
                     </div>
                     <!-- # User Card -->
@@ -71,14 +71,14 @@
                                     <div class="mt-card-item p-0">
                                         <!-- Avatar -->
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">        
+                                            <img src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">
                                         </div>
                                         <div class="mt-card-content mb-20 ">
                                             <!--  Full name   -->
                                             <h3 class="mt-card-name mt-15 md-indigo-text">
                                                 <?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : ucfirst($this->session->userdata('name'));?>
                                             </h3>
-                                            
+
                                             <!-- Role / Location / DOB -->
                                             <ul class="list-inline list-unstyled">
                                                 <!-- User Role -->
@@ -104,7 +104,7 @@
                                                 <li class="font-17">
                                                     <i class="icon-calendar"></i>
                                                     <?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('d F Y', strtotime($user_profile['overview']['student_bios_DOB'])) : "DOB not set";?>
-                                            
+
                                                 </li>
                                                 <?php }?>
                                             </ul>
@@ -119,20 +119,21 @@
                                 </div>
                                 <div class="center-block px-250  ">
                                     <div class="btn-group">
-                                    <!-- <a href="#modal_print_resume" data-toggle="modal" class="btn btn-md-orange md-black-text hidden "><i class="icon-printer mr-5"></i> Print Resume</a> -->
-                                    <a href="<?php
+                                        <!-- <a href="#modal_print_resume" data-toggle="modal" class="btn btn-md-orange md-black-text hidden "><i class="icon-printer mr-5"></i> Print Resume</a> -->
+                                        <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
-                                    echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-darkblue "> <i class="icon-notebook"></i>
-                                        <?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : " View Profile" ?>
-                                    </a>
-                                    
+                                    echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-darkblue ">
+                                            <i class="icon-notebook"></i>
+                                            <?= !empty($language->site_view_my_resume) ? $language->site_view_my_resume : " View Profile" ?>
+                                        </a>
+
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
-                        <hr >
+                        <hr>
                         <!-- # Section : About Myself -->
                         <div class="m-grid px-150">
                             <div class="m-grid-col ">
@@ -143,12 +144,12 @@
                                 <p>
                                     <?php echo !empty($user_profile['overview']['summary']) ? $user_profile['overview']['summary'] : '<i>Edit about you</i>';?>
                                 </p>
-                            </div>                            
+                            </div>
                         </div>
                         <!-- # Section : Profile Info -->
                         <div class="m-grid px-150 mt-40 pb-100">
                             <div class="m-grid-col">
-                                                    
+
                                 <h5 class="font-weight-700 text-uppercase letter-space-sm font-19">
                                     <?= !empty($language->site_personal_information) ? $language->site_personal_information : "Personal Information" ?>
                                 </h5>
@@ -357,11 +358,11 @@
                                                         foreach ($user_profile['reference'] as $reference_key => $reference_value) {
                                                     ?>
                                                     <li class="mb-30">
-                                                    <?php if(!empty($reference_value['reference_name'])){ ?>
+                                                        <?php if(!empty($reference_value['reference_name'])){ ?>
                                                         <h5 class=" roboto-font font-weight-500">
                                                             <?=$reference_value['reference_name']?>
                                                         </h5>
-                                                    <?php } if(!empty($reference_value['reference_email'])){ ?>
+                                                        <?php } if(!empty($reference_value['reference_email'])){ ?>
                                                         <h5 class="roboto-font font-15">
                                                             <b class="font-weight-400 ">
                                                                 <?= !empty($language->email_address) ? $language->email_address : "Email" ?>
@@ -375,7 +376,7 @@
                                                                 <?= !empty($language->phone_number) ? $language->phone_number : "Phone No." ?>
                                                             </b> :
                                                             <?=$reference_value['reference_phone'] != ""?$reference_value['reference_phone']:"-"?>
-                                                        </h5>                                                    
+                                                        </h5>
                                                         <?php } if(!empty($reference_value['reference_relationship'])){ ?>
                                                         <h5 class=" font-weight-400 roboto-font">
                                                             <b class="font-weight-400 ">
@@ -461,12 +462,12 @@
                                         <div class="media-right ">
                                             <!-- Edit Button -->
                                             <a href="<?php echo base_url();?>student/profile#modal_edit_education_<?php echo $value['academic_id'];?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only btn-edit-edu tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit" id="academic-btn" edu-val="<?php echo $value['academic_id'];?>">
-                                                <i class="icon-pencil" ></i>
+                                                <i class="icon-pencil"></i>
                                             </a>
                                             <div class="clearfix my-5"></div>
                                             <!-- Delete Button -->
                                             <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete  tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete" tb-val="academics" data-value="<?php echo $value['academic_id'];?>">
-                                                <i class="icon-trash" ></i>
+                                                <i class="icon-trash"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -559,7 +560,11 @@
                                                                 <?= !empty($language->description) ? $language->description : "Description" ?>
                                                             </label>
                                                             <div class="col-md-9">
-                                                                <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." name="academics_description"><?php echo ucfirst($value['degree_description']); ?></textarea>
+                                                                <?php 
+                                                                echo '<textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." name="academics_description">';
+                                                                echo ucfirst($value['degree_description']); 
+                                                                echo '</textarea>';
+                                                            ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -700,15 +705,15 @@
                                             <?php } ?>
                                         </div>
                                         <!-- Button -->
-                                        <div class="media-right ">                                                    
+                                        <div class="media-right ">
                                             <a href="<?php echo base_url();?>student/profile#modal_edit_experience_<?php echo $value['experience_id']?>" data-toggle="modal" class="btn btn-md-cyan btn-icon-only tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Edit">
                                                 <i class="icon-pencil"></i>
                                             </a>
                                             <div class="clearfix my-5"></div>
                                             <a href="javascript:;" class="btn btn-md-red btn-icon-only btn-delete tooltips" data-container="body" data-placement="left" data-html="true" data-original-title="Delete" data-value="<?php echo $value['experience_id'];?>" tb-val="experiences">
                                                 <i class="icon-trash"></i>
-                                            </a>                                                    
-                                            
+                                            </a>
+
                                         </div>
                                     </div>
                                     <!-- Modal : Edit Experience  -->
@@ -717,7 +722,9 @@
                                             <div class="modal-content portlet light portlet-fit fade-in-up">
                                                 <div class="modal-header portlet-title">
                                                     <div class="caption">
-                                                        <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_edit_experience) ? $language->site_edit_experience : "Edit Experience" ?></span>
+                                                        <span class="caption-subject text-capitalize font-weight-500">
+                                                            <?= !empty($language->site_edit_experience) ? $language->site_edit_experience : "Edit Experience" ?>
+                                                        </span>
                                                         <!-- <span class="caption-helper">add about your education info</span> -->
                                                     </div>
                                                     <div class="actions py-20">
@@ -837,7 +844,12 @@
                                                                     <label class="control-label ">
                                                                         <?= !empty($language->description) ? $language->description : "Description" ?>
                                                                     </label>
-                                                                    <textarea class="form-control autosizeme no-resize" rows="4" name="description" placeholder="Describe about your working experience." data-autosize-on="true"><?php echo ucfirst($description);?></textarea>
+                                                                    <?php
+                                                                        echo '<textarea class="form-control autosizeme no-resize" rows="4" name="description" placeholder="Describe about your working experience." data-autosize-on="true">';
+                                                                        echo ucfirst($description);
+                                                                        echo '</textarea>';
+                                                                    ?>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -977,7 +989,9 @@
                                             <div class="modal-content portlet light portlet-fit fade-in-up">
                                                 <div class="modal-header portlet-title">
                                                     <div class="caption">
-                                                        <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_edit_nonedu) ? $language->site_edit_nonedu : "Edit Non Education" ?></span>
+                                                        <span class="caption-subject text-capitalize font-weight-500">
+                                                            <?= !empty($language->site_edit_nonedu) ? $language->site_edit_nonedu : "Edit Non Education" ?>
+                                                        </span>
                                                     </div>
                                                     <div class="actions py-20">
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
@@ -989,25 +1003,37 @@
                                                     <div class="modal-body portlet-body ">
                                                         <!-- Institution Name [required]-->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3"><?= !empty($language->site_name) ? $language->site_name : "Name" ?></label>
+                                                            <label class="control-label col-md-3">
+                                                                <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
+                                                            </label>
                                                             <div class="col-md-9">
                                                                 <input type="text" class="form-control " name="achievement_name" placeholder="Brain Challenge 2016" value="<?php echo !empty($value['achievement_title']) ? $value['achievement_title'] : ''; ?>" required>
-                                                                <span class="help-block small"><?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?></span>
+                                                                <span class="help-block small">
+                                                                    <?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?>
+                                                                </span>
                                                             </div>
 
                                                         </div>
 
                                                         <!-- Description -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
+                                                            <label class="control-label col-md-3">
+                                                                <?= !empty($language->description) ? $language->description : "Description" ?>
+                                                            </label>
                                                             <div class="col-md-9">
-                                                                <textarea class="form-control autosizeme no-resize" name="achievement_description" rows="4" placeholder="Describe about your studying place and what subject you had study."><?php echo !empty($value['achievement_description']) ? $value['achievement_description'] : ''; ?></textarea>
+                                                                <?php 
+                                                                    echo '<textarea class="form-control autosizeme no-resize" name="achievement_description" rows="4" placeholder="Describe about your studying place and what subject you had study.">';
+                                                                    echo !empty($value['achievement_description']) ? $value['achievement_description'] : ''; 
+                                                                    echo'</textarea>';
+                                                                ?>
                                                             </div>
                                                         </div>
 
                                                         <!-- TIme Period [REQUIRED] -->
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3"><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
+                                                            <label class="control-label col-md-3">
+                                                                <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                                            </label>
                                                             <div class="col-md-9  ">
                                                                 <div class="m-grid ">
                                                                     <div class="m-grid-col m-grid-col-xs-6">
@@ -1015,7 +1041,9 @@
                                                                         <!-- <span class="help-block"> Select date </span> -->
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                                        <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?></span>
+                                                                        <span class="help-block">
+                                                                            <?= !empty($language->site_to) ? $language->site_to : "to" ?>
+                                                                        </span>
                                                                     </div>
                                                                     <div class="m-grid-col m-grid-col-xs-6">
                                                                         <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo !empty($value['achievement_end_date']) ? date('d-m-Y', strtotime($value['achievement_end_date'])) : date('d-m-Y') ;?>" name="end_date" id="EndDate2" placeholder="From year" required>
@@ -1031,13 +1059,17 @@
                                                             <label class="control-label col-md-3">Tag</label>
                                                             <div class="col-md-6">
                                                                 <input type="text" name="tag" class="form-control input-large" value="<?php echo !empty($value['achievement_tag']) ? $value['achievement_tag'] : '';?>" data-role="tagsinput">
-                                                                <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
+                                                                <span class="help-block small">
+                                                                    <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                                                            <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -1052,11 +1084,17 @@
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
                                 <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text"><?= !empty($language->site_empty_nonedu) ? $language->site_empty_nonedu : " It's empty ..." ?></h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center"><?= !empty($language->site_click_addnonedu) ? $language->site_click_addnonedu : "Click button below to add non education information." ?></h5>
+                                    <h3 class="font-weight-500 text-center md-indigo-text">
+                                        <?= !empty($language->site_empty_nonedu) ? $language->site_empty_nonedu : " It's empty ..." ?>
+                                    </h3>
+                                    <h5 class="font-grey-cascade mt-30 text-center">
+                                        <?= !empty($language->site_click_addnonedu) ? $language->site_click_addnonedu : "Click button below to add non education information." ?>
+                                    </h5>
                                     <div class="width-500 center-block mt-40">
                                         <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
-                                            <i class="fa fa-plus  "></i><?= !empty($language->site_add_noneduinfo) ? $language->site_add_noneduinfo : "Add Non Education Info" ?></a>
+                                            <i class="fa fa-plus  "></i>
+                                            <?= !empty($language->site_add_noneduinfo) ? $language->site_add_noneduinfo : "Add Non Education Info" ?>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1071,13 +1109,19 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-badge"></i>
-                                <span class="caption-subject font-weight-500  roboto-font "><?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?></span>
-                                <span class="caption-helper"><?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out your acquire skill based by project you have participate." ?></span>
+                                <span class="caption-subject font-weight-500  roboto-font ">
+                                    <?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?>
+                                </span>
+                                <span class="caption-helper">
+                                    <?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out your acquire skill based by project you have participate." ?>
+                                </span>
                             </div>
                             <?php if (!empty($user_profile['projects'])){ ?>
                             <div class="actions">
                                 <a href="#modal_add_project" data-toggle="modal" class="btn btn-md-indigo  px-60">
-                                    <i class="fa fa-plus"></i><?= !empty($language->add) ? $language->add : "Add" ?></a>
+                                    <i class="fa fa-plus"></i>
+                                    <?= !empty($language->add) ? $language->add : "Add" ?>
+                                </a>
                             </div>
                             <?php } ?>
                         </div>
@@ -1114,7 +1158,9 @@
 
                                             <!-- Skill  -->
                                             <?php if (!empty($value['skills_acquired'])){ ?>
-                                            <p class="font-weight-600 mb-10 text-uppercase font-15 mt-20"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skills Earned" ?></p>
+                                            <p class="font-weight-600 mb-10 text-uppercase font-15 mt-20">
+                                                <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skills Earned" ?>
+                                            </p>
                                             <ul class="list-inline list-unstyled mx-0 mt-ul-li-lr-0 ">
                                                 <?php $tag = explode(',', $value['skills_acquired']);
                                                         $label = array("label-md-cyan","label-md-indigo","label-md-purple","label-md-orange","label-md-green");
@@ -1152,8 +1198,12 @@
                                             <div class="modal-content portlet light portlet-fit fade-in-up">
                                                 <div class="modal-header portlet-title">
                                                     <div class="caption">
-                                                        <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_edit_project) ? $language->site_edit_project : "Edit Project" ?></span>
-                                                        <span class="caption-helper"><?= !empty($language->site_skill_info) ? $language->site_skill_info : "add about your skill info based by project you involved" ?></span>
+                                                        <span class="caption-subject text-capitalize font-weight-500">
+                                                            <?= !empty($language->site_edit_project) ? $language->site_edit_project : "Edit Project" ?>
+                                                        </span>
+                                                        <span class="caption-helper">
+                                                            <?= !empty($language->site_skill_info) ? $language->site_skill_info : "add about your skill info based by project you involved" ?>
+                                                        </span>
                                                     </div>
                                                     <div class="actions py-20">
                                                         <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
@@ -1167,7 +1217,9 @@
                                                             <!-- Project Title -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label"><?= !empty($language->site_project_name) ? $language->site_project_name : "Nama Proyek" ?></label>
+                                                                    <label class="control-label">
+                                                                        <?= !empty($language->site_project_name) ? $language->site_project_name : "Nama Proyek" ?>
+                                                                    </label>
                                                                     <input type="text" placeholder="Final Year Project" name="project_name" class="form-control" value="<?php echo ucfirst($value['name']); ?>" />
                                                                     <!-- <span class="help-block small"> Add your current status career info </span> -->
                                                                 </div>
@@ -1175,13 +1227,17 @@
                                                             <!-- Time Period  -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label "><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
+                                                                    <label class="control-label ">
+                                                                        <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                                                    </label>
                                                                     <div class="m-grid ">
                                                                         <div class="m-grid-col m-grid-col-xs-6">
                                                                             <input class="form-control form-control-inline date-picker-start " size="16" type="text" value="<?php echo ($value['start_date'] == '0000-00-00')? date('d-m-Y') : date('d-m-Y', strtotime($value['start_date'])); ?>" placeholder="From year" name="start_date" required>
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                                            <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?></span>
+                                                                            <span class="help-block">
+                                                                                <?= !empty($language->site_to) ? $language->site_to : "to" ?>
+                                                                            </span>
                                                                         </div>
                                                                         <div class="m-grid-col m-grid-col-xs-6">
                                                                             <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="<?php echo ($value['end_date'] == '0000-00-00')? " " : date('d-m-Y', strtotime($value['end_date'])); ?>" placeholder="End Year" name="end_date">
@@ -1191,7 +1247,9 @@
                                                                                     <span></span>
                                                                                     <span class="check"></span>
                                                                                     <span class="box"></span>
-                                                                                    <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?></small>
+                                                                                    <small>
+                                                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
+                                                                                    </small>
                                                                                 </label>
                                                                             </span>
                                                                         </div>
@@ -1205,22 +1263,34 @@
                                                             <!-- Description -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
-                                                                    <textarea class="form-control autosizeme no-resize" name="project_description" rows="6" placeholder="Describe about your project progress."><?php echo ucfirst($value['description']); ?></textarea>
+                                                                    <label class="control-label ">
+                                                                        <?= !empty($language->description) ? $language->description : "Description" ?>
+                                                                    </label>
+                                                                    <?php
+                                                                    echo '<textarea class="form-control autosizeme no-resize" name="project_description" rows="6" placeholder="Describe about your project progress.">';
+                                                                    echo ucfirst($value['description']); 
+                                                                    echo '</textarea>';
+                                                                    ?>
                                                                 </div>
                                                             </div>
                                                             <!-- Skill Earned -->
                                                             <div class="col-md-6">
                                                                 <div class="form-group mx-0 mb-0">
-                                                                    <label class="control-label"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
+                                                                    <label class="control-label">
+                                                                        <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
+                                                                    </label>
                                                                     <input type="text" class="form-control" value="<?php echo $value['skills_acquired']; ?>" data-role="tagsinput" name="skills">
-                                                                    <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
+                                                                    <span class="help-block small">
+                                                                        <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
+                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                                                        <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                                                            <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -1234,11 +1304,17 @@
                         <div class="portlet-body">
                             <div class="portlet md-grey-lighten-5 p-130 ">
                                 <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text"><?= !empty($language->site_empty_skill) ? $language->site_empty_skill : "It's empty ..." ?></h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center"><?= !empty($language->site_click_addskill) ? $language->site_click_addskill : "Click button below to add skill information based project you involve." ?></h5>
+                                    <h3 class="font-weight-500 text-center md-indigo-text">
+                                        <?= !empty($language->site_empty_skill) ? $language->site_empty_skill : "It's empty ..." ?>
+                                    </h3>
+                                    <h5 class="font-grey-cascade mt-30 text-center">
+                                        <?= !empty($language->site_click_addskill) ? $language->site_click_addskill : "Click button below to add skill information based project you involve." ?>
+                                    </h5>
                                     <div class="width-500 center-block mt-40">
                                         <a href="#modal_add_project" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
-                                            <i class="fa fa-plus  "></i><?= !empty($language->site_add_skill) ? $language->site_add_skill : "Add Skill Info" ?></a>
+                                            <i class="fa fa-plus  "></i>
+                                            <?= !empty($language->site_add_skill) ? $language->site_add_skill : "Add Skill Info" ?>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1257,7 +1333,7 @@
                     <div class="portlet-title tabbable-line md-indigo tab-tw-md-orange">
                         <div class="caption">
                             <span class="caption-subject">
-                               <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile information" ?>
+                                <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile information" ?>
                             </span>
                         </div>
                         <ul class="nav nav-tabs">
@@ -1269,17 +1345,23 @@
                             <!-- Nav Language -->
                             <li>
                                 <a data-toggle="tab" href="#tab_language">
-                                    <i class="fa fa-language mr-5"></i><?= !empty($language->language) ? $language->language : "Language" ?></a>
+                                    <i class="fa fa-language mr-5"></i>
+                                    <?= !empty($language->language) ? $language->language : "Language" ?>
+                                </a>
                             </li>
                             <!-- Nav References -->
                             <li>
                                 <a data-toggle="tab" href="#tab_reference">
-                                    <i class="fa fa-users mr-5"></i><?= !empty($language->references) ? $language->references : "References" ?></a>
+                                    <i class="fa fa-users mr-5"></i>
+                                    <?= !empty($language->references) ? $language->references : "References" ?>
+                                </a>
                             </li>
                             <!-- Nav Picture -->
                             <li>
                                 <a data-toggle="tab" href="#tab_picture">
-                                    <i class="fa fa-camera mr-5"></i><?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?></a>
+                                    <i class="fa fa-camera mr-5"></i>
+                                    <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -1289,23 +1371,31 @@
                             <div class="tab-content">
                                 <!-- SECTION : Personal Info -->
                                 <div class="tab-pane active fade-in-up" id="tab_personal">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text"><?= !empty($language->site_personal_information ) ? $language->site_personal_information  : "My Personal Information" ?></h4>
+                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
+                                        <?= !empty($language->site_personal_information ) ? $language->site_personal_information  : "My Personal Information" ?>
+                                    </h4>
                                     <!-- # Attribute : Full Name / User Status -->
                                     <div class="row">
                                         <!-- Attribute : Full name -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_full_name ) ? $language->site_full_name  : "Full Name" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_full_name ) ? $language->site_full_name  : "Full Name" ?>
+                                                </label>
                                                 <input type="text" class="form-control" name="fullname" placeholder="John Doe" value="<?php echo !empty($user_profile['overview']['name']) ? ucfirst($user_profile['overview']['name']) : '';?>" required>
                                             </div>
                                         </div>
                                         <!-- Attribute : User Status -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_current_career ) ? $language->site_current_career  : "Current Career" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_current_career ) ? $language->site_current_career  : "Current Career" ?>
+                                                </label>
                                                 <div class="input-group">
                                                     <p class="form-control-static  md-indigo-text text-uppercase letter-space-xs font-weight-600 font-17">
-                                                        <i class="icon-graduation mr-5 font-18"></i><?= !empty($language->student ) ? $language->student  : "Student" ?></p>
+                                                        <i class="icon-graduation mr-5 font-18"></i>
+                                                        <?= !empty($language->student ) ? $language->student  : "Student" ?>
+                                                    </p>
                                                     <!-- <div class="input-group-btn">
                                                         <a href="#" class="btn btn-md-orange btn-xs "><i class="fa fa-arrow-up mr-5"></i>Upgrade</a>
                                                     </div> -->
@@ -1316,11 +1406,13 @@
                                     </div>
                                     <!-- # Attribute : Prefences Name / Gender / DOB -->
                                     <div class="row">
-                                        
+
                                         <!-- Attribute : Preferences Name -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_pref_name ) ? $language->site_pref_name  : "Preferences Name" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_pref_name ) ? $language->site_pref_name  : "Preferences Name" ?>
+                                                </label>
                                                 <input type="text" class="form-control" placeholder="John" name="student_name" value="<?php echo !empty($user_profile['overview']['preference_name']) ? ucfirst($user_profile['overview']['preference_name']) : '';?>" required>
                                             </div>
                                         </div>
@@ -1328,24 +1420,40 @@
                                         <!-- Attribute : DOB -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->DOB ) ? $language->DOB  : "Date Of Birth" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->DOB ) ? $language->DOB  : "Date Of Birth" ?>
+                                                </label>
                                                 <input type="text" name="DOB" id="DOB" value="<?php echo !empty($user_profile['overview']['student_bios_DOB']) ? date('m/d/Y', strtotime($user_profile['overview']['student_bios_DOB'])) : date('d/m/Y');?>" class="form-control date-picker" data-date-format="dd/mm/yyyy" placeholder="dd/mm/yyyy" required>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Attribute : Gender -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_gender ) ? $language->site_gender  : "Gender" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_gender ) ? $language->site_gender  : "Gender" ?>
+                                                </label>
                                                 <select class="form-control bs-select" name="gender">
                                                     <?php if (!empty($user_profile['overview']['student_bios_gender'])){ ?>
-                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Male' ){echo "selected";}?>><?= !empty($language->male ) ? $language->male  : "Male" ?></option>
-                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Female' ){echo "selected";}?>><?= !empty($language->female ) ? $language->female  : "Female" ?></option>
-                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Prefer Not To Say' ){echo "selected";}?>><?= !empty($language->site_genderpref ) ? $language->site_genderpref  : "Prefer Not to Say" ?></option>
+                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Male' ){echo "selected";}?>>
+                                                        <?= !empty($language->male ) ? $language->male  : "Male" ?>
+                                                    </option>
+                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Female' ){echo "selected";}?>>
+                                                        <?= !empty($language->female ) ? $language->female  : "Female" ?>
+                                                    </option>
+                                                    <option <?php if($user_profile[ 'overview'][ 'student_bios_gender']=='Prefer Not To Say' ){echo "selected";}?>>
+                                                        <?= !empty($language->site_genderpref ) ? $language->site_genderpref  : "Prefer Not to Say" ?>
+                                                    </option>
                                                     <?php }else{ ?>
-                                                    <option><?= !empty($language->male ) ? $language->male  : "Male" ?></option>
-                                                    <option><?= !empty($language->female ) ? $language->female  : "Female" ?></option>
-                                                    <option><?= !empty($language->site_genderpref ) ? $language->site_genderpref  : "Prefer Not to Say" ?></option>
+                                                    <option>
+                                                        <?= !empty($language->male ) ? $language->male  : "Male" ?>
+                                                    </option>
+                                                    <option>
+                                                        <?= !empty($language->female ) ? $language->female  : "Female" ?>
+                                                    </option>
+                                                    <option>
+                                                        <?= !empty($language->site_genderpref ) ? $language->site_genderpref  : "Prefer Not to Say" ?>
+                                                    </option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -1358,7 +1466,9 @@
                                         <!-- Attribute : Phone Number -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ?>
+                                                </label>
                                                 <input type="number" class="form-control" name="phone" placeholder="0123456789" value="<?php echo !empty($user_profile['overview']['student_bios_contact_number']) ? ucfirst($user_profile['overview']['student_bios_contact_number']) : '';?>" required>
                                             </div>
                                         </div>
@@ -1366,7 +1476,9 @@
                                         <!-- Attribute : Salary Expectation -->
                                         <div class=" col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_expected_salary) ? $language->site_expected_salary : "Salary Expectation" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_expected_salary) ? $language->site_expected_salary : "Salary Expectation" ?>
+                                                </label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
                                                         <?php echo $this->session->userdata('forex'); ?>
@@ -1374,26 +1486,34 @@
                                                     <input type="text" class="form-control" placeholder="1000" name="expected_salary" value="<?php echo !empty($user_profile['overview']['expected_salary']) ? ucfirst($user_profile['overview']['expected_salary']) : '000';?>" required>
                                                     <span class="input-group-addon">.00</span>
                                                 </div>
-                                                <small class="helper-block md-grey-text mb-0"><?= !empty($language->site_salary_expectation) ? $language->site_salary_expectation : "Your salary expectation" ?></small>
+                                                <small class="helper-block md-grey-text mb-0">
+                                                    <?= !empty($language->site_salary_expectation) ? $language->site_salary_expectation : "Your salary expectation" ?>
+                                                </small>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- # Title : Address -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->address) ? $language->address : "Address" ?></h4>
+                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                        <?= !empty($language->address) ? $language->address : "Address" ?>
+                                    </h4>
                                     <!-- # Attribute : Street / Postcode -->
                                     <div class="row  ">
                                         <!-- Attribute : Street -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->address) ? $language->address : "Address" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->address) ? $language->address : "Address" ?>
+                                                </label>
                                                 <input type="text" class="form-control " name="address" placeholder="Unit / Lot , Road " value="<?php echo !empty($user_profile['address']['address']) ? $user_profile['address']['address']: '';?>" required>
                                             </div>
                                         </div>
                                         <!-- Attribute : Postcode -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->postcode) ? $language->postcode : "Postcode" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->postcode) ? $language->postcode : "Postcode" ?>
+                                                </label>
                                                 <input type="text" class="form-control" name="post_code" placeholder="Postcode" value="<?php echo !empty($user_profile['address']['postcode']) ? ucfirst($user_profile['address']['postcode']) : '';?>">
                                             </div>
                                         </div>
@@ -1403,43 +1523,67 @@
                                         <!-- Attribute : City -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->city) ? $language->city : "City" ?></label>
-                                                <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>" required> 
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->city) ? $language->city : "City" ?>
+                                                </label>
+                                                <input type="text" class="form-control" name="city" placeholder="City" value="<?php echo !empty($user_profile['address']['city']) ? ucfirst($user_profile['address']['city']) : '';?>" required>
                                             </div>
                                         </div>
                                         <!-- Attribute : State -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->state) ? $language->state : "State" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->state) ? $language->state : "State" ?>
+                                                </label>
                                                 <input type="text" class="form-control" name="state" placeholder="State" value="<?php echo !empty($user_profile['address']['states']) ? ucfirst($user_profile['address']['states']) : '';?>" required>
                                             </div>
                                         </div>
                                         <!-- Attribute : Country -->
                                         <div class="col-md-4">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->country) ? $language->country: "Country" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->country) ? $language->country: "Country" ?>
+                                                </label>
                                                 <input type="text" class="form-control" name="country" placeholder="Country" value="<?php echo !empty($user_profile['address']['country']) ? ucfirst($user_profile['address']['country']) : '';?>" required>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- # Title : Summary / QOute -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->site_summarize) ? $language->site_summarize : "Summarize About Yourself" ?></h4>
+                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                        <?= !empty($language->site_summarize) ? $language->site_summarize : "Summarize About Yourself" ?>
+                                    </h4>
                                     <!-- Attribute : Quote -->
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_quote) ? $language->site_quote : "Quote" ?></label>
-                                        <textarea name="quotes" class="form-control autosizeme no-resize" id="" rows="2" placeholder="Add your quote / headlines"><?php echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';?></textarea>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_quote) ? $language->site_quote : "Quote" ?>
+                                        </label>
+                                        <?php
+                                        echo '<textarea name="quotes" class="form-control autosizeme no-resize" id="" rows="2" placeholder="Add your quote / headlines">';
+                                        echo !empty($user_profile['overview']['quote']) ? ucfirst($user_profile['overview']['quote']) : '';
+                                        echo '</textarea>';
+                                        ?>
                                     </div>
                                     <!-- About Yourself-->
                                     <div class="form-group mx-0 ">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_about_you) ? $language->site_about_you : "About Yourself" ?></label>
-                                        <textarea name="summary" class="form-control autosizeme no-resize"   rows="4" placeholder="Summarize about yourself."><?php echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';?></textarea>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_about_you) ? $language->site_about_you : "About Yourself" ?>
+                                        </label>
+                                        <?php 
+                                        echo '<textarea name="summary" class="form-control autosizeme no-resize" rows="4" placeholder="Summarize about yourself.">';
+                                        echo !empty($user_profile['overview']['summary']) ? ucfirst($user_profile['overview']['summary']) : '';
+                                        echo '</textarea>';
+                                        ?>
                                     </div>
 
                                     <!-- Video Resume -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text"><?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ?></h4>
+                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                        <?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ?>
+                                    </h4>
                                     <div class="form-group mx-0">
-                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_upload_video) ? $language->site_upload_video : " Upload your video link" ?></label>
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_upload_video) ? $language->site_upload_video : " Upload your video link" ?>
+                                        </label>
                                         <input type="text" name="youtubelink" class="form-control input-xlarge" placeholder="video link" value="<?php echo !empty($user_profile['overview']['youtubelink']) ? $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU';?>">
                                     </div>
 
@@ -1447,7 +1591,9 @@
 
                                 <!-- SECTION : Language Profieciency -->
                                 <div class="tab-pane fade-in-up " id="tab_language">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text"><?= !empty($language->site_lang_proficiency) ? $language->site_lang_proficiency : "Language Profieciency" ?></h4>
+                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
+                                        <?= !empty($language->site_lang_proficiency) ? $language->site_lang_proficiency : "Language Profieciency" ?>
+                                    </h4>
                                     <div class="form-group mx-0">
                                         <div class="mt-repeater">
                                             <div data-repeater-list="group-b">
@@ -1458,9 +1604,13 @@
                                                 <div data-repeater-item class=" row mt-20">
                                                     <input type="hidden" name="language_id" value="<?php echo $user_language_value['id'] ?>"></input>
                                                     <div class="col-md-4">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->language) ? $language->language : "Language" ?></label>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->language) ? $language->language : "Language" ?>
+                                                        </label>
                                                         <select class="form-control " name="name">
-                                                            <option disabled selected><?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?></option>
+                                                            <option disabled selected>
+                                                                <?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?>
+                                                            </option>
                                                             <?php foreach ($languages as $key => $value) { ?>
                                                             <option <?php echo $user_language_value[ 'title']==$value[ 'name'] ? 'selected' : '' ?>>
                                                                 <?php echo $value['name']; ?>
@@ -1469,21 +1619,41 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->written) ? $language->written : "Written" ?></label>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->written) ? $language->written : "Written" ?>
+                                                        </label>
                                                         <select class="form-control" name="written">
-                                                            <option value="" disabled><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
-                                                            <option value="Beginner" <?php echo $user_language_value[ 'written']=='Beginner' ? 'selected' : '' ?>><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
-                                                            <option value="Intermediate" <?php echo $user_language_value[ 'written']=='Intermediate' ? 'selected' : '' ?>><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
-                                                            <option value="Advanced" <?php echo $user_language_value[ 'written']=='Advanced' ? 'selected' : '' ?>><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
+                                                            <option value="" disabled>
+                                                                <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
+                                                            </option>
+                                                            <option value="Beginner" <?php echo $user_language_value[ 'written']=='Beginner' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?>
+                                                            </option>
+                                                            <option value="Intermediate" <?php echo $user_language_value[ 'written']=='Intermediate' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?>
+                                                            </option>
+                                                            <option value="Advanced" <?php echo $user_language_value[ 'written']=='Advanced' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?>
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->spoken) ? $language->spoken : "Spoken" ?></label>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->spoken) ? $language->spoken : "Spoken" ?>
+                                                        </label>
                                                         <select class="form-control" name="spoken">
-                                                        <option value="" disabled><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
-                                                            <option value="Beginner" <?php echo $user_language_value[ 'spoken']=='Beginner' ? 'selected' : '' ?>><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
-                                                            <option value="Intermediate" <?php echo $user_language_value[ 'spoken']=='Intermediate' ? 'selected' : '' ?>><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
-                                                            <option value="Advanced" <?php echo $user_language_value[ 'spoken']=='Advanced' ? 'selected' : '' ?>><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
+                                                            <option value="" disabled>
+                                                                <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
+                                                            </option>
+                                                            <option value="Beginner" <?php echo $user_language_value[ 'spoken']=='Beginner' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?>
+                                                            </option>
+                                                            <option value="Intermediate" <?php echo $user_language_value[ 'spoken']=='Intermediate' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?>
+                                                            </option>
+                                                            <option value="Advanced" <?php echo $user_language_value[ 'spoken']=='Advanced' ? 'selected' : '' ?>>
+                                                                <?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?>
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-2 vertical-bottom pt-55">
@@ -1499,9 +1669,13 @@
                                                 <div data-repeater-item class="row mt-20">
                                                     <!-- Attribute : Name Language  -->
                                                     <div class="col-md-4">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->language) ? $language->language : "Language" ?></label>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->language) ? $language->language : "Language" ?>
+                                                        </label>
                                                         <select class="form-control " name="name">
-                                                            <option disabled selected><?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?></option>
+                                                            <option disabled selected>
+                                                                <?= !empty($language->site_select_lang) ? $language->site_select_lang : "Select Language" ?>
+                                                            </option>
                                                             <?php foreach ($languages as $key => $value) { ?>
                                                             <option>
                                                                 <?php echo $value['name']; ?>
@@ -1511,28 +1685,49 @@
                                                     </div>
                                                     <!-- Attribute : Spoken  -->
                                                     <div class="col-md-3">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->written) ? $language->written : "Written" ?></label>
-                                                        <select class="form-control" name="written" >
-                                                            <option disabled selected><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
-                                                            <option value="Beginner"><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
-                                                            <option value="Intermediate"><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
-                                                            <option value="Advanced"><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->written) ? $language->written : "Written" ?>
+                                                        </label>
+                                                        <select class="form-control" name="written">
+                                                            <option disabled selected>
+                                                                <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
+                                                            </option>
+                                                            <option value="Beginner">
+                                                                <?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?>
+                                                            </option>
+                                                            <option value="Intermediate">
+                                                                <?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?>
+                                                            </option>
+                                                            <option value="Advanced">
+                                                                <?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?>
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <!-- Attribute : Written  -->
                                                     <div class="col-md-3">
-                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->spoken) ? $language->spoken : "Spoken" ?></label>
+                                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                            <?= !empty($language->spoken) ? $language->spoken : "Spoken" ?>
+                                                        </label>
                                                         <select class="form-control" name="spoken">
-                                                            <option disabled selected><?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?></option>
-                                                            <option value="Beginner"><?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?></option>
-                                                            <option value="Intermediate"><?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?></option>
-                                                            <option value="Advanced"><?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?></option>
+                                                            <option disabled selected>
+                                                                <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
+                                                            </option>
+                                                            <option value="Beginner">
+                                                                <?= !empty($language->site_beginner) ? $language->site_beginner : "Beginner" ?>
+                                                            </option>
+                                                            <option value="Intermediate">
+                                                                <?= !empty($language->site_intermediate) ? $language->site_intermediate : "Intermediate" ?>
+                                                            </option>
+                                                            <option value="Advanced">
+                                                                <?= !empty($language->site_advance) ? $language->site_advance : "Advanced" ?>
+                                                            </option>
                                                         </select>
                                                     </div>
                                                     <!-- Button Remove -->
                                                     <div class="col-md-2 pt-55">
                                                         <a href="javascript:;" data-repeater-delete class="btn btn-md-red btn-sm  letter-space-sm  text-uppercase font-weight-700">
-                                                            <i class="fa fa-close mr-5"></i> <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
+                                                            <i class="fa fa-close mr-5"></i>
+                                                            <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1542,7 +1737,8 @@
                                             <hr>
                                             <div class="mx-100">
                                                 <a href="javascript:;" data-repeater-create class="btn btn-md-blue mt-repeater-add btn-block letter-space-sm font-14 text-uppercase font-weight-600  ">
-                                                    <i class="fa fa-plus mr-5"></i><?= !empty($language->add_new_lang) ? $language->add_new_lang : "New Language" ?>
+                                                    <i class="fa fa-plus mr-5"></i>
+                                                    <?= !empty($language->add_new_lang) ? $language->add_new_lang : "New Language" ?>
                                                 </a>
                                             </div>
 
@@ -1552,11 +1748,17 @@
 
                                 <!-- SECTION : Reference -->
                                 <div class="tab-pane fade-in-up" id="tab_reference">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text"><?= !empty($language->references) ? $language->references : "References" ?></h4>
+                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
+                                        <?= !empty($language->references) ? $language->references : "References" ?>
+                                    </h4>
                                     <div class="row mx-0">
                                         <div class="note note-info note-bordered">
                                             <h5 class="font-weight-400 letter-space-xs my-20">
-                                                <b><?= !empty($language->site_note) ? $language->site_note : "Note" ?></b> : <?= !empty($language->site_put) ? $language->site_put : "Put only 3 people as your reference" ?></h5>
+                                                <b>
+                                                    <?= !empty($language->site_note) ? $language->site_note : "Note" ?>
+                                                </b> :
+                                                <?= !empty($language->site_put) ? $language->site_put : "Put only 3 people as your reference" ?>
+                                            </h5>
                                         </div>
                                     </div>
 
@@ -1572,7 +1774,9 @@
                                                     <div class="col-md-6">
                                                         <!-- Name -->
                                                         <div class="form-group mx-0 ">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_name) ? $language->site_name : "Name" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
+                                                            </label>
                                                             <div class="input-icon">
                                                                 <i class="icon-user"></i>
                                                                 <input type="text" name="reference_name" placeholder="Name" class="form-control" value="<?=$reference_value['reference_name']?>">
@@ -1580,7 +1784,9 @@
                                                         </div>
                                                         <!-- Email Address -->
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->email_address) ? $language->email_address : "Email Address" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->email_address) ? $language->email_address : "Email Address" ?>
+                                                            </label>
                                                             <div class="input-icon">
                                                                 <i class="icon-envelope"></i>
                                                                 <input type="text" name="reference_email" placeholder="Email address" class="form-control" value="<?=$reference_value['reference_email']?>">
@@ -1590,11 +1796,15 @@
                                                     <!-- # Relationship -->
                                                     <div class="col-md-5">
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->relationship) ? $language->relationship : "Relationship" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->relationship) ? $language->relationship : "Relationship" ?>
+                                                            </label>
                                                             <input type="text" name="reference_relationship" placeholder="ex. Former employer" class="form-control" value="<?=$reference_value['reference_relationship']?>">
                                                         </div>
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_contact_number) ? $language->site_contact_number : "Contact Number" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->site_contact_number) ? $language->site_contact_number : "Contact Number" ?>
+                                                            </label>
                                                             <input type="text" name="reference_phone" placeholder="Phone Number" class="form-control" value="<?=$reference_value['reference_phone']?>">
                                                         </div>
                                                     </div>
@@ -1609,14 +1819,18 @@
                                                 <div data-repeater-item class=" row mt-20">
                                                     <div class="col-md-6">
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_name) ? $language->site_name : "Name" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
+                                                            </label>
                                                             <div class="input-icon">
                                                                 <i class="icon-user"></i>
                                                                 <input type="text" name="reference_name" placeholder="Name" class="form-control">
                                                             </div>
                                                         </div>
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->email_address) ? $language->email_address : "Email Address" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->email_address) ? $language->email_address : "Email Address" ?>
+                                                            </label>
                                                             <div class="input-icon">
                                                                 <i class="icon-envelope"></i>
                                                                 <input type="text" name="reference_email" placeholder="Email address" class="form-control">
@@ -1625,11 +1839,15 @@
                                                     </div>
                                                     <div class="col-md-5">
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->relationship) ? $language->relationship : "Relationship" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->relationship) ? $language->relationship : "Relationship" ?>
+                                                            </label>
                                                             <input type="text" name="reference_relationship" placeholder="ex. Former employer" class="form-control">
                                                         </div>
                                                         <div class="form-group mx-0">
-                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_contact_number) ? $language->site_contact_number : "Contact Number" ?></label>
+                                                            <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                                <?= !empty($language->site_contact_number) ? $language->site_contact_number : "Contact Number" ?>
+                                                            </label>
                                                             <input type="text" name="reference_phone" placeholder="Phone Number" class="form-control">
                                                         </div>
                                                     </div>
@@ -1645,7 +1863,8 @@
                                             <hr>
                                             <div class="mx-100">
                                                 <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-block ">
-                                                    <i class="fa fa-plus"></i><?= !empty($language->site_add_new) ? $language->site_add_new : "Add New" ?>
+                                                    <i class="fa fa-plus"></i>
+                                                    <?= !empty($language->site_add_new) ? $language->site_add_new : "Add New" ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -1655,11 +1874,15 @@
 
                                 <!-- SECTION : Profile Picture -->
                                 <div class="tab-pane fade-in-up " id="tab_picture">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text"><?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?></h4>
+                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
+                                        <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
+                                    </h4>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
+                                                </label>
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -1667,17 +1890,25 @@
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">
-                                                            <span class="fileinput-new"><?= !empty($language->site_select_image) ? $language->site_select_image : "Select Image" ?></span>
-                                                            <span class="fileinput-exists"><?= !empty($language->site_change) ? $language->site_change : "Change" ?></span>
+                                                            <span class="fileinput-new">
+                                                                <?= !empty($language->site_select_image) ? $language->site_select_image : "Select Image" ?>
+                                                            </span>
+                                                            <span class="fileinput-exists">
+                                                                <?= !empty($language->site_change) ? $language->site_change : "Change" ?>
+                                                            </span>
                                                             <input type="file" name="profile_photo"> </span>
-                                                        <a href="javascript:;" class="btn btn-md-red fileinput-exists" data-dismiss="fileinput"><?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?></a>
+                                                        <a href="javascript:;" class="btn btn-md-red fileinput-exists" data-dismiss="fileinput">
+                                                            <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_header) ? $language->site_header : "Header Image" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                    <?= !empty($language->site_header) ? $language->site_header : "Header Image" ?>
+                                                </label>
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
@@ -1685,10 +1916,16 @@
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">
-                                                            <span class="fileinput-new"><?= !empty($language->site_select_image) ? $language->site_select_image : "Select Image" ?></span>
-                                                            <span class="fileinput-exists"><?= !empty($language->site_change) ? $language->site_change : "Change" ?></span>
+                                                            <span class="fileinput-new">
+                                                                <?= !empty($language->site_select_image) ? $language->site_select_image : "Select Image" ?>
+                                                            </span>
+                                                            <span class="fileinput-exists">
+                                                                <?= !empty($language->site_change) ? $language->site_change : "Change" ?>
+                                                            </span>
                                                             <input type="file" name="header_photo"> </span>
-                                                        <a href="javascript:;" class="btn btn-md-red fileinput-exists" data-dismiss="fileinput"><?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?></a>
+                                                        <a href="javascript:;" class="btn btn-md-red fileinput-exists" data-dismiss="fileinput">
+                                                            <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1698,7 +1935,9 @@
                             </div>
                         </div>
                         <div class="form-actions modal-footer ">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs pull-right"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs pull-right">
+                                <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                            </button>
                         </div>
                     </form>
 
@@ -1794,7 +2033,7 @@
                             <!-- Description -->
                             <div class="form-group">
                                 <label class="control-label col-md-3">
-                                <?= !empty($language->description) ? $language->description : "Description" ?>
+                                    <?= !empty($language->description) ? $language->description : "Description" ?>
                                 </label>
                                 <div class="col-md-9">
                                     <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place." name="academics_description"></textarea>
@@ -1843,14 +2082,14 @@
                                     </div>
                                 </div>
                                 <!-- Attribute : Time Period -->
-                                <div class="col-md-6">                                    
+                                <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label ">
                                             <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
                                         </label>
                                         <div class="m-grid ">
                                             <div class="m-grid-col m-grid-col-xs-6">
-                                                <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>                                                
+                                                <input class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
                                                 <span class="help-block">
@@ -1881,10 +2120,10 @@
                                         <label class="control-label">
                                             <?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?>
                                         </label>
-                                        <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>                                        
+                                        <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>
                                     </div>
                                 </div>
-                                
+
                                 <!-- # Attribute : Job Employement Type  / Industry -->
                                 <div class="col-md-6">
                                     <div class="row">
@@ -1906,7 +2145,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                            <!-- Attribute : Industry -->
+                                        <!-- Attribute : Industry -->
                                         <div class="col-md-6">
                                             <div class="form-group mx-0 mb-0">
                                                 <label class="control-label ">
@@ -1941,7 +2180,7 @@
                                         <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your working place." name="description"></textarea>
                                     </div>
                                 </div>
-                                    <!-- Skill Earned -->
+                                <!-- Skill Earned -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
                                         <label class="control-label">
@@ -1971,7 +2210,9 @@
                 <div class="modal-content portlet light portlet-fit fade-in-up">
                     <div class="modal-header portlet-title ">
                         <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_add_nonedu) ? $language->site_add_nonedu : " Add Non Education" ?></span>
+                            <span class="caption-subject text-capitalize font-weight-500">
+                                <?= !empty($language->site_add_nonedu) ? $language->site_add_nonedu : " Add Non Education" ?>
+                            </span>
                         </div>
                         <div class="actions py-20">
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
@@ -1981,17 +2222,23 @@
                         <div class="modal-body portlet-body form-horizontal ">
                             <!-- Institution Name -->
                             <div class="form-group">
-                                <label class="control-label col-md-3"><?= !empty($language->site_name) ? $language->site_name : "Name" ?></label>
+                                <label class="control-label col-md-3">
+                                    <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
+                                </label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016" required>
-                                    <span class="help-block small"><?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?></span>
+                                    <span class="help-block small">
+                                        <?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?>
+                                    </span>
                                 </div>
 
                             </div>
 
                             <!-- Description -->
                             <div class="form-group">
-                                <label class="control-label col-md-3"><?= !empty($language->description) ? $language->description : "Description" ?></label>
+                                <label class="control-label col-md-3">
+                                    <?= !empty($language->description) ? $language->description : "Description" ?>
+                                </label>
                                 <div class="col-md-9">
                                     <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." data-autosize-on="true"></textarea>
                                 </div>
@@ -1999,7 +2246,9 @@
 
                             <!-- TIme Period  -->
                             <div class="form-group">
-                                <label class="control-label col-md-3"><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
+                                <label class="control-label col-md-3">
+                                    <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                </label>
                                 <div class="col-md-9  ">
                                     <div class="m-grid ">
                                         <div class="m-grid-col m-grid-col-xs-6">
@@ -2023,13 +2272,17 @@
                                 <label class="control-label col-md-3">Tag</label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control input-large" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" style="display: none;" name="tag">
-                                    <span class="help-block small"><?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?></span>
+                                    <span class="help-block small">
+                                        <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                                <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                            </button>
                         </div>
 
                     </form>
@@ -2043,8 +2296,12 @@
                 <div class="modal-content portlet light portlet-fit fade-in-up ">
                     <div class="modal-header portlet-title">
                         <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500"><?= !empty($language->site_new_project) ? $language->site_new_project : "New Project" ?></span>
-                            <span class="caption-helper"><?= !empty($language->site_skill_info) ? $language->site_skill_info : "add about your skill info based by project you involved" ?></span>
+                            <span class="caption-subject text-capitalize font-weight-500">
+                                <?= !empty($language->site_new_project) ? $language->site_new_project : "New Project" ?>
+                            </span>
+                            <span class="caption-helper">
+                                <?= !empty($language->site_skill_info) ? $language->site_skill_info : "add about your skill info based by project you involved" ?>
+                            </span>
                         </div>
                         <div class="actions py-20">
                             <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
@@ -2058,7 +2315,9 @@
                             <div class="row ">
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label"><?= !empty($language->site_project_name) ? $language->site_project_name : "Project Name" ?></label>
+                                        <label class="control-label">
+                                            <?= !empty($language->site_project_name) ? $language->site_project_name : "Project Name" ?>
+                                        </label>
                                         <input type="text" class="form-control " placeholder="Internship in IT Dept" name="project_name" required>
                                         <!-- <span class="help-block small"> Add your current status career info </span> -->
                                     </div>
@@ -2066,7 +2325,9 @@
                                 <div class="col-md-6">
                                     <!-- TIme Period  -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label "><?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?></label>
+                                        <label class="control-label ">
+                                            <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                        </label>
 
                                         <div class="m-grid ">
                                             <div class="m-grid-col m-grid-col-xs-6">
@@ -2074,7 +2335,9 @@
                                                 <!-- <span class="help-block"> Select date </span> -->
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                                <span class="help-block"><?= !empty($language->site_to) ? $language->site_to : "to" ?> </span>
+                                                <span class="help-block">
+                                                    <?= !empty($language->site_to) ? $language->site_to : "to" ?>
+                                                </span>
                                             </div>
                                             <div class="m-grid-col m-grid-col-xs-6">
                                                 <input class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="End Year" name="end_date">
@@ -2084,7 +2347,9 @@
                                                         <span></span>
                                                         <span class="check"></span>
                                                         <span class="box"></span>
-                                                        <small><?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?></small>
+                                                        <small>
+                                                            <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
+                                                        </small>
                                                     </label>
                                                 </span>
                                             </div>
@@ -2098,22 +2363,30 @@
                                 <div class="col-md-6">
                                     <!-- Description -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label "><?= !empty($language->description) ? $language->description : "Description" ?></label>
+                                        <label class="control-label ">
+                                            <?= !empty($language->description) ? $language->description : "Description" ?>
+                                        </label>
                                         <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about how you acquire skill by involve in this project." name="project_description"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Skill Earned -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?></label>
+                                        <label class="control-label">
+                                            <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
+                                        </label>
                                         <input type="text" class="form-control" id="tagsinput" value="Design , Reporting , Editing Video , Grapic Designer" data-role="tagsinput" name="skills">
-                                        <span class="help-block small"><?= !empty($language->site_enter_tag) ? $language->site_enter_tag : "Press \"Enter\" to add tag" ?>   </span>
+                                        <span class="help-block small">
+                                            <?= !empty($language->site_enter_tag) ? $language->site_enter_tag : "Press \"Enter\" to add tag" ?>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                                <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -2130,7 +2403,7 @@
                             <div class="m-grid-col">
                                 <div class="panel my-0 ">
                                     <div class="panel-body md-grey-light my-0 py-30">
-                                        
+
                                         <img src="<?php echo IMG; ?>print/print-v1-blank.jpg" class="img-responsive height-450 center-block" alt="">
                                     </div>
                                     <div class="panel-footer md-grey-light border-none text-center">
@@ -2144,7 +2417,7 @@
                             <div class="m-grid-col">
                                 <div class="panel my-0">
                                     <div class="panel-body py-30">
-                                    <img src="<?php echo IMG; ?>print/print-v3-blank.jpg" class="img-responsive height-450 center-block" alt="">
+                                        <img src="<?php echo IMG; ?>print/print-v3-blank.jpg" class="img-responsive height-450 center-block" alt="">
                                     </div>
                                     <div class="panel-footer  border-none text-center md-transparent">
                                         <div class="form-group ">
@@ -2170,7 +2443,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href="" class="btn btn-md-indigo"><i class="icon-printer mr-5"></i>Print</a>
+                        <a href="" class="btn btn-md-indigo">
+                            <i class="icon-printer mr-5"></i>Print</a>
                     </div>
                 </div>
             </div>
