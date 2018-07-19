@@ -266,7 +266,7 @@
                         </a>
                     </li>
                     <!-- JOB BOARD -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board'): echo 'active'; endif?> ">
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'job_board' || $this->uri->segment(2) == 'candidate' ): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>employer/job_board/" class="nav-link ">
                             <i class="icon-briefcase"></i>
                             <span class="title"><?= !empty($language->site_job_board) ? $language->site_job_board : "Job board"  ?></span>

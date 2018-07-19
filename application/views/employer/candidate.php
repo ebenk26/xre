@@ -5,11 +5,11 @@
         </div> -->
 
         <!-- # Title / Tab -->
-        <div class="portlet light md-transparent portlet-fit p-0">
+        <div class="portlet light md-transparent portlet-fit p-0 ">
             <div class="portlet-title tabbable-line tab-md-indigo py-0  pl-0 mb-0 border-md-grey">
                 <div class="caption">
                     <i class="icon-briefcase font-20"></i>
-                    <span class="caption-subject font-weight-300 text-capitalize  font-24">
+                    <span class="caption-subject font-weight-300 text-capitalize font-22">
                         <?php echo !empty($job) ? $job->name : 'none'; ?>
                     </span>
                     <span class="caption-helper ">Candidate List</span>
@@ -19,10 +19,12 @@
                         <a href="#tab_new_candidates" data-toggle="tab">
                             <i class="icon-users font-22"></i> New </a>
                     </li>
+                    <?php if (!empty($shortlisted)): ?>
                     <li>
                         <a href="#tab_shortlisted_candidates" data-toggle="tab">
                             <i class="icon-user-following font-22"></i> Shortlisted </a>
                     </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>
@@ -31,11 +33,15 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url();?>employer/dashboard"><?= !empty($language->site_home) ? $language->site_home : "Home"  ?></a>
+                    <a href="<?php echo base_url();?>employer/dashboard">
+                        <?= !empty($language->site_home) ? $language->site_home : "Home"  ?>
+                    </a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <a href="<?php echo base_url();?>employer/job_board"><?= !empty($language->site_job_board) ? $language->site_job_board : "Job Board"  ?></a>
+                    <a href="<?php echo base_url();?>employer/job_board">
+                        <?= !empty($language->site_job_board) ? $language->site_job_board : "Job Board"  ?>
+                    </a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
@@ -53,19 +59,28 @@
                 <div class="portlet light">
                     <div class="portlet-title">
                         <div class="caption">
-                            <span class="caption-subject "><?= !empty($language->new_candidate) ? $language->new_candidate : "New Candidates"  ?></span>
+                            <span class="caption-subject ">
+                                <?= !empty($language->new_candidate) ? $language->new_candidate : "New Candidates"  ?>
+                            </span>
                         </div>
                     </div>
-                    <?php if (!empty($candidates)) :?>
+                    <?php 
+                    if (!empty($candidates)) :?>
                     <!-- Fix : Need to put another logic to diffrentiate new candidate and other type -->
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered order-column" id="xremo_table">
                             <thead>
                                 <tr>
                                     <th class="text-center col-sm-1">#</th>
-                                    <th class="col-sm-7"> <?= !empty($language->candidates) ? $language->candidates : "Candidates"  ?> </th>
-                                    <th class="text-center col-sm-1 "> <?= !empty($language->application_status) ? $language->application_status : "Application Status"  ?> </th>
-                                    <th class="text-center col-sm-1 "> <?= !empty($language->applied_date) ? $language->applied_date : "Applied Date"  ?> </th>
+                                    <th class="col-sm-7">
+                                        <?= !empty($language->candidates) ? $language->candidates : "Candidates"  ?>
+                                    </th>
+                                    <th class="text-center col-sm-1 ">
+                                        <?= !empty($language->application_status) ? $language->application_status : "Application Status"  ?>
+                                    </th>
+                                    <th class="text-center col-sm-1 ">
+                                        <?= !empty($language->applied_date) ? $language->applied_date : "Applied Date"  ?>
+                                    </th>
                                     <th class="text-center col-sm-2"> Actions </th>
                                 </tr>
                             </thead>
@@ -100,36 +115,37 @@
                                     <!-- MOBILE MODE -->
                                     <td class="">
                                         <div class="btn-group dropup clearfix  visible-xs visible-sm hidden-md">
-                                            <button class="btn btn-md-green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions 
+                                            <button class="btn btn-md-green btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
                                             <ul class="dropdown-menu " role="menu">
                                                 <!-- View Summary -->
                                                 <li>
                                                     <a href="javascript:void(0)" data-toggle="modal" class="user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-original-title="View Summary">
-                                                        <i class="icon-eye"></i> <?= !empty($language->view_summary) ? $language->view_summary : "View Summary"  ?>
+                                                        <i class="icon-eye"></i>
+                                                        <?= !empty($language->view_summary) ? $language->view_summary : "View Summary"  ?>
                                                     </a>
                                                 </li>
                                                 <!-- Shortlist Candidate -->
                                                 <li>
                                                     <a href="javascript:void(0)" class=" shortlist-btn" data-container="body" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-placement="top" data-original-title="Shortlist Candidate">
-                                                        <i class="icon-star"></i> <?= !empty($language->shortlisted_candidates) ? $language->shortlisted_candidates : "Shortlisted Candidates"  ?>
+                                                        <i class="icon-star"></i>
+                                                        <?= !empty($language->shortlisted_candidates) ? $language->shortlisted_candidates : "Shortlisted Candidates"  ?>
                                                     </a>
                                                 </li>
                                                 <!-- Reject Candidate -->
                                                 <li>
-                                                    <button type="button" data-id='<?php echo rtrim(base64_encode($value[' application_id ']),'=');?>' candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-no-border btn-md-red btn-outline mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate"
-                                                        data-title="Do you want to reject this candidate?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes'
-                                                        data-confirm-button-class="btn-info">
-                                                        <i class="icon-trash"></i> <?= !empty($language->reject_candidate) ? $language->reject_candidate : "Reject Candidate"  ?>
+                                                    <button type="button" data-id='<?php echo rtrim(base64_encode($value[' application_id ']),'=');?>' candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-no-border btn-md-red btn-outline mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to reject this candidate?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true"
+                                                        data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
+                                                        <i class="icon-trash"></i>
+                                                        <?= !empty($language->reject_candidate) ? $language->reject_candidate : "Reject Candidate"  ?>
                                                     </button>
                                                 </li>
                                             </ul>
                                         </div>
                                         <div class="btn-group  hidden-xs hidden-sm visible-md visible-lg  clearfix ">
                                             <!-- View Summary -->
-                                            <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-container="body"
-                                                data-placement="top" data-original-title="View Summary">
+                                            <a href="javascript:void(0)" data-toggle="modal" class="btn btn-md-indigo  btn-icon-only tooltips user-btn" data-container="body" data-placement="top" uid="<?php echo rtrim(base64_encode($value['user_id']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" data-container="body" data-placement="top" data-original-title="View Summary">
                                                 <i class="icon-eye"></i>
                                             </a>
                                             <!-- shortlist Candidate -->
@@ -137,15 +153,14 @@
                                                 <i class="icon-star"></i>
                                             </a>
                                             <!-- Reject Candidate -->
-                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips  mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate"
-                                                data-title="Do you want to remove this post?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger" data-cancel-button-text='No' data-confirm-button-text='Yes'
-                                                data-confirm-button-class="btn-info">
+                                            <button type="button" data-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" class="btn btn-md-red btn-icon-only tooltips  mt-sweetalert reject-candidate" data-container="body" data-placement="top" data-original-title="Reject Candidate" data-title="Do you want to remove this post?" data-type="warning" data-allow-outside-click="true" data-show-confirm-button="true" data-show-cancel-button="true" data-cancel-button-class="btn-danger"
+                                                data-cancel-button-text='No' data-confirm-button-text='Yes' data-confirm-button-class="btn-info">
 
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </div>
                                     </td>
-                                    
+
                                 </tr>
                                 <?php $i++; }} ?>
                             </tbody>
@@ -154,35 +169,49 @@
                     <?php else: ?>
                     <div class="portlet-body text-center p-100">
                         <i class="icon-ghost font-grey-mint font-60 mb-30"></i>
-                        <h4 class="text-center font-weight-500 font-grey-mint"><?= !empty($language->no_candidates_found) ? $language->no_candidates_found : "Sorry , We did not find any candidates."  ?></h4>
+                        <h4 class="text-center font-weight-500 font-grey-mint">
+                            <?= !empty($language->no_candidates_found) ? $language->no_candidates_found : "Sorry , We did not find any candidates."  ?>
+                        </h4>
                         <!-- <h5 class="text-center  font-grey-cascade mt-1 text-none">Go to.</h5> -->
                     </div>
                     <?php endif ?>
                 </div>
             </div>
 
-            <!-- Tab Shorlisted Candidate -->
+            <!-- Tab Shortlisted Candidate -->
+            <?php if (!empty($shortlisted)): ?>
             <div class="tab-pane" id="tab_shortlisted_candidates">
                 <div class="portlet light ">
                     <div class="portlet-title">
                         <div class="caption">
-                            <span class="caption-subject"> <?= !empty($language->shortlisted_candidates) ? $language->shortlisted_candidates : "Shortlisted Candidates"  ?></span>
+                            <span class="caption-subject">
+                                <?= !empty($language->shortlisted_candidates) ? $language->shortlisted_candidates : "Shortlisted Candidates"  ?>
+                            </span>
                         </div>
                         <div class="actions">
                             <a class="btn  btn-md-indigo" href="#modal_interview_session_list" data-toggle="modal">
-                                <i class="icon-calendar"></i> <?= !empty($language->interview_session) ? $language->interview_session : "Interview Session"  ?></a>
+                                <i class="icon-calendar"></i>
+                                <?= !empty($language->interview_session) ? $language->interview_session : "Interview Session"  ?>
+                            </a>
                         </div>
                     </div>
-                    <?php if (!empty($shortlisted)): ?>
                     <div class="portlet-body">
                         <table class="table table-striped table-bordered " id="xremo_table">
                             <thead>
                                 <tr>
                                     <th class="text-center col-xs-1">#</th>
-                                    <th class="col-xs-4"> <?= !empty($language->candidates) ? $language->candidates : "Candidates"  ?> </th>
-                                    <th class="text-center col-xs-2 "> <?= !empty($language->application_status) ? $language->application_status : "Application Status"  ?> </th>
-                                    <th class="text-center col-xs-2"> <?= !empty($language->applied_date) ? $language->applied_date : "Applied Date"  ?> </th>
-                                    <th class="text-center col-xs-4"> <?= !empty($language->invitation_status) ? $language->invitation_status : "Invitation Status"  ?> </th>
+                                    <th class="col-xs-4">
+                                        <?= !empty($language->candidates) ? $language->candidates : "Candidates"  ?>
+                                    </th>
+                                    <th class="text-center col-xs-2 ">
+                                        <?= !empty($language->application_status) ? $language->application_status : "Application Status"  ?>
+                                    </th>
+                                    <th class="text-center col-xs-2">
+                                        <?= !empty($language->applied_date) ? $language->applied_date : "Applied Date"  ?>
+                                    </th>
+                                    <th class="text-center col-xs-4">
+                                        <?= !empty($language->invitation_status) ? $language->invitation_status : "Invitation Status"  ?>
+                                    </th>
                                     <th class="text-center col-xs-1"> Actions </th>
                                 </tr>
                             </thead>
@@ -245,8 +274,7 @@
                                                 </li>
                                                 <li>
                                                     <?php if ($value['interview_status'] == 'reschedule'): ?>
-                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>"
-                                                        job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
+                                                    <a href="#modal_rescheduled_form_<?php echo $value['interview_schedule_id'];?>" class="choose_session" candidate-email="<?php echo $value['user_email']; ?>" candidate-name="<?php echo $value['user_name'];?>" data-toggle="modal" candidate-id="<?php echo rtrim(base64_encode($value['user_id']),'='); ?>" job-id="<?php echo rtrim(base64_encode($job->id),'=')?>">
                                                         <i class="icon-calendar"></i>
                                                         <?= !empty($language->rescheduled_interview) ? $language->rescheduled_interview : "Rescheduled Interview"  ?>
                                                     </a>
@@ -290,10 +318,13 @@
                             <div class="modal-dialog ">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="font-weight-600 mb-20"><?= !empty($language->rescheduled_session) ? $language->rescheduled_session : "Rescheduled Session" ?></h4>
-                                        <h5 class="font-weight-400"><?= !empty($language->requested_by) ? $language->requested_by : "Requested By" ?>
-                                            <b>
-                                                <?php echo $value['user_name'];?> </b>
+                                        <h4 class="font-weight-600 mb-20">
+                                            <?= !empty($language->rescheduled_session) ? $language->rescheduled_session : "Rescheduled Session" ?>
+                                        </h4>
+                                        <h5 class="font-weight-400">
+                                            <?= !empty($language->requested_by) ? $language->requested_by : "Requested By" ?>
+                                                <b>
+                                                    <?php echo $value['user_name'];?> </b>
                                         </h5>
                                     </div>
                                     <form action="<?php echo base_url(); ?>employer/candidate/reschedule_interview_session" method="POST" class="form">
@@ -306,7 +337,9 @@
                                                 <!-- Date -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->proposed_date) ? $language->proposed_date : "Proposed Date" ?></label>
+                                                        <label class="md-grey-darken-3-text mb-10 font-weight-600">
+                                                            <?= !empty($language->proposed_date) ? $language->proposed_date : "Proposed Date" ?>
+                                                        </label>
                                                         <div class="input-icon ">
                                                             <i class="icon-calendar"></i>
                                                             <input type="text" class="form-control date date-picker" value="<?= date('d-m-Y',strtotime($value['suggested_start_date']))?>" readonly disabled>
@@ -316,7 +349,9 @@
                                                 <!-- Time -->
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class=" md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->proposed_time) ? $language->proposed_time : "Proposed Time" ?></label>
+                                                        <label class=" md-grey-darken-3-text mb-10 font-weight-600">
+                                                            <?= !empty($language->proposed_time) ? $language->proposed_time : "Proposed Time" ?>
+                                                        </label>
                                                         <div class="input-icon">
                                                             <i class="fa fa-clock-o"></i>
                                                             <input type="text" class="form-control timepicker timepicker-24" value="<?= date('H:i',strtotime($value['suggested_start_date']))?>" readonly disabled> </div>
@@ -327,7 +362,9 @@
 
                                             <!-- Reason -->
                                             <div class="row mx-0 mt-20">
-                                                <label for="" class="md-grey-darken-3-text mb-10 font-weight-600"> <?= !empty($language->rescheduled_reason) ? $language->rescheduled_reason : "Rescheduled Reason" ?></label>
+                                                <label for="" class="md-grey-darken-3-text mb-10 font-weight-600">
+                                                    <?= !empty($language->rescheduled_reason) ? $language->rescheduled_reason : "Rescheduled Reason" ?>
+                                                </label>
                                                 <p class="">
                                                     <?php echo $value['candidate_reply']; ?>
                                                 </p>
@@ -335,15 +372,19 @@
                                             <!-- Radio Button -->
                                             <!-- Fix : Show new schedule when radio button click 'no' -->
                                             <div class="form-group mt-20 ">
-                                                <label for="" class="md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->rescheduled_confirmation) ? $language->rescheduled_confirmation : "Do you agree to rescheduled ?" ?></label>
+                                                <label for="" class="md-grey-darken-3-text mb-10 font-weight-600">
+                                                    <?= !empty($language->rescheduled_confirmation) ? $language->rescheduled_confirmation : "Do you agree to rescheduled ?" ?>
+                                                </label>
                                                 <div class="mt-radio-inline">
                                                     <label class="mt-radio">
-                                                        <input type="radio" name="confirmation" class="agree-reschedule" value="Yes" checked="checked"> <?= !empty($language->site_yes) ? $language->site_yes : "Yes" ?>
-                                                        <span></span>
+                                                        <input type="radio" name="confirmation" class="agree-reschedule" value="Yes" checked="checked">
+                                                        <?= !empty($language->site_yes) ? $language->site_yes : "Yes" ?>
+                                                            <span></span>
                                                     </label>
                                                     <label class="mt-radio">
-                                                        <input type="radio" name="confirmation" class="disagree-reschedule" value="No"> <?= !empty($language->site_no) ? $language->site_no : "No" ?>
-                                                        <span></span>
+                                                        <input type="radio" name="confirmation" class="disagree-reschedule" value="No">
+                                                        <?= !empty($language->site_no) ? $language->site_no : "No" ?>
+                                                            <span></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -380,8 +421,12 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer ">
-                                            <a class="btn btn-outline btn-md-indigo" data-dismiss="modal" aria-hidden="true"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?></a>
-                                            <button class="btn btn-md-indigo width-200 letter-space-xs"> <?= !empty($language->site_send) ? $language->site_send : "Send" ?> </button>
+                                            <a class="btn btn-outline btn-md-indigo" data-dismiss="modal" aria-hidden="true">
+                                                <?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ?>
+                                            </a>
+                                            <button class="btn btn-md-indigo width-200 letter-space-xs">
+                                                <?= !empty($language->site_send) ? $language->site_send : "Send" ?>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -396,7 +441,8 @@
                                 <div class="modal-content ">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                        <h4 class="modal-title font-weight-600 "><?= !empty($language->set_interview_schedule) ? $language->set_interview_schedule : "Set Interview Schedule" ?>
+                                        <h4 class="modal-title font-weight-600 ">
+                                            <?= !empty($language->set_interview_schedule) ? $language->set_interview_schedule : "Set Interview Schedule" ?>
                                         </h4>
                                     </div>
                                     <form action="<?php echo base_url(); ?>employer/job_board/single_invitation" method="POST" class="form">
@@ -408,11 +454,13 @@
                                         <div class="modal-body ">
                                             <!-- Title -->
                                             <div class="form-group mx-0">
-                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->set_title) ? $language->set_title : "Title" ?></label>
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">
+                                                    <?= !empty($language->set_title) ? $language->set_title : "Title" ?>
+                                                </label>
                                                 <input type="text" name="title" value="Session 1" class="form-control">
                                             </div>
                                             <!-- Start Date / Time -->
-                                            
+
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group mx-0">
@@ -486,16 +534,10 @@
 
                         <?php endforeach ?>
                     </div>
-                    <?php else: ?>
-                    <div class="portlet-body text-center p-100">
-                        <i class="icon-ghost font-grey-mint font-60 mb-30"></i>
-                        <h4 class="text-center font-weight-500 font-grey-mint">Sorry , We did not find any candidates.</h4>
-                        <h5 class="text-center  font-grey-cascade mt-1 text-none">Go to 'tab new candidate' and select suitable candidate for your company.</h5>
-                    </div>
-                    <?php endif ?>
                 </div>
-
             </div>
+            <?php endif ?>
+
 
 
             <!-- BEGIN MODAL : View Candidate Summary -->
@@ -519,10 +561,16 @@
                                             <tr>
                                                 <th class="text-center">#</th>
                                                 <th> Session </th>
-                                                <th> <?= !empty($language->candidates) ? $language->candidates : "Candidates" ?> </th>
+                                                <th>
+                                                    <?= !empty($language->candidates) ? $language->candidates : "Candidates" ?>
+                                                </th>
                                                 <th> Status </th>
-                                                <th> <?= !empty($language->site_from) ? $language->site_from : "From" ?> </th>
-                                                <th> <?= !empty($language->site_to) ? $language->site_to : "To" ?> </th>
+                                                <th>
+                                                    <?= !empty($language->site_from) ? $language->site_from : "From" ?>
+                                                </th>
+                                                <th>
+                                                    <?= !empty($language->site_to) ? $language->site_to : "To" ?>
+                                                </th>
                                                 <th> Action </th>
                                             </tr>
                                         </thead>
@@ -575,8 +623,11 @@
                                     <div class="portlet-body text-center">
                                         <div class="portlet-body text-center p-100">
                                             <i class="icon-ghost font-grey-mint font-60 mb-30"></i>
-                                            <h4 class="text-center font-weight-500 font-grey-mint"><?= !empty($language->no_interview_session) ? $language->no_interview_session : "Sorry , We did not find any interview session for" ?>
-                                                <?php echo $job->name; ?> <?= !empty($language->at_this_moment) ? $language->at_this_moment : "at this moment" ?></h4>
+                                            <h4 class="text-center font-weight-500 font-grey-mint">
+                                                <?= !empty($language->no_interview_session) ? $language->no_interview_session : "Sorry , We did not find any interview session for" ?>
+                                                    <?php echo $job->name; ?>
+                                                    <?= !empty($language->at_this_moment) ? $language->at_this_moment : "at this moment" ?>
+                                            </h4>
                                             <h4 class="text-center font-weight-500 font-grey-mint"></h4>
                                             <h5 class="text-center  font-grey-cascade mt-1 text-none">Create interview session by click button and appoint candidates.</h5>
                                         </div>
@@ -587,7 +638,9 @@
                             </div>
                         </div>
                         <div class="modal-footer ">
-                            <a href="" class="btn btn-outline btn-md-indigo" data-dismiss="modal" aria-hidden="true"><?= !empty($language->site_close) ? $language->site_close : "Close" ?></a>
+                            <a href="" class="btn btn-outline btn-md-indigo" data-dismiss="modal" aria-hidden="true">
+                                <?= !empty($language->site_close) ? $language->site_close : "Close" ?>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -600,7 +653,8 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content form">
                         <div class="modal-header">
-                            <h4 class="font-weight-600"><?= !empty($language->all_available_session) ? $language->all_available_session : "All available session" ?>
+                            <h4 class="font-weight-600">
+                                <?= !empty($language->all_available_session) ? $language->all_available_session : "All available session" ?>
                             </h4>
 
                         </div>
@@ -612,9 +666,15 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">#</th>
-                                                    <th> <?= !empty($language->set_title) ? $language->set_title : "Title" ?> </th>
-                                                    <th> <?= !empty($language->site_from) ? $language->site_from : "From" ?> </th>
-                                                    <th> <?= !empty($language->set_to) ? $language->set_to : "To" ?> </th>
+                                                    <th>
+                                                        <?= !empty($language->set_title) ? $language->set_title : "Title" ?>
+                                                    </th>
+                                                    <th>
+                                                        <?= !empty($language->site_from) ? $language->site_from : "From" ?>
+                                                    </th>
+                                                    <th>
+                                                        <?= !empty($language->set_to) ? $language->set_to : "To" ?>
+                                                    </th>
                                                 </tr>
                                             </thead>
 
@@ -643,7 +703,9 @@
                             </div>
                         </div>
                         <div class="modal-footer ">
-                            <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true"><?= !empty($language->site_close) ? $language->site_close : "Close" ?></a>
+                            <a href="" class="btn btn-outline-md-red" data-dismiss="modal" aria-hidden="true">
+                                <?= !empty($language->site_close) ? $language->site_close : "Close" ?>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -676,8 +738,7 @@
                             <!-- IF != ALL DAY -->
                             <h5 class="font-weight-400 letter-space-xs mb-30 font-17">
                                 <i class="icon-clock mr-10"></i>
-                                <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?>
-                                 -
+                                <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?> -
                                 <?php echo date('D, j M ,h:ia', strtotime($session_value['end_date'])); ?>
                             </h5>
                             <!--  If == all day-->
@@ -716,13 +777,17 @@
                                 <input type="hidden" value="<?php echo $job_id; ?>" name="job_id"></input>
                                 <!-- Title -->
                                 <div class="form-group mx-0">
-                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->set_title) ? $language->set_title : "Title" ?></label>
+                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">
+                                        <?= !empty($language->set_title) ? $language->set_title : "Title" ?>
+                                    </label>
                                     <input type="text" value="<?php echo !empty($session_value['title']) ? $session_value['title'] : 'Session Name'; ?>" class="form-control" name="title" readonly>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mx-0">
-                                            <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->site_date) ? $language->site_date : "Date" ?></label>
+                                            <label for="" class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                                <?= !empty($language->site_date) ? $language->site_date : "Date" ?>
+                                            </label>
                                             <div class="input-icon ">
                                                 <i class="icon-calendar"></i>
                                                 <input type="text" class="form-control date date-picker" name="date" value="<?php echo !empty($session_value['start_date']) ? date('m/d/Y', strtotime($session_value['start_date'])) : 'Session Name'; ?>">
@@ -732,32 +797,44 @@
                                 </div>
                                 <!-- Start Time & End Time [If All Day Check] -->
                                 <div class="row mb-30">
-                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->set_time) ? $language->set_time : "Time" ?></label>
+                                    <label class="col-md-12 md-grey-darken-3-text mb-10 font-weight-600 ">
+                                        <?= !empty($language->set_time) ? $language->set_time : "Time" ?>
+                                    </label>
                                     <div class="col-md-6">
                                         <div class="input-icon ">
                                             <i class="icon-clock"></i>
                                             <input type="text" class="form-control timepicker timepicker-24 " placeholder="start time" value="<?php echo !empty($session_value['start_date']) ? date('H:i', strtotime($session_value['start_date'])) : 'Session Name'; ?>" name="start_time">
-                                            <span class="helper-block font-15"><?= !empty($language->site_start) ? $language->site_start : "Start" ?></span>
+                                            <span class="helper-block font-15">
+                                                <?= !empty($language->site_start) ? $language->site_start : "Start" ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-icon ">
                                             <i class="icon-clock"></i>
                                             <input type="text" class="form-control timepicker timepicker-24 " placeholder="end time" name="end_time" value="<?php echo !empty($session_value['end_date']) ? date('H:i', strtotime($session_value['end_date'])) : 'Session Name'; ?>">
-                                            <span class="helper-block font-15"><?= !empty($language->site_end) ? $language->site_end : "End" ?></span>
+                                            <span class="helper-block font-15">
+                                                <?= !empty($language->site_end) ? $language->site_end : "End" ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group mx-0">
-                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_details) ? $language->site_details : "Details" ?></label>
-                                    <textarea class="form-control" rows="5" name="description">
-                                        <?php echo !empty($session_value['description']) ? $session_value['description'] : 'Session Name'; ?>
-                                    </textarea>
+                                    <label class="control-label md-grey-darken-3-text mb-10 font-weight-600">
+                                        <?= !empty($language->site_details) ? $language->site_details : "Details" ?>
+                                    </label>
+                                    <?php 
+                                    echo '<textarea class="form-control" rows="5" name="description">';
+                                    echo !empty($session_value['description']) ? $session_value['description'] : 'Session Name'; 
+                                    echo '</textarea>';
+                                    ?>
                                 </div>
                             </div>
                             <div class="modal-footer ">
-                                <button type="submit" class="btn btn-md-indigo  width-200 letter-space-xs"><?= !empty($language->site_save) ? $language->site_save : "Save" ?></button>
+                                <button type="submit" class="btn btn-md-indigo  width-200 letter-space-xs">
+                                    <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
+                                </button>
                             </div>
                         </form>
 
@@ -829,5 +906,6 @@
             <!-- END MODAL :  Choose interview session for user -->
 
         </div>
+
     </div>
 </div>
