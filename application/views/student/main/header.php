@@ -170,12 +170,12 @@
                             </ul>
                         </li>
                         <!-- END NOTIFICATION DROPDOWN -->
-
+                        <?php $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?= getimagesize(IMG_STUDENTS.$user_profile['profile_photo']) ? IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ? IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                 <span class="username username-hide-on-mobile">
                                     <?php
                                         $fullname = $this->session->userdata('name');

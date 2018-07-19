@@ -1,3 +1,5 @@
+<?php $checkGetHeaderImage = get_headers(IMG_STUDENTS.$user_profile['header_photo']);
+        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
 <div class="page-content-wrapper">
     <div class="page-content">
 
@@ -71,7 +73,7 @@
                                     <div class="mt-card-item p-0">
                                         <!-- Avatar -->
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?= getimagesize(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">        
+                                            <img src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">        
                                         </div>
                                         <div class="mt-card-content mb-20 ">
                                             <!--  Full name   -->
@@ -1663,7 +1665,7 @@
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="<?php echo getimagesize(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
+                                                        <img src="<?php echo $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">
@@ -1681,7 +1683,7 @@
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="<?php echo getimagesize(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
+                                                        <img src="<?php echo $checkGetHeaderImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['header_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">
