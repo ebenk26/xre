@@ -1,4 +1,3 @@
-<!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
     <div class="page-content">
         
@@ -113,8 +112,7 @@
                 $numOfCols = 3;
                 $colCount = 0;
                 $bootstrapColWidth = 12 / $numOfCols;
-                $maxCol = 6 ;
-            ?>
+                $maxCol = 6 ;?>
             <div class="m-grid pb-40 m-grid-responsive-xs m-grid-responsive-sm">
                 <div class="m-grid-row  m-">
                     <?php foreach ($job_positions_new as $key => $value) {  ?>
@@ -223,10 +221,7 @@
                         }
                     } ?>
                 </div>
-            </div>
-            
-
-            
+            </div>    
             <!-- # Empty States -->
             <?php } else { ?>
             <div class="portlet text-center">
@@ -240,7 +235,6 @@
             <?php } ?>
 
         </div>
-
 
         <!-- # Section : Feed & Article -->
         <div class="m-grid m-grid-responsive-sm m-grid-responsive-xs mb-20 ">
@@ -270,7 +264,6 @@
 
                             </li>
                         </ul>
-
                     </div>
 
                     <div class="portlet-body">
@@ -313,7 +306,7 @@
                                 <!-- # Empty State -->
                                 <?php } else {?>
                                 <div class="m-grid portlet md-grey-lighten-5 height-500-md height-450 my-0">
-                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center  ">
+                                    <div class="m-grid-col m-grid-col-middle m-grid-col-center">
                                         <i class="icon-users md-indigo-text font-40-md font-36-sm font-28 "></i>
                                         <h4 class="text-center font-weight-600 md-indigo-text ">No newcomer.</h4>
                                         <h6 class="text-center font-grey-cascade mt-20 font-15 mx-0-md mx-20">There is no student had joined since your last login.</h6>
@@ -455,4 +448,3 @@
         </div>
     </div>
 </div>
-<!-- END CONTENT -->
