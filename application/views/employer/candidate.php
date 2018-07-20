@@ -169,7 +169,7 @@
                             <span class="caption-subject"> <?= !empty($language->shortlisted_candidates) ? $language->shortlisted_candidates : "Shortlisted Candidates"  ?></span>
                         </div>
                         <div class="actions">
-                            <a class="btn  btn-md-indigo" href="#modal_interview_session_list" data-toggle="modal">
+                            <a class="btn  btn-md-indigo <?= empty($interview_session) ? 'hidden':''; ?>" href="#modal_interview_session_list" data-toggle="modal">
                                 <i class="icon-calendar"></i> <?= !empty($language->interview_session) ? $language->interview_session : "Interview Session"  ?></a>
                         </div>
                     </div>
