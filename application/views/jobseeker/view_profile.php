@@ -4,8 +4,7 @@
     $segmented_uri = $this->uri->segment(3);
     $percentage_completion = ($roles == 'employer') ? (ProfileCompletion($employer_profile) >= 90) : (studentProfileCompletion($id) >= 70);
     if ($id != base64_decode($segmented_uri)) {
-        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,
-                                    'endorsed'=> base64_decode($segmented_uri)));
+        $endorseReviewRating = EndorseReviewRating(array(  'endorser'=> $id,'endorsed'=> base64_decode($segmented_uri)));
     }else{
         $endorseReviewRating = EndorseReviewRating(array('endorsed'=> base64_decode($segmented_uri)));
     }
@@ -28,7 +27,9 @@
 
     <!-- TITLE -->
     <?php if ($roles =='student') {?>
-    <title><?= !empty($language->site_stdview_profile) ? $language->site_stdview_profile : "Student | View Profile"?></title>
+    <title>
+        <?= !empty($language->site_stdview_profile) ? $language->site_stdview_profile : "Student | View Profile"?>
+    </title>
     <?php } else {?>
     <title>
         <?php echo ucwords($user_profile['overview']['name']); ?>
@@ -62,12 +63,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>vendor/alertify.min.css">
 
     <!-- Global -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css">
 
     <!-- Layout 8 -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>layout8/layout8.min.css">
 
-    <!-- PAGES -->
+    <!-- Pages -->
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>pages/portfolio.min.css">
 
     <!-- Favicon -->
@@ -95,69 +96,83 @@
     <?php $this->load->view('site/header_content');?>
 
     <!-- # VIEW -->
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs hidden-sm" style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
-        <div class="container g-ver-bottom-80 ">
-            <div class="col-md-9 col-xs-12">
-                <ul class="list-unstyled mx-0 mt-50">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= file_exists(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
+        <div class="container g-ver-bottom-80-md g-ver-bottom-70-sm ">
+            <!-- Fullname & Quote -->
+            <div class="col-md-9 col-sm-9">
+                <ul class="list-unstyled mx-0 mt-60-md mt-20-sm">
                     <!-- Full Name -->
+                    <?php if(!empty($user_profile['overview']['quote'])) { ?>
                     <li>
-                        <h3 class="font-40-md font-30 md-orange-lighten-1-text font-weight-500   ">
+                        <h3 class="font-36-md font-30 md-orange-lighten-1-text font-weight-600 text-uppercase letter-space-sm ">
                             <?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?>
                         </h3>
                     </li>
-                    <hr class="border-mdo-white-v3 width-200">
                     <!-- Quote -->
+                    <hr class="border-md-white width-70 hor-divider-solid-thick">
                     <li>
-                        <p class=" font-17 font-weight-500 md-white-text letter-space-xs">
-                            <?= !empty($user_profile['overview']['quote']) ?  '<i class="fa fa-quote-left font-10 vertical-top"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-10"></i>' : ''; ?>
-
+                        <p class="  font-weight-400 md-white-text letter-space-sm">
+                            <?= !empty($user_profile['overview']['quote']) ?  '<i class="fa fa-quote-left font-10 vertical-top mr-5"></i>'.$user_profile['overview']['quote'].'<i class="fa fa-quote-right vertical-top font-10 ml-5"></i>' : ''; ?>
                         </p>
                     </li>
+                    <?php } else {  ?>
+                    <li>
+                        <h3 class="font-36-md font-30 md-orange-lighten-1-text font-weight-600 text-uppercase mt-120-lg mt-70-sm letter-space-sm ">
+                            <?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?>
+                        </h3>
+                    </li>
+                    <!-- Quote -->
+                    <hr class="border-md-white width-70 hor-divider-solid-thick my-10">
+                    <?php } ?>
                 </ul>
             </div>
             <!--  Profile IMAGE -->
-            <div class="col-md-3  col-xs-12 text-center">
-                <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle ">
+            <div class="col-md-3  col-sm-3 text-center">
+                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle  hidden-sm">
+                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle  visible-sm">
             </div>
         </div>
     </div>
-    <!-- Visible when 768px to below  -->
-    <div class="visible-sm visible-xs">
-        <div class="view  height-300 g-bg-position-center " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>');">
+    <!-- @ Mobile View -->
+    <div class="visible-xs md-grey-lighten-5">
+        <div class="view  height-250 g-bg-position-center " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>');">
             <div class="mask hm-darkblue-v7"></div>
         </div>
-        <div class="mt-element-card-v2 text-center  ">
-            <div class="mt-card-item p-0">
-                <div class="mt-card-avatar  mt-o-100">
-                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-large ">
+        <div class="mt-element-card-v2 text-center  mb-0">
+            <div class="mt-card-item p-0 mb-0">
+                <div class="mt-card-avatar  mt-o-70">
+                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-medium ">
                 </div>
-                <div class="mt-card-content px-15  ">
-                    <h3 class="mt-card-name mt-20 md-orange-text ">
+                <div class="mt-card-content px-15 mb-0 ">
+                    <h4 class="mt-card-name mt-20 md-darkblue-text mb-0 text-uppercase font-20 font-weight-600 ">
                         <?= !empty($user_profile['overview']['name']) ?  $user_profile['overview']['name'] : 'XREMO'; ?>
-                    </h3>
-                    <hr class="border-mdo-darkblue-v5 width-100 center-block">
-
-                    <p class="mt-card-desc font-15 letter-space-xs font-weight-500">
+                    </h4>
+                    <hr class="border-mdo-orange-v5 width-80 center-block  hor-divider-solid-medium">
+                    <?php if(!empty($user_profile['overview']['quote'])){ ?>
+                    <p class="mt-card-desc font-14 letter-space-xs font-weight-500 pb-10 mb-0">
                         <i class="fa fa-quote-left font-10 vertical-top"></i>
                         <?= !empty($user_profile['overview']['quote']) ?  $user_profile['overview']['quote'] : 'The best preparation for tomorrow is doing your best today.'; ?>
                             <i class="fa fa-quote-right vertical-top font-10"></i>
                     </p>
+                    <?php }?>
                 </div>
             </div>
         </div>
     </div>
-    <!-- # END VIEW -->
+    <!-- @END Mobile View -->
 
     <!-- Content -->
-    <div class="m-grid m-grid-full-height m-grid-responsive-xs m-grid-responsive-sm m-grid-responsive-md">
+    <div class="m-grid m-grid-responsive-xs">
         <!-- Share /Personal Info /  Video Resume /Gallery / References -->
-        <div class="m-grid-col m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12  md-grey-lighten-5  py-20 ">
+        <div class="m-grid-col m-grid-col-lg-4 m-grid-col-md-4 m-grid-col-sm-12 m-grid-col-xs-12  md-grey-lighten-5 px-10-sm py-20-sm py-0  m-grid-col-full-height">
             <ul class="list-group">
                 <!-- Share button -->
                 <?php if($checkUser == 'same_user'): ?>
-                <li class="list-group-item border-none md-grey-lighten-5 pt-30 ">
-                    <h6 class="text-center  text-uppercase  md-darkblue-text font-weight-600 letter-space-sm  "><?= !empty($language->site_share) ? $language->site_share : "SHARE"?></h6>
-                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
+                <li class="list-group-item border-none md-grey-lighten-5 pt-30-sm pt-0 ">
+                    <h6 class="text-center  text-uppercase  md-darkblue-text font-weight-600 letter-space-sm hidden-xs ">
+                        <?= !empty($language->site_share) ? $language->site_share : "SHARE"?>
+                    </h6>
+                    <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10 hidden-xs">
                     <ul class="list-inline list-unstyled mx-0 text-center ">
                         <!-- G+ -->
                         <li>
@@ -185,25 +200,36 @@
                 <?php endif; ?>
 
                 <!-- Personal Info -->
-                <li class="list-group-item border-none md-grey-lighten-5 pt-30 ">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "> <?= !empty($language->site_personal_information) ? $language->site_personal_information: "Personal Information" ?> </h6>
+                <li class="list-group-item border-none md-grey-lighten-5 pt-30-sm pt-20 ">
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm hidden-xs">
+                        <?= !empty($language->site_personal_information) ? $language->site_personal_information: "Personal Information" ?>
+                    </h6>
+                    <h6 class="text-center text-uppercase font-16 md-darkblue-text font-weight-600 letter-space-sm visible-xs">
+                        <?= !empty($language->site_personal_information) ? $language->site_personal_information: "Personal Information" ?>
+                    </h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <ul class="list-unstyled mx-0 text-center">
                         <li>
                             <?php if($this->session->userdata('id') && ($this->session->userdata('id') != $user_profile['overview']['id_users'])){?>
                             <a href="<?=base_url()?>send_message/<?=rtrim(base64_encode($user_profile['overview']['id_users']), '='); ?>/new" class=" btn btn-block btn-md-orange roboto-font mb-20" target="_blank">
-                                <i class="icon-envelope mr-2 "></i><?= !empty($language->site_send_message) ? $language->site_send_message : "Send Message" ;?></a>
+                                <i class="icon-envelope mr-2 "></i>
+                                <?= !empty($language->site_send_message) ? $language->site_send_message : "Send Message" ;?>
+                            </a>
                             <?php }?>
                         </li>
                         <li>
-                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->site_gender) ? $language->site_gender : "Gender" ;?></h5>
+                            <h5 class="font-weight-700 font-grey-gallery mb-0 font-14 text-uppercase">
+                                <?= !empty($language->site_gender) ? $language->site_gender : "Gender" ;?>
+                            </h5>
                             <p class="mt-5  text-lighten-4">
                                 <?= !empty($user_profile['overview']['student_bios_gender']) ?  $user_profile['overview']['student_bios_gender'] : '-'; ?>
                             </p>
                         </li>
                         <?php if(!empty($roles)){ ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->DOB) ? $language->DOB : "Date Of Birth" ;?> </h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">
+                                <?= !empty($language->DOB) ? $language->DOB : "Date Of Birth" ;?>
+                            </h5>
                             <p class="mt-5 ">
                                 <?php   
                                     if(!empty($user_profile['overview']['student_bios_DOB']))
@@ -227,20 +253,26 @@
                         <?php } ?>
                         <?php if(!empty($roles) && ($roles == 'employer' || $this->session->userdata('id') == $user_profile['overview']['id_users'])){ ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ;?></h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">
+                                <?= !empty($language->phone_number) ? $language->phone_number : "Phone Number" ;?>
+                            </h5>
                             <p class="mt-5 ">
                                 <?= !empty($user_profile['overview']['student_bios_contact_number']) ?  $user_profile['overview']['student_bios_contact_number'] : '-'; ?>
                                     <!--<span class="badge badge-roundless badge-md-orange right text-uppercase">Primary</span>-->
                             </p>
                         </li>
                         <li>
-                            <h5 class="font-weight-700  mb-0 font-14 text-uppercase font-grey-gallery"><?= !empty($language->email_address) ? $language->email_address : "Email Address" ;?></h5>
+                            <h5 class="font-weight-700  mb-0 font-14 text-uppercase font-grey-gallery">
+                                <?= !empty($language->email_address) ? $language->email_address : "Email Address" ;?>
+                            </h5>
                             <p class="mt-5 ">
                                 <?= !empty($user_profile['overview']['email']) ?  $user_profile['overview']['email'] : '-'; ?>
                             </p>
                         </li>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->address) ? $language->address : "Address" ;?></h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">
+                                <?= !empty($language->address) ? $language->address : "Address" ;?>
+                            </h5>
                             <?php
                                 $full_address = !empty($user_profile['address']['address']) ? $user_profile['address']['address'].", ":"";
                                 $full_address .= !empty($user_profile['address']['city']) ? $user_profile['address']['city'].", ":"";
@@ -255,7 +287,9 @@
                         </li>
                         <?php } ?>
                         <li>
-                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase"><?= !empty($language->language) ? $language->language : "Language" ;?> </h5>
+                            <h5 class="font-weight-700  font-grey-gallery mb-0 font-14 text-uppercase">
+                                <?= !empty($language->language) ? $language->language : "Language" ;?>
+                            </h5>
                             <ul class="list-unstyled mx-0">
                                 <?php if(!empty($user_profile['language'])){?>
                                 <?php foreach($user_profile['language'] as $key => $value){?>
@@ -265,9 +299,11 @@
                                             <?= $value['title']; ?>
                                         </strong>
                                         <br>
-                                        <small>[ <?= !empty($language->spoken) ? $language->spoken : "Spoken" ;?> :
-                                            <?= $value['spoken']; ?> Level , <?= !empty($language->written) ? $language->written : "Written" ;?> :
-                                                <?= $value['written']; ?> Level] </small>
+                                        <small>[
+                                            <?= !empty($language->spoken) ? $language->spoken : "Spoken" ;?> :
+                                                <?= $value['spoken']; ?> Level ,
+                                                    <?= !empty($language->written) ? $language->written : "Written" ;?> :
+                                                        <?= $value['written']; ?> Level] </small>
                                     </p>
 
                                 </li>
@@ -278,17 +314,24 @@
                 </li>
 
                 <!-- CV Video -->
-                <li class="list-group-item border-none md-grey-lighten-5 pt-30">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ;?></h6>
+                <li class="list-group-item border-none md-grey-lighten-5 pt-30-sm pt-20">
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm hidden-xs ">
+                        <?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ;?>
+                    </h6>
+                    <h6 class="text-center text-uppercase font-16 md-darkblue-text font-weight-600 letter-space-sm visible-xs">
+                        <?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ;?>
+                    </h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe width="560" height="315" src="<?= !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe src="<?= !empty($user_profile['overview']['youtubelink']) ?  $user_profile['overview']['youtubelink'] : 'https://www.youtube.com/embed/xbmAA6eslqU'; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                 </li>
 
                 <!-- Gallery -->
                 <li class="list-group-item border-none md-grey-lighten-5 pt-30">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->site_gallery) ? $language->site_gallery : "Gallery" ;?></h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">
+                        <?= !empty($language->site_gallery) ? $language->site_gallery : "Gallery" ;?>
+                    </h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <?php if(!empty($gallery)) {?>
                     <div class="portfolio-content portfolio-3">
@@ -316,7 +359,9 @@
                         </div>
                         <?php if($gall_no > 12){?>
                         <div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">
-                            <a href="#" class="cbp-l-loadMore-link btn btn-md-grey btn-outline m-20 letter-space-xs" id="gall_more"><?= !empty($language->site_load) ? $language->site_load : "LOAD MORE" ;?></a>
+                            <a href="#" class="cbp-l-loadMore-link btn btn-md-grey btn-outline m-20 letter-space-xs" id="gall_more">
+                                <?= !empty($language->site_load) ? $language->site_load : "LOAD MORE" ;?>
+                            </a>
                         </div>
                         <?php }?>
                     </div>
@@ -329,14 +374,14 @@
                 <!-- Reference (Limit PUT 3 ONLY)-->
                 <?php if(!empty($roles)){ ?>
                 <li class="list-group-item border-none md-grey-lighten-5 pt-20">
-                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm "><?= !empty($language->references) ? $language->references : "References" ;?></h6>
+                    <h6 class="text-center text-uppercase  md-darkblue-text font-weight-600 letter-space-sm ">
+                        <?= !empty($language->references) ? $language->references : "References" ;?>
+                    </h6>
                     <hr class="border-mdo-orange-v5 width-100 center-block hor-divider-solid-medium my-10">
                     <?php if(!empty($user_profile['reference'])) { ?>
                     <ul class="list-unstyled text-center ">
-                        <?php                             
-                            foreach ($user_profile['reference'] as $reference_key => $reference_value) {
-                            if($reference_value['reference_name'] != ""){
-                            ?>
+                        <?php foreach ($user_profile['reference'] as $reference_key => $reference_value) {
+                            if($reference_value['reference_name'] != ""){ ?>
                         <li>
                             <dl>
                                 <dt>
@@ -353,56 +398,104 @@
                                 </dd>
                             </dl>
                         </li>
-                        <?php }}  ?>
+                        <?php } }  ?>
                     </ul>
                     <?php }else{?>
-                        <?php $this->load->view('student/main/profile_missing', $data_arr);?>
-                        <?php }?>
+                    <?php $this->load->view('student/main/profile_missing', $data_arr);?>
+                    <?php }?>
                     <?php }?>
                 </li>
+
             </ul>
         </div>
 
         <!-- Content-->
-        <div class="m-grid-col m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12 p-20 ">
-            <div class="portlet light">
+        <div class="m-grid-col m-grid-col-lg-8 m-grid-col-md-8 m-grid-col-sm-12 m-grid-col-xs-12 py-20-sm px-10-sm p-0 ">
+            <div class="portlet light ">
 
                 <!-- Nav Tabs -->
-                <div class="portlet-title tabbable-line tab-md-orange  ">
-                    <ul class="nav nav-tabs pull-left">
+                
+                <div class="portlet-title tabbable-line tab-md-orange hidden-xs tabbable tabbable-tabdrop">
+                    <ul class="nav nav-tabs pull-left mt-position-relative">
                         <li class="active">
                             <a href="#tab_summary" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-user mr-5"></i> <?= !empty($language->site_summary) ? $language->site_summary : "Summary" ;?></a>
+                                <i class="icon-user mr-5"></i>
+                                <?= !empty($language->site_summary) ? $language->site_summary : "Summary" ;?>
+                            </a>
                         </li>
                         <li>
                             <a href="#tab_education" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-graduation mr-5"></i><?= !empty($language->site_education) ? $language->site_education : "Education" ;?> </a>
+                                <i class="icon-graduation mr-5"></i>
+                                <?= !empty($language->site_education) ? $language->site_education : "Education" ;?>
+                            </a>
                         </li>
                         <li>
                             <a href="#tab_experience" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-briefcase mr-5"></i><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?></a>
+                                <i class="icon-briefcase mr-5"></i>
+                                <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?>
+                            </a>
                         </li>
                         <li>
                             <a href="#tab_noneducation" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-notebook mr-5"></i><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?></a>
+                                <i class="icon-notebook mr-5"></i>
+                                <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?>
+                            </a>
                         </li>
                         <li>
                             <a href="#tab_skills" data-toggle="tab" class="font-15 font-weight-400">
-                                <i class="icon-badge mr-5"></i><?= !empty($language->site_project) ? $language->site_project : "Project" ;?></a>
+                                <i class="icon-badge mr-5"></i>
+                                <?= !empty($language->site_project) ? $language->site_project : "Project" ;?>
+                            </a>
                         </li>
                     </ul>
+                </div>
+                <!-- @ Mobile View -->
+                <div class=" portlet-title  visible-xs  tabbable tabbable-tabdrop ">
+                    <ul class="nav nav-pills tab-md-indigo  mt-position-relative" role="navigation">
+                        <li class="active ">
+                            <a href="#tab_summary" data-toggle="tab" class="font-14 font-weight-400 p-10">
+                                <i class="icon-user "></i>
+                                <?= !empty($language->site_summary) ? $language->site_summary : "Summary" ;?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab_education" data-toggle="tab" class="font-14 font-weight-400 p-10">
+                                <i class="icon-graduation"></i>
+                                <?= !empty($language->site_education) ? $language->site_education : "Education" ;?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab_experience" data-toggle="tab" class="font-14 font-weight-400 p-10">
+                                <i class="icon-briefcase mr-5"></i>
+                                <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab_noneducation" data-toggle="tab" class="font-14 font-weight-400 p-10">
+                                <i class="icon-notebook mr-5"></i>
+                                <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#tab_skills" data-toggle="tab" class="font-14 font-weight-400 p-10">
+                                <i class="icon-badge mr-5"></i>
+                                <?= !empty($language->site_project) ? $language->site_project : "Project" ;?>
+                            </a>
+                        </li>
+                    </ul>                    
                 </div>
 
                 <!-- Tab Content -->
                 <div class="portlet-body">
                     <div class="tab-content">
-
                         <!-- Tab Summary -->
                         <div class="tab-pane active" id="tab_summary">
                             <ul class="list-group list-border">
                                 <!-- About Me -->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_about_me) ? $language->site_about_me : "About Me" ;?></h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">
+                                        <?= !empty($language->site_about_me) ? $language->site_about_me : "About Me" ;?>
+                                    </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['overview']['summary'])){?>
@@ -418,7 +511,9 @@
 
                                 <!-- Education [Latest ]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_education) ? $language->site_education : "Education" ;?></h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">
+                                        <?= !empty($language->site_education) ? $language->site_education : "Education" ;?>
+                                    </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['academics'])){?>
@@ -457,7 +552,9 @@
 
                                 <!-- Experience [All] -->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?></h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">
+                                        <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ;?>
+                                    </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['experiences'])){?>
@@ -503,7 +600,9 @@
 
                                 <!-- Non Education [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?> </h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">
+                                        <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ;?>
+                                    </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
 
                                     <?php if(!empty($user_profile['achievement'])){?>
@@ -538,7 +637,9 @@
 
                                 <!-- Skill [All]-->
                                 <li class="list-group-item border-none py-20">
-                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs"><?= !empty($language->site_project) ? $language->site_project : "Project" ;?> </h6>
+                                    <h6 class="font-weight-700 text-uppercase md-darkblue-text mb-5 letter-space-xs">
+                                        <?= !empty($language->site_project) ? $language->site_project : "Project" ;?>
+                                    </h6>
                                     <hr class="border-md-orange width-30 mt-10 hor-divider-solid-thick">
                                     <?php if(!empty($user_profile['achievement'])){?>
                                     <ul class="list-unstyled">
@@ -658,8 +759,8 @@
                                         }else{
                                             $totalRating = round($total_rating,1);      
                                         }
-                                    ?>                                
-                                
+                                    ?>
+
                                 <li class="list-group-item  ">
                                     <div class="media">
                                         <!-- Rate & Review Button -->
@@ -668,37 +769,36 @@
                                                 <?php if (!empty($id)) :
                                                         // Rate
                                                         if (!empty($keyRatingEdu)) : ?>
-                                                            <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>"
-                                                                data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                <?= $totalRating; ?>
-                                                                    <i class="icon-star text-center"></i>
-                                                            </a>
-
-                                                        <?php else: ?>
-                                                            <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics"
-                                                                data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                <?= $totalRating; ?>
-                                                                    <i class="icon-star text-center"></i>
-                                                            </a>
-
-                                                        <?php endif; ?>
-                                                        <!-- Review -->
-                                                        <?php if(!empty($keyReviewEdu)): ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>"
-                                                                endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
-                                                                <?= $countReviewer?>
-                                                                    <i class="icon-note"></i>
-                                                            </a>
-                                                        <?php else: ?>
-                                                            <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>"
-                                                                endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
-                                                                <?= $countReviewer?>
-                                                                    <i class="icon-note"></i>
-                                                            </a>
-                                                        <?php endif; ?>
+                                                <a href="#<?= $modal_rate;?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" data-name="<?= $value['degree_name'];?>" endorse-type="academics" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
 
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?></a>
+                                                <a href="#<?= $modal_rate;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
+
+                                                <?php endif; ?>
+                                                <!-- Review -->
+                                                <?php if(!empty($keyReviewEdu)): ?>
+                                                <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['academic_id']; ?>" endorse-type="academics" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
+                                                    <?= $countReviewer?>
+                                                        <i class="icon-note"></i>
+                                                </a>
+                                                <?php else: ?>
+                                                <a href="#<?= $modal_review;?>" data-name="<?= $value['degree_name'];?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_review_education_list') ? 'review-education-list' : 'review-education-input';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="academics" data-name="<?= $value['degree_name']; ?>" data-id="<?= $value['academic_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "
+                                                    user="<?= $checkUser?>">
+                                                    <?= $countReviewer?>
+                                                        <i class="icon-note"></i>
+                                                </a>
+                                                <?php endif; ?>
+
+                                                <?php else: ?>
+                                                <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">
+                                                    <?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?>
+                                                </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -715,7 +815,7 @@
                                                 <?= $value['university_name']; ?>
                                             </h6>
                                             <!-- Start - End Date -->
-                                            <h6 class=" font-weight-400 font-grey-gallery font-14">                                            
+                                            <h6 class=" font-weight-400 font-grey-gallery font-14">
                                                 <i class="icon-calendar mr-5"></i>
                                                 <?php 
                                                         if(empty($value['start_date']) || $value['start_date'] == '0000-00-00' || $value['start_date'] == '1970-01-01')
@@ -740,32 +840,39 @@
                                         <?= $value['degree_description']; ?>
                                     </p>
                                 </li>
-                                
+
                                 <!-- Modal : Rate [Rated Empty Educations] -->
                                 <!-- # Empty States Modal [User-Employer]-->
                                 <div class="modal fade" id="modal_rated_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> - 
-                                                    <small class="font-16">
-                                                        <?= $value['degree_name'];?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->review) ? $language->review : "Review " ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['degree_name'];?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
-                                            <div class="modal-body">                                                                                                
+                                            <div class="modal-body">
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?></h4>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none"><?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?></h5>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?>
+                                                                </h4>
+                                                                <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none">
+                                                                    <?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?>
+                                                        </h5>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Modal Reviewed [Reviewed Empty Education] -->
@@ -773,23 +880,30 @@
                                 <div class="modal fade" id="modal_reviewed_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['degree_name'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->review) ? $language->review : "Review " ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['degree_name'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-note font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?></h5>
-                                                        <h6 class="text-center font-16 font-weight-400 font-grey-cascade mt-10 mb-30 text-none"><?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?></h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center font-16 font-weight-400 font-grey-cascade mt-10 mb-30 text-none">
+                                                            <?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?>
+                                                        </h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -800,20 +914,25 @@
                                 <div class="modal fade" id="modal_reviewer_empty_educations_<?= $value['academic_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review s" ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['degree_name'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->review) ? $language->review : "Review s" ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['degree_name'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
-                                            <div class="modal-body">                                                
+                                            <div class="modal-body">
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?></h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?></h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">
+                                                            <?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -825,12 +944,16 @@
                                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                                         <input type="hidden" value="<?= !empty($segmented_uri) ? base64_decode($segmented_uri) : $this->session->userdata('id');?>" name="endorsed_id">
                                                     </div>
-                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
-                                                    <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline">
+                                                        <?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?>
+                                                    </a>
+                                                    <button type="submit" class="btn btn-md-indigo ">
+                                                        <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                                    </button>
                                                 </form>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <?php $i++; } ?>
@@ -938,57 +1061,51 @@
                                             <div class="btn-group">
                                                 <?php if (!empty($id)):
                                                         if (!empty($keyReviewExp)) :?>
-                                                            <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
-                                                                    data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                    <?= $totalRating; ?>
-                                                                        <i class="icon-star text-center"></i>
-                                                                </a>
-                                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience"
-                                                                    data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
-                                                                    <?= $countReviewer ;?>
-                                                                        <i class="icon-note"></i>
-                                                                </a>
+                                                <?php if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewSame): ?>
+                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-id="<?= $value['experience_id']; ?>" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
+                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
+                                                    <?= $countReviewer ;?>
+                                                        <i class="icon-note"></i>
+                                                </a>
 
-                                                            <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
-                                                                    data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                    <?= $totalRating; ?>
-                                                                        <i class="icon-star text-center"></i>
-                                                                </a>
-                                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience"
-                                                                    data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
-                                                                    <?= $countReviewer ;?>
-                                                                        <i class="icon-note"></i>
-                                                                </a>
+                                                <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkReviewNotSame ): ?>
+                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>" data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
+                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " user="<?= $checkUser?>">
+                                                    <?= $countReviewer ;?>
+                                                        <i class="icon-note"></i>
+                                                </a>
 
-                                                            <?php else: ?>
-                                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>"
-                                                                    data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                    <?= $totalRating; ?>
-                                                                        <i class="icon-star text-center"></i>
-                                                                </a>
-                                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me "
-                                                                    endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user="<?= $checkUser?>">
-                                                                    <?= $countReviewer ;?>
-                                                                        <i class="icon-note"></i>
-                                                                </a>
-                                                            <?php endif; ?>
-                                                
-                                                        <?php else: ?>
-                                                            <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>"
-                                                                data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
-                                                                <?= $totalRating; ?>
-                                                                    <i class="icon-star text-center"></i>
-                                                            </a>
-                                                            <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me "
-                                                                endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user="<?= $checkUser?>">
-                                                                <?= $countReviewer ;?>
-                                                                    <i class="icon-note"></i>
-                                                            </a>
-                                                        <?php endif; ?>
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?></a>
+                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" data-name="<?= $value['experiences_title']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class;?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
+                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?> " data-container="body" data-placement="top" data-original-title="Click here to see who review me " endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user="<?= $checkUser?>">
+                                                    <?= $countReviewer ;?>
+                                                        <i class="icon-note"></i>
+                                                </a>
+                                                <?php endif; ?>
+
+                                                <?php else: ?>
+                                                <a href="#<?= $modal_rate; ?>" endorser-id="<?= $id; ?>" endorsed-id="<?= base64_decode($segmented_uri); ?>" data-id="<?= $value['experience_id']; ?>" endorse-type="experience" data-toggle="modal" class="btn btn-md-amber  btn-md font-weight-700 tooltips text-center <?= $class; ?>" data-name="<?= $value['experiences_title']; ?>" data-container="body" data-placement="top" data-original-title="Click here to see who rate me " user="<?= $checkUser?>">
+                                                    <?= $totalRating; ?>
+                                                        <i class="icon-star text-center"></i>
+                                                </a>
+                                                <a href="#<?= $modal_review; ?>" data-toggle="modal" class="btn btn-md-indigo  btn-md font-weight-700 tooltips <?= ($modal_review == 'modal_list_reviewer_input') ? 'review-input' : 'review-experience-list';?>" data-container="body" data-placement="top" data-original-title="Click here to see who review me " endorser-id="<?= $id; ?>" user-id="<?= base64_decode($segmented_uri); ?>" endorse-type="experience" data-name="<?= $value['experiences_title']; ?>" data-id="<?= $value['experience_id']; ?>" user="<?= $checkUser?>">
+                                                    <?= $countReviewer ;?>
+                                                        <i class="icon-note"></i>
+                                                </a>
+                                                <?php endif; ?>
+                                                <?php else: ?>
+                                                <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">
+                                                    <?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?>
+                                                </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1005,7 +1122,7 @@
                                             </h6>
                                             <!-- Start date / End date -->
                                             <h6 class="font-weight-400 font-14 font-grey-gallery">
-                                                    <i class="icon-calendar mr-5"></i>
+                                                <i class="icon-calendar mr-5"></i>
                                                 <?php 
                                                     if(empty($value['experiences_start_date']) || $value['experiences_start_date'] == '0000-00-00' || $value['experiences_start_date'] == '1970-01-01')
                                                     {
@@ -1035,8 +1152,8 @@
                                             </h6>
                                         </div>
                                     </div>
-                                                                                
-                                            
+
+
                                     <?php if (!empty($value['experiences_description']) ||($value['skills']) ){ ?>
                                     <hr class="border-mdo-orange-v7 my-10 width-200">
                                     <?php } ?>
@@ -1049,7 +1166,9 @@
                                     <?php } ?>
                                     <!-- Skill Earned -->
                                     <?php if (!empty($value['skills'])){ ?>
-                                    <p class="font-weight-600 font-14 text-uppercase mb-5"><?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ;?></p>
+                                    <p class="font-weight-600 font-14 text-uppercase mb-5">
+                                        <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ;?>
+                                    </p>
                                     <ul class="list-unstyled list-inline mt-ul-li-lr-0 mx-0">
                                         <?php 
                                             $tag = explode(',', $value['skills']);
@@ -1069,59 +1188,73 @@
                                     </ul>
                                     <?php } ?>
                                 </li>
-                                
+
                                 <!-- Modal : Rate [Rated Empty Experience] -->
                                 <!-- # Empty States [User - Employer] -->
                                 <div class="modal fade" id="modal_rated_empty_experience_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -                                                    
-                                                    <small class="font-16">
-                                                        <?= $value['experiences_title'];?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['experiences_title'];?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?></h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none font-16 font-weight-400"><?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?></h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_get_friendsrt) ? $language->site_get_friendsrt : "Get your friends to rate you!" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 text-none font-16 font-weight-400">
+                                                            <?= !empty($language->site_rate_invite) ? $language->site_rate_invite : "Hey ! Invite one of your friend to rate your resume." ;?>
+                                                        </h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
-                                
+
                                 <!-- Modal : Review [Reviewed Empty Experience] -->
                                 <!-- # Empty States [User - Employer] -->
                                 <div class="modal fade" id="modal_reviewed_empty_experiences_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['experiences_title'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->review) ? $language->review : "Review " ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['experiences_title'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
-                                            <div class="modal-body">                                                
+                                            <div class="modal-body">
                                                 <div class="portlet p-50 ">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-star font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?></h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?></h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_get_friendsrv) ? $language->site_get_friendsrv : "Get your friends to review you!" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">
+                                                            <?= !empty($language->site_review_invite) ? $language->site_review_invite : "Hey ! Invite one of your friend to review your resume." ;?>
+                                                        </h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <!-- Modal : Review [Reviewer Empty Experience] -->
@@ -1129,20 +1262,25 @@
                                 <div class="modal fade" id="modal_reviewer_empty_experiences_<?= $value['experience_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->review) ? $language->review : "Review " ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['experiences_title'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->review) ? $language->review : "Review " ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['experiences_title'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
-                                            <div class="modal-body">                                                
+                                            <div class="modal-body">
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?></h5>
-                                                        <h6 class="font-16 font-weight-400 text-center  font-grey-cascade mt-5 text-none"><?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?></h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_first_review) ? $language->site_first_review : "Be the first to review" ;?>
+                                                        </h5>
+                                                        <h6 class="font-16 font-weight-400 text-center  font-grey-cascade mt-5 text-none">
+                                                            <?= !empty($language->site_genuine_review) ? $language->site_genuine_review : "Give a genuine review about his/her information." ;?>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1153,14 +1291,20 @@
                                                         <input type="hidden" value="<?= $value['experience_id'];?>" name="exp_id">
                                                         <input type="hidden" value="<?= $id;?>" name="endorser_id">
                                                         <input type="hidden" value="<?= base64_decode($segmented_uri);?>" name="endorsed_id">
-                                                        <span class="help-block"><?= !empty($language->site_genuine_state) ? $language->site_genuine_state : "Please put genuine statement !" ;?></span>
+                                                        <span class="help-block">
+                                                            <?= !empty($language->site_genuine_state) ? $language->site_genuine_state : "Please put genuine statement !" ;?>
+                                                        </span>
                                                     </div>
-                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
-                                                    <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                                    <a href="" data-dismiss="modal" class="btn btn-default btn-outline">
+                                                        <?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?>
+                                                    </a>
+                                                    <button type="submit" class="btn btn-md-indigo ">
+                                                        <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                                    </button>
                                                 </form>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <?php } ?>
@@ -1178,6 +1322,7 @@
                                 <?php foreach($user_profile['achievement'] as $key => $value){
                                         $endorsement_counter = countEndorserAchievement($value['achievement_id'], $segmented_uri);
                                         $keyAchievement = array_search($value['achievement_id'], array_column($endorseReviewRating['endorse'],'achievement_id'));
+
                                         if (!is_bool($keyAchievement)) {
                                             $checkEndorseSame = $value['achievement_id'] == $endorseReviewRating['endorse'][$keyAchievement]['achievement_id'];
                                             $checkEndorseNotSame = $value['achievement_id'] != $endorseReviewRating['endorse'][$keyAchievement]['achievement_id'];
@@ -1187,6 +1332,7 @@
                                             $checkEndorseNotSame = true;
                                             $countEndorser = count($endorsement_counter['achievement']);
                                         }
+
                                         if (($countEndorser == 0) && $id == base64_decode($segmented_uri)) {
                                             $modal_endorse = 'modal_endorsed_empty_achievement_'.$value['achievement_id'];
                                         }else if(($countEndorser == 0) && $id != base64_decode($segmented_uri)){
@@ -1202,45 +1348,46 @@
                                             <div class="btn-group">
                                                 <?php if (!empty($id)):
                                                         if (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) && $checkEndorseSame ): ?>
-                                                            <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="achievement" data-id="<?= $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user" user="<?= $checkUser?>">
-                                                                <i class="icon-close"></i>
-                                                                Unendorse
-                                                            </button>
+                                                        <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="achievement" data-id="<?= $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user" user="<?= $checkUser?>">
+                                                            <i class="icon-close"></i>
+                                                            Unendorse
+                                                        </button>
 
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body"
-                                                                data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
+                                                        <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
+                                                            <i class="icon-user"></i>
+                                                            <?= $countEndorser; ?>
+                                                                <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                        </a>
 
                                                         <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkEndorseNotSame ): ?>
-                                                            <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="achievement" data-id="<?= $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user" user="<?= $checkUser?>">
-                                                                <i class="icon-check"></i>
-                                                                Endorse Me
-                                                            </button>
+                                                        <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" endorse-type="achievement" data-id="<?= $value['achievement_id']; ?>" data-placement="top" data-original-title="Endorse this user" user="<?= $checkUser?>">
+                                                            <i class="icon-check"></i>
+                                                            Endorse Me
+                                                        </button>
 
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body"
-                                                                data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
+                                                        <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['achievement_id']; ?>" endorse-type="achievement" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['achievement_title']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
+                                                            <i class="icon-user"></i>
+                                                            <?= $countEndorser; ?>
+                                                                <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                        </a>
 
                                                         <?php elseif (base64_decode($segmented_uri) == $id): ?>
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" data-name="<?= $value['achievement_title']; ?>" data-id="<?= $value['achievement_id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-container="body"
-                                                                data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
+                                                        <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" endorse-type="achievement" data-name="<?= $value['achievement_title']; ?>" data-id="<?= $value['achievement_id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
+                                                            <i class="icon-user"></i>
+                                                            <?= $countEndorser; ?>
+                                                                <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                        </a>
 
                                                         <?php else: ?>
-                                                            <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-container="body" data-placement="top" data-original-title="view endorser">
-                                                                <i class="icon-user"></i>
-                                                                <?= !empty($language->site_complete) ? $language->site_complete : "Complete your profile to endorse" ;?> 
-                                                            </a>
+                                                        <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-container="body" data-placement="top" data-original-title="view endorser">
+                                                            <i class="icon-user"></i>
+                                                            <?= !empty($language->site_complete) ? $language->site_complete : "Complete your profile to endorse" ;?>
+                                                        </a>
                                                         <?php endif ?>
-
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?> </a>
+                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">
+                                                        <?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?>
+                                                    </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1254,8 +1401,7 @@
                                                 <i class="icon-calendar mr-5"></i>
                                                 <?php if(empty($value['achievement_start_date']) || $value['achievement_start_date'] == '0000-00-00' || $value['achievement_start_date'] == '1970-01-01') { echo 'Not Provided'; }
                                                     else{ echo date('F Y', strtotime($value['achievement_start_date']));
-                                                ?> 
-                                                -
+                                                ?> -
                                                 <?php echo ($value['achievement_end_date'] == '0000-00-00') ? 'Now' : date('F Y', strtotime($value['achievement_end_date']));} ?>
                                             </h6>
                                         </div>
@@ -1271,6 +1417,7 @@
                                         <?= $value['achievement_description']; ?>
                                     </p>
                                     <?php } ?>
+
                                     <!-- Skill Earned -->
                                     <?php if (!empty($value['achievement_tag'])){ ?>
                                     <p class="font-weight-600 font-14 text-uppercase ">Skill Earned</p>
@@ -1284,15 +1431,14 @@
                                             foreach ($non_edu as $tag_key => $tag_value) { 
                                                 ($tag_key >= 5) ? $tag_key = 0: $tag_key = $tag_key;
                                         ?>
-                                        <li>
-                                            <p class="label <?php echo $label[$tag_key]; ?> label-sm">
-                                                <?php echo $tag_value; ?>
-                                            </p>
-                                        </li>
+                                            <li>
+                                                <p class="label <?php echo $label[$tag_key]; ?> label-sm">
+                                                    <?php echo $tag_value; ?>
+                                                </p>
+                                            </li>
                                         <?php $tag_key++; } ?>
                                     </ul>
                                     <?php } ?>
-
                                 </li>
 
                                 <!-- Modal : Endorse [ Endorsed empty achievement] -->
@@ -1300,25 +1446,32 @@
                                 <div class="modal fade" id="modal_endorsed_empty_achievement_<?= $value['achievement_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['achievement_title'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['achievement_title'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
-                                            <div class="modal-body">                                                                                                    
+                                            <div class="modal-body">
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint "><?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?></h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400"><?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?></h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint ">
+                                                            <?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 mb-30 font-16 font-weight-400">
+                                                            <?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?>
+                                                        </h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                 </div>
 
@@ -1327,25 +1480,30 @@
                                 <div class="modal fade" id="modal_endorser_empty_achievement_<?= $value['achievement_id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['achievement_title'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['achievement_title'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-20"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?></h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?></h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-5 text-none font-16 font-weight-400">
+                                                            <?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
                                 <?php } ?>
                             </ul>
@@ -1359,7 +1517,7 @@
                         <!-- Tab Skill -->
                         <div class="tab-pane" id="tab_skills">
                             <?php if(!empty($user_profile['projects'])){?>
-                            <ul class="list-group list-border">                                
+                            <ul class="list-group list-border">
                                 <?php $i=0; foreach($user_profile['projects'] as $key => $value){
                                         $keyAchievement = array_search($value['id'], array_column($endorseReviewRating['endorse'],'user_project_id'));
                                         $countEndorserProject = countEndorserProject($value['id'], $segmented_uri);
@@ -1387,43 +1545,45 @@
                                             <div class="btn-group">
                                                 <?php if (!empty($id)):
                                                         if ( ($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && (!empty($endorseReviewRating['endorse'])) && $checkEndorseSame ): ?>
-                                                            <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project" user="<?= $checkUser?>">
-                                                                <i class="icon-close"></i>
-                                                                Unendorse
-                                                            </button>
+                                                <button class="btn btn-md-red font-weight-700 tooltips text-center unendorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project" user="<?= $checkUser?>">
+                                                    <i class="icon-close"></i>
+                                                    Unendorse
+                                                </button>
 
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top"
-                                                                data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
+                                                <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
+                                                    <i class="icon-user"></i>
+                                                    <?= $countEndorser; ?>
+                                                        <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                </a>
 
-                                                        <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkEndorseNotSame ): ?>
-                                                            <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project">
-                                                                <i class="icon-check" user="<?= $checkUser?>"></i>
-                                                                Endorse Me
-                                                            </button>
+                                                <?php elseif (($id != base64_decode($segmented_uri)) && ($percentage_completion == true) && $checkEndorseNotSame ): ?>
+                                                <button class="btn btn-md-amber font-weight-700 tooltips text-center endorse-btn" data-container="body" endorser-id="<?= $id; ?>" endorsed-id="<?= $segmented_uri; ?>" data-id="<?= $value['id']; ?>" data-placement="top" data-original-title="Endorse this user" endorse-type="project">
+                                                    <i class="icon-check" user="<?= $checkUser?>"></i>
+                                                    Endorse Me
+                                                </button>
 
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top"
-                                                                data-original-title="view endorser" id="endorse_project">
-                                                                <i class="icon-user" user="<?= $checkUser?>"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
+                                                <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" endorse-type="project" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project">
+                                                    <i class="icon-user" user="<?= $checkUser?>"></i>
+                                                    <?= $countEndorser; ?>
+                                                        <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                </a>
 
-                                                        <?php elseif (base64_decode($segmented_uri) == $id): ?>
-                                                            <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser"
-                                                                id="endorse_project" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                <?= $countEndorser; ?> <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
-                                                            </a>
-                                                        <?php else: ?>
-                                                            <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" user="<?= $checkUser?>">
-                                                                <i class="icon-user"></i>
-                                                                Complete your profile to endorse
-                                                            </a>
-                                                        <?php endif; ?>
+                                                <?php elseif (base64_decode($segmented_uri) == $id): ?>
+                                                <a data-toggle="modal" href="#<?= $modal_endorse;?>" class="btn btn-md-indigo font-weight-700 tooltips text-center endorser-list" data-id="<?= $value['id']; ?>" user-id="<?= base64_decode($segmented_uri); ?>" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" id="endorse_project" user="<?= $checkUser?>">
+                                                    <i class="icon-user"></i>
+                                                    <?= $countEndorser; ?>
+                                                        <?= !empty($language->endorser) ? $language->endorser : "Endorser" ;?>
+                                                </a>
                                                 <?php else: ?>
-                                                    <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle"><?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?> </a>
+                                                <a href="<?= base_url(); ?><?= $roles ?>/profile" class="btn btn-md-indigo font-weight-700 tooltips text-center" data-name="<?= $value['name']; ?>" data-container="body" data-placement="top" data-original-title="view endorser" user="<?= $checkUser?>">
+                                                    <i class="icon-user"></i>
+                                                    Complete your profile to endorse
+                                                </a>
+                                                <?php endif; ?>
+                                                <?php else: ?>
+                                                <a href="<?= base_url(); ?>login" class="btn btn-md-green btn-circle">
+                                                    <?= !empty($language->site_login_to_review) ? $language->site_login_to_review : "Login to review" ;?>
+                                                </a>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -1473,7 +1633,7 @@
                                         <?php $tag_key++; } ?>
                                     </ul>
                                     <?php } ?>
-                                    
+
                                 </li>
                                 <!-- Modal : Endorse [ Endorsed empty project] -->
                                 <!-- # Empty States [User - Employer] -->
@@ -1481,45 +1641,57 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['name'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['name'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?> </h5>
-                                                        <h6 class="text-center font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none"><?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?></h6>
-                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo"><?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?></a>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_get_friendsen) ? $language->site_get_friendsen : "Ask your friend to endorse!" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center font-grey-cascade mt-10 mb-30 font-16 font-weight-400 text-none">
+                                                            <?= !empty($language->site_endorse_invite) ? $language->site_endorse_invite : "Hey ! Invite one of your friend to endorse your resume." ;?>
+                                                        </h6>
+                                                        <a data-toggle="modal" href="#invite_friends" class="btn btn-md-indigo">
+                                                            <?= !empty($language->site_invite_btn) ? $language->site_invite_btn : "Invite My Friends" ;?>
+                                                        </a>
                                                     </div>
-                                                </div>                                                
+                                                </div>
                                             </div>
-                                        </div>                                        
-                                    </div>                                    
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- Modal : Endorse [ Endorsed empty achievement] -->
                                 <!-- # Empty States [User - All] -->
                                 <div class="modal fade" id="modal_endorser_empty_project_<?= $value['id']?>" tabindex="-1" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">                                                
-                                                <h5 class="modal-title font-weight-500"> <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
-                                                    <small class="font-16">
-                                                        <?= $value['name'] ?>
-                                                    </small>
-                                                    <button data-dismiss="modal" class="close"></button>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title font-weight-500">
+                                                    <?= !empty($language->endorse) ? $language->endorse : "Endorse" ;?> -
+                                                        <small class="font-16">
+                                                            <?= $value['name'] ?>
+                                                        </small>
+                                                        <button data-dismiss="modal" class="close"></button>
                                                 </h5>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="portlet p-50">
                                                     <div class="portlet-body text-center">
                                                         <i class="icon-users font-grey-mint font-40 mb-40"></i>
-                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none"><?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?> </h5>
-                                                        <h6 class="text-center  font-grey-cascade mt-10 text-none font-16 font-weight-400"><?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?></h6>
+                                                        <h5 class="text-center font-weight-500 font-grey-mint text-none">
+                                                            <?= !empty($language->site_first_endorse) ? $language->site_first_endorse : "Be the first to endorse" ;?>
+                                                        </h5>
+                                                        <h6 class="text-center  font-grey-cascade mt-10 text-none font-16 font-weight-400">
+                                                            <?= !empty($language->site_genuine_endorse) ? $language->site_genuine_endorse : "Give a genuine endorsement about his/her information." ;?>
+                                                        </h6>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1533,7 +1705,7 @@
                             <?php $this->load->view('student/main/profile_missing', $data_arr);?>
                             <?php }?>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -1555,13 +1727,14 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
-                                    <small class="font-16" id="dataName">Experience </small>
+                                <h5 class="modal-title font-weight-500">
+                                    <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -
+                                        <small class="font-16" id="dataName">Experience </small>
                                 </h5>
                             </div>
                             <div class="modal-body">
                                 <div class="mt-comments-v2" id="reviews">
-                                </div>                                
+                                </div>
                             </div>
                             <div class="modal-footer md-grey-lighten-5 text-left">
                                 <form action="<?= base_url(); ?>site/endorsment/rate" method="POST">
@@ -1574,7 +1747,9 @@
                                         <h5 class="text-none" id="value2inputExperience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                        <button type="submit" class="btn btn-md-indigo">
+                                            <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -1587,8 +1762,9 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
-                                    <small class="font-16" id="dataNameExp">Experience </small>
+                                <h5 class="modal-title font-weight-500">
+                                    <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -
+                                        <small class="font-16" id="dataNameExp">Experience </small>
                                 </h5>
                             </div>
                             <div class="modal-body">
@@ -1611,7 +1787,9 @@
                                         <h5 class="text-none" id="value3inputExperience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                        <button type="submit" class="btn btn-md-indigo">
+                                            <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -1624,11 +1802,12 @@
                     <div class="modal-dialog ">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title font-weight-500"> <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -   
-                                    <small class="font-16" id="dataNameExp">Experience </small>
+                                <h5 class="modal-title font-weight-500">
+                                    <?= !empty($language->rating) ? $language->rating : "Rating " ;?> -
+                                        <small class="font-16" id="dataNameExp">Experience </small>
                                 </h5>
                             </div>
-                            <div class="modal-body">                                
+                            <div class="modal-body">
                                 <div class="portlet p-50 md-shadow-none">
                                     <div class="portlet-body text-center">
                                         <i class="icon-star font-grey-mint font-40 mb-40"></i>
@@ -1648,7 +1827,9 @@
                                         <h5 class="text-none" id="value1Experience">Rate this user</h5>
                                     </div>
                                     <div class="media-right media-middle">
-                                        <button type="submit" class="btn btn-md-indigo"><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                        <button type="submit" class="btn btn-md-indigo">
+                                            <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -1672,7 +1853,7 @@
                 <div class="modal fade " id="invite_friends" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">                                
+                            <div class="modal-header">
                                 <h5 class="modal-title font-weight-500"> Invite Friends
                                     <button data-dismiss="modal" class="close"></button>
                                 </h5>
@@ -1685,8 +1866,12 @@
                                         </div>
                                         <input type="hidden" name="username" value="<?= $this->session->userdata('name');?>"></input>
                                         <input type="hidden" name="user_id" value="<?= $segmented_uri;?>"></input>
-                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline"><?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?></a>
-                                        <button type="submit" class="btn btn-md-indigo "><?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?></button>
+                                        <a href="" data-dismiss="modal" class="btn btn-default btn-outline">
+                                            <?= !empty($language->site_cancel) ? $language->site_cancel : "Cancel" ;?>
+                                        </a>
+                                        <button type="submit" class="btn btn-md-indigo ">
+                                            <?= !empty($language->site_submit) ? $language->site_submit : "Submit" ;?>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -1728,6 +1913,7 @@
     <script type="text/javascript" src="<?php echo JS; ?>layout8/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/rateit/jquery.rateit.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-tabdrop/bootstrap-tabdrop.js"></script>
 
     <!-- Custom-->
     <script type="text/javascript" src="<?php echo JS; ?>alertify.min.js"></script>
@@ -1808,9 +1994,9 @@
                         endorsedId: endorsedId,
                         endorsedType: endorsedType
                     }, function (data) {
-                            alertify.success('Endorse user success.');
+                        alertify.success('Endorse user success.');
                     });
-                            window.location.reload(true);
+                    window.location.reload(true);
                 }, function (data) {
                     alertify.error('Cancel');
                 });
@@ -1828,9 +2014,9 @@
                         endorsedId: endorsedId,
                         endorsedType: endorsedType
                     }, function (data) {
-                            alertify.success('Endorse user success.');
+                        alertify.success('Endorse user success.');
                     });
-                            window.location.reload(true);
+                    window.location.reload(true);
                 }, function (data) {
                     alertify.error('Cancel');
                 });
@@ -1872,15 +2058,17 @@
                         var endorser = '';
 
                         var profile_pic = 'profile-pic.png';
-                        
+
                         $.each(student, function (i, v) {
                             endorser += '<li class="media media-middle">\
                                             <div class="pull-left">\
-                                                <img src="' + v.profile_photo + '" alt="" class="avatar avatar-xtramini avatar-circle">\
+                                                <img src="' + v.profile_photo +
+                                '" alt="" class="avatar avatar-xtramini avatar-circle">\
                                             </div>\
                                             <div class="media-body">\
                                                 <div class="media-heading small font-weight-600 text-uppercase mb-5">' + v.fullname + '</div>\
-                                                <div class="media-heading-sub small">endorse this on ' + v.created_at + '</div>\
+                                                <div class="media-heading-sub small">endorse this on ' + v.created_at +
+                                '</div>\
                                             </div>\
                                         </li>';
                         });
@@ -1890,15 +2078,16 @@
                                 <div class="modal-content">\
                                     <div class="modal-header">\
                                     <h5 class="modal-title font-weight-500"> Endorse -\
-                                        <small class="font-16">' + dataName + ' </small>\
+                                        <small class="font-16">' + dataName +
+                            ' </small>\
                                         <button data-dismiss="modal" class="close"></button>\
                                     </h5>\
                                 </div>\
                                 <div class="modal-body">' +
-                                    invitation +
-                                    '<ul class="list-unstyled">' +
-                                    endorser +
-                                    '</ul>\
+                            invitation +
+                            '<ul class="list-unstyled">' +
+                            endorser +
+                            '</ul>\
                                 </div>\
                             </div>');
                     }
@@ -1932,17 +2121,17 @@
 
                         $.each(student, function (i, v) {
                             reviews +=
-                                '<div class="mt-comment">'+
-                                    '<div class="mt-comment-img">'+
-                                        '<img src="' + v.profile_photo + '" class="avatar avatar-xtramini avatar-circle">'+ 
-                                    '</div>'+
-                                    '<div class="mt-comment-body">'+
-                                        '<div class="mt-comment-info">'+
-                                            '<a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>'+
-                                            '<span class="mt-comment-date">' + v.created_at + '</span>'+
-                                        '</div>'+
-                                        '<div class="mt-comment-text">' + v.rating +'</div>'+
-                                    '</div>'+
+                                '<div class="mt-comment">' +
+                                '<div class="mt-comment-img">' +
+                                '<img src="' + v.profile_photo + '" class="avatar avatar-xtramini avatar-circle">' +
+                                '</div>' +
+                                '<div class="mt-comment-body">' +
+                                '<div class="mt-comment-info">' +
+                                '<a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>' +
+                                '<span class="mt-comment-date">' + v.created_at + '</span>' +
+                                '</div>' +
+                                '<div class="mt-comment-text">' + v.rating + '</div>' +
+                                '</div>' +
                                 '</div>'
                         });
 
@@ -1950,20 +2139,23 @@
                             '<div class="modal-dialog ">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' +dataName + ' </small></h5>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName +
+                            ' </small></h5>\
                                     </div>\
                                     <div class="modal-body">\
                                         <div class="mt-comments-v2">' +
-                                            reviews +
-                                        '</div>\
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                         <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
                                         <div class="form-group text-left mx-0 mb-10">\
                                             <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
-                                            <input type="hidden" name="exp_id" value="' + dataId + '"></input>\
+                                            <input type="hidden" name="exp_id" value="' +
+                            dataId + '"></input>\
                                             <input type="hidden" name="endorser_id" value="' + endorserId + '"></input>\
-                                            <input type="hidden" name="user_id" value="' + dataUserId + '"></input>\
+                                            <input type="hidden" name="user_id" value="' + dataUserId +
+                            '"></input>\
                                             <span class="help-block">Please put genuine statement !</span>\
                                         </div>\
                                         <a href="" data-dismiss="modal" class="btn btn-default btn-outline">submit</a>\
@@ -2017,16 +2209,18 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '" >\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '" >\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
-                                        <div class="mt-comment-text">' 
-                                            + v.rating +
-                                        '</div>\
+                                        <div class="mt-comment-text">' +
+                                v.rating +
+                                '</div>\
                                     </div>\
                                 </div>';
                         });
@@ -2037,11 +2231,11 @@
                                     <div class="modal-header">\
                                         <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
-                                    <div class="modal-body">' 
-                                        + invitation +
-                                        '<div class="mt-comments-v2">' +
-                                        reviews +
-                                        '</div>\
+                                    <div class="modal-body">' +
+                            invitation +
+                            '<div class="mt-comments-v2">' +
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
@@ -2081,16 +2275,18 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
-                                        <div class="mt-comment-text">' 
-                                            + v.rating +
-                                        '</div>\
+                                        <div class="mt-comment-text">' +
+                                v.rating +
+                                '</div>\
                                     </div>\
                                 </div>';
                         });
@@ -2099,20 +2295,23 @@
                             '<div class="modal-dialog">\
                                 <div class="modal-content">\
                                     <div class="modal-header">\
-                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
+                                        <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName +
+                            '</small></h5>\
                                     </div>\
                                     <div class="modal-body">\
-                                        <div class="mt-comments-v2">' 
-                                            + reviews +
-                                        '</div>\
+                                        <div class="mt-comments-v2">' +
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                         <form action="<?= base_url(); ?>site/endorsment/review" class="form form-horizontal" method="POST">\
                                             <div class="form-group text-left mx-0 mb-10">\
                                                 <textarea name="rating" id="" class="form-control" rows="5" placeholder="Write your review in here"></textarea>\
-                                                <input type="hidden" name="skill_id" value="' + dataId + '"></input>\
+                                                <input type="hidden" name="skill_id" value="' +
+                            dataId + '"></input>\
                                                 <input type="hidden" name="endorser_id" value="' + endorserId + '"></input>\
-                                                <input type="hidden" name="endorsed_id" value="' + dataUserId + '"></input>\
+                                                <input type="hidden" name="endorsed_id" value="' + dataUserId +
+                            '"></input>\
                                                 <span class="help-block">Please put genuine statement !</span>\
                                             </div>\
                                             <a href="" data-dismiss="modal" class="btn btn-default btn-outline">Cancel</a>\
@@ -2134,7 +2333,7 @@
                 var endorsedType = $(this).attr('endorse-type');
                 var image_directory = window.location.origin + '/xremo/assets/img/student/';
                 var user = $(this).attr('user');
-                
+
                 if (user == 'same_user') {
                     invitation =
                         '<div class="portlet p-50">\
@@ -2168,16 +2367,18 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
-                                        <div class="mt-comment-text">'
-                                            + v.rating +
-                                        '</div>\
+                                        <div class="mt-comment-text">' +
+                                v.rating +
+                                '</div>\
                                     </div>\
                                 </div>';
                         });
@@ -2188,11 +2389,11 @@
                                     <div class="modal-header">\
                                         <h5 class="modal-title font-weight-500"> Review - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
-                                    <div class="modal-body">' 
-                                        + invitation +
-                                        '<div class="mt-comments-v2">' +
-                                        reviews +
-                                        '</div>\
+                                    <div class="modal-body">' +
+                            invitation +
+                            '<div class="mt-comments-v2">' +
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
@@ -2233,16 +2434,18 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                      </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
-                                        <div class="mt-comment-text">' 
-                                            + v.rating +
-                                        '</div>\
+                                        <div class="mt-comment-text">' +
+                                v.rating +
+                                '</div>\
                                     </div>\
                                 </div>';
                         });
@@ -2285,16 +2488,18 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at + '</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
-                                        <div class="mt-comment-text">' 
-                                            + v.rating +
-                                        '</div>\
+                                        <div class="mt-comment-text">' +
+                                v.rating +
+                                '</div>\
                                     </div>\
                                 </div>';
                         });
@@ -2383,12 +2588,14 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +'">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a href="' + v.link + '" ><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at +'</span>\
+                                            <span class="mt-comment-date">' + v.created_at +
+                                '</span>\
                                         </div>\
                                         <small class="text-none font-14 mt-5">give rating ' + v.rating + ' out of 5\
                                             <i class="icon-star"></i>\
@@ -2403,11 +2610,11 @@
                                     <div class="modal-header">\
                                         <h5 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
-                                    <div class="modal-body">' 
-                                    + invitation +
-                                        '<div class="mt-comments-v2">' +
-                                        reviews +
-                                        '</div>\
+                                    <div class="modal-body">' +
+                            invitation +
+                            '<div class="mt-comments-v2">' +
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                     </div>\
@@ -2460,12 +2667,14 @@
                             reviews +=
                                 '<div class="mt-comment">\
                                     <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo + '">\
+                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                '">\
                                     </div>\
                                     <div class="mt-comment-body">\
                                         <div class="mt-comment-info">\
                                             <a><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link + '">View Profile</a>\
+                                            <a class="mt-comment-action btn btn-xs blue-ebonyclay " href="' + v.link +
+                                '">View Profile</a>\
                                             <span class="mt-comment-date">' + v.created_at + '</span>\
                                         </div>\
                                         <small class="text-none font-14 mt-5">give rating ' + v.rating + ' out of 5 <i class="icon-star"></i></small>\
@@ -2479,11 +2688,11 @@
                                     <div class="modal-header">\
                                         <h5 class="modal-title font-weight-500"> Rate - <small class="font-16">' + dataName + '</small></h5>\
                                     </div>\
-                                    <div class="modal-body">' 
-                                        + invitation +
-                                        '<div class="mt-comments-v2">' 
-                                            + reviews +
-                                        '</div>\
+                                    <div class="modal-body">' +
+                            invitation +
+                            '<div class="mt-comments-v2">' +
+                            reviews +
+                            '</div>\
                                     </div>\
                                     <div class="modal-footer md-grey-lighten-5">\
                                     </div>\

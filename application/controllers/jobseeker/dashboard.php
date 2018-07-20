@@ -19,12 +19,15 @@ class Dashboard extends CI_Controller {
     public function index(){
         $profile['page_title'] = 'Dashboard';
         $id = $this->session->userdata('id');
+        $jobPreferences = $this->global_model->get_where('job_preferences', array('user_id'=>$id));
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']     = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $job['last_logged_in'] = $this->student_model->get_user_history($id);
-		$job['job_positions'] = $this->student_model->get_all_job($id);
+        $jobPref = !empty($jobPreferences) ? current($jobPreferences) : '';
+		$job['job_positions'] = $this->student_model->get_all_job($jobPref);
+
 		$footer['invitation'] = json_encode($this->student_model->get_interview_invitation($id));
 		if(!empty($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history'])){
 			$job['job_positions_new'] 	= $this->student_model->get_all_new_job($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
@@ -61,9 +64,9 @@ class Dashboard extends CI_Controller {
 		$job['article'] = $query->result();
 		
 		
-        $this->load->view('jobseeker/main/header', $profile);
-        $this->load->view('jobseeker/dashboard', $job);
-        $this->load->view('jobseeker/main/footer',$footer);
+        $this->load->view('student/main/header', $profile);
+        $this->load->view('student/dashboard', $job);
+        $this->load->view('student/main/footer',$footer);
 	}
 
     public function applied(){
