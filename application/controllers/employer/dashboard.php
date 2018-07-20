@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller {
         $profile['user_profile'] = $get_user_profile;
         $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $complement['user_profile'] = $get_user_profile;
-        $complement['job_post'] = $this->employer_model->get_job_post($id);
+        $complement['job_post'] = $this->employer_model->getPostedJob($id);
 		$complement['invitation'] = $this->employer_model->get_interview_invitation_more_than_today($id);
         $complement['dashboardInvitationCalendar'] = $this->employer_model->get_interview_invitation($id);
         $calendar_footer['invitation'] = json_encode($this->employer_model->get_interview_invitation($id));

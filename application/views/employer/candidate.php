@@ -72,7 +72,7 @@
                             <tbody>
                                 <?php 
                                     $i=1; foreach ($candidates as $key => $value) { 
-                                        if ($value['application_status'] == 'APPLIED' ) {
+                                        if ($value['application_status'] == 'APPLIED' || $value['application_status'] == 'WITHDRAW' ) {
                                 ?>
                                 <tr class="odd gradeX ">
                                     <td class="text-center ">
