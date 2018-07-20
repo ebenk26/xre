@@ -432,7 +432,8 @@
                                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->country) ? $language->country : "Country"  ?></label>
                                         <select class="form-control" name="country" id="addCountry" required>
                                             <?php foreach ($countries as $key => $value) {?>
-                                            <option value="<?=$value['name']?>" <?php if($value[ 'name']==$user_profile[ 'shipping_country']){echo "selected";}?>>
+                                            <option value="<?=$value['name']?>" <?= ?> 
+                                                <?php if($value['name']==$user_profile['shipping_country']){echo "selected";}?>>
                                                 <?php echo $value['name']; ?>
                                             </option>
                                             <?php } ?>

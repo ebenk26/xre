@@ -20,7 +20,7 @@
                             <i class="icon-users font-22"></i> New </a>
                     </li>
                     <li>
-                        <a href="#tab_shortlisted_candidates" data-toggle="tab">
+                        <a href="#tab_shortlisted_candidates" data-toggle="tab" class="<?= empty($shortlisted) ? 'hidden':'' ?>">
                             <i class="icon-user-following font-22"></i> Shortlisted </a>
                     </li>
                 </ul>
