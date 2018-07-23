@@ -7,11 +7,11 @@
             <ul class="page-breadcrumb">
                 <li>
                     <i class="icon-home"></i>
-                    <a href="<?php echo base_url();?>jobseeker/dashboard">Home</a>
+                    <a href="<?php echo base_url();?>student/dashboard"><?= !empty($language->site_home) ? $language->site_home : "Home"  ?></a>
                     <i class="fa fa-angle-right"></i>
                 </li>
                 <li>
-                    <span>Calendar</span>
+                    <span><?= !empty($language->site_calendar) ? $language->site_calendar : "Calendar"  ?></span>
                 </li>
             </ul>
         </div>
@@ -157,7 +157,7 @@
                                                     <div class="modal-header">
                                                         <h4 class="font-weight-600">Rescheduled Interview Session </h4>
                                                     </div>
-                                                    <form action="<?php echo base_url(); ?>jobseeker/applications_history/reschedule_invitation" class="" method="POST">
+                                                    <form action="<?php echo base_url(); ?>student/applications_history/reschedule_invitation" class="" method="POST">
                                                         <input type="hidden" class="job-id" name="job_id"></input>
                                                         <input type="hidden" class="session-id" name="session_id"></input>
                                                         <input type="hidden" class="employer-id" name="employer_id"></input>
@@ -206,7 +206,7 @@
                                                     <div class="modal-header">
                                                         <h4 class="font-weight-600">Rejection Letter</h4>
                                                     </div>
-                                                    <form action="<?php echo base_url(); ?>jobseeker/applications_history/reject_invitation" class="form" method="POST">
+                                                    <form action="<?php echo base_url(); ?>student/applications_history/reject_invitation" class="form" method="POST">
                                                         <input type="hidden" class="job-id" name="job_id"></input>
                                                         <input type="hidden" class="session-id" name="session_id"></input>
                                                         <input type="hidden" class="employer-id" name="employer_id"></input>

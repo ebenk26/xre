@@ -90,9 +90,12 @@
 
 <body>
     <?php $this->load->view('site/header_content');?>
-
+    <?php   $checkUserHeaderImgProfile  = get_headers(IMG_EMPLOYERS.$header_picture['name']);
+            $checkUserMainImgProfile    = get_headers(IMG_EMPLOYERS.$image['name']);
+            $checkApplicantImgProfile   = get_headers(IMG_EMPLOYERS.$applicant['name']);
+     ?>
     <!--========== PROMO : VIEW JOB TITLE==========-->
-    <div class="s-promo-block-v2 gradient-darkblue-v8 height-300" style="background: url('<?= file_exists(IMG_EMPLOYERS.$header_picture['name']) ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat ; background-size:cover;">
+    <div class="s-promo-block-v2 gradient-darkblue-v8 height-300" style="background: url('<?= $checkUserHeaderImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat ; background-size:cover;">
         <div class="container g-ver-bottom-80 text-center">
             <!-- Job Title -->
             <h1 class="md-white-text font-weight-500 font-42 mb-20">
@@ -141,7 +144,7 @@
                 <div class="row mb-60 mx-0">
                     <div class="media ">
                         <div class="pull-left">
-                            <img src="<?= file_exists(IMG_EMPLOYERS.$image['name']) ? IMG_EMPLOYERS.$image['name'] : IMG.'site/profile-pic.png'; ?>" alt="" class="avatar avatar-small avatar-circle">
+                            <img src="<?= $checkUserMainImgProfile[0]== 'HTTP/1.1 200 OK' ? IMG_EMPLOYERS.$image['name'] : IMG.'site/profile-pic.png'; ?>" alt="" class="avatar avatar-small avatar-circle">
                         </div>
                         <div class="media-body py-10">
                             <h6>
@@ -374,7 +377,7 @@
                         <div class="modal-body  ">
                             <div class="media ">
                                 <div class="pull-left">
-                                    <img src="<?php echo file_exists(IMG_STUDENTS.$applicant['img']) ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
+                                    <img src="<?php echo $checkApplicantImgProfile[0] ? IMG_STUDENTS.$applicant['img'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-mini avatar-circle">
                                 </div>
                                 <div class="media-body">
                                     <h6 class="my-5 md-darkblue-text font-weight-500 ">

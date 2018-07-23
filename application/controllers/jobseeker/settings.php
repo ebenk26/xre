@@ -31,9 +31,9 @@ class settings extends CI_Controller {
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $settings['currency'] 			= $this->global_model->get_by_id('forex', array('country_id'=>$_COOKIE['country_id']));
         
-        $this->load->view('jobseeker/main/header', $profile);
-        $this->load->view('jobseeker/setting', $settings);
-        $this->load->view('jobseeker/main/footer');
+        $this->load->view('student/main/header', $profile);
+        $this->load->view('student/setting', $settings);
+        $this->load->view('student/main/footer');
     }
 
     public function change_fullname(){
@@ -54,7 +54,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/settings');
+        redirect(base_url().'student/settings');
     }
 
     public function change_phone_number(){
@@ -74,7 +74,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/settings');
+        redirect(base_url().'student/settings');
     }
 
     public function changeSearchableDetail(){
@@ -94,7 +94,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/settings');
+        redirect(base_url().'student/settings');
     }
 
     public function changeSearchable(){
@@ -114,19 +114,19 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/settings');
+        redirect(base_url().'student/settings');
     }
 
     public function changeJobPreferences(){
         $data = array(
         				'user_id' 				=> $this->session->userdata('id'),
-        				'keywords' 				=> $this->input->post('keywords'),
-        				'work_location' 		=> $this->input->post('work_location') != NULL ? implode(';', $this->input->post('work_location')) : '',
-        				'salary_range' 			=> $this->input->post('range_min') != NULL ? $this->input->post('range_min').'-'.$this->input->post('range_max') : '',
-        				'position_level' 		=> $this->input->post('position_level') != NULL ? implode(';', $this->input->post('position_level')) : '',
-        				'years_of_experience' 	=> $this->input->post('years_of_experience') != NULL ? implode(';', $this->input->post('years_of_experience')) : '',
-        				'qualifications' 		=> $this->input->post('qualifications'),
-        				'employment_type' 		=> $this->input->post('employment_type') != NULL ? implode(';', $this->input->post('employment_type')) : ''
+        				'keywords' 				=> $this->input->post('keywords') != NULL ? $this->input->post('keywords') : NULL,
+        				'work_location' 		=> !empty($this->input->post('work_location')) && $this->input->post('cbLocation') != FALSE ? implode(';', $this->input->post('work_location')) : '',
+        				'salary_range' 			=> !empty($this->input->post('range_min')) && $this->input->post('cbSalaryRange') != FALSE ? $this->input->post('range_min').'-'.$this->input->post('range_max') : 0,
+        				'position_level' 		=> !empty($this->input->post('position_level')) && $this->input->post('cbPositionLevel') != FALSE ? implode(';', $this->input->post('position_level')) : NULL,
+        				'years_of_experience' 	=> !empty($this->input->post('years_of_experience')) && $this->input->post('cbYearOfExperience') != FALSE ? implode(';', $this->input->post('years_of_experience')) : NULL,
+        				'qualifications' 		=> !empty($this->input->post('qualifications')) && $this->input->post('cbQualification') != FALSE ? $this->input->post('qualifications') : NULL,
+        				'employment_type' 		=> !empty($this->input->post('employment_type')) && $this->input->post('cbJobType') != FALSE ? implode(';', $this->input->post('employment_type')) : NULL
         			);
         $where = array('user_id' => $this->session->userdata('id'));
 
@@ -134,7 +134,8 @@ class settings extends CI_Controller {
 
         if(count($checkData) > 0)
         {
-        	$data['created_by'] = $this->session->userdata('id');
+            $data['updated_by']     = $this->session->userdata('id');
+            $data['updated_date']   = date('Y-m-d H:i:s');
 
 	        $where = array('id' => $checkData->id);
 
@@ -142,8 +143,7 @@ class settings extends CI_Controller {
         }
         else
         {
-        	$data['updated_by'] 	= $this->session->userdata('id');
-        	$data['updated_date'] 	= date('Y-m-d H:i:s');
+            $data['created_by'] = $this->session->userdata('id');
         	
         	$this->global_model->create('job_preferences', $data);
         }
@@ -160,7 +160,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/settings');
+        redirect(base_url().'student/settings#tab_job');
     }
 }
 

@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>
-        <?=$page_title?> | Job Seeker </title>
+        My <?=$page_title?> | Xremo </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Preview page of Metronic Admin Theme #2 for statistics, charts, recent events and reports" name="description" />
@@ -27,6 +27,8 @@
 
     <!-- Plugins @ Vendor -->
     <!-- Note : all plugin folder in JS folder . so it need to redirect there -->
+    <!-- # Animate -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/animate/animate.css">
     <!-- # Social Icon -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/socicon/socicon.css">
     <!-- # Datatables -->
@@ -60,9 +62,12 @@
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/jqvmap/jqvmap/jqvmap.css">
     <!-- # Portfolio @ Light Gallery -->
     <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/cubeportfolio/css/cubeportfolio.css">
+    <!-- # TabDrop -->
+    <link rel="stylesheet" type="text/css" href="<?php echo JS; ?>plugins/bootstrap-tabdrop/tabdrop.css">
+    
 
     <!-- GLOBAL -->
-    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.css" id="style_components">
+    <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/components.min.css" id="style_components">
     <link rel="stylesheet" type="text/css" href="<?php echo CSS; ?>global/plugins.css">
 
     <!-- APPS -->
@@ -82,7 +87,8 @@
     <!-- CUSTOM -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/alertify.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/Croppic/croppic/assets/css/croppic.css">
-    <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
+    
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/favicon.ico">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-115543574-1"></script>
@@ -164,12 +170,12 @@
                             </ul>
                         </li>
                         <!-- END NOTIFICATION DROPDOWN -->
-
+                        <?php $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?php echo !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ? IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                 <span class="username username-hide-on-mobile">
                                     <?php
                                         $fullname = $this->session->userdata('name');
@@ -181,11 +187,11 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
                                 <li>
-                                    <a href="<?php echo base_url().'jobseeker/dashboard/'; ?>">
+                                    <a href="<?php echo base_url().'student/dashboard/'; ?>">
                                         <i class="icon-home"></i> <?= !empty($language->site_dashboard) ? $language->site_dashboard : 'Dashboard'?> </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url().'jobseeker/profile/'; ?>">
+                                    <a href="<?php echo base_url().'student/profile/'; ?>">
                                         <i class="icon-user"></i> <?= !empty($language->site_edit_profile) ? $language->site_edit_profile : 'Edit Profile'?> </a>
                                 </li>
                                 <li>
@@ -197,11 +203,11 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url().'jobseeker/calendar/'; ?>">
+                                    <a href="<?php echo base_url().'student/calendar/'; ?>">
                                         <i class="icon-calendar"></i> <?= !empty($language->site_my_calendar) ? $language->site_my_calendar : 'My Calendar'?> </a>
                                 </li>
                                 <!--<li>
-                                    <a href="<?php echo base_url().'jobseeker/inbox/'; ?>">
+                                    <a href="<?php echo base_url().'student/inbox/'; ?>">
                                         <i class="icon-envelope-open"></i> My Inbox
                                         <span class="badge badge-danger"> 1 </span>
                                     </a>
@@ -237,35 +243,14 @@
             <div class="page-sidebar navbar-collapse collapse">
                 <!-- BEGIN SIDEBAR MENU -->
                 <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu page-sidebar-menu-compact" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-
-                    <!-- Profile Progress -->
-                    <!-- <li class="nav-item px-2 py-4 hidden-sm">
-                        <div class="m-grid mb-2 mt-4">
-                            <div class="m-grid-row md-white-text font-20-xs">
-                                <div class="m-grid-col m-grid-col-xs-10 m-grid-col-left">Profile Completion</div>
-                                <div class="m-grid-col m-grid-col-xs-2 m-grid-col-right"></div>
-                            </div>
-                        </div>
-                        <div class="progress progress-lg ">
-                            <div class="progress-bar progress-bar-warning " role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percent; ?>%">
-                                <span class="sr-only"> <?php echo $percent; ?>% Complete (warning) </span>
-                            </div>
-                        </div>
-                    </li> -->
-
+                    <!-- Completion Progress Profile -->
                     <li class="nav-progress">
                         <div class="progress-info">
-                            <div class="status">
-                                <?php if ($percent==100){?>                                
+                            <div class="status">                                
                                 <div class="status-title"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
                                 <div class="status-number ">
                                     <?php echo $percent; ?>%                                     
                                 </div>
-                                <?php }else{?>
-                                <div class="status-title md-orange-text"> <?= !empty($language->site_profile_completion) ? $language->site_profile_completion : 'Profile Completion'?> </div>
-                                <div class="status-number md-orange-text">
-                                    <?php echo $percent; ?>%</div>
-                                <?php }?>
                             </div>
                             <div class="progress">
                                 <span style="width:<?php echo $percent; ?>%;" class="progress-bar progress-bar-warning">
@@ -275,41 +260,46 @@
                             </div>
                         </div>
                     </li>
+                    
                     <!-- Sidebar Menu : Dashboard -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard'): echo 'active'; endif?> ">
-                        <a href="<?php echo base_url();?>jobseeker/dashboard/" class="nav-link">
+                        <a href="<?php echo base_url();?>student/dashboard/" class="nav-link">
                             <i class="icon-home"></i>
                             <span class="title"><?= !empty($language->site_dashboard) ? $language->site_dashboard : 'Dashboard'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Profile-->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'profile'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/profile/" class="nav-link ">
+                        <a href="<?php echo base_url(); ?>student/profile/" class="nav-link ">
                             <i class="icon-user"></i>
                             <span class="title"><?= !empty($language->profile) ? ucfirst($language->profile) : 'Profile'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu Gallery -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'gallery'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/gallery/" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/gallery/" class="nav-link">
                             <i class="icon-picture"></i>
                             <span class="title"><?= !empty($language->site_gallery) ? $language->site_gallery : 'Gallery'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu Job Application History -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'applications_history'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/applications_history/" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/applications_history/" class="nav-link">
                             <i class="icon-notebook"></i>
                             <span class="title"><?= !empty($language->site_application_history) ? $language->site_application_history : 'Application History'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Inbox -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'inbox' || $this->uri->segment(2) == 'sent' || $this->uri->segment(2) == 'trash'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/inbox/" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/inbox/" class="nav-link">
                             <i class="icon-envelope"></i>
                             <span class="title"><?= !empty($language->site_inbox) ? ucfirst($language->site_inbox) : 'Inbox'?></span>
                             <?php 
@@ -323,17 +313,19 @@
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Calendar  -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'calendar'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/calendar/" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/calendar/" class="nav-link">
                             <i class="icon-calendar"></i>
                             <span class="title"><?= !empty($language->site_calendar) ? $language->site_calendar : 'Calendar'?></span>
                             <span class="selected"></span>
                         </a>
                     </li>
+                    
                     <!-- Sidebar Menu : Wishlist-->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'wishlist'): echo 'active'; endif?>">
-                        <a href="<?= base_url(); ?>jobseeker/wishlist" class="nav-link">
+                        <a href="<?= base_url(); ?>student/wishlist" class="nav-link">
                             <i class="icon-heart"></i>
                             <span class="title"><?= !empty($language->site_wishlist) ? $language->site_wishlist : 'Wishlist'?></span>
                         </a>
@@ -341,7 +333,7 @@
 
                     <!-- Sidebar Menu : Settings -->
                     <li class="nav-item <?php if ($this->uri->segment(2) == 'settings'): echo 'active'; endif?>">
-                        <a href="<?php echo base_url(); ?>jobseeker/settings/" class="nav-link">
+                        <a href="<?php echo base_url(); ?>student/settings/" class="nav-link">
                             <i class="icon-settings"></i>
                             <span class="title"><?= !empty($language->site_settings) ? ucfirst($language->site_settings) : 'Settings'?></span>
                             <span class="selected"></span>

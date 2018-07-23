@@ -24,9 +24,9 @@ class Applications_history extends CI_Controller {
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $profile['language']    = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $applications['applications_history'] = $this->job_model->get_applied_job();
-        $this->load->view('jobseeker/main/header', $profile);
-        $this->load->view('jobseeker/history', $applications);
-        $this->load->view('jobseeker/main/footer');
+        $this->load->view('student/main/header', $profile);
+        $this->load->view('student/history', $applications);
+        $this->load->view('student/main/footer');
 	}
 
     public function withdraw(){
@@ -98,7 +98,7 @@ class Applications_history extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed withdraw from the job');
         }
-        redirect(base_url().'jobseeker/applications_history/');
+        redirect(base_url().'student/applications_history/');
     }
 
     public function accept_invitation(){
@@ -166,7 +166,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 		
-        redirect(base_url().'jobseeker/calendar/');
+        redirect(base_url().'student/calendar/');
 
     }
 
@@ -237,7 +237,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 		
-        redirect(base_url().'jobseeker/calendar/');
+        redirect(base_url().'student/calendar/');
 
     }
 
@@ -317,7 +317,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 
-        redirect(base_url().'jobseeker/calendar/');
+        redirect(base_url().'student/calendar/');
     }
 
 }

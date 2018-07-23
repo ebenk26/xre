@@ -11,6 +11,7 @@ $range_min              = 0;
 $range_max              = 0;
 $range_min_view         = 0;
 $range_max_view         = 0;
+$range                  = 0;
 
 if(!empty($job_preferences))
 {
@@ -30,7 +31,7 @@ if(!empty($job_preferences))
         $range_max          = $range[1];
         $range_min_view     = $currency->name.' '.number_format($range[0],0,',','.');
         $range_max_view     = $currency->name.' '.number_format($range[1],0,',','.');
-    } 
+    }
 }
 ?>
 <!-- BEGIN CONTENT -->
@@ -397,7 +398,7 @@ if(!empty($job_preferences))
                     <div class="modal-header">
                         <h4>Job Preferences </h4>
                     </div>
-                    <form class="form" method="POST" action="<?= site_url(); ?>jobseeker/settings/changeJobPreferences">
+                    <form class="form" method="POST" action="<?= site_url(); ?>student/settings/changeJobPreferences">
                         <div class="modal-body">
                             <!-- Keyword -->
                             <div class="form-group">
@@ -428,7 +429,7 @@ if(!empty($job_preferences))
                                     </div>
                                     <!--  Checkbox Salary Range-->
                                     <div class="md-checkbox">
-                                        <input type="checkbox" id="checkboxSalaryRange" name="cbSalaryRange" value="1" class="md-check trigger" data-trigger="fieldSalaryRange" <?= count($position_level) > 0 ? 'checked="checked"' : ''; ?>>
+                                        <input type="checkbox" id="checkboxSalaryRange" name="cbSalaryRange" value="1" class="md-check trigger" data-trigger="fieldSalaryRange" <?= $range > 0 ? 'checked="checked"' : ''; ?>>
                                         <label for="checkboxSalaryRange">
                                             <span></span>
                                             <span class="check"></span>
@@ -563,7 +564,7 @@ if(!empty($job_preferences))
                     <div class="modal-header">
                         <h4>Edit Full Name </h4>
                     </div>
-                    <form action="<?php echo base_url(); ?>jobseeker/settings/change_fullname" class=" form form-horizontal" method="POST">
+                    <form action="<?php echo base_url(); ?>student/settings/change_fullname" class=" form form-horizontal" method="POST">
                         <div class="modal-body form-horizontal">
                             <div class="form-group p-0 m-0">
                                 <!-- <label for="">Full Name</label> -->
@@ -587,14 +588,14 @@ if(!empty($job_preferences))
                     <div class="modal-header">
                         <h4>Edit Phone Number </h4>
                     </div>
-                    <form action="<?php echo base_url(); ?>jobseeker/settings/change_phone_number" class=" form form-horizontal" method="POST">
+                    <form action="<?php echo base_url(); ?>student/settings/change_phone_number" class=" form form-horizontal" method="POST">
                         <div class="modal-body form-horizontal">
 
                             <div class="form-group mx-0">
                                 <!-- <label for="">Phone Number</label> -->
                                 <!-- <div class="form-inline">
                                     <div class="input-group"> -->
-                                        <input type="text" name="contact_number" class="form-control " placeholder="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: '123456'; ?>" value="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: '123456'; ?>">
+                                        <input type="text" name="contact_number" class="form-control " value="<?php echo isset($user_bios->contact_number) ? $user_bios->contact_number: 'Please Edit your profile'; ?>">
                                     <!-- </div>
                                 </div> -->
                             </div>
@@ -615,7 +616,7 @@ if(!empty($job_preferences))
                     <div class="modal-header">
                         <h4>Change Password </h4>
                     </div>
-                    <form action="<?php echo base_url(); ?>jobseeker/change_password" method="POST" class=" form form-horizontal">
+                    <form action="<?php echo base_url(); ?>student/change_password" method="POST" class=" form form-horizontal">
                         <div class="modal-body form-horizontal">
 
                             <div class="form-group mx-0">

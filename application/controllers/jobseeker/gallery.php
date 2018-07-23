@@ -31,9 +31,9 @@ class Gallery extends CI_Controller {
         $gallery = $query->result_array();
 
         $data['gallery'] = $gallery;
-        $this->load->view('jobseeker/main/header', $profile);
-        $this->load->view('jobseeker/gallery', $data);
-        $this->load->view('jobseeker/main/footer');
+        $this->load->view('student/main/header', $profile);
+        $this->load->view('student/gallery', $data);
+        $this->load->view('student/main/footer');
 	}
 
     public function post(){
@@ -94,7 +94,7 @@ class Gallery extends CI_Controller {
             }             
         }        
         
-        redirect(base_url().'jobseeker/gallery');
+        redirect(base_url().'student/gallery');
     }
 
     public function get_data_array($id){
@@ -118,7 +118,7 @@ class Gallery extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed');
         }
-        redirect(base_url().'jobseeker/gallery');
+        redirect(base_url().'student/gallery');
     }
 
     public function upload_image(){
@@ -128,7 +128,7 @@ class Gallery extends CI_Controller {
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
             $tempFile = $_FILES['profile_photo']['tmp_name'];        
-            $targetPath = "./assets/img/jobseeker/";
+            $targetPath = "./assets/img/student/";
 
             $path = pathinfo($_FILES['profile_photo']['name']);
             $ext = $path['extension'];
@@ -136,7 +136,7 @@ class Gallery extends CI_Controller {
             $targetFile =  $targetPath.$profile_photo;
             if (isset($checkImage)) {
 
-                // unlink("./assets/img/jobseeker/".$checkImage['name']);
+                // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -151,7 +151,7 @@ class Gallery extends CI_Controller {
 
     public function img_save_to_file(){
         /*$tempFile = $_FILES['profile_photo']['tmp_name'];        
-        $targetPath = "./assets/img/jobseeker/";
+        $targetPath = "./assets/img/student/";
 
         $path = pathinfo($_FILES['profile_photo']['name']);
         $ext = $path['extension'];

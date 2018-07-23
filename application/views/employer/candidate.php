@@ -21,7 +21,7 @@
                     </li>
                     <?php if (!empty($shortlisted)): ?>
                     <li>
-                        <a href="#tab_shortlisted_candidates" data-toggle="tab">
+                        <a href="#tab_shortlisted_candidates" data-toggle="tab" class="<?= empty($shortlisted) ? 'hidden':'' ?>">
                             <i class="icon-user-following font-22"></i> Shortlisted </a>
                     </li>
                     <?php endif ?>
@@ -87,7 +87,7 @@
                             <tbody>
                                 <?php 
                                     $i=1; foreach ($candidates as $key => $value) { 
-                                        if ($value['application_status'] == 'APPLIED' ) {
+                                        if ($value['application_status'] == 'APPLIED' || $value['application_status'] == 'WITHDRAW' ) {
                                 ?>
                                 <tr class="odd gradeX ">
                                     <td class="text-center ">
@@ -189,10 +189,8 @@
                             </span>
                         </div>
                         <div class="actions">
-                            <a class="btn  btn-md-indigo" href="#modal_interview_session_list" data-toggle="modal">
-                                <i class="icon-calendar"></i>
-                                <?= !empty($language->interview_session) ? $language->interview_session : "Interview Session"  ?>
-                            </a>
+                            <a class="btn  btn-md-indigo <?= empty($interview_session) ? 'hidden':''; ?>" href="#modal_interview_session_list" data-toggle="modal">
+                                <i class="icon-calendar"></i> <?= !empty($language->interview_session) ? $language->interview_session : "Interview Session"  ?></a>
                         </div>
                     </div>
                     <div class="portlet-body">

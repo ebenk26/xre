@@ -15,7 +15,11 @@ class Profile extends CI_Controller {
     }
     
     public function index(){
-        
+        $roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
         
         $profile['page_title'] = 'Profile';
         $id = $this->session->userdata('id');
@@ -26,9 +30,9 @@ class Profile extends CI_Controller {
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
-        $this->load->view('jobseeker/main/header', $profile);
-        $this->load->view('jobseeker/profile', $profile);
-        $this->load->view('jobseeker/main/footer');
+        $this->load->view('student/main/header', $profile);
+        $this->load->view('student/profile', $profile);
+        $this->load->view('student/main/footer');
 	}
 
     public function post(){
@@ -46,7 +50,7 @@ class Profile extends CI_Controller {
             $targetFile =  $targetPath.$profile_photo;
             if (isset($checkImage)) {
 
-                // unlink("./assets/img/jobseeker/".$checkImage['name']);
+                // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -64,7 +68,7 @@ class Profile extends CI_Controller {
                             'type' => 'header_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
             $tempFile = $_FILES['header_photo']['tmp_name'];        
-            $targetPath = "./assets/img/jobseeker/";
+            $targetPath = "./assets/img/student/";
 
             $path = pathinfo($_FILES['header_photo']['name']);
             $ext = $path['extension'];
@@ -72,7 +76,7 @@ class Profile extends CI_Controller {
             $targetFile =  $targetPath.$header_photo;
             if (isset($checkImage)) {
 
-                // unlink("./assets/img/jobseeker/".$checkImage['name']);
+                // unlink("./assets/img/student/".$checkImage['name']);
                 move_uploaded_file($tempFile,$targetFile);                
             }else{
                 move_uploaded_file($tempFile,$targetFile);
@@ -97,7 +101,6 @@ class Profile extends CI_Controller {
 				$youtubelink = "";
 			}
 		}
-
 
         $profile = array(
             'student_name' => $this->input->post('fullname'),
@@ -137,9 +140,8 @@ class Profile extends CI_Controller {
 				);
 		setRecentActivities($data);
 		//END : set recent activities
-
 		
-        redirect(base_url().'jobseeker/profile/');
+        redirect(base_url().'student/profile/');
     }
 
     public function add_education(){
@@ -181,7 +183,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_education(){
@@ -226,17 +228,28 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
         
     }
 
     public function add_experience(){
+
+        $startYear   = date('Y',strtotime($this->input->post('start_date')));
+        $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
+        $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
+        $endMonth    = ($this->input->post('end_date') == 'on') ? date('m') : date('m',strtotime($this->input->post('end_date')))/12;
+
+        $startExp   = $startYear + $startMonth;
+        $endExp     = $endYear + $endMonth;
+
+        $YoE        = ceil($endExp - $startExp); // lebih dari setengah tahun, dibulatkan menjadi 1 tahun
 
         if ($this->input->post('current_date') == 'on') {
             $experience = array('title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -249,6 +262,7 @@ class Profile extends CI_Controller {
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -275,16 +289,28 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_experience(){
+
+        $startYear   = date('Y',strtotime($this->input->post('start_date')));
+        $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
+        $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
+        $endMonth    = ($this->input->post('end_date') == 'on') ? date('m') : date('m',strtotime($this->input->post('end_date')))/12;
+
+        $startExp   = $startYear + $startMonth;
+        $endExp     = $endYear + $endMonth;
+
+        $YoE        = ceil($endExp - $startExp); // lebih dari setengah tahun, dibulatkan menjadi 1 tahun
+
         if ($this->input->post('current_date') == 'on') {
             $experience = array('id' => $this->input->post('experience_id'),
                                 'title'=> $this->input->post('title'),
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> '0000-00-00',
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -297,6 +323,7 @@ class Profile extends CI_Controller {
                                 'description'=> $this->input->post('description'),
                                 'start_date'=> date('Y-m-d',strtotime($this->input->post('start_date'))),
                                 'end_date'=> date('Y-m-d',strtotime($this->input->post('end_date'))),
+                                'exp_time' => $YoE,
                                 'user_id' => $this->session->userdata('id'),
                                 'company_name' => $this->input->post('company_name'),
                                 'employment_type_id' => $this->input->post('employment_type'),
@@ -322,7 +349,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
     }
 
     public function add_skills(){
@@ -334,7 +361,7 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->add($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data added') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'jobseeker/profile/');
+        redirect(base_url().'student/profile/');
     }
 
     public function edit_skills(){
@@ -347,7 +374,7 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->update($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data updated') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'jobseeker/profile/');
+        redirect(base_url().'student/profile/');
     }
 
     public function add_language(){
@@ -358,7 +385,7 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->add($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data added') : $this->session->set_flashdata('msg_failed', 'language data failed to update');
-        redirect(base_url().'jobseeker/profile/');
+        redirect(base_url().'student/profile/');
     }
 
     public function edit_language(){
@@ -370,7 +397,7 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->update($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data updated') : $this->session->set_flashdata('msg_failed', 'Language data failed to update');
-        redirect(base_url().'jobseeker/profile/');
+        redirect(base_url().'student/profile/');
     }
 
     public function add_achievement(){
@@ -401,7 +428,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
     }
 
     public function edit_achievement(){
@@ -433,7 +460,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
     }
 
     public function add_project(){
@@ -474,7 +501,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-		redirect(base_url().'jobseeker/profile');
+		redirect(base_url().'student/profile');
     }
 
     public function edit_project(){
@@ -514,7 +541,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'jobseeker/profile');
+        redirect(base_url().'student/profile');
 
     }
 	
@@ -596,6 +623,6 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-        $this->load->view('jobseeker/view_profile',$profile);
+        $this->load->view('student/view_profile',$profile);
     }
 }
