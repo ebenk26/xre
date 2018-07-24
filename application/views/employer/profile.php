@@ -18,11 +18,15 @@
             }
         }
     }*/
-    $checkHeaderPhoto   = get_headers(IMG_EMPLOYERS.$header_picture['name']);
-    $checkProfilePhoto  = get_headers(IMG_EMPLOYERS.$profile_picture['name']);
+    !empty($header_picture['name']) ? $header_picture['name'] = $header_picture['name'] : $header_picture['name'] = '33.jpg';
+    !empty($profile_picture['name']) ? $profile_picture['name'] = $profile_picture['name'] : $profile_picture['name'] = 'profile-pic.png';
+    $checkHeaderPhoto = get_headers(IMG_EMPLOYERS.$header_picture['name']);
+    $checkProfilePhoto = get_headers(IMG_EMPLOYERS.$profile_picture['name']);
     //empty=HTTP/1.0 404 Not Found
     //HTTP/1.1 200 OK
 ?>
+
+<?php    ?>
 
 <?php if (!empty($company_address)){
     foreach ($company_address as $key => $value){

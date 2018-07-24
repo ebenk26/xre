@@ -148,8 +148,8 @@
                         <!-- DOC: Apply "dropdown-dark" class below "dropdown-extended" to change the dropdown styte -->
                         <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
                         <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
-                        <!-- 						
-						<li class="">
+                        <!--                        
+                        <li class="">
                             <a href="<?=base_url()?>job/search" class="my-3 font-weight-700 md-orange-text text-darken-1 text-uppercase pull-left" target="_blank">Search Job</a>
                         </li> -->
 
@@ -170,7 +170,9 @@
                             </ul>
                         </li>
                         <!-- END NOTIFICATION DROPDOWN -->
-                        <?php $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
+                        <?php
+                        !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png'; 
+                        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
@@ -198,7 +200,7 @@
                                     <a href="<?php
                                     $id = $this->session->userdata('id');
                                     $id_encoded = rtrim(base64_encode($id), '=');
-									echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank">
+                                    echo base_url() ?>profile/user/<?php echo $id_encoded; ?>" target="_blank">
                                         <i class="icon-book-open"></i> <?= !empty($language->site_view_my_profile) ? $language->site_view_my_profile : 'View My Profile'?>
                                     </a>
                                 </li>
@@ -303,9 +305,9 @@
                             <i class="icon-envelope"></i>
                             <span class="title"><?= !empty($language->site_inbox) ? ucfirst($language->site_inbox) : 'Inbox'?></span>
                             <?php 
-								$data_message = getDataMessage("general");
-								if($data_message['new'] > 0){
-							?>
+                                $data_message = getDataMessage("general");
+                                if($data_message['new'] > 0){
+                            ?>
                             <span class="badge badge-md-cyan">
                                 <?=$data_message['new']?>
                             </span>

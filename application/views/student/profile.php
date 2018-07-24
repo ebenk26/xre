@@ -1,4 +1,6 @@
-<?php $checkGetHeaderImage = get_headers(IMG_STUDENTS.$user_profile['header_photo']);
+<?php   !empty($user_profile['header_photo']) ? $user_profile['header_photo'] = $user_profile['header_photo'] : $user_profile['header_photo'] = '33.jpg';
+        !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
+        $checkGetHeaderImage = get_headers(IMG_STUDENTS.$user_profile['header_photo']);
         $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
 <div class="page-content-wrapper">
     <div class="page-content">

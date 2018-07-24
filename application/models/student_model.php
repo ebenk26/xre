@@ -609,7 +609,7 @@ class Student_Model extends CI_Model{
     }
 
     function get_company($table, $where){
-        $this->db->select('users.id, user_profiles.company_name, users.fullname as registered_company, profile_uploads.name as profile_photo, wishlist.company_id, wishlist.id as wishlist_id, wishlist.student_id as wishlist_user_id, wishlist.status as status');
+        $this->db->select('users.id, user_profiles.company_name, users.fullname as registered_company, profile_uploads.name as profile_photo, wishlist.company_id, wishlist.id as wishlist_id, wishlist.student_id as wishlist_user_id, wishlist.status as status,');
         $this->db->from('user_profiles');
         $this->db->join('users', 'user_profiles.user_id = users.id');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
@@ -625,10 +625,10 @@ class Student_Model extends CI_Model{
     }
 
     function get_company_by_user_id($where){
-        $this->db->select('wishlist.*, user_profiles.company_name as company_name, profile_uploads.name as profile_photo, users.fullname as company');
+        $this->db->select('wishlist.*, user_profiles.company_name as company, profile_uploads.name as profile_photo, users.fullname as registered_company');
         $this->db->from('wishlist');
         $this->db->join('user_profiles', 'user_profiles.user_id = wishlist.company_id', 'left');
-        $this->db->join('users', 'user_profiles.user_id = users.id');
+        $this->db->join('users', 'user_profiles.user_id = users.id','left');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = wishlist.student_id AND profile_uploads.type != "header_photo"','left');
         $this->db->where($where);
         $this->db->group_by('wishlist.id'); 

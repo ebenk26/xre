@@ -104,7 +104,8 @@
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
-<?php $checkUserProfile = get_headers(IMG_EMPLOYERS.$user_profile['img']); ?>
+<?php   !empty($user_profile['img']) ? $user_profile['img'] = $user_profile['img'] : $user_profile['img'] = 'profile-pic.png';
+        $checkUserProfile = get_headers(IMG_EMPLOYERS.$user_profile['img']) ?>
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">
         <!-- BEGIN HEADER INNER -->
