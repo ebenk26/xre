@@ -635,6 +635,25 @@ class Student_Model extends CI_Model{
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    function get_voucher_user(){
+        $this->db->select('voucher_user.*, voucher.code, voucher.company_name');
+        $this->db->from('voucher_user');
+        $this->db->join('voucher', 'voucher.id = voucher_user.voucher_id', 'left');
+        $query = $this->db->get();
+        $allVoucherUser = $query->result_array();
+        foreach ($allVoucherUser as $key => $value) {
+            $user = $this->get_user_profile($value['user_id']);
+            $data[$key]['id'] = $value['id'];
+            $data[$key]['voucher_id'] = $value['voucher_id'];
+            $data[$key]['user_id'] = $value['user_id'];
+            $data[$key]['code'] = $value['code'];
+            $data[$key]['company_name'] = $value['company_name'];
+            $data[$key]['user'] = $user['overview']['name'];
+            $data[$key]['percent'] = $user['percent'];
+        }
+        return $data;
+    }
 }
 
 ?>

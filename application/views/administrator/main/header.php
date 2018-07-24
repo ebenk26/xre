@@ -566,7 +566,7 @@
                         </a>
                     </li>
 					<!-- Sidebar Menu : Sales -->
-                    <li class="nav-item <?php if ($this->uri->segment(2) == 'sales' || $this->uri->segment(2) == 'sales'): echo 'active'; endif?>">
+                    <!-- <li class="nav-item <?php if ($this->uri->segment(2) == 'sales' || $this->uri->segment(2) == 'sales'): echo 'active'; endif?>">
                         <a href="javascript:;" class="nav-link nav-toggle">
                             <i class="icon-users"></i>
                             <span class="title">Sales</span>
@@ -575,17 +575,42 @@
                         </a>
 
                         <ul class="sub-menu">
-                            <!-- <li class="nav-item start <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
+                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'search_candidate'): echo 'active'; endif?>">
                                 <a href="<?php echo base_url(); ?>employer/search_candidate/" class="nav-link">
                                     <i class="icon-magnifier"></i>
                                     <span class="title">Dashboard</span>
                                     <span class="selected"></span>
                                 </a>
-                            </li> -->
+                            </li>
                             <li class="nav-item">
                                 <a href="<?php echo base_url(); ?>administrator/sales/shortlist" class="nav-link">
                                     <i class="icon-user-following"></i>
                                     <span class="title">Shortlist Target</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li> -->
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'ticketing' || $this->uri->segment(2) == 'ticketing'): echo 'active'; endif?>">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-users"></i>
+                            <span class="title">Tracking</span>
+                            <span class="arrow open"></span>
+                            <span class="selected"></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li class="nav-item start <?php if ($this->uri->segment(2) == 'tracking'): echo 'active'; endif?>">
+                                <a href="<?php echo base_url(); ?>administrator/tracking/" class="nav-link">
+                                    <i class="icon-magnifier"></i>
+                                    <span class="title">Tracking Voucher</span>
+                                    <span class="selected"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url(); ?>administrator/tracking/user" class="nav-link">
+                                    <i class="icon-user-following"></i>
+                                    <span class="title">Tracking User</span>
                                 </a>
                             </li>
 
