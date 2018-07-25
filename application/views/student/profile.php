@@ -75,7 +75,7 @@
                                     <div class="mt-card-item p-0">
                                         <!-- Avatar -->
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">        
+                                            <img src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">
                                         </div>
                                         <div class="mt-card-content mb-20 ">
                                             <!--  Full name   -->
@@ -1332,54 +1332,53 @@
         <!-- ********************** MODAL ********************* -->
         <!-- Modal : Edit Profile -->
         <div class="modal fade in" id="modal_edit_profile" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content portlet box ">
-                    <div class="portlet-title tabbable-line md-indigo tab-tw-md-orange">
-                        <div class="caption">
-                            <span class="caption-subject">
-                                <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile information" ?>
-                            </span>
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content ">
+                    <div class="portlet box mb-15 pb-0">
+                        <div class="portlet-title tabbable-line md-darkblue tab-tw-md-orange ">
+                            <div class="caption">
+                                <span class="caption-subject font-16">
+                                    <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile" ?>
+                                </span>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <!-- Nav Personal -->
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_personal">
+                                        <i class="icon-user mr-5"></i>Personal </a>
+                                </li>
+                                <!-- Nav Language -->
+                                <li>
+                                    <a data-toggle="tab" href="#tab_language">
+                                        <i class="fa fa-language mr-5"></i>
+                                        <?= !empty($language->language) ? $language->language : "Language" ?>
+                                    </a>
+                                </li>
+                                <!-- Nav References -->
+                                <li>
+                                    <a data-toggle="tab" href="#tab_reference">
+                                        <i class="fa fa-users mr-5"></i>
+                                        <?= !empty($language->references) ? $language->references : "References" ?>
+                                    </a>
+                                </li>
+                                <!-- Nav Picture -->
+                                <li>
+                                    <a data-toggle="tab" href="#tab_picture">
+                                        <i class="fa fa-camera mr-5"></i>
+                                        <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="nav nav-tabs">
-                            <!-- Nav Personal -->
-                            <li class="active">
-                                <a data-toggle="tab" href="#tab_personal">
-                                    <i class="icon-user mr-5"></i>Personal </a>
-                            </li>
-                            <!-- Nav Language -->
-                            <li>
-                                <a data-toggle="tab" href="#tab_language">
-                                    <i class="fa fa-language mr-5"></i>
-                                    <?= !empty($language->language) ? $language->language : "Language" ?>
-                                </a>
-                            </li>
-                            <!-- Nav References -->
-                            <li>
-                                <a data-toggle="tab" href="#tab_reference">
-                                    <i class="fa fa-users mr-5"></i>
-                                    <?= !empty($language->references) ? $language->references : "References" ?>
-                                </a>
-                            </li>
-                            <!-- Nav Picture -->
-                            <li>
-                                <a data-toggle="tab" href="#tab_picture">
-                                    <i class="fa fa-camera mr-5"></i>
-                                    <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
-                                </a>
-                            </li>
-                        </ul>
                     </div>
 
                     <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
-                        <div class="modal-body portlet-body form-horizontal">
+                        <div class="modal-body ">
                             <div class="tab-content">
                                 <!-- SECTION : Personal Info -->
                                 <div class="tab-pane active fade-in-up" id="tab_personal">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
-                                        <?= !empty($language->site_personal_information ) ? $language->site_personal_information  : "My Personal Information" ?>
-                                    </h4>
                                     <!-- # Attribute : Full Name / User Status -->
-                                    <div class="row">
+                                    <div class="row ">
                                         <!-- Attribute : Full name -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
@@ -1409,7 +1408,7 @@
                                         </div>
                                     </div>
                                     <!-- # Attribute : Prefences Name / Gender / DOB -->
-                                    <div class="row">
+                                    <div class="row ">
 
                                         <!-- Attribute : Preferences Name -->
                                         <div class="col-sm-4">
@@ -1466,7 +1465,7 @@
                                     </div>
 
                                     <!-- # Attribute : Phone Number / Salary Expectation -->
-                                    <div class="row">
+                                    <div class="row ">
                                         <!-- Attribute : Phone Number -->
                                         <div class="col-sm-4">
                                             <div class="form-group mx-0">
@@ -1498,11 +1497,11 @@
                                     </div>
 
                                     <!-- # Title : Address -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                    <h4 class="font-18 letter-space-xs form-section  md-indigo-text text-uppercase font-weight-600 ">
                                         <?= !empty($language->address) ? $language->address : "Address" ?>
                                     </h4>
                                     <!-- # Attribute : Street / Postcode -->
-                                    <div class="row  ">
+                                    <div class="row">
                                         <!-- Attribute : Street -->
                                         <div class="col-sm-8">
                                             <div class="form-group mx-0">
@@ -1554,7 +1553,7 @@
                                     </div>
 
                                     <!-- # Title : Summary / QOute -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                    <h4 class="font-18 letter-space-xs form-section md-indigo-text text-uppercase font-weight-600 ">
                                         <?= !empty($language->site_summarize) ? $language->site_summarize : "Summarize About Yourself" ?>
                                     </h4>
                                     <!-- Attribute : Quote -->
@@ -1581,7 +1580,7 @@
                                     </div>
 
                                     <!-- Video Resume -->
-                                    <h4 class="letter-space-sm form-section mb-10 md-indigo-text">
+                                    <h4 class="font-18 letter-space-xs form-section  md-indigo-text text-uppercase font-weight-600 ">
                                         <?= !empty($language->video_resume) ? $language->video_resume : "Video Resume" ?>
                                     </h4>
                                     <div class="form-group mx-0">
