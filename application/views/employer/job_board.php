@@ -366,25 +366,29 @@
                     <!-- TEXT EDITOR : JOB DESCRIPTION -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600  "><?= !empty($language->job_description) ? $language->job_description : "Job Description"  ?></label>
-                        <textarea name="jobDescription" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
+                        <!-- <textarea name="jobDescription" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea> -->
+                        <textarea name="jobDescription" class="textarea_editor form-control" rows="6"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : NICE TO HAVE -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->nice_to_have) ? $language->nice_to_have : "Nice To Have"  ?></label>
-                        <textarea name="niceToHave" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
+                        <!-- <textarea name="niceToHave" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea> -->
+                        <textarea name="niceToHave" class="textarea_editor form-control" rows="6"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : JOB REQUIREMENT -->
                     <div class="form-group mx-0">
                         <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 "><?= !empty($language->job_requirement) ? $language->job_requirement : "Job Requirement"  ?></label>
-                        <textarea name="jobRequirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
+                        <!-- <textarea name="jobRequirement" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea> -->
+                        <textarea name="jobRequirement" class="textarea_editor form-control" rows="6"></textarea>
                     </div>
 
                     <!-- TEXT EDITOR : ADDITIONAL INFO -->
                     <div class="form-group mx-0">
-                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->additional_info) ? $language->additional_info : "additional_info"  ?></label>
-                        <textarea name="additionalInfo" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea>
+                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600"><?= !empty($language->site_additional_info) ? $language->site_additional_info : "Additional Info"  ?></label>
+                        <!-- <textarea name="additionalInfo" data-provide="markdown" rows="10" data-hidden-buttons="cmdCode , cmdQuote" class="textarea_editor"></textarea> -->
+                        <textarea name="additionalInfo" class="textarea_editor form-control" rows="6"></textarea>
                     </div>
 
                     <!-- LOCATION JOB -->
@@ -433,7 +437,7 @@
                                         <select class="form-control" name="country" id="addCountry" required>
                                             <?php foreach ($countries as $key => $value) {?>
                                             <option value="<?=$value['name']?>" 
-                                                <?php if($value['name']==$user_profile['shipping_country']){echo "selected";}?>>
+                                                <?php if($value['name']==$_COOKIE['country_name']){echo "selected";}?>>
                                                 <?php echo $value['name']; ?>
                                             </option>
                                             <?php } ?>

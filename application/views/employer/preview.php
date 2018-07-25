@@ -90,9 +90,13 @@
 
 <body>
     <?php $this->load->view('site/header_content');?>
-    <?php   $checkUserHeaderImgProfile  = get_headers(IMG_EMPLOYERS.$header_picture['name']);
+    <?php   
+            !empty($header_picture['name']) ? $header_picture['name'] = $header_picture['name'] : $header_picture['name'] = '33.jpg';
+            !empty($image['name']) ? $image['name'] = $image['name'] : $image['name'] = 'profile-pic.png';
+            !empty($applicant['name']) ? $applicant['name'] = $applicant['name'] : $applicant['name'] = 'profile-pic.png';
+            $checkUserHeaderImgProfile  = get_headers(IMG_EMPLOYERS.$header_picture['name']);
             $checkUserMainImgProfile    = get_headers(IMG_EMPLOYERS.$image['name']);
-            $checkApplicantImgProfile   = get_headers(IMG_EMPLOYERS.$applicant['name']);
+            $checkApplicantImgProfile   = get_headers(IMG_STUDENTS.$applicant['name']);
      ?>
     <!--========== PROMO : VIEW JOB TITLE==========-->
     <div class="s-promo-block-v2 gradient-darkblue-v8 height-300" style="background: url('<?= $checkUserHeaderImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat ; background-size:cover;">

@@ -152,18 +152,24 @@ if(!empty($job_preferences))
                                     <div class="media-body">
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text ">
                                             <i class="fa fa-gift mr-10"></i>Referral Code</h5>
-                                        <form action="" class="form form-horizontal">
-                                            <div class="form-group mx-0 ">
-                                                <div class="input-group input-large">
-                                                    <input type="text" class="form-control " placeholder="Enter your referral code in here">
-                                                    <span class="input-group-btn">
-                                                        <button class="btn btn-md-orange " type="submit">
-                                                            <i class="fa fa-arrow-right"></i>
-                                                        </button>
-                                                    </span>
+                                        <?php if (!empty($user_bios->referral_code)) { ?>                                            
+                                            <h4 class="font-weight-600 font-18 text-capitalize ">
+                                                <?=  $user_bios->referral_code; ?>
+                                            </h4>
+                                        <?php }else{ ?>
+                                            <form action="<?= base_url(); ?>student/settings/postReferral" method="POST" class="form form-horizontal">
+                                                <div class="form-group mx-0 ">
+                                                    <div class="input-group input-large">
+                                                        <input type="text" class="form-control " name="referral" placeholder="Enter your referral code in here">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-md-orange " type="submit">
+                                                                <i class="fa fa-arrow-right"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

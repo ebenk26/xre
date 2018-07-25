@@ -30,7 +30,7 @@
                 </div>
                 <?php endif ?>
                 <?php foreach ($wishlist as $key => $value): ?>
-                <?php if (!empty($value['company_id']) && $value['company_id'] == $this->session->userdata('id')): ?>
+                <?php if (!empty($value['company_id']) && $value['student_id'] == $this->session->userdata('id')): ?>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     <div class="mt-card-item ">
                         <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="mt-card-content">
                             <h3 class="mt-card-name">
-                                <?= !empty($value['company_name']) ? $value['company_name'] :  $value['company'];  ?>
+                                <?= !empty($value['company_name']) ? $value['company'] :  $value['registered_company'];  ?>
                             </h3>
                         </div>
                     </div>

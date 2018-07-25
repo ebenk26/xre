@@ -76,7 +76,7 @@
 
     <!-- BEGIN TINY MCE EDITOR SCRIPTS -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/plugins/tinymce/tinymce.min.js"></script>
-    <!-- END TINY MCE EDITOR SCRIPTS -->
+    <!-- END TINY MCE EDITOR SCRIPTS --> 
 
     <script>
         function searchSolr(id,form){
@@ -426,7 +426,6 @@
                                       key: obj_key,
                                     },
                                     success:function(response) {
-                                        console.log(response);
                                        swal("Sucess", "Success remove translation.", "success");
                                        location.reload();
                                     }
@@ -437,6 +436,39 @@
                         }
                     );
             });
+
+        $('.removeVoucher').click(function () {
+            var obj_key = $(this).attr('key');
+                swal({
+                    title: "Are you sure?",
+                    text: "You will remove this Voucher",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Remove",
+                    cancelButtonText: "Cancel",
+                    closeOnConfirm: false,
+                    closeOnCancel: false 
+                },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                                url:"<?php echo base_url();?>administrator/tracking/delete",
+                                method:"POST",
+                                data: {
+                                  key: obj_key,
+                                },
+                                success:function(response) {
+                                   swal("Sucess", "Success remove translation.", "success");
+                                   location.reload();
+                                }
+                              })
+                        } else {
+                            swal("Cancelled", "You Cancelled remove the translation", "error");
+                        }
+                    }
+                );
+        });
 
     </script>
 

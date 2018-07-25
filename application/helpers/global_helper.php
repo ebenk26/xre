@@ -370,4 +370,5 @@ function simplifyCurrency($money){
     }
     return $moneyResult;
 }
+
 ?>

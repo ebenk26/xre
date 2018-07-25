@@ -10,6 +10,12 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 		<table border="1">	
 			<tr>
 				<th>No</th>
+				<?php if ($type == "Voucher") {?>
+                    <th> Company </th>
+                    <th> Referral Code </th>
+                    <th> Student </th>
+                    <th> Profile Percentage </th>
+				<?php } ?>
 				<?php if($type == "Job Seeker" || $type == "Student"){?>
 					<th>Name</th>
 					<th>Email</th>
@@ -119,6 +125,12 @@ header("Content-Disposition: attachment; filename=$page_title.xls");
 			?>
 				<tr>
 					<td><?=$no++?></td>
+					<?php if ($type=="Voucher") {?>
+						<td><?= $row['company_name'] ?></td>
+                        <td><?= $row['code'] ?></td>
+                        <td><?= $row['user'] ?></td>
+                        <td><?= $row['percent'] ?></td>
+					<?php } ?>
 					<?php if($type == "Job Seeker" || $type == "Student"){?>
 						<td><?=$row->fullname?></td>
 						<td><?=$row->email?></td>
