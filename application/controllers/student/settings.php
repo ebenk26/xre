@@ -166,24 +166,28 @@ class settings extends CI_Controller {
     public function postReferral(){
         $voucher = $this->input->post('referral');
         $checkVoucherExist = $this->global_model->get_where('voucher', array('code' => $voucher));
-        if (!empty($checkVoucherExist)) {
-            
-            $this->global_model->update('student_bios', array('user_id' => $this->session->userdata('id')), array('referral_code' => $voucher ));
-            $this->global_model->create('voucher_user', array('voucher_id' => $checkVoucherExist[0]['id'], 'user_id' => $this->session->userdata('id')));
-            //BEGIN : set recent activities
-            $data = array(
-                        'user_id'       => $this->session->userdata('id'),
-                        'ip_address'    => $this->input->ip_address(),
-                        'activity'      => "Insert Referral code",
-                        'icon'          => "fa-edit",
-                        'label'         => "success",
-                        'created_at'    => date('Y-m-d H:i:s'),
-                    );
-            setRecentActivities($data);
-            //END : set recent activities
-            $this->session->set_flashdata('msg_success', 'Success insert referral code');
+        if (empty($voucher)) {
+            $this->session->set_flashdata('msg_failed', 'Please input Referral Code');
         }else{
-            $this->session->set_flashdata('msg_failed', 'Referral code not exist');
+            if (!empty($checkVoucherExist)) {
+                
+                $this->global_model->update('student_bios', array('user_id' => $this->session->userdata('id')), array('referral_code' => $voucher ));
+                $this->global_model->create('voucher_user', array('voucher_id' => $checkVoucherExist[0]['id'], 'user_id' => $this->session->userdata('id')));
+                //BEGIN : set recent activities
+                $data = array(
+                            'user_id'       => $this->session->userdata('id'),
+                            'ip_address'    => $this->input->ip_address(),
+                            'activity'      => "Insert Referral code",
+                            'icon'          => "fa-edit",
+                            'label'         => "success",
+                            'created_at'    => date('Y-m-d H:i:s'),
+                        );
+                setRecentActivities($data);
+                //END : set recent activities
+                $this->session->set_flashdata('msg_success', 'Success insert referral code');
+            }else{
+                $this->session->set_flashdata('msg_failed', 'Referral code not exist');
+            }
         }
         redirect(base_url().'student/settings');
     }

@@ -25,6 +25,7 @@ class Profile extends CI_Controller {
         $get_user_profile = $this->employer_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
+        $profile['detail'] = $get_user_profile;
         $profile_form['industries'] = $this->employer_model->get('industries', 'name', 'asc');
         $profile_form['countries'] = $this->employer_model->get('countries', 'name', 'asc');
         $profile_form['detail'] = $get_user_profile;
