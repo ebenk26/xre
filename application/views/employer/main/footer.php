@@ -443,6 +443,12 @@ $company_address = json_decode($user_profile['address']);?>
 <script>
     $(document).ready(function () {
 
+        $('a[href="#modal_edit_location"]').click(function () {
+            
+            initMap();
+            
+        });
+
         $('a[href="#tab_edit_contact_info"]').click(function () {
             <?php 
             if (!empty($company_address))
@@ -1627,7 +1633,29 @@ $company_address = json_decode($user_profile['address']);?>
 
 </script>
 
+<script>
+        <?php if (!empty($detail['address'])) { ?>
+            <?php foreach (json_decode($detail['address']) as $key => $value) { ?>
+                
+                var latLang<?=$key?> = {
+                    lat: <?php echo $value->building_latitude; ?>,
+                    lng: <?php echo $value->building_longitude; ?>
+                };
+                // Create a map object and specify the DOM element for display.
+                var map = new google.maps.Map(document.getElementById('gmapbg'), {
+                    center: latLang0,
+                    zoom: 15
+                });
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: latLang<?= $key; ?>
+                });
+            <?php } ?>
 
+        <?php }?>
+
+    </script>
+    
 </body>
 
 </html>

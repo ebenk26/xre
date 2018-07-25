@@ -436,7 +436,7 @@
                             if (!empty($addr)){ ?>
                             <!-- Visual Map  -->
                             <div class="portlet height-500 md md-grey-lighten-5">
-                                <p class="flex-center">Put a Map in here </p>
+                                <div id="gmapbg" class="s-google-map md-grey-lighten-5" style="height: 300px;"></div>
                             </div>
                             <ul class="list-unstyled mt-25 mt-ul-li-tb-10 mx-0">
                                 <?php foreach ($addr as $key => $value) {?>
