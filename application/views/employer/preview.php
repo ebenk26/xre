@@ -245,9 +245,8 @@
                             $full_address .= $location['postcode'] != ""?$location['postcode'].", ":"";
                             $full_address .= $location['state'] != ""?$location['state'].", ":"";
                             $full_address .= $location['country'] != ""?$location['country'].", ":"";
-                            $full_address = $full_address != ""?substr($full_address, 0, -2):"";
                         ?>
-                            <?php echo $full_address; ?>.
+                            <?php echo !empty($location['address']) ? $location['address'] : $full_address; ?>.
                     </p>
                     <div id="gmapbg" class="s-google-map md-grey-lighten-5" style="height: 300px;"></div>
                 </div>
