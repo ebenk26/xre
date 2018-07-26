@@ -652,7 +652,8 @@ class Student_Model extends CI_Model{
             $data[$key]['user'] = $user['overview']['name'];
             $data[$key]['percent'] = $user['percent'];
         }
-        return $data;
+        $result = !empty($data) ? $data : '';
+        return $result;
     }
 }
 

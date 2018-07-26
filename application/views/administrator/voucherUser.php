@@ -38,6 +38,7 @@
                         </div>
                     </div>
                     <div class="portlet-body">
+                        <?php if (!empty($voucher)): ?>
                         <table class="table table-striped table-bordered table-hover  order-column xremo_table">
                             <thead>
                                 <tr>
@@ -60,6 +61,7 @@
                                 <?php $i++; endforeach; ?>
                             </tbody>
                         </table>
+                        <?php endif; ?>
                     </div>
                 </div>
 

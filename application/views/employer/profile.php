@@ -425,7 +425,7 @@
                             <?php $addr = json_decode($detail['address']); 
                             if (!empty($addr)){ ?>
                             <div class="actions">
-                                <a data-toggle="modal" href="#modal_edit_location" class="btn  font-14 btn-md-indigo btn-outline">
+                                <a data-toggle="modal" href="#tab_edit_contact_info" class="btn  font-14 btn-md-indigo btn-outline">
                                     <i class="icon-pencil mr-5 "></i>Edit</a>
                             </div>
                             <?php } ?>
@@ -496,7 +496,7 @@
                                     <i class="icon-pointer font-grey-mint font-40 mb-30"></i>
                                     <h5 class="text-center font-weight-600 font-grey-mint font-20">No Info! </h5>
                                     <p class="text-center font-weight-400 font-grey-mint"> Click button below to add your company location in here! </p>
-                                    <a data-toggle="modal" href="#modal_edit_location" class="btn btn-md-indigo btn-sm mt-25">
+                                    <a data-toggle="modal" href="#tab_edit_contact_info" class="btn btn-md-indigo btn-sm mt-25">
                                         <i class="fa fa-plus fa-fw"></i>Add location</a>
                                 </div>
                             </div>
@@ -819,7 +819,7 @@
 </div>
 
 <!-- MODAL : Location Info -->
-<div class="modal fade" id="modal_edit_location" role="dialog" aria-hidden="true">
+<div class="modal fade" id="tab_edit_contact_info" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-header">
