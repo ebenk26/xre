@@ -629,7 +629,7 @@ class Student_Model extends CI_Model{
         $this->db->from('wishlist');
         $this->db->join('user_profiles', 'user_profiles.user_id = wishlist.company_id', 'left');
         $this->db->join('users', 'user_profiles.user_id = users.id','left');
-        $this->db->join('profile_uploads', 'profile_uploads.user_id = wishlist.student_id AND profile_uploads.type != "header_photo"','left');
+        $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type != "header_photo"','left');
         $this->db->where($where);
         $this->db->group_by('wishlist.id'); 
         $query = $this->db->get();
