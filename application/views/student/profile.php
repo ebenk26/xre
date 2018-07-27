@@ -1,7 +1,9 @@
-<?php   !empty($user_profile['header_photo']) ? $user_profile['header_photo'] = $user_profile['header_photo'] : $user_profile['header_photo'] = '33.jpg';
+<?php !empty($user_profile['header_photo']) ? $user_profile['header_photo'] = $user_profile['header_photo'] : $user_profile['header_photo'] = '33.jpg';
         !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
         $checkGetHeaderImage = get_headers(IMG_STUDENTS.$user_profile['header_photo']);
-        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) ?>
+        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) 
+    ?>
+
 <div class="page-content-wrapper">
     <div class="page-content">
 
@@ -407,6 +409,7 @@
 
                 <!-- Tab Content :Education -->
                 <div class="tab-pane <?=$tab_student =='tab_education'?'active':' '?>" id="tab_education">
+                    <?php if (!empty($user_profile['academics'])): ?>
                     <div class="portlet light  ">
                         <div class="portlet-title ">
                             <div class="caption ">
@@ -419,17 +422,13 @@
                                 </span>
                             </div>
                             <!-- Modal Add education -->
-                            <?php if (!empty($user_profile['academics'])){ ?>
                             <div class="actions">
                                 <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md-indigo px-60 btn-add-edu">
                                     <i class="fa fa-plus  "></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
                             </div>
-                            <?php } ?>
                         </div>
-                        <!-- IF NOT EMPTY -->
-                        <?php if (!empty($user_profile['academics'])): ?>
                         <div class="portlet-body my-0 py-0">
                             <ul class="list-group list-border py-0">
                                 <?php $i=1; foreach($user_profile['academics'] as $value){ ?>
@@ -585,32 +584,33 @@
                                 <?php $i++; }  ?>
                             </ul>
                         </div>
-                        <!-- # Empty State -->
-                        <?php else: ?>
-                        <div class="portlet-body">
-                            <div class="portlet md-grey-lighten-5 p-130 ">
-                                <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text ">
-                                        <?= !empty($language->site_empty_edu) ? $language->site_empty_edu: "It's empty ..." ?>
-                                    </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">
-                                        <?= !empty($language->site_click_addedu) ? $language->site_click_addedu : "Click button below to add education information." ?>
-                                    </h5>
-                                    <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
-                                            <i class="fa fa-plus  "></i>
-                                            <?= !empty($language->site_add_eduinfo) ? $language->site_add_eduinfo : "Add Education Info" ?>
-                                        </a>
-                                    </div>
-                                </div>
+                    </div>
+
+                    <!-- # Empty State -->
+                    <?php else: ?>
+                    <div class="portlet height-600 flex-center ">
+                        <div class="portlet-body text-center">
+                            <i class="icon-rocket font-60 md-blue-grey-lighten-3-text"></i>
+                            <h3 class=" text-center font-weight-600 font-28-md md-blue-grey-darken-2-text ">
+                                <?= !empty($language->site_empty_edu) ? $language->site_empty_edu: "Let's get started..." ?>
+                            </h3>
+                            <h5 class="md-blue-grey-text mt-30 text-center px-160-md font-17-md">
+                                <?= !empty($language->site_click_addedu) ? $language->site_click_addedu : "Start to create new info and summarize about your education." ?>
+                            </h5>
+                            <div class="width-500 center-block mt-40">
+                                <a href="<?php echo base_url();?>student/profile#modal_add_education" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-edu">
+                                    <i class="fa fa-plus  "></i>
+                                    <?= !empty($language->site_add_eduinfo) ? $language->site_add_eduinfo : "New Education Info" ?>
+                                </a>
                             </div>
                         </div>
-                        <?php endif ?>
                     </div>
+                    <?php endif ?>
                 </div>
 
                 <!-- Tab Content : Experience -->
                 <div class="tab-pane <?=$tab_student == 'tab_experience'?'active':''?>" id="tab_experience">
+                    <?php if (!empty($user_profile['experiences'])): ?>
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -622,17 +622,13 @@
                                     <?= !empty($language->site_list_work) ? $language->site_list_work : "List out your previous working experience." ?>
                                 </span>
                             </div>
-                            <?php if (!empty($user_profile['experiences'])){ ?>
                             <div class="actions">
                                 <a href="#modal_add_experience" data-toggle="modal" class="btn btn-md-indigo  btn-add-exp px-60">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
                             </div>
-                            <?php } ?>
                         </div>
-                        <!-- IF NOT EMPTY -->
-                        <?php if (!empty($user_profile['experiences'])): ?>
                         <div class="portlet-body my-0 py-0">
                             <ul class="list-group list-border py-0">
                                 <?php $i=1; foreach($user_profile['experiences'] as $value){  
@@ -883,34 +879,35 @@
                                 <?php $i++; } ?>
                             </ul>
                         </div>
-                        <!-- # Empty State -->
-                        <?php else: ?>
-                        <div class="portlet-body">
-                            <div class="portlet md-grey-lighten-5 p-130 ">
-                                <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text">
-                                        <?= !empty($language->site_empty_work) ? $language->site_empty_work : "It's empty ..." ?>
-                                    </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">
-                                        <?= !empty($language->site_click_addwork) ? $language->site_click_addwork : "Click button below to add experience information." ?>
-                                    </h5>
-                                    <div class="width-500 center-block mt-40">
-                                        <a href="<?php echo base_url();?>student/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
-                                            <i class="fa fa-plus  "></i>
-                                            <?= !empty($language->site_add_workexp) ? $language->site_add_workexp : "Add Experience Info" ?>
-                                        </a>
-                                    </div>
-                                </div>
+                    </div>
+
+                    <!-- # Empty State -->
+                    <?php else: ?>
+                    <div class="portlet height-600 flex-center ">
+                        <div class="portlet-body text-center">
+                            <i class="icon-rocket font-60 md-blue-grey-lighten-3-text"></i>
+                            <h3 class=" text-center font-weight-600 font-28-md md-blue-grey-darken-2-text ">
+                                <?= !empty($language->site_empty_work) ? $language->site_empty_work : "Let's get started... " ?>
+                            </h3>
+                            <h5 class="md-blue-grey-text mt-30 text-center px-160-md font-17-md">
+                                <?= !empty($language->site_click_addwork) ? $language->site_click_addwork : "Start to create new info and summarize about your working experience." ?>
+                            </h5>
+                            <div class="width-500 center-block mt-40">
+                                <a href="<?php echo base_url();?>student/profile#modal_add_experience" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block btn-add-exp">
+                                    <i class="fa fa-plus  "></i>
+                                    <?= !empty($language->site_add_workexp) ? $language->site_add_workexp : "New Experience Info" ?>
+                                </a>
                             </div>
                         </div>
-                        <?php endif ?>
                     </div>
+                    <?php endif ?>
                 </div>
 
                 <!-- Tab Content : Non Education -->
                 <div class="tab-pane <?=$tab_student == 'tab_non_education'?'active':' '?>" id="tab_non_education">
+                    <!-- If Not empty -->
+                    <?php if (!empty($user_profile['achievement'])): ?>
                     <div class="portlet light ">
-
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-notebook"></i>
@@ -921,17 +918,14 @@
                                     <?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "List out any event / activity / contest you have participate. " ?>
                                 </span>
                             </div>
-                            <?php if (!empty($user_profile['achievement'])){ ?>
                             <div class="actions">
                                 <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo px-60 ">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
                             </div>
-                            <?php } ?>
                         </div>
-                        <!-- If Not empty -->
-                        <?php if (!empty($user_profile['achievement'])): ?>
+
                         <div class="portlet-body my-0 py-0">
                             <ul class="list-group list-border py-0">
                                 <?php foreach($user_profile['achievement'] as $value){ ?>
@@ -1083,32 +1077,32 @@
                                 <?php } ?>
                             </ul>
                         </div>
-                        <!-- # Empty State -->
-                        <?php else: ?>
-                        <div class="portlet-body">
-                            <div class="portlet md-grey-lighten-5 p-130 ">
-                                <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text">
-                                        <?= !empty($language->site_empty_nonedu) ? $language->site_empty_nonedu : " It's empty ..." ?>
-                                    </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">
-                                        <?= !empty($language->site_click_addnonedu) ? $language->site_click_addnonedu : "Click button below to add non education information." ?>
-                                    </h5>
-                                    <div class="width-500 center-block mt-40">
-                                        <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
-                                            <i class="fa fa-plus  "></i>
-                                            <?= !empty($language->site_add_noneduinfo) ? $language->site_add_noneduinfo : "Add Non Education Info" ?>
-                                        </a>
-                                    </div>
-                                </div>
+                    </div>
+                    <!-- # Empty State -->
+                    <?php else: ?>
+                    <div class="portlet height-600 flex-center ">
+                        <div class="portlet-body text-center">
+                            <i class="icon-rocket font-60 md-blue-grey-lighten-3-text"></i>
+                            <h3 class=" text-center font-weight-600 font-28-md md-blue-grey-darken-2-text ">
+                                <?= !empty($language->site_empty_nonedu) ? $language->site_empty_nonedu : "Let's get started... " ?>
+                            </h3>
+                            <h5 class="md-blue-grey-text mt-30 text-center px-160-md font-17-md">
+                                <?= !empty($language->site_click_addnonedu) ? $language->site_click_addnonedu : "Start to create new non education info by summarize any activity / accomplishment / event / achievement you have participated related to your future career." ?>
+                            </h5>
+                            <div class="width-500 center-block mt-40">
+                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
+                                    <i class="fa fa-plus  "></i>
+                                    <?= !empty($language->site_add_noneduinfo) ? $language->site_add_noneduinfo : "New Achievements" ?>
+                                </a>
                             </div>
                         </div>
-                        <?php endif ?>
                     </div>
+                    <?php endif ?>
                 </div>
 
                 <!-- Tab Content : Project -->
                 <div class="tab-pane <?=$tab_student == 'tab_project'?'active':' '?>" id='tab_project'>
+                    <?php if (!empty($user_profile['projects'])): ?>
                     <div class="portlet light ">
                         <div class="portlet-title">
                             <div class="caption ">
@@ -1120,16 +1114,14 @@
                                     <?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out your acquire skill based by project you have participate." ?>
                                 </span>
                             </div>
-                            <?php if (!empty($user_profile['projects'])){ ?>
                             <div class="actions">
                                 <a href="#modal_add_project" data-toggle="modal" class="btn btn-md-indigo  px-60">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
                             </div>
-                            <?php } ?>
                         </div>
-                        <?php if (!empty($user_profile['projects'])): ?>
+
                         <div class="portlet-body my-0 py-0">
                             <ul class="list-group list-border py-0">
                                 <?php $i=1; foreach($user_profile['projects'] as $value){?>
@@ -1304,27 +1296,26 @@
                                 <?php $i++;} ?>
                             </ul>
                         </div>
-                        <?php else: ?>
-                        <div class="portlet-body">
-                            <div class="portlet md-grey-lighten-5 p-130 ">
-                                <div class="portlet-body">
-                                    <h3 class="font-weight-500 text-center md-indigo-text">
-                                        <?= !empty($language->site_empty_skill) ? $language->site_empty_skill : "It's empty ..." ?>
-                                    </h3>
-                                    <h5 class="font-grey-cascade mt-30 text-center">
-                                        <?= !empty($language->site_click_addskill) ? $language->site_click_addskill : "Click button below to add skill information based project you involve." ?>
-                                    </h5>
-                                    <div class="width-500 center-block mt-40">
-                                        <a href="#modal_add_project" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
-                                            <i class="fa fa-plus  "></i>
-                                            <?= !empty($language->site_add_skill) ? $language->site_add_skill : "Add Skill Info" ?>
-                                        </a>
-                                    </div>
-                                </div>
+                    </div>
+                    <?php else: ?>
+                    <div class="portlet height-600 flex-center ">
+                        <div class="portlet-body text-center">
+                            <i class="icon-rocket font-60 md-blue-grey-lighten-3-text"></i>
+                            <h3 class=" text-center font-weight-600 font-28-md md-blue-grey-darken-2-text ">
+                                <?= !empty($language->site_empty_skill) ? $language->site_empty_skill : "Let's get started..." ?>
+                            </h3>
+                            <h5 class="md-blue-grey-text mt-30 text-center px-160 font-17-md">
+                                <?= !empty($language->site_click_addskill) ? $language->site_click_addskill : "Start to add your skill info on project you have involved either in academics nor work." ?>
+                            </h5>
+                            <div class="width-500 center-block mt-40">
+                                <a href="#modal_add_project" data-toggle="modal" class="btn btn-md btn-md-indigo btn-block">
+                                    <i class="fa fa-plus  "></i>
+                                    <?= !empty($language->site_add_skill) ? $language->site_add_skill : "New Project" ?>
+                                </a>
                             </div>
                         </div>
-                        <?php endif ?>
                     </div>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
@@ -1334,10 +1325,10 @@
         <div class="modal fade in" id="modal_edit_profile" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg ">
                 <div class="modal-content ">
-                    <div class="portlet box mb-15 pb-0">
-                        <div class="portlet-title tabbable-line md-darkblue tab-tw-md-orange ">
+                    <div class="portlet box mb-15 pb-0 ">
+                        <div class="portlet-title tabbable-line md-darkblue tab-tw-md-orange px-30 ">
                             <div class="caption">
-                                <span class="caption-subject font-16">
+                                <span class="caption-subject  text-uppercase">
                                     <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile" ?>
                                 </span>
                             </div>
@@ -1371,7 +1362,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <form id="profile" action="<?php echo base_url(); ?>student/profile/post" method="POST" class="form" enctype="multipart/form-data">
                         <div class="modal-body ">
                             <div class="tab-content">
@@ -1592,10 +1582,10 @@
 
                                 </div>
 
-                                <!-- SECTION : Language Profieciency -->
+                                <!-- SECTION : Language Proficiency -->
                                 <div class="tab-pane fade-in-up " id="tab_language">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
-                                        <?= !empty($language->site_lang_proficiency) ? $language->site_lang_proficiency : "Language Profieciency" ?>
+                                    <h4 class="font-18 letter-space-xs form-section  md-indigo-text text-uppercase font-weight-600 ">
+                                        <?= !empty($language->site_lang_proficiency) ? $language->site_lang_proficiency : "Language Proficiency" ?>
                                     </h4>
                                     <div class="form-group mx-0">
                                         <div class="mt-repeater">
@@ -1626,7 +1616,7 @@
                                                             <?= !empty($language->written) ? $language->written : "Written" ?>
                                                         </label>
                                                         <select class="form-control" name="written">
-                                                            <option value="" disabled>
+                                                            <option disabled selected>
                                                                 <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
                                                             </option>
                                                             <option value="Beginner" <?php echo $user_language_value[ 'written']=='Beginner' ? 'selected' : '' ?>>
@@ -1645,7 +1635,7 @@
                                                             <?= !empty($language->spoken) ? $language->spoken : "Spoken" ?>
                                                         </label>
                                                         <select class="form-control" name="spoken">
-                                                            <option value="" disabled>
+                                                            <option disabled selected>
                                                                 <?= !empty($language->site_select_level) ? $language->site_select_level : "Select Level" ?>
                                                             </option>
                                                             <option value="Beginner" <?php echo $user_language_value[ 'spoken']=='Beginner' ? 'selected' : '' ?>>
@@ -1659,7 +1649,7 @@
                                                             </option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-md-2 vertical-bottom pt-55">
+                                                    <div class="col-md-2 vertical-bottom mt-45">
                                                         <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm  ">
                                                             <i class="fa fa-close"></i>
                                                         </a>
@@ -1727,8 +1717,8 @@
                                                         </select>
                                                     </div>
                                                     <!-- Button Remove -->
-                                                    <div class="col-md-2 pt-55">
-                                                        <a href="javascript:;" data-repeater-delete class="btn btn-md-red btn-sm  letter-space-sm  text-uppercase font-weight-700">
+                                                    <div class="col-md-2 pt-45">
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-md-red btn-sm ">
                                                             <i class="fa fa-close mr-5"></i>
                                                             <?= !empty($language->site_remove) ? $language->site_remove : "Remove" ?>
                                                         </a>
@@ -1812,7 +1802,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-1 pt-100">
-                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger">
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-md-red btn-icon-only">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </div>
@@ -1855,7 +1845,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-1 pt-100">
-                                                        <a href="javascript:;" data-repeater-delete class="btn btn-danger btn-sm ">
+                                                        <a href="javascript:;" data-repeater-delete class="btn btn-md-red btn-icon-only ">
                                                             <i class="fa fa-close"></i>
                                                         </a>
                                                     </div>
@@ -1865,9 +1855,9 @@
                                             </div>
                                             <hr>
                                             <div class="mx-100">
-                                                <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add btn-block ">
+                                                <a href="javascript:;" data-repeater-create class="btn btn-md-blue mt-repeater-add btn-block ">
                                                     <i class="fa fa-plus"></i>
-                                                    <?= !empty($language->site_add_new) ? $language->site_add_new : "Add New" ?>
+                                                    <?= !empty($language->site_add_new) ? $language->site_add_new : "New Referer" ?>
                                                 </a>
                                             </div>
                                         </div>
@@ -1877,9 +1867,6 @@
 
                                 <!-- SECTION : Profile Picture -->
                                 <div class="tab-pane fade-in-up " id="tab_picture">
-                                    <h4 class="form-section font-weight-600 text-uppercase md-indigo-text">
-                                        <?= !empty($language->site_profile_image) ? $language->site_profile_image : "Profile Image" ?>
-                                    </h4>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group mx-0">
@@ -2043,7 +2030,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer form-actions px-30 md-grey-lighten-5">
+                        <div class="modal-footer">
                             <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
