@@ -31,10 +31,11 @@
                 <?php endif ?>
                 <?php foreach ($wishlist as $key => $value): ?>
                 <?php if (!empty($value['company_id']) && $value['student_id'] == $this->session->userdata('id')): ?>
+                <?php $checkPhotoProfile = get_headers(IMG_EMPLOYERS.$value['profile_photo']); ?>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     <div class="mt-card-item ">
                         <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
-                            <img src="<?= file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block py-0">
+                            <img src="<?= $checkPhotoProfile[0] == 'HTTP/1.1 200 OK' ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block py-0">
                             <div class="mt-overlay mt-top">
                                 <ul class="mt-info">
                                     <li>
@@ -58,10 +59,11 @@
                     </div>
                 </div>
                 <?php else: ?>
+                    <?php $checkPhotoProfile = get_headers(IMG_EMPLOYERS.$value['profile_photo']); ?>
                 <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
                     <div class="mt-card-item ">
                         <div class="mt-card-avatar mt-overlay-1 mt-scroll-down">
-                            <img src="<?= file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block ">
+                            <img src="<?= $checkPhotoProfile[0] == 'HTTP/1.1 200 OK' ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png' ?>" class="img-fluid height-200 width-auto center-block ">
                             <div class="mt-overlay mt-top">
                                 <!-- Only had Remove Buton -->
                                 <ul class="mt-info">
