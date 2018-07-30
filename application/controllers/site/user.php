@@ -8,7 +8,6 @@ class User extends CI_Controller {
         $countryCheck = $this->session->userdata('country');
         $this->load->model('user_model');
         $this->load->model('global_model');
-        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
         //if(empty($countryCheck)){
         //    redirect(base_url());
         //}
@@ -19,6 +18,7 @@ class User extends CI_Controller {
         if ($this->session->userdata('id')) {
             redirect(base_url());
         }
+        $this->global_model->create('visit', array('created_at'=>date('Y-m-d H:i:s'),'ip_address'=>$this->input->ip_address(), 'country'=>$_COOKIE['country'],'page'=>'login'));
         $header['page_title'] = 'Login';
         $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/login', $header);
@@ -28,6 +28,7 @@ class User extends CI_Controller {
         if ($this->session->userdata('id')) {
             redirect(base_url());
         }
+        $this->global_model->create('visit', array('created_at'=>date('Y-m-d H:i:s'),'ip_address'=>$this->input->ip_address(), 'country'=>$_COOKIE['country'],'page'=>'signup'));
         $header['page_title'] = 'Sign Up';
         $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $this->load->view('site/signup', $header);

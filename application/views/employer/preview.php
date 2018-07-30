@@ -8,9 +8,13 @@
     if (!empty($job->location)) {
         $location = json_decode($job->location, true);
         $location_map = json_decode($job->location);
+    }else{
+        $location = json_decode($job->company_address, true);
+        $location_map = json_decode($job->company_address);
     }
 
     $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
+
 ?>
 
 <!DOCTYPE html>

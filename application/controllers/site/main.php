@@ -18,6 +18,9 @@ class Main extends CI_Controller {
         $header['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $content['site'] = $this->global_model->get_where('site', array('slug'=>$page, 'locale'=> $_COOKIE['locale']));
         $header['page_title']   = $content['site'][0]['title'];
+      
+        $this->global_model->create('visit', array('created_at'=>date('Y-m-d H:i:s'),'ip_address'=>$this->input->ip_address(), 'country'=>$_COOKIE['country'],'page'=>$page));
+            
         $this->load->view('main/header', $header);
         $this->load->view('site/main', $content);
         $this->load->view('main/footer', $header);

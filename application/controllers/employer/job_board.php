@@ -229,6 +229,12 @@ class Job_Board extends CI_Controller {
         $job_post['applied'] = $applied;
 
         
+        $this->db->set('number_of_seen', 'number_of_seen+1', FALSE);
+        $this->db->set('last_seen_by', $this->session->userdata('id'));
+        $this->db->set('last_seen_at', date('Y-m-d H:i:s'));
+        $this->db->where('id', $id);
+        $this->db->update('job_positions');
+                
         
         $job_post['job'] = $this->employer_model->get_job_detail($id);		
         $user_id = $job_post['job']->user_id;

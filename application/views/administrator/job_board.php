@@ -122,6 +122,7 @@
                                     <th> Status </th>
                                     <th> Created At </th>
                                     <th> Expired At </th>
+                                    <th> Number of Seen </th>
                                     <!--<th class="col-md-1"> Candidate </th>-->
                                     <th> Actions </th>
                                 </tr>
@@ -143,6 +144,7 @@
                                         </td>
                                         <td class=""><?php echo date('d M Y', strtotime($row->created_at)); ?> </td>
                                         <td class=""><?php echo date('d M Y', strtotime($row->expiry_date)); ?> </td>
+                                        <td class=""><?php echo $row->number_of_seen; ?> </td>
                                         <!--<td class="text-center">
                                             <i class="icon-user"></i> 50
                                         </td>-->
