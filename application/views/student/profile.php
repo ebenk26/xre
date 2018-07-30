@@ -414,11 +414,11 @@
                         <div class="portlet-title ">
                             <div class="caption ">
                                 <i class="icon-graduation font-17"></i>
-                                <span class="caption-subject font-weight-500 roboto-font ">
+                                <span class="caption-subject font-weight-600 ">
                                     <?= !empty($language->site_education) ? $language->site_education : "Education" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_edu) ? $language->site_list_edu : "List out your education information." ?>
+                                    <?= !empty($language->site_list_edu) ? $language->site_list_edu : "List out and summarize your education info." ?>
                                 </span>
                             </div>
                             <!-- Modal Add education -->
@@ -615,11 +615,11 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-briefcase"></i>
-                                <span class="caption-subject font-weight-500  roboto-font ">
+                                <span class="caption-subject font-weight-600 ">
                                     <?= !empty($language->site_experience) ? $language->site_experience : "Experience" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_work) ? $language->site_list_work : "List out your previous working experience." ?>
+                                    <?= !empty($language->site_list_work) ? $language->site_list_work : "List out and summarize your working experience." ?>
                                 </span>
                             </div>
                             <div class="actions">
@@ -911,15 +911,15 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-notebook"></i>
-                                <span class="caption-subject font-weight-500 roboto-font ">
+                                <span class="caption-subject font-weight-600  ">
                                     <?= !empty($language->site_non_education) ? $language->site_non_education : "Non Education" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "List out any event / activity / contest you have participate. " ?>
+                                    <?= !empty($language->site_list_nonedu) ? $language->site_list_nonedu : "List out and summarize any event / activity / contest / achievements you have participate. " ?>
                                 </span>
                             </div>
                             <div class="actions">
-                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo px-60 ">
+                                <a href="#modal_add_achievements" data-toggle="modal" class="btn btn-md-indigo ">
                                     <i class="fa fa-plus"></i>
                                     <?= !empty($language->add) ? $language->add : "Add" ?>
                                 </a>
@@ -1107,11 +1107,11 @@
                         <div class="portlet-title">
                             <div class="caption ">
                                 <i class="icon-badge"></i>
-                                <span class="caption-subject font-weight-500  roboto-font ">
+                                <span class="caption-subject font-weight-600">
                                     <?= !empty($language->site_skill) ? $language->site_skill : "Skills" ?>
                                 </span>
                                 <span class="caption-helper">
-                                    <?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out your acquire skill based by project you have participate." ?>
+                                    <?= !empty($language->site_list_skill) ? $language->site_list_skill : "List out and summarize your acquire skill based by project you have participate." ?>
                                 </span>
                             </div>
                             <div class="actions">
@@ -1324,11 +1324,11 @@
         <!-- Modal : Edit Profile -->
         <div class="modal fade in" id="modal_edit_profile" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg ">
-                <div class="modal-content ">
+                <div class="modal-content fade-in-up ">
                     <div class="portlet box mb-15 pb-0 ">
                         <div class="portlet-title tabbable-line md-darkblue tab-tw-md-orange px-30 ">
                             <div class="caption">
-                                <span class="caption-subject  text-uppercase">
+                                <span class="caption-subject">
                                     <?= !empty($language->site_update_profile) ? $language->site_update_profile : "Update Profile" ?>
                                 </span>
                             </div>
@@ -1924,13 +1924,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-actions modal-footer ">
+                        <div class="modal-footer ">
                             <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs pull-right">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -1938,100 +1937,97 @@
         <!-- Modal : Add Education -->
         <div class="modal fade in" id="modal_add_education" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg ">
-                <div class="modal-content portlet light portlet-fit fade-in-up">
-                    <div class="modal-header portlet-title">
-                        <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">
-                                <?= !empty($language->site_add_edu) ? $language->site_add_edu : "Add Education" ?>
-                            </span>
-                        </div>
-                        <div class="actions py-20">
-                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                        </div>
-
+                <div class="modal-content fade-in-up">
+                    <div class="modal-header ">
+                        <h4 class="modal-title">
+                            <?= !empty($language->site_add_edu) ? $language->site_add_edu : "Add Education" ?>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                        </h4>
                     </div>
-                    <form action="<?php echo base_url();?>student/profile/add_education" method="POST" class="form form-horizontal">
+                    <form action="<?php echo base_url();?>student/profile/add_education" method="POST" class="form">
                         <input type="hidden" name="academic_id"></input>
-                        <div class="modal-body portlet-body ">
+                        <div class="modal-body fade-in-up">
+                            <!-- # Attribute : Institution Name / Time Period -->
+                            <div class="row">
+                                <!-- Attribute : Institution Name -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->institution) ? $language->institution : "Institution Name" ?>
+                                        </label>
+                                        <input type="text" class="form-control" name="university_name" placeholder="The National University of Malaysia" required>
+                                        <span class="help-block font-15">University / School / Institute Name</span>
 
-                            <!-- Institution Name -->
-                            <div class="form-group ">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->institution) ? $language->institution : "Institution Name" ?>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control " placeholder="University of Malaya" name="university_name" required>
-                                    <!-- <span class="help-block"> A block of help text.</span> -->
+                                    </div>
                                 </div>
+                                <!-- Attribute : Time Period  -->
+                                <div class="col-md-6">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                        </label>
 
-                            </div>
-
-                            <!-- Qualifications Level -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->qualification) ? $language->qualification : "Qualification Level" ?>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" required>
-                                    <!-- <span class="help-block"> A block of help text.</span> -->
-                                </div>
-                            </div>
-
-                            <!-- Field Of Study-->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->site_studyfield) ? $language->site_studyfield : "Field of Study" ?>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control " placeholder="Software Engineering" name="field_of_study" required>
-                                </div>
-                            </div>
-
-                            <!-- TIme Period  -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
-                                </label>
-                                <div class="col-md-9  ">
-                                    <div class="m-grid ">
-                                        <div class="m-grid-col m-grid-col-xs-6">
-                                            <input class="form-control form-control-inline date-picker date-picker-start " size="16" type="text" placeholder="From year" name="from" required>
-                                            <!-- <span class="help-block"> Select date </span> -->
-                                        </div>
-                                        <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                            <span class="help-block">
-                                                <?= !empty($language->site_to) ? $language->site_to : "to" ?>
-                                            </span>
-                                        </div>
-                                        <div class="m-grid-col m-grid-col-xs-6">
-                                            <input class="form-control form-control-inline date-picker date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until" required>
-                                            <span class="help-block md-checkbox has-warning">
-                                                <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date">
-                                                <label for="add_education">
-                                                    <span></span>
-                                                    <span class="check"></span>
-                                                    <span class="box"></span>
-                                                    <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
-                                                </label>
-                                            </span>
+                                        <div class="m-grid ">
+                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                <input class="form-control form-control-inline date-picker date-picker-start " size="16" type="text" placeholder="From year" name="from" required>
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                <span class="help-block">
+                                                    <?= !empty($language->site_to) ? $language->site_to : "to" ?>
+                                                </span>
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                <input class="form-control form-control-inline date-picker date-picker-end input-date-picker-end" size="16" type="text" placeholder="End Year" name="until" required>
+                                                <span class="help-block md-checkbox has-warning">
+                                                    <input type="checkbox" id="add_education" class="md-check md-check-edu-add" name="current_date">
+                                                    <label for="add_education">
+                                                        <span></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span>
+                                                        <?= !empty($language->site_study_checkbox) ? $language->site_study_checkbox : "Currently?" ?>
+                                                    </label>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-
+                                </div>
+                            </div>
+                            <!-- # Attribute : Qualifications Level / Field Of Study -->
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <!-- Attribute : Qualifications Level -->
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->qualification) ? $language->qualification : "Qualification Level" ?>
+                                        </label>
+                                        <input type="text" class="form-control " placeholder="Bachelor&#39;s Degree" name="qualification_level" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <!--Attribute : Field Of Study-->
+                                    <div class="form-group">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_studyfield) ? $language->site_studyfield : "Field of Study" ?>
+                                        </label>
+                                        <input type="text" class="form-control " name="field_of_study" placeholder="Economy" required>
+                                        <span class="help-block"> Course Name / Module Class / Stream Class</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Description -->
+
+
+
+                            <!-- # Attribute : Description -->
                             <div class="form-group">
-                                <label class="control-label col-md-3">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                     <?= !empty($language->description) ? $language->description : "Description" ?>
                                 </label>
-                                <div class="col-md-9">
-                                    <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place." name="academics_description"></textarea>
-                                </div>
+                                <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Summarize your experience studying in here." name="academics_description"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                            <button type="submit" class="btn btn-md-indigo  width-200">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
                         </div>
@@ -2043,29 +2039,25 @@
         <!-- Modal : Add Experience  -->
         <div class="modal fade in" id="modal_add_experience" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content portlet light portlet-fit fade-in-up">
+                <div class="modal-content fade-in-up">
                     <!-- Modal : Header -->
-                    <div class="modal-header portlet-title">
-                        <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">
-                                <?= !empty($language->site_add_work) ? $language->site_add_work : "Add Experience" ?>
-                            </span>
-                        </div>
-                        <div class="actions py-20">
-                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                        </div>
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <?= !empty($language->site_add_work) ? $language->site_add_work : "Add Experience" ?>
+                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                        </h4>
                     </div>
-                    <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form form-horizontal">
-                        <div class="modal-body portlet-body ">
+                    <form action="<?php echo base_url()?>student/profile/add_experience" method="POST" class="form">
+                        <div class="modal-body fade-in-up">
                             <!-- # Attribute : Job Post & Time Period -->
                             <div class="row ">
                                 <!-- Attribute : Job Position Title -->
                                 <div class="col-md-6">
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">
+                                    <div class="form-group">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                             <?= !empty($language->site_job_title) ? $language->site_job_title : "Job Position Title" ?>
                                         </label>
-                                        <input type="text" class="form-control " placeholder="Internship In Marketing Department" name="title" required>
+                                        <input type="text" class="form-control" placeholder="Internship In Marketing Department" name="title" required>
                                         <span class="help-block small">
                                             <?= !empty($language->site_add_current_career) ? $language->site_add_current_career : "Your previous job position title" ?>
                                         </span>
@@ -2073,8 +2065,8 @@
                                 </div>
                                 <!-- Attribute : Time Period -->
                                 <div class="col-md-6">
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">
+                                    <div class="form-group ">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                             <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
                                         </label>
                                         <div class="m-grid ">
@@ -2102,12 +2094,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- # Attibute : Company Name / Job Employement Type / Industry -->
+                            <!-- # Attribute : Company Name / Job Employement Type / Industry -->
                             <div class="row ">
                                 <!-- Attribute : Company Name -->
                                 <div class="col-md-6">
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">
+                                    <div class="form-group ">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                             <?= !empty($language->site_company_name) ? $language->site_company_name : "Company Name" ?>
                                         </label>
                                         <input type="text" class="form-control " name="company_name" placeholder="Company #1 Sdn Bhd" required>
@@ -2116,42 +2108,39 @@
 
                                 <!-- # Attribute : Job Employement Type  / Industry -->
                                 <div class="col-md-6">
-                                    <div class="row">
+                                    <div class="row ">
                                         <!-- Attribute : Job Employement Type -->
                                         <div class="col-md-6">
-                                            <div class="form-group mx-0 mb-0">
-                                                <label class="control-label ">
+                                            <div class="form-group mx-0 ">
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                                     <?= !empty($language->site_employment_type) ? $language->site_employment_type : "Employment Type" ?>
                                                 </label>
-                                                <select class="form-control" name="employment_type">
+                                                <select class="form-control bs-select" name="employment_type" title="Select employment">
                                                     <?php foreach ($employment_types as $key => $value) {?>
                                                     <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>">
                                                         <?php echo !empty($value['name']) ? $value['name'] : ''?>
                                                     </option>
                                                     <?php } ?>
                                                 </select>
-                                                <span class="help-block small">
+                                                <span class="help-inline">
                                                     <?= !empty($language->site_prev_employment) ? $language->site_prev_employment : "Previous employement type" ?>
                                                 </span>
                                             </div>
                                         </div>
                                         <!-- Attribute : Industry -->
-                                        <div class="col-md-6">
-                                            <div class="form-group mx-0 mb-0">
-                                                <label class="control-label ">
+                                        <div class="col-md-6 ">
+                                            <div class="form-group mx-0">
+                                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
                                                     <?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry" ?>
                                                 </label>
-                                                <select class="form-control   " name="industry">
-                                                    <option value="" selected disabled>
-                                                        <?= !empty($language->site_company_industry) ? $language->site_company_industry : "Company Industry"?>
-                                                    </option>
+                                                <select class="form-control bs-select" name="industry" title="Select Industry">
                                                     <?php foreach ($industries as $key => $value) {?>
                                                     <option value="<?php echo !empty($value['id']) ? $value['id'] : ''?>">
                                                         <?php echo !empty($value['name']) ? $value['name'] : ''?>
                                                     </option>
                                                     <?php } ?>
                                                 </select>
-                                                <span class="help-block small">
+                                                <span class="help-inline">
                                                     <?= !empty($language->site_add_company_industry) ? $language->site_add_company_industry : "Add your company industries" ?>
                                                 </span>
                                             </div>
@@ -2159,33 +2148,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--# Attribute : Description / Skill Earned -->
-                            <div class="row ">
-                                <!--# Attribute : Description -->
-                                <div class="col-md-6">
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">
-                                            <?= !empty($language->description) ? $language->description : "Description" ?>
-                                        </label>
-                                        <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your working place." name="description"></textarea>
-                                    </div>
-                                </div>
-                                <!-- Skill Earned -->
-                                <div class="col-md-6">
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">
-                                            <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
-                                        </label>
-                                        <input type="text" class="form-control input-xlarge" value="Time Management, Banking , Design  " data-role="tagsinput" name="skills">
-                                        <span class="help-block small">
-                                            <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
-                                        </span>
-                                    </div>
-                                </div>
+                            <!--# Attribute : Description -->
+                            <div class="form-group ">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                    <?= !empty($language->description) ? $language->description : "Description" ?>
+                                </label>
+                                <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Summarize your working experience." name="description"></textarea>
                             </div>
+
+                            <!-- Skill Earned -->
+
+                            <div class="form-group mx-0 ">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                    <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
+                                </label>
+                                <input type="text" class="form-control" value="Time Management,Banking,Design,Wealth Management" data-role="tagsinput" name="skills">
+                                <span class="help-inline">
+                                    <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
+                                </span>
+                            </div>
+
                         </div>
-                        <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-md-indigo width-200">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
                         </div>
@@ -2197,80 +2182,80 @@
         <!-- Modal : Add Achievements  -->
         <div class="modal fade in" id="modal_add_achievements" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content portlet light portlet-fit fade-in-up">
-                    <div class="modal-header portlet-title ">
-                        <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">
-                                <?= !empty($language->site_add_nonedu) ? $language->site_add_nonedu : " Add Non Education" ?>
-                            </span>
-                        </div>
-                        <div class="actions py-20">
-                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                        </div>
+                <div class="modal-content  fade-in-up">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+                            <?= !empty($language->site_add_nonedu) ? $language->site_add_nonedu : " Add Non Education" ?>
+                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                        </h4>
                     </div>
                     <form method="POST" id="achievement" class="form " action="<?php echo base_url()?>student/profile/add_achievement">
-                        <div class="modal-body portlet-body form-horizontal ">
-                            <!-- Institution Name -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016" required>
-                                    <span class="help-block small">
-                                        <?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?>
-                                    </span>
+                        <div class="modal-body fade-in-up">
+                            <!-- # Attribute : Name / Time Period -->
+                            <div class="row">
+                                <!-- Attribute: Name -->
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_name) ? $language->site_name : "Name" ?>
+                                        </label>
+                                        <input type="text" class="form-control " id="achievement_name" name="achievement_name" placeholder="Brain Challenge 2016" required>
+                                        <span class="help-inline">
+                                            <?= !empty($language->site_event) ? $language->site_event : "Event / Competition / Contest / Tournament you just joined" ?>
+                                        </span>
+
+                                    </div>
                                 </div>
+                                <!-- Attribute : Time Period  -->
+                                <div class="col-md-6 col-sm-12 col-xs-12">
+                                    <div class="form-group mx-0">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                            <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
+                                        </label>
 
-                            </div>
-
-                            <!-- Description -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->description) ? $language->description : "Description" ?>
-                                </label>
-                                <div class="col-md-9">
-                                    <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme no-resize" rows="4" placeholder="Describe about your studying place and what subject you had study." data-autosize-on="true"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- TIme Period  -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">
-                                    <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
-                                </label>
-                                <div class="col-md-9  ">
-                                    <div class="m-grid ">
-                                        <div class="m-grid-col m-grid-col-xs-6">
-                                            <input id="achievement_time_from" class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
-                                            <!-- <span class="help-block"> Select date </span> -->
-                                        </div>
-                                        <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
-                                            <span class="help-block"> to </span>
-                                        </div>
-                                        <div class="m-grid-col m-grid-col-xs-6">
-                                            <input id="achievement_time_until" class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
-                                            <!-- <span class="help-block"> Select date </span> -->
+                                        <div class="m-grid ">
+                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                <input id="achievement_time_from" class="form-control form-control-inline date-picker-start" size="16" type="text" value="" placeholder="From year" name="start_date" required>
+                                                <!-- <span class="help-block"> Select date </span> -->
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-xs-1 m-grid-col-center">
+                                                <span class="help-block"> to </span>
+                                            </div>
+                                            <div class="m-grid-col m-grid-col-xs-6">
+                                                <input id="achievement_time_until" class="form-control form-control-inline date-picker-end" size="16" type="text" value="" placeholder="Until year" name="end_date" required>
+                                                <!-- <span class="help-block"> Select date </span> -->
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
-                            <!-- Tag -->
-                            <div class="form-group">
-                                <label class="control-label col-md-3">Tag</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control input-large" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" style="display: none;" name="tag">
-                                    <span class="help-block small">
-                                        <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
-                                    </span>
-                                </div>
+
+                            <!--# Attribute : Description -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                    <?= !empty($language->description) ? $language->description : "Description" ?>
+                                </label>
+                                <textarea id="achievement_description" name="achievement_description" class="form-control autosizeme no-resize" rows="4" placeholder="Summarize your experience involvement in this event/achievement/contest and etc." data-autosize-on="true"></textarea>
+                            </div>
+
+
+                            <!-- # Attribute : Skill Earned -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+                                    <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
+                                </label>
+
+                                <input type="text" class="form-control input-large" value="Communication,Leadership Protegee,Teamwork,Problem Solving" data-role="tagsinput" style="display: none;" name="tag">
+                                <span class="help-inline">
+                                    <?= !empty($language->site_add_tag) ? $language->site_add_tag : "Press \"Tab\" to add tag" ?>
+                                </span>
+
                             </div>
                         </div>
 
-                        <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-md-indigo  width-200">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
                         </div>
@@ -2283,39 +2268,37 @@
         <!-- Modal : Add Project -->
         <div class="modal fade in" id="modal_add_project" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <div class="modal-content portlet light portlet-fit fade-in-up ">
-                    <div class="modal-header portlet-title">
-                        <div class="caption">
-                            <span class="caption-subject text-capitalize font-weight-500">
-                                <?= !empty($language->site_new_project) ? $language->site_new_project : "New Project" ?>
-                            </span>
-                            <span class="caption-helper">
-                                <?= !empty($language->site_skill_info) ? $language->site_skill_info : "add about your skill info based by project you involved" ?>
-                            </span>
-                        </div>
-                        <div class="actions py-20">
-                            <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
-                        </div>
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h4 class="modal-title">
+
+                            <?= !empty($language->site_new_project) ? $language->site_new_project : "Add Project" ?>
+                                <button type="button" class="close " data-dismiss="modal" aria-hidden="true"></button>
+                        </h4>
 
                     </div>
-                    <form class="form form-horizontal" action="<?php echo base_url();?>student/profile/add_project" method="POST">
-                        <div class="modal-body portlet-body ">
+                    <form class="form" action="<?php echo base_url();?>student/profile/add_project" method="POST">
+                        <div class="modal-body fade-in-up">
 
-                            <!-- Project Title & Time Period -->
+                            <!-- # Attribute : Project Title & Time Period -->
                             <div class="row ">
+                            <!-- Attribute : Project Title -->
                                 <div class="col-md-6">
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+
                                             <?= !empty($language->site_project_name) ? $language->site_project_name : "Project Name" ?>
                                         </label>
                                         <input type="text" class="form-control " placeholder="Internship in IT Dept" name="project_name" required>
                                         <!-- <span class="help-block small"> Add your current status career info </span> -->
                                     </div>
                                 </div>
+                                <!-- Attribute : Time Period -->
                                 <div class="col-md-6">
                                     <!-- TIme Period  -->
                                     <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">
+                                        <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+
                                             <?= !empty($language->site_time_period) ? $language->site_time_period : "Time Period" ?>
                                         </label>
 
@@ -2348,33 +2331,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Description / Skill earned -->
-                            <div class="row ">
-                                <div class="col-md-6">
-                                    <!-- Description -->
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label ">
-                                            <?= !empty($language->description) ? $language->description : "Description" ?>
-                                        </label>
-                                        <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Describe about how you acquire skill by involve in this project." name="project_description"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <!-- Skill Earned -->
-                                    <div class="form-group mx-0 mb-0">
-                                        <label class="control-label">
-                                            <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
-                                        </label>
-                                        <input type="text" class="form-control" id="tagsinput" value="Design , Reporting , Editing Video , Grapic Designer" data-role="tagsinput" name="skills">
-                                        <span class="help-block small">
-                                            <?= !empty($language->site_enter_tag) ? $language->site_enter_tag : "Press \"Enter\" to add tag" ?>
-                                        </span>
-                                    </div>
-                                </div>
+                            <!--# Attribute :  Description -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+
+                                    <?= !empty($language->description) ? $language->description : "Description" ?>
+                                </label>
+                                <textarea class="form-control autosizeme no-resize" rows="4" placeholder="Summarize how you acquire skill by involve in this project." name="project_description"></textarea>
                             </div>
+
+                            <!-- # Attribute : Skill Earned -->
+                            <div class="form-group mx-0">
+                                <label class="control-label md-grey-darken-3-text mb-10 font-weight-600 ">
+
+                                    <?= !empty($language->site_skill_earned) ? $language->site_skill_earned : "Skill Earned" ?>
+                                </label>
+                                <input type="text" class="form-control" id="tagsinput" value="Design,Reporting,Editing Video,Graphic Designer" data-role="tagsinput" name="skills">
+                                <span class="help-block small">
+                                    <?= !empty($language->site_enter_tag) ? $language->site_enter_tag : "Press \"Enter\" to add tag" ?>
+                                </span>
+                            </div>
+
+
                         </div>
-                        <div class="modal-footer form-actions px-30 md-grey-lighten-5">
-                            <button type="submit" class="btn btn-md-indigo  width-250 letter-space-xs">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-md-indigo  width-200">
                                 <?= !empty($language->site_save) ? $language->site_save : "Save" ?>
                             </button>
                         </div>
