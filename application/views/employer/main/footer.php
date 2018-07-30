@@ -458,7 +458,7 @@ $company_address = json_decode($user_profile['address']);?>
             else
             {
             ?>
-            initMap();
+            showMaps('', 'gmap');
             <?php
             }
             ?>
@@ -492,10 +492,15 @@ $company_address = json_decode($user_profile['address']);?>
         $(document).on('click', ".delContact", function () {
             $(this).parent().parent().parent().remove();
         });
+
+        <?php if (!empty($detail['address']) && $detail['address'] != 'false') { ?>
+        initMap()
+        <?php } ?>
     });
 
     //Show Maps
     function showMaps(idJobPost, mapId) {
+        var idJobPost = (typeof idJobPost != 'undefined') ? idJobPost : '';
         var lat = $('#building_latitude' + idJobPost).val();
         var lng = $('#building_longitude' + idJobPost).val();
 
@@ -647,50 +652,65 @@ $company_address = json_decode($user_profile['address']);?>
 
     function initMap() {
 
-        <?php if (!empty($detail['address'])) { ?>
-        <?php foreach (json_decode($detail['address']) as $key => $value) { ?>
-            
-            var latLang<?=$key?> = {
-                lat: <?php echo $value->building_latitude; ?>,
-                lng: <?php echo $value->building_longitude; ?>
-            };
-            // Create a map object and specify the DOM element for display.
-            var map = new google.maps.Map(document.getElementById('gmapbg'), {
-                center: latLang0,
-                zoom: 15
-            });
-            var marker = new google.maps.Marker({
-                map: map,
-                position: latLang<?= $key; ?>
-            });
-        <?php } ?>
-    <?php }?>
-        
-        var map = new google.maps.Map(document.getElementById('gmap'), {
-            zoom: 8,
-            center: {
-                lat: 35.717,
-                lng: 139.731
-            }
-        });
+        <?php 
+        $location = array();
 
-        var input = document.getElementById('pac-input');
+        if (!empty($detail['address']) && $detail['address'] != 'false')
+        {
+            foreach (json_decode($detail['address']) as $value)
+            {
+                  $location[] = array($value->building_address, $value->building_latitude, $value->building_longitude);                      
+            }
+        }
+        ?>
+        
+        var locations = <?php echo json_encode($location); ?>;
+        var bounds = new google.maps.LatLngBounds();
+
+        var map = new google.maps.Map(document.getElementById('gmapbg'));
+
+        map.setTilt(45);
+
+        /*var input = document.getElementById('pac-input');
 
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', map);
 
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);*/
 
-        var infowindow = new google.maps.InfoWindow();
-        var marker = new google.maps.Marker({
-            map: map
-        });
-        marker.addListener('click', function () {
-            infowindow.open(map, marker);
-        });
+        // Display multiple markers on a map
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+        
+        // Loop through our array of markers & place each one on the map  
+        for( i = 0; i < locations.length; i++ ) {
+            var position = new google.maps.LatLng(locations[i][1], locations[i][2]);
+            bounds.extend(position);
+            marker = new google.maps.Marker({
+                position: position,
+                map: map,
+                title: locations[i][0]
+            });
+            
+            // Allow each marker to have an info window    
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infoWindow.setContent(locations[i][0]);
+                    infoWindow.open(map, marker);
+                }
+            })(marker, i));
+
+            // Automatically center the map fitting all markers on the screen
+            map.fitBounds(bounds);
+        }
+
+        // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+        /*var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+            this.setZoom(7);
+            google.maps.event.removeListener(boundsListener);
+        });*/
 
         // Try HTML5 geolocation.
-        if (navigator.geolocation) {
+        /*if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 var pos = {
                     lat: position.coords.latitude,
@@ -770,7 +790,7 @@ $company_address = json_decode($user_profile['address']);?>
                     document.getElementById('building_postcode').value = val.long_name;
                 }
             }
-        });
+        });*/
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -783,7 +803,8 @@ $company_address = json_decode($user_profile['address']);?>
 
     
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"></script>
+
 <?php endif; ?>
 
 

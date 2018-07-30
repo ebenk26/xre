@@ -41,13 +41,14 @@ class Wishlist extends CI_Controller {
         $data = $this->student_model->get_company('user_profiles', array('user_profiles.company_name' => $company));
         $wishlist = $this->global_model->get_where('wishlist', array('company_id'=>$this->session->userdata('id')));
         // $res = array_search($this->session->userdata('id'), array_column($data,'wishlist_user_id'));
+        $newData=[];
         foreach ($data as $key => $value) {
             
-
+            $checkPhotoProfile[$key] = get_headers(IMG_EMPLOYERS.$value['profile_photo']); 
             $newData[$key] = array(   'id'=>$value['id'],
                                 'company_name'=>$value['company_name'],
                                 'registered_company'=> $value['registered_company'],
-                                'profile_photo'=> file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? file_exists(IMG_EMPLOYERS.$value['profile_photo']) : IMG_EMPLOYERS.'profile-pic.png',
+                                'profile_photo'=> ($checkPhotoProfile[$key][0] == 'HTTP/1.1 200 OK') && ($value['profile_photo'] !== NULL) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png',
                                 'company_id'=> $value['company_id'],
                                 'wishlist_id'=> $value['wishlist_id'],
                                 'wishlist_user_id'=> $value['wishlist_user_id'],
@@ -55,6 +56,8 @@ class Wishlist extends CI_Controller {
                                 'session_id'=> $this->session->userdata('id'),
                             );
         }
+
+
         print(json_encode($newData));
     }
 

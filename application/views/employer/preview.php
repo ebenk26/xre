@@ -9,6 +9,7 @@
         $location = json_decode($job->location, true);
         $location_map = json_decode($job->location);
     }
+
     $expired = strtotime($job->expiry_date) < strtotime(date('Y-m-d'));
 ?>
 
@@ -105,11 +106,11 @@
             <h1 class="md-white-text font-weight-500 font-42 mb-20">
                 <?php echo isset($job->name) ? $job->name: 'Job title';?> </h1>
             <div class="center-block clearfix mt-30">
-                <?php  if(!empty($this->session->userdata('country'))){?>
+                <?php  if(!empty($location['country'])){?>
                 <!-- Country -->
                 <h6 class="label label-md-purple md-shadow-z-1 mr-10 font-16 letter-space-xs ">
                     <i class="icon-pointer mr-5"></i>
-                    <?php echo $this->session->userdata('country')?>
+                    <?php echo $location['country'];?>
                 </h6>
 
                 <?php } if((!empty($job->forex)) && (!empty($job->budget_min)) && (!empty($job->budget_max)) ){?>
@@ -245,9 +246,8 @@
                             $full_address .= $location['postcode'] != ""?$location['postcode'].", ":"";
                             $full_address .= $location['state'] != ""?$location['state'].", ":"";
                             $full_address .= $location['country'] != ""?$location['country'].", ":"";
-                            $full_address = $full_address != ""?substr($full_address, 0, -2):"";
                         ?>
-                            <?php echo $full_address; ?>.
+                            <?php echo !empty($location['address']) ? $location['address'] : $full_address; ?>.
                     </p>
                     <div id="gmapbg" class="s-google-map md-grey-lighten-5" style="height: 300px;"></div>
                 </div>
