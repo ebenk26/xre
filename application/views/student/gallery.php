@@ -84,7 +84,7 @@
 
 <!-- Modal : Delete -->
 <?php foreach ($gallery as $key => $value) { ?>
-<div id="modal_delete_<?=$value['id']?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div id="modal_delete_<?=$value['id']?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog">
         <div class="modal-content fade-in-up">
             <form action="<?php echo base_url(); ?>student/gallery/delete" method="POST">
@@ -105,7 +105,7 @@
 <?php } ?>
 
 <!-- Modal : Edit -->
-<div class="modal fade in" id="modal_edit" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade in" id="modal_edit" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" >
     <div class="modal-dialog modal-lg">
         <div class="modal-content fade-in-up ">
             <div class="modal-header">
@@ -159,7 +159,6 @@
                     </div>
                 </div>
                 <div class="modal-footer form-action ">
-                    <a data-dismiss="modal" id="submit_button" aria-hidden="true" class="btn btn-outline btn-md-indigo  letter-space-xs">Cancel</a>
                     <button type="submit" class="btn btn-md-indigo letter-space-xs width-200">Update</button>
                 </div>
             </form>

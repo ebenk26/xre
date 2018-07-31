@@ -105,7 +105,7 @@
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  ">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
                     <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
-                        <div class="portlet g-ver-center  mt-display-block" id="studentContent">
+                        <div class="portlet mt-display-block" id="studentContent">
                             <a href="<?=base_url()?>">
                                 <img class="height-110  wow fadeInDown " data-wow-duration=".3" data-wow-delay=".1s" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
                             </a>
@@ -113,7 +113,7 @@
                             <a class="btn btn-md-darkblue btn-outline  btn-lg mb-60 mb-0-md  wow fadeInDown " data-wow-duration=".3" data-wow-delay=".5s" href="<?php echo base_url(); ?>signup#studentUser" id="studentRadio">Sign up as Student</a>
                         </div>
 
-                        <div class="portlet py-70 g-ver-center mx-30 mx-0-md mx-20-sm mt-display-none  wow fadeIn " data-wow-duration=".3" data-wow-delay=".1s" id="studentUser">
+                        <div class="portlet py-70  mx-30 mx-0-md mx-20-sm mt-display-none  wow fadeIn " data-wow-duration=".3" data-wow-delay=".1s" id="studentUser">
                             <a href="<?=base_url()?>">
                                 <img class="  height-110" src="<?php echo IMG; ?>site/xremo-logo-blue.svg">
                             </a>
@@ -218,7 +218,7 @@
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset  m-grid-col-12-sm  " style="background-color: #3F51B5;">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
                     <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
-                        <div class="portlet g-ver-center  mt-display-block" id="jobseekerContent">
+                        <div class="portlet mt-display-block" id="jobseekerContent">
                             <a href="<?=base_url()?>">
                                 <img class="height-110  wow fadeInDown " data-wow-duration=".3" data-wow-delay=".1s" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
                             </a>
@@ -226,7 +226,7 @@
                             <a class="btn btn-md-white btn-outline  btn-lg mb-60 mb-0-md  wow fadeInDown md-white-text" data-wow-duration=".3" data-wow-delay=".5s" href="<?php echo base_url(); ?>signup#jobseekerUser" id="jobseekerRadio">Sign up as Jobseeker</a>
                         </div>
 
-                        <div class="portlet py-70 g-ver-center mx-30 mx-0-md mx-20-sm mt-display-none  wow fadeIn " data-wow-duration=".3" data-wow-delay=".1s" id="jobseekerUser">
+                        <div class="portlet py-70  mx-30 mx-0-md mx-20-sm mt-display-none  wow fadeIn " data-wow-duration=".3" data-wow-delay=".1s" id="jobseekerUser">
                             <a href="<?=base_url()?>">
                                 <img class="height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
                             </a>
@@ -329,7 +329,7 @@
             <div class="m-grid-col m-grid-col-center m-grid-col-middle login-container bs-reset md-darkblue m-grid-col-12-sm ">
                 <div class="login-content m-grid p-0 m-0 g-fullheight">
                     <div class="m-grid-col m-grid-col-center m-grid-col-middle ">
-                        <div class="portlet g-ver-center" id="employerContent">
+                        <div class="portlet" id="employerContent">
                             <a href="<?=base_url()?>">
                                 <img class="height-100 wow fadeInDown " data-wow-duration=".3" data-wow-delay=".1s" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
                             </a>
@@ -340,7 +340,7 @@
                             </div>
                         </div>
                         <!-- Form User : Employer -->
-                        <div class="portlet g-ver-center mx-30 mx-0-md mx-20-sm mt-display-none wow fadeIn" data-wow-duration=".3" data-wow-delay=".1s" id="employerUser">
+                        <div class="portlet  mx-30 mx-0-md mx-20-sm mt-display-none wow fadeIn" data-wow-duration=".3" data-wow-delay=".1s" id="employerUser">
                             <a href="<?=base_url()?>">
                                 <img class="height-100" src="<?php echo IMG; ?>site/xremo-logo-white.svg">
                             </a>
