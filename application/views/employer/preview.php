@@ -170,7 +170,7 @@
                                     //$full_address .= $location['postcode'] != ""?$location['postcode'].", ":"";
                                     $full_address1 .= $location['state'] != ""?$location['state'].", ":"";
                                     //$full_address .= $location['country'] != ""?$location['country'].", ":"";
-                                    $full_address1 = $full_address1 != ""?substr($full_address1, 0, -2):"";
+                                    // $full_address1 = $full_address1 != ""?substr($full_address1, 0, -2):"";
                                 ?>
                                     <i class="fa fa-map-marker mr-10"></i>
                                     <?php echo $full_address1;?>

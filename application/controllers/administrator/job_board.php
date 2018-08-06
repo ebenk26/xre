@@ -25,23 +25,37 @@ class Job_Board extends CI_Controller {
 		$complement['employment_type'] 		= $this->employer_model->get_employment();
         $complement['position_levels'] 		= $this->employer_model->get_position();
         $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
-        $complement['job_post'] 			= $this->get_data();
-        
+        $complement['job_post'] 			= $this->list_all_job();
+        $complement['job_post_malaysia']    = $this->get_data(3);
+        $complement['job_post_phillipines'] = $this->get_data(4);
+        $complement['job_post_indonesia']   = $this->get_data(5);
+        $complement['job_post_other']   = $this->get_data(0);
+
 		$this->load->view('administrator/main/header', $profile);
         $this->load->view('administrator/job_board', $complement);
         $this->load->view('administrator/main/footer');
 	}
 	
-	public function get_data(){
+	public function get_data($id){
         $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
 		$this->db->from('job_positions');
 		$this->db->join('users', 'users.id = job_positions.user_id');
 		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
         $this->db->order_by('job_positions.id', 'DESC');
-		//$this->db->where('user_role.role_id = 3');
+		$this->db->where('job_positions.work_location_id', $id );
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+    public function list_all_job(){
+        $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');
+        $this->db->from('job_positions');
+        $this->db->join('users', 'users.id = job_positions.user_id');
+        $this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+        $this->db->order_by('job_positions.id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 	
 	public function get_data_array($id){
         $this->db->select('job_positions.*, user_profiles.company_name, user_profiles.email as company_email, user_profiles.address');

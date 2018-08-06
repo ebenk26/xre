@@ -187,7 +187,7 @@ class Student_Model extends CI_Model{
         }
 
         //overview
-        $this->db->select('users.fullname as name, users.email as email, users.preference_name as preference_name, users.verified as verified, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary, users.number_of_seen, users.last_seen_by, users.last_seen_at, users.id as id_users, users.preference_name, profile_uploads.name as profile_photo');
+        $this->db->select('users.fullname as name, users.email as email, users.preference_name as preference_name, users.verified as verified, users.country as country_id, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary, users.number_of_seen, users.last_seen_by, users.last_seen_at, users.id as id_users, users.preference_name, profile_uploads.name as profile_photo');
         $this->db->from('users');
         $this->db->join('student_bios', 'student_bios.user_id = users.id');
         $this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"','left');
@@ -426,6 +426,26 @@ class Student_Model extends CI_Model{
         $this->db->where('job_positions.status', 'post');
 		$this->db->order_by('job_positions.id', 'DESC');
 		$this->db->limit(5);
+        $allJob = $this->db->get();
+        return $allJob->result_array();
+    }
+
+    function getAllNewJobByCountry($countryID){
+        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget, employment_types.name as employment_name, job_positions.work_location_id');
+        $this->db->from('users');
+        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
+        $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
+        $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
+        $this->db->join('job_positions', 'job_positions.user_id = users.id', 'left');
+        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
+        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
+        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
+        //$this->db->where('job_positions.created_at >=', $last_login);
+        $this->db->where('job_positions.expiry_date >=', date('Y-m-d'));        
+        $this->db->where('job_positions.status', 'post');
+        $this->db->where('job_positions.work_location_id', $countryID);
+        $this->db->order_by('job_positions.id', 'DESC');
+        $this->db->limit(5);
         $allJob = $this->db->get();
         return $allJob->result_array();
     }

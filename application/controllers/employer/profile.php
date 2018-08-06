@@ -16,7 +16,7 @@ class Profile extends CI_Controller {
     public function index(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
 
@@ -42,7 +42,7 @@ class Profile extends CI_Controller {
     function edit_profile(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
 
@@ -111,7 +111,7 @@ class Profile extends CI_Controller {
     function edit_additional_info(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
         $id = $this->session->userdata('id');
@@ -157,7 +157,7 @@ class Profile extends CI_Controller {
     function edit_contact_info(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
         $id = $this->session->userdata('id');
@@ -207,7 +207,7 @@ class Profile extends CI_Controller {
     function upload_company_logo(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
         if(!empty($_FILES['company_logo']['tmp_name'])){
@@ -259,7 +259,7 @@ class Profile extends CI_Controller {
     function upload_company_header(){
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if(($roles !== $segment)){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
         if(!empty($_FILES['company_header']['tmp_name'])){

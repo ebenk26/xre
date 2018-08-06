@@ -12,10 +12,12 @@ class Candidate extends CI_Controller {
         $this->load->model('user_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
+            redirect(base_url());
+        }
     }
 
     public function index(){
-        if($this->session->userdata('id') == FALSE) redirect(base_url().'login');
 
     	$profile['page_title'] = 'Candidate';
         $id = $this->session->userdata('id');
