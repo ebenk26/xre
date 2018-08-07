@@ -49,6 +49,19 @@ class Job_Board extends CI_Controller {
                         'map_description'   => $this->input->post('mapDescription'),
                         );
         $status = $this->input->post('status');
+        $country = $this->input->post('country');
+        $country_id = 0;
+        
+        if (!empty($country) && $country == 'Indonesia') {
+            $country_id = 3;
+        }elseif (!empty($country) && $country == 'Malaysia' ) {
+            $country_id = 5;
+        }elseif(!empty($country) && $country == 'Phillipines' ){
+            $country_id = 4;
+        }else{
+            $country_id = $_COOKIE['country_id'];
+        }
+
         $jobPost = array('name'                     => $this->input->post('job_position_name'),
                          'user_id'                  => $this->session->userdata('id'),
                          'position_level_id'        => ltrim($this->input->post('employmentLevel')),
@@ -65,10 +78,10 @@ class Job_Board extends CI_Controller {
                          'budget_max'               => $this->input->post('budget_max'),
                          'expiry_date'              => date('Y-m-d', strtotime("+30 days")),
                          'created_at'               => date('Y-m-d H:i:s'),
-                         'updated_at'               => date('Y-m-d H:i:s')
-                         );
+                         'updated_at'               => date('Y-m-d H:i:s'),
+                         'work_location_id'         => $country_id
+                     );
         $postJob = $this->employer_model->job_post($jobPost);
-
         if ($postJob == true) {
             if ($status == 'post') {
                 $this->session->set_flashdata('msg_success', 'Success post job');
@@ -106,6 +119,18 @@ class Job_Board extends CI_Controller {
                         'longitude' => $this->input->post('longitude')
                         );
         $status = $this->input->post('status');
+        $country = $this->input->post('country');
+        $country_id = 0;
+        
+        if (!empty($country) && $country == 'Indonesia') {
+            $country_id = 3;
+        }elseif (!empty($country) && $country == 'Malaysia' ) {
+            $country_id = 5;
+        }elseif(!empty($country) && $country == 'Phillipines' ){
+            $country_id = 4;
+        }else{
+            $country_id = $_COOKIE['country_id'];
+        }
         if ($status == 'draft'|| $status == 'preview') {
             $jobPost = array('name' => $this->input->post('title'),
                              'id' => $this->input->post('job_id'),
@@ -124,6 +149,7 @@ class Job_Board extends CI_Controller {
                              'budget_max' => $this->input->post('budget_max'),
                              'updated_at' => date('Y-m-d H:i:s'),
                              'expiry_date' => date('Y-m-d', strtotime("+30 days")),
+                             'work_location_id'         => $country_id
                              );
         }else{
             $jobPost = array('name' => $this->input->post('title'),
@@ -141,7 +167,8 @@ class Job_Board extends CI_Controller {
                              'forex' => $this->input->post('currency'),
                              'budget_min' => $this->input->post('budget_min'),
                              'budget_max' => $this->input->post('budget_max'),
-                             'updated_at' => date('Y-m-d H:i:s')
+                             'updated_at' => date('Y-m-d H:i:s'),
+                             'work_location_id'         => $country_id
                              );
         }
         $editJob = $this->employer_model->job_edit($jobPost);
