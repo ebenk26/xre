@@ -3,7 +3,7 @@
             <div class="page-content">
 
                 <h1 class="page-title"> Candidate Bookmark
-                    <a href="../employer/employer-searchcandidate.html" class="pull-right btn btn-md-indigo letter-space-xxs">
+                    <a href="<?= base_url();?>employer/search_candidate" class="pull-right btn btn-md-indigo letter-space-xxs">
                         <i class="fa fa-plus fa-fw"></i>New Candidate</a>
                 </h1>
 

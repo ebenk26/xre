@@ -39,7 +39,6 @@ class Search_candidate extends CI_Controller {
         $page = $this->uri->segment(4) != NULL ? $this->uri->segment(4) : 0;
 
         $params = array_merge(array("page"=>$page),$this->input->post());
-        
         $data['searchResult'] = $this->employer_model->getSearchResult($params);
         $result["searchResult"] = $this->load->view('employer/search_result',$data,true);
         

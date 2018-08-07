@@ -18,7 +18,7 @@
 <?php   
             !empty($user_profile['header_photo'] ) ? $user_profile['header_photo']  = $user_profile['header_photo']  : $user_profile['header_photo']  = '33.jpg';
             !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
-            $checkUserHeaderImgProfile  = get_headers(IMG_EMPLOYERS.$user_profile['header_photo'] );
+            $checkUserHeaderImgProfile  = get_headers(IMG_STUDENTS.$user_profile['header_photo'] );
             $checkUserMainImgProfile    = get_headers(IMG_STUDENTS.$user_profile['profile_photo']);
      ?>
 
@@ -100,7 +100,6 @@
 <body>
     <!-- # HEADER -->
     <?php $this->load->view('site/header_content');?>
-
     <!-- # VIEW -->
     <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= $checkUserHeaderImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'?>');">
         <div class="container g-ver-bottom-80-md g-ver-bottom-70-sm ">
