@@ -209,6 +209,7 @@ function sendEmail($params)
     
     /*$config['protocol'] = 'smtp';
     $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+    $config['smtp_user'] = 'dearicokhasandra@gmail.com';
     $config['smtp_pass'] = 'Rico061289!';*/
 
     $CI =& get_instance();
@@ -372,6 +373,21 @@ function simplifyCurrency($money){
         $moneyResult = $money;
     }
     return $moneyResult;
+}
+
+function beautifyJson($data,$view = true)
+{
+    $beautify = ($view == true) ? '<pre>' : '';
+    $result = $beautify.json_encode($data,JSON_PRETTY_PRINT);
+
+    if($view == true)
+    {
+        echo $result;exit();
+    }
+    else
+    {
+        return $result;
+    }
 }
 
 ?>

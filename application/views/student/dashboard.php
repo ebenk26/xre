@@ -107,7 +107,7 @@
 
             <hr class="border-mdo-darkblue-v1 ">
                         
-            <?php if(!empty ($job_positions)){                    
+            <?php if(!empty ($job_positions_new)){                    
                 //Columns must be a factor of 12 (1,2,3,4,6,12)
                 $numOfCols = 3;
                 $colCount = 0;

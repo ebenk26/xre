@@ -392,23 +392,53 @@ class Student_Model extends CI_Model{
     }
 
 
-    function get_all_job($id){
-        $this->db->select('user_profiles.*, users.id as user_id, users.fullname as fullname, states.name as state_name, countries.name as country_name, industries.name as industry_name, position_levels.name as position_name, job_positions.created_at as job_created_time, job_positions.name as job_post, job_positions.id as job_id, job_positions.budget_min as min_budget, job_positions.budget_max as max_budget, employment_types.name as employment_name, profile_uploads.name as profile_photo,job_positions.work_location_id');
-        $this->db->from('users');
-        $this->db->join('user_profiles', 'users.id = user_profiles.user_id', 'left');
-        $this->db->join('states', 'states.id = user_profiles.state_id', 'left');
-        $this->db->join('countries', 'countries.id = user_profiles.country_id', 'left');
-        $this->db->join('job_positions', 'job_positions.user_id = users.id', 'left');
-        $this->db->join('position_levels', 'position_levels.id = job_positions.position_level_id', 'left');
-        $this->db->join('industries', 'industries.id = user_profiles.company_industry_id', 'left');
-        $this->db->join('employment_types', 'employment_types.id = job_positions.employment_type_id', 'left');
-		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id', 'left');
-		$this->db->where('expiry_date >=', date('Y-m-d')); 
-        $this->db->where('job_positions.status', 'post');
-		$this->db->where('profile_uploads.type', 'profile_photo');
-        $this->db->order_by('job_positions.id', 'DESC');
-        $allJob = $this->db->get();
-        return $allJob->result_array();
+    function get_all_job($id)
+    {
+        $query = '  SELECT
+                      `user_profiles`.*,
+                      `users`.`id` AS user_id,
+                      `users`.`fullname` AS fullname,
+                      `states`.`name` AS state_name,
+                      `countries`.`name` AS country_name,
+                      `industries`.`name` AS industry_name,
+                      `position_levels`.`name` AS position_name,
+                      `job_positions`.`created_at` AS job_created_time,
+                      `job_positions`.`name` AS job_post,
+                      `job_positions`.`id` AS job_id,
+                      `job_positions`.`budget_min` AS min_budget,
+                      `job_positions`.`budget_max` AS max_budget,
+                      `employment_types`.`name` AS employment_name,
+                      `profile_uploads`.`name` AS profile_photo,
+                      `job_positions`.`work_location_id`
+                    FROM
+                      (`users`)
+                        LEFT JOIN `user_profiles` ON `users`.`id` = `user_profiles`.`user_id`
+                        LEFT JOIN `job_preferences` ON `users`.`id` = `job_preferences`.`user_id`
+                        LEFT JOIN `states` ON `states`.`id` = `user_profiles`.`state_id`
+                        LEFT JOIN `countries` ON `countries`.`id` = `user_profiles`.`country_id`
+                        LEFT JOIN `job_positions` ON LOWER(`job_preferences`.`keywords`) LIKE CONCAT("%,", LOWER(job_positions.name), ",%")
+                        LEFT JOIN `position_levels` ON `position_levels`.`id` = `job_positions`.`position_level_id`
+                        LEFT JOIN `industries` ON `industries`.`id` = `user_profiles`.`company_industry_id`
+                        LEFT JOIN `employment_types` ON `employment_types`.`id` = `job_positions`.`employment_type_id`
+                        LEFT JOIN `profile_uploads` ON `profile_uploads`.`user_id` = `job_positions`.`user_id`
+                    WHERE
+                          `expiry_date` >= \''.date('Y-m-d').'\'
+                          AND `job_preferences`.`user_id` = '.$id.'
+                          AND `job_positions`.`status` = \'post\'
+                          AND `profile_uploads`.`type` = \'profile_photo\'
+                          OR 
+                            (
+                                LOWER(`job_preferences`.`position_level`) LIKE CONCAT("%;", LOWER(position_levels.name), ";%")
+                                AND LOWER(`job_preferences`.`employment_type`) LIKE CONCAT("%;", LOWER(employment_types.name), ";%")
+                                AND LOWER(`job_preferences`.`work_location`) LIKE CONCAT("%;", LOWER(`countries`.`name`), ";%")
+                            )
+                    GROUP BY 
+                            `job_positions`.`id`
+                    ORDER BY
+                          `job_positions`.`id` DESC';
+        $sql = $this->db->query($query);//echo $query;exit();
+        // beautifyJson($sql->result_array());
+        return $sql->result_array();
     }
 	
 	function get_all_new_job($last_login){
