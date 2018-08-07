@@ -1,7 +1,7 @@
 <?php 
     $roles = $this->session->userdata('roles'); 
     $login = $this->session->userdata('id');
-
+    $img   = $roles == 'employer' ? IMG_EMPLOYERS : IMG_STUDENTS;
 ?>
 
 <!--========== HEADER  ==========-->
@@ -62,12 +62,12 @@
 
                                     <!-- Employer -->
                                     <?php if ($roles =='employer') {?>
-                                    <img alt="<?php echo $this->session->userdata('name')?>" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile'))?IMG_EMPLOYERS.base64_decode($this->session->userdata('img_profile')) : IMG.'site/profile-pic.png'?>">
+                                    <img alt="<?php echo $this->session->userdata('name')?>" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile'))? $img.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'site/profile-pic.png'?>">
                                     <?php }?>
 
                                     <!-- Student -->
                                     <?php if ($roles =='student') {?>
-                                    <img alt="Student Picture" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile')) ?  IMG_STUDENTS.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                    <img alt="Student Picture" class="avatar avatar-mini avatar-circle" src="<?php echo !empty($this->session->userdata('img_profile')) ?  $img.base64_decode($this->session->userdata('img_profile')) : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                     <?php }?>
 
                                     <span class="font-10 ml-5 ti-angle-down"></span>

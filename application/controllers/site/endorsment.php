@@ -122,18 +122,25 @@ class Endorsment extends CI_Controller {
                             'ratings.skill_id'    => $this->input->get('data_id') );
         }
         $rating_user = $this->student_model->get_ratings($data);
+        $rating = [];
         $i=0;
-        foreach ($rating_user as $key => $value) {
-            $rating[$i] = array(        'id'                    =>  $value['id'],
-                                        'created_at'            =>  time_elapsed_string($value['created_at']),
-                                        'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
-                                        'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
-                                        'rating'                =>  $value['rating'],
-                                        'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/user/'.rtrim(base64_encode($value['id']),'='),
-                                        'type'                  =>  $value['type']);
 
-            $i++;
+        if(!empty($rating_user)){
+
+            foreach ($rating_user as $key => $value) {
+                $rating[$i] = array(        'id'                    =>  $value['id'],
+                                            'created_at'            =>  time_elapsed_string($value['created_at']),
+                                            'fullname'              =>  !empty(!$value['company_name']) ? $value['company_name'] : $value['fullname'],
+                                            'profile_photo'         =>  ($value['roles'] == 'student') ? IMG_STUDENTS.$value['profile_photo'] : IMG_EMPLOYERS.$value['profile_photo'],
+                                            'rating'                =>  $value['rating'],
+                                            'link'                  =>  ($value['roles'] == 'employer') ? base_url().'profile/company/'.rtrim(base64_encode($value['id']),'=') : base_url().'profile/user/'.rtrim(base64_encode($value['id']),'='),
+                                            'type'                  =>  $value['type']);
+
+                $i++;
+            }
+
         }
+
         print json_encode($rating);
     }
 
@@ -155,7 +162,6 @@ class Endorsment extends CI_Controller {
                         'created_at' => date('Y-m-d H:i:s'),
                         'updated_at' => date('Y-m-d H:i:s') );
         }
-
 
         try {
             $this->global_model->create('ratings', $data);

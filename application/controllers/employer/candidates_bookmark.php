@@ -10,7 +10,7 @@ class Candidates_bookmark extends CI_Controller {
         $this->load->model('global_model');
         $roles = $this->session->userdata('roles');
         $segment = $this->uri->segment(USER_ROLE);
-        if($roles !== $segment){
+        if($roles !== 'employer' && empty($this->session->userdata('id'))){
             redirect(base_url());
         }
     }

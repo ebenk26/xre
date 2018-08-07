@@ -267,7 +267,7 @@
                                                 <li>
                                                     <a href="javascript:void(0)" class="user-btn" data-toggle="modal" uid="<?php echo rtrim(base64_encode($value['id_user']),'=');?>" app-id="<?php echo rtrim(base64_encode($value['application_id']),'=');?>">
                                                         <i class="icon-eye"></i>
-                                                        <?= !empty($language->view_summary) ? $language->view_summary : "Invitation Status"  ?>
+                                                        <?= !empty($language->view_summary) ? $language->view_summary : "View Summary"  ?>
                                                     </a>
                                                 </li>
                                                 <li>
@@ -738,12 +738,6 @@
                                 <i class="icon-clock mr-10"></i>
                                 <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?> -
                                 <?php echo date('D, j M ,h:ia', strtotime($session_value['end_date'])); ?>
-                            </h5>
-                            <!--  If == all day-->
-                            <h5 class="font-weight-400 letter-space-xs mb-30 font-17">
-                                <i class="icon-clock mr-10"></i>
-                                <?php echo date('D, j M , h:ia', strtotime($session_value['start_date'])); ?> -
-                                <?php echo date('h:ia', strtotime($session_value['end_date'])); ?>
                             </h5>
 
                             <!-- Description -->
