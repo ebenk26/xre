@@ -2475,6 +2475,7 @@
                 var image_directory = window.location.origin + '/assets/img/student/';
                 var endorserId = $(this).attr('endorser-id');
 
+
                 $.ajax({
                     url: "<?= base_url();?>site/endorsment/getRate",
                     method: "GET",
@@ -2485,31 +2486,34 @@
                     },
 
                     success: function (response) {
+
+                        
                         var student = JSON.parse(response);
                         var reviews = '';
 
                         var profile_pic = 'profile-pic.png';
 
-                        $.each(student, function (i, v) {
-                            reviews +=
-                                '<div class="mt-comment">\
-                                    <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
-                                '">\
-                                    </div>\
-                                    <div class="mt-comment-body">\
-                                        <div class="mt-comment-info">\
-                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
+                        if (student.length > 0) {
+                            $.each(student, function (i, v) {
+                                reviews +=
+                                    '<div class="mt-comment">\
+                                        <div class="mt-comment-img">\
+                                            <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                    '">\
                                         </div>\
-                                        <div class="mt-comment-text">' +
-                                v.rating +
-                                '</div>\
-                                    </div>\
-                                </div>';
-                        });
-
+                                        <div class="mt-comment-body">\
+                                            <div class="mt-comment-info">\
+                                                <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                                <span class="mt-comment-date">' + v.created_at +
+                                    '</span>\
+                                            </div>\
+                                            <div class="mt-comment-text">' +
+                                    v.rating +
+                                    '</div>\
+                                        </div>\
+                                    </div>';
+                            });
+                        }
 
                         $('#modal_list_rater_input #dataName').text(dataName);
                         $('#modal_list_rater_input #reviews').html(reviews);

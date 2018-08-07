@@ -536,7 +536,7 @@ class Employer_Model extends CI_Model{
 
     public function get_bookmarked_user($id){
 
-
+        $result = [];
 
         $query = $this->db->get_where('bookmark_candidate', array('company_id' => $id, 'status' => 1));
         $candidate = $query->result_array();
