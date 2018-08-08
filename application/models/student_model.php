@@ -394,51 +394,79 @@ class Student_Model extends CI_Model{
 
     function get_all_job($id)
     {
-        $query = '  SELECT
-                      `user_profiles`.*,
-                      `users`.`id` AS user_id,
-                      `users`.`fullname` AS fullname,
-                      `states`.`name` AS state_name,
-                      `countries`.`name` AS country_name,
-                      `industries`.`name` AS industry_name,
-                      `position_levels`.`name` AS position_name,
-                      `job_positions`.`created_at` AS job_created_time,
-                      `job_positions`.`name` AS job_post,
-                      `job_positions`.`id` AS job_id,
-                      `job_positions`.`budget_min` AS min_budget,
-                      `job_positions`.`budget_max` AS max_budget,
-                      `employment_types`.`name` AS employment_name,
-                      `profile_uploads`.`name` AS profile_photo,
-                      `job_positions`.`work_location_id`
-                    FROM
-                      (`users`)
-                        LEFT JOIN `user_profiles` ON `users`.`id` = `user_profiles`.`user_id`
-                        LEFT JOIN `job_preferences` ON `users`.`id` = `job_preferences`.`user_id`
-                        LEFT JOIN `states` ON `states`.`id` = `user_profiles`.`state_id`
-                        LEFT JOIN `countries` ON `countries`.`id` = `user_profiles`.`country_id`
-                        LEFT JOIN `job_positions` ON LOWER(`job_preferences`.`keywords`) LIKE CONCAT("%,", LOWER(job_positions.name), ",%")
-                        LEFT JOIN `position_levels` ON `position_levels`.`id` = `job_positions`.`position_level_id`
-                        LEFT JOIN `industries` ON `industries`.`id` = `user_profiles`.`company_industry_id`
-                        LEFT JOIN `employment_types` ON `employment_types`.`id` = `job_positions`.`employment_type_id`
-                        LEFT JOIN `profile_uploads` ON `profile_uploads`.`user_id` = `job_positions`.`user_id`
-                    WHERE
-                          `expiry_date` >= \''.date('Y-m-d').'\'
-                          AND `job_preferences`.`user_id` = '.$id.'
-                          AND `job_positions`.`status` = \'post\'
-                          AND `profile_uploads`.`type` = \'profile_photo\'
-                          OR 
-                            (
-                                LOWER(`job_preferences`.`position_level`) LIKE CONCAT("%;", LOWER(position_levels.name), ";%")
-                                AND LOWER(`job_preferences`.`employment_type`) LIKE CONCAT("%;", LOWER(employment_types.name), ";%")
-                                AND LOWER(`job_preferences`.`work_location`) LIKE CONCAT("%;", LOWER(`countries`.`name`), ";%")
-                            )
-                    GROUP BY 
-                            `job_positions`.`id`
-                    ORDER BY
-                          `job_positions`.`id` DESC';
-        $sql = $this->db->query($query);//echo $query;exit();
-        // beautifyJson($sql->result_array());
-        return $sql->result_array();
+        $result = array();
+
+        $this->db->where('user_id',$id);
+        $getJobPrefer   = $this->db->get('job_preferences');//beautifyJson($getJobPrefer->row());
+        $checkJobPrefer = $getJobPrefer->row();
+
+        if(!empty($checkJobPrefer))
+        {
+            $condition = array();
+
+            if(!empty($checkJobPrefer->keywords))
+            {
+                $condition[] = 'LOWER(\''.$checkJobPrefer->keywords.'\') LIKE CONCAT("%,", LOWER(job_positions.name), ",%")';
+            }
+            
+            if(!empty($checkJobPrefer->position_level))
+            {
+                $condition[] = 'LOWER(\''.$checkJobPrefer->position_level.'\') LIKE CONCAT("%;", LOWER(position_levels.name), ";%")';
+            }
+            
+            if(!empty($checkJobPrefer->employment_type))
+            {
+                $condition[] = 'LOWER(\''.$checkJobPrefer->employment_type.'\') LIKE CONCAT("%;", LOWER(employment_types.name), ";%")';
+            }
+            
+            if(!empty($checkJobPrefer->work_location))
+            {
+                $condition[] = 'LOWER(\''.$checkJobPrefer->work_location.'\') LIKE CONCAT("%;", LOWER(countries.name), ";%")';
+            }
+
+            $multiCondition = (!empty($condition)) ? 'OR('.implode(' AND ',$condition).')' : '';
+
+            $query = '  SELECT
+                          `user_profiles`.company_name,
+                          `users`.`id` AS user_id,
+                          `users`.`fullname` AS fullname,
+                          `states`.`name` AS state_name,
+                          `countries`.`name` AS country_name,
+                          `industries`.`name` AS industry_name,
+                          `position_levels`.`name` AS position_name,
+                          `job_positions`.`created_at` AS job_created_time,
+                          `job_positions`.`name` AS job_post,
+                          `job_positions`.`id` AS job_id,
+                          `job_positions`.`budget_min` AS min_budget,
+                          `job_positions`.`budget_max` AS max_budget,
+                          `employment_types`.`name` AS employment_name,
+                          `profile_uploads`.`name` AS profile_photo,
+                          `job_positions`.`work_location_id`
+                        FROM
+                          (`users`)
+                            LEFT JOIN `user_profiles` ON `users`.`id` = `user_profiles`.`user_id`
+                            LEFT JOIN `states` ON `states`.`id` = `user_profiles`.`state_id`
+                            LEFT JOIN `countries` ON `countries`.`id` = `user_profiles`.`country_id`
+                            LEFT JOIN `industries` ON `industries`.`id` = `user_profiles`.`company_industry_id`
+                            LEFT JOIN `job_positions` ON `users`.`id` = `job_positions`.`user_id`
+                            LEFT JOIN `position_levels` ON `position_levels`.`id` = `job_positions`.`position_level_id`
+                            LEFT JOIN `employment_types` ON `employment_types`.`id` = `job_positions`.`employment_type_id`
+                            LEFT JOIN `profile_uploads` ON `profile_uploads`.`user_id` = `job_positions`.`user_id`
+                        WHERE
+                              `expiry_date` >= \''.date('Y-m-d').'\'
+                              AND `job_positions`.`status` = \'post\'
+                              AND `profile_uploads`.`type` = \'profile_photo\'
+                              '.$multiCondition.'
+                        GROUP BY 
+                                `job_positions`.`id`
+                        ORDER BY
+                              `job_positions`.`id` DESC';
+            $sql    = $this->db->query($query);//echo $query;exit();
+            $result = $sql->result_array();
+            // beautifyJson($sql->result_array());
+        }
+
+        return $result;
     }
 	
 	function get_all_new_job($last_login){

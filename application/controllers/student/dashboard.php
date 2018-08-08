@@ -28,15 +28,14 @@ class Dashboard extends CI_Controller {
         $jobPref = !empty($jobPreferences) ? current($jobPreferences) : '';
 		// $job['job_positions'] = $this->student_model->getAllJobByJobPreference($jobPref);
 
+        // $job['job_positions_new'] 	= $this->student_model->getAllNewJobByCountry($countryId);
         $job['job_positions'] = $this->student_model->get_all_job($id);//beautifyJson($job['job_positions']);
 		$countryId = !empty($get_user_profile['overview']['country_id']) ? $get_user_profile['overview']['country_id'] : $_COOKIE['country_id'];
 		$footer['invitation'] = json_encode($this->student_model->get_interview_invitation($id));
-		
+
 		if(!empty($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history'])){
-			$job['job_positions_new'] 	= $this->student_model->getAllNewJobByCountry($countryId);
 			$job['new_join'] 			= $this->student_model->get_new_join($job['last_logged_in'][count($job['last_logged_in'])-2]['user_history']);
 		}else{
-			$job['job_positions_new'] 	= $this->student_model->getAllNewJobByCountry($countryId);
 			$job['new_join'] 			= $this->student_model->get_new_join("1970-01-01");
 		}
 		
