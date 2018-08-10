@@ -101,33 +101,34 @@
 		                                    <th> Signup Date </th>
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
+		                                    <th> Percentage </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 5){?>
+		                                <?php $no = 1;foreach ($job_seeker as $row => $value) {if($value['overview']['country_id'] == 5){ ?>
 		                                    <tr class="odd gradeX">
 		                                        <td class="text-center" ><?=$no++; ?></td>
-		                                        <td> <?=$row->fullname; ?></td>
-												<td> <?=$row->email; ?></td>
-												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
-												<!--<td> <?=$row->email; ?></td>-->
+		                                        <td> <?=$value['overview']['name']; ?></td>
+												<td> <?=$value['overview']['email']; ?></td>
+												<td> <?=date('j F Y', strtotime($value['overview']['updated_at']) ); ?></td>
 												<td> 
-													<?php if($row->youtubelink != ""){?>
-														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+													<?php if($value['overview']['youtubelink'] != ""){?>
+														<a href="<?=$value['overview']['youtubelink']?>" class="btn btn-circle btn-md-red" target="_blank">
 															<i class="fa fa-video-camera"></i> Watch 
 														</a>
 													<?php }?>
 												</td>
+												<td> <?=$value['percent']; ?></td>
 												<td>
 													<a href="<?php
-														$id = $row->id;
+														$id = $value['overview']['id_users'];
 														$id_encoded = rtrim(base64_encode($id), '=');
 														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
 														<i class="fa fa-user"></i> View Profile 
 													</a>
 													
-													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
 												</td>
@@ -156,34 +157,53 @@
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 3){?>
+		                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
+		                            <thead>
+		                                <tr>
+		                                    <th class="text-center">#</th>
+		                                    <th> Name </th>
+		                                    <th> Email </th>
+		                                    <th> Signup Date </th>
+		                                    <!--<th class="col-md-2"> CV </th>-->
+		                                    <th> Video CV </th>
+		                                    <th> Percentage </th>
+		                                    <th> Actions </th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <?php $no = 1;foreach ($job_seeker as $row => $value) {if($value['overview']['country_id'] == 3){ ?>
 		                                    <tr class="odd gradeX">
 		                                        <td class="text-center" ><?=$no++; ?></td>
-		                                        <td> <?=$row->fullname; ?></td>
-												<td> <?=$row->email; ?></td>
-												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
-												<!--<td> <?=$row->email; ?></td>-->
+		                                        <td> <?=$value['overview']['name']; ?></td>
+												<td> <?=$value['overview']['email']; ?></td>
+												<td> <?=date('j F Y', strtotime($value['overview']['updated_at']) ); ?></td>
 												<td> 
-													<?php if($row->youtubelink != ""){?>
-														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+													<?php if($value['overview']['youtubelink'] != ""){?>
+														<a href="<?=$value['overview']['youtubelink']?>" class="btn btn-circle btn-md-red" target="_blank">
 															<i class="fa fa-video-camera"></i> Watch 
 														</a>
 													<?php }?>
 												</td>
+												<td> <?=$value['percent']; ?></td>
 												<td>
 													<a href="<?php
-														$id = $row->id;
+														$id = $value['overview']['id_users'];
 														$id_encoded = rtrim(base64_encode($id), '=');
 														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
 														<i class="fa fa-user"></i> View Profile 
 													</a>
 													
-													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+														<i class="fa fa-edit"></i> 
+													</a>
+													<a href="#" class="btn btn-icon-only blue invite-users" data-email="<?= $value['overview']['email']?>" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
 												</td>
 		                                    </tr>                                        
 		                                <?php }} ?>
+		                            </tbody>
+		                        </table>
 		                            </tbody>
 		                        </table>
                             </div>
@@ -203,33 +223,34 @@
 		                                    <th> Signup Date </th>
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
+		                                    <th> Percentage </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 4){?>
+		                                <?php $no = 1;foreach ($job_seeker as $row => $value) {if($value['overview']['country_id'] == 4){ ?>
 		                                    <tr class="odd gradeX">
 		                                        <td class="text-center" ><?=$no++; ?></td>
-		                                        <td> <?=$row->fullname; ?></td>
-												<td> <?=$row->email; ?></td>
-												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
-												<!--<td> <?=$row->email; ?></td>-->
+		                                        <td> <?=$value['overview']['name']; ?></td>
+												<td> <?=$value['overview']['email']; ?></td>
+												<td> <?=date('j F Y', strtotime($value['overview']['updated_at']) ); ?></td>
 												<td> 
-													<?php if($row->youtubelink != ""){?>
-														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+													<?php if($value['overview']['youtubelink'] != ""){?>
+														<a href="<?=$value['overview']['youtubelink']?>" class="btn btn-circle btn-md-red" target="_blank">
 															<i class="fa fa-video-camera"></i> Watch 
 														</a>
 													<?php }?>
 												</td>
+												<td> <?=$value['percent']; ?></td>
 												<td>
 													<a href="<?php
-														$id = $row->id;
+														$id = $value['overview']['id_users'];
 														$id_encoded = rtrim(base64_encode($id), '=');
 														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
 														<i class="fa fa-user"></i> View Profile 
 													</a>
 													
-													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
 												</td>
@@ -254,33 +275,34 @@
 		                                    <th> Signup Date </th>
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
+		                                    <th> Percentage </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <?php $no = 1;foreach ($job_seeker as $row) { if($row->country == 0){?>
+		                                <?php $no = 1;foreach ($job_seeker as $row => $value) {if($value['overview']['country_id'] == 0){ ?>
 		                                    <tr class="odd gradeX">
 		                                        <td class="text-center" ><?=$no++; ?></td>
-		                                        <td> <?=$row->fullname; ?></td>
-												<td> <?=$row->email; ?></td>
-												<td> <?=date('j F Y', strtotime($row->created_at)); ?></td>
-												<!--<td> <?=$row->email; ?></td>-->
+		                                        <td> <?=$value['overview']['name']; ?></td>
+												<td> <?=$value['overview']['email']; ?></td>
+												<td> <?=date('j F Y', strtotime($value['overview']['updated_at']) ); ?></td>
 												<td> 
-													<?php if($row->youtubelink != ""){?>
-														<a href="<?=$row->youtubelink?>" class="btn btn-circle btn-md-red" target="_blank">
+													<?php if($value['overview']['youtubelink'] != ""){?>
+														<a href="<?=$value['overview']['youtubelink']?>" class="btn btn-circle btn-md-red" target="_blank">
 															<i class="fa fa-video-camera"></i> Watch 
 														</a>
 													<?php }?>
 												</td>
+												<td> <?=$value['percent']; ?></td>
 												<td>
 													<a href="<?php
-														$id = $row->id;
+														$id = $value['overview']['id_users'];
 														$id_encoded = rtrim(base64_encode($id), '=');
 														echo base_url()?>profile/user/<?=$id_encoded; ?>" target="_blank" class="btn btn-circle btn-md-blue">
 														<i class="fa fa-user"></i> View Profile 
 													</a>
 													
-													<a href="#modal_edit_<?=$row->id ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
+													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
 												</td>
@@ -296,9 +318,9 @@
             </div>
         </div>
         
-        <?php foreach ($job_seeker as $row) { ?>
+        <?php foreach ($job_seeker as $row => $value) { ?>
 			<!-- BEGIN MODAL : Create Employer -->
-			<div id="modal_edit_<?=$row->id?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+			<div id="modal_edit_<?=$value['overview']['id_users']?>" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header ">
@@ -313,7 +335,7 @@
 											<span class="input-group-addon">
 												<i class="fa fa-envelope font-yellow-gold"></i>
 											</span>
-											<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$row->email?>"> 
+											<input type="email" name="email" class="form-control" placeholder="Email Address" value="<?=$value['overview']['email']?>"> 
 										</div>
 									</div>
 									
@@ -323,13 +345,13 @@
 											<span class="input-group-addon">
 												<i class="fa fa-lock font-yellow-gold"></i>
 											</span>
-											<input type="password" name="password" class="form-control" placeholder="Password" value="<?=$row->password?>">
+											<input type="password" name="password" class="form-control" placeholder="Password" value="<?=$value['overview']['password']?>">
 										</div>
 									</div>-->
 								</div>
 								<input type="hidden" name="submit_type" value="edit"></input>
-								<input type="hidden" name="id" value="<?=$row->id?>"></input>
-								<input type="hidden" name="password_old" value="<?=$row->password?>"></input>									
+								<input type="hidden" name="id" value="<?=$value['overview']['id_users']?>"></input>
+								<input type="hidden" name="password_old" value="<?=$value['overview']['password']?>"></input>									
 								
 								<div class="modal-footer form-action ">
 									<!-- <a href="<?php echo base_url(); ?>employer/preview_job" class="btn btn-md-orange  mt-width-150-xs font-20-xs letter-space-xs">Preview Job</a> -->

@@ -603,7 +603,6 @@
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
-        <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script>
         <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
 
         <!-- Page -->

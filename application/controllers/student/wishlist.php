@@ -28,7 +28,7 @@ class Wishlist extends CI_Controller {
         $profile['language']       = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id, 'wishlist.status'=> 1));
 
-        $wishlistCount = $this->global_model->get_where('wishlist', array('student_id'=>$id));
+        $wishlistCount = $this->global_model->get_where('wishlist', array('student_id'=>$id, 'wishlist.status'=>1));
         $data['totalWishlist'] = count($wishlistCount);
 
         $this->load->view('student/main/header', $profile);
@@ -99,7 +99,8 @@ class Wishlist extends CI_Controller {
                     'created_at'    => date('Y-m-d H:i:s'),
                 );
         setRecentActivities($data);
-        $this->global_model->remove('wishlist', $where);
+        $this->global_model->update('wishlist', array('student_id'=> $userId, 'id'=>$wishlistId), array('status'=> 0));
+        // $this->global_model->remove('wishlist', $where);
     }
 
     public function checkWishlistAvailability(){

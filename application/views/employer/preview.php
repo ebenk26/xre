@@ -467,7 +467,6 @@
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/counter.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/portfolio-3-col.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/parallax.min.js"></script>
-    <!-- <script type="text/javascript" src="<?php echo JS; ?>layout8/components/google-map.min.js"></script> -->
     <script type="text/javascript" src="<?php echo JS; ?>layout8/components/wow.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>plugins/bootstrap-sweetalert/sweetalert.min.js"></script>
     <script type="text/javascript" src="<?php echo JS; ?>pages/ui-sweetalert.min.js"></script>
@@ -541,7 +540,7 @@
         <?php }?>
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
 
     <style type="text/css">
         #at4-share {
