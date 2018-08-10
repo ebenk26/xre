@@ -76,6 +76,10 @@
         .ajs-message {
             color: #FFFFFF;
         }
+		
+		.form-horizontal .form-group.form-md-line-input .input-icon .form-control.white-text{
+			color: white;
+		}
 
     </style>
 
@@ -239,7 +243,7 @@
                                                 <!-- <div class="col-md-8 col-md-offset-2 "> -->
                                                 <div class="input-icon">
                                                     <i class="fa fa-user"></i>
-                                                    <input type="text" name="fullname" id="fullname_jobseeker" class="form-control " placeholder="Full Name" required>
+                                                    <input type="text" name="fullname" id="fullname_jobseeker" class="form-control white-text" placeholder="Full Name" required>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="text-danger">
                                                         <?php echo form_error('fullname'); ?>
@@ -251,7 +255,7 @@
                                             <div class="form-group form-md-line-input mb-5 ">
                                                 <div class="input-icon">
                                                     <i class="fa fa-envelope-o"></i>
-                                                    <input type="email" name="email" id="email_jobseeker" class="form-control " placeholder="Email Address" required>
+                                                    <input type="email" name="email" id="email_jobseeker" class="form-control white-text" placeholder="Email Address" required>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="text-danger">
                                                         <?php $error_email = substr(form_error('email'),3);$error_email = substr($error_email,0,-4);echo $error_email ?>
@@ -262,7 +266,7 @@
                                             <div class="form-group form-md-line-input  mb-5">
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
-                                                    <input type="password" name="password" id="password_jobseeker" class="pass-strength-jobseeker form-control" placeholder="Password" required>
+                                                    <input type="password" name="password" id="password_jobseeker" class="pass-strength-jobseeker form-control white-text" placeholder="Password" required>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="text-danger">
                                                         <?php echo form_error('password'); ?>
@@ -281,7 +285,7 @@
                                             <div class="form-group form-md-line-input  mb-5">
                                                 <div class="input-icon">
                                                     <i class="fa fa-key"></i>
-                                                    <input type="password" name="confirm_password" id="confirm_password_jobseeker" class="form-control" placeholder="Confirm Password" required>
+                                                    <input type="password" name="confirm_password" id="confirm_password_jobseeker" class="form-control white-text" placeholder="Confirm Password" required>
                                                     <div class="form-control-focus"> </div>
                                                     <span class="text-danger">
                                                         <?php $error_confirm_password = substr(form_error('confirm_password'),3);$error_confirm_password = substr($error_confirm_password,0,-4);echo $error_confirm_password ?>
