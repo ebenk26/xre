@@ -132,7 +132,8 @@ class User extends CI_Controller {
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password'))),
-                'country' => $country_id
+                'country' => $country_id,
+				'created_at' => date('Y-m-d h:i:s')
             );
 
             
@@ -189,7 +190,8 @@ class User extends CI_Controller {
                 'fullname' => $this->input->post('fullname'),
                 'email' => $this->input->post('email'),
                 'password' => md5(SALT.sha1($this->input->post('password'))),
-                'country' => $country_id
+                'country' => $country_id,
+				'created_at' => date('Y-m-d h:i:s')
             );
 
             $role = 4;
