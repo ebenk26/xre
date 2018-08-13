@@ -18,15 +18,16 @@ class Applications_history extends CI_Controller {
     
     public function index(){
         $profile['page_title'] = 'Applications History';
+        $roles = $this->session->userdata('roles');
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $profile['language']    = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $applications['applications_history'] = $this->job_model->get_applied_job();
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/history', $applications);
-        $this->load->view('student/main/footer');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/history', $applications);
+        $this->load->view($roles.'/main/footer');
 	}
 
     public function withdraw(){
@@ -34,7 +35,7 @@ class Applications_history extends CI_Controller {
         $job            = $this->job_model->getJobByAppliedsId($applieds_id);
         $job_id         = $job['job_position_id'];
 		$job_id_code    = rtrim(base64_encode($job_id), '=');
-
+        $roles = $this->session->userdata('roles');
 		$this->db->set('number_of_candidate', 'number_of_candidate-1', FALSE);
 		$this->db->where('id', $job_id);
 		$this->db->update('job_positions');
@@ -98,7 +99,7 @@ class Applications_history extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed withdraw from the job');
         }
-        redirect(base_url().'student/applications_history/');
+        redirect(base_url().$roles.'/applications_history/');
     }
 
     public function accept_invitation(){
@@ -109,7 +110,7 @@ class Applications_history extends CI_Controller {
                         'session_id' => $session_id,
                         'employer_id' => $employer_id);
         $data = array('status' => 'accept');
-
+        $roles = $this->session->userdata('roles');
         $update = $this->global_model->update('interview_schedule_user', $where, $data);
 
 		//BEGIN : set recent activities
@@ -166,7 +167,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 		
-        redirect(base_url().'student/calendar/');
+        redirect(base_url().$roles.'/calendar/');
 
     }
 
@@ -174,7 +175,7 @@ class Applications_history extends CI_Controller {
         $job_id = $this->input->post('job_id');
         $session_id = $this->input->post('session_id');
         $employer_id = $this->input->post('employer_id');
-
+        $roles = $this->session->userdata('roles');
         $where = array( 'job_id'=>$job_id,
                         'session_id' => $session_id,
                         'employer_id' => $employer_id);
@@ -237,7 +238,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 		
-        redirect(base_url().'student/calendar/');
+        redirect(base_url().$roles.'/calendar/');
 
     }
 
@@ -317,7 +318,7 @@ class Applications_history extends CI_Controller {
         CreateNotif($NotifData,$MailData);
         //END : set create notification
 
-        redirect(base_url().'student/calendar/');
+        redirect(base_url().$roles.'/calendar/');
     }
 
 }

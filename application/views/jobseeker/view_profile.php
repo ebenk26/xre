@@ -15,6 +15,12 @@
     
     $checkUser = ($id == base64_decode($segmented_uri))?'same_user':'different_user';
 ?>
+<?php   
+            !empty($user_profile['header_photo'] ) ? $user_profile['header_photo']  = $user_profile['header_photo']  : $user_profile['header_photo']  = '33.jpg';
+            !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
+            $checkUserHeaderImgProfile  = get_headers(IMG_STUDENTS.$user_profile['header_photo'] );
+            $checkUserMainImgProfile    = get_headers(IMG_STUDENTS.$user_profile['profile_photo']);
+     ?>
 
 <!DOCTYPE html>
 <html lang="en" class="no-js">
@@ -94,9 +100,8 @@
 <body>
     <!-- # HEADER -->
     <?php $this->load->view('site/header_content');?>
-
     <!-- # VIEW -->
-    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= file_exists(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] :  IMG_STUDENTS.'33.jpg'; ?>');">
+    <div class="s-promo-block-v2 gradient-darkblue-v7 height-350 g-bg-position-center hidden-xs " style="background: url('<?= $checkUserHeaderImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'?>');">
         <div class="container g-ver-bottom-80-md g-ver-bottom-70-sm ">
             <!-- Fullname & Quote -->
             <div class="col-md-9 col-sm-9">
@@ -128,20 +133,20 @@
             </div>
             <!--  Profile IMAGE -->
             <div class="col-md-3  col-sm-3 text-center">
-                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-big avatar-circle  hidden-sm">
-                <img src="<?= file_exists(IMG_STUDENTS.$user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" alt="" class="avatar avatar-large avatar-circle  visible-sm">
+                <img src="<?= $checkUserMainImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.jpg'?>" alt="" class="avatar avatar-big avatar-circle  hidden-sm">
+                <img src="<?= $checkUserMainImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.jpg'?>" alt="" class="avatar avatar-large avatar-circle  visible-sm">
             </div>
         </div>
     </div>
     <!-- @ Mobile View -->
     <div class="visible-xs md-grey-lighten-5">
-        <div class="view  height-250 g-bg-position-center " style="background: url('<?= !empty($user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>');">
+        <div class="view  height-250 g-bg-position-center " style="background: url('<?= $checkUserHeaderImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'?>');">
             <div class="mask hm-darkblue-v7"></div>
         </div>
         <div class="mt-element-card-v2 text-center  mb-0">
             <div class="mt-card-item p-0 mb-0">
                 <div class="mt-card-avatar  mt-o-70">
-                    <img src="<?= !empty($user_profile['profile_photo']) ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" class="avatar avatar-circle avatar-medium ">
+                    <img src="<?= $checkUserMainImgProfile[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.jpg'?>" class="avatar avatar-circle avatar-medium ">
                 </div>
                 <div class="mt-card-content px-15 mb-0 ">
                     <h4 class="mt-card-name mt-20 md-darkblue-text mb-0 text-uppercase font-20 font-weight-600 ">
@@ -2469,6 +2474,7 @@
                 var image_directory = window.location.origin + '/assets/img/student/';
                 var endorserId = $(this).attr('endorser-id');
 
+
                 $.ajax({
                     url: "<?= base_url();?>site/endorsment/getRate",
                     method: "GET",
@@ -2479,31 +2485,34 @@
                     },
 
                     success: function (response) {
+
+                        
                         var student = JSON.parse(response);
                         var reviews = '';
 
                         var profile_pic = 'profile-pic.png';
 
-                        $.each(student, function (i, v) {
-                            reviews +=
-                                '<div class="mt-comment">\
-                                    <div class="mt-comment-img">\
-                                        <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
-                                '">\
-                                    </div>\
-                                    <div class="mt-comment-body">\
-                                        <div class="mt-comment-info">\
-                                            <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
-                                            <span class="mt-comment-date">' + v.created_at +
-                                '</span>\
+                        if (student.length > 0) {
+                            $.each(student, function (i, v) {
+                                reviews +=
+                                    '<div class="mt-comment">\
+                                        <div class="mt-comment-img">\
+                                            <img class="avatar avatar-xtramini avatar-circle" src="' + v.profile_photo +
+                                    '">\
                                         </div>\
-                                        <div class="mt-comment-text">' +
-                                v.rating +
-                                '</div>\
-                                    </div>\
-                                </div>';
-                        });
-
+                                        <div class="mt-comment-body">\
+                                            <div class="mt-comment-info">\
+                                                <a href="' + v.link + '"><span class="mt-comment-author">' + v.fullname + '</span></a>\
+                                                <span class="mt-comment-date">' + v.created_at +
+                                    '</span>\
+                                            </div>\
+                                            <div class="mt-comment-text">' +
+                                    v.rating +
+                                    '</div>\
+                                        </div>\
+                                    </div>';
+                            });
+                        }
 
                         $('#modal_list_rater_input #dataName').text(dataName);
                         $('#modal_list_rater_input #reviews').html(reviews);

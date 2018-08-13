@@ -19,7 +19,7 @@ class settings extends CI_Controller {
     	$profile['page_title'] = 'Setting';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);
-
+        $roles = $this->session->userdata('roles');
         $profile['user_profile'] 		= $get_user_profile;
         $profile['percent'] 			= $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent']; 
         $settings['user_bios'] 			= $this->global_model->get_by_id('student_bios', array('user_id'=>$id));
@@ -31,12 +31,13 @@ class settings extends CI_Controller {
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $settings['currency'] 			= $this->global_model->get_by_id('forex', array('country_id'=>$_COOKIE['country_id']));
         
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/setting', $settings);
-        $this->load->view('student/main/footer');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/setting', $settings);
+        $this->load->view($roles.'/main/footer');
     }
 
     public function change_fullname(){
+        $roles = $this->session->userdata('roles');
         $data = array('fullname' => $this->input->post('fullname'));
         $where = array('id' => $this->session->userdata('id'));
         $this->global_model->update('users', $where, $data);
@@ -54,14 +55,14 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().$roles.'/settings');
     }
 
     public function change_phone_number(){
         $data = array('contact_number' => $this->input->post('contact_number'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
-		
+		$roles = $this->session->userdata('roles');
 		//BEGIN : set recent activities
 		$data = array(
 					'user_id' 		=> $this->session->userdata('id'),
@@ -74,14 +75,14 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().$roles.'/settings');
     }
 
     public function changeSearchableDetail(){
         $data = array('searchable_detail' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
-		
+		$roles = $this->session->userdata('roles');
 		//BEGIN : set recent activities
 		$data = array(
 					'user_id' 		=> $this->session->userdata('id'),
@@ -94,14 +95,14 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().$roles.'/settings');
     }
 
     public function changeSearchable(){
         $data = array('searchable' => $this->input->post('status'));
         $where = array('user_id' => $this->session->userdata('id'));
         $this->global_model->update('student_bios', $where, $data);
-		
+		$roles = $this->session->userdata('roles');
 		//BEGIN : set recent activities
 		$data = array(
 					'user_id' 		=> $this->session->userdata('id'),
@@ -114,7 +115,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings');
+        redirect(base_url().$roles.'/settings');
     }
 
     public function changeJobPreferences(){
@@ -160,7 +161,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/settings#tab_job');
+        redirect(base_url().$roles.'/settings#tab_job');
     }
 
     public function postReferral(){
@@ -189,7 +190,7 @@ class settings extends CI_Controller {
                 $this->session->set_flashdata('msg_failed', 'Referral code not exist');
             }
         }
-        redirect(base_url().'student/settings');
+        redirect(base_url().$roles.'/settings');
     }
 }
 

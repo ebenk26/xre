@@ -28,12 +28,12 @@ class Wishlist extends CI_Controller {
         $profile['language']       = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         $data['wishlist']          = $this->student_model->get_company_by_user_id(array('wishlist.student_id' => $id, 'wishlist.status'=> 1));
 
-        $wishlistCount = $this->global_model->get_where('wishlist', array('student_id'=>$id));
+        $wishlistCount = $this->global_model->get_where('wishlist', array('student_id'=>$id, 'wishlist.status'=>1));
         $data['totalWishlist'] = count($wishlistCount);
 
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/wishlist',$data);
-        $this->load->view('student/main/footer');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/wishlist',$data);
+        $this->load->view($roles.'/main/footer');
 	}
 
     public function get_company(){
@@ -41,13 +41,14 @@ class Wishlist extends CI_Controller {
         $data = $this->student_model->get_company('user_profiles', array('user_profiles.company_name' => $company));
         $wishlist = $this->global_model->get_where('wishlist', array('company_id'=>$this->session->userdata('id')));
         // $res = array_search($this->session->userdata('id'), array_column($data,'wishlist_user_id'));
+        $newData=[];
         foreach ($data as $key => $value) {
             
-
+            $checkPhotoProfile[$key] = get_headers(IMG_EMPLOYERS.$value['profile_photo']); 
             $newData[$key] = array(   'id'=>$value['id'],
                                 'company_name'=>$value['company_name'],
                                 'registered_company'=> $value['registered_company'],
-                                'profile_photo'=> file_exists(IMG_EMPLOYERS.$value['profile_photo']) ? file_exists(IMG_EMPLOYERS.$value['profile_photo']) : IMG_EMPLOYERS.'profile-pic.png',
+                                'profile_photo'=> ($checkPhotoProfile[$key][0] == 'HTTP/1.1 200 OK') && ($value['profile_photo'] !== NULL) ? IMG_EMPLOYERS.$value['profile_photo'] : IMG_EMPLOYERS.'profile-pic.png',
                                 'company_id'=> $value['company_id'],
                                 'wishlist_id'=> $value['wishlist_id'],
                                 'wishlist_user_id'=> $value['wishlist_user_id'],
@@ -55,6 +56,8 @@ class Wishlist extends CI_Controller {
                                 'session_id'=> $this->session->userdata('id'),
                             );
         }
+
+
         print(json_encode($newData));
     }
 
@@ -62,6 +65,7 @@ class Wishlist extends CI_Controller {
         $companyId = $this->input->post('companyId');
         $userId = $this->session->userdata('id');
         $companyName = $this->input->post('companyName');
+        $roles = $this->session->userdata('roles');
         if (!empty($companyId)) {
             $data = array(  'student_id' => $userId, 
                             'company_id' => $companyId,
@@ -80,7 +84,7 @@ class Wishlist extends CI_Controller {
             }
         }
         $this->global_model->create('wishlist', $data);
-        redirect(base_url().'student/wishlist');
+        redirect(base_url().$roles.'/wishlist');
     }
 
     public function removeCompany(){
@@ -96,7 +100,8 @@ class Wishlist extends CI_Controller {
                     'created_at'    => date('Y-m-d H:i:s'),
                 );
         setRecentActivities($data);
-        $this->global_model->remove('wishlist', $where);
+        $this->global_model->update('wishlist', array('student_id'=> $userId, 'id'=>$wishlistId), array('status'=> 0));
+        // $this->global_model->remove('wishlist', $where);
     }
 
     public function checkWishlistAvailability(){

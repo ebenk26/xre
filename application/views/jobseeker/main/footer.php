@@ -316,6 +316,35 @@
                 alertify.error('Cancel');
             });
         });
+        $('#upgradeStatus').click(function(){
+            $('#modal_edit_profile').modal('hide');
+            swal({
+                title: "Are you sure?",
+                text: "If you upgrade you cannot downgrade anymore",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Apply",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url: "<?php echo base_url();?>site/main/upgradeStatus",
+                        method: "POST",
+                        success: function (response) {
+                            swal("Sucess", "Success upgrade your status.", "success");
+                            location.reload();
+                        }
+                    })
+                } else {
+                    swal("Cancelled", "You cancel to upgrade", "error");
+                }
+            })
+        })
         $('.apply').click(function () {
             var apply = $(this).attr('id');
             swal({
@@ -430,11 +459,6 @@
                 success: function(response){
                     var company = JSON.parse(response);
 
-                    if (window.location.host == 'localhost') {
-                        var image_directory = window.location.origin + '/xremo/assets/img/employer/';
-                    }else{
-                        var image_directory = window.location.origin + '/assets/img/employer/';
-                    }
                     var profile_pic = 'profile-pic.png';
                     var companies = "";
                     var canBeAddedToWishlist = true;
@@ -446,6 +470,7 @@
                             }else{
                                 companyName = v.registered_company;
                             }
+console.log(v.profile_photo);
 
                             companies += '<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">\
                                             <div class="mt-card-item wishlistCheckAvailability" companyId="'+v.id+'">\
@@ -645,12 +670,7 @@
                         var companyName = "";
                         if(company.length > 0){
                             $.each(company, function (i, v) {
-                                console.log(v);
-                                if (v.profile_photo != null) {
-                                    profile_pic = v.profile_photo;
-                                }else{
-                                    profile_pic = 'profile-pic.png';
-                                }
+                                console.log(v.profile_photo);
 
                                 if (v.company_name != "") {
                                     companyName = v.company_name;

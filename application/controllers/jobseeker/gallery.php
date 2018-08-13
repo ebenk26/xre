@@ -29,16 +29,17 @@ class Gallery extends CI_Controller {
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         $gallery = $query->result_array();
-
+        $roles = $this->session->userdata('roles');
         $data['gallery'] = $gallery;
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/gallery', $data);
-        $this->load->view('student/main/footer');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/gallery', $data);
+        $this->load->view($roles.'/main/footer');
 	}
 
     public function post(){
         $arr_old = explode("/", $this->input->post('photo_old'));$last_old = count($arr_old) - 1;
         $arr = explode("/", $this->input->post('photo'));$last = count($arr) - 1;
+        $roles = $this->session->userdata('roles');
         //EDIT
         if ($this->input->post('id') != 0) {
             $data = array(
@@ -94,7 +95,7 @@ class Gallery extends CI_Controller {
             }             
         }        
         
-        redirect(base_url().'student/gallery');
+        redirect(base_url().$roles.'/gallery');
     }
 
     public function get_data_array($id){
@@ -111,6 +112,7 @@ class Gallery extends CI_Controller {
     public function delete(){
         $id     = $this->input->post('id');
         $photo  = $this->input->post('photo');
+        $roles = $this->session->userdata('roles');
         unlink("assets/img/gallery/".$photo);
         $delete_status = $this->db->delete('gallery', array('id' => $id));
         if ($delete_status == true) {
@@ -118,7 +120,7 @@ class Gallery extends CI_Controller {
         }else{
             $this->session->set_flashdata('msg_error', 'Failed');
         }
-        redirect(base_url().'student/gallery');
+        redirect(base_url().$roles.'/gallery');
     }
 
     public function upload_image(){

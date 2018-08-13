@@ -316,6 +316,35 @@
                 alertify.error('Cancel');
             });
         });
+        $('#upgradeStatus').click(function(){
+            $('#modal_edit_profile').modal('hide');
+            swal({
+                title: "Are you sure?",
+                text: "If you upgrade you cannot downgrade anymore",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Apply",
+                cancelButtonText: "Cancel",
+                closeOnConfirm: false,
+                closeOnCancel: false
+
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url: "<?php echo base_url();?>site/main/upgradeStatus",
+                        method: "POST",
+                        success: function (response) {
+                            swal("Sucess", "Success upgrade your status.", "success");
+                            location.reload();
+                        }
+                    })
+                } else {
+                    swal("Cancelled", "You cancel to upgrade", "error");
+                }
+            })
+        })
         $('.apply').click(function () {
             var apply = $(this).attr('id');
             swal({

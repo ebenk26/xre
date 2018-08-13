@@ -92,7 +92,7 @@
             <div class="m-grid m-grid-responsive-xs">
                 <div class="m-grid-col m-grid-col-md-9 m-grid-col-sm-12 m-grid-col-xs-12">                
                     <h3 class=" mb-0-md mb-0-sm text-capitalize "><?= !empty($language->we_just_found_for_you) ? $language->we_just_found_for_you : "What we just found for you" ?>!
-                        <?php $new_job = 0;foreach ($job_positions_new as $key => $value) {$new_job++;}?>                        
+                        <?php $new_job = 0;foreach ($job_positions as $key => $value) {$new_job++;}?>                        
                         <span class="badge badge-md-indigo badge-roundless  my-0 ">
                             <?=$new_job?> <?= !empty($language->new_job_vacancy) ? $language->new_job_vacancy : "New Job " ?></span>
                     </h3>
@@ -115,7 +115,7 @@
                 $maxCol = 6 ;?>
             <div class="m-grid pb-40 m-grid-responsive-xs m-grid-responsive-sm">
                 <div class="m-grid-row  m-">
-                    <?php foreach ($job_positions_new as $key => $value) {  ?>
+                    <?php foreach ($job_positions as $key => $value) {  ?>
                         <div class=" m-grid-col m-grid-col-md-1 width-10-md"></div>
                         <div class="m-grid-col  m-grid-col-auto-height m-grid-col-sm-6 m-grid-col-md-<?php echo $bootstrapColWidth; ?>  panel">                            
                                 <div class="panel-body">
