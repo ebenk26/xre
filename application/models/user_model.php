@@ -100,6 +100,10 @@ class User_Model extends CI_Model{
         $config['mailtype'] = 'html';
         $config['priority'] = 2;
         $config['wordwrap'] = TRUE;
+        $config['smtp_host'] = 'mail.xremo.com';
+        $config['smtp_port'] = 465;
+        $config['smtp_user'] = 'system@xremo.com';
+        $config['smtp_pass'] = '}CvYhyQg4[z6';
         
         $this->load->library('email', $config);
         $this->email->set_mailtype("html");

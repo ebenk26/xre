@@ -20,7 +20,6 @@ class Profile extends CI_Controller {
         if(($roles !== $segment)){
             redirect(base_url());
         }
-        
         $profile['page_title'] = 'Profile';
         $id = $this->session->userdata('id');
         $get_user_profile = $this->student_model->get_user_profile($id);

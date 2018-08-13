@@ -142,7 +142,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().$roles'/profile/');
+        redirect(base_url().$roles.'/profile/');
     }
 
     public function add_education(){

@@ -361,6 +361,40 @@
                         }
                     );
             });
+            $('.sendMail').click(function () {
+                var email = $(this).attr('data-email');
+                var user = $(this).attr('data-name');
+                    swal({
+                        title: "Are you sure?",
+                        text: "You will send email to "+email,
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Send",
+                        cancelButtonText: "Cancel",
+                        closeOnConfirm: false,
+                        closeOnCancel: false 
+                    },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $.ajax({
+                                    url:"<?php echo base_url();?>administrator/sendMail/send",
+                                    method:"POST",
+                                    data: {
+                                      email: email,
+                                      user : user,
+                                    },
+                                    success:function(response) {
+                                       swal("Sucess", "Success send email to "+email, "success");
+                                       location.reload();
+                                    }
+                                  })
+                            } else {
+                                swal("Cancelled", "You cancel sending mail to "+email, "error");
+                            }
+                        }
+                    );
+            });
             $('.dlt-history').click(function () {
                 var apply = $(this).attr('data-id');
                     swal({

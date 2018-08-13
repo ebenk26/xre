@@ -131,6 +131,10 @@
 													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
+
+													<a href="#" class="btn btn-icon-only blue sendMail" data-name="<?= $value['overview']['name'];?>" data-email="<?= $value['overview']['email'];?>" title="Edit" style="margin-right:0;">
+														<i class="fa fa-envelope"></i> 
+													</a>
 												</td>
 		                                    </tr>                                        
 		                                <?php }} ?>
@@ -145,19 +149,6 @@
 									</a>
 								</div>
                                 <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
-		                            <thead>
-		                                <tr>
-		                                    <th class="text-center">#</th>
-		                                    <th> Name </th>
-		                                    <th> Email </th>
-		                                    <th> Signup Date </th>
-		                                    <!--<th class="col-md-2"> CV </th>-->
-		                                    <th> Video CV </th>
-		                                    <th> Actions </th>
-		                                </tr>
-		                            </thead>
-		                            <tbody>
-		                                <table class="table table-striped table-bordered table-hover order-column xremo_table" id="">
 		                            <thead>
 		                                <tr>
 		                                    <th class="text-center">#</th>
@@ -196,14 +187,13 @@
 													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
-													<a href="#" class="btn btn-icon-only blue invite-users" data-email="<?= $value['overview']['email']?>" data-toggle="modal" title="Edit" style="margin-right:0;">
-														<i class="fa fa-edit"></i> 
+
+													<a href="#" class="btn btn-icon-only blue sendMail" data-name="<?= $value['overview']['name'];?>" data-email="<?= $value['overview']['email'];?>" title="Edit" style="margin-right:0;">
+														<i class="fa fa-envelope"></i> 
 													</a>
 												</td>
-		                                    </tr>                                        
+		                                    </tr>                                           
 		                                <?php }} ?>
-		                            </tbody>
-		                        </table>
 		                            </tbody>
 		                        </table>
                             </div>
@@ -253,8 +243,12 @@
 													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
+
+													<a href="#" class="btn btn-icon-only blue sendMail" data-name="<?= $value['overview']['name'];?>" data-email="<?= $value['overview']['email'];?>" title="Edit" style="margin-right:0;">
+														<i class="fa fa-envelope"></i> 
+													</a>
 												</td>
-		                                    </tr>                                        
+		                                    </tr>                                           
 		                                <?php }} ?>
 		                            </tbody>
 		                        </table>
@@ -305,8 +299,12 @@
 													<a href="#modal_edit_<?=$value['overview']['id_users'] ?>" class="btn btn-icon-only blue" data-toggle="modal" title="Edit" style="margin-right:0;">
 														<i class="fa fa-edit"></i> 
 													</a>
+
+													<a href="#" class="btn btn-icon-only blue sendMail" data-name="<?= $value['overview']['name'];?>" data-email="<?= $value['overview']['email'];?>" title="Edit" style="margin-right:0;">
+														<i class="fa fa-envelope"></i> 
+													</a>
 												</td>
-		                                    </tr>                                        
+		                                    </tr>                                            
 		                                <?php }} ?>
 		                            </tbody>
 		                        </table>

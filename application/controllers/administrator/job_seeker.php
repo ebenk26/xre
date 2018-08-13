@@ -7,6 +7,7 @@ class Job_Seeker extends CI_Controller {
         parent::__construct();
         $this->load->model('employer_model');
         $this->load->model('job_model');
+        $this->load->model('student_model');
         $countryCheck 	= $this->session->userdata('country');
         $roles 			= $this->session->userdata('roles');
         $segment 		= $this->uri->segment(USER_ROLE);
@@ -25,7 +26,16 @@ class Job_Seeker extends CI_Controller {
         $complement['position_levels'] 		= $this->employer_model->get_position();
         $complement['year_of_experience'] 	= $this->employer_model->get_year_of_experience();
         $complement['job_post'] 			= $this->employer_model->get_job_post($id);
-		$complement['job_seeker'] 			= $this->get_data();
+
+        $job_seeker             = $this->get_data();
+
+        $i =0;
+        foreach ($job_seeker as $key => $value) {
+            $profileP[$i] = $this->student_model->get_user_profile($value->id);
+            $i++;
+        }
+
+		$complement['job_seeker'] 			= $profileP;
 		
         $this->load->view('administrator/main/header', $profile);
         $this->load->view('administrator/job_seeker', $complement);
