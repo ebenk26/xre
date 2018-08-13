@@ -540,7 +540,7 @@
         <?php }?>
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-TpUJ6milINIks-i4i5i3NaQCtLcsJrw&libraries=places" async defer></script>
 
     <style type="text/css">
         #at4-share {
