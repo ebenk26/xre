@@ -1389,9 +1389,11 @@
                                                         <i class="icon-graduation mr-5 font-18"></i>
                                                         <?= !empty($language->student ) ? $language->student  : "Student" ?>
                                                     </p>
-                                                    <!-- <div class="input-group-btn">
-                                                        <a href="#" class="btn btn-md-orange btn-xs "><i class="fa fa-arrow-up mr-5"></i>Upgrade</a>
-                                                    </div> -->
+                                                    <?php if ($this->session->userdata('roles') == "student") { ?>
+                                                        <div class="input-group-btn">
+                                                            <a href="#" id="upgradeStatus" class="btn btn-md-orange btn-xs "><i class="fa fa-arrow-up mr-5"></i>Upgrade</a>
+                                                        </div>
+                                                    <?php } ?>
                                                 </div>
 
                                             </div>

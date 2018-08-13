@@ -24,9 +24,10 @@ class Search extends CI_Controller {
         $word = $this->input->post('query');
         $search['search_result'] = $this->job_model->get_job($word);
         $search['keyword'] = $word;
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/search', $search);
-        $this->load->view('student/main/footer');
+        $roles = $this->session->userdata('roles');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/search', $search);
+        $this->load->view($roles.'/main/footer');
 
 	}
 

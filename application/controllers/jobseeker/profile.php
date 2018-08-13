@@ -30,19 +30,20 @@ class Profile extends CI_Controller {
         $profile['industries'] = $this->student_model->get_array('industries', 'id', 'asc');
         $profile['percent'] = $get_user_profile['percent'] > 100 ? 100 : $get_user_profile['percent'];
         $profile['language']   = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/profile', $profile);
-        $this->load->view('student/main/footer');
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/profile', $profile);
+        $this->load->view($roles.'/main/footer');
 	}
 
     public function post(){
         //IF NOT EMPTY PROFILE PICTURE
+        $roles = $this->session->userdata('roles');
         if(!empty($_FILES['profile_photo']['tmp_name'])){
             $userImageID = array('user_id' => $this->session->userdata('id'),
                             'type' => 'profile_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
             $tempFile = $_FILES['profile_photo']['tmp_name'];        
-            $targetPath = "./assets/img/student/";
+            $targetPath = "./assets/img/".$roles;
 
             $path = pathinfo($_FILES['profile_photo']['name']);
             $ext = $path['extension'];
@@ -68,7 +69,7 @@ class Profile extends CI_Controller {
                             'type' => 'header_photo');
             $checkImage = $this->student_model->checkImageExist($userImageID);
             $tempFile = $_FILES['header_photo']['tmp_name'];        
-            $targetPath = "./assets/img/student/";
+            $targetPath = "./assets/img/".$roles;
 
             $path = pathinfo($_FILES['header_photo']['name']);
             $ext = $path['extension'];
@@ -141,11 +142,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile/');
+        redirect(base_url().$roles'/profile/');
     }
 
     public function add_education(){
-        
+        $roles = $this->session->userdata('roles');
         if ($this->input->post('current_date') == 'on') {
             $education = array( 'university_name'=> $this->input->post('university_name'),
                             'qualification_level'=> $this->input->post('qualification_level'),
@@ -183,11 +184,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
     }
 
     public function edit_education(){
-        
+        $roles = $this->session->userdata('roles');
         if ($this->input->post('current_date') == 'on') {
             $education = array( 'university_name'=> $this->input->post('university_name'),
                             'qualification_level'=> $this->input->post('qualification_level'),
@@ -228,12 +229,12 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
         
     }
 
     public function add_experience(){
-
+        $roles = $this->session->userdata('roles');
         $startYear   = date('Y',strtotime($this->input->post('start_date')));
         $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
         $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
@@ -289,11 +290,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
     }
 
     public function edit_experience(){
-
+        $roles = $this->session->userdata('roles');
         $startYear   = date('Y',strtotime($this->input->post('start_date')));
         $endYear     = ($this->input->post('current_date') == 'on') ? date('Y') : date('Y',strtotime($this->input->post('end_date')));
         $startMonth  = date('m',strtotime($this->input->post('start_date')))/12;
@@ -349,10 +350,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
     }
 
     public function add_skills(){
+        $roles = $this->session->userdata('roles');
         $skills = array('name'=> $this->input->post('skill_name'),
                             'description'=> $this->input->post('skill_description'),
                             'level'=> $this->input->post('skill_level'),
@@ -361,10 +363,11 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->add($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data added') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().$roles.'/profile/');
     }
 
     public function edit_skills(){
+        $roles = $this->session->userdata('roles');
         $skills = array('id' => $this->input->post('skills_id'),
                             'name'=> $this->input->post('name'),
                             'description'=> $this->input->post('description'),
@@ -374,10 +377,11 @@ class Profile extends CI_Controller {
         $table = 'user_skill_set';
         $result = $this->student_model->update($skills, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Skills data updated') : $this->session->set_flashdata('msg_failed', 'skills data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().$roles.'/profile/');
     }
 
     public function add_language(){
+        $roles = $this->session->userdata('roles');
         $language = array('language'=> $this->input->post('language_name'),
                             'profieciency'=> $this->input->post('profieciency'),
                             'user_id' => $this->session->userdata('id')
@@ -385,10 +389,11 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->add($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data added') : $this->session->set_flashdata('msg_failed', 'language data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().$roles.'/profile/');
     }
 
     public function edit_language(){
+        $roles = $this->session->userdata('roles');
         $language = array('id' => $this->input->post('language_id'),
                             'language'=> $this->input->post('language'),
                             'profieciency'=> $this->input->post('profieciency'),
@@ -397,10 +402,11 @@ class Profile extends CI_Controller {
         $table = 'user_language_set';
         $result = $this->student_model->update($language, $table);
         ($result == true) ? $this->session->set_flashdata('msg_success', 'Language data updated') : $this->session->set_flashdata('msg_failed', 'Language data failed to update');
-        redirect(base_url().'student/profile/');
+        redirect(base_url().$roles.'/profile/');
     }
 
     public function add_achievement(){
+        $roles = $this->session->userdata('roles');
         if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
             $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
         }else{  
@@ -428,10 +434,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
     }
 
     public function edit_achievement(){
+        $roles = $this->session->userdata('roles');
         if (strtotime($this->input->post('end_date')) < strtotime($this->input->post('start_date'))) {
             $this->session->set_flashdata('msg_failed', 'End date cannot smaller than start date');
         }else{  
@@ -460,11 +467,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
     }
 
     public function add_project(){
-        
+        $roles = $this->session->userdata('roles');
         if ($this->input->post('current_date') == 'on') {
             $project_name = array('name' => $this->input->post('project_name'),
                                     'description' => $this->input->post('project_description'),
@@ -501,10 +508,11 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-		redirect(base_url().'student/profile');
+		redirect(base_url().$roles.'/profile');
     }
 
     public function edit_project(){
+        $roles = $this->session->userdata('roles');
         if ($this->input->post('current_date') == 'on') {
             $project_name = array('name' => $this->input->post('project_name'),
                                     'description' => $this->input->post('project_description'),
@@ -541,7 +549,7 @@ class Profile extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().'student/profile');
+        redirect(base_url().$roles.'/profile');
 
     }
 	
@@ -587,7 +595,7 @@ class Profile extends CI_Controller {
             $profile['employer_profile'] = $this->employer_model->get_user_profile($this->session->userdata('id'));
         }
 		$profile['student_id'] = $id;
-		
+		$roles = $this->session->userdata('roles');
 		//increase number of seen
 		if($this->session->userdata('roles') != "administrator" && $this->session->userdata('id') != $id){
 			$last_seen_by = $profile['user_profile']['overview']['last_seen_by'];
@@ -623,6 +631,6 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-        $this->load->view('student/view_profile',$profile);
+        $this->load->view($roles.'/view_profile',$profile);
     }
 }

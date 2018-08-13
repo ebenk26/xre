@@ -26,6 +26,12 @@ class Main extends CI_Controller {
         $this->load->view('main/footer', $header);
 	}
 
+    public function upgradeStatus(){
+        $id = $this->session->userdata('id');
+        $this->global_model->update('user_role', array('user_id'=>$id), array('role_id'=>4));
+        redirect(base_url().'site/user/logout');
+    }
+
     public function downloadResume(){
         set_time_limit(0);
         ini_set('memory_limit', '-1');

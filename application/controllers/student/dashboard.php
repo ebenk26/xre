@@ -19,6 +19,7 @@ class Dashboard extends CI_Controller {
     public function index(){
         $profile['page_title'] = 'Dashboard';
         $id = $this->session->userdata('id');
+        $roles = $this->session->userdata('roles');
         $jobPreferences = $this->global_model->get_where('job_preferences', array('user_id'=>$id));
         $get_user_profile = $this->student_model->get_user_profile($id);
         $profile['user_profile'] = $get_user_profile;
@@ -66,9 +67,9 @@ class Dashboard extends CI_Controller {
 		$job['article'] = $query->result();
 		
 		
-        $this->load->view('student/main/header', $profile);
-        $this->load->view('student/dashboard', $job);
-        $this->load->view('student/main/footer',$footer);
+        $this->load->view($roles.'/main/header', $profile);
+        $this->load->view($roles.'/dashboard', $job);
+        $this->load->view($roles.'/main/footer',$footer);
 	}
 
     public function applied(){

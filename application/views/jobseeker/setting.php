@@ -211,64 +211,118 @@ if(!empty($job_preferences))
                                         <!--Note : Random Arrangement And badge color also random  , extract from student profile.php  -->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Keyword</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($keywords_view)){
-                                                foreach ($keywords_view as $keywordsViewValue){?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm">
-                                                    <?= $keywordsViewValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php }}else { ?>
+                                            <?php 
+                                            if(!empty($keywords_view)){
+                                                foreach ($keywords_view as $wordKey => $keywordsViewValue)
+                                                {
+                                                    if($wordKey != 0 && ($wordKey+1) != count($keywords_view))
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm">
+                                                                <?= $keywordsViewValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php   
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php } ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
 
                                         <!-- Location -->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Location</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($work_location)) {
-                                                foreach ($work_location as $workLocationValue) { ?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm ">
-                                                    <?= $workLocationValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php }} else { ?>
+                                            <?php
+                                            if(!empty($work_location))
+                                            {
+                                                foreach ($work_location as $locKey => $workLocationValue)
+                                                {
+                                                    if($locKey != 0 && ($locKey+1) != count($work_location))
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm ">
+                                                                <?= $workLocationValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php 
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php } ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
 
                                         <!-- Job Type -->
                                         <!-- Note :  Please extract from existing list-->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Job Type</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($employment_type)){
-                                                foreach ($employment_type as $employmentTypeValue){
+                                            <?php 
+                                            if(!empty($employment_type))
+                                            {
+                                                foreach ($employment_type as $employKey => $employmentTypeValue)
+                                                {
+                                                    if($employKey != 0 && ($employKey+1) != count($employment_type))
+                                                    {
                                             ?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm ">
-                                                    <?= $employmentTypeValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php } } else { ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm ">
+                                                                <?= $employmentTypeValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php 
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php } ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
 
                                         <!-- Position Level -->
                                         <!-- Note :  Please extract from existing list -->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Position Level</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($position_level)) {
-                                                foreach ($position_level as $positionLevelValue) { ?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm ">
-                                                    <?= $positionLevelValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php }}else{ ?>
+                                            <?php 
+                                            if(!empty($position_level))
+                                            {
+                                                foreach ($position_level as $posKey => $positionLevelValue)
+                                                {
+                                                    if($posKey != 0 && ($posKey+1) != count($position_level))
+                                                    {
+                                            ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm ">
+                                                                <?= $positionLevelValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php 
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php }?>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
 
                                         <!-- Salary Range -->
@@ -290,17 +344,30 @@ if(!empty($job_preferences))
                                         <!-- Note :  Please extract from existing list of Year of expereince in job post employer side-->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Years Of Experience</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($years_of_experience)) {
-                                                foreach ($years_of_experience as $yearsOfExperienceValue) {
+                                            <?php 
+                                            if(!empty($years_of_experience))
+                                            {
+                                                foreach ($years_of_experience as $yoeKey => $yearsOfExperienceValue)
+                                                {
+                                                    if($yoeKey != 0 && ($yoeKey+1) != count($years_of_experience))
+                                                    {
                                             ?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm ">
-                                                    <?= $yearsOfExperienceValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php } } else { ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm ">
+                                                                <?= $yearsOfExperienceValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php 
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php } ?>
+                                            <?php 
+                                            }
+                                            ?>
                                         </ul>
 
 
@@ -308,17 +375,30 @@ if(!empty($job_preferences))
                                         <!-- Qualifications -->
                                         <h5 class="text-uppercase font-15 font-weight-700 mb-10 md-indigo-darken-1-text">Qualifications</h5>
                                         <ul class="list-inline list-unstyled mt-ul-li-lr-0 mx-0">
-                                            <?php if(!empty($qualifications_view)) {
-                                                foreach ($qualifications_view as $qualificationsValue) { 
+                                            <?php 
+                                            if(!empty($qualifications_view))
+                                            {
+                                                foreach ($qualifications_view as $qualKey => $qualificationsValue)
+                                                {
+                                                    if($qualKey != 0 && ($qualKey+1) != count($qualifications_view))
+                                                    {
                                             ?>
-                                            <li class="mb-20">
-                                                <p class="label label-md-green label-sm ">
-                                                    <?= $qualificationsValue; ?>
-                                                </p>
-                                            </li>
-                                            <?php } } else { ?>
+                                                        <li class="mb-20">
+                                                            <p class="label label-md-green label-sm ">
+                                                                <?= $qualificationsValue; ?>
+                                                            </p>
+                                                        </li>
+                                            <?php 
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            { 
+                                            ?>
                                                 <p><i class="font-weight-300 md-grey-darken-1-text"> None </i></p>
-                                            <?php } ?>
+                                            <?php
+                                            }
+                                            ?>
                                         </ul>
 
                                     </div>
