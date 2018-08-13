@@ -436,7 +436,7 @@ $company_address = json_decode($user_profile['address']);?>
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-TpUJ6milINIks-i4i5i3NaQCtLcsJrw&libraries=places" async defer></script>
 <?php endif; ?>
 
 <?php if ($this->uri->segment(2) == 'profile') :?>
@@ -803,7 +803,7 @@ $company_address = json_decode($user_profile['address']);?>
 
     
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5IHxM-F43CGvNccBU_RK8b8IFanhbh8M&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-TpUJ6milINIks-i4i5i3NaQCtLcsJrw&libraries=places"></script>
 
 <?php endif; ?>
 
