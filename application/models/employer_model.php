@@ -587,7 +587,35 @@ class Employer_Model extends CI_Model{
 
     }
 
-
+	function get_new_emp_today($country_id){
+		$this->db->select('count(users.id) as count_emp');
+		$this->db->from('users');
+		$this->db->join('user_role', 'users.id = user_role.user_id');
+		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+        $this->db->where('user_role.role_id = 3');
+		$this->db->where('users.country', $country_id);
+		$this->db->where('users.created_at >="'.date("Y-m-d 00:00:00").'"');
+		$this->db->order_by('users.id', 'DESC');
+		$query = $this->db->get();
+		$res = $query->result();
+		$row = $res[0];
+		return $row->count_emp;
+    }
+	
+	function get_new_emp_yesterday($country_id){
+		$this->db->select('count(users.id) as count_emp');
+		$this->db->from('users');
+		$this->db->join('user_role', 'users.id = user_role.user_id');
+		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+        $this->db->where('user_role.role_id = 3');
+		$this->db->where('users.country', $country_id);
+		$this->db->where('users.created_at BETWEEN DATE_ADD("'.date("Y-m-d 00:00:00").'", INTERVAL -1 DAY) AND DATE_ADD("'.date("Y-m-d 23:59:59").'", INTERVAL -1 DAY)');
+		$this->db->order_by('users.id', 'DESC');
+		$query = $this->db->get();
+		$res = $query->result();
+		$row = $res[0];
+		return $row->count_emp;
+    }
 }
 
 ?>

@@ -390,4 +390,20 @@ function beautifyJson($data,$view = true)
     }
 }
 
+function get_total_new_emp(){
+	$CI =& get_instance();
+	$CI->db->select('count(users.id) as count_emp');
+	$CI->db->from('users');
+	$CI->db->join('user_role', 'users.id = user_role.user_id');
+	$CI->db->join('user_profiles', 'user_profiles.user_id = users.id');
+	$CI->db->where('user_role.role_id = 3');
+	$CI->db->where('users.country in (5,3,4)');
+	$CI->db->where('users.created_at BETWEEN DATE_ADD("'.date("Y-m-d 00:00:00").'", INTERVAL -1 DAY) AND "'.date("Y-m-d H:i:s").'"');
+	$CI->db->order_by('users.id', 'DESC');
+	$query = $CI->db->get();
+	$res = $query->result();
+	$row = $res[0];
+	return $row->count_emp;
+}
+
 ?>

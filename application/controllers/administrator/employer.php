@@ -28,6 +28,14 @@ class Employer extends CI_Controller {
 		$complement['result'] 				= $this->get_data();
         $complement['countries']            = $this->get_country_list();
 		
+        $complement['count_new_emp_id']     = $this->employer_model->get_new_emp_today(5);
+        $complement['count_new_emp_my']     = $this->employer_model->get_new_emp_today(3);
+        $complement['count_new_emp_ph']     = $this->employer_model->get_new_emp_today(4);
+		
+		$complement['count_yes_emp_id']     = $this->employer_model->get_new_emp_yesterday(5);
+        $complement['count_yes_emp_my']     = $this->employer_model->get_new_emp_yesterday(3);
+        $complement['count_yes_emp_ph']     = $this->employer_model->get_new_emp_yesterday(4);
+		
         $this->load->view('administrator/main/header', $profile);
         $this->load->view('administrator/employer', $complement);
         $this->load->view('administrator/main/footer');

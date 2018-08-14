@@ -65,6 +65,11 @@
                             <div class="tab-pane active" id="portlet_tab2_1">
                                 <div class="alert alert-danger"> <b>Indonesia</b> </div>
                                 <div>
+									<a href="#" class="btn btn-circle btn-md-grey" style="margin-bottom: 15px;float: right;font-size: 12px;cursor:default;">
+										Today <?php print_r ($count_new_emp_id);?> New Employer
+										<br>
+										Yesterday <?php print_r ($count_yes_emp_id);?> New Employer
+									</a>
                                 	<a href="#modal_add" class="btn btn-circle btn-md-blue" data-toggle="modal" style="margin-bottom: 15px;">
 		                                <i class="fa fa-plus"></i> Create Employer 
 									</a>
@@ -129,6 +134,11 @@
 							<div class="tab-pane" id="portlet_tab2_2">
                                 <div class="alert alert-info"> <b>Malaysia</b> </div>
                                 <div>
+									<a href="#" class="btn btn-circle btn-md-grey" style="margin-bottom: 15px;float: right;font-size: 12px;cursor:default;">
+										Today <?php print_r ($count_new_emp_my);?> New Employer
+										<br>
+										Yesterday <?php print_r ($count_yes_emp_my);?> New Employer
+									</a>
                                 	<a href="#modal_add" class="btn btn-circle btn-md-blue" data-toggle="modal" style="margin-bottom: 15px;">
 		                                <i class="fa fa-plus"></i> Create Employer 
 									</a>
@@ -193,6 +203,11 @@
 							<div class="tab-pane" id="portlet_tab2_3">
                                 <div class="alert alert-warning"> <b>Philippines</b> </div>
                                 <div>
+									<a href="#" class="btn btn-circle btn-md-grey" style="margin-bottom: 15px;float: right;font-size: 12px;cursor:default;">
+										Today <?php print_r ($count_new_emp_ph);?> New Employer
+										<br>
+										Yesterday <?php print_r ($count_yes_emp_ph);?> New Employer
+									</a>
                                 	<a href="#modal_add" class="btn btn-circle btn-md-blue" data-toggle="modal" style="margin-bottom: 15px;">
 		                                <i class="fa fa-plus"></i> Create Employer 
 									</a>

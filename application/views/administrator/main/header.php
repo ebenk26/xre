@@ -56,7 +56,25 @@
     <link href="<?php echo CSS_EMPLOYER; ?>custom.min.css" rel="stylesheet" type="text/css">
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon" href="https://xremo.github.io/XremoFrontEnd/custom_pages/favicon.ico">
+	<style>
+		.div__badge {
+		  color: white;
+		  display: inline-block; 
+		  position: relative; 
+		}
 
+		.button__badge {
+		  background-color: #fa3e3e;
+		  border-radius: 2px;
+		  color: white;
+		 
+		  padding: 1px 3px;
+		  font-size: 10px;
+		  position: absolute;
+		  top: -10px;
+			right: -15px;
+		}
+	</style>
 </head>
 <!-- END HEAD -->
 
@@ -506,7 +524,12 @@
 					<li class="nav-item <?php if ($this->uri->segment(2) == 'employer'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/employer" class="nav-link ">
                             <i class="icon-moustache"></i>
-                            <span class="title">Employer</span>
+                            <span class="title">
+								<div class="div__badge">
+									Employer
+									<span class="button__badge"><?php print_r(get_total_new_emp());?></span>
+								</div>
+							</span>
 							<span class="selected"></span>
                         </a>
 					</li>
