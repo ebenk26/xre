@@ -161,7 +161,7 @@ class settings extends CI_Controller {
 		setRecentActivities($data);
 		//END : set recent activities
 		
-        redirect(base_url().$roles.'/settings#tab_job');
+        redirect(base_url().'jobseeker/settings#tab_job');
     }
 
     public function postReferral(){
