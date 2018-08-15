@@ -588,14 +588,156 @@ class Profile extends CI_Controller {
 
     public function view_my_profile(){
         $id= base64_decode($this->uri->segment(URI_SEGMENT_DETAIL));
+        $viewerId = $this->session->userdata('id');
 		$profile['user_profile'] = $this->student_model->get_user_profile($id);
         $profile['language'] = !empty($_COOKIE['locale']) ? getLocaleLanguage($_COOKIE['locale']) : getLocaleLanguage('EN');
         if ($this->session->userdata('roles') == 'employer') {
             $profile['employer_profile'] = $this->employer_model->get_user_profile($this->session->userdata('id'));
         }
-		$profile['student_id'] = $id;
-		$roles = $this->session->userdata('roles');
-		//increase number of seen
+        $profile['student_id'] = $id;
+        $roles = $this->session->userdata('roles');
+        //get academy ratings and review
+        $academics      = $this->global_model->get_where('academics',array('user_id'=>$id));
+        $academy        = [];
+
+        if (!empty($academics)) {
+            foreach ($academics as $key => $value) {
+                $rate[$key] = 0;
+                $ratings = $this->global_model->get_where('ratings', array('user_id'=> $id, 'skill_id'=>$value['id']));
+                $userGiveRating[$key] = count($ratings);
+                $reviews = $this->global_model->get_where('reviews', array('user_id'=> $id, 'skill_id'=>$value['id']));
+                $userGiveReview[$key] = count($reviews);
+                foreach ($ratings as $ratingKey => $ratingValue) {
+                    $userRole = $this->global_model->get_by_id('user_role', array('user_id'=>$ratingValue['endorser_id']));
+                    if ($userRole->role_id == 3) {
+                        $detailEndorser  = $this->employer_model->get_user_profile($ratingValue['endorser_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorser  = $this->student_model->get_user_profile($ratingValue['endorser_id']);                        
+                    }
+                    $rate[$key]     += $ratingValue['rating'];
+                    $academy[$key]['ratingDetail'][$ratingKey] = $detailEndorser;
+                    $academy[$key]['ratingDetail'][$ratingKey]['currentUserRate'] = ($ratingValue['endorser_id'] == $viewerId) ? true : false;
+                }
+
+                foreach ($reviews as $reviewKey => $reviewValue) {
+                    $userRole = $this->global_model->get_by_id('user_role', array('user_id'=>$ratingValue['endorser_id']));
+                    if ($userRole->role_id == 3) {
+                        $detailEndorser  = $this->employer_model->get_user_profile($ratingValue['endorser_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorser  = $this->student_model->get_user_profile($ratingValue['endorser_id']);                        
+                    }
+                    $academy[$key]['reviewDetail'][$reviewKey] = $detailEndorser;    
+                    $academy[$key]['reviewDetail'][$reviewKey]['currentUserRate'] = ($reviewKey['endorser_id'] == $viewerId) ? true : false;
+                }
+                $academy[$key]['reviews'] = $userGiveReview[$key];
+                $academy[$key]['ratings'] = !empty($ratings) ? $rate[$key] / $userGiveRating[$key] : $rate[$key];
+                $academy[$key]['id'] = $value['id'];
+                $academy[$key]['user_id'] = $value['user_id'];
+                $academy[$key]['university_name'] = $value['university_name'];
+                $academy[$key]['degree_name'] = $value['degree_name'];
+                $academy[$key]['degree_description'] = $value['degree_description'];
+                $academy[$key]['qualification_level'] = $value['qualification_level'];
+                $academy[$key]['date'] = $value['date'];
+                $academy[$key]['start_date'] = $value['start_date'];
+                $academy[$key]['end_date'] = $value['end_date'];
+
+            }
+        }
+
+        $profile['academy'] = $academy;
+
+        //get experience rating review
+        $experiences    = $this->global_model->get_where('experiences',array('user_id'=>$id));
+        $experience     = [];
+
+        if (!empty($experiences)) {
+            foreach ($experiences as $key => $value) {
+                
+                $rate[$key] = 0;
+                $ratings = $this->global_model->get_where('ratings', array('user_id'=> $id, 'exp_id'=>$value['id']));
+                $userGiveRating[$key] = count($ratings);
+                $reviews = $this->global_model->get_where('reviews', array('user_id'=> $id, 'exp_id'=>$value['id']));
+                $userGiveReview[$key] = count($reviews);
+                foreach ($ratings as $ratingKey => $ratingValue) {
+                    $userRole = $this->global_model->get_by_id('user_role', array('user_id'=>$ratingValue['endorser_id']));
+                    if ($userRole->role_id == 3) {
+                        $detailEndorser  = $this->employer_model->get_user_profile($ratingValue['endorser_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorser  = $this->student_model->get_user_profile($ratingValue['endorser_id']);                        
+                    }
+                    $rate[$key]     += $ratingValue['rating'];
+                    $experience[$key]['ratingDetail'][$ratingKey] = $detailEndorser;   
+                    $experience[$key]['ratingDetail'][$ratingKey]['currentUserRate'] = ($ratingValue['endorser_id'] == $viewerId) ? true : false; 
+                }
+
+                foreach ($reviews as $reviewKey => $reviewValue) {
+                    if ($userRole->role_id == 3) {
+                        $detailEndorser  = $this->employer_model->get_user_profile($ratingValue['endorser_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorser  = $this->student_model->get_user_profile($ratingValue['endorser_id']);                        
+                    }
+                    $experience[$key]['reviewDetail'][$reviewKey] = $detailEndorser;    
+                    $experience[$key]['reviewDetail'][$reviewKey]['currentUserRate'] = ($reviewKey['endorser_id'] == $viewerId) ? true : false;
+                }
+                $experience[$key]['reviews'] = $userGiveReview[$key];
+                $experience[$key]['ratings'] = !empty($ratings) ? $rate[$key] / $userGiveRating[$key] : $rate[$key];
+                $experience[$key]['id'] = $value['id'];
+                $experience[$key]['user_id'] = $value['user_id'];
+                $experience[$key]['title'] = $value['title'];
+                $experience[$key]['company_name'] = $value['company_name'];
+                $experience[$key]['skills'] = $value['skills'];
+                $experience[$key]['start_date'] = $value['start_date'];
+                $experience[$key]['end_date'] = $value['end_date'];
+
+            }
+        }
+
+        $profile['experience'] = $experience;
+
+        //get Projects endorse jangan lupa flag user endorse
+        $userProjects     = $this->global_model->get_where('user_projects', array('user_id'=>$id), 'id', 'DESC');
+        if (!empty($userProjects)) {
+            foreach ($userProjects as $key => $value) {
+                $endorsesProject = $this->global_model->get_where('endorse', array('endorsed_user_id'=> $id, 'user_project_id'=>$value['id']));
+                $userGiveEndorse[$key] = count($endorsesProject);
+                foreach ($endorsesProject as $endorseKey => $endorseValue) {
+                    $userRole = $this->global_model->get_by_id('user_role', array('user_id'=>$endorseValue['endorser_user_id']));
+                    if ($userRole->role_id == 3) {
+                        $detailEndorserNonEdu  = $this->employer_model->get_user_profile($endorseValue['endorser_user_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorserNonEdu  = $this->student_model->get_user_profile($endorseValue['endorser_user_id']);
+                    }
+                    $userProjects[$key]['ratingDetail'][$endorseKey] = $detailEndorserNonEdu;   
+                    $userProjects[$key]['ratingDetail'][$endorseKey]['currentUserRate'] = ($endorseValue['endorser_user_id'] == $viewerId) ? true : false; 
+                }
+            }
+        }
+
+        $profile['project'] = $userProjects;
+
+        //get non-education endorse jangan lupa flag user endorse
+        $nonEducation     = $this->global_model->get_where('achievement', array('user_id'=>$id), 'id', 'DESC');
+
+        if (!empty($nonEducation)) {
+            foreach ($nonEducation as $key => $value) {
+                $endorses = $this->global_model->get_where('endorse', array('endorsed_user_id'=> $id, 'achievement_id'=>$value['id']));
+                $userGiveEndorse[$key] = count($endorses);
+                foreach ($endorses as $endorseKey => $endorseValue) {
+                    $userRole = $this->global_model->get_by_id('user_role', array('user_id'=>$endorseValue['endorser_user_id']));
+                    if ($userRole->role_id == 3) {
+                        $detailEndorserNonEdu  = $this->employer_model->get_user_profile($endorseValue['endorser_user_id']);
+                    }else if($userRole->role_id == 4 || $userRole->role_id == 5){
+                        $detailEndorserNonEdu  = $this->student_model->get_user_profile($endorseValue['endorser_user_id']);
+                    }
+                    $nonEducation[$key]['ratingDetail'][$endorseKey] = $detailEndorserNonEdu;   
+                    $nonEducation[$key]['ratingDetail'][$endorseKey]['currentUserRate'] = ($endorseValue['endorser_user_id'] == $viewerId) ? true : false; 
+                }
+            }
+        }
+
+        $profile['nonEducation'] = $nonEducation;
+		
+        //increase number of seen
 		if($this->session->userdata('roles') != "administrator" && $this->session->userdata('id') != $id){
 			$last_seen_by = $profile['user_profile']['overview']['last_seen_by'];
 			$last_seen_at = $profile['user_profile']['overview']['last_seen_at'];
@@ -630,6 +772,7 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-        $this->load->view($roles.'/view_profile',$profile);
+ 
+        $this->load->view('student/view_profile',$profile);
     }
 }

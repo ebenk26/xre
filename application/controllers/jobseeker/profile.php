@@ -631,6 +631,6 @@ class Profile extends CI_Controller {
         $gallery = $query->result_array();
 
         $profile['gallery'] = $gallery;
-        $this->load->view($roles.'/view_profile',$profile);
+        $this->load->view('jobseeker/view_profile',$profile);
     }
 }

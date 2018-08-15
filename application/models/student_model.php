@@ -157,6 +157,7 @@ class Student_Model extends CI_Model{
     }
 
     function get_user_profile($id){
+
         //experiences
         $this->db->select('experiences.user_id as experiences_user_id, experiences.id as experience_id, experiences.title as experiences_title, experiences.description as experiences_description, experiences.start_date as experiences_start_date, experiences.end_date as experiences_end_date, experiences.company_name as experiences_company_name, experiences.skills, experiences.industries_id, experiences.employment_type_id, employment_types.name as employment_type, industries.name as industry_name');
         $this->db->from('users');
@@ -369,7 +370,6 @@ class Student_Model extends CI_Model{
 
 
         $result['percent'] = ( $result['exp_percent'] + $result['achievement_percent'] + $result['overview_percent'] + $result['academic_percent'] + $result['image_percent'] + $result['project_percent'] + $result['language_percent'] + $result['address_percent'] ) *100;
-
         return $result;
     }
 
@@ -793,6 +793,25 @@ echo '<pre>';
 
         var_dump($jobPreference);exit;
     }
+
+
+    function getUserProfileApi($id){
+        var_dump($id);exit;
+        
+        $this->db->select('users.*, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary');       
+        $this->db->from('users');
+        $this->db->join('student_bios', 'student_bios.user_id = users.id');
+        
+        
+        $this->db->where(array('users.id' => $id));
+        $overview = $this->db->get();
+        $result['overview'] = $overview->last_row('array');
+        
+
+
+        return $result;
+    }
+
 }
 
 ?>

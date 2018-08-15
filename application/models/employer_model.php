@@ -55,7 +55,10 @@ class Employer_Model extends CI_Model{
         $this->db->where(array('users.id' => $id));
         //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
         $query = $this->db->get();
-        return $query->last_row('array');
+        // var_dump($query->last_row('array'));exit;
+        // var_dump($this->db->last_query());exit;
+        $result = $query->last_row('array');
+        return $result;
     }
 
     function check_availability_profile($id){
