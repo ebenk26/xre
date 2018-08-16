@@ -102,6 +102,8 @@
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
 		                                    <th> Percentage </th>
+		                                    <th> Verify </th>
+		                                    <th> Last Seen </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
@@ -120,6 +122,8 @@
 													<?php }?>
 												</td>
 												<td> <?=$value['percent']; ?></td>
+												<td> <?=$value['overview']['verified']==1 ? '<i class="fa fa-check">' : ''; ?> </td>
+												<td> <?= time_elapsed_string($value['overview']['last_seen_at']) ; ?> </td>
 												<td>
 													<a href="<?php
 														$id = $value['overview']['id_users'];
@@ -158,6 +162,8 @@
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
 		                                    <th> Percentage </th>
+		                                    <th> Verify </th>
+		                                    <th> Last Seen </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
@@ -176,6 +182,8 @@
 													<?php }?>
 												</td>
 												<td> <?=$value['percent']; ?></td>
+												<td> <?=$value['overview']['verified']==1 ? '<i class="fa fa-check">' : ''; ?> </td>
+												<td> <?= time_elapsed_string($value['overview']['last_seen_at']) ; ?> </td>
 												<td>
 													<a href="<?php
 														$id = $value['overview']['id_users'];
@@ -214,6 +222,8 @@
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
 		                                    <th> Percentage </th>
+		                                    <th> Verify </th>
+		                                    <th> Last Seen </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
@@ -232,6 +242,8 @@
 													<?php }?>
 												</td>
 												<td> <?=$value['percent']; ?></td>
+												<td> <?=$value['overview']['verified']==1 ? '<i class="fa fa-check">' : ''; ?> </td>
+												<td> <?= time_elapsed_string($value['overview']['last_seen_at']) ; ?> </td>
 												<td>
 													<a href="<?php
 														$id = $value['overview']['id_users'];
@@ -270,6 +282,8 @@
 		                                    <!--<th class="col-md-2"> CV </th>-->
 		                                    <th> Video CV </th>
 		                                    <th> Percentage </th>
+		                                    <th> Verify </th>
+		                                    <th> Last Seen </th>
 		                                    <th> Actions </th>
 		                                </tr>
 		                            </thead>
@@ -288,6 +302,8 @@
 													<?php }?>
 												</td>
 												<td> <?=$value['percent']; ?></td>
+												<td> <?=$value['overview']['verified']==1 ? '<i class="fa fa-check">' : ''; ?> </td>
+												<td> <?= time_elapsed_string($value['overview']['last_seen_at']) ; ?> </td>
 												<td>
 													<a href="<?php
 														$id = $value['overview']['id_users'];
