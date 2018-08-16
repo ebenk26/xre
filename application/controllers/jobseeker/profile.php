@@ -633,4 +633,209 @@ class Profile extends CI_Controller {
         $profile['gallery'] = $gallery;
         $this->load->view($roles.'/view_profile',$profile);
     }
+	
+	public function downloadResume(){
+		$roles = $this->session->userdata('roles');
+        $segment = $this->uri->segment(USER_ROLE);
+        if(($roles !== $segment)){
+            redirect(base_url());
+        }
+		$id = $_GET['id'];
+		$id_res = $_GET['id_res'];
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
+        $this->load->library('Pdf');
+        
+        $candidate = $this->student_model->get_user_profile($id);
+        $candidate['link'] = base_url().'profile/user/'.$id_res;
+        $page = $candidate['overview']['name']." - resume";
+        
+		$subtable = '<table border="0" cellspacing="6" cellpadding="4"><tr><td>a</td><td>b</td></tr><tr><td>c</td><td>d</td></tr></table>';
+		// echo "<pre>";print_r($candidate);exit;
+		
+		$photo_path = base_url()."assets/img/student/";
+		$html = '
+				<div style="background-color:#f5f5dc;">
+					<div style="font-size:15px;font-weight:bold;text-align:center;">'.(!empty($candidate['overview']['name']) ? $candidate['overview']['name'] : 'N/A').'</div>
+					<div style="font-size:9px;text-align:center;">
+						'.(!empty($candidate['overview']['summary']) ? $candidate['overview']['summary'] : 'N/A').'
+					</div>
+				</div>
+				<span style="font-size:9px;">
+					<table border="0" cellpadding="4" cellspacing="1">
+						<tr>
+							<th align="left" width="35%;">
+								<br>
+								<br>
+								<span style="text-align:center;">
+									<img src="'.(is_file($photo_path.($candidate['overview']['profile_photo'])) ? $photo_path.$candidate['overview']['profile_photo'] : base_url()."assets/img/site/profile-pic.png").'" alt="test alt attribute" width="100" height="100" border="0" />
+								</span>
+								<br>
+								
+								<div>
+									<div style="font-weight:bold;">CONTACT</div>
+									<hr>
+									<div></div>
+									<div>
+										<span style="background-color: grey; color: white;">  </span> '.(!empty($candidate['overview']['student_bios_contact_number']) ? $candidate['overview']['student_bios_contact_number'] : 'N/A').'
+									</div>
+									<div>
+										<span style="background-color: grey; color: white;">  </span> '.(!empty($candidate['overview']['email']) ? $candidate['overview']['email'] : 'N/A').'
+									</div>
+
+									<div>
+										<span style="background-color: grey; color: white;">  </span> '.(!empty($candidate['address']['states']) ? $candidate['address']['states'] : 'N/A').', '.(!empty($candidate['address']['city']) ? $candidate['address']['city'] : 'N/A').'
+									</div>
+
+									<div>
+										<span style="background-color: grey; color: white;">  </span> '.$candidate['link'].'
+									</div>
+									
+								</div>
+		';
+							if (!empty($candidate['language']))
+                                {
+									$html .='
+										<div style="font-weight:bold;">LANGUAGE</div>
+										<hr>
+										<div></div>
+									';
+									foreach ($candidate['language'] as $value)
+									{
+										$html .= '
+											<div>
+												<span style="font-weight:bold;">'.$value['title'].'</span><br>
+												<span><i>Spoken : '.$value['spoken'].'</i></span><br>
+												<span><i>Written : '.$value['written'].'</i></span>
+											</div>
+										';
+									}
+								}
+							
+							if (!empty($candidate['reference']))
+                                {
+									$html .='
+								<br>
+								<div style="font-weight:bold;">REFERENCE</div>
+								<hr>
+								<div></div>
+									';
+									foreach ($candidate['reference'] as $value)
+									{
+										$html .='
+											<div>
+												<span style="font-weight:bold;">'.$value['reference_name'].' | <span style="font-weight:normal;">'.$value['reference_relationship'].'</span></span><br>
+												<span><span style="background-color: grey; color: white;;">  </span> '.$value['reference_phone'].'</span><br>
+												<span><span style="background-color: grey; color: white;;">  </span> '.$value['reference_email'].'</span>
+											</div>
+										';
+									}
+								}
+		
+		$html .='
+							</th>
+							<th align="left" width="65%;">
+		';
+							if (!empty($candidate['academics']))
+                                {
+									$html .='
+										<div style="font-weight:bold;">EDUCATION</div>
+										<hr>
+										<div></div>
+									';
+									foreach ($candidate['academics'] as $value)
+									{
+										$html .='
+											<div>
+												<span style="font-weight:bold;">'.$value['qualification_level'].' | '.$value['degree_name'].'</span><br>
+												<span style="font-weight:bold;">'.$value['university_name'].'</span><br>
+												<span><font face="courier">'.date('d M Y', strtotime($value['start_date'])).' - '.date('d M Y', strtotime($value['end_date'])).'</font></span><br>
+												<span>'.$value['degree_description'].'</span>
+											</div>
+											<br>
+										';
+									}
+								}
+							if (!empty($candidate['experiences']))
+                                {
+									$html .='
+								<div style="font-weight:bold;">EXPERIENCE</div>
+								<hr>
+								<div></div>
+								';
+								foreach ($candidate['experiences'] as $value)
+									{
+										$html .='
+											<div>
+												<span style="font-weight:bold;">'.$value['experiences_company_name'].' | '.$value['experiences_title'].'</span><br>
+												<span><font face="courier">'.date('d M Y', strtotime($value['experiences_start_date'])).' - '.date('d M Y', strtotime($value['experiences_end_date'])).'</font></span><br>
+												<span>'.$value['experiences_description'].'</span>
+											</div>
+										';
+									}
+								}
+								$html .='
+								<br>
+								';
+								
+							if (!empty($candidate['projects']))
+                                {
+									$html .='
+								
+									<div style="font-weight:bold;">PROJECT & SKILL</div>
+									<hr>
+									<div></div>
+									<div>
+										';
+										
+										foreach ($candidate['projects'] as $value)
+									{
+										$html .='
+											<span><span style="background-color: grey; color: white;">  </span> <b>'.$value['name'].'</b> - '.$value['skills_acquired'].' </span>
+										';
+									}
+									$html .='
+										</div>
+										<br>
+									';
+								}
+								
+							if (!empty($candidate['achievement']))
+                                {
+									$html .='
+								
+									<div style="font-weight:bold;">EXTRACURRICULAR ACTIVITY</div>
+									<hr>
+									<div></div>
+									<div>
+										';
+										
+										foreach ($candidate['achievement'] as $value)
+									{
+										$html .='
+											<span><span style="background-color: grey; color: white;">  </span> '.$value['achievement_title'].' </span>
+										';
+									}
+									$html .='
+										</div>
+										<br>
+									';
+								}
+								
+					$html .='
+							</th>
+						</tr>
+					</table>
+				</span>
+		';
+		
+		$pdfFilePath = $page.".pdf";
+
+        $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
+        $pdf->AddPage();
+        $y = $pdf->getY();
+		// $html = utf8_decode($html);
+        $pdf->writeHTML($html, true, false, true, false, '');
+        $pdf->Output($pdfFilePath, "D");
+    }
 }

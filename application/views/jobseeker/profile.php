@@ -64,6 +64,13 @@
                     <!-- # Header Image -->
                     <div class="view height-300 bg-position-center" style="background:url(' <?= getimagesize(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                         <div class="mask mdo-darkblue-v7 ">
+							<?php
+								$id = $this->session->userdata('id');
+								$id_encoded = rtrim(base64_encode($id), '=');
+							?>
+							<a href="<?php echo base_url()?>jobseeker/profile/downloadResume?id=<?php echo $user_profile['overview']['id_users']; ?>&id_res=<?php echo $id_encoded; ?>" target="_blank" class="btn btn-md-cyan m-30 pull-right">
+                                <i class="fa fa-arrow-circle-down"></i> Download Resume
+							</a>
                             <a href="#modal_edit_profile" data-toggle="modal" class="btn btn-md-indigo m-30 pull-right">
                                 <i class="icon-pencil"></i> Edit Profile</a>
                         </div>

@@ -425,6 +425,7 @@ class Student_Model extends CI_Model{
             }
 
             $multiCondition = (!empty($condition)) ? 'OR('.implode(' AND ',$condition).')' : '';
+            $multiCondition .= ' AND `users`.`id` = '.$id.'';
 
             $query = '  SELECT
                           `user_profiles`.company_name,
@@ -464,6 +465,7 @@ class Student_Model extends CI_Model{
             $sql    = $this->db->query($query);//echo $query;exit();
             $result = $sql->result_array();
             // beautifyJson($sql->result_array());
+			// print_r($this->db->last_query());exit;
         }
 
         return $result;
