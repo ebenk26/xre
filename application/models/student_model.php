@@ -654,6 +654,7 @@ class Student_Model extends CI_Model{
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
+        $this->db->group_by('endorse.id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -668,6 +669,7 @@ class Student_Model extends CI_Model{
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
+        $this->db->group_by('review.id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -682,6 +684,7 @@ class Student_Model extends CI_Model{
         $this->db->join('user_role', 'user_role.user_id = users.id');
         $this->db->join('roles', 'roles.id = user_role.role_id');
         $this->db->where($data);
+        $this->db->group_by('ratings.id');
         $query = $this->db->get();
         return $query->result_array();
     }
@@ -711,6 +714,7 @@ class Student_Model extends CI_Model{
         $this->db->where($where);
         $this->db->group_by('wishlist.id'); 
         $query = $this->db->get();
+        // var_dump($this->db->last_query());exit;
         return $query->result_array();
     }
 
@@ -766,8 +770,8 @@ class Student_Model extends CI_Model{
                 }
             }
         }
-echo '<pre>';
-        var_dump($jobPreference);exit;
+// echo '<pre>';
+        // var_dump($jobPreference);exit;
         $job = [];
         foreach ($jobPreference as $key => $value) {
             $checkComma = strpos($value, ',');
@@ -781,22 +785,21 @@ echo '<pre>';
                 }
             }
         }
-        var_dump($job);
-        exit;
+        // var_dump($job);
+        // exit;
         $jobLocationAsArray = explode(';', $jobPreference['work_location']);
         foreach ($jobLocationAsArray as $key => $value) {
             $resultLocation = $this->db->get_where('countries', array('name'=>$value));
             $jobLocationInId[] = $resultLocation->last_row('array');
         }
         $jobPref['location'] = $jobLocationInId;
-        var_dump($jobPref);
+        // var_dump($jobPref);
 
-        var_dump($jobPreference);exit;
+        // var_dump($jobPreference);exit;
     }
 
 
     function getUserProfileApi($id){
-        var_dump($id);exit;
         
         $this->db->select('users.*, student_bios.youtubelink as youtubelink, student_bios.quote as quote, student_bios.summary as summary, student_bios.gender as student_bios_gender, student_bios.date_of_birth as student_bios_DOB, student_bios.occupation as student_bios_occupation, student_bios.contact_number as student_bios_contact_number, student_bios.expected_salary as expected_salary');       
         $this->db->from('users');

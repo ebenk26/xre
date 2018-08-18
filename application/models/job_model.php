@@ -60,10 +60,9 @@ class Job_Model extends CI_Model{
         {
             $this->db->order_by("job_positions.created_at", "DESC");
         }
-
+        $this->db->group_by('job_positions.id');
         $this->db->limit($perPage,$offset);
 		$query = $this->db->get();
-		// var_dump($this->db->last_query());exit();
 		return $query->result_array();
 	}
 
@@ -108,6 +107,7 @@ class Job_Model extends CI_Model{
         }
 
 		$this->db->where("job_positions.status = 'post' AND job_positions.expiry_date >= '".date('Y-m-d')."' AND (job_positions.name LIKE '%$word%' OR industries.name LIKE '%$word%' OR position_levels.name LIKE '%$word%') AND(job_positions.location LIKE '%".$_COOKIE['country_name']."%')");
+        $this->db->group_by('job_positions.id');
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
@@ -135,6 +135,7 @@ class Job_Model extends CI_Model{
 		$this->db->join('profile_uploads', 'profile_uploads.user_id = job_positions.user_id AND profile_uploads.type = "profile_photo"', 'left');
 		$this->db->where('applieds.user_id', $this->session->userdata('id'));
 		//$this->db->where('profile_uploads.type', 'profile_photo');
+        $this->db->group_by('applieds.id');
 		$this->db->order_by('applieds.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result_array();
@@ -232,6 +233,7 @@ class Job_Model extends CI_Model{
         $this->db->join('applieds', 'applieds.user_id = users.id');
         $this->db->where('interview_schedule.job_id', $id);
         $this->db->where('applieds.job_position_id', $id);
+        $this->db->group_by('interview_schedule.id');
         $query = $this->db->get();
         return $query->result_array();
     }
