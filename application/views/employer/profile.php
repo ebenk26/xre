@@ -20,8 +20,8 @@
     }*/
     !empty($header_picture['name']) ? $header_picture['name'] = $header_picture['name'] : $header_picture['name'] = '33.jpg';
     !empty($profile_picture['name']) ? $profile_picture['name'] = $profile_picture['name'] : $profile_picture['name'] = 'profile-pic.png';
-    $checkHeaderPhoto = get_headers(IMG_EMPLOYERS.$header_picture['name']);
-    $checkProfilePhoto = get_headers(IMG_EMPLOYERS.$profile_picture['name']);
+    $checkHeaderPhoto = file_exists(CHECK_IMG_DIRECTORY_LOCAL.EMPLOYER_IMG_DIRECTORY.$header_picture['name']);
+    $checkProfilePhoto = file_exists(CHECK_IMG_DIRECTORY_LOCAL.EMPLOYER_IMG_DIRECTORY.$profile_picture['name']);
     //empty=HTTP/1.0 404 Not Found
     //HTTP/1.1 200 OK
 ?>
@@ -161,7 +161,7 @@
         <!-- Content -->
         <div class="portlet">
             <!-- # Header Image -->
-            <div class=" view height-300 " style="background:url('<?php echo $checkHeaderPhoto[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat;">
+            <div class=" view height-300 " style="background:url('<?php echo $checkHeaderPhoto == true ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>') center center no-repeat;">
                 <div class="mask hm-darkblue-v7 ">
                     <a href="#modal_edit_header_picture" data-toggle="modal" class="btn  btn-circle btn-mdo-black pull-right m-30">
                         <i class="icon-camera"></i>
@@ -175,7 +175,7 @@
                     <div class="mt-card-item">
                         <!-- Default Picture -->
                         <div class="mt-card-avatar text-center p-0">
-                            <img src="<?php echo $checkProfilePhoto[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG.'site/profile-pic.png'?>" class=" avatar avatar-large avatar-circle mt-o-150 ">
+                            <img src="<?php echo $checkProfilePhoto == true ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG.'site/profile-pic.png'?>" class=" avatar avatar-large avatar-circle mt-o-150 ">
                             <a href="#modal_edit_default_picture" data-toggle="modal" class="btn btn-circle btn-mdo-white  ml-o-50 btn-icon-only">
                                 <i class="icon-camera"></i>
                             </a>
@@ -1170,7 +1170,7 @@
                         <?php if(!empty($profile_picture)) { ?>
                         <div class="fileinput fileinput-exists width-100-percent" data-provides="fileinput">
                             <div class="fileinput-preview thumbnail md-grey-hover width-100-percent center-block mt-display-block height-500 p-30" data-trigger="fileinput">
-                                <img src="<?php echo $checkProfilePhoto[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG.'site/profile-pic.png'?>" class="img-responsive center-block">
+                                <img src="<?php echo $checkProfilePhoto == true ?  IMG_EMPLOYERS.$profile_picture['name'] : IMG.'site/profile-pic.png'?>" class="img-responsive center-block">
                             </div>
                             <span class="btn btn-md-darkblue btn-outline btn-file">
                                 <span class="fileinput-new"> Select image </span>
@@ -1220,7 +1220,7 @@
                         <?php if(!empty($header_picture)) { ?>
                         <div class="fileinput fileinput-exists width-100-percent" data-provides="fileinput">
                             <div class="fileinput-preview thumbnail md-grey-hover width-100-percent center-block mt-display-block height-500 p-30" data-trigger="fileinput">
-                                <img src="<?php echo $checkHeaderPhoto[0] == 'HTTP/1.1 200 OK' ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>" class="img-responsive center-block">
+                                <img src="<?php echo $checkHeaderPhoto == true ?  IMG_EMPLOYERS.$header_picture['name'] : IMG_EMPLOYER.'portfolio/1200x900/1.jpg'?>" class="img-responsive center-block">
                             </div>
                             <span class="btn btn-md-darkblue btn-outline btn-file">
                                 <span class="fileinput-new"> Select image </span>

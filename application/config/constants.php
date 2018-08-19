@@ -41,7 +41,11 @@ define('ASSETS', 'http://localhost/xremo/assets/');
 define('CSS', ASSETS.'css/');
 define('JS', ASSETS.'js/');
 define('IMG', ASSETS.'img/');
-
+define('CHECK_IMG_DIRECTORY_LIVE', $_SERVER['DOCUMENT_ROOT']);
+define('CHECK_IMG_DIRECTORY_STAGING', $_SERVER['DOCUMENT_ROOT'].'/dev-staging/');
+define('CHECK_IMG_DIRECTORY_LOCAL', $_SERVER['DOCUMENT_ROOT'].'/xremo/');
+define('STUDENT_IMG_DIRECTORY', 'assets/img/student/');
+define('EMPLOYER_IMG_DIRECTORY', 'assets/img/employer/');
 
 define('ASSETS_STUDENTS', ASSETS.'students/');
 define('CSS_STUDENTS', ASSETS.'students/css/');
