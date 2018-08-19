@@ -20,8 +20,8 @@
     }*/
     !empty($header_picture['name']) ? $header_picture['name'] = $header_picture['name'] : $header_picture['name'] = '33.jpg';
     !empty($profile_picture['name']) ? $profile_picture['name'] = $profile_picture['name'] : $profile_picture['name'] = 'profile-pic.png';
-    $checkHeaderPhoto = file_exists(CHECK_IMG_DIRECTORY_LOCAL.EMPLOYER_IMG_DIRECTORY.$header_picture['name']);
-    $checkProfilePhoto = file_exists(CHECK_IMG_DIRECTORY_LOCAL.EMPLOYER_IMG_DIRECTORY.$profile_picture['name']);
+    $checkHeaderPhoto = file_exists(CHECK_IMG_DIRECTORY_LIVE.EMPLOYER_IMG_DIRECTORY.$header_picture['name']);
+    $checkProfilePhoto = file_exists(CHECK_IMG_DIRECTORY_LIVE.EMPLOYER_IMG_DIRECTORY.$profile_picture['name']);
     //empty=HTTP/1.0 404 Not Found
     //HTTP/1.1 200 OK
 ?>
