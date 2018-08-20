@@ -59,7 +59,8 @@ class Welcome extends CI_Controller {
 					$result['city'] = $ip_data->geoplugin_city;
 				}
 				
-				echo '<script>console.log("'.$ip.'")</script>';
+				echo '<script>console.log("'.$ip_data.'")</script>';
+				echo '<script>console.log("'.$ip.'")</script>';exit;
 				if($result['country']=="ID"){
 					redirect(base_url().'site/country/id');
 				}else if($result['country']=="PH"){
