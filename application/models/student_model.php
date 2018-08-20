@@ -406,26 +406,98 @@ class Student_Model extends CI_Model{
 
             if(!empty($checkJobPrefer->keywords))
             {
-                $condition[] = 'LOWER(\''.$checkJobPrefer->keywords.'\') LIKE CONCAT("%,", LOWER(job_positions.name), ",%")';
+				// print_r(explode(",",str_replace(array("(,", ",)"),array("", ""),str_replace("'","",str_replace(array("(',", ",')", ","),array("('", "')", "','"),"(".$checkJobPrefer->keywords.")")))));exit;
+				$explode = explode(",",str_replace(array("(,", ",)"),array("", ""),str_replace("'","",str_replace(array("(',", ",')", ","),array("('", "')", "','"),"(".$checkJobPrefer->keywords.")"))));
+				$job_pos = " (";
+				$i = 0;
+				$len = count($explode);
+				foreach($explode as $el){
+					if ($i == 0) {
+						$job_pos .= " job_positions.name like '%$el%'";
+					} else if ($i == $len - 1) {
+						$job_pos .= " or job_positions.name like '%$el%'";
+					}
+					$i++;
+				}
+				$job_pos .= "or job_positions.name is not null)";
+				// $job_pos_res = str_replace(array("(',", ",')", ","),array("('", "')", "','"),$job_pos);
+                // $condition[] = 'LOWER(\''.$checkJobPrefer->keywords.'\') LIKE CONCAT("%,", LOWER(job_positions.name), ",%")';
+                $condition[] = $job_pos;
             }
             
             if(!empty($checkJobPrefer->position_level))
             {
-                $condition[] = 'LOWER(\''.$checkJobPrefer->position_level.'\') LIKE CONCAT("%;", LOWER(position_levels.name), ";%")';
+                // $condition[] = 'LOWER(\''.$checkJobPrefer->position_level.'\') LIKE CONCAT("%;", LOWER(position_levels.name), ";%")';
+				/* $job_pref = "position_levels.name in ('$checkJobPrefer->position_level')";
+				$job_pref_res = str_replace(array("(',", ",')", ","),array("('", "')", "','"),$job_pref);
+				$condition[] = $job_pref_res; */
+				
+				// print_r(str_replace(array("(;", ";)", ";"),array("", "", ","),"(".$checkJobPrefer->position_level.")"));exit;
+				$explode = explode(",",str_replace(array("(;", ";)", ";"),array("", "", ","),"(".$checkJobPrefer->position_level.")"));
+				$job_pref = " (";
+				$i = 0;
+				$len = count($explode);
+				foreach($explode as $el){
+					if ($i == 0) {
+						$job_pref .= " position_levels.name like '%$el%'";
+					} else if ($i == $len - 1) {
+						$job_pref .= " or position_levels.name like '%$el%'";
+					}
+					$i++;
+				}
+				$job_pref .= ")";
+				$condition[] = $job_pref;
             }
             
             if(!empty($checkJobPrefer->employment_type))
             {
-                $condition[] = 'LOWER(\''.$checkJobPrefer->employment_type.'\') LIKE CONCAT("%;", LOWER(employment_types.name), ";%")';
+                // $condition[] = 'LOWER(\''.$checkJobPrefer->employment_type.'\') LIKE CONCAT("%;", LOWER(employment_types.name), ";%")';
+				/* $job_type = "employment_types.name in ('$checkJobPrefer->employment_type')";
+				$job_type_res = str_replace(array("(';", ";')", ";"),array("('", "')", "','"),$job_type);
+				$condition[] = $job_type_res; */
+				
+				$explode = explode(",",str_replace(array("(;", ";)", ";"),array("", "", ","),"(".$checkJobPrefer->employment_type.")"));
+				$job_pref = " (";
+				$i = 0;
+				$len = count($explode);
+				foreach($explode as $el){
+					if ($i == 0) {
+						$job_pref .= " employment_types.name like '%$el%'";
+					} else if ($i == $len - 1) {
+						$job_pref .= " or employment_types.name like '%$el%'";
+					}
+					$i++;
+				}
+				$job_pref .= ")";
+				$condition[] = $job_pref;
             }
             
             if(!empty($checkJobPrefer->work_location))
             {
-                $condition[] = 'LOWER(\''.$checkJobPrefer->work_location.'\') LIKE CONCAT("%;", LOWER(countries.name), ";%")';
+                // $condition[] = 'LOWER(\''.$checkJobPrefer->work_location.'\') LIKE CONCAT("%;", LOWER(countries.name), ";%")';
+				/* $work_loc = "countries.name in ('$checkJobPrefer->work_location')";
+				$work_loc_res = str_replace(array("(';", ";')", ";"),array("('", "')", "','"),$work_loc);
+				$condition[] = $work_loc_res; */
+				
+				$explode = explode(",",str_replace(array("(;", ";)", ";"),array("", "", ","),"(".$checkJobPrefer->work_location.")"));
+				$job_pref = " (";
+				$i = 0;
+				$len = count($explode);
+				foreach($explode as $el){
+					if ($i == 0) {
+						$job_pref .= " countries.name like '%$el%'";
+					} else if ($i == $len - 1) {
+						$job_pref .= " or countries.name like '%$el%'";
+					}
+					$i++;
+				}
+				$job_pref .= ")";
+				$condition[] = $job_pref;
             }
 
-            $multiCondition = (!empty($condition)) ? 'OR('.implode(' AND ',$condition).')' : '';
-            $multiCondition .= ' AND `users`.`id` = '.$id.'';
+            // $multiCondition = (!empty($condition)) ? 'OR('.implode(' AND ',$condition).')' : '';
+            $multiCondition = (!empty($condition)) ? ' AND '.implode(' AND ',$condition).' ' : '';
+            // $multiCondition .= ' AND `users`.`id` = '.$id.'';
 
             $query = '  SELECT
                           `user_profiles`.company_name,

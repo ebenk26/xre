@@ -59,6 +59,7 @@ class Welcome extends CI_Controller {
 					$result['city'] = $ip_data->geoplugin_city;
 				}
 				
+				echo '<script>console.log("'.$ip.'")</script>';
 				if($result['country']=="ID"){
 					redirect(base_url().'site/country/id');
 				}else if($result['country']=="PH"){
@@ -66,7 +67,6 @@ class Welcome extends CI_Controller {
 				}else{
 					redirect(base_url().'site/country/my');
 				}
-				
 				/* if ($_SERVER['REMOTE_ADDR']=="::1") {
 					$this->load->view('welcome_message');
 					// redirect(base_url().'site/country/id');
