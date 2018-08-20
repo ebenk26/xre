@@ -1,7 +1,7 @@
 <?php !empty($user_profile['header_photo']) ? $user_profile['header_photo'] = $user_profile['header_photo'] : $user_profile['header_photo'] = '33.jpg';
         !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
-        $checkGetHeaderImage = get_headers(IMG_STUDENTS.$user_profile['header_photo']);
-        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']) 
+        $checkGetHeaderImage = file_exists(CHECK_IMG_DIRECTORY_LIVE.STUDENT_IMG_DIRECTORY.$user_profile['header_photo']);
+        $checkGetProfileImage = file_exists(CHECK_IMG_DIRECTORY_LIVE.STUDENT_IMG_DIRECTORY.$user_profile['profile_photo']);
     ?>
 
 <div class="page-content-wrapper">
@@ -62,7 +62,7 @@
                 <!-- Tab Content : Overview -->
                 <div class="tab-pane <?=$tab_student =='tab_overview' || $tab_student == '' ?'active':' '?>" id="tab_overview">
                     <!-- # Header Image -->
-                    <div class="view height-300 bg-position-center" style="background:url(' <?= getimagesize(IMG_STUDENTS.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
+                    <div class="view height-300 bg-position-center" style="background:url(' <?= file_exists(CHECK_IMG_DIRECTORY_LIVE.STUDENT_IMG_DIRECTORY.$user_profile['header_photo']) ?  IMG_STUDENTS.$user_profile['header_photo'] : IMG_STUDENTS.'33.jpg'; ?>') center center no-repeat">
                         <div class="mask mdo-darkblue-v7 ">
 							<?php
 								$id = $this->session->userdata('id');
@@ -85,7 +85,7 @@
                                     <div class="mt-card-item p-0">
                                         <!-- Avatar -->
                                         <div class="mt-card-avatar text-center p-0">
-                                            <img src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">
+                                            <img src="<?= $checkGetProfileImage == true ?  IMG_STUDENTS.$user_profile['profile_photo'] : IMG.'site/profile-pic.png'; ?>" class="avatar avatar-circle avatar-large mt-o-170">
                                         </div>
                                         <div class="mt-card-content mb-20 ">
                                             <!--  Full name   -->
@@ -1886,7 +1886,7 @@
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="<?php echo $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['profile_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
+                                                        <img src="<?php echo $checkGetProfileImage == true ?  IMG_STUDENTS.$user_profile['profile_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">
@@ -1912,7 +1912,7 @@
                                                 <br>
                                                 <div class="fileinput fileinput-new" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                                                        <img src="<?php echo $checkGetHeaderImage[0] == 'HTTP/1.1 200 OK' ?  IMG_STUDENTS.$user_profile['header_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
+                                                        <img src="<?php echo $checkGetHeaderImage == true ?  IMG_STUDENTS.$user_profile['header_photo'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image'; ?>" alt="Profile Picture"> </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
                                                     <div>
                                                         <span class="btn btn-md-grey btn-file">

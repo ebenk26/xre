@@ -171,14 +171,14 @@
                         </li>
                         <!-- END NOTIFICATION DROPDOWN -->
                         <?php
-                        !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png'; 
-                        $checkGetProfileImage = get_headers(IMG_STUDENTS.$user_profile['profile_photo']);
+                        !empty($user_profile['profile_photo']) ? $user_profile['profile_photo'] = $user_profile['profile_photo'] : $user_profile['profile_photo'] = 'profile-pic.png';
+                        $checkGetProfileImage = file_exists(CHECK_IMG_DIRECTORY_LIVE.STUDENT_IMG_DIRECTORY.$user_profile['profile_photo']);
                         $roles = $this->session->userdata('roles'); ?>
                         <!-- BEGIN USER LOGIN DROPDOWN -->
                         <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?= $checkGetProfileImage[0] == 'HTTP/1.1 200 OK' ? IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
+                                <img alt="" class="avatar avatar-xtramini avatar-circle" src="<?= $checkGetProfileImage == true ? IMG_STUDENTS.$user_profile['profile_photo'] : IMG_STUDENTS.'profile-pic.png'; ?>" />
                                 <span class="username username-hide-on-mobile">
                                     <?php
                                         $fullname = $this->session->userdata('name');

@@ -54,6 +54,7 @@ class Employer_Model extends CI_Model{
 		$this->db->join('profile_uploads', 'profile_uploads.user_id = users.id AND profile_uploads.type = "profile_photo"','left');
         $this->db->where(array('users.id' => $id));
         //$this->db->where(array('profile_uploads.type' => 'profile_photo'));
+        $this->db->group_by('users.id');
         $query = $this->db->get();
         // var_dump($query->last_row('array'));exit;
         // var_dump($this->db->last_query());exit;

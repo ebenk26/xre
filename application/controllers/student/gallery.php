@@ -233,6 +233,7 @@ class Gallery extends CI_Controller {
         //$imagePath = base_url()."assets/global/plugins/Croppic/croppic/temp/";
 
         $imgUrl = $_POST['imgUrl'];
+        $imgUrl = str_replace("https://xremo.com/","",$imgUrl);
         // original sizes
         $imgInitW = $_POST['imgInitW'];
         $imgInitH = $_POST['imgInitH'];

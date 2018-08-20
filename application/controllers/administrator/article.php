@@ -75,6 +75,7 @@ class Article extends CI_Controller {
 		$this->db->from('blogs');
 		//$this->db->join('users', 'users.id = job_positions.user_id');
 		//$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
+		$this->db->group_by('users.id');
         $this->db->order_by('id', 'DESC');
 		//$this->db->where('user_role.role_id = 3');
 		$query = $this->db->get();

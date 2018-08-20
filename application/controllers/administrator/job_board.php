@@ -43,6 +43,7 @@ class Job_Board extends CI_Controller {
 		$this->db->join('user_profiles', 'user_profiles.user_id = users.id');
         $this->db->order_by('job_positions.id', 'DESC');
 		$this->db->where('job_positions.work_location_id', $id );
+        $this->db->group_by('job_positions.id');
 		$query = $this->db->get();
 		return $query->result();
 	}

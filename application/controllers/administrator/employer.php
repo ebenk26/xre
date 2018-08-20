@@ -59,6 +59,7 @@ class Employer extends CI_Controller {
         if($country != null){
             $this->db->where('users.country', $country);
         }
+        $this->db->group_by('users.id');
 		$this->db->order_by('users.id', 'DESC');
 		$query = $this->db->get();
 		return $query->result();

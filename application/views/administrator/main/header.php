@@ -527,7 +527,7 @@
                             <span class="title">
 								<div class="div__badge">
 									Employer
-									<span class="button__badge"><?php print_r(get_total_new_emp());?></span>
+									<span class="button__badge"><?php get_total_new_emp();?></span>
 								</div>
 							</span>
 							<span class="selected"></span>
@@ -561,6 +561,13 @@
 							<span class="selected"></span>
                         </a>
 					</li>
+                    <li class="nav-item <?php if ($this->uri->segment(2) == 'emailBlasting'): echo 'active'; endif?> ">
+                        <a href="<?php echo base_url(); ?>administrator/emailBlasting" class="nav-link ">
+                            <i class="icon-diamond"></i>
+                            <span class="title">Email Blasting</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
 					<!--<li class="nav-item <?php if ($this->uri->segment(2) == 'speciaization'): echo 'active'; endif?> ">
                         <a href="<?php echo base_url(); ?>administrator/speciaization" class="nav-link ">
                             <i class="icon-magic-wand"></i>
